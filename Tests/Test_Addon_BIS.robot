@@ -1,9 +1,9 @@
 *** Settings ***
-Resource    ../Tests/Resource/Addon.robot
-Resource    ../Tests/Resource/Common_Function.robot
+Resource    ../Tests/Resource/Addon_BIS.robot
+Resource    ../Tests/Resource/Common_Function_BIS.robot
 Task Tags   SAPTEST
-Suite Setup    Common_Function.System Logon
-Suite Teardown    Common_Function.System Logout
+Suite Setup    Common_Function_BIS.System Logon
+Suite Teardown    Common_Function_BIS.System Logout
  
  
 *** Test Cases ***
