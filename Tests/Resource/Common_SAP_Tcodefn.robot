@@ -3,7 +3,7 @@ Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    String
-Library    PDF.py
+# Library    PDF.py
 
 
 *** Variables ***
@@ -13,7 +13,7 @@ ${FIELD_CLIENT}     wnd[0]/usr/txtRSYST-MANDT
 ${FIELD_USER}   wnd[0]/usr/txtRSYST-BNAME
 ${FIELD_PASSWORD}   wnd[0]/usr/pwdRSYST-BCODE
 ${screenshot_directory}     D:\\SAP_Testing\\sap_testing\\Output\\pabot_results\\0
-${output_pdf}   D:\\SAP_Testing\\sap_testing\\Output\\pabot_results\\0\\output.pdf
+# ${output_pdf}   D:\\SAP_Testing\\sap_testing\\Output\\pabot_results\\0\\output.pdf
 
 *** Keywords ***
 System Logon
@@ -37,4 +37,4 @@ System Logout
     Sleep    10
     # Create Pdf    ${screenshot_directory}   ${output_pdf_path}    
     Sleep   2
-    Create Pdf    ${screenshot_directory}    ${output_pdf}
+    # Create Pdf    ${screenshot_directory}    ${output_pdf}
