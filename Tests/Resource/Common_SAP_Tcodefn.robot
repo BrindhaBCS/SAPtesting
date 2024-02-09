@@ -8,10 +8,10 @@ Library    PDF.py
 
 
 *** Variables ***
-${screenshot_directory}     C:\\RobotFramework\\sap_testing\\newoutput
+# ${screenshot_directory}     C:\\RobotFramework\\sap_testing\\
 # ${output_pdf}   C:\\RobotFramework\\sap_testing\\newoutput_RBT\\43b1080b-5963-4972-916c-fc8f30b71de3\\pabot_results\\0\\output.pdf
-${output_directory}    ${CURDIR}\\..\\..\\newoutput
-${output_pdf}    ${output_directory}\\output1.pdf
+${output_directory}    ${CURDIR}\\..\\..\\Output\\pabot_results\\0
+${output_pdf}    ${output_directory}\\output.pdf
 
 *** Keywords ***
 System Logon
