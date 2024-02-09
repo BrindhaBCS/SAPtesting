@@ -9,8 +9,7 @@ import sys
 import ast
 
 
-
-class CustomSapGuiLibrary:
+class SAP_Tcode_Library:
     """The SapGuiLibrary is a library that enables users to create tests for the Sap Gui application
 
     The library uses the Sap Scripting Engine, therefore Scripting must be enabled in Sap in order for this library to work.
@@ -1086,8 +1085,10 @@ class CustomSapGuiLibrary:
     def spam_multiple_patch_version_select(self, comp_id, search_comp_1, search_patch_1):
         search_comp = ast.literal_eval(search_comp_1)
         search_patch = ast.literal_eval(search_patch_1)
-        if not len(search_comp) == len(search_patch):
-            sys.exit()
+        # print(search_comp, type(search_comp))
+        # print(search_patch, type(search_patch))
+        # if not len(search_comp) == len(search_patch):
+        #     sys.exit() 
         
         comp_area = self.session.FindById(comp_id)
         row_count = comp_area.RowCount
@@ -1095,15 +1096,159 @@ class CustomSapGuiLibrary:
         for i in range(len(search_comp)):
             comp = search_comp[i]
             patch = search_patch[i]
-
+            print(comp, patch)
+            
             try:
                 for x in range(row_count + 1):
                     cell_value = comp_area.GetCellValue(x, "COMPONENT")
+                    print(x, cell_value)
                     if cell_value == comp:
                         comp_area.modifyCell(x,"PATCH_REQ",patch)
+                        cell_value_1 = comp_area.GetCellValue(x, "COMPONENT")
+                        print("Cell Value 1", cell_value_1)
             except Exception as e:
-                 print(e)
+                 return f"Error: {e}"
+    
+    def double_click_on_tree_item(self, tree_id, id):
+        try:
+            tree = self.session.findById(tree_id)
+            tree.DoubleClickNode(id)
+    
+        except Exception as e:
+            print("Error: {e}")
 
+    def scot_tree(self, tree_id):
+        try:
+            tree = self.session.findById(tree_id)
+            tree.DoubleClickNode("         23")
+    
+        except Exception as e:
+            print("Error: {e}")
+
+    def select_label(self, user_area_id, search_text, max_scrolls=50):
+        try:
+            user_area = self.session.findById(user_area_id)
+            scroll_count = 0
+            found = False
+
+            while scroll_count < max_scrolls and not found:
+                for child in user_area.Children:
+                    if child.Text == search_text:
+                        print(f"Text Found: {child.Text}")
+                        child.SetFocus()
+                        self.session.findById("wnd[0]").sendVKey(2)  # Simulate Enter key press
+                        found = True
+                        break
+
+                if not found:
+                    # Scroll down and wait for the content to update
+                    print(scroll_count)
+                    self.session.findById("wnd[0]").sendVKey(82)  # 86 is the code for Page Down
+                    # time.sleep(1)  # Adjust as necessary for GUI response time
+                    scroll_count += 1
+
+            if not found:
+                print("Text not found after scrolling through all pages.")
+
+        except Exception as e:
+            print(f"Error: {e}")    
+
+    def selected_rows(self, tree_id, first_visible_row):
+        try:
+            tree = self.session.findById(tree_id)
+
+            tree.firstVisibleRow = first_visible_row
+                
+
+        except Exception as e:
+            print(f"Error: {e}")
+
+    def scroll_pagedown(self, window_id):
+        try:
+            # session.findById("wnd[0]/usr/txtCERT-FPSHA1").setFocus()
+            self.session.findById(window_id).setFocus()
+            self.session.findById("wnd[0]").TabBackward()
+        except Exception as e:
+            print(f"Error: {e}")
+
+    def get_grid_ids(self, grid_id):
+        try:
+            grid_control = self.session.findById(grid_id)
+
+            # Get the number of rows and columns in the grid
+            rows = grid_control.RowCount
+            columns = grid_control.ColumnCount
+
+            # Retrieve the item IDs and column IDs
+            item_ids = [f"{grid_id}/shell[0]/shell[{i}]" for i in range(rows)]
+            column_ids = [f"{grid_id}/shell[0]/shell[0]/shell[{i}]" for i in range(columns)]
+
+            return item_ids, column_ids
+
+        except Exception as e:
+            print(f"Error: {e}")
+            return None, None
+
+    def select_item_from_guilabel(self, user_id, search_text):
+        user_area = self.session.findById(user_id)
+        labels = [child.Text for child in user_area.Children]
+        item_count = user_area.Children.Count
+        # print("User Area Labels:", labels, item_count)
+        for i in range(item_count):
+            element = user_area.Children.ElementAt(i)
+            if element.Text.strip() == search_text.strip():
+                print(f"Element found: {element.Text}")
+                element.SetFocus()
+                self.session.findById("wnd[0]").sendVKey(2)
+                return
+            
+    def rows_from_stms(self, table_id): 
+        print(table_id)
+        row_count = self.session.findById(table_id).rowcount
+        print(row_count)
+        column_count = self.session.findbyId(table_id).columncount
+        print(column_count)
+        try:
+            for row in range(row_count):
+                print(row)
+                cell_value_1= self.session.findById(table_id).GetCellValue(row, "SYSNAM")
+                self.session.findById(table_id).DoubleClick(row, "SYSNAM")
+                print(cell_value_1)
+                return cell_value_1
+        except Exception as e:
+            return f"Error: {e}"  
+
+    def get_cell_value_from_gridtable(self, table_id):
+        try:
+            control = self.session.findById(table_id)
+            row_count = control.RowCount  # Assuming the control has a RowCount property
+            col_count = control.ColumnCount
+            print(row_count, col_count)
+            for row in range(row_count):
+                print(row)
+                cell_value = control.GetCellValue(row, "DEST")
+                print(cell_value)
+                return cell_value
+        except Exception as e:
+            return f"Error: {e}"
+
+    
+    def get_no_entries_found_text(self, text_id):
+        try:
+            found = False
+            while not found:
+                entry_text = self.session.findById(text_id).Text
+                                     
+                if entry_text == "No entries found that match selection criteria":
+                    print("No entries found that match selection criteria")
+                    found = True    
+                else:
+                    print("Entries are displayed")
+                    break
+        except Exception as e:
+            return f"Error: {e}"
+    
+    
     def multiple_logon_handling(self, logon_window_id, logon_id, continue_id):  
         try:
             content = self.session.findById(logon_window_id).Text
@@ -1115,5 +1260,18 @@ class CustomSapGuiLibrary:
             else:
                 print("Multiple logon does not exist.")
         except Exception as e:
-            return f"Error: {e}"   
+            return f"Error: {e}"      
+
+    def table_scroll(self, table_id, first_visible_row):
+        try:
+            # tree = self.session.findById(table_id)
+            # tree.firstVisibleRow = first_visible_row
+            self.session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").currentCellRow = 29
+            self.session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").firstVisibleRow = 6
+            self.session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").selectedRows = "29"
+        except Exception as e:
+            print(f"Error: {e}")    
+
+   
+
 
