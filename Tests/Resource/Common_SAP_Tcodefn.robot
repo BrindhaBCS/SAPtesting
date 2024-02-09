@@ -8,9 +8,9 @@ Library    PDF.py
 
 
 *** Variables ***
-${screenshot_directory}     C:\\RobotFramework\\sap_testing\\newoutput_RBT\\43b1080b-5963-4972-916c-fc8f30b71de3\\pabot_results\\0
+${screenshot_directory}     C:\\RobotFramework\\sap_testing\\newoutput
 # ${output_pdf}   C:\\RobotFramework\\sap_testing\\newoutput_RBT\\43b1080b-5963-4972-916c-fc8f30b71de3\\pabot_results\\0\\output.pdf
-${output_directory}    ${CURDIR}\\..\\..\\newoutput_RBT\\43b1080b-5963-4972-916c-fc8f30b71de3\\pabot_results\\0
+${output_directory}    ${CURDIR}\\..\\..\\newoutput
 ${output_pdf}    ${output_directory}\\output1.pdf
 
 *** Keywords ***
@@ -33,12 +33,4 @@ System Logout
     Sleep    5
     Take Screenshot    logoutpage.jpg
     Sleep    10
-    # Create Pdf    ${screenshot_directory}   ${output_pdf_path}    
-    # Sleep   2
-    # Create Pdf    ${output_directory}    ${output_pdf}
-
-# *** Test Cases ***
-
-# Sample pdf Test
-#     System Logon
-#     System Logout
+    Create Pdf    ${output_directory}    ${output_pdf}

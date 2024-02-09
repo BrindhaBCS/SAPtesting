@@ -1,24 +1,25 @@
 ==============================================================================
 Tests :: Testing functionality through Robot Framework                        
 ==============================================================================
-Tests.Test spam Update                                                        
+Tests.Test Migration tcodes                                                   
 ==============================================================================
-Check_Spam_update                                                       
+Executing SM69                                                        | PASS |
+------------------------------------------------------------------------------
+  
   Traceback (most recent call last):
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    File  C:\RobotFramework\sap_testing\Tests\Test_spam_Update.robot:10
-    T:  Check_Spam_update    
+    File  C:\RobotFramework\sap_testing\Tests\Test_Migration_tcodes.robot:6
+      System Logout    
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    File  C:\RobotFramework\sap_testing\Tests\Test_spam_Update.robot:13
-      Loading package    
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    File  C:\RobotFramework\sap_testing\Tests\Resource\Spam_Update.robot:47
-      Click Element    wnd[0]/mbar/menu[0]/menu[0]/menu[1]
+    File  C:\RobotFramework\sap_testing\Tests\Resource\Common_SAP_Tcodefn.robot:36
+      Create Pdf    ${output_directory}    ${output_pdf}
+      |  ${output_directory} = C:\RobotFramework\sap_testing\Tests\Resource\..\..\newoutput (str)
+      |  ${output_pdf} = C:\RobotFramework\sap_testing\Tests\Resource\..\..\newoutput\output1.pdf (str)
 ______________________________________________________________________________
-| FAIL |
-ValueError: Cannot find element with id 'wnd[0]/mbar/menu[0]/menu[0]/menu[1]'
-------------------------------------------------------------------------------
-Tests.Test spam Update                                                | FAIL |
+Tests.Test Migration tcodes                                           | FAIL |
+Suite teardown failed:
+No keyword with name 'Create Pdf' found.
+
 1 test, 0 passed, 1 failed
 ==============================================================================
 Tests :: Testing functionality through Robot Framework                | FAIL |

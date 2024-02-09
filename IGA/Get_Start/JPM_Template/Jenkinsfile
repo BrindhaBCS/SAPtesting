@@ -1,7 +1,0 @@
-#!/bin/groovy
-@Library(["jpm_shared_lib@1.x"]) _                       // imports the latest stable version of JPM
-import org.jnj.*
-def args = [:]                                      // set to true for verbose logs
-args.debug = true
-args.manifestSourcesFile = 'manifest-sources.yaml'       // tells JPM where to find job configuration
-new pipelines.stdPipeline().execute(args)                // invoke the JPM Standard Pipeline

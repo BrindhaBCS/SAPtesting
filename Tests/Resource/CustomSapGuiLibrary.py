@@ -1104,3 +1104,16 @@ class CustomSapGuiLibrary:
             except Exception as e:
                  print(e)
 
+    def multiple_logon_handling(self, logon_window_id, logon_id, continue_id):  
+        try:
+            content = self.session.findById(logon_window_id).Text
+            if content == "License Information for Multiple Logons":
+                print("Multiple logon exists")
+                self.session.findById(logon_id).selected = True
+                self.session.findById(continue_id).press()
+                return content
+            else:
+                print("Multiple logon does not exist.")
+        except Exception as e:
+            return f"Error: {e}"   
+

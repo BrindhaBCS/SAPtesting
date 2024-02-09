@@ -10,6 +10,7 @@ from pip._internal.operations import freeze
 import logger_handler
 from user_arguments import UserArguments
 from support import Support
+import datetime
 
 
 class SetupOptions(object):
@@ -297,18 +298,22 @@ class SetupOptions(object):
 
     def _set_options_in_arguments_file(self, counter=""):
         """
-        Sets robot options into an argument file.
+        Sets robot options into an argument file with a unique name to prevent overwriting.
 
         :param counter: Optional string counter to be added to the log name.
         :type counter: String
         """
-        file_path = "Robot_Arguments" + self._get_metadata() + counter
-        file_path = os.sep.join([self.user_arguments.parent_dir, file_path])
+        # Generate a timestamp or unique identifier
+        timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+        unique_identifier = f"{counter}_{timestamp}" if counter else timestamp
+
+        file_path = f"Robot_Arguments_{unique_identifier}"
+        file_path = os.path.join(self.user_arguments.parent_dir, file_path)
         self.arg_file_data = self.command
         with open(file_path, "w") as file_object:
             file_object.write(self.command)
-        file_path = self._add_quotes_to_path(file_path)
-        self.command = " --argumentfile " + file_path + " "
+        quoted_file_path = self._add_quotes_to_path(file_path)
+        self.command = f" --argumentfile {quoted_file_path} "
 
     def _add_xunit_option(self, filename):
         """
