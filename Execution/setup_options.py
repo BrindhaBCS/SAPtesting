@@ -11,6 +11,7 @@ import logger_handler
 from user_arguments import UserArguments
 from support import Support
 import datetime
+import uuid
 
 
 class SetupOptions(object):
@@ -304,8 +305,10 @@ class SetupOptions(object):
         :type counter: String
         """
         # Generate a timestamp or unique identifier
-        timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
-        unique_identifier = f"{counter}_{timestamp}" if counter else timestamp
+        # timestamp = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+        # unique_identifier = f"{counter}_{timestamp}" if counter else timestamp
+        uid = uuid.uuid4()
+        unique_identifier = str(uid)
 
         file_path = f"Robot_Arguments_{unique_identifier}"
         file_path = os.path.join(self.user_arguments.parent_dir, file_path)
