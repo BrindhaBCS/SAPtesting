@@ -30,12 +30,12 @@ System Logon
     Sleep   2
     Send Vkey    0
     Sleep    5
-    Take Screenshot    01_loginpage.jpg
+    # Take Screenshot    01_loginpage.jpg
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
     Sleep   1
-    Take Screenshot    00_multi_logon_handling.jpg
+    # Take Screenshot    00_multi_logon_handling.jpg
 
 System Logout
     Run Transaction   /nex
     Sleep    5
-    Take Screenshot    logoutpage.jpg
+    # Take Screenshot    logoutpage.jpg
