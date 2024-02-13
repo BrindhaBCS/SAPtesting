@@ -8,10 +8,9 @@ import subprocess
 import sys
 import traceback
 import logger_handler
-import datetime
 from setup_options import SetupOptions
 from user_arguments import UserArguments
-import uuid
+
 
 class Driver(object):
     """
@@ -86,11 +85,7 @@ class Driver(object):
         """
         if not self.args.salesforce:
             self.setup_options = SetupOptions(self.args)
-            #now = datetime.datetime.now()
-            #date_time_str = now.strftime("%Y-%m-%d_%H-%M-%S")
-            # Append the current date and time to the output directory path
-            output_directory_base = os.path.abspath(self.args.output_dir)
-            output_directory = os.path.join(output_directory_base)
+            output_directory = os.path.abspath(self.args.output_dir)
             output_xml = os.sep.join([output_directory, "Output.xml"])
             self.setup_options.support.update_evidence_paths(output_xml, output_directory)
 
