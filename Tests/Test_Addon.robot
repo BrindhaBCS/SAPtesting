@@ -7,7 +7,6 @@ Suite Teardown    Common_Function.System Logout
  
  
 *** Test Cases ***
-
 Check_Saint Transation Code
     Saint Transation Code
     Get Cell Text From SAP Table

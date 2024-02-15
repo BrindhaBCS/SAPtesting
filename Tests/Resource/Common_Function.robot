@@ -26,7 +26,7 @@ System Logon
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('SAP_USER')}    
     Sleep    1
     # ${SAP_PASSWORD}   OperatingSystem.Get Environment Variable    SAP_PASSWORD
-    Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${SAP_PASSWORD}    
+    Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('SAP_PASSWORD')}    
     Sleep   2
     Send Vkey    0
     Sleep    5

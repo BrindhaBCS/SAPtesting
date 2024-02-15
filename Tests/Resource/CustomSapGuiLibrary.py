@@ -1117,3 +1117,22 @@ class CustomSapGuiLibrary:
         except Exception as e:
             return f"Error: {e}"   
 
+    def find_addon_rows(self, comp_id, search_comp): 
+        
+        comp_area = self.session.FindById(comp_id)
+        row_count = comp_area.RowCount
+        found_rows = []
+        print(dir(comp_area))
+
+        for i in range(len(search_comp)):
+            comp = search_comp[i]
+            try:
+                for x in range(row_count + 1):
+                    cell_value = comp_area.getCell(x, 0)
+                    if cell_value.Text == comp:
+                        print(cell_value.Text)
+                        found_rows.append(x)
+        
+            except Exception as e:                
+                print(e)
+        return(found_rows)
