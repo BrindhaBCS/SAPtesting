@@ -23,13 +23,13 @@ Write Excel
     Close Current Excel Document
 
 SAP logon
-    Start Process     ${symvar('SAP_SERVER')}
+    Start Process     ${symvar('SAP_server')}
     Sleep    10s
     Connect To Session
     Open Connection    ${symvar('connection_name')}
-    Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('connection_name')}
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('User_Name')}
-    Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('User_Password')}
+    Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('login_client')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('user_Name')}
+    Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('user_Password')}
     Send Vkey    0
     Sleep   10s
 SAP Logout
