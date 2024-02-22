@@ -11,8 +11,8 @@ Check_Saint Transation Code
     Saint Transation Code
     Get Cell Text From SAP Table
   
-# Selecting the path for the Addon
-#     Patch selection for the Addon
+Selecting the path for the Addon
+    Patch selection for the Addon
 #     Important SAP note handling
 #     FOR ST/BNWVS 
 

@@ -1136,3 +1136,18 @@ class CustomSapGuiLibrary:
             except Exception as e:                
                 print(e)
         return(found_rows)
+    
+    def saint_patch_select(session, search_comp, search_patch):
+        comp_txt = "wnd[0]/usr/subLIST_AREA:SAPLSAINT_UI:0300/tabsQUEUE_COMP/tabpQUEUE_COMP_FC2/ssubQUEUE_COMP_SCA:SAPLSAINT_UI:0303/txtGV_"
+        patch_txt = "wnd[0]/usr/subLIST_AREA:SAPLSAINT_UI:0300/tabsQUEUE_COMP/tabpQUEUE_COMP_FC2/ssubQUEUE_COMP_SCA:SAPLSAINT_UI:0303/cmbGV_"
+        try:
+            for i in range(1,100):
+                comp_id = f"{comp_txt}{i:02}_COMPONENT"
+                patch_id = f"{patch_txt}{i:02}_PATCH_REQ"
+                patch = session.FindById(comp_id).Text
+                for j in range(0,len(search_comp)):
+                    if patch == search_comp[j]:
+                        session.FindById(patch_id).key = search_patch[j]
+        except Exception as e:
+             print(e)
+    

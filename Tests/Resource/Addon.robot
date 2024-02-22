@@ -3,6 +3,7 @@ Library    Process
 Library    CustomSapGuiLibrary.py
 Library    OperatingSystem
 Library    String
+Library    CustomSapGuiLibrary.py
 # Library    getcelltext.py
 
 
@@ -21,7 +22,7 @@ ${button_id}    wnd[0]/usr/btnBUTTON_NEXT
 ${status_line}    wnd[0]/usr/sub:SAPLSAINT_UI:0100/txtWA_COMMENT_TEXT-LINE[0,0]
 ${refresh_id}    wnd[0]/tbar[1]/btn[30]
 ${certificate_id}    wnd[0]/sbar/pane[0]
-@{addon}    ${symvar('addOn').split(',')}
+# @{addon}    ${symvar('addOn').split(',')}
 # ${addon}    Create List    ${symvar('addOn').split(',')}
 
 # ${value_string}=    Set Variable   symvar
@@ -56,19 +57,26 @@ Saint Transation Code
 
 
 Get Cell Text From SAP Table
-    Log    ${addon}
-    ${foundRow}    CustomSapGuiLibrary.find addon rows    wnd[0]/usr/subLIST_AREA:SAPLSAINT_UI:0104/tblSAPLSAINT_UIADDON_TO_INSTALL    ${addon}
+   
+    ${foundRow}    CustomSapGuiLibrary.find addon rows    wnd[0]/usr/subLIST_AREA:SAPLSAINT_UI:0104/tblSAPLSAINT_UIADDON_TO_INSTALL    ${symvar('addOn')}
     Log    Found text in row: ${foundRow}
-    CustomSapGuiLibrary.Select Table Row    wnd[0]/usr/subLIST_AREA:SAPLSAINT_UI:0104/tblSAPLSAINT_UIADDON_TO_INSTALL    ${foundRow}
-
+    FOR    ${row_index}    IN    @{foundRow}
+        CustomSapGuiLibrary.Select Table Row    wnd[0]/usr/subLIST_AREA:SAPLSAINT_UI:0104/tblSAPLSAINT_UIADDON_TO_INSTALL    ${row_index}
+    END
     
     Take Screenshot    saint4.jpg
     Click Element    wnd[0]/usr/btnBUTTON_NEXT
     Sleep    4
 
 Patch selection for the Addon
+    Saint Patch Select    ${addOn}    ${Patch}
+    Log    ${addOn}
+    Log    ${Patch}
+    Sleep    10
+    Take Screenshot    s.jpg
+    Sleep    10    
         
-    Select From List By Label    wnd[0]/usr/subLIST_AREA:SAPLSAINT_UI:0300/tabsQUEUE_COMP/tabpQUEUE_COMP_FC2/ssubQUEUE_COMP_SCA:SAPLSAINT_UI:0303/cmbGV_01_PATCH_REQ    ${symvar('Patch')}
+    # Select From List By Label    wnd[0]/usr/subLIST_AREA:SAPLSAINT_UI:0300/tabsQUEUE_COMP/tabpQUEUE_COMP_FC2/ssubQUEUE_COMP_SCA:SAPLSAINT_UI:0303/cmbGV_01_PATCH_REQ    ${symvar('Patch')}
     Click Element    wnd[0]/usr/btnBUTTON_NEXT
     Take Screenshot    saint5.jpg
 
