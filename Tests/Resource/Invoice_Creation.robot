@@ -24,7 +24,7 @@ Write Excel
     Close Current Excel Document
 
 SAP logon
-    Start Process     ${symvar('SAP_SERVER')}
+    Start Process     ${symvar('SAP_server')}
     Sleep    10s
     Connect To Session
     Open Connection    ${symvar('connection_name')}
