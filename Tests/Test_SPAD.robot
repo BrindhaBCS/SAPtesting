@@ -1,7 +1,7 @@
 *** Settings ***
 Resource    Resource/Common_SAP_Tcodefn.robot
 Resource    Resource/SPAD.robot
-Force Tags    SPDA
+Force Tags    SPAD
 Suite Setup    Common_SAP_Tcodefn.System Logon
 Suite Teardown    Common_SAP_Tcodefn.System Logout
   
