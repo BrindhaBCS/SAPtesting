@@ -3,7 +3,7 @@ Library    Process
 Library    CustomSapGuiLibrary.py
 Library    OperatingSystem
 Library    String
-Library    CustomSapGuiLibrary.py
+# Library    CustomSapGuiLibrary.py
 # Library    getcelltext.py
 
 
@@ -69,14 +69,14 @@ Get Cell Text From SAP Table
     Sleep    4
 
 Patch selection for the Addon
-    Saint Patch Select    ${addOn}    ${Patch}
-    Log    ${addOn}
-    Log    ${Patch}
-    Sleep    10
-    Take Screenshot    s.jpg
-    Sleep    10    
+    # Saint Patch Select    ${addOn}    ${Patch}
+    # Log    ${addOn}
+    # Log    ${Patch}
+    # Sleep    10
+    # Take Screenshot    s.jpg
+    # Sleep    10    
         
-    # Select From List By Label    wnd[0]/usr/subLIST_AREA:SAPLSAINT_UI:0300/tabsQUEUE_COMP/tabpQUEUE_COMP_FC2/ssubQUEUE_COMP_SCA:SAPLSAINT_UI:0303/cmbGV_01_PATCH_REQ    ${symvar('Patch')}
+    Select From List By Label    wnd[0]/usr/subLIST_AREA:SAPLSAINT_UI:0300/tabsQUEUE_COMP/tabpQUEUE_COMP_FC2/ssubQUEUE_COMP_SCA:SAPLSAINT_UI:0303/cmbGV_01_PATCH_REQ    ${symvar('Patch')}
     Click Element    wnd[0]/usr/btnBUTTON_NEXT
     Take Screenshot    saint5.jpg
 
