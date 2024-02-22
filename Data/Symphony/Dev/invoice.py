@@ -1,0 +1,7 @@
+SAP_SERVER = "C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPgui\\saplogon.exe"
+User_Name = "lokeshk" 
+User_Password = "Test@12345" 
+excel_path = "${CURDIR}\\invoice.xlsx"
+sheet_name = "INPUT"
+screenshot_dir = "${OUTPUT_DIR}"
+connection_name = "BIS"
