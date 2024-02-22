@@ -13,13 +13,10 @@ ${Connection_Name}    RBT
 ${SAP_CLIENT}   000
 ${SAP_USER}   DDIC
 ${SAP_PASSWORD}   Sym@rocks2023    
-<<<<<<< HEAD
+
 # ${search_comp}      ["ST-PI",    "BNWVS",    "ST-A/PI"]
 # ${search_patch}     ["SAPK-74003INSTPI",    "SAPK-70001INBNWVS",    "SAPKITABC5"]
-=======
-#${search_comp}      ["ST-PI",    "BNWVS",    "ST-A/PI"]
-#${search_patch}     ["SAPK-74003INSTPI",    "SAPK-70001INBNWVS",    "SAPKITABC5"]
->>>>>>> 0f61b94498f5b8a806651f85775bc9638d7abe71
+
 ${comp_id}  wnd[1]/usr/tabsQUEUE_CALC/tabpQUEUE_CALC_FC1/ssubQUEUE_CALC_SCA:SAPLOCS_ALV_UI:0306/cntlCONTROL_ALL_COMP/shellcont/shell
   
 
@@ -83,10 +80,7 @@ Spam software selection
     CustomSapGuiLibrary.Click Element    wnd[1]/tbar[0]/btn[7]
     Sleep    2
     Take Screenshot    F01_patch_1.jpg
-<<<<<<< HEAD
-=======
     #CustomSapGuiLibrary.Spam Multiple Patch Version Select  ${comp_id}  ${search_comp}  ${search_patch}
->>>>>>> 0f61b94498f5b8a806651f85775bc9638d7abe71
     CustomSapGuiLibrary.Spam Multiple Patch Version Select  ${comp_id}  ${symvar('search_comp')}  ${symvar('search_patch')}
     Sleep    4
     Take Screenshot    F02_patch_2.jpg
