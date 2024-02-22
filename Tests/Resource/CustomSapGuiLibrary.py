@@ -1102,7 +1102,7 @@ class CustomSapGuiLibrary:
                     if cell_value == comp:
                         comp_area.modifyCell(x,"PATCH_REQ",patch)
             except Exception as e:
-                 print(e)
+                print(e)
 
     def multiple_logon_handling(self, logon_window_id, logon_id, continue_id):  
         try:
@@ -1117,3 +1117,37 @@ class CustomSapGuiLibrary:
         except Exception as e:
             return f"Error: {e}"   
 
+    def find_addon_rows(self, comp_id, search_comp): 
+        
+        comp_area = self.session.FindById(comp_id)
+        row_count = comp_area.RowCount
+        found_rows = []
+        print(dir(comp_area))
+
+        for i in range(len(search_comp)):
+            comp = search_comp[i]
+            try:
+                for x in range(row_count + 1):
+                    cell_value = comp_area.getCell(x, 0)
+                    if cell_value.Text == comp:
+                        print(cell_value.Text)
+                        found_rows.append(x)
+        
+            except Exception as e:                
+                print(e)
+        return(found_rows)
+    
+    def saint_patch_select(session, search_comp, search_patch):
+        comp_txt = "wnd[0]/usr/subLIST_AREA:SAPLSAINT_UI:0300/tabsQUEUE_COMP/tabpQUEUE_COMP_FC2/ssubQUEUE_COMP_SCA:SAPLSAINT_UI:0303/txtGV_"
+        patch_txt = "wnd[0]/usr/subLIST_AREA:SAPLSAINT_UI:0300/tabsQUEUE_COMP/tabpQUEUE_COMP_FC2/ssubQUEUE_COMP_SCA:SAPLSAINT_UI:0303/cmbGV_"
+        try:
+            for i in range(1,100):
+                comp_id = f"{comp_txt}{i:02}_COMPONENT"
+                patch_id = f"{patch_txt}{i:02}_PATCH_REQ"
+                patch = session.FindById(comp_id).Text
+                for j in range(0,len(search_comp)):
+                    if patch == search_comp[j]:
+                        session.FindById(patch_id).key = search_patch[j]
+        except Exception as e:
+             print(e)
+    
