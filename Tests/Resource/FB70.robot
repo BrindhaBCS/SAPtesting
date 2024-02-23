@@ -30,6 +30,7 @@ SAP logon
     Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('login_client')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('login_user')}
     Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('login_password')}
+    
     Send Vkey    0
     Sleep   10s
      
