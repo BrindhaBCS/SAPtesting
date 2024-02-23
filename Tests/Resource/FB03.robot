@@ -19,7 +19,7 @@ Write Excel
     Open Excel Document    ${filepath}    1
     Get Sheet    ${sheetname}  
     Write Excel Cell      ${rownum}       ${colnum}     ${cell_value}       ${sheetname}
-    Save Excel Document     ${filepath}
+    Save Excel Document     ${excel_path}
     Close Current Excel Document
 
 SAP logon
@@ -27,14 +27,15 @@ SAP logon
     Sleep    10s
     Connect To Session
     Open Connection    ${symvar('connection_name')}
-    Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('connection_name')}
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('User_Name')}
-    Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('User_Password')}
+    Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('login_client')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('login_user')}
+    Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('login_password')}
     Send Vkey    0
     Sleep   10s
+
 SAP Logout
-    Run Transaction   /nex
-    Sleep    5
+    Run Transaction     /nex
+    Sleep   5
 
 Transaction code FB03
     Input Text  wnd[0]/usr/txtRF05L-BELNR       ${document}
@@ -71,6 +72,5 @@ FB03 display the invoice document
 
     END
 
-    
 
 

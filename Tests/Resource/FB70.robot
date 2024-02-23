@@ -5,7 +5,6 @@ Library    OperatingSystem
 Library     ExcelLibrary
 Library     openpyxl
 
-
 *** Keywords ***
 Read Excel
     [Arguments]    ${filepath}    ${sheetname}    ${rownum}    ${colnum}    
@@ -24,20 +23,16 @@ Write Excel
     Close Current Excel Document
 
 SAP logon
-    SAP logon
     Start Process     ${symvar('SAP_SERVER')}
     Sleep    10s
     Connect To Session
     Open Connection    ${symvar('connection_name')}
-    Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('connection_name')}
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('User_Name')}
-    Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('User_Password')}
+    Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('login_client')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('login_user')}
+    Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('login_password')}
     Send Vkey    0
     Sleep   10s
-SAP Logout
-    Run Transaction   /nex
-    Sleep    5
-   
+     
 Transaction FB70
     Input Text  wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-ACCNT       ${customer}
     Sleep   2
@@ -57,7 +52,7 @@ Transaction FB70
     Sleep   2
     ${output}   Get Value    wnd[0]/sbar/pane[0]
     Log To Console      ${output}
-    Write Excel     ${symvar('excel_path')}    ${symvar('sheet_name')}   ${row_count}    8      ${output}
+    Write Excel     ${symvar('excel_path')}    ${symvar('sheet_name')}    ${row_count}    8      ${output}
 
     ${document}     Get Document Number     wnd[0]/sbar/pane[0]
     Log To Console      ${document}
@@ -109,7 +104,10 @@ FB70 Invoice entry
         Transaction FB70
 
     END
-
+SAP Logout
+    Run Transaction     /nex
+    Sleep   5
+    
     
     
 
