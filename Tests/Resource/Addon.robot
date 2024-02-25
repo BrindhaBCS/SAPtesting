@@ -14,8 +14,8 @@ Library    String
 # ${SAP_USER}   DDIC
 # ${addOn}    ST-A/PI     
 # ${Patch}    SAPKITABC5
-${addOn}    ["BNWVS",    "ST-A/PI"]     
-${Patch}    ["SAPK-70001INBNWVS",    "SAPKITABC5"]
+# ${addOn}    ["BNWVS",    "ST-A/PI"]     
+# ${Patch}    ["SAPK-70001INBNWVS",    "SAPKITABC5"]
 
 # System Variables
 ${finish_str}   The Add-on was successfully imported with the displayed queue
@@ -67,9 +67,9 @@ Get Cell Text From SAP Table
     Sleep    4
 
 Patch selection for the Addon      
-    Saint Patch Select    ${addOn}    ${Patch}
-    Log    ${addOn}
-    Log    ${Patch}
+    Saint Patch Select    ${symvar('addOn')}    ${symvar('Patch')}
+    Log    ${symvar('addOn')}
+    Log    ${symvar('Patch')}
     Sleep    10
     Take Screenshot    s.jpg
     Sleep    10
