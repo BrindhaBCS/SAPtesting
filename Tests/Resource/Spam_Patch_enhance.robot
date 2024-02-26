@@ -5,7 +5,9 @@ Library    String
 Library    CustomSapGuiLibrary.py
 
 *** Variables ***
- 
+${search_comp}      ["ST-PI",    "BNWVS",    "ST-A/PI"]
+${search_patch}    ["SAPK-74003INSTPI",    "SAPK-70001INBNWVS",    "SAPKITABC5"]
+
 # System Variables
 ${continue_id}    wnd[1]/tbar[0]/btn[0]
 ${text_id}    wnd[1]/usr/txtMESSTXT1
@@ -70,8 +72,8 @@ Spam software selection
     CustomSapGuiLibrary.Click Element    wnd[1]/tbar[0]/btn[7]
     Sleep    2
     Take Screenshot    F01_patch_1.jpg
-    # CustomSapGuiLibrary.Spam Multiple Patch Version Select  ${comp_id}  ${search_comp}  ${search_patch}
-    CustomSapGuiLibrary.Spam Multiple Patch Version Select  ${comp_id}  ${symvar('search_comp')}  ${symvar('search_patch')}
+    CustomSapGuiLibrary.Spam Multiple Patch Version Select  ${comp_id}  ${search_comp}  ${search_patch}
+    # CustomSapGuiLibrary.Spam Multiple Patch Version Select  ${comp_id}  ${symvar('search_comp')}  ${symvar('search_patch')}
     Sleep    4
     Take Screenshot    F02_patch_2.jpg
     CustomSapGuiLibrary.Click Element    wnd[1]/tbar[0]/btn[0]
