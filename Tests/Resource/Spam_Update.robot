@@ -13,7 +13,6 @@ Library    String
 # ${SAP_USER}    DDIC
 # ${SAP_PASSWORD}    Sym@rocks2023    
 
-
 # System Variables
 ${certificate_id}    wnd[0]/sbar/pane[0]
 ${runtimeerror_id}    wnd[0]/titl    
@@ -40,8 +39,9 @@ System Logon
     Sleep    1
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('SAP_USER')}    
     Sleep    1
-    ${SAP_PASSWORD}   OperatingSystem.Get Environment Variable    SAP_PASSWORD
-    Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${SAP_PASSWORD}    
+    # ${SAP_PASSWORD}   OperatingSystem.Get Environment Variable    SAP_PASSWORD
+    # Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${SAP_PASSWORD}  
+    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}   
     Sleep   2
     Send Vkey    0
     Sleep    5
