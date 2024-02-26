@@ -1,9 +1,8 @@
 *** Settings ***
 Resource    ../Tests/Resource/Addon.robot
-Resource    ../Tests/Resource/Common_Function.robot
 Task Tags   RBTLOGIN
-Suite Setup    Common_Function.System Logon
-Suite Teardown    Common_Function.System Logout
+Suite Setup    Addon.System Logon
+Suite Teardown    Addon.System Logout
  
  
 *** Test Cases ***

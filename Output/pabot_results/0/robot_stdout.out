@@ -3,12 +3,28 @@ Tests :: Testing functionality through Robot Framework
 ==============================================================================
 Tests.Test spam patch enhance                                                 
 ==============================================================================
-Check_Spam_update                                                     | PASS |
+Check_Spam_update                                                       
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\SAP_Testing\SAPtesting\Tests\Test_spam_patch_enhance.robot:9
+    T:  Check_Spam_update    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\SAP_Testing\SAPtesting\Tests\Test_spam_patch_enhance.robot:14
+      Spam software selection    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\SAP_Testing\SAPtesting\Tests\Resource\Spam_Patch_enhance.robot:74
+      Spam Multiple Patch Version Select    ${comp_id}    ${symvar('search_comp')}    ${symvar('search_patch')}
+      |  ${comp_id} = wnd[1]/usr/tabsQUEUE_CALC/tabpQUEUE_CALC_FC1/ssubQUEUE_CALC_SCA:SAPLOCS_ALV_UI:0306/cntlCONTROL_ALL_COMP/shellcont/shell (str)
+      |  ${symvar('search_comp')} = ['ST-PI', 'BNWVS', 'ST-A/PI'] (list)
+      |  ${symvar('search_patch')} = ['SAPK-74003INSTPI', 'SAPK-70001INBNWVS', 'SAPKITABC5'] (list)
+______________________________________________________________________________
+| FAIL |
+ValueError: malformed node or string: ['ST-PI', 'BNWVS', 'ST-A/PI']
 ------------------------------------------------------------------------------
-Tests.Test spam patch enhance                                         | PASS |
-1 test, 1 passed, 0 failed
+Tests.Test spam patch enhance                                         | FAIL |
+1 test, 0 passed, 1 failed
 ==============================================================================
-Tests :: Testing functionality through Robot Framework                | PASS |
-1 test, 1 passed, 0 failed
+Tests :: Testing functionality through Robot Framework                | FAIL |
+1 test, 0 passed, 1 failed
 ==============================================================================
 Output:  C:\SAP_Testing\SAPtesting\Output\pabot_results\0\Output.xml

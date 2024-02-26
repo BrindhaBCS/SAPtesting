@@ -3,37 +3,37 @@ Library    Process
 Library    CustomSapGuiLibrary.py
 Library    OperatingSystem
 Library    String
-# Library    CustomSapGuiLibrary.py
-# Library    getcelltext.py
-
 
 *** Variables ***
-# ${EXE_PAD}  C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPgui\\saplogon.exe
-# ${TITLE_PAD}    SAP Logon 760
-# ${Connection_Name}    RBT
-# ${SAP_CLIENT}     000
-# ${SAP_USER}   DDIC
-# ${addOn}    ST-A/PI     
-# ${Patch}    SAPKITABC5
-
 # System Variables
 ${finish_str}   The Add-on was successfully imported with the displayed queue
 ${button_id}    wnd[0]/usr/btnBUTTON_NEXT
 ${status_line}    wnd[0]/usr/sub:SAPLSAINT_UI:0100/txtWA_COMMENT_TEXT-LINE[0,0]
 ${refresh_id}    wnd[0]/tbar[1]/btn[30]
 ${certificate_id}    wnd[0]/sbar/pane[0]
-# @{addon}    ${symvar('addOn').split(',')}
-# ${addon}    Create List    ${symvar('addOn').split(',')}
 
-# ${value_string}=    Set Variable   symvar
-# ${value_list}=    Evaluate    eval($value_string)
  
 *** Keywords ***
-
-#     # ${SAP_PASSWORD}   OperatingSystem.Get Environment Variable    SAP_PASSWORD
-#     # Log    SAP logon password is:${SAP_PASSWORD}
-
-#     CustomSapGuiLibrary.Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('SAP_PASSWORD')}    
+System Logon
+    Start Process    ${symvar('EXE_PAD')}
+    Sleep   5s
+    Connect To Session
+    Sleep    5
+    Open Connection     ${symvar('Connection_Name')}
+    Sleep   5
+    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('SAP_CLIENT')}
+    Sleep    1
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('SAP_USER')}    
+    Sleep    1
+    # ${SAP_PASSWORD}   OperatingSystem.Get Environment Variable    SAP_PASSWORD
+    Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('SAP_PASSWORD')}    
+    Sleep   2
+    Send Vkey    0
+    Sleep    5
+    Take Screenshot    01_loginpage.jpg
+    Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
+    Sleep   1
+    Take Screenshot    00_multi_logon_handling.jpg
  
 Saint Transation Code
     CustomSapGuiLibrary.Run Transaction     Saint  
@@ -69,24 +69,23 @@ Get Cell Text From SAP Table
     Sleep    4
 
 Patch selection for the Addon
-    # Saint Patch Select    ${addOn}    ${Patch}
-    # Log    ${addOn}
-    # Log    ${Patch}
-    # Sleep    10
-    # Take Screenshot    s.jpg
-    # Sleep    10    
-        
-    Select From List By Label    wnd[0]/usr/subLIST_AREA:SAPLSAINT_UI:0300/tabsQUEUE_COMP/tabpQUEUE_COMP_FC2/ssubQUEUE_COMP_SCA:SAPLSAINT_UI:0303/cmbGV_01_PATCH_REQ    ${symvar('Patch')}
+    Saint Patch Select    ${symvar('addOn')}    ${symvar('Patch')}
+    Log    ${symvar('addOn')}
+    Log    ${symvar('Patch')}
+    Sleep    10
+    Take Screenshot    saint5.1.jpg
+    Sleep    10
     Click Element    wnd[0]/usr/btnBUTTON_NEXT
-    Take Screenshot    saint5.jpg
-
+    Take Screenshot    saint5.2.jpg
+ 
     ##Click Continue
     Click Element    wnd[0]/usr/btnBUTTON_NEXT
     Take Screenshot    saint6.jpg
-
+ 
     #Clicking "No" for Add Modification Adjustment Transports to the Queue
     Click Element    wnd[1]/usr/btnBUTTON_2
     Take Screenshot    saint7.jpg
+ 
 
 Important SAP note handling
     ${content}    CustomSapGuiLibrary.Is Imp Notes Existing    wnd[1]    wnd[1]/tbar[0]/btn[0]
@@ -95,7 +94,7 @@ Important SAP note handling
 
 FOR ST/BNWVS 
 
-    #clicking Start options: Add-on Installation
+    #***clicking Start options: Add-on Installation**
     Click Element    wnd[1]/tbar[0]/btn[27] 
     Take Screenshot    saint8.jpg
 
@@ -117,9 +116,6 @@ Process Until Finish Button Visible
     
     ${cell_text_2}    CustomSapGuiLibrary.Get Finish Cell Text    ${finish_str}    ${button_id}    ${status_line}    ${refresh_id}
     Log    ${cell_text_2}
-    #Log    ${finish_str}
-    #Log    ${button_id}
-    #Log    ${status_line}    
     CustomSapGuiLibrary.Take Screenshot    saint12.jpg
     Sleep    2
 
@@ -127,5 +123,8 @@ Process Until Finish Button Visible
     Click Element    wnd[1]/tbar[0]/btn[27]
     Take Screenshot    saint13.jpg    
 
-    
+System Logout
+    Run Transaction   /nex
+    Sleep    5
+    Take Screenshot    logoutpage.jpg    
     
