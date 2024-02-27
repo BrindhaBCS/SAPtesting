@@ -1,9 +1,8 @@
 *** Settings ***
-Resource    Resource/Common_SAP_Tcodefn.robot
 Resource    Resource/STMS.robot
 Force Tags    STMS
-Suite Setup    Common_SAP_Tcodefn.System Logon
-Suite Teardown    Common_SAP_Tcodefn.System Logout
+Suite Setup    STMS.System Logon
+Suite Teardown    STMS.System Logout
   
 *** Test Cases ***
 

@@ -1,9 +1,8 @@
 *** Settings ***
-Resource    Resource/Common_SAP_Tcodefn.robot
 Resource    Resource/STRUST.robot
 Force Tags    STRUST
-Suite Setup    Common_SAP_Tcodefn.System Logon
-Suite Teardown    Common_SAP_Tcodefn.System Logout
+Suite Setup    STRUST.System Logon
+Suite Teardown    STRUST.System Logout
   
 *** Test Cases ***
 

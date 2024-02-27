@@ -1,9 +1,8 @@
 *** Settings ***
-Resource    Resource/Common_SAP_Tcodefn.robot
 Resource    Resource/WE20.robot
 Force Tags    WE20
-Suite Setup    Common_SAP_Tcodefn.System Logon
-Suite Teardown    Common_SAP_Tcodefn.System Logout
+Suite Setup    WE20.System Logon
+Suite Teardown    WE20.System Logout
   
 *** Test Cases ***
 

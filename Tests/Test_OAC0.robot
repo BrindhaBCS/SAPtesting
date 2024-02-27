@@ -1,9 +1,8 @@
 *** Settings ***
-Resource    Resource/Common_SAP_Tcodefn.robot
-Resource    Resource/OACA.robot
+Resource    ../Tests/Resource/OAC0.robot
 Force Tags    OAC0
-Suite Setup    Common_SAP_Tcodefn.System Logon
-Suite Teardown    Common_SAP_Tcodefn.System Logout
+Suite Setup    OAC0.System Logon
+Suite Teardown    OAC0.System Logout
   
 *** Test Cases ***
 
