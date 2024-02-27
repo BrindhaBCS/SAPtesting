@@ -1,14 +1,29 @@
 ==============================================================================
 Tests :: Testing functionality through Robot Framework                        
 ==============================================================================
-Tests.Test spam Update                                                        
+Tests.Test spam patch enhance                                                 
 ==============================================================================
-Check_Spam_update                                                     | PASS |
+  
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\SAP_Testing\SAPtesting\Tests\Test_spam_patch_enhance.robot:4
+      System Logon    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\SAP_Testing\SAPtesting\Tests\Resource\Spam_Patch_enhance.robot:36
+      Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
+      |  %{SAP_PASSWORD} = <Unable to define variable value>
+______________________________________________________________________________
+Check_Spam_update                                                     | FAIL |
+Parent suite setup failed:
+Environment variable '%{SAP_PASSWORD}' not found.
 ------------------------------------------------------------------------------
-Tests.Test spam Update                                                | PASS |
-1 test, 1 passed, 0 failed
+Tests.Test spam patch enhance                                         | FAIL |
+Suite setup failed:
+Environment variable '%{SAP_PASSWORD}' not found.
+
+1 test, 0 passed, 1 failed
 ==============================================================================
-Tests :: Testing functionality through Robot Framework                | PASS |
-1 test, 1 passed, 0 failed
+Tests :: Testing functionality through Robot Framework                | FAIL |
+1 test, 0 passed, 1 failed
 ==============================================================================
 Output:  C:\SAP_Testing\SAPtesting\Output\pabot_results\0\Output.xml

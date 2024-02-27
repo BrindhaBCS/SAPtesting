@@ -33,7 +33,8 @@ System Logon
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('SAP_USER')}    
     Sleep    1
     # ${SAP_PASSWORD}   OperatingSystem.Get Environment Variable    SAP_PASSWORD
-    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}    
+    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
+    # Input Password    wnd[0]/usr/pwdRSYST-BCODE    Sym@rocks2023    
     Sleep   2
     Send Vkey    0
     Sleep    5
@@ -72,8 +73,8 @@ Spam software selection
     CustomSapGuiLibrary.Click Element    wnd[1]/tbar[0]/btn[7]
     Sleep    2
     Take Screenshot    F01_patch_1.jpg
-    CustomSapGuiLibrary.Spam Multiple Patch Version Select  ${comp_id}  ${search_comp}  ${search_patch}
     # CustomSapGuiLibrary.Spam Multiple Patch Version Select  ${comp_id}  ${symvar('search_comp')}  ${symvar('search_patch')}
+    CustomSapGuiLibrary.Spam Multiple Patch Version Select  ${comp_id}  ${search_comp}  ${search_patch}
     Sleep    4
     Take Screenshot    F02_patch_2.jpg
     CustomSapGuiLibrary.Click Element    wnd[1]/tbar[0]/btn[0]
