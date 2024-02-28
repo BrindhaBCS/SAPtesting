@@ -30,10 +30,10 @@ SAP logon
     Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('login_client')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('login_user')}
     Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
-    
     Send Vkey    0
-    Sleep   10s
-     
+    Sleep    3s
+    Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
+    Sleep   5s
 Transaction FB70
     Input Text  wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-ACCNT       ${customer}
     Sleep   2

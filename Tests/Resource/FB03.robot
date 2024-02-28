@@ -32,7 +32,9 @@ SAP logon
     # Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('login_password')}
     Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
     Send Vkey    0
-    Sleep   10s
+    Sleep    3s
+    Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
+    Sleep   5s
 
 SAP Logout
     Run Transaction     /nex
