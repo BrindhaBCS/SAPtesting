@@ -13,8 +13,6 @@ System Logon
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('Client_Id')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('User_Name')}    
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('User_Password')}
-    # Input Text    wnd[0]/usr/txtRSYST-BNAME    SELENIUM    
-    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    Test@12345
     Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
     Send Vkey    0
     Take Screenshot    00a_loginpage.jpg
