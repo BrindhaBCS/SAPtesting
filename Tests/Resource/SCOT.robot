@@ -5,14 +5,6 @@ Library    OperatingSystem
 Library    String
 
 *** Keywords ***
-Start Virtual Display
-    ${display}    Run    Xvfb :99 -screen 0 1024x768x24
-    Set Environment Variable    DISPLAY    :99
-    ${output}=    Run    echo ${display}
-    Log    Virtual Display Started: ${output}
-
-Stop Virtual Display
-    Run    pkill Xvfb
 System Logon
     Start Process     ${symvar('SAP_SERVER')}     
     Sleep    10s
