@@ -5,6 +5,14 @@ Library    OperatingSystem
 Library    String
 
 *** Keywords ***
+Start Virtual Display
+    ${display}    Run    Xvfb :99 -screen 0 1024x768x24
+    Set Environment Variable    DISPLAY    :99
+    ${output}=    Run    echo ${display}
+    Log    Virtual Display Started: ${output}
+
+Stop Virtual Display
+    Run    pkill Xvfb
 System Logon
     Start Process     ${symvar('SAP_SERVER')}     
     Sleep    10s
@@ -12,7 +20,9 @@ System Logon
     Open Connection    ${symvar('SAP_connection')}    
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('Client_Id')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('User_Name')}    
-    #Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('User_Password')}
+    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('User_Password')}
+    # Input Text    wnd[0]/usr/txtRSYST-BNAME    SELENIUM    
+    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    Test@12345
     Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
     Send Vkey    0
     Take Screenshot    00a_loginpage.jpg

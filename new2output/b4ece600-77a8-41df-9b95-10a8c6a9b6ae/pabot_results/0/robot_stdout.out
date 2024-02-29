@@ -1,0 +1,41 @@
+==============================================================================
+Tests :: Testing functionality through Robot Framework                        
+==============================================================================
+Tests.Test SHMM                                                               
+==============================================================================
+  
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Test_SHMM.robot:4
+      System Logon    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Resource\SHMM.robot:12
+      Open Connection    ${symvar('SAP_connection')}
+      |  ${symvar('SAP_connection')} = BIS (str)
+______________________________________________________________________________
+Executing SHMM                                                        | FAIL |
+Parent suite setup failed:
+ValueError: Cannot open connection 'BIS', please check connection name.
+------------------------------------------------------------------------------
+  
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Test_SHMM.robot:5
+      System Logout    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Resource\SHMM.robot:24
+      Run Transaction    /nex
+______________________________________________________________________________
+Tests.Test SHMM                                                       | FAIL |
+Suite setup failed:
+ValueError: Cannot open connection 'BIS', please check connection name.
+
+Also suite teardown failed:
+AttributeError: 'int' object has no attribute 'findById'
+
+1 test, 0 passed, 1 failed
+==============================================================================
+Tests :: Testing functionality through Robot Framework                | FAIL |
+1 test, 0 passed, 1 failed
+==============================================================================
+Output:  C:\SAP_Testing\SAPtesting\new2output\b4ece600-77a8-41df-9b95-10a8c6a9b6ae\pabot_results\0\Output.xml

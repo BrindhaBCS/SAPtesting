@@ -6,7 +6,9 @@ Suite Teardown    SCOT.System Logout
 
 *** Test Cases ***
 
-Executing SCOT    
+Executing SCOT   
+    Start Virtual Display        
     Transaction SCOT
     SMTP Nodes    
     Settings Nodes
+    Stop Virtual Display
