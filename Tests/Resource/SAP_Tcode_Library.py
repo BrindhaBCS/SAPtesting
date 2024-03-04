@@ -1272,6 +1272,89 @@ class SAP_Tcode_Library:
         except Exception as e:
             print(f"Error: {e}")    
 
-   
+    # ************PVH Tcodes***************************
+    def select_item_from_GUI(self, user_id, search_text):
+        user_area = self.session.findById(user_id)
+        labels = [child.Text for child in user_area.Children]
+        item_count = user_area.Children.Count
+        # print("User Area Labels:", labels, item_count)
+        for i in range(item_count):
+            element = user_area.Children.ElementAt(i)
+            if element.Text.strip() == search_text.strip():
+                print(f"Element found: {element.Text}")
+                element.SetFocus()
+                self.session.findById("wnd[0]").sendVKey(2)
+                return
+ 
+    def select_tree_items(self, tree_id, link_id1, link_id2):
+        try:
+            tree = self.session.findById(tree_id)
+            # link_ids = tree.GetAllNodeKeys()
+            # print(link_ids)
+            tree.selectItem(link_id1, link_id2)
+            #session.findById(tree_id).ensureVisibleHorizontalItem(link_id1, link_id2)
+            self.session.findById(tree_id).doubleClickItem(link_id1, link_id2)
+ 
+        except win32com.client.dynamic.pythoncom.com_error as e:
+            print(f"Error during SelectNodeLink: {e}")
+
+    def click_on_tree_item(self, tree_id, id):
+        try:
+            tree = self.session.findById(tree_id)
+            tree.selectedNode(id)
+    
+        except Exception as e:
+            print("Error: {e}")
+
+    def select_CPU(self, tree_id, node_id):
+        # tree=self.session.findById(tree_id)        
+        # tree.SelectNode(node_id)
+        try:
+            tree = self.session.findById(tree_id)
+            tree.SelectNode(tree.GetAllNodeKeys().Item(node_id))
+        except win32com.client.dynamic.pythoncom.com_error as e:
+            print(f"Error {tree_id}during SelectNode {node_id} : {e}")
+
+# *************EVIDENT REFRESH**********************
+    def select_only(self, tree_id, id):      
+        self.element_should_be_present(tree_id)
+        if(id<10):
+            self.session.findById(tree_id).selectNode(f"          {id}")
+        elif(id<100):
+           self.session.findById(tree_id).selectNode(f"         {id}")
+        else:
+            self.session.findById(tree_id).selectNode(f"        {id}")
+
+        time.sleep(self.explicit_wait)
+    
+    def unselect(self, tree_id, id):      
+        self.element_should_be_present(tree_id)
+        if(id<10):
+            self.session.findById(tree_id).unselectNode(f"          {id}")
+        elif(id<100):
+            self.session.findById(tree_id).unselectNode(f"         {id}")
+        else:
+            self.session.findById(tree_id).unselectNode(f"        {id}")
+        time.sleep(self.explicit_wait)
+    
+
+    def capture_full_page_screenshot(window_title, screenshot_name="sap-screenshot"):
+        try:
+            # Bring the window to the foreground
+            window = gw.getWindowsWithTitle(window_title)[0]
+            window.activate()
+
+            # Get the window position and size
+            x, y, width, height = window.left, window.top, window.width, window.height
+
+            # Capture the full page screenshot
+            screenshot = pyautogui.screenshot(region=(x, y, width, height))
+            screenshot.save(screenshot_name)
+            print(f"Full page screenshot saved to: {screenshot_name}")
+
+        except IndexError:
+            print(f"Window with title '{window_title}' not found.")
+        except Exception as e:
+            print(f"Error capturing full page screenshot: {e}")
 
 

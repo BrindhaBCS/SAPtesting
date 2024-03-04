@@ -7,6 +7,8 @@ import os
 from robot.api import logger
 import sys
 import ast
+import openpyxl
+import re
 
 
 
@@ -1117,3 +1119,90 @@ class CustomSapGuiLibrary:
         except Exception as e:
             return f"Error: {e}"   
 
+    def find_addon_rows(self, comp_id, search_comp): 
+        
+        comp_area = self.session.FindById(comp_id)
+        row_count = comp_area.RowCount
+        found_rows = []
+        print(dir(comp_area))
+
+        for i in range(len(search_comp)):
+            comp = search_comp[i]
+            try:
+                for x in range(row_count + 1):
+                    cell_value = comp_area.getCell(x, 0)
+                    if cell_value.Text == comp:
+                        print(cell_value.Text)
+                        found_rows.append(x)
+        
+            except Exception as e:                
+                print(e)
+        return(found_rows)
+    
+    def saint_patch_select(self, search_comp, search_patch):
+        comp_txt = "wnd[0]/usr/subLIST_AREA:SAPLSAINT_UI:0300/tabsQUEUE_COMP/tabpQUEUE_COMP_FC2/ssubQUEUE_COMP_SCA:SAPLSAINT_UI:0303/txtGV_"
+        patch_txt = "wnd[0]/usr/subLIST_AREA:SAPLSAINT_UI:0300/tabsQUEUE_COMP/tabpQUEUE_COMP_FC2/ssubQUEUE_COMP_SCA:SAPLSAINT_UI:0303/cmbGV_"
+        try:
+            p = len(search_comp) + 1
+            for i in range(1,100):
+                comp_id = f"{comp_txt}{i:02}_COMPONENT"
+                patch_id = f"{patch_txt}{i:02}_PATCH_REQ"
+                patch = self.session.FindById(comp_id).Text
+                for j in range(0,p-1):
+                    if patch == search_comp[j]:
+                        self.session.FindById(patch_id).key = search_patch[j]
+                        
+        except Exception as e:
+             print(e)
+
+    # def saint_patch_select(self, search_comp, search_patch):
+    #     comp_txt = "wnd[0]/usr/subLIST_AREA:SAPLSAINT_UI:0300/tabsQUEUE_COMP/tabpQUEUE_COMP_FC2/ssubQUEUE_COMP_SCA:SAPLSAINT_UI:0303/txtGV_"
+    #     patch_txt = "wnd[0]/usr/subLIST_AREA:SAPLSAINT_UI:0300/tabsQUEUE_COMP/tabpQUEUE_COMP_FC2/ssubQUEUE_COMP_SCA:SAPLSAINT_UI:0303/cmbGV_"
+    #     try:
+    #         for i in range(1,100):
+    #             comp_id = f"{comp_txt}{i:02}_COMPONENT"
+    #             patch_id = f"{patch_txt}{i:02}_PATCH_REQ"
+    #             patch = self.session.FindById(comp_id).Text
+    #             for j in range(0,len(search_comp)):
+    #                 if patch == search_comp[j]:
+    #                     self.session.FindById(patch_id).key = search_patch[j]
+    #     except Exception as e:
+    #          print(e)
+
+    
+    def get_document_number(self, status_id):
+        try:
+            status = self.session.findById(status_id).Text
+            pattern = r"Document (\d+) was posted in company code (\d+)"
+            match = re.match(pattern, status)
+            if match:
+                # status_split = status.split()
+                document_no = match.group(1)
+                return document_no
+            else:
+                return None
+        except Exception as e:
+            return f"Error: {str(e)}"
+
+    def get_company_code(self, status):
+        try:
+            status_split = status.split()
+            company_code = status_split[-1]
+
+            return company_code
+        except Exception as e:
+            return f"Error: {str(e)}"
+
+    def count_excel_rows(self, abs_filename):
+        try:
+            wb = openpyxl.load_workbook(abs_filename)
+            ws = wb.active
+            count = 0
+            for row in ws:
+                if not all([cell.value == None for cell in row]):
+                    count += 1
+            print(count)
+            return(count)
+    
+        except Exception as e:
+            print(e)

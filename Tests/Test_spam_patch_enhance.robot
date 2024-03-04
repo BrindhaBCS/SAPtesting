@@ -1,11 +1,11 @@
 *** Settings ***
-Resource    ../Tests/Resources/Spam_Patch_enhance.robot
+Resource    ../Tests/Resource/Spam_Patch_enhance.robot
 Task Tags   spampatchenhance
+Suite Setup    Spam_Patch_enhance.System Logon
+Suite Teardown    Spam_Patch_enhance.System Logout
   
 *** Test Cases ***
-Check RBT Logon  
-    RBT Logon
- 
+
 Check_Spam_update
     Spam Transaction
     Certificate Verification
@@ -14,9 +14,9 @@ Check_Spam_update
     Spam software selection
     Important SAP note handling
 
-# Import Queue
-#     Importing queue from support package
-#     Confirm Queue
+Import Queue
+    Importing queue from support package
+    Confirm Queue
 
 
 

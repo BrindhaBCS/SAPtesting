@@ -13,7 +13,6 @@ Library    String
 # ${SAP_USER}    DDIC
 # ${SAP_PASSWORD}    Sym@rocks2023    
 
-
 # System Variables
 ${certificate_id}    wnd[0]/sbar/pane[0]
 ${runtimeerror_id}    wnd[0]/titl    
@@ -29,6 +28,29 @@ ${version_id}    wnd[0]/titl
 
 
 *** Keywords ***
+System Logon
+    Start Process    ${symvar('EXE_PAD')}
+    Sleep   5s
+    Connect To Session
+    Sleep    5
+    Open Connection     ${symvar('Connection_Name')}
+    Sleep   5
+    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('SAP_CLIENT')}
+    Sleep    1
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('SAP_USER')}    
+    Sleep    1
+    # ${SAP_PASSWORD}   OperatingSystem.Get Environment Variable    SAP_PASSWORD
+    # Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${SAP_PASSWORD}  
+    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}   
+    Sleep   2
+    Send Vkey    0
+    Sleep    5
+    Take Screenshot    01_loginpage.jpg
+    Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
+    Sleep   1
+    Take Screenshot    00_multi_logon_handling.jpg
+
+
 Spam Transaction
     Run Transaction     spam  
     Sleep    5
@@ -84,3 +106,8 @@ Import Spam/Saint update
     
     CustomSapGuiLibrary.Version Print   ${version_id}
     Take Screenshot    15_spam6.jpg
+
+System Logout
+    Run Transaction   /nex
+    Sleep    5
+    Take Screenshot    logoutpage.jpg

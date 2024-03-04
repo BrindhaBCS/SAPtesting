@@ -3,21 +3,10 @@ Library    Process
 Library    OperatingSystem
 Library    String
 Library    CustomSapGuiLibrary.py
-Library    SeleniumLibrary
-
 
 *** Variables ***
-${EXE_PAD}    C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPgui\\saplogon.exe
-${TITLE_PAD}  SAP Logon 760
-${Connection_Name}    RBT
-${SAP_CLIENT}   000
-${SAP_USER}   DDIC
-${SAP_PASSWORD}   Sym@rocks2023    
 ${search_comp}      ["ST-PI",    "BNWVS",    "ST-A/PI"]
-${search_patch}     ["SAPK-74003INSTPI",    "SAPK-70001INBNWVS",    "SAPKITABC5"]
-${comp_id}  wnd[1]/usr/tabsQUEUE_CALC/tabpQUEUE_CALC_FC1/ssubQUEUE_CALC_SCA:SAPLOCS_ALV_UI:0306/cntlCONTROL_ALL_COMP/shellcont/shell
-  
-
+${search_patch}    ["SAPK-74003INSTPI",    "SAPK-70001INBNWVS",    "SAPKITABC5"]
 
 # System Variables
 ${continue_id}    wnd[1]/tbar[0]/btn[0]
@@ -28,24 +17,31 @@ ${finish_str}   Confirm queue
 ${status_line}    wnd[0]/usr/sub:SAPLSAINT_UI:0100/txtWA_COMMENT_TEXT-LINE[0,0]
 ${refresh_id}   wnd[0]/tbar[1]/btn[30]
 ${button_id}    wnd[0]/mbar/menu[0]/menu[5]
+${comp_id}  wnd[1]/usr/tabsQUEUE_CALC/tabpQUEUE_CALC_FC1/ssubQUEUE_CALC_SCA:SAPLOCS_ALV_UI:0306/cntlCONTROL_ALL_COMP/shellcont/shell
+
 
 *** Keywords *** 
-RBT Logon
-    Start Process    ${EXE_PAD}
+System Logon
+    Start Process    ${symvar('EXE_PAD')}
     Sleep   5s
     Connect To Session
     Sleep    5
-    Open Connection     ${Connection_Name}
+    Open Connection     ${symvar('Connection_Name')}
     Sleep   5
-    CustomSapGuiLibrary.Input Text    wnd[0]/usr/txtRSYST-MANDT    ${SAP_CLIENT}
+    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('SAP_CLIENT')}
     Sleep    1
-    CustomSapGuiLibrary.Input Text    wnd[0]/usr/txtRSYST-BNAME    ${SAP_USER}    
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('SAP_USER')}    
     Sleep    1
-    CustomSapGuiLibrary.Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${SAP_PASSWORD}    
+    # ${SAP_PASSWORD}   OperatingSystem.Get Environment Variable    SAP_PASSWORD
+    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
+    # Input Password    wnd[0]/usr/pwdRSYST-BCODE    Sym@rocks2023    
     Sleep   2
     Send Vkey    0
     Sleep    5
-    Take Screenshot    A01_loginpage.jpg
+    Take Screenshot    01_loginpage.jpg
+    Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
+    Sleep   1
+    Take Screenshot    00_multi_logon_handling.jpg
 
 Spam Transaction
     Run Transaction     spam  
@@ -57,8 +53,7 @@ Certificate Verification
     Sleep    2
     Take Screenshot    C01_Certificate.jpg
 
-Loading package
-    
+Loading package    
     CustomSapGuiLibrary.Click Element    wnd[0]/mbar/menu[0]/menu[0]/menu[1]
     Sleep    2
     Take Screenshot    D01_Load_1.jpg
@@ -78,6 +73,7 @@ Spam software selection
     CustomSapGuiLibrary.Click Element    wnd[1]/tbar[0]/btn[7]
     Sleep    2
     Take Screenshot    F01_patch_1.jpg
+    # CustomSapGuiLibrary.Spam Multiple Patch Version Select  ${comp_id}  ${symvar('search_comp')}  ${symvar('search_patch')}
     CustomSapGuiLibrary.Spam Multiple Patch Version Select  ${comp_id}  ${search_comp}  ${search_patch}
     Sleep    4
     Take Screenshot    F02_patch_2.jpg
@@ -117,8 +113,7 @@ Importing queue from support package
     Sleep    1
 
 
-Confirm Queue
-    
+Confirm Queue    
     ${cell_text_1}    CustomSapGuiLibrary.Get Finish Cell Text1    ${finish_str}    ${button_id}    ${status_line}    ${refresh_id}
     Log    ${cell_text_1}
     #CustomSapGuiLibrary.Click Element    wnd[0]/mbar/menu[0]/menu[5]
@@ -129,4 +124,9 @@ Confirm Queue
     #Click DoNOTSEND
     CustomSapGuiLibrary.Click Element   wnd[1]/tbar[0]/btn[27]
     Take Screenshot    G03_Status_Confirmed_queue2.jpg
+
+System Logout
+    Run Transaction   /nex
+    Sleep    5
+    Take Screenshot    logoutpage.jpg
 
