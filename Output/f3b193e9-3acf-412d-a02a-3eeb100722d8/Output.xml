@@ -1,0 +1,4443 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot generated="20240305 07:24:55.725" generator="Rebot 6.0.2 (Python 3.12.1 on win32)" rpa="false" schemaversion="3">
+ <suite id="s1" name="Tests" source="C:\RobotFramework\sap_testing\Tests">
+  <kw name="Setup highest level suite" type="SETUP">
+   <kw library="BuiltIn" name="Set Variable">
+    <var>
+     ${d.test_server}
+    </var>
+    <arg>
+     ${test_server}
+    </arg>
+    <doc>
+     Returns the given values which can then be assigned to a variables.
+    </doc>
+    <msg level="INFO" timestamp="20240305 07:23:23.439">
+     ${d.test_server} = Dev
+    </msg>
+    <status endtime="20240305 07:23:23.439" starttime="20240305 07:23:23.439" status="PASS"/>
+   </kw>
+   <kw library="Support" name="Reset screenshot count variable">
+    <kw library="BuiltIn" name="Set Variable">
+     <var>
+      ${screenshotCount}
+     </var>
+     <arg>
+      ${PABOTQUEUEINDEX}_1
+     </arg>
+     <doc>
+      Returns the given values which can then be assigned to a variables.
+     </doc>
+     <msg level="INFO" timestamp="20240305 07:23:23.439">
+      ${screenshotCount} = 0_1
+     </msg>
+     <status endtime="20240305 07:23:23.439" starttime="20240305 07:23:23.439" status="PASS"/>
+    </kw>
+    <kw library="BuiltIn" name="Set Global Variable">
+     <arg>
+      ${screenshotCount}
+     </arg>
+     <doc>
+      Makes a variable available globally in all tests and suites.
+     </doc>
+     <msg level="INFO" timestamp="20240305 07:23:23.439">
+      ${screenshotCount} = 0_1
+     </msg>
+     <status endtime="20240305 07:23:23.439" starttime="20240305 07:23:23.439" status="PASS"/>
+    </kw>
+    <kw library="Support" name="Set up screenshot directory">
+     <kw library="OperatingSystem" name="Create Directory">
+      <arg>
+       ${OUTPUTDIR}${/}${wvar('screenshot_dir')}
+      </arg>
+      <doc>
+       Creates the specified directory.
+      </doc>
+      <msg level="INFO" timestamp="20240305 07:23:23.455">
+       Web.Dev.screenshot_dir: Screenshot
+      </msg>
+      <msg html="true" level="INFO" timestamp="20240305 07:23:23.455">
+       Created directory '&lt;a href="file://C:\RobotFramework\sap_testing\Output\f3b193e9-3acf-412d-a02a-3eeb100722d8\pabot_results\0\Screenshot"&gt;C:\RobotFramework\sap_testing\Output\f3b193e9-3acf-412d-a02a-3eeb100722d8\pabot_results\0\Screenshot&lt;/a&gt;'.
+      </msg>
+      <status endtime="20240305 07:23:23.455" starttime="20240305 07:23:23.439" status="PASS"/>
+     </kw>
+     <status endtime="20240305 07:23:23.455" starttime="20240305 07:23:23.439" status="PASS"/>
+    </kw>
+    <status endtime="20240305 07:23:23.455" starttime="20240305 07:23:23.439" status="PASS"/>
+   </kw>
+   <kw library="BuiltIn" name="Set Global Variable">
+    <arg>
+     ${screenshot_taking}
+    </arg>
+    <arg>
+     ${True}
+    </arg>
+    <doc>
+     Makes a variable available globally in all tests and suites.
+    </doc>
+    <msg level="INFO" timestamp="20240305 07:23:23.455">
+     ${screenshot_taking} = True
+    </msg>
+    <status endtime="20240305 07:23:23.455" starttime="20240305 07:23:23.455" status="PASS"/>
+   </kw>
+   <kw library="Support" name="Setup linux execution">
+    <kw library="BuiltIn" name="Run Keyword And Return Status">
+     <var>
+      ${web_test_check}
+     </var>
+     <arg>
+      Variable Should Exist
+     </arg>
+     <arg>
+      ${web_test}
+     </arg>
+     <doc>
+      Runs the given keyword with given arguments and returns the status as a Boolean value.
+     </doc>
+     <kw library="BuiltIn" name="Variable Should Exist">
+      <arg>
+       ${web_test}
+      </arg>
+      <doc>
+       Fails unless the given variable exists within the current scope.
+      </doc>
+      <status endtime="20240305 07:23:23.455" starttime="20240305 07:23:23.455" status="PASS"/>
+     </kw>
+     <msg level="INFO" timestamp="20240305 07:23:23.455">
+      ${web_test_check} = True
+     </msg>
+     <status endtime="20240305 07:23:23.455" starttime="20240305 07:23:23.455" status="PASS"/>
+    </kw>
+    <kw library="BuiltIn" name="Run Keyword If">
+     <arg>
+      ${web_test_check}
+     </arg>
+     <arg>
+      Setup Docker Execution Options
+     </arg>
+     <doc>
+      Runs the given keyword with the given arguments, if ``condition`` is true.
+     </doc>
+     <kw library="Support_Web" name="Setup Docker Execution Options">
+      <kw library="Support_Web" name="Setup Suite Metadata">
+       <arg>
+        ${browser}
+       </arg>
+       <kw library="BrowserSupport" name="Get Browser Metadata">
+        <var>
+         &amp;{browser_information}
+        </var>
+        <arg>
+         browser=${browser}
+        </arg>
+        <doc>
+         Fetches browser metadata information
+:param browser: Name of the browser for which information is fetched
+:param reload: Re-read the metadata based on the browser
+:return: Browser metadata information, dict of format
+            {"browser_version": browser version value,
+             "driver_version": driver version value}
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:23:26.614">
+         &amp;{browser_information} = { browser_version=122.0.6261.95 | driver_version=121.0.6167.85  }
+        </msg>
+        <status endtime="20240305 07:23:26.614" starttime="20240305 07:23:23.455" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Suite Metadata">
+        <arg>
+         test_browser_name
+        </arg>
+        <arg>
+         ${browser}
+        </arg>
+        <doc>
+         Sets metadata for the current test suite.
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:23:26.614">
+         Set suite metadata 'test_browser_name' to value 'chrome'.
+        </msg>
+        <status endtime="20240305 07:23:26.614" starttime="20240305 07:23:26.614" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Suite Metadata">
+        <arg>
+         test_browser_version
+        </arg>
+        <arg>
+         ${browser_information.browser_version}
+        </arg>
+        <doc>
+         Sets metadata for the current test suite.
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:23:26.614">
+         Set suite metadata 'test_browser_version' to value '122.0.6261.95'.
+        </msg>
+        <status endtime="20240305 07:23:26.614" starttime="20240305 07:23:26.614" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Suite Metadata">
+        <arg>
+         test_driver_version
+        </arg>
+        <arg>
+         ${browser_information.driver_version}
+        </arg>
+        <doc>
+         Sets metadata for the current test suite.
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:23:26.614">
+         Set suite metadata 'test_driver_version' to value '121.0.6167.85 '.
+        </msg>
+        <status endtime="20240305 07:23:26.614" starttime="20240305 07:23:26.614" status="PASS"/>
+       </kw>
+       <status endtime="20240305 07:23:26.614" starttime="20240305 07:23:23.455" status="PASS"/>
+      </kw>
+      <kw library="Support_Web" name="Setup Global Docker Execution Options">
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${global_browser_options}
+        </arg>
+        <arg>
+         None
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:23:26.614">
+         ${global_browser_options} = None
+        </msg>
+        <status endtime="20240305 07:23:26.614" starttime="20240305 07:23:26.614" status="PASS"/>
+       </kw>
+       <kw library="OperatingSystem" name="Get Environment Variable">
+        <var>
+         ${docker_check}
+        </var>
+        <arg>
+         EXECUTION_ENVIRONMENT
+        </arg>
+        <arg>
+         not_found
+        </arg>
+        <doc>
+         Returns the value of an environment variable with the given name.
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:23:26.614">
+         ${docker_check} = not_found
+        </msg>
+        <status endtime="20240305 07:23:26.614" starttime="20240305 07:23:26.614" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Run Keyword And Return If">
+        <arg>
+         "${docker_check}"!="docker"
+        </arg>
+        <arg>
+         Log
+        </arg>
+        <arg>
+         Not executing on Docker
+        </arg>
+        <doc>
+         Runs the specified keyword and returns from the enclosing user keyword.
+        </doc>
+        <kw library="BuiltIn" name="Log">
+         <arg>
+          Not executing on Docker
+         </arg>
+         <doc>
+          Logs the given message with the given level.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:23:26.614">
+          Not executing on Docker
+         </msg>
+         <status endtime="20240305 07:23:26.614" starttime="20240305 07:23:26.614" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240305 07:23:26.614">
+         Returning from the enclosing user keyword.
+        </msg>
+        <status endtime="20240305 07:23:26.614" starttime="20240305 07:23:26.614" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Create List">
+        <var>
+         @{options}
+        </var>
+        <arg>
+         --headless
+        </arg>
+        <arg>
+         --no-sandbox
+        </arg>
+        <arg>
+         --disable-dev-shm-usage
+        </arg>
+        <doc>
+         Returns a list containing given items.
+        </doc>
+        <status endtime="20240305 07:23:26.614" starttime="20240305 07:23:26.614" status="NOT RUN"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         @{docker_options}
+        </arg>
+        <arg>
+         @{options}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <status endtime="20240305 07:23:26.614" starttime="20240305 07:23:26.614" status="NOT RUN"/>
+       </kw>
+       <status endtime="20240305 07:23:26.614" starttime="20240305 07:23:26.614" status="PASS"/>
+      </kw>
+      <kw library="Support_Web" name="Create Webdriver for chrome preferences">
+       <kw library="Support_Web" name="Update Docker Execution Options">
+        <var>
+         ${list_prefs}
+        </var>
+        <arg>
+         ${list_prefs}
+        </arg>
+        <kw library="BuiltIn" name="Run Keyword And Return Status">
+         <var>
+          ${docker_check}
+         </var>
+         <arg>
+          Variable Should Exist
+         </arg>
+         <arg>
+          ${docker_options}
+         </arg>
+         <doc>
+          Runs the given keyword with given arguments and returns the status as a Boolean value.
+         </doc>
+         <kw library="BuiltIn" name="Variable Should Exist">
+          <arg>
+           ${docker_options}
+          </arg>
+          <doc>
+           Fails unless the given variable exists within the current scope.
+          </doc>
+          <msg level="FAIL" timestamp="20240305 07:23:26.614">
+           Variable '${docker_options}' does not exist.
+          </msg>
+          <status endtime="20240305 07:23:26.614" starttime="20240305 07:23:26.614" status="FAIL"/>
+         </kw>
+         <msg level="INFO" timestamp="20240305 07:23:26.614">
+          ${docker_check} = False
+         </msg>
+         <status endtime="20240305 07:23:26.614" starttime="20240305 07:23:26.614" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Get Length">
+         <var>
+          ${list_prefs_length}
+         </var>
+         <arg>
+          ${list_prefs}
+         </arg>
+         <doc>
+          Returns and logs the length of the given item as an integer.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:23:26.614">
+          Length is 1
+         </msg>
+         <msg level="INFO" timestamp="20240305 07:23:26.614">
+          ${list_prefs_length} = 1
+         </msg>
+         <status endtime="20240305 07:23:26.614" starttime="20240305 07:23:26.614" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Run Keyword If">
+         <var>
+          ${list_prefs}
+         </var>
+         <arg>
+          ${docker_check} and ${list_prefs_length}&gt;0 and ${list_prefs}[0] != []
+         </arg>
+         <arg>
+          Combine Lists
+         </arg>
+         <arg>
+          ${list_prefs}
+         </arg>
+         <arg>
+          ${docker_options}
+         </arg>
+         <arg>
+          ELSE IF
+         </arg>
+         <arg>
+          ${docker_check}
+         </arg>
+         <arg>
+          Set Variable
+         </arg>
+         <arg>
+          ${docker_options}
+         </arg>
+         <arg>
+          ELSE
+         </arg>
+         <arg>
+          Set Variable
+         </arg>
+         <arg>
+          ${list_prefs}
+         </arg>
+         <doc>
+          Runs the given keyword with the given arguments, if ``condition`` is true.
+         </doc>
+         <kw library="BuiltIn" name="Set Variable">
+          <arg>
+           ${list_prefs}
+          </arg>
+          <doc>
+           Returns the given values which can then be assigned to a variables.
+          </doc>
+          <status endtime="20240305 07:23:26.614" starttime="20240305 07:23:26.614" status="PASS"/>
+         </kw>
+         <msg level="INFO" timestamp="20240305 07:23:26.614">
+          ${list_prefs} = [[]]
+         </msg>
+         <status endtime="20240305 07:23:26.614" starttime="20240305 07:23:26.614" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240305 07:23:26.614">
+         ${list_prefs} = [[]]
+        </msg>
+        <status endtime="20240305 07:23:26.614" starttime="20240305 07:23:26.614" status="PASS"/>
+       </kw>
+       <kw library="Support_Web" name="Create Chrome Options for download preferences">
+        <var>
+         ${chrome_options}
+        </var>
+        <kw library="BuiltIn" name="Evaluate">
+         <var>
+          ${chrome_options}
+         </var>
+         <arg>
+          sys.modules['selenium.webdriver'].ChromeOptions()
+         </arg>
+         <arg>
+          sys
+         </arg>
+         <doc>
+          Evaluates the given expression in Python and returns the result.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:23:26.614">
+          ${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000027D10BA5CA0&gt;
+         </msg>
+         <status endtime="20240305 07:23:26.614" starttime="20240305 07:23:26.614" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240305 07:23:26.614">
+         ${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000027D10BA5CA0&gt;
+        </msg>
+        <status endtime="20240305 07:23:26.614" starttime="20240305 07:23:26.614" status="PASS"/>
+       </kw>
+       <kw library="Support_Web" name="Update Preferences List">
+        <arg>
+         ${chrome_options}
+        </arg>
+        <arg>
+         @{list_prefs}
+        </arg>
+        <kw library="BuiltIn" name="Convert To String">
+         <var>
+          ${string_prefs}
+         </var>
+         <arg>
+          ${list_prefs}
+         </arg>
+         <doc>
+          Converts the given item to a Unicode string.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:23:26.614">
+          ${string_prefs} = [[]]
+         </msg>
+         <status endtime="20240305 07:23:26.614" starttime="20240305 07:23:26.614" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Return From Keyword If">
+         <arg>
+          ${string_prefs} == [[]]
+         </arg>
+         <doc>
+          Returns from the enclosing user keyword if ``condition`` is true.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:23:26.630">
+          Returning from the enclosing user keyword.
+         </msg>
+         <status endtime="20240305 07:23:26.630" starttime="20240305 07:23:26.630" status="PASS"/>
+        </kw>
+        <for flavor="IN">
+         <var>
+          ${preference}
+         </var>
+         <value>
+          @{list_prefs}
+         </value>
+         <iter>
+          <var name="${preference}"/>
+          <kw library="BuiltIn" name="Call Method">
+           <arg>
+            ${chrome_options}
+           </arg>
+           <arg>
+            add_argument
+           </arg>
+           <arg>
+            ${preference}
+           </arg>
+           <doc>
+            Calls the named method of the given object with the provided arguments.
+           </doc>
+           <status endtime="20240305 07:23:26.630" starttime="20240305 07:23:26.630" status="NOT RUN"/>
+          </kw>
+          <status endtime="20240305 07:23:26.630" starttime="20240305 07:23:26.630" status="NOT RUN"/>
+         </iter>
+         <status endtime="20240305 07:23:26.630" starttime="20240305 07:23:26.630" status="NOT RUN"/>
+        </for>
+        <status endtime="20240305 07:23:26.630" starttime="20240305 07:23:26.614" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Call Method">
+        <arg>
+         ${chrome_options}
+        </arg>
+        <arg>
+         add_experimental_option
+        </arg>
+        <arg>
+         prefs
+        </arg>
+        <arg>
+         ${kw_prefs}
+        </arg>
+        <doc>
+         Calls the named method of the given object with the provided arguments.
+        </doc>
+        <status endtime="20240305 07:23:26.630" starttime="20240305 07:23:26.630" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${global_browser_options}
+        </arg>
+        <arg>
+         ${chrome options}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:23:26.630">
+         ${global_browser_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000027D10BA5CA0&gt;
+        </msg>
+        <status endtime="20240305 07:23:26.630" starttime="20240305 07:23:26.630" status="PASS"/>
+       </kw>
+       <status endtime="20240305 07:23:26.630" starttime="20240305 07:23:26.614" status="PASS"/>
+      </kw>
+      <status endtime="20240305 07:23:26.630" starttime="20240305 07:23:23.455" status="PASS"/>
+     </kw>
+     <status endtime="20240305 07:23:26.630" starttime="20240305 07:23:23.455" status="PASS"/>
+    </kw>
+    <status endtime="20240305 07:23:26.630" starttime="20240305 07:23:23.455" status="PASS"/>
+   </kw>
+   <kw library="BuiltIn" name="Set Suite Metadata">
+    <arg>
+     environment
+    </arg>
+    <arg>
+     ${test_server}
+    </arg>
+    <doc>
+     Sets metadata for the current test suite.
+    </doc>
+    <msg level="INFO" timestamp="20240305 07:23:26.630">
+     Set suite metadata 'environment' to value 'Dev'.
+    </msg>
+    <status endtime="20240305 07:23:26.630" starttime="20240305 07:23:26.630" status="PASS"/>
+   </kw>
+   <status endtime="20240305 07:23:26.630" starttime="20240305 07:23:23.439" status="PASS"/>
+  </kw>
+  <suite id="s1-s1" name="Test FB70" source="C:\RobotFramework\sap_testing\Tests\Test_FB70.robot">
+   <kw library="FB70" name="SAP logon" type="SETUP">
+    <kw library="Process" name="Start Process">
+     <arg>
+      ${symvar('SAP_SERVER')}
+     </arg>
+     <doc>
+      Starts a new process on background.
+     </doc>
+     <msg level="INFO" timestamp="20240305 07:23:26.915">
+      Sym.Dev.SAP_SERVER: C:\Program Files (x86)\SAP\FrontEnd\SAPgui\saplogon.exe
+     </msg>
+     <msg level="INFO" timestamp="20240305 07:23:26.915">
+      Starting process:
+"C:\Program Files (x86)\SAP\FrontEnd\SAPgui\saplogon.exe"
+     </msg>
+     <status endtime="20240305 07:23:26.915" starttime="20240305 07:23:26.915" status="PASS"/>
+    </kw>
+    <kw library="BuiltIn" name="Sleep">
+     <arg>
+      10s
+     </arg>
+     <doc>
+      Pauses the test executed for the given time.
+     </doc>
+     <msg level="INFO" timestamp="20240305 07:23:36.915">
+      Slept 10 seconds
+     </msg>
+     <status endtime="20240305 07:23:36.915" starttime="20240305 07:23:26.915" status="PASS"/>
+    </kw>
+    <kw library="CustomSapGuiLibrary" name="Connect To Session">
+     <doc>
+      Connects to an open session SAP.
+     </doc>
+     <status endtime="20240305 07:23:36.923" starttime="20240305 07:23:36.915" status="PASS"/>
+    </kw>
+    <kw library="CustomSapGuiLibrary" name="Open Connection">
+     <arg>
+      ${symvar('connection')}
+     </arg>
+     <doc>
+      Opens a connection to the given connection name. Be sure to provide the full connection name, including the bracket part.
+     </doc>
+     <msg level="INFO" timestamp="20240305 07:23:36.923">
+      Sym.Dev.connection: BIS
+     </msg>
+     <status endtime="20240305 07:23:38.909" starttime="20240305 07:23:36.923" status="PASS"/>
+    </kw>
+    <kw library="CustomSapGuiLibrary" name="Input Text">
+     <arg>
+      wnd[0]/usr/txtRSYST-MANDT
+     </arg>
+     <arg>
+      ${symvar('login_client')}
+     </arg>
+     <doc>
+      Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+     </doc>
+     <msg level="INFO" timestamp="20240305 07:23:38.909">
+      Sym.Dev.login_client: 800
+     </msg>
+     <msg level="INFO" timestamp="20240305 07:23:38.921">
+      Typing text '800' into text field 'wnd[0]/usr/txtRSYST-MANDT'.
+     </msg>
+     <status endtime="20240305 07:23:38.921" starttime="20240305 07:23:38.909" status="PASS"/>
+    </kw>
+    <kw library="CustomSapGuiLibrary" name="Input Text">
+     <arg>
+      wnd[0]/usr/txtRSYST-BNAME
+     </arg>
+     <arg>
+      ${symvar('login_user')}
+     </arg>
+     <doc>
+      Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+     </doc>
+     <msg level="INFO" timestamp="20240305 07:23:38.921">
+      Sym.Dev.login_user: lokeshk
+     </msg>
+     <msg level="INFO" timestamp="20240305 07:23:38.935">
+      Typing text 'lokeshk' into text field 'wnd[0]/usr/txtRSYST-BNAME'.
+     </msg>
+     <status endtime="20240305 07:23:38.935" starttime="20240305 07:23:38.921" status="PASS"/>
+    </kw>
+    <kw library="CustomSapGuiLibrary" name="Input Password">
+     <arg>
+      wnd[0]/usr/pwdRSYST-BCODE
+     </arg>
+     <arg>
+      %{SAP_PASSWORD}
+     </arg>
+     <doc>
+      Inserts the given password into the text field identified by locator.
+The password is not recorded in the log.
+     </doc>
+     <msg level="INFO" timestamp="20240305 07:23:38.935">
+      Typing password into text field 'wnd[0]/usr/pwdRSYST-BCODE'.
+     </msg>
+     <status endtime="20240305 07:23:38.935" starttime="20240305 07:23:38.935" status="PASS"/>
+    </kw>
+    <kw library="CustomSapGuiLibrary" name="Send Vkey">
+     <arg>
+      0
+     </arg>
+     <doc>
+      Sends a SAP virtual key combination to the window, not into an element.
+If you want to send a value to a text field, use `input text` instead.
+     </doc>
+     <status endtime="20240305 07:23:40.060" starttime="20240305 07:23:38.935" status="PASS"/>
+    </kw>
+    <kw library="BuiltIn" name="Sleep">
+     <arg>
+      3s
+     </arg>
+     <doc>
+      Pauses the test executed for the given time.
+     </doc>
+     <msg level="INFO" timestamp="20240305 07:23:43.060">
+      Slept 3 seconds
+     </msg>
+     <status endtime="20240305 07:23:43.060" starttime="20240305 07:23:40.060" status="PASS"/>
+    </kw>
+    <kw library="CustomSapGuiLibrary" name="Multiple Logon Handling">
+     <arg>
+      wnd[1]
+     </arg>
+     <arg>
+      wnd[1]/usr/radMULTI_LOGON_OPT2
+     </arg>
+     <arg>
+      wnd[1]/tbar[0]/btn[0]
+     </arg>
+     <status endtime="20240305 07:23:43.060" starttime="20240305 07:23:43.060" status="PASS"/>
+    </kw>
+    <kw library="BuiltIn" name="Sleep">
+     <arg>
+      5s
+     </arg>
+     <doc>
+      Pauses the test executed for the given time.
+     </doc>
+     <msg level="INFO" timestamp="20240305 07:23:48.060">
+      Slept 5 seconds
+     </msg>
+     <status endtime="20240305 07:23:48.060" starttime="20240305 07:23:43.060" status="PASS"/>
+    </kw>
+    <status endtime="20240305 07:23:48.060" starttime="20240305 07:23:26.915" status="PASS"/>
+   </kw>
+   <test id="s1-s1-t1" line="8" name="Interlinked transactions for Invoice">
+    <kw library="FB70" name="FB70 Invoice entry">
+     <kw library="CustomSapGuiLibrary" name="Count Excel Rows">
+      <var>
+       ${user_count}
+      </var>
+      <arg>
+       ${symvar('excel_path')}
+      </arg>
+      <msg level="INFO" timestamp="20240305 07:23:48.060">
+       Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+      </msg>
+      <msg level="INFO" timestamp="20240305 07:23:48.063">
+       4
+      </msg>
+      <msg level="INFO" timestamp="20240305 07:23:48.063">
+       ${user_count} = 4
+      </msg>
+      <status endtime="20240305 07:23:48.063" starttime="20240305 07:23:48.060" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Evaluate">
+      <var>
+       ${rows}
+      </var>
+      <arg>
+       ${user_count} + 1
+      </arg>
+      <doc>
+       Evaluates the given expression in Python and returns the result.
+      </doc>
+      <msg level="INFO" timestamp="20240305 07:23:48.063">
+       ${rows} = 5
+      </msg>
+      <status endtime="20240305 07:23:48.063" starttime="20240305 07:23:48.063" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Set Global Variable">
+      <arg>
+       ${rows}
+      </arg>
+      <doc>
+       Makes a variable available globally in all tests and suites.
+      </doc>
+      <msg level="INFO" timestamp="20240305 07:23:48.063">
+       ${rows} = 5
+      </msg>
+      <status endtime="20240305 07:23:48.063" starttime="20240305 07:23:48.063" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Log To Console">
+      <arg>
+       ${rows}
+      </arg>
+      <doc>
+       Logs the given message to the console.
+      </doc>
+      <status endtime="20240305 07:23:48.063" starttime="20240305 07:23:48.063" status="PASS"/>
+     </kw>
+     <kw library="CustomSapGuiLibrary" name="Run Transaction">
+      <arg>
+       FB70
+      </arg>
+      <doc>
+       Runs a Sap transaction. An error is given when an unknown transaction is specified.
+      </doc>
+      <status endtime="20240305 07:23:49.399" starttime="20240305 07:23:48.063" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       5
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240305 07:23:54.400">
+       Slept 5 seconds
+      </msg>
+      <status endtime="20240305 07:23:54.400" starttime="20240305 07:23:49.399" status="PASS"/>
+     </kw>
+     <for flavor="IN RANGE">
+      <var>
+       ${row_count}
+      </var>
+      <value>
+       2
+      </value>
+      <value>
+       ${rows}
+      </value>
+      <iter>
+       <var name="${row_count}">
+        2
+       </var>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${row_count}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:23:54.400">
+         ${row_count} = 2
+        </msg>
+        <status endtime="20240305 07:23:54.400" starttime="20240305 07:23:54.400" status="PASS"/>
+       </kw>
+       <kw library="FB70" name="Read Excel">
+        <var>
+         ${customer}
+        </var>
+        <arg>
+         ${symvar('excel_path')}
+        </arg>
+        <arg>
+         ${symvar('sheet_name')}
+        </arg>
+        <arg>
+         ${row_count}
+        </arg>
+        <arg>
+         1
+        </arg>
+        <msg level="INFO" timestamp="20240305 07:23:54.400">
+         Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+        </msg>
+        <msg level="INFO" timestamp="20240305 07:23:54.403">
+         Sym.Dev.sheet_name: INPUT
+        </msg>
+        <kw library="ExcelLibrary" name="Open Excel Document">
+         <arg>
+          ${filepath}
+         </arg>
+         <arg>
+          1
+         </arg>
+         <doc>
+          Opens xlsx document file.
+         </doc>
+         <status endtime="20240305 07:23:54.403" starttime="20240305 07:23:54.403" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Get Sheet">
+         <arg>
+          ${sheetname}
+         </arg>
+         <doc>
+          Returns a page from the current document.
+         </doc>
+         <status endtime="20240305 07:23:54.403" starttime="20240305 07:23:54.403" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Read Excel Cell">
+         <var>
+          ${data}
+         </var>
+         <arg>
+          ${rownum}
+         </arg>
+         <arg>
+          ${colnum}
+         </arg>
+         <doc>
+          Returns content of a cell.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:23:54.403">
+          ${data} = CMS0000043
+         </msg>
+         <status endtime="20240305 07:23:54.403" starttime="20240305 07:23:54.403" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Close Current Excel Document">
+         <doc>
+          Closes current document.
+         </doc>
+         <status endtime="20240305 07:23:54.403" starttime="20240305 07:23:54.403" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240305 07:23:54.403">
+         ${customer} = CMS0000043
+        </msg>
+        <status endtime="20240305 07:23:54.403" starttime="20240305 07:23:54.400" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Log To Console">
+        <arg>
+         ${customer}
+        </arg>
+        <doc>
+         Logs the given message to the console.
+        </doc>
+        <status endtime="20240305 07:23:54.403" starttime="20240305 07:23:54.403" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${customer}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:23:54.403">
+         ${customer} = CMS0000043
+        </msg>
+        <status endtime="20240305 07:23:54.403" starttime="20240305 07:23:54.403" status="PASS"/>
+       </kw>
+       <kw library="FB70" name="Read Excel">
+        <var>
+         ${invoice_date}
+        </var>
+        <arg>
+         ${symvar('excel_path')}
+        </arg>
+        <arg>
+         ${symvar('sheet_name')}
+        </arg>
+        <arg>
+         ${row_count}
+        </arg>
+        <arg>
+         2
+        </arg>
+        <msg level="INFO" timestamp="20240305 07:23:54.403">
+         Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+        </msg>
+        <msg level="INFO" timestamp="20240305 07:23:54.403">
+         Sym.Dev.sheet_name: INPUT
+        </msg>
+        <kw library="ExcelLibrary" name="Open Excel Document">
+         <arg>
+          ${filepath}
+         </arg>
+         <arg>
+          1
+         </arg>
+         <doc>
+          Opens xlsx document file.
+         </doc>
+         <status endtime="20240305 07:23:54.419" starttime="20240305 07:23:54.403" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Get Sheet">
+         <arg>
+          ${sheetname}
+         </arg>
+         <doc>
+          Returns a page from the current document.
+         </doc>
+         <status endtime="20240305 07:23:54.419" starttime="20240305 07:23:54.419" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Read Excel Cell">
+         <var>
+          ${data}
+         </var>
+         <arg>
+          ${rownum}
+         </arg>
+         <arg>
+          ${colnum}
+         </arg>
+         <doc>
+          Returns content of a cell.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:23:54.419">
+          ${data} = 05.03.2024
+         </msg>
+         <status endtime="20240305 07:23:54.419" starttime="20240305 07:23:54.419" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Close Current Excel Document">
+         <doc>
+          Closes current document.
+         </doc>
+         <status endtime="20240305 07:23:54.419" starttime="20240305 07:23:54.419" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240305 07:23:54.419">
+         ${invoice_date} = 05.03.2024
+        </msg>
+        <status endtime="20240305 07:23:54.419" starttime="20240305 07:23:54.403" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Log To Console">
+        <arg>
+         ${invoice_date}
+        </arg>
+        <doc>
+         Logs the given message to the console.
+        </doc>
+        <status endtime="20240305 07:23:54.419" starttime="20240305 07:23:54.419" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${invoice_date}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:23:54.419">
+         ${invoice_date} = 05.03.2024
+        </msg>
+        <status endtime="20240305 07:23:54.419" starttime="20240305 07:23:54.419" status="PASS"/>
+       </kw>
+       <kw library="FB70" name="Read Excel">
+        <var>
+         ${amount}
+        </var>
+        <arg>
+         ${symvar('excel_path')}
+        </arg>
+        <arg>
+         ${symvar('sheet_name')}
+        </arg>
+        <arg>
+         ${row_count}
+        </arg>
+        <arg>
+         3
+        </arg>
+        <msg level="INFO" timestamp="20240305 07:23:54.419">
+         Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+        </msg>
+        <msg level="INFO" timestamp="20240305 07:23:54.419">
+         Sym.Dev.sheet_name: INPUT
+        </msg>
+        <kw library="ExcelLibrary" name="Open Excel Document">
+         <arg>
+          ${filepath}
+         </arg>
+         <arg>
+          1
+         </arg>
+         <doc>
+          Opens xlsx document file.
+         </doc>
+         <status endtime="20240305 07:23:54.419" starttime="20240305 07:23:54.419" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Get Sheet">
+         <arg>
+          ${sheetname}
+         </arg>
+         <doc>
+          Returns a page from the current document.
+         </doc>
+         <status endtime="20240305 07:23:54.419" starttime="20240305 07:23:54.419" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Read Excel Cell">
+         <var>
+          ${data}
+         </var>
+         <arg>
+          ${rownum}
+         </arg>
+         <arg>
+          ${colnum}
+         </arg>
+         <doc>
+          Returns content of a cell.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:23:54.419">
+          ${data} = 1000
+         </msg>
+         <status endtime="20240305 07:23:54.419" starttime="20240305 07:23:54.419" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Close Current Excel Document">
+         <doc>
+          Closes current document.
+         </doc>
+         <status endtime="20240305 07:23:54.419" starttime="20240305 07:23:54.419" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240305 07:23:54.419">
+         ${amount} = 1000
+        </msg>
+        <status endtime="20240305 07:23:54.419" starttime="20240305 07:23:54.419" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Log To Console">
+        <arg>
+         ${amount}
+        </arg>
+        <doc>
+         Logs the given message to the console.
+        </doc>
+        <status endtime="20240305 07:23:54.419" starttime="20240305 07:23:54.419" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${amount}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:23:54.419">
+         ${amount} = 1000
+        </msg>
+        <status endtime="20240305 07:23:54.419" starttime="20240305 07:23:54.419" status="PASS"/>
+       </kw>
+       <kw library="FB70" name="Read Excel">
+        <var>
+         ${text}
+        </var>
+        <arg>
+         ${symvar('excel_path')}
+        </arg>
+        <arg>
+         ${symvar('sheet_name')}
+        </arg>
+        <arg>
+         ${row_count}
+        </arg>
+        <arg>
+         4
+        </arg>
+        <msg level="INFO" timestamp="20240305 07:23:54.419">
+         Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+        </msg>
+        <msg level="INFO" timestamp="20240305 07:23:54.419">
+         Sym.Dev.sheet_name: INPUT
+        </msg>
+        <kw library="ExcelLibrary" name="Open Excel Document">
+         <arg>
+          ${filepath}
+         </arg>
+         <arg>
+          1
+         </arg>
+         <doc>
+          Opens xlsx document file.
+         </doc>
+         <status endtime="20240305 07:23:54.434" starttime="20240305 07:23:54.419" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Get Sheet">
+         <arg>
+          ${sheetname}
+         </arg>
+         <doc>
+          Returns a page from the current document.
+         </doc>
+         <status endtime="20240305 07:23:54.434" starttime="20240305 07:23:54.434" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Read Excel Cell">
+         <var>
+          ${data}
+         </var>
+         <arg>
+          ${rownum}
+         </arg>
+         <arg>
+          ${colnum}
+         </arg>
+         <doc>
+          Returns content of a cell.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:23:54.434">
+          ${data} = Robo Test
+         </msg>
+         <status endtime="20240305 07:23:54.434" starttime="20240305 07:23:54.434" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Close Current Excel Document">
+         <doc>
+          Closes current document.
+         </doc>
+         <status endtime="20240305 07:23:54.434" starttime="20240305 07:23:54.434" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240305 07:23:54.434">
+         ${text} = Robo Test
+        </msg>
+        <status endtime="20240305 07:23:54.434" starttime="20240305 07:23:54.419" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Log To Console">
+        <arg>
+         ${text}
+        </arg>
+        <doc>
+         Logs the given message to the console.
+        </doc>
+        <status endtime="20240305 07:23:54.434" starttime="20240305 07:23:54.434" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${text}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:23:54.434">
+         ${text} = Robo Test
+        </msg>
+        <status endtime="20240305 07:23:54.434" starttime="20240305 07:23:54.434" status="PASS"/>
+       </kw>
+       <kw library="FB70" name="Read Excel">
+        <var>
+         ${gl_amount}
+        </var>
+        <arg>
+         ${symvar('excel_path')}
+        </arg>
+        <arg>
+         ${symvar('sheet_name')}
+        </arg>
+        <arg>
+         ${row_count}
+        </arg>
+        <arg>
+         5
+        </arg>
+        <msg level="INFO" timestamp="20240305 07:23:54.434">
+         Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+        </msg>
+        <msg level="INFO" timestamp="20240305 07:23:54.434">
+         Sym.Dev.sheet_name: INPUT
+        </msg>
+        <kw library="ExcelLibrary" name="Open Excel Document">
+         <arg>
+          ${filepath}
+         </arg>
+         <arg>
+          1
+         </arg>
+         <doc>
+          Opens xlsx document file.
+         </doc>
+         <status endtime="20240305 07:23:54.449" starttime="20240305 07:23:54.434" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Get Sheet">
+         <arg>
+          ${sheetname}
+         </arg>
+         <doc>
+          Returns a page from the current document.
+         </doc>
+         <status endtime="20240305 07:23:54.449" starttime="20240305 07:23:54.449" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Read Excel Cell">
+         <var>
+          ${data}
+         </var>
+         <arg>
+          ${rownum}
+         </arg>
+         <arg>
+          ${colnum}
+         </arg>
+         <doc>
+          Returns content of a cell.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:23:54.451">
+          ${data} = 40001
+         </msg>
+         <status endtime="20240305 07:23:54.451" starttime="20240305 07:23:54.449" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Close Current Excel Document">
+         <doc>
+          Closes current document.
+         </doc>
+         <status endtime="20240305 07:23:54.451" starttime="20240305 07:23:54.451" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240305 07:23:54.451">
+         ${gl_amount} = 40001
+        </msg>
+        <status endtime="20240305 07:23:54.451" starttime="20240305 07:23:54.434" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Log To Console">
+        <arg>
+         ${gl_amount}
+        </arg>
+        <doc>
+         Logs the given message to the console.
+        </doc>
+        <status endtime="20240305 07:23:54.451" starttime="20240305 07:23:54.451" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${gl_amount}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:23:54.451">
+         ${gl_amount} = 40001
+        </msg>
+        <status endtime="20240305 07:23:54.451" starttime="20240305 07:23:54.451" status="PASS"/>
+       </kw>
+       <kw library="FB70" name="Read Excel">
+        <var>
+         ${amount_cur_doc}
+        </var>
+        <arg>
+         ${symvar('excel_path')}
+        </arg>
+        <arg>
+         ${symvar('sheet_name')}
+        </arg>
+        <arg>
+         ${row_count}
+        </arg>
+        <arg>
+         6
+        </arg>
+        <msg level="INFO" timestamp="20240305 07:23:54.451">
+         Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+        </msg>
+        <msg level="INFO" timestamp="20240305 07:23:54.451">
+         Sym.Dev.sheet_name: INPUT
+        </msg>
+        <kw library="ExcelLibrary" name="Open Excel Document">
+         <arg>
+          ${filepath}
+         </arg>
+         <arg>
+          1
+         </arg>
+         <doc>
+          Opens xlsx document file.
+         </doc>
+         <status endtime="20240305 07:23:54.451" starttime="20240305 07:23:54.451" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Get Sheet">
+         <arg>
+          ${sheetname}
+         </arg>
+         <doc>
+          Returns a page from the current document.
+         </doc>
+         <status endtime="20240305 07:23:54.451" starttime="20240305 07:23:54.451" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Read Excel Cell">
+         <var>
+          ${data}
+         </var>
+         <arg>
+          ${rownum}
+         </arg>
+         <arg>
+          ${colnum}
+         </arg>
+         <doc>
+          Returns content of a cell.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:23:54.451">
+          ${data} = 1000
+         </msg>
+         <status endtime="20240305 07:23:54.451" starttime="20240305 07:23:54.451" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Close Current Excel Document">
+         <doc>
+          Closes current document.
+         </doc>
+         <status endtime="20240305 07:23:54.451" starttime="20240305 07:23:54.451" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240305 07:23:54.451">
+         ${amount_cur_doc} = 1000
+        </msg>
+        <status endtime="20240305 07:23:54.451" starttime="20240305 07:23:54.451" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Log To Console">
+        <arg>
+         ${amount_cur_doc}
+        </arg>
+        <doc>
+         Logs the given message to the console.
+        </doc>
+        <status endtime="20240305 07:23:54.451" starttime="20240305 07:23:54.451" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${amount_cur_doc}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:23:54.451">
+         ${amount_cur_doc} = 1000
+        </msg>
+        <status endtime="20240305 07:23:54.451" starttime="20240305 07:23:54.451" status="PASS"/>
+       </kw>
+       <kw library="FB70" name="Read Excel">
+        <var>
+         ${cost_center}
+        </var>
+        <arg>
+         ${symvar('excel_path')}
+        </arg>
+        <arg>
+         ${symvar('sheet_name')}
+        </arg>
+        <arg>
+         ${row_count}
+        </arg>
+        <arg>
+         7
+        </arg>
+        <msg level="INFO" timestamp="20240305 07:23:54.451">
+         Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+        </msg>
+        <msg level="INFO" timestamp="20240305 07:23:54.451">
+         Sym.Dev.sheet_name: INPUT
+        </msg>
+        <kw library="ExcelLibrary" name="Open Excel Document">
+         <arg>
+          ${filepath}
+         </arg>
+         <arg>
+          1
+         </arg>
+         <doc>
+          Opens xlsx document file.
+         </doc>
+         <status endtime="20240305 07:23:54.466" starttime="20240305 07:23:54.451" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Get Sheet">
+         <arg>
+          ${sheetname}
+         </arg>
+         <doc>
+          Returns a page from the current document.
+         </doc>
+         <status endtime="20240305 07:23:54.466" starttime="20240305 07:23:54.466" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Read Excel Cell">
+         <var>
+          ${data}
+         </var>
+         <arg>
+          ${rownum}
+         </arg>
+         <arg>
+          ${colnum}
+         </arg>
+         <doc>
+          Returns content of a cell.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:23:54.466">
+          ${data} = 329
+         </msg>
+         <status endtime="20240305 07:23:54.466" starttime="20240305 07:23:54.466" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Close Current Excel Document">
+         <doc>
+          Closes current document.
+         </doc>
+         <status endtime="20240305 07:23:54.466" starttime="20240305 07:23:54.466" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240305 07:23:54.466">
+         ${cost_center} = 329
+        </msg>
+        <status endtime="20240305 07:23:54.466" starttime="20240305 07:23:54.451" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Log To Console">
+        <arg>
+         ${cost_center}
+        </arg>
+        <doc>
+         Logs the given message to the console.
+        </doc>
+        <status endtime="20240305 07:23:54.466" starttime="20240305 07:23:54.466" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${cost_center}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:23:54.466">
+         ${cost_center} = 329
+        </msg>
+        <status endtime="20240305 07:23:54.466" starttime="20240305 07:23:54.466" status="PASS"/>
+       </kw>
+       <kw library="FB70" name="Transaction FB70">
+        <kw library="CustomSapGuiLibrary" name="Input Text">
+         <arg>
+          wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-ACCNT
+         </arg>
+         <arg>
+          ${customer}
+         </arg>
+         <doc>
+          Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:23:54.482">
+          Typing text 'CMS0000043' into text field 'wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-ACCNT'.
+         </msg>
+         <status endtime="20240305 07:23:54.482" starttime="20240305 07:23:54.466" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Sleep">
+         <arg>
+          2
+         </arg>
+         <doc>
+          Pauses the test executed for the given time.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:23:56.482">
+          Slept 2 seconds
+         </msg>
+         <status endtime="20240305 07:23:56.482" starttime="20240305 07:23:54.482" status="PASS"/>
+        </kw>
+        <kw library="CustomSapGuiLibrary" name="Input Text">
+         <arg>
+          wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-BLDAT
+         </arg>
+         <arg>
+          ${invoice_date}
+         </arg>
+         <doc>
+          Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:23:56.487">
+          Typing text '05.03.2024' into text field 'wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-BLDAT'.
+         </msg>
+         <status endtime="20240305 07:23:56.487" starttime="20240305 07:23:56.482" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Sleep">
+         <arg>
+          2
+         </arg>
+         <doc>
+          Pauses the test executed for the given time.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:23:58.488">
+          Slept 2 seconds
+         </msg>
+         <status endtime="20240305 07:23:58.488" starttime="20240305 07:23:56.487" status="PASS"/>
+        </kw>
+        <kw library="CustomSapGuiLibrary" name="Input Text">
+         <arg>
+          wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/txtINVFO-WRBTR
+         </arg>
+         <arg>
+          ${amount}
+         </arg>
+         <doc>
+          Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:23:58.495">
+          Typing text '1000' into text field 'wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/txtINVFO-WRBTR'.
+         </msg>
+         <status endtime="20240305 07:23:58.495" starttime="20240305 07:23:58.488" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Sleep">
+         <arg>
+          2
+         </arg>
+         <doc>
+          Pauses the test executed for the given time.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:00.495">
+          Slept 2 seconds
+         </msg>
+         <status endtime="20240305 07:24:00.495" starttime="20240305 07:23:58.495" status="PASS"/>
+        </kw>
+        <kw library="CustomSapGuiLibrary" name="Input Text">
+         <arg>
+          wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-SGTXT
+         </arg>
+         <arg>
+          ${text}
+         </arg>
+         <doc>
+          Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:00.503">
+          Typing text 'Robo Test' into text field 'wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-SGTXT'.
+         </msg>
+         <status endtime="20240305 07:24:00.503" starttime="20240305 07:24:00.495" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Sleep">
+         <arg>
+          2
+         </arg>
+         <doc>
+          Pauses the test executed for the given time.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:02.505">
+          Slept 2 seconds
+         </msg>
+         <status endtime="20240305 07:24:02.505" starttime="20240305 07:24:00.503" status="PASS"/>
+        </kw>
+        <kw library="CustomSapGuiLibrary" name="Input Text">
+         <arg>
+          wnd[0]/usr/subITEMS:SAPLFSKB:0100/tblSAPLFSKBTABLE/ctxtACGL_ITEM-HKONT[1,0]
+         </arg>
+         <arg>
+          ${gl_amount}
+         </arg>
+         <doc>
+          Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:02.513">
+          Typing text '40001' into text field 'wnd[0]/usr/subITEMS:SAPLFSKB:0100/tblSAPLFSKBTABLE/ctxtACGL_ITEM-HKONT[1,0]'.
+         </msg>
+         <status endtime="20240305 07:24:02.513" starttime="20240305 07:24:02.505" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Sleep">
+         <arg>
+          2
+         </arg>
+         <doc>
+          Pauses the test executed for the given time.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:04.514">
+          Slept 2 seconds
+         </msg>
+         <status endtime="20240305 07:24:04.514" starttime="20240305 07:24:02.513" status="PASS"/>
+        </kw>
+        <kw library="CustomSapGuiLibrary" name="Input Text">
+         <arg>
+          wnd[0]/usr/subITEMS:SAPLFSKB:0100/tblSAPLFSKBTABLE/txtACGL_ITEM-WRBTR[4,0]
+         </arg>
+         <arg>
+          ${amount_cur_doc}
+         </arg>
+         <doc>
+          Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:04.522">
+          Typing text '1000' into text field 'wnd[0]/usr/subITEMS:SAPLFSKB:0100/tblSAPLFSKBTABLE/txtACGL_ITEM-WRBTR[4,0]'.
+         </msg>
+         <status endtime="20240305 07:24:04.522" starttime="20240305 07:24:04.514" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Sleep">
+         <arg>
+          2
+         </arg>
+         <doc>
+          Pauses the test executed for the given time.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:06.522">
+          Slept 2 seconds
+         </msg>
+         <status endtime="20240305 07:24:06.522" starttime="20240305 07:24:04.522" status="PASS"/>
+        </kw>
+        <kw library="CustomSapGuiLibrary" name="Input Text">
+         <arg>
+          wnd[0]/usr/subITEMS:SAPLFSKB:0100/tblSAPLFSKBTABLE/ctxtACGL_ITEM-KOSTL[17,0]
+         </arg>
+         <arg>
+          ${cost_center}
+         </arg>
+         <doc>
+          Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:06.545">
+          Typing text '329' into text field 'wnd[0]/usr/subITEMS:SAPLFSKB:0100/tblSAPLFSKBTABLE/ctxtACGL_ITEM-KOSTL[17,0]'.
+         </msg>
+         <status endtime="20240305 07:24:06.545" starttime="20240305 07:24:06.522" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Sleep">
+         <arg>
+          2
+         </arg>
+         <doc>
+          Pauses the test executed for the given time.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:08.545">
+          Slept 2 seconds
+         </msg>
+         <status endtime="20240305 07:24:08.545" starttime="20240305 07:24:06.545" status="PASS"/>
+        </kw>
+        <kw library="CustomSapGuiLibrary" name="Click Element">
+         <arg>
+          wnd[0]/tbar[0]/btn[11]
+         </arg>
+         <doc>
+          Performs a single click on a given element. Used only for buttons, tabs and menu items.
+         </doc>
+         <status endtime="20240305 07:24:12.170" starttime="20240305 07:24:08.545" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Sleep">
+         <arg>
+          2
+         </arg>
+         <doc>
+          Pauses the test executed for the given time.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:14.170">
+          Slept 2 seconds
+         </msg>
+         <status endtime="20240305 07:24:14.170" starttime="20240305 07:24:12.170" status="PASS"/>
+        </kw>
+        <kw library="CustomSapGuiLibrary" name="Get Value">
+         <var>
+          ${output}
+         </var>
+         <arg>
+          wnd[0]/sbar/pane[0]
+         </arg>
+         <doc>
+          Gets the value of the given element. The possible return values depend on the type of element (see Return values).
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:14.172">
+          ${output} = Document 1800000515 was posted in company code 3000
+         </msg>
+         <status endtime="20240305 07:24:14.172" starttime="20240305 07:24:14.170" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Log To Console">
+         <arg>
+          ${output}
+         </arg>
+         <doc>
+          Logs the given message to the console.
+         </doc>
+         <status endtime="20240305 07:24:14.172" starttime="20240305 07:24:14.172" status="PASS"/>
+        </kw>
+        <kw library="FB70" name="Write Excel">
+         <arg>
+          ${symvar('excel_path')}
+         </arg>
+         <arg>
+          ${symvar('sheet_name')}
+         </arg>
+         <arg>
+          ${row_count}
+         </arg>
+         <arg>
+          8
+         </arg>
+         <arg>
+          ${output}
+         </arg>
+         <msg level="INFO" timestamp="20240305 07:24:14.172">
+          Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+         </msg>
+         <msg level="INFO" timestamp="20240305 07:24:14.172">
+          Sym.Dev.sheet_name: INPUT
+         </msg>
+         <kw library="ExcelLibrary" name="Open Excel Document">
+          <arg>
+           ${filepath}
+          </arg>
+          <arg>
+           1
+          </arg>
+          <doc>
+           Opens xlsx document file.
+          </doc>
+          <status endtime="20240305 07:24:14.172" starttime="20240305 07:24:14.172" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Get Sheet">
+          <arg>
+           ${sheetname}
+          </arg>
+          <doc>
+           Returns a page from the current document.
+          </doc>
+          <status endtime="20240305 07:24:14.172" starttime="20240305 07:24:14.172" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Write Excel Cell">
+          <arg>
+           ${rownum}
+          </arg>
+          <arg>
+           ${colnum}
+          </arg>
+          <arg>
+           ${cell_value}
+          </arg>
+          <arg>
+           ${sheetname}
+          </arg>
+          <doc>
+           Writes value to the cell.
+          </doc>
+          <status endtime="20240305 07:24:14.172" starttime="20240305 07:24:14.172" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Save Excel Document">
+          <arg>
+           ${filepath}
+          </arg>
+          <doc>
+           Saves the current document to disk.
+          </doc>
+          <status endtime="20240305 07:24:14.204" starttime="20240305 07:24:14.172" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Close Current Excel Document">
+          <doc>
+           Closes current document.
+          </doc>
+          <status endtime="20240305 07:24:14.204" starttime="20240305 07:24:14.204" status="PASS"/>
+         </kw>
+         <status endtime="20240305 07:24:14.204" starttime="20240305 07:24:14.172" status="PASS"/>
+        </kw>
+        <kw library="CustomSapGuiLibrary" name="Get Document Number">
+         <var>
+          ${document}
+         </var>
+         <arg>
+          wnd[0]/sbar/pane[0]
+         </arg>
+         <msg level="INFO" timestamp="20240305 07:24:14.204">
+          ${document} = 1800000515
+         </msg>
+         <status endtime="20240305 07:24:14.204" starttime="20240305 07:24:14.204" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Log To Console">
+         <arg>
+          ${document}
+         </arg>
+         <doc>
+          Logs the given message to the console.
+         </doc>
+         <status endtime="20240305 07:24:14.235" starttime="20240305 07:24:14.204" status="PASS"/>
+        </kw>
+        <kw library="FB70" name="Write Excel">
+         <arg>
+          ${symvar('excel_path')}
+         </arg>
+         <arg>
+          ${symvar('sheet_name')}
+         </arg>
+         <arg>
+          ${row_count}
+         </arg>
+         <arg>
+          9
+         </arg>
+         <arg>
+          ${document}
+         </arg>
+         <msg level="INFO" timestamp="20240305 07:24:14.235">
+          Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+         </msg>
+         <msg level="INFO" timestamp="20240305 07:24:14.235">
+          Sym.Dev.sheet_name: INPUT
+         </msg>
+         <kw library="ExcelLibrary" name="Open Excel Document">
+          <arg>
+           ${filepath}
+          </arg>
+          <arg>
+           1
+          </arg>
+          <doc>
+           Opens xlsx document file.
+          </doc>
+          <status endtime="20240305 07:24:14.251" starttime="20240305 07:24:14.235" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Get Sheet">
+          <arg>
+           ${sheetname}
+          </arg>
+          <doc>
+           Returns a page from the current document.
+          </doc>
+          <status endtime="20240305 07:24:14.251" starttime="20240305 07:24:14.251" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Write Excel Cell">
+          <arg>
+           ${rownum}
+          </arg>
+          <arg>
+           ${colnum}
+          </arg>
+          <arg>
+           ${cell_value}
+          </arg>
+          <arg>
+           ${sheetname}
+          </arg>
+          <doc>
+           Writes value to the cell.
+          </doc>
+          <status endtime="20240305 07:24:14.251" starttime="20240305 07:24:14.251" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Save Excel Document">
+          <arg>
+           ${filepath}
+          </arg>
+          <doc>
+           Saves the current document to disk.
+          </doc>
+          <status endtime="20240305 07:24:14.266" starttime="20240305 07:24:14.251" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Close Current Excel Document">
+          <doc>
+           Closes current document.
+          </doc>
+          <status endtime="20240305 07:24:14.266" starttime="20240305 07:24:14.266" status="PASS"/>
+         </kw>
+         <status endtime="20240305 07:24:14.266" starttime="20240305 07:24:14.235" status="PASS"/>
+        </kw>
+        <kw library="CustomSapGuiLibrary" name="Get Company Code">
+         <var>
+          ${company_code}
+         </var>
+         <arg>
+          ${output}
+         </arg>
+         <msg level="INFO" timestamp="20240305 07:24:14.266">
+          ${company_code} = 3000
+         </msg>
+         <status endtime="20240305 07:24:14.266" starttime="20240305 07:24:14.266" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Log To Console">
+         <arg>
+          ${company_code}
+         </arg>
+         <doc>
+          Logs the given message to the console.
+         </doc>
+         <status endtime="20240305 07:24:14.266" starttime="20240305 07:24:14.266" status="PASS"/>
+        </kw>
+        <kw library="FB70" name="Write Excel">
+         <arg>
+          ${symvar('excel_path')}
+         </arg>
+         <arg>
+          ${symvar('sheet_name')}
+         </arg>
+         <arg>
+          ${row_count}
+         </arg>
+         <arg>
+          10
+         </arg>
+         <arg>
+          ${company_code}
+         </arg>
+         <msg level="INFO" timestamp="20240305 07:24:14.266">
+          Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+         </msg>
+         <msg level="INFO" timestamp="20240305 07:24:14.266">
+          Sym.Dev.sheet_name: INPUT
+         </msg>
+         <kw library="ExcelLibrary" name="Open Excel Document">
+          <arg>
+           ${filepath}
+          </arg>
+          <arg>
+           1
+          </arg>
+          <doc>
+           Opens xlsx document file.
+          </doc>
+          <status endtime="20240305 07:24:14.282" starttime="20240305 07:24:14.266" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Get Sheet">
+          <arg>
+           ${sheetname}
+          </arg>
+          <doc>
+           Returns a page from the current document.
+          </doc>
+          <status endtime="20240305 07:24:14.282" starttime="20240305 07:24:14.282" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Write Excel Cell">
+          <arg>
+           ${rownum}
+          </arg>
+          <arg>
+           ${colnum}
+          </arg>
+          <arg>
+           ${cell_value}
+          </arg>
+          <arg>
+           ${sheetname}
+          </arg>
+          <doc>
+           Writes value to the cell.
+          </doc>
+          <status endtime="20240305 07:24:14.282" starttime="20240305 07:24:14.282" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Save Excel Document">
+          <arg>
+           ${filepath}
+          </arg>
+          <doc>
+           Saves the current document to disk.
+          </doc>
+          <status endtime="20240305 07:24:14.298" starttime="20240305 07:24:14.282" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Close Current Excel Document">
+          <doc>
+           Closes current document.
+          </doc>
+          <status endtime="20240305 07:24:14.298" starttime="20240305 07:24:14.298" status="PASS"/>
+         </kw>
+         <status endtime="20240305 07:24:14.298" starttime="20240305 07:24:14.266" status="PASS"/>
+        </kw>
+        <status endtime="20240305 07:24:14.298" starttime="20240305 07:23:54.466" status="PASS"/>
+       </kw>
+       <status endtime="20240305 07:24:14.298" starttime="20240305 07:23:54.400" status="PASS"/>
+      </iter>
+      <iter>
+       <var name="${row_count}">
+        3
+       </var>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${row_count}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:24:14.298">
+         ${row_count} = 3
+        </msg>
+        <status endtime="20240305 07:24:14.298" starttime="20240305 07:24:14.298" status="PASS"/>
+       </kw>
+       <kw library="FB70" name="Read Excel">
+        <var>
+         ${customer}
+        </var>
+        <arg>
+         ${symvar('excel_path')}
+        </arg>
+        <arg>
+         ${symvar('sheet_name')}
+        </arg>
+        <arg>
+         ${row_count}
+        </arg>
+        <arg>
+         1
+        </arg>
+        <msg level="INFO" timestamp="20240305 07:24:14.298">
+         Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+        </msg>
+        <msg level="INFO" timestamp="20240305 07:24:14.298">
+         Sym.Dev.sheet_name: INPUT
+        </msg>
+        <kw library="ExcelLibrary" name="Open Excel Document">
+         <arg>
+          ${filepath}
+         </arg>
+         <arg>
+          1
+         </arg>
+         <doc>
+          Opens xlsx document file.
+         </doc>
+         <status endtime="20240305 07:24:14.314" starttime="20240305 07:24:14.298" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Get Sheet">
+         <arg>
+          ${sheetname}
+         </arg>
+         <doc>
+          Returns a page from the current document.
+         </doc>
+         <status endtime="20240305 07:24:14.314" starttime="20240305 07:24:14.314" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Read Excel Cell">
+         <var>
+          ${data}
+         </var>
+         <arg>
+          ${rownum}
+         </arg>
+         <arg>
+          ${colnum}
+         </arg>
+         <doc>
+          Returns content of a cell.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:14.314">
+          ${data} = CMS0000043
+         </msg>
+         <status endtime="20240305 07:24:14.314" starttime="20240305 07:24:14.314" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Close Current Excel Document">
+         <doc>
+          Closes current document.
+         </doc>
+         <status endtime="20240305 07:24:14.314" starttime="20240305 07:24:14.314" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240305 07:24:14.314">
+         ${customer} = CMS0000043
+        </msg>
+        <status endtime="20240305 07:24:14.314" starttime="20240305 07:24:14.298" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Log To Console">
+        <arg>
+         ${customer}
+        </arg>
+        <doc>
+         Logs the given message to the console.
+        </doc>
+        <status endtime="20240305 07:24:14.314" starttime="20240305 07:24:14.314" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${customer}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:24:14.314">
+         ${customer} = CMS0000043
+        </msg>
+        <status endtime="20240305 07:24:14.314" starttime="20240305 07:24:14.314" status="PASS"/>
+       </kw>
+       <kw library="FB70" name="Read Excel">
+        <var>
+         ${invoice_date}
+        </var>
+        <arg>
+         ${symvar('excel_path')}
+        </arg>
+        <arg>
+         ${symvar('sheet_name')}
+        </arg>
+        <arg>
+         ${row_count}
+        </arg>
+        <arg>
+         2
+        </arg>
+        <msg level="INFO" timestamp="20240305 07:24:14.314">
+         Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+        </msg>
+        <msg level="INFO" timestamp="20240305 07:24:14.314">
+         Sym.Dev.sheet_name: INPUT
+        </msg>
+        <kw library="ExcelLibrary" name="Open Excel Document">
+         <arg>
+          ${filepath}
+         </arg>
+         <arg>
+          1
+         </arg>
+         <doc>
+          Opens xlsx document file.
+         </doc>
+         <status endtime="20240305 07:24:14.326" starttime="20240305 07:24:14.314" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Get Sheet">
+         <arg>
+          ${sheetname}
+         </arg>
+         <doc>
+          Returns a page from the current document.
+         </doc>
+         <status endtime="20240305 07:24:14.326" starttime="20240305 07:24:14.326" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Read Excel Cell">
+         <var>
+          ${data}
+         </var>
+         <arg>
+          ${rownum}
+         </arg>
+         <arg>
+          ${colnum}
+         </arg>
+         <doc>
+          Returns content of a cell.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:14.326">
+          ${data} = 05.03.2024
+         </msg>
+         <status endtime="20240305 07:24:14.326" starttime="20240305 07:24:14.326" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Close Current Excel Document">
+         <doc>
+          Closes current document.
+         </doc>
+         <status endtime="20240305 07:24:14.326" starttime="20240305 07:24:14.326" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240305 07:24:14.326">
+         ${invoice_date} = 05.03.2024
+        </msg>
+        <status endtime="20240305 07:24:14.326" starttime="20240305 07:24:14.314" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Log To Console">
+        <arg>
+         ${invoice_date}
+        </arg>
+        <doc>
+         Logs the given message to the console.
+        </doc>
+        <status endtime="20240305 07:24:14.330" starttime="20240305 07:24:14.330" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${invoice_date}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:24:14.330">
+         ${invoice_date} = 05.03.2024
+        </msg>
+        <status endtime="20240305 07:24:14.330" starttime="20240305 07:24:14.330" status="PASS"/>
+       </kw>
+       <kw library="FB70" name="Read Excel">
+        <var>
+         ${amount}
+        </var>
+        <arg>
+         ${symvar('excel_path')}
+        </arg>
+        <arg>
+         ${symvar('sheet_name')}
+        </arg>
+        <arg>
+         ${row_count}
+        </arg>
+        <arg>
+         3
+        </arg>
+        <msg level="INFO" timestamp="20240305 07:24:14.330">
+         Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+        </msg>
+        <msg level="INFO" timestamp="20240305 07:24:14.330">
+         Sym.Dev.sheet_name: INPUT
+        </msg>
+        <kw library="ExcelLibrary" name="Open Excel Document">
+         <arg>
+          ${filepath}
+         </arg>
+         <arg>
+          1
+         </arg>
+         <doc>
+          Opens xlsx document file.
+         </doc>
+         <status endtime="20240305 07:24:14.333" starttime="20240305 07:24:14.330" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Get Sheet">
+         <arg>
+          ${sheetname}
+         </arg>
+         <doc>
+          Returns a page from the current document.
+         </doc>
+         <status endtime="20240305 07:24:14.333" starttime="20240305 07:24:14.333" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Read Excel Cell">
+         <var>
+          ${data}
+         </var>
+         <arg>
+          ${rownum}
+         </arg>
+         <arg>
+          ${colnum}
+         </arg>
+         <doc>
+          Returns content of a cell.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:14.333">
+          ${data} = 1500
+         </msg>
+         <status endtime="20240305 07:24:14.333" starttime="20240305 07:24:14.333" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Close Current Excel Document">
+         <doc>
+          Closes current document.
+         </doc>
+         <status endtime="20240305 07:24:14.333" starttime="20240305 07:24:14.333" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240305 07:24:14.333">
+         ${amount} = 1500
+        </msg>
+        <status endtime="20240305 07:24:14.333" starttime="20240305 07:24:14.330" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Log To Console">
+        <arg>
+         ${amount}
+        </arg>
+        <doc>
+         Logs the given message to the console.
+        </doc>
+        <status endtime="20240305 07:24:14.333" starttime="20240305 07:24:14.333" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${amount}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:24:14.333">
+         ${amount} = 1500
+        </msg>
+        <status endtime="20240305 07:24:14.333" starttime="20240305 07:24:14.333" status="PASS"/>
+       </kw>
+       <kw library="FB70" name="Read Excel">
+        <var>
+         ${text}
+        </var>
+        <arg>
+         ${symvar('excel_path')}
+        </arg>
+        <arg>
+         ${symvar('sheet_name')}
+        </arg>
+        <arg>
+         ${row_count}
+        </arg>
+        <arg>
+         4
+        </arg>
+        <msg level="INFO" timestamp="20240305 07:24:14.333">
+         Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+        </msg>
+        <msg level="INFO" timestamp="20240305 07:24:14.333">
+         Sym.Dev.sheet_name: INPUT
+        </msg>
+        <kw library="ExcelLibrary" name="Open Excel Document">
+         <arg>
+          ${filepath}
+         </arg>
+         <arg>
+          1
+         </arg>
+         <doc>
+          Opens xlsx document file.
+         </doc>
+         <status endtime="20240305 07:24:14.346" starttime="20240305 07:24:14.333" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Get Sheet">
+         <arg>
+          ${sheetname}
+         </arg>
+         <doc>
+          Returns a page from the current document.
+         </doc>
+         <status endtime="20240305 07:24:14.346" starttime="20240305 07:24:14.346" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Read Excel Cell">
+         <var>
+          ${data}
+         </var>
+         <arg>
+          ${rownum}
+         </arg>
+         <arg>
+          ${colnum}
+         </arg>
+         <doc>
+          Returns content of a cell.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:14.346">
+          ${data} = Robo Test1
+         </msg>
+         <status endtime="20240305 07:24:14.346" starttime="20240305 07:24:14.346" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Close Current Excel Document">
+         <doc>
+          Closes current document.
+         </doc>
+         <status endtime="20240305 07:24:14.346" starttime="20240305 07:24:14.346" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240305 07:24:14.346">
+         ${text} = Robo Test1
+        </msg>
+        <status endtime="20240305 07:24:14.346" starttime="20240305 07:24:14.333" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Log To Console">
+        <arg>
+         ${text}
+        </arg>
+        <doc>
+         Logs the given message to the console.
+        </doc>
+        <status endtime="20240305 07:24:14.346" starttime="20240305 07:24:14.346" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${text}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:24:14.346">
+         ${text} = Robo Test1
+        </msg>
+        <status endtime="20240305 07:24:14.346" starttime="20240305 07:24:14.346" status="PASS"/>
+       </kw>
+       <kw library="FB70" name="Read Excel">
+        <var>
+         ${gl_amount}
+        </var>
+        <arg>
+         ${symvar('excel_path')}
+        </arg>
+        <arg>
+         ${symvar('sheet_name')}
+        </arg>
+        <arg>
+         ${row_count}
+        </arg>
+        <arg>
+         5
+        </arg>
+        <msg level="INFO" timestamp="20240305 07:24:14.346">
+         Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+        </msg>
+        <msg level="INFO" timestamp="20240305 07:24:14.346">
+         Sym.Dev.sheet_name: INPUT
+        </msg>
+        <kw library="ExcelLibrary" name="Open Excel Document">
+         <arg>
+          ${filepath}
+         </arg>
+         <arg>
+          1
+         </arg>
+         <doc>
+          Opens xlsx document file.
+         </doc>
+         <status endtime="20240305 07:24:14.357" starttime="20240305 07:24:14.346" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Get Sheet">
+         <arg>
+          ${sheetname}
+         </arg>
+         <doc>
+          Returns a page from the current document.
+         </doc>
+         <status endtime="20240305 07:24:14.357" starttime="20240305 07:24:14.357" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Read Excel Cell">
+         <var>
+          ${data}
+         </var>
+         <arg>
+          ${rownum}
+         </arg>
+         <arg>
+          ${colnum}
+         </arg>
+         <doc>
+          Returns content of a cell.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:14.357">
+          ${data} = 40001
+         </msg>
+         <status endtime="20240305 07:24:14.357" starttime="20240305 07:24:14.357" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Close Current Excel Document">
+         <doc>
+          Closes current document.
+         </doc>
+         <status endtime="20240305 07:24:14.357" starttime="20240305 07:24:14.357" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240305 07:24:14.357">
+         ${gl_amount} = 40001
+        </msg>
+        <status endtime="20240305 07:24:14.357" starttime="20240305 07:24:14.346" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Log To Console">
+        <arg>
+         ${gl_amount}
+        </arg>
+        <doc>
+         Logs the given message to the console.
+        </doc>
+        <status endtime="20240305 07:24:14.357" starttime="20240305 07:24:14.357" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${gl_amount}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:24:14.357">
+         ${gl_amount} = 40001
+        </msg>
+        <status endtime="20240305 07:24:14.357" starttime="20240305 07:24:14.357" status="PASS"/>
+       </kw>
+       <kw library="FB70" name="Read Excel">
+        <var>
+         ${amount_cur_doc}
+        </var>
+        <arg>
+         ${symvar('excel_path')}
+        </arg>
+        <arg>
+         ${symvar('sheet_name')}
+        </arg>
+        <arg>
+         ${row_count}
+        </arg>
+        <arg>
+         6
+        </arg>
+        <msg level="INFO" timestamp="20240305 07:24:14.362">
+         Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+        </msg>
+        <msg level="INFO" timestamp="20240305 07:24:14.362">
+         Sym.Dev.sheet_name: INPUT
+        </msg>
+        <kw library="ExcelLibrary" name="Open Excel Document">
+         <arg>
+          ${filepath}
+         </arg>
+         <arg>
+          1
+         </arg>
+         <doc>
+          Opens xlsx document file.
+         </doc>
+         <status endtime="20240305 07:24:14.362" starttime="20240305 07:24:14.362" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Get Sheet">
+         <arg>
+          ${sheetname}
+         </arg>
+         <doc>
+          Returns a page from the current document.
+         </doc>
+         <status endtime="20240305 07:24:14.362" starttime="20240305 07:24:14.362" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Read Excel Cell">
+         <var>
+          ${data}
+         </var>
+         <arg>
+          ${rownum}
+         </arg>
+         <arg>
+          ${colnum}
+         </arg>
+         <doc>
+          Returns content of a cell.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:14.362">
+          ${data} = 1500
+         </msg>
+         <status endtime="20240305 07:24:14.362" starttime="20240305 07:24:14.362" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Close Current Excel Document">
+         <doc>
+          Closes current document.
+         </doc>
+         <status endtime="20240305 07:24:14.362" starttime="20240305 07:24:14.362" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240305 07:24:14.362">
+         ${amount_cur_doc} = 1500
+        </msg>
+        <status endtime="20240305 07:24:14.362" starttime="20240305 07:24:14.357" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Log To Console">
+        <arg>
+         ${amount_cur_doc}
+        </arg>
+        <doc>
+         Logs the given message to the console.
+        </doc>
+        <status endtime="20240305 07:24:14.362" starttime="20240305 07:24:14.362" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${amount_cur_doc}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:24:14.362">
+         ${amount_cur_doc} = 1500
+        </msg>
+        <status endtime="20240305 07:24:14.362" starttime="20240305 07:24:14.362" status="PASS"/>
+       </kw>
+       <kw library="FB70" name="Read Excel">
+        <var>
+         ${cost_center}
+        </var>
+        <arg>
+         ${symvar('excel_path')}
+        </arg>
+        <arg>
+         ${symvar('sheet_name')}
+        </arg>
+        <arg>
+         ${row_count}
+        </arg>
+        <arg>
+         7
+        </arg>
+        <msg level="INFO" timestamp="20240305 07:24:14.362">
+         Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+        </msg>
+        <msg level="INFO" timestamp="20240305 07:24:14.362">
+         Sym.Dev.sheet_name: INPUT
+        </msg>
+        <kw library="ExcelLibrary" name="Open Excel Document">
+         <arg>
+          ${filepath}
+         </arg>
+         <arg>
+          1
+         </arg>
+         <doc>
+          Opens xlsx document file.
+         </doc>
+         <status endtime="20240305 07:24:14.378" starttime="20240305 07:24:14.362" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Get Sheet">
+         <arg>
+          ${sheetname}
+         </arg>
+         <doc>
+          Returns a page from the current document.
+         </doc>
+         <status endtime="20240305 07:24:14.378" starttime="20240305 07:24:14.378" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Read Excel Cell">
+         <var>
+          ${data}
+         </var>
+         <arg>
+          ${rownum}
+         </arg>
+         <arg>
+          ${colnum}
+         </arg>
+         <doc>
+          Returns content of a cell.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:14.378">
+          ${data} = 329
+         </msg>
+         <status endtime="20240305 07:24:14.378" starttime="20240305 07:24:14.378" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Close Current Excel Document">
+         <doc>
+          Closes current document.
+         </doc>
+         <status endtime="20240305 07:24:14.378" starttime="20240305 07:24:14.378" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240305 07:24:14.378">
+         ${cost_center} = 329
+        </msg>
+        <status endtime="20240305 07:24:14.378" starttime="20240305 07:24:14.362" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Log To Console">
+        <arg>
+         ${cost_center}
+        </arg>
+        <doc>
+         Logs the given message to the console.
+        </doc>
+        <status endtime="20240305 07:24:14.378" starttime="20240305 07:24:14.378" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${cost_center}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:24:14.378">
+         ${cost_center} = 329
+        </msg>
+        <status endtime="20240305 07:24:14.378" starttime="20240305 07:24:14.378" status="PASS"/>
+       </kw>
+       <kw library="FB70" name="Transaction FB70">
+        <kw library="CustomSapGuiLibrary" name="Input Text">
+         <arg>
+          wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-ACCNT
+         </arg>
+         <arg>
+          ${customer}
+         </arg>
+         <doc>
+          Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:14.394">
+          Typing text 'CMS0000043' into text field 'wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-ACCNT'.
+         </msg>
+         <status endtime="20240305 07:24:14.394" starttime="20240305 07:24:14.378" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Sleep">
+         <arg>
+          2
+         </arg>
+         <doc>
+          Pauses the test executed for the given time.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:16.394">
+          Slept 2 seconds
+         </msg>
+         <status endtime="20240305 07:24:16.394" starttime="20240305 07:24:14.394" status="PASS"/>
+        </kw>
+        <kw library="CustomSapGuiLibrary" name="Input Text">
+         <arg>
+          wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-BLDAT
+         </arg>
+         <arg>
+          ${invoice_date}
+         </arg>
+         <doc>
+          Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:16.397">
+          Typing text '05.03.2024' into text field 'wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-BLDAT'.
+         </msg>
+         <status endtime="20240305 07:24:16.397" starttime="20240305 07:24:16.394" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Sleep">
+         <arg>
+          2
+         </arg>
+         <doc>
+          Pauses the test executed for the given time.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:18.397">
+          Slept 2 seconds
+         </msg>
+         <status endtime="20240305 07:24:18.397" starttime="20240305 07:24:16.397" status="PASS"/>
+        </kw>
+        <kw library="CustomSapGuiLibrary" name="Input Text">
+         <arg>
+          wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/txtINVFO-WRBTR
+         </arg>
+         <arg>
+          ${amount}
+         </arg>
+         <doc>
+          Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:18.404">
+          Typing text '1500' into text field 'wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/txtINVFO-WRBTR'.
+         </msg>
+         <status endtime="20240305 07:24:18.404" starttime="20240305 07:24:18.397" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Sleep">
+         <arg>
+          2
+         </arg>
+         <doc>
+          Pauses the test executed for the given time.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:20.405">
+          Slept 2 seconds
+         </msg>
+         <status endtime="20240305 07:24:20.405" starttime="20240305 07:24:18.404" status="PASS"/>
+        </kw>
+        <kw library="CustomSapGuiLibrary" name="Input Text">
+         <arg>
+          wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-SGTXT
+         </arg>
+         <arg>
+          ${text}
+         </arg>
+         <doc>
+          Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:20.408">
+          Typing text 'Robo Test1' into text field 'wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-SGTXT'.
+         </msg>
+         <status endtime="20240305 07:24:20.408" starttime="20240305 07:24:20.405" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Sleep">
+         <arg>
+          2
+         </arg>
+         <doc>
+          Pauses the test executed for the given time.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:22.408">
+          Slept 2 seconds
+         </msg>
+         <status endtime="20240305 07:24:22.408" starttime="20240305 07:24:20.408" status="PASS"/>
+        </kw>
+        <kw library="CustomSapGuiLibrary" name="Input Text">
+         <arg>
+          wnd[0]/usr/subITEMS:SAPLFSKB:0100/tblSAPLFSKBTABLE/ctxtACGL_ITEM-HKONT[1,0]
+         </arg>
+         <arg>
+          ${gl_amount}
+         </arg>
+         <doc>
+          Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:22.420">
+          Typing text '40001' into text field 'wnd[0]/usr/subITEMS:SAPLFSKB:0100/tblSAPLFSKBTABLE/ctxtACGL_ITEM-HKONT[1,0]'.
+         </msg>
+         <status endtime="20240305 07:24:22.420" starttime="20240305 07:24:22.408" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Sleep">
+         <arg>
+          2
+         </arg>
+         <doc>
+          Pauses the test executed for the given time.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:24.421">
+          Slept 2 seconds
+         </msg>
+         <status endtime="20240305 07:24:24.421" starttime="20240305 07:24:22.420" status="PASS"/>
+        </kw>
+        <kw library="CustomSapGuiLibrary" name="Input Text">
+         <arg>
+          wnd[0]/usr/subITEMS:SAPLFSKB:0100/tblSAPLFSKBTABLE/txtACGL_ITEM-WRBTR[4,0]
+         </arg>
+         <arg>
+          ${amount_cur_doc}
+         </arg>
+         <doc>
+          Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:24.436">
+          Typing text '1500' into text field 'wnd[0]/usr/subITEMS:SAPLFSKB:0100/tblSAPLFSKBTABLE/txtACGL_ITEM-WRBTR[4,0]'.
+         </msg>
+         <status endtime="20240305 07:24:24.436" starttime="20240305 07:24:24.421" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Sleep">
+         <arg>
+          2
+         </arg>
+         <doc>
+          Pauses the test executed for the given time.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:26.437">
+          Slept 2 seconds
+         </msg>
+         <status endtime="20240305 07:24:26.437" starttime="20240305 07:24:24.436" status="PASS"/>
+        </kw>
+        <kw library="CustomSapGuiLibrary" name="Input Text">
+         <arg>
+          wnd[0]/usr/subITEMS:SAPLFSKB:0100/tblSAPLFSKBTABLE/ctxtACGL_ITEM-KOSTL[17,0]
+         </arg>
+         <arg>
+          ${cost_center}
+         </arg>
+         <doc>
+          Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:26.460">
+          Typing text '329' into text field 'wnd[0]/usr/subITEMS:SAPLFSKB:0100/tblSAPLFSKBTABLE/ctxtACGL_ITEM-KOSTL[17,0]'.
+         </msg>
+         <status endtime="20240305 07:24:26.460" starttime="20240305 07:24:26.437" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Sleep">
+         <arg>
+          2
+         </arg>
+         <doc>
+          Pauses the test executed for the given time.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:28.461">
+          Slept 2 seconds
+         </msg>
+         <status endtime="20240305 07:24:28.461" starttime="20240305 07:24:26.460" status="PASS"/>
+        </kw>
+        <kw library="CustomSapGuiLibrary" name="Click Element">
+         <arg>
+          wnd[0]/tbar[0]/btn[11]
+         </arg>
+         <doc>
+          Performs a single click on a given element. Used only for buttons, tabs and menu items.
+         </doc>
+         <status endtime="20240305 07:24:29.608" starttime="20240305 07:24:28.461" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Sleep">
+         <arg>
+          2
+         </arg>
+         <doc>
+          Pauses the test executed for the given time.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:31.609">
+          Slept 2 seconds
+         </msg>
+         <status endtime="20240305 07:24:31.609" starttime="20240305 07:24:29.608" status="PASS"/>
+        </kw>
+        <kw library="CustomSapGuiLibrary" name="Get Value">
+         <var>
+          ${output}
+         </var>
+         <arg>
+          wnd[0]/sbar/pane[0]
+         </arg>
+         <doc>
+          Gets the value of the given element. The possible return values depend on the type of element (see Return values).
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:31.609">
+          ${output} = Document 1800000516 was posted in company code 3000
+         </msg>
+         <status endtime="20240305 07:24:31.609" starttime="20240305 07:24:31.609" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Log To Console">
+         <arg>
+          ${output}
+         </arg>
+         <doc>
+          Logs the given message to the console.
+         </doc>
+         <status endtime="20240305 07:24:31.616" starttime="20240305 07:24:31.616" status="PASS"/>
+        </kw>
+        <kw library="FB70" name="Write Excel">
+         <arg>
+          ${symvar('excel_path')}
+         </arg>
+         <arg>
+          ${symvar('sheet_name')}
+         </arg>
+         <arg>
+          ${row_count}
+         </arg>
+         <arg>
+          8
+         </arg>
+         <arg>
+          ${output}
+         </arg>
+         <msg level="INFO" timestamp="20240305 07:24:31.616">
+          Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+         </msg>
+         <msg level="INFO" timestamp="20240305 07:24:31.616">
+          Sym.Dev.sheet_name: INPUT
+         </msg>
+         <kw library="ExcelLibrary" name="Open Excel Document">
+          <arg>
+           ${filepath}
+          </arg>
+          <arg>
+           1
+          </arg>
+          <doc>
+           Opens xlsx document file.
+          </doc>
+          <status endtime="20240305 07:24:31.624" starttime="20240305 07:24:31.616" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Get Sheet">
+          <arg>
+           ${sheetname}
+          </arg>
+          <doc>
+           Returns a page from the current document.
+          </doc>
+          <status endtime="20240305 07:24:31.624" starttime="20240305 07:24:31.624" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Write Excel Cell">
+          <arg>
+           ${rownum}
+          </arg>
+          <arg>
+           ${colnum}
+          </arg>
+          <arg>
+           ${cell_value}
+          </arg>
+          <arg>
+           ${sheetname}
+          </arg>
+          <doc>
+           Writes value to the cell.
+          </doc>
+          <status endtime="20240305 07:24:31.624" starttime="20240305 07:24:31.624" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Save Excel Document">
+          <arg>
+           ${filepath}
+          </arg>
+          <doc>
+           Saves the current document to disk.
+          </doc>
+          <status endtime="20240305 07:24:31.641" starttime="20240305 07:24:31.624" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Close Current Excel Document">
+          <doc>
+           Closes current document.
+          </doc>
+          <status endtime="20240305 07:24:31.641" starttime="20240305 07:24:31.641" status="PASS"/>
+         </kw>
+         <status endtime="20240305 07:24:31.641" starttime="20240305 07:24:31.616" status="PASS"/>
+        </kw>
+        <kw library="CustomSapGuiLibrary" name="Get Document Number">
+         <var>
+          ${document}
+         </var>
+         <arg>
+          wnd[0]/sbar/pane[0]
+         </arg>
+         <msg level="INFO" timestamp="20240305 07:24:31.641">
+          ${document} = 1800000516
+         </msg>
+         <status endtime="20240305 07:24:31.641" starttime="20240305 07:24:31.641" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Log To Console">
+         <arg>
+          ${document}
+         </arg>
+         <doc>
+          Logs the given message to the console.
+         </doc>
+         <status endtime="20240305 07:24:31.641" starttime="20240305 07:24:31.641" status="PASS"/>
+        </kw>
+        <kw library="FB70" name="Write Excel">
+         <arg>
+          ${symvar('excel_path')}
+         </arg>
+         <arg>
+          ${symvar('sheet_name')}
+         </arg>
+         <arg>
+          ${row_count}
+         </arg>
+         <arg>
+          9
+         </arg>
+         <arg>
+          ${document}
+         </arg>
+         <msg level="INFO" timestamp="20240305 07:24:31.641">
+          Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+         </msg>
+         <msg level="INFO" timestamp="20240305 07:24:31.641">
+          Sym.Dev.sheet_name: INPUT
+         </msg>
+         <kw library="ExcelLibrary" name="Open Excel Document">
+          <arg>
+           ${filepath}
+          </arg>
+          <arg>
+           1
+          </arg>
+          <doc>
+           Opens xlsx document file.
+          </doc>
+          <status endtime="20240305 07:24:31.656" starttime="20240305 07:24:31.641" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Get Sheet">
+          <arg>
+           ${sheetname}
+          </arg>
+          <doc>
+           Returns a page from the current document.
+          </doc>
+          <status endtime="20240305 07:24:31.656" starttime="20240305 07:24:31.656" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Write Excel Cell">
+          <arg>
+           ${rownum}
+          </arg>
+          <arg>
+           ${colnum}
+          </arg>
+          <arg>
+           ${cell_value}
+          </arg>
+          <arg>
+           ${sheetname}
+          </arg>
+          <doc>
+           Writes value to the cell.
+          </doc>
+          <status endtime="20240305 07:24:31.656" starttime="20240305 07:24:31.656" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Save Excel Document">
+          <arg>
+           ${filepath}
+          </arg>
+          <doc>
+           Saves the current document to disk.
+          </doc>
+          <status endtime="20240305 07:24:31.672" starttime="20240305 07:24:31.656" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Close Current Excel Document">
+          <doc>
+           Closes current document.
+          </doc>
+          <status endtime="20240305 07:24:31.672" starttime="20240305 07:24:31.672" status="PASS"/>
+         </kw>
+         <status endtime="20240305 07:24:31.672" starttime="20240305 07:24:31.641" status="PASS"/>
+        </kw>
+        <kw library="CustomSapGuiLibrary" name="Get Company Code">
+         <var>
+          ${company_code}
+         </var>
+         <arg>
+          ${output}
+         </arg>
+         <msg level="INFO" timestamp="20240305 07:24:31.672">
+          ${company_code} = 3000
+         </msg>
+         <status endtime="20240305 07:24:31.672" starttime="20240305 07:24:31.672" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Log To Console">
+         <arg>
+          ${company_code}
+         </arg>
+         <doc>
+          Logs the given message to the console.
+         </doc>
+         <status endtime="20240305 07:24:31.672" starttime="20240305 07:24:31.672" status="PASS"/>
+        </kw>
+        <kw library="FB70" name="Write Excel">
+         <arg>
+          ${symvar('excel_path')}
+         </arg>
+         <arg>
+          ${symvar('sheet_name')}
+         </arg>
+         <arg>
+          ${row_count}
+         </arg>
+         <arg>
+          10
+         </arg>
+         <arg>
+          ${company_code}
+         </arg>
+         <msg level="INFO" timestamp="20240305 07:24:31.672">
+          Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+         </msg>
+         <msg level="INFO" timestamp="20240305 07:24:31.672">
+          Sym.Dev.sheet_name: INPUT
+         </msg>
+         <kw library="ExcelLibrary" name="Open Excel Document">
+          <arg>
+           ${filepath}
+          </arg>
+          <arg>
+           1
+          </arg>
+          <doc>
+           Opens xlsx document file.
+          </doc>
+          <status endtime="20240305 07:24:31.688" starttime="20240305 07:24:31.672" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Get Sheet">
+          <arg>
+           ${sheetname}
+          </arg>
+          <doc>
+           Returns a page from the current document.
+          </doc>
+          <status endtime="20240305 07:24:31.688" starttime="20240305 07:24:31.688" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Write Excel Cell">
+          <arg>
+           ${rownum}
+          </arg>
+          <arg>
+           ${colnum}
+          </arg>
+          <arg>
+           ${cell_value}
+          </arg>
+          <arg>
+           ${sheetname}
+          </arg>
+          <doc>
+           Writes value to the cell.
+          </doc>
+          <status endtime="20240305 07:24:31.688" starttime="20240305 07:24:31.688" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Save Excel Document">
+          <arg>
+           ${filepath}
+          </arg>
+          <doc>
+           Saves the current document to disk.
+          </doc>
+          <status endtime="20240305 07:24:31.703" starttime="20240305 07:24:31.688" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Close Current Excel Document">
+          <doc>
+           Closes current document.
+          </doc>
+          <status endtime="20240305 07:24:31.703" starttime="20240305 07:24:31.703" status="PASS"/>
+         </kw>
+         <status endtime="20240305 07:24:31.703" starttime="20240305 07:24:31.672" status="PASS"/>
+        </kw>
+        <status endtime="20240305 07:24:31.703" starttime="20240305 07:24:14.378" status="PASS"/>
+       </kw>
+       <status endtime="20240305 07:24:31.703" starttime="20240305 07:24:14.298" status="PASS"/>
+      </iter>
+      <iter>
+       <var name="${row_count}">
+        4
+       </var>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${row_count}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:24:31.703">
+         ${row_count} = 4
+        </msg>
+        <status endtime="20240305 07:24:31.703" starttime="20240305 07:24:31.703" status="PASS"/>
+       </kw>
+       <kw library="FB70" name="Read Excel">
+        <var>
+         ${customer}
+        </var>
+        <arg>
+         ${symvar('excel_path')}
+        </arg>
+        <arg>
+         ${symvar('sheet_name')}
+        </arg>
+        <arg>
+         ${row_count}
+        </arg>
+        <arg>
+         1
+        </arg>
+        <msg level="INFO" timestamp="20240305 07:24:31.703">
+         Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+        </msg>
+        <msg level="INFO" timestamp="20240305 07:24:31.703">
+         Sym.Dev.sheet_name: INPUT
+        </msg>
+        <kw library="ExcelLibrary" name="Open Excel Document">
+         <arg>
+          ${filepath}
+         </arg>
+         <arg>
+          1
+         </arg>
+         <doc>
+          Opens xlsx document file.
+         </doc>
+         <status endtime="20240305 07:24:31.719" starttime="20240305 07:24:31.703" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Get Sheet">
+         <arg>
+          ${sheetname}
+         </arg>
+         <doc>
+          Returns a page from the current document.
+         </doc>
+         <status endtime="20240305 07:24:31.719" starttime="20240305 07:24:31.719" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Read Excel Cell">
+         <var>
+          ${data}
+         </var>
+         <arg>
+          ${rownum}
+         </arg>
+         <arg>
+          ${colnum}
+         </arg>
+         <doc>
+          Returns content of a cell.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:31.719">
+          ${data} = CMS0000043
+         </msg>
+         <status endtime="20240305 07:24:31.719" starttime="20240305 07:24:31.719" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Close Current Excel Document">
+         <doc>
+          Closes current document.
+         </doc>
+         <status endtime="20240305 07:24:31.719" starttime="20240305 07:24:31.719" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240305 07:24:31.719">
+         ${customer} = CMS0000043
+        </msg>
+        <status endtime="20240305 07:24:31.719" starttime="20240305 07:24:31.703" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Log To Console">
+        <arg>
+         ${customer}
+        </arg>
+        <doc>
+         Logs the given message to the console.
+        </doc>
+        <status endtime="20240305 07:24:31.719" starttime="20240305 07:24:31.719" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${customer}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:24:31.719">
+         ${customer} = CMS0000043
+        </msg>
+        <status endtime="20240305 07:24:31.719" starttime="20240305 07:24:31.719" status="PASS"/>
+       </kw>
+       <kw library="FB70" name="Read Excel">
+        <var>
+         ${invoice_date}
+        </var>
+        <arg>
+         ${symvar('excel_path')}
+        </arg>
+        <arg>
+         ${symvar('sheet_name')}
+        </arg>
+        <arg>
+         ${row_count}
+        </arg>
+        <arg>
+         2
+        </arg>
+        <msg level="INFO" timestamp="20240305 07:24:31.719">
+         Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+        </msg>
+        <msg level="INFO" timestamp="20240305 07:24:31.719">
+         Sym.Dev.sheet_name: INPUT
+        </msg>
+        <kw library="ExcelLibrary" name="Open Excel Document">
+         <arg>
+          ${filepath}
+         </arg>
+         <arg>
+          1
+         </arg>
+         <doc>
+          Opens xlsx document file.
+         </doc>
+         <status endtime="20240305 07:24:31.735" starttime="20240305 07:24:31.719" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Get Sheet">
+         <arg>
+          ${sheetname}
+         </arg>
+         <doc>
+          Returns a page from the current document.
+         </doc>
+         <status endtime="20240305 07:24:31.735" starttime="20240305 07:24:31.735" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Read Excel Cell">
+         <var>
+          ${data}
+         </var>
+         <arg>
+          ${rownum}
+         </arg>
+         <arg>
+          ${colnum}
+         </arg>
+         <doc>
+          Returns content of a cell.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:31.735">
+          ${data} = 05.03.2024
+         </msg>
+         <status endtime="20240305 07:24:31.735" starttime="20240305 07:24:31.735" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Close Current Excel Document">
+         <doc>
+          Closes current document.
+         </doc>
+         <status endtime="20240305 07:24:31.735" starttime="20240305 07:24:31.735" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240305 07:24:31.735">
+         ${invoice_date} = 05.03.2024
+        </msg>
+        <status endtime="20240305 07:24:31.735" starttime="20240305 07:24:31.719" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Log To Console">
+        <arg>
+         ${invoice_date}
+        </arg>
+        <doc>
+         Logs the given message to the console.
+        </doc>
+        <status endtime="20240305 07:24:31.735" starttime="20240305 07:24:31.735" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${invoice_date}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:24:31.735">
+         ${invoice_date} = 05.03.2024
+        </msg>
+        <status endtime="20240305 07:24:31.735" starttime="20240305 07:24:31.735" status="PASS"/>
+       </kw>
+       <kw library="FB70" name="Read Excel">
+        <var>
+         ${amount}
+        </var>
+        <arg>
+         ${symvar('excel_path')}
+        </arg>
+        <arg>
+         ${symvar('sheet_name')}
+        </arg>
+        <arg>
+         ${row_count}
+        </arg>
+        <arg>
+         3
+        </arg>
+        <msg level="INFO" timestamp="20240305 07:24:31.735">
+         Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+        </msg>
+        <msg level="INFO" timestamp="20240305 07:24:31.735">
+         Sym.Dev.sheet_name: INPUT
+        </msg>
+        <kw library="ExcelLibrary" name="Open Excel Document">
+         <arg>
+          ${filepath}
+         </arg>
+         <arg>
+          1
+         </arg>
+         <doc>
+          Opens xlsx document file.
+         </doc>
+         <status endtime="20240305 07:24:31.735" starttime="20240305 07:24:31.735" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Get Sheet">
+         <arg>
+          ${sheetname}
+         </arg>
+         <doc>
+          Returns a page from the current document.
+         </doc>
+         <status endtime="20240305 07:24:31.735" starttime="20240305 07:24:31.735" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Read Excel Cell">
+         <var>
+          ${data}
+         </var>
+         <arg>
+          ${rownum}
+         </arg>
+         <arg>
+          ${colnum}
+         </arg>
+         <doc>
+          Returns content of a cell.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:31.751">
+          ${data} = 2500
+         </msg>
+         <status endtime="20240305 07:24:31.751" starttime="20240305 07:24:31.735" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Close Current Excel Document">
+         <doc>
+          Closes current document.
+         </doc>
+         <status endtime="20240305 07:24:31.751" starttime="20240305 07:24:31.751" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240305 07:24:31.751">
+         ${amount} = 2500
+        </msg>
+        <status endtime="20240305 07:24:31.751" starttime="20240305 07:24:31.735" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Log To Console">
+        <arg>
+         ${amount}
+        </arg>
+        <doc>
+         Logs the given message to the console.
+        </doc>
+        <status endtime="20240305 07:24:31.751" starttime="20240305 07:24:31.751" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${amount}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:24:31.751">
+         ${amount} = 2500
+        </msg>
+        <status endtime="20240305 07:24:31.751" starttime="20240305 07:24:31.751" status="PASS"/>
+       </kw>
+       <kw library="FB70" name="Read Excel">
+        <var>
+         ${text}
+        </var>
+        <arg>
+         ${symvar('excel_path')}
+        </arg>
+        <arg>
+         ${symvar('sheet_name')}
+        </arg>
+        <arg>
+         ${row_count}
+        </arg>
+        <arg>
+         4
+        </arg>
+        <msg level="INFO" timestamp="20240305 07:24:31.751">
+         Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+        </msg>
+        <msg level="INFO" timestamp="20240305 07:24:31.751">
+         Sym.Dev.sheet_name: INPUT
+        </msg>
+        <kw library="ExcelLibrary" name="Open Excel Document">
+         <arg>
+          ${filepath}
+         </arg>
+         <arg>
+          1
+         </arg>
+         <doc>
+          Opens xlsx document file.
+         </doc>
+         <status endtime="20240305 07:24:31.751" starttime="20240305 07:24:31.751" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Get Sheet">
+         <arg>
+          ${sheetname}
+         </arg>
+         <doc>
+          Returns a page from the current document.
+         </doc>
+         <status endtime="20240305 07:24:31.751" starttime="20240305 07:24:31.751" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Read Excel Cell">
+         <var>
+          ${data}
+         </var>
+         <arg>
+          ${rownum}
+         </arg>
+         <arg>
+          ${colnum}
+         </arg>
+         <doc>
+          Returns content of a cell.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:31.751">
+          ${data} = Robo Test2
+         </msg>
+         <status endtime="20240305 07:24:31.751" starttime="20240305 07:24:31.751" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Close Current Excel Document">
+         <doc>
+          Closes current document.
+         </doc>
+         <status endtime="20240305 07:24:31.751" starttime="20240305 07:24:31.751" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240305 07:24:31.751">
+         ${text} = Robo Test2
+        </msg>
+        <status endtime="20240305 07:24:31.751" starttime="20240305 07:24:31.751" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Log To Console">
+        <arg>
+         ${text}
+        </arg>
+        <doc>
+         Logs the given message to the console.
+        </doc>
+        <status endtime="20240305 07:24:31.751" starttime="20240305 07:24:31.751" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${text}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:24:31.751">
+         ${text} = Robo Test2
+        </msg>
+        <status endtime="20240305 07:24:31.751" starttime="20240305 07:24:31.751" status="PASS"/>
+       </kw>
+       <kw library="FB70" name="Read Excel">
+        <var>
+         ${gl_amount}
+        </var>
+        <arg>
+         ${symvar('excel_path')}
+        </arg>
+        <arg>
+         ${symvar('sheet_name')}
+        </arg>
+        <arg>
+         ${row_count}
+        </arg>
+        <arg>
+         5
+        </arg>
+        <msg level="INFO" timestamp="20240305 07:24:31.764">
+         Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+        </msg>
+        <msg level="INFO" timestamp="20240305 07:24:31.764">
+         Sym.Dev.sheet_name: INPUT
+        </msg>
+        <kw library="ExcelLibrary" name="Open Excel Document">
+         <arg>
+          ${filepath}
+         </arg>
+         <arg>
+          1
+         </arg>
+         <doc>
+          Opens xlsx document file.
+         </doc>
+         <status endtime="20240305 07:24:31.767" starttime="20240305 07:24:31.764" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Get Sheet">
+         <arg>
+          ${sheetname}
+         </arg>
+         <doc>
+          Returns a page from the current document.
+         </doc>
+         <status endtime="20240305 07:24:31.767" starttime="20240305 07:24:31.767" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Read Excel Cell">
+         <var>
+          ${data}
+         </var>
+         <arg>
+          ${rownum}
+         </arg>
+         <arg>
+          ${colnum}
+         </arg>
+         <doc>
+          Returns content of a cell.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:31.767">
+          ${data} = 40001
+         </msg>
+         <status endtime="20240305 07:24:31.767" starttime="20240305 07:24:31.767" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Close Current Excel Document">
+         <doc>
+          Closes current document.
+         </doc>
+         <status endtime="20240305 07:24:31.767" starttime="20240305 07:24:31.767" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240305 07:24:31.767">
+         ${gl_amount} = 40001
+        </msg>
+        <status endtime="20240305 07:24:31.767" starttime="20240305 07:24:31.751" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Log To Console">
+        <arg>
+         ${gl_amount}
+        </arg>
+        <doc>
+         Logs the given message to the console.
+        </doc>
+        <status endtime="20240305 07:24:31.767" starttime="20240305 07:24:31.767" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${gl_amount}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:24:31.767">
+         ${gl_amount} = 40001
+        </msg>
+        <status endtime="20240305 07:24:31.767" starttime="20240305 07:24:31.767" status="PASS"/>
+       </kw>
+       <kw library="FB70" name="Read Excel">
+        <var>
+         ${amount_cur_doc}
+        </var>
+        <arg>
+         ${symvar('excel_path')}
+        </arg>
+        <arg>
+         ${symvar('sheet_name')}
+        </arg>
+        <arg>
+         ${row_count}
+        </arg>
+        <arg>
+         6
+        </arg>
+        <msg level="INFO" timestamp="20240305 07:24:31.767">
+         Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+        </msg>
+        <msg level="INFO" timestamp="20240305 07:24:31.767">
+         Sym.Dev.sheet_name: INPUT
+        </msg>
+        <kw library="ExcelLibrary" name="Open Excel Document">
+         <arg>
+          ${filepath}
+         </arg>
+         <arg>
+          1
+         </arg>
+         <doc>
+          Opens xlsx document file.
+         </doc>
+         <status endtime="20240305 07:24:31.767" starttime="20240305 07:24:31.767" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Get Sheet">
+         <arg>
+          ${sheetname}
+         </arg>
+         <doc>
+          Returns a page from the current document.
+         </doc>
+         <status endtime="20240305 07:24:31.783" starttime="20240305 07:24:31.767" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Read Excel Cell">
+         <var>
+          ${data}
+         </var>
+         <arg>
+          ${rownum}
+         </arg>
+         <arg>
+          ${colnum}
+         </arg>
+         <doc>
+          Returns content of a cell.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:31.783">
+          ${data} = 2500
+         </msg>
+         <status endtime="20240305 07:24:31.783" starttime="20240305 07:24:31.783" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Close Current Excel Document">
+         <doc>
+          Closes current document.
+         </doc>
+         <status endtime="20240305 07:24:31.783" starttime="20240305 07:24:31.783" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240305 07:24:31.783">
+         ${amount_cur_doc} = 2500
+        </msg>
+        <status endtime="20240305 07:24:31.783" starttime="20240305 07:24:31.767" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Log To Console">
+        <arg>
+         ${amount_cur_doc}
+        </arg>
+        <doc>
+         Logs the given message to the console.
+        </doc>
+        <status endtime="20240305 07:24:31.783" starttime="20240305 07:24:31.783" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${amount_cur_doc}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:24:31.783">
+         ${amount_cur_doc} = 2500
+        </msg>
+        <status endtime="20240305 07:24:31.783" starttime="20240305 07:24:31.783" status="PASS"/>
+       </kw>
+       <kw library="FB70" name="Read Excel">
+        <var>
+         ${cost_center}
+        </var>
+        <arg>
+         ${symvar('excel_path')}
+        </arg>
+        <arg>
+         ${symvar('sheet_name')}
+        </arg>
+        <arg>
+         ${row_count}
+        </arg>
+        <arg>
+         7
+        </arg>
+        <msg level="INFO" timestamp="20240305 07:24:31.783">
+         Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+        </msg>
+        <msg level="INFO" timestamp="20240305 07:24:31.783">
+         Sym.Dev.sheet_name: INPUT
+        </msg>
+        <kw library="ExcelLibrary" name="Open Excel Document">
+         <arg>
+          ${filepath}
+         </arg>
+         <arg>
+          1
+         </arg>
+         <doc>
+          Opens xlsx document file.
+         </doc>
+         <status endtime="20240305 07:24:31.783" starttime="20240305 07:24:31.783" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Get Sheet">
+         <arg>
+          ${sheetname}
+         </arg>
+         <doc>
+          Returns a page from the current document.
+         </doc>
+         <status endtime="20240305 07:24:31.783" starttime="20240305 07:24:31.783" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Read Excel Cell">
+         <var>
+          ${data}
+         </var>
+         <arg>
+          ${rownum}
+         </arg>
+         <arg>
+          ${colnum}
+         </arg>
+         <doc>
+          Returns content of a cell.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:31.783">
+          ${data} = 329
+         </msg>
+         <status endtime="20240305 07:24:31.783" starttime="20240305 07:24:31.783" status="PASS"/>
+        </kw>
+        <kw library="ExcelLibrary" name="Close Current Excel Document">
+         <doc>
+          Closes current document.
+         </doc>
+         <status endtime="20240305 07:24:31.783" starttime="20240305 07:24:31.783" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240305 07:24:31.783">
+         ${cost_center} = 329
+        </msg>
+        <status endtime="20240305 07:24:31.783" starttime="20240305 07:24:31.783" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Log To Console">
+        <arg>
+         ${cost_center}
+        </arg>
+        <doc>
+         Logs the given message to the console.
+        </doc>
+        <status endtime="20240305 07:24:31.795" starttime="20240305 07:24:31.783" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${cost_center}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240305 07:24:31.795">
+         ${cost_center} = 329
+        </msg>
+        <status endtime="20240305 07:24:31.795" starttime="20240305 07:24:31.795" status="PASS"/>
+       </kw>
+       <kw library="FB70" name="Transaction FB70">
+        <kw library="CustomSapGuiLibrary" name="Input Text">
+         <arg>
+          wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-ACCNT
+         </arg>
+         <arg>
+          ${customer}
+         </arg>
+         <doc>
+          Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:31.804">
+          Typing text 'CMS0000043' into text field 'wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-ACCNT'.
+         </msg>
+         <status endtime="20240305 07:24:31.804" starttime="20240305 07:24:31.795" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Sleep">
+         <arg>
+          2
+         </arg>
+         <doc>
+          Pauses the test executed for the given time.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:33.804">
+          Slept 2 seconds
+         </msg>
+         <status endtime="20240305 07:24:33.804" starttime="20240305 07:24:31.804" status="PASS"/>
+        </kw>
+        <kw library="CustomSapGuiLibrary" name="Input Text">
+         <arg>
+          wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-BLDAT
+         </arg>
+         <arg>
+          ${invoice_date}
+         </arg>
+         <doc>
+          Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:33.811">
+          Typing text '05.03.2024' into text field 'wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-BLDAT'.
+         </msg>
+         <status endtime="20240305 07:24:33.811" starttime="20240305 07:24:33.804" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Sleep">
+         <arg>
+          2
+         </arg>
+         <doc>
+          Pauses the test executed for the given time.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:35.811">
+          Slept 2 seconds
+         </msg>
+         <status endtime="20240305 07:24:35.811" starttime="20240305 07:24:33.811" status="PASS"/>
+        </kw>
+        <kw library="CustomSapGuiLibrary" name="Input Text">
+         <arg>
+          wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/txtINVFO-WRBTR
+         </arg>
+         <arg>
+          ${amount}
+         </arg>
+         <doc>
+          Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:35.819">
+          Typing text '2500' into text field 'wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/txtINVFO-WRBTR'.
+         </msg>
+         <status endtime="20240305 07:24:35.819" starttime="20240305 07:24:35.811" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Sleep">
+         <arg>
+          2
+         </arg>
+         <doc>
+          Pauses the test executed for the given time.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:37.819">
+          Slept 2 seconds
+         </msg>
+         <status endtime="20240305 07:24:37.819" starttime="20240305 07:24:35.819" status="PASS"/>
+        </kw>
+        <kw library="CustomSapGuiLibrary" name="Input Text">
+         <arg>
+          wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-SGTXT
+         </arg>
+         <arg>
+          ${text}
+         </arg>
+         <doc>
+          Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:37.827">
+          Typing text 'Robo Test2' into text field 'wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-SGTXT'.
+         </msg>
+         <status endtime="20240305 07:24:37.827" starttime="20240305 07:24:37.819" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Sleep">
+         <arg>
+          2
+         </arg>
+         <doc>
+          Pauses the test executed for the given time.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:39.828">
+          Slept 2 seconds
+         </msg>
+         <status endtime="20240305 07:24:39.828" starttime="20240305 07:24:37.827" status="PASS"/>
+        </kw>
+        <kw library="CustomSapGuiLibrary" name="Input Text">
+         <arg>
+          wnd[0]/usr/subITEMS:SAPLFSKB:0100/tblSAPLFSKBTABLE/ctxtACGL_ITEM-HKONT[1,0]
+         </arg>
+         <arg>
+          ${gl_amount}
+         </arg>
+         <doc>
+          Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:39.835">
+          Typing text '40001' into text field 'wnd[0]/usr/subITEMS:SAPLFSKB:0100/tblSAPLFSKBTABLE/ctxtACGL_ITEM-HKONT[1,0]'.
+         </msg>
+         <status endtime="20240305 07:24:39.835" starttime="20240305 07:24:39.828" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Sleep">
+         <arg>
+          2
+         </arg>
+         <doc>
+          Pauses the test executed for the given time.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:41.835">
+          Slept 2 seconds
+         </msg>
+         <status endtime="20240305 07:24:41.835" starttime="20240305 07:24:39.835" status="PASS"/>
+        </kw>
+        <kw library="CustomSapGuiLibrary" name="Input Text">
+         <arg>
+          wnd[0]/usr/subITEMS:SAPLFSKB:0100/tblSAPLFSKBTABLE/txtACGL_ITEM-WRBTR[4,0]
+         </arg>
+         <arg>
+          ${amount_cur_doc}
+         </arg>
+         <doc>
+          Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:41.841">
+          Typing text '2500' into text field 'wnd[0]/usr/subITEMS:SAPLFSKB:0100/tblSAPLFSKBTABLE/txtACGL_ITEM-WRBTR[4,0]'.
+         </msg>
+         <status endtime="20240305 07:24:41.841" starttime="20240305 07:24:41.835" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Sleep">
+         <arg>
+          2
+         </arg>
+         <doc>
+          Pauses the test executed for the given time.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:43.841">
+          Slept 2 seconds
+         </msg>
+         <status endtime="20240305 07:24:43.841" starttime="20240305 07:24:41.841" status="PASS"/>
+        </kw>
+        <kw library="CustomSapGuiLibrary" name="Input Text">
+         <arg>
+          wnd[0]/usr/subITEMS:SAPLFSKB:0100/tblSAPLFSKBTABLE/ctxtACGL_ITEM-KOSTL[17,0]
+         </arg>
+         <arg>
+          ${cost_center}
+         </arg>
+         <doc>
+          Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:43.862">
+          Typing text '329' into text field 'wnd[0]/usr/subITEMS:SAPLFSKB:0100/tblSAPLFSKBTABLE/ctxtACGL_ITEM-KOSTL[17,0]'.
+         </msg>
+         <status endtime="20240305 07:24:43.862" starttime="20240305 07:24:43.841" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Sleep">
+         <arg>
+          2
+         </arg>
+         <doc>
+          Pauses the test executed for the given time.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:45.862">
+          Slept 2 seconds
+         </msg>
+         <status endtime="20240305 07:24:45.862" starttime="20240305 07:24:43.862" status="PASS"/>
+        </kw>
+        <kw library="CustomSapGuiLibrary" name="Click Element">
+         <arg>
+          wnd[0]/tbar[0]/btn[11]
+         </arg>
+         <doc>
+          Performs a single click on a given element. Used only for buttons, tabs and menu items.
+         </doc>
+         <status endtime="20240305 07:24:47.639" starttime="20240305 07:24:45.862" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Sleep">
+         <arg>
+          2
+         </arg>
+         <doc>
+          Pauses the test executed for the given time.
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:49.639">
+          Slept 2 seconds
+         </msg>
+         <status endtime="20240305 07:24:49.639" starttime="20240305 07:24:47.639" status="PASS"/>
+        </kw>
+        <kw library="CustomSapGuiLibrary" name="Get Value">
+         <var>
+          ${output}
+         </var>
+         <arg>
+          wnd[0]/sbar/pane[0]
+         </arg>
+         <doc>
+          Gets the value of the given element. The possible return values depend on the type of element (see Return values).
+         </doc>
+         <msg level="INFO" timestamp="20240305 07:24:49.639">
+          ${output} = Document 1800000517 was posted in company code 3000
+         </msg>
+         <status endtime="20240305 07:24:49.639" starttime="20240305 07:24:49.639" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Log To Console">
+         <arg>
+          ${output}
+         </arg>
+         <doc>
+          Logs the given message to the console.
+         </doc>
+         <status endtime="20240305 07:24:49.639" starttime="20240305 07:24:49.639" status="PASS"/>
+        </kw>
+        <kw library="FB70" name="Write Excel">
+         <arg>
+          ${symvar('excel_path')}
+         </arg>
+         <arg>
+          ${symvar('sheet_name')}
+         </arg>
+         <arg>
+          ${row_count}
+         </arg>
+         <arg>
+          8
+         </arg>
+         <arg>
+          ${output}
+         </arg>
+         <msg level="INFO" timestamp="20240305 07:24:49.639">
+          Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+         </msg>
+         <msg level="INFO" timestamp="20240305 07:24:49.639">
+          Sym.Dev.sheet_name: INPUT
+         </msg>
+         <kw library="ExcelLibrary" name="Open Excel Document">
+          <arg>
+           ${filepath}
+          </arg>
+          <arg>
+           1
+          </arg>
+          <doc>
+           Opens xlsx document file.
+          </doc>
+          <status endtime="20240305 07:24:49.655" starttime="20240305 07:24:49.639" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Get Sheet">
+          <arg>
+           ${sheetname}
+          </arg>
+          <doc>
+           Returns a page from the current document.
+          </doc>
+          <status endtime="20240305 07:24:49.655" starttime="20240305 07:24:49.655" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Write Excel Cell">
+          <arg>
+           ${rownum}
+          </arg>
+          <arg>
+           ${colnum}
+          </arg>
+          <arg>
+           ${cell_value}
+          </arg>
+          <arg>
+           ${sheetname}
+          </arg>
+          <doc>
+           Writes value to the cell.
+          </doc>
+          <status endtime="20240305 07:24:49.655" starttime="20240305 07:24:49.655" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Save Excel Document">
+          <arg>
+           ${filepath}
+          </arg>
+          <doc>
+           Saves the current document to disk.
+          </doc>
+          <status endtime="20240305 07:24:49.674" starttime="20240305 07:24:49.655" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Close Current Excel Document">
+          <doc>
+           Closes current document.
+          </doc>
+          <status endtime="20240305 07:24:49.674" starttime="20240305 07:24:49.674" status="PASS"/>
+         </kw>
+         <status endtime="20240305 07:24:49.674" starttime="20240305 07:24:49.639" status="PASS"/>
+        </kw>
+        <kw library="CustomSapGuiLibrary" name="Get Document Number">
+         <var>
+          ${document}
+         </var>
+         <arg>
+          wnd[0]/sbar/pane[0]
+         </arg>
+         <msg level="INFO" timestamp="20240305 07:24:49.674">
+          ${document} = 1800000517
+         </msg>
+         <status endtime="20240305 07:24:49.674" starttime="20240305 07:24:49.674" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Log To Console">
+         <arg>
+          ${document}
+         </arg>
+         <doc>
+          Logs the given message to the console.
+         </doc>
+         <status endtime="20240305 07:24:49.674" starttime="20240305 07:24:49.674" status="PASS"/>
+        </kw>
+        <kw library="FB70" name="Write Excel">
+         <arg>
+          ${symvar('excel_path')}
+         </arg>
+         <arg>
+          ${symvar('sheet_name')}
+         </arg>
+         <arg>
+          ${row_count}
+         </arg>
+         <arg>
+          9
+         </arg>
+         <arg>
+          ${document}
+         </arg>
+         <msg level="INFO" timestamp="20240305 07:24:49.674">
+          Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+         </msg>
+         <msg level="INFO" timestamp="20240305 07:24:49.681">
+          Sym.Dev.sheet_name: INPUT
+         </msg>
+         <kw library="ExcelLibrary" name="Open Excel Document">
+          <arg>
+           ${filepath}
+          </arg>
+          <arg>
+           1
+          </arg>
+          <doc>
+           Opens xlsx document file.
+          </doc>
+          <status endtime="20240305 07:24:49.687" starttime="20240305 07:24:49.681" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Get Sheet">
+          <arg>
+           ${sheetname}
+          </arg>
+          <doc>
+           Returns a page from the current document.
+          </doc>
+          <status endtime="20240305 07:24:49.687" starttime="20240305 07:24:49.687" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Write Excel Cell">
+          <arg>
+           ${rownum}
+          </arg>
+          <arg>
+           ${colnum}
+          </arg>
+          <arg>
+           ${cell_value}
+          </arg>
+          <arg>
+           ${sheetname}
+          </arg>
+          <doc>
+           Writes value to the cell.
+          </doc>
+          <status endtime="20240305 07:24:49.687" starttime="20240305 07:24:49.687" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Save Excel Document">
+          <arg>
+           ${filepath}
+          </arg>
+          <doc>
+           Saves the current document to disk.
+          </doc>
+          <status endtime="20240305 07:24:49.703" starttime="20240305 07:24:49.687" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Close Current Excel Document">
+          <doc>
+           Closes current document.
+          </doc>
+          <status endtime="20240305 07:24:49.703" starttime="20240305 07:24:49.703" status="PASS"/>
+         </kw>
+         <status endtime="20240305 07:24:49.703" starttime="20240305 07:24:49.674" status="PASS"/>
+        </kw>
+        <kw library="CustomSapGuiLibrary" name="Get Company Code">
+         <var>
+          ${company_code}
+         </var>
+         <arg>
+          ${output}
+         </arg>
+         <msg level="INFO" timestamp="20240305 07:24:49.703">
+          ${company_code} = 3000
+         </msg>
+         <status endtime="20240305 07:24:49.703" starttime="20240305 07:24:49.703" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Log To Console">
+         <arg>
+          ${company_code}
+         </arg>
+         <doc>
+          Logs the given message to the console.
+         </doc>
+         <status endtime="20240305 07:24:49.703" starttime="20240305 07:24:49.703" status="PASS"/>
+        </kw>
+        <kw library="FB70" name="Write Excel">
+         <arg>
+          ${symvar('excel_path')}
+         </arg>
+         <arg>
+          ${symvar('sheet_name')}
+         </arg>
+         <arg>
+          ${row_count}
+         </arg>
+         <arg>
+          10
+         </arg>
+         <arg>
+          ${company_code}
+         </arg>
+         <msg level="INFO" timestamp="20240305 07:24:49.703">
+          Sym.Dev.excel_path: C:\RobotFramework\sap_testing\Tests\Resource\invoice.xlsx
+         </msg>
+         <msg level="INFO" timestamp="20240305 07:24:49.703">
+          Sym.Dev.sheet_name: INPUT
+         </msg>
+         <kw library="ExcelLibrary" name="Open Excel Document">
+          <arg>
+           ${filepath}
+          </arg>
+          <arg>
+           1
+          </arg>
+          <doc>
+           Opens xlsx document file.
+          </doc>
+          <status endtime="20240305 07:24:49.718" starttime="20240305 07:24:49.703" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Get Sheet">
+          <arg>
+           ${sheetname}
+          </arg>
+          <doc>
+           Returns a page from the current document.
+          </doc>
+          <status endtime="20240305 07:24:49.718" starttime="20240305 07:24:49.718" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Write Excel Cell">
+          <arg>
+           ${rownum}
+          </arg>
+          <arg>
+           ${colnum}
+          </arg>
+          <arg>
+           ${cell_value}
+          </arg>
+          <arg>
+           ${sheetname}
+          </arg>
+          <doc>
+           Writes value to the cell.
+          </doc>
+          <status endtime="20240305 07:24:49.718" starttime="20240305 07:24:49.718" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Save Excel Document">
+          <arg>
+           ${filepath}
+          </arg>
+          <doc>
+           Saves the current document to disk.
+          </doc>
+          <status endtime="20240305 07:24:49.734" starttime="20240305 07:24:49.718" status="PASS"/>
+         </kw>
+         <kw library="ExcelLibrary" name="Close Current Excel Document">
+          <doc>
+           Closes current document.
+          </doc>
+          <status endtime="20240305 07:24:49.734" starttime="20240305 07:24:49.734" status="PASS"/>
+         </kw>
+         <status endtime="20240305 07:24:49.734" starttime="20240305 07:24:49.703" status="PASS"/>
+        </kw>
+        <status endtime="20240305 07:24:49.734" starttime="20240305 07:24:31.795" status="PASS"/>
+       </kw>
+       <status endtime="20240305 07:24:49.734" starttime="20240305 07:24:31.703" status="PASS"/>
+      </iter>
+      <status endtime="20240305 07:24:49.734" starttime="20240305 07:23:54.400" status="PASS"/>
+     </for>
+     <status endtime="20240305 07:24:49.734" starttime="20240305 07:23:48.060" status="PASS"/>
+    </kw>
+    <tag>
+     FB70
+    </tag>
+    <tag>
+     Regression
+    </tag>
+    <status endtime="20240305 07:24:49.734" starttime="20240305 07:23:48.060" status="PASS"/>
+   </test>
+   <kw library="FB70" name="SAP Logout" type="TEARDOWN">
+    <kw library="CustomSapGuiLibrary" name="Run Transaction">
+     <arg>
+      /nex
+     </arg>
+     <doc>
+      Runs a Sap transaction. An error is given when an unknown transaction is specified.
+     </doc>
+     <status endtime="20240305 07:24:49.973" starttime="20240305 07:24:49.734" status="PASS"/>
+    </kw>
+    <kw library="BuiltIn" name="Sleep">
+     <arg>
+      5
+     </arg>
+     <doc>
+      Pauses the test executed for the given time.
+     </doc>
+     <msg level="INFO" timestamp="20240305 07:24:54.973">
+      Slept 5 seconds
+     </msg>
+     <status endtime="20240305 07:24:54.973" starttime="20240305 07:24:49.973" status="PASS"/>
+    </kw>
+    <status endtime="20240305 07:24:54.973" starttime="20240305 07:24:49.734" status="PASS"/>
+   </kw>
+   <status endtime="20240305 07:24:54.973" starttime="20240305 07:23:26.630" status="PASS"/>
+  </suite>
+  <doc>
+   Testing functionality through Robot Framework
+  </doc>
+  <meta name="environment">
+   Dev
+  </meta>
+  <meta name="test_browser_name">
+   chrome
+  </meta>
+  <meta name="test_browser_version">
+   122.0.6261.95
+  </meta>
+  <meta name="test_driver_version">
+   121.0.6167.85
+  </meta>
+  <meta name="test_environment">
+   Dev
+  </meta>
+  <meta name="test_freeze_dependencies">
+   astroid==3.0.3,attrs==23.2.0,beautifulsoup4==4.12.3,bs4==0.0.2,certifi==2024.2.2,cffi==1.16.0,chardet==5.2.0,charset-normalizer==3.3.2,click==8.1.7,colorama==0.4.6,cryptography==42.0.2,defusedxml==0.7.1,dill==0.3.8,docutils==0.20.1,et-xmlfile==1.1.0,exceptiongroup==1.2.0,gitdb==4.0.11,GitPython==3.1.41,h11==0.14.0,idna==3.6,isort==5.13.2,Jinja2==3.1.3,jira==3.6.0,jsonpath-ng==1.6.1,jsonschema==4.21.1,jsonschema-specifications==2023.12.1,lazy-object-proxy==1.10.0,lxml==5.1.0,markdown-it-py==3.0.0,MarkupSafe==2.1.5,mccabe==0.7.0,mdurl==0.1.2,natsort==8.4.0,oauthlib==3.2.2,openpyxl==3.1.2,outcome==1.3.0.post0,packaging==23.2,pathspec==0.11.2,pillow==10.2.0,pip==24.0,platformdirs==4.2.0,ply==3.11,pycparser==2.21,Pygments==2.17.2,pylint==3.0.3,PySocks==1.7.1,pywin32==306,PyYAML==6.0.1,referencing==0.33.0,reportlab==4.0.9,requests==2.31.0,requests-oauthlib==1.3.1,requests-toolbelt==1.0.0,rich==13.7.0,rich-click==1.6.1,robotframework==6.0.2,robotframework-datadriver==1.9.0,robotframework-excellib==2.0.1,robotframework-jsonlibrary==0.5,robotframework-pabot==2.16.0,robotframework-pythonlibcore==4.2.0,robotframework-requests==0.9.2,robotframework-sapguilibrary==1.1,robotframework-seleniumlibrary==5.1.3,robotframework-stacktrace==0.4.1,robotframework-tidy==4.5.0,rpds-py==0.17.1,selenium==4.9.1,setuptools==69.0.3,smmap==5.0.1,sniffio==1.3.0,sortedcontainers==2.4.0,soupsieve==2.5,tomli==2.0.1,tomlkit==0.12.3,trio==0.24.0,trio-websocket==0.11.1,typing_extensions==4.9.0,urllib3==2.2.0,wheel==0.42.0,wrapt==1.16.0,wsproto==1.2.0
+  </meta>
+  <status endtime="20240305 07:24:55.358" starttime="20240305 07:23:23.106" status="PASS"/>
+ </suite>
+ <statistics>
+  <total>
+   <stat fail="0" pass="1" skip="0">
+    All Tests
+   </stat>
+  </total>
+  <tag>
+   <stat fail="0" pass="1" skip="0">
+    FB70
+   </stat>
+   <stat fail="0" pass="1" skip="0">
+    Regression
+   </stat>
+  </tag>
+  <suite>
+   <stat fail="0" id="s1" name="Tests" pass="1" skip="0">
+    Tests
+   </stat>
+   <stat fail="0" id="s1-s1" name="Test FB70" pass="1" skip="0">
+    Tests.Test FB70
+   </stat>
+  </suite>
+ </statistics>
+ <errors>
+ </errors>
+</robot>
