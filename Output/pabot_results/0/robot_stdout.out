@@ -1,55 +1,15 @@
 ==============================================================================
 Tests :: Testing functionality through Robot Framework                        
 ==============================================================================
-Tests.Test invoice creation                                                   
+Tests.Test SM02                                                               
 ==============================================================================
-Interlinked transactions for Invoice                                  5
-CMS0000043
-23.02.2024
-1000
-Robo Test
-40001
-1000
-329
-Net due date on 23.02.2024 is in the past
-None
-past
-CMS0000043
-23.02.2024
-1500
-Robo Test1
-40001
-1500
-329
-  
-  Traceback (most recent call last):
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    File  C:\SAP_Testing\SAPtesting\Tests\Test_invoice_creation.robot:8
-    T:  Interlinked transactions for Invoice    
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    File  C:\SAP_Testing\SAPtesting\Tests\Test_invoice_creation.robot:9
-      FB70 Invoice entry    
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    File  C:\SAP_Testing\SAPtesting\Tests\Resource\Invoice_Creation.robot:117
-      ${row_count} IN RANGE [ 2 | ${rows} ]    
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    File  C:\SAP_Testing\SAPtesting\Tests\Resource\Invoice_Creation.robot:117
-      ${row_count} = 3    
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    File  C:\SAP_Testing\SAPtesting\Tests\Resource\Invoice_Creation.robot:148
-      Transaction FB70    
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    File  C:\SAP_Testing\SAPtesting\Tests\Resource\Invoice_Creation.robot:48
-      Input Text    wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-ACCNT    ${customer}
-      |  ${customer} = CMS0000043 (str)
-______________________________________________________________________________
-| FAIL |
-AttributeError: Property '<unknown>.text' can not be set.
+Certificate Validation                                                ['Validity of certificate from list with PSE type >SSL', 'Client (Standrad)< ends in 7 days, for more information, see', 'the SAP System Log (transation SM21)']
+| PASS |
 ------------------------------------------------------------------------------
-Tests.Test invoice creation                                           | FAIL |
-1 test, 0 passed, 1 failed
+Tests.Test SM02                                                       | PASS |
+1 test, 1 passed, 0 failed
 ==============================================================================
-Tests :: Testing functionality through Robot Framework                | FAIL |
-1 test, 0 passed, 1 failed
+Tests :: Testing functionality through Robot Framework                | PASS |
+1 test, 1 passed, 0 failed
 ==============================================================================
 Output:  C:\SAP_Testing\SAPtesting\Output\pabot_results\0\Output.xml

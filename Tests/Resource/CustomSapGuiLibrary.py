@@ -1206,3 +1206,19 @@ class CustomSapGuiLibrary:
     
         except Exception as e:
             print(e)
+
+    def get_lable_value(self, lable_id, search_texts):
+        user_area = self.session.findById(lable_id)
+        item_count = user_area.Children.Count
+        found_elements = []
+        for search_text in search_texts:
+            for i in range(item_count):
+                element = user_area.Children.ElementAt(i)
+                if element.Text.strip() == search_text.strip():
+                    found_elements.append(element.Text)
+                    print(element.Text)
+                    break
+            else:
+                print("search text is not found")
+                return("search text is not found")
+        return found_elements
