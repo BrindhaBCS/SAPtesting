@@ -1,12 +1,32 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
-# Library    PDF.py
-
+Library    OperatingSystem
+Library    String
 
 *** Keywords ***
+System Logon
+    Start Process     ${symvar('SAP_SERVER')}    
+    Sleep    10s
+    Connect To Session
+    Open Connection    ${symvar('SAP_connection')}    
+    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('Client_Id')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('User_Name')}    
+    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('User_Password')}  
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}  
+    Send Vkey    0
+    Take Screenshot    00a_loginpage.jpg
+    Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
+    Sleep   1
+    Take Screenshot    00_multi_logon_handling.jpg
 
-Transaction STMS
+System Logout
+    Run Transaction   /nex
+    Sleep    5
+    Take Screenshot    logoutpage.jpg
+    Sleep    10
+
+STMS
     Run Transaction     /nSTMS
     Sleep   1
     Take Screenshot    073_stms.jpg
@@ -54,4 +74,44 @@ Transport Layers
     Click Element   wnd[0]/mbar/menu[2]/menu[1]
     Sleep   1
     Take Screenshot    083_stms.jpg
+#     Run Transaction     /nSTMS
+#     Sleep   5s
+#     Take Screenshot
+#     Click Element   wnd[0]/mbar/menu[0]/menu[4]
+#     Sleep   5s
+#     Take Screenshot     STMS_1.jpg
+#     Doubleclick Element     wnd[0]/usr/cntlGRID1/shellcont/shell    0   0
+#     Sleep   10s
+#     Click Element   wnd[0]/usr/tabsGN_DYN150_TAB_STRIP/tabpDOMA
+#     Sleep   5s
+#     Take Screenshot     STMS_2.jpg
+#     Click Element   wnd[0]/usr/tabsGN_DYN150_TAB_STRIP/tabpTPPE
+#     Sleep   5s
+#     Take Screenshot     STMS_3.jpg
+#     Import Overview
+#     Transport Routes 
 
+# Import Overview
+#     Click Element   wnd[0]/tbar[0]/btn[3]
+#     Sleep   2s
+#     Click Element   wnd[0]/tbar[0]/btn[3]
+#     Sleep   2s
+#     Click Element   wnd[0]/tbar[1]/btn[5]
+#     Sleep   5s
+#     Take Screenshot     STMS_4.jpg
+#     Sleep    6
+
+# Transport Routes
+#     Click Element   wnd[0]/tbar[0]/btn[3]
+#     Sleep   5s
+#     Click Element   wnd[0]/tbar[1]/btn[19]
+#     Sleep   5s
+#     Take Screenshot     STMS_5.jpg
+#     # Transport Layers
+#     Sleep    6
+
+# Transport Layers
+#     Click Element   wnd[0]/mbar/menu[2]/menu[1]
+#     Sleep   5s
+#     Take Screenshot     STMS_6.jpg
+#     Sleep    6

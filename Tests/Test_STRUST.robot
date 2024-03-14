@@ -1,16 +1,9 @@
 *** Settings ***
-Resource    Resource/Common_SAP_Tcodefn.robot
-Resource    Resource/STRUST.robot
-Force Tags    STRUST
-Suite Setup    Common_SAP_Tcodefn.System Logon
-Suite Teardown    Common_SAP_Tcodefn.System Logout
-  
-*** Test Cases ***
+Resource    ../Tests/Resource/STRUST.robot
+Suite Setup    STRUST.System Logon
+Suite Teardown    STRUST.System Logout 
+Test Tags    STRUSTSSO2_ST
 
-Executing STRUST
-    Transaction STRUST
-    SSL server standard        
-    SSL client SSL Client (Anonymous)
-    SSL client SSL Client (Standard)  
-    WS Security Other System Encryption   
-    SSF Logon Ticket
+*** Test Cases ***
+STRUSTSSO2
+    STRUSTSSO2

@@ -1,13 +1,9 @@
-*** Settings *
-Resource    Resource/Common_SAP_Tcodefn.robot
-Resource    Resource/SLDAPICUST.robot
-Force Tags    SLDAPICUST
-Suite Setup    Common_SAP_Tcodefn.System Logon
-Suite Teardown    Common_SAP_Tcodefn.System Logout
-  
+*** Settings ***
+Resource    ../Tests/Resource/SLDAPICUST.robot
+Suite Setup    SLDAPICUST.System Logon
+Suite Teardown    SLDAPICUST.System Logout 
+Test Tags    SLDAPICUST_ST
+
 *** Test Cases ***
-
-Executing SLDAPICUST
-
-    Transaction SLDAPICUST
-    Sldapicust display  
+SLDAPICUST
+    SLDAPICUST

@@ -1,15 +1,9 @@
 *** Settings ***
-Resource    Resource/Common_SAP_Tcodefn.robot
-Resource    Resource/SPAD.robot
-Force Tags    SPAD
-Suite Setup    Common_SAP_Tcodefn.System Logon
-Suite Teardown    Common_SAP_Tcodefn.System Logout
-  
-*** Test Cases ***
+Resource    ../Tests/Resource/SPAD.robot
+Suite Setup    SPAD.System Logon
+Suite Teardown    SPAD.System Logout 
+Test Tags    SPAD_ST
 
-Executing SPAD  
-    Transaction SPAD
-    ARCH Screenshot    
-    LOCL Screenshot    
-    LP01 Screenshot   
-    ZPDF Screenshot
+*** Test Cases ***
+SPAD
+    SPAD
