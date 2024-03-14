@@ -4,11 +4,6 @@
 #          values as they are imported through each file.
 
 from .Data import *
-from .urls import *
-from .xpaths import *
-from .Variable import *
-from .invoice import *
-from .SM02 import *
 from .Variables_STK import *
 
 
