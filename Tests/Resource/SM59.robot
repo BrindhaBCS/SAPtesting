@@ -9,15 +9,16 @@ SAP logon
     Start Process     ${symvar('SAP_SERVER')}
     Sleep    10s
     Connect To Session
-    Open Connection    ${symvar('connection')}
-    Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('login_client')}
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('login_user')}
+    Open Connection    ${symvar('SAP_connection')}
+    Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('Client_Id')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('User_Name')}
     # Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('login_password')}
     Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
     Send Vkey    0
     Sleep    3s
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
     Sleep   5s
+
 
 SAP Logout
     Run Transaction     /nex
