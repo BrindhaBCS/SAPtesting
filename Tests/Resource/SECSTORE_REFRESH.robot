@@ -18,27 +18,33 @@ System Logon
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
     Sleep   1
     Take Screenshot    00_multi_logon_handling.jpg
- 
 System Logout
     Run Transaction   /nex
     Sleep    5
     Take Screenshot    logoutpage.jpg
     Sleep    10
-
-Installed_Product_version_SM51_T_CODE
-    Run Transaction    /nSM51
+ 
+SECSTORE_T_CODE
+    Run Transaction    /nSECSTORE
     Sleep    2
-    Click Element    wnd[0]/mbar/menu[4]/menu[11]
-    Sleep    2
-    Click Element    wnd[1]/usr/btnPRELINFO
+    Click Element    /app/con[0]/ses[0]/wnd[0]/usr/tabsTABSTRIP_TAB/tabpT_CHECK
     Sleep    1
-    Click Element    wnd[2]/usr/tabsVERSDETAILS/tabpPROD_VERS
+    Take Screenshot    check Entries.jpg
     Sleep    1
-    Set Focus    wnd[2]/usr/tabsVERSDETAILS/tabpPROD_VERS/ssubDETAIL_SUBSCREEN:SAPLOCS_UI_CONTROLS:0302/cntlPV_CU_CONTROL/shellcont/shell
+    Click Element    /app/con[0]/ses[0]/wnd[0]/usr/tabsTABSTRIP_TAB/tabpT_KEY
     Sleep    1
-    FOR    ${i}    IN RANGE    6
-            ${selected_rows}    Selected Rows    wnd[2]/usr/tabsVERSDETAILS/tabpPROD_VERS/ssubDETAIL_SUBSCREEN:SAPLOCS_UI_CONTROLS:0302/cntlPV_CU_CONTROL/shellcont/shell    ${i*17}    
-            Take Screenshot    ${i+1}SM51.jpg
+    Take Screenshot    Key Management.jpg
+    Sleep    1
+    Click Element    /app/con[0]/ses[0]/wnd[0]/usr/tabsTABSTRIP_TAB/tabpT_GLOB
+    Sleep    1
+    Take Screenshot    global key changed.jpg
+    Sleep    1
+    Click Element    /app/con[0]/ses[0]/wnd[0]/usr/tabsTABSTRIP_TAB/tabpT_CHECK
+    Sleep    1
+    Click Element    wnd[0]/mbar/menu[0]/menu[0]
+    Sleep    25s
+    FOR    ${i}    IN RANGE    13
+            Selected Rows    /app/con[0]/ses[0]/wnd[0]/usr/subSUBSCREEN:SAPLSBAL_DISPLAY:0101/cntlSAPLSBAL_DISPLAY_CONTAINER/shellcont/shell/shellcont[1]/shell    ${i*34}
             Sleep    1
-        END
-    Sleep    2
+            Take Screenshot    ${i+1}fef.jpg
+    END

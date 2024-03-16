@@ -24,21 +24,28 @@ System Logout
     Sleep    5
     Take Screenshot    logoutpage.jpg
     Sleep    10
+WE21_T_CODE
+    Run Transaction     /nWE21
+    Sleep   1
+    Take Screenshot    WE21.JPG
+XML File
+    Select Node     wnd[0]/shellcont/shell  X
+    Sleep   1
+    Take Screenshot    XML_0.1.jpg
+    Click Element   wnd[0]/tbar[1]/btn[20]
+    Sleep   1
+    Take Screenshot    XML_0.2.jpg
+    Click Element   wnd[1]/tbar[0]/btn[0]
+    Sleep   1
+    Take Screenshot    XML0.3.jpg
 
-Installed_Product_version_SM51_T_CODE
-    Run Transaction    /nSM51
-    Sleep    2
-    Click Element    wnd[0]/mbar/menu[4]/menu[11]
-    Sleep    2
-    Click Element    wnd[1]/usr/btnPRELINFO
-    Sleep    1
-    Click Element    wnd[2]/usr/tabsVERSDETAILS/tabpPROD_VERS
-    Sleep    1
-    Set Focus    wnd[2]/usr/tabsVERSDETAILS/tabpPROD_VERS/ssubDETAIL_SUBSCREEN:SAPLOCS_UI_CONTROLS:0302/cntlPV_CU_CONTROL/shellcont/shell
-    Sleep    1
-    FOR    ${i}    IN RANGE    6
-            ${selected_rows}    Selected Rows    wnd[2]/usr/tabsVERSDETAILS/tabpPROD_VERS/ssubDETAIL_SUBSCREEN:SAPLOCS_UI_CONTROLS:0302/cntlPV_CU_CONTROL/shellcont/shell    ${i*17}    
-            Take Screenshot    ${i+1}SM51.jpg
-            Sleep    1
-        END
-    Sleep    2
+XML HTTP
+    Select Node     wnd[0]/shellcont/shell  H
+    Sleep   1
+    Take Screenshot    HTTP_1.1.jpg
+    Click Element   wnd[0]/tbar[1]/btn[20]
+    Sleep   1
+    Take Screenshot    HTTP_1.2.jpg
+    Click Element   wnd[1]/tbar[0]/btn[0]
+    Sleep   1
+    Take Screenshot    HTTP_1.3.jpg
