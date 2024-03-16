@@ -4,7 +4,6 @@ Library    SAP_Tcode_Library.py
 
 
 *** Keywords ***
-
 Transaction SHMM
     Run Transaction     /nshmm
     Send Vkey    0
