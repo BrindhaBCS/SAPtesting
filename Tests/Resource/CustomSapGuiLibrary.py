@@ -1222,3 +1222,17 @@ class CustomSapGuiLibrary:
                 print("search text is not found")
                 return("search text is not found")
         return found_elements
+    
+    def get_cell_value_from_gridtable(self, table_id):
+        try:
+            control = self.session.findById(table_id)
+            row_count = control.RowCount  # Assuming the control has a RowCount property
+            col_count = control.ColumnCount
+            print(row_count, col_count)
+            for row in range(row_count):
+                print(row)
+                cell_value = control.GetCellValue(row, "DEST")
+                print(cell_value)
+                return cell_value
+        except Exception as e:
+            return f"Error: {e}"

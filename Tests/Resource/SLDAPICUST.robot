@@ -28,4 +28,4 @@ Sldapicust
     Take Screenshot
     ${destination}  get cell value from gridtable       wnd[0]/usr/cntlCONTAINER/shellcont/shell
     Set Global Variable    ${destination}
-    Log To Console     **gbStart**username**splitKeyValue**${destination}**gbEnd**
+    Log To Console     **gbStart**destination**splitKeyValue**${destination}**gbEnd**
