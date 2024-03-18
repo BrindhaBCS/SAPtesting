@@ -11,7 +11,7 @@ Launch Sales Force
     Sleep    10s
     Maximize Browser Window
     Input Text    id:username    ${symvar('login_name')}    
-    Input Password    id:password    ${symvar('login_password')}
+    Input Password    id:password    %{login_password}
     Click Element     id:Login
     Sleep    10s
 
