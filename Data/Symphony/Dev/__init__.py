@@ -6,5 +6,8 @@
 from .Data import *
 from .urls import *
 from .xpaths import *
+from .Variable_BIS import *
+from .Variable import *
+from .Sales import *
 
 

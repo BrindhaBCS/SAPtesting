@@ -7,6 +7,8 @@ import os
 from robot.api import logger
 import sys
 import ast
+import json
+import re
 
 
 class SAP_Tcode_Library:
@@ -1272,6 +1274,175 @@ class SAP_Tcode_Library:
         except Exception as e:
             print(f"Error: {e}")    
 
-   
+    def select_org_label(self, user_area_id, search_text, max_scrolls=5):
+        try:
+            user_area = self.session.findById(user_area_id)
+            scroll_count = 0
+            found = False
 
+            while scroll_count < max_scrolls and not found:
+                for child in user_area.Children:
+                    if child.Text == search_text:
+                        print(f"Text Found: {child.Text}")
+                        child.SetFocus()
+                        # self.session.findById("wnd[1]").sendVKey(2)  # Simulate Enter key press
+                        found = True
+                        break
 
+                if not found:
+                    # Scroll down and wait for the content to update
+                    print(scroll_count)
+                    self.session.findById("wnd[1]").sendVKey(82)  # 86 is the code for Page Down
+                    time.sleep(1)  # Adjust as necessary for GUI response time
+                    scroll_count += 1
+
+            if not found:
+                print("Text not found after scrolling through all pages.")
+
+        except Exception as e:
+            print(f"Error: {e}")
+
+    def window_handling(self, window_id, text, button_id):   
+        try:   
+            content = self.session.findById(window_id).Text
+            if content == text:
+                print(content)
+                self.session.findById(button_id).press()
+                return(content)                
+            else:
+                print(content)
+        except Exception as e:
+            print(f"Error: {e}")
+
+    def quantity_handling(self, window_id, text, button_id1, button_id2):   
+        try:   
+            content = self.session.findById(window_id).Text
+            if content == text:
+                print(content)
+                self.session.findById(button_id1).press()
+                self.session.findById(button_id2).press()
+                return(content)                
+            else:
+                print(content)
+        except Exception as e:
+            print(f"Error: {e}")
+
+    def incomplete_log_handling(self, window_id, text1, button_id1, element_id, text2, button_id2):   
+        try:   
+            content = self.session.findById(window_id).Text
+            if content == text1:
+                print(content)
+                self.session.findById(button_id1).press()
+                self.session.findById(element_id).text = text2
+                self.session.findById("wnd[0]").sendVKey(0)
+                self.session.findById(button_id2).press()
+                return(content)                
+            else:
+                print(content)
+        except Exception as e:
+            print(f"Error: {e}")
+    
+    def material_select(self, material, quantity, window_id, text, button_id1, button_id2, error_id):
+        mat_txt = "wnd[0]/usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\\01/ssubSUBSCREEN_BODY:SAPMV45A:4400/subSUBSCREEN_TC:SAPMV45A:4900/tblSAPMV45ATCTRL_U_ERF_AUFTRAG/ctxtRV45A-MABNR"
+        qty_txt = "wnd[0]/usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\\01/ssubSUBSCREEN_BODY:SAPMV45A:4400/subSUBSCREEN_TC:SAPMV45A:4900/tblSAPMV45ATCTRL_U_ERF_AUFTRAG/txtRV45A-KWMENG"
+        try:
+            for i in range(len(material)):
+                mat_id = f"{mat_txt}[1,{i}]"
+                qty_id = f"{qty_txt}[2,{i}]"
+                self.session.findById(mat_id).text = material[i]
+                self.session.findById(qty_id).text = quantity[i]
+                self.session.findById("wnd[0]").sendVKey(0)
+                self.exceed_quantity_handling(error_id)
+                self.quantity_handling(window_id, text, button_id1, button_id2)
+                time.sleep(5)             
+
+        except Exception as e:
+            print(e)
+
+    import time
+
+    def exceed_quantity_handling(self, error_id):
+        try:
+            status = self.session.findById(error_id).text
+            print(status)
+            status_split = status.split()
+            status_splits = status_split[:-1]
+            status_text = [status_split for status_split in status_splits if not status_split.isnumeric()]  # Fix the index here
+            status1 = ' '.join(status_text)
+            print(status1)
+            if status1 == "Reorder point for item has been exceeded:":
+                found = True
+                self.session.findById("wnd[0]").sendVKey(0)
+                time.sleep(5)
+                return status
+            else:
+                print(status)  # Fix the variable name here
+        except Exception as e:
+            print(f"Error: {e}")
+
+    def sales_order_number(self, status_id):
+        try:
+            status = self.session.findById(status_id).text
+            print(status)
+            pattern = r'\b\d+\b'
+            print(pattern)
+            order_numbers = re.findall(pattern, status)
+            print(order_numbers)
+            if order_numbers:
+                order_number = order_numbers[0]
+                print("Order Number:", order_number)
+                return order_number
+            else:
+                print("No order number found.")
+        except Exception as e:
+            print(f"Error: {e}")
+
+    def output_handling(self, window_id, text, label_id, button_id):   
+        try:   
+            content = self.session.findById(window_id).Text
+            if content == text:
+                print(content)
+                status = self.session.findById(label_id).text
+                print(status)
+                status_split = status.split()
+                status_splits = status_split[:-1]
+                status_text = [status_split for status_split in status_splits if not status_split.isnumeric()]  # Fix the index here
+                status1 = ' '.join(status_text)
+                print(status1)
+                if status1 == "IDoc was added and passed for output":
+                    found = True
+                    self.session.findById(button_id).press()
+                    time.sleep(5)
+                    return status
+                else:
+                    print(status)  # Fix the variable name here
+            else:
+                print(status)
+        except Exception as e:
+            print(f"Error: {e}")
+
+    def verify_the_idoc_jobs(self, table_id, search_text, process_log_btn, max_attempts=20):
+        try:
+            control = self.session.findById(table_id)
+            row = control.RowCount
+            # print(row)
+            for i in range(row):
+                job_id = f"{table_id}/ctxtDNAST-KSCHL[1,{i}]"
+                # print(job_id)
+                cell_value = self.session.findById(job_id).Text
+                # print(cell_value)
+                if cell_value == search_text:
+                    status_id = f"{table_id}/lblDV70A-STATUSICON[0,{i}]"
+                    status = self.session.findById(status_id).tooltip
+                    print(status)
+                    if status == "Successfully processed":
+                        control.getAbsoluteRow(i).selected = -1
+                        self.session.findById(process_log_btn).press()
+                        time.sleep(5)
+                        self.session.findById("wnd[1]").close()
+                        break
+                    else:
+                        return(status)
+                        time.sleep(10)                 
+        except Exception as e:
+            return f"Error: {e}"
