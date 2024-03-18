@@ -1348,6 +1348,14 @@ class SAP_Tcode_Library:
         node = self._get_node(f"{node_locator}")
         node.expandNode(f"{node_id}")
         return node.countChildren()
+
+    def double_click_on_current_cell(self, table_id):
+        try:
+            table = self.session.findById(table_id)
+            table.DoubleClickCurrentCell()
+
+        except Exception as e:
+            print(f"Error: {e}")
  
 
    
