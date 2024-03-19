@@ -1,7 +1,7 @@
 SAP_SERVER = "C:\\Program Files\\sap\\FrontEnd\\SAPGUI\\saplogon.exe"
 Client_Id = "100"
 User_Name = "SO_TEST1"
-User_Password = "rpa@12345"
+# User_Password = "rpa@12345"
 SAP_connection = "SEC-FMO"      
 org_label = " 02"
 material = ["N5731600",    "N5731500",     "N5731700"]
