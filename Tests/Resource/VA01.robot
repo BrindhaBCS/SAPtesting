@@ -8,7 +8,7 @@ Library    PDF.py
 *** Variables ***    
 ${department}    wnd[0]/usr/tabsTAXI_TABSTRIP_HEAD/tabpT\\02/ssubSUBSCREEN_BODY:SAPMV45A:4302/ctxtVBKD-ABTNR
 ${screenshot_directory}     ${OUTPUT_DIR}
-${PDF_Dir}    C:\\RobotFramework\\SAPtesting\\Output\\Results\\01_VA01.pdf
+${PDF_Dir}    C:\\RobotFramework\\SAPtesting\\Output\\01_VA01.pdf
 
 *** Keywords ***
 System Logon
