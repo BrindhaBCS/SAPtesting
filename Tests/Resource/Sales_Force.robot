@@ -8,9 +8,9 @@ Library    Merge.py
 *** Variables ***    
 ${order_no}        13029138
 ${screenshot_directory}     ${OUTPUT_DIR}
-${PDF_Dir}    C:\\SAP_Testing\\SAPtesting\\Output\\Results\\03_Sales.pdf
-${PDF_file}    C:\\SAP_Testing\\SAPtesting\\Output\\Results
-${mergedpdf}    C:\\SAP_Testing\\SAPtesting\\Output\\Results\\Merged_Pdf\\Merged.pdf
+${PDF_Dir}    C:\\RobotFramework\\SAPtesting\\Output\\Results\\03_Sales.pdf
+${PDF_file}    C:\\RobotFramework\\SAPtesting\\Output\\Results
+${mergedpdf}    C:\\RobotFramework\\SAPtesting\\Output\\Results\\Merged_Pdf\\Merged.pdf
 
 *** Keywords ***
 Launch Sales Force

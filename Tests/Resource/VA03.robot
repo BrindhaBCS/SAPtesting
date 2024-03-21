@@ -9,7 +9,7 @@ Library    PDF.py
 ${department}    wnd[0]/usr/tabsTAXI_TABSTRIP_HEAD/tabpT\\02/ssubSUBSCREEN_BODY:SAPMV45A:4302/ctxtVBKD-ABTNR
 ${order_no}        13029138
 ${screenshot_directory}     ${OUTPUT_DIR}
-${PDF_Dir}    C:\\SAP_Testing\\SAPtesting\\Output\\Results\\02_VA03.pdf
+${PDF_Dir}    C:\\RobotFramework\\SAPtesting\\Output\\Results\\02_VA03.pdf
 # ${output_pdf}   ${OUTPUT_DIR}\\VA03.pdf
 
 *** Keywords ***
