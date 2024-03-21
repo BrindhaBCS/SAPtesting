@@ -8,9 +8,10 @@ Library    Merge.py
 *** Variables ***    
 ${order_no}        13029138
 ${screenshot_directory}     ${OUTPUT_DIR}
-${PDF_Dir}    C:\\RobotFramework\\SAPtesting\\Output\\Results\\03_Sales.pdf
-${PDF_file}    C:\\RobotFramework\\SAPtesting\\Output\\Results
-${mergedpdf}    C:\\RobotFramework\\SAPtesting\\Output\\Results\\Merged_Pdf\\Merged.pdf
+${PDF_Dir}    ${OUTPUT_DIR}\\03_Sales.pdf
+# ${PDF_Dir}    C:\\RobotFramework\\SAPtesting\\Output\\Results\\03_Sales.pdf
+# ${PDF_file}    C:\\RobotFramework\\SAPtesting\\Output\\Results
+# ${mergedpdf}    ${OUTPUT_DIR}\\Merged.pdf
 
 *** Keywords ***
 Launch Sales Force
@@ -41,6 +42,6 @@ Document Search
 Close Sales Force
     Close All Browsers
     Create Pdf    ${screenshot_directory}   ${PDF_Dir}
-    Merge Pdfs In Folder    ${PDF_file}    ${mergedpdf}        
+    # Merge Pdfs In Folder    ${PDF_file}    ${mergedpdf}        
     Sleep   2
 
