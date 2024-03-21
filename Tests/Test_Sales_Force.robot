@@ -9,3 +9,4 @@ Suite Teardown    Sales_Force.Close Sales Force
 *** Test Cases ***
 Searching for sales document
     Document Search
+    

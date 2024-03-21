@@ -1353,8 +1353,9 @@ class SAP_Tcode_Library:
                 self.session.findById(qty_id).text = quantity[i]
                 self.session.findById("wnd[0]").sendVKey(0)
                 self.exceed_quantity_handling(error_id)
+                time.sleep(2)
                 self.quantity_handling(window_id, text, button_id1, button_id2)
-                time.sleep(5)             
+                time.sleep(2)             
 
         except Exception as e:
             print(e)
