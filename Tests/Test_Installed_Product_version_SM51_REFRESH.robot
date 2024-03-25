@@ -8,5 +8,3 @@ Task Tags    Installed_Product_version_SM51
 *** Test Cases ***
 Installed_Product_version_SM51_T_CODE
     Installed_Product_version_SM51_T_CODE
-Installed_Software_component_Version_SM51_T_CODE
-    Installed_Software_component_Version_SM51_T_CODE
