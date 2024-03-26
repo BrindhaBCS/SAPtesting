@@ -12,7 +12,11 @@ System Logon
     Open Connection    ${symvar('SAP_connection')}    
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('Client_Id')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('User_Name')}    
+<<<<<<< HEAD
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('User_Password')}   
+=======
+    #Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('User_Password')}   
+>>>>>>> 5a6bae818a0fbe9e59dddc0487948f1a4780b443
     Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
     Send Vkey    0
     Take Screenshot    00a_loginpage.jpg
