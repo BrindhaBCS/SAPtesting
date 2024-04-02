@@ -5,5 +5,5 @@ excel_path = "C:\\RobotFramework\\sap_testing\\Tests\\Resource\\invoice.xlsx"
 sheet_name = "INPUT" 
 #screenshot_dir = "${OUTPUT_DIR}"
 login_client = "800"
-connection = "BIS"
+connection = "$connection"
 
