@@ -11,8 +11,7 @@ System Logon
     Connect To Session
     Open Connection    ${symvar('SAP_connection')}    
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('Client_Id')}
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('User_Name')}    
-    #Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('User_Password')}   
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('User_Name')}  
     Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
     Send Vkey    0
     Take Screenshot    00a_loginpage.jpg
@@ -28,12 +27,14 @@ System Logout
 
 SMT1_T_CODE_System_whose_calls_are_trusted
     Run Transaction    /nSMT1
-    FOR    ${i}    IN RANGE    2    999       
-        ${select_only}    Select Only    wnd[0]/usr/tabsTRUST_STRIP/tabpTRUST_STRIP_FC1/ssubTRUST_STRIP_SCA:RS_RFC_TT_UI:0110/cntlSERVER_CONTAINER/shellcont/shell/shellcont[1]/shell[1]    ${i}
+    FOR    ${i}    IN RANGE    2    999      
+        ${select_only_1}=    Run Keyword And Return Status    Select Only    wnd[0]/usr/tabsTRUST_STRIP/tabpTRUST_STRIP_FC1/ssubTRUST_STRIP_SCA:RS_RFC_TT_UI:0110/cntlSERVER_CONTAINER/shellcont/shell/shellcont[1]/shell[1]    ${i}
         Sleep    1
+        Run Keyword If    not ${select_only_1}    Exit For Loop
         Click Toolbar Button    wnd[0]/usr/tabsTRUST_STRIP/tabpTRUST_STRIP_FC1/ssubTRUST_STRIP_SCA:RS_RFC_TT_UI:0110/cntlSERVER_CONTAINER/shellcont/shell/shellcont[1]/shell[0]    DISPLAY
         Sleep    2
-        Click Element    wnd[0]/usr/tabsTRUSTINGT_STRIP/tabpTRUSTINGT_STRIP_FC1
+        ${click_1}=    Run Keyword And Return Status    Click Element    wnd[0]/usr/tabsTRUSTINGT_STRIP/tabpTRUSTINGT_STRIP_FC1
+        Run Keyword If    not ${click_1}    Exit For Loop
         Take Screenshot    ${i}_System_whose_calls_are_trusted_CONFIGURATION.jpg
         Sleep    1
         Click Element    wnd[0]/usr/tabsTRUSTINGT_STRIP/tabpTRUSTINGT_STRIP_FC2
@@ -46,7 +47,5 @@ SMT1_T_CODE_System_whose_calls_are_trusted
         Sleep    1
         Unselect    wnd[0]/usr/tabsTRUST_STRIP/tabpTRUST_STRIP_FC1/ssubTRUST_STRIP_SCA:RS_RFC_TT_UI:0110/cntlSERVER_CONTAINER/shellcont/shell/shellcont[1]/shell[1]    ${i}
         Sleep    1
-        ${Exit_point}    Run Keyword And Return Status    Run Keyword If     ${select_only} != 'NONE'    Log    Selected Rows: ${select_only}
-        Exit For Loop If     ${Exit_point}=='NONE'
-            
+           
     END

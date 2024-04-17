@@ -30,20 +30,20 @@ SMT1_T_CODE_System_that_trust_current_system
     Click Element    /app/con[0]/ses[0]/wnd[0]/usr/tabsTRUST_STRIP/tabpTRUST_STRIP_FC2
     Sleep    5
     FOR    ${i}    IN RANGE    2    999
-            ${select_only}    Select Only    wnd[0]/usr/tabsTRUST_STRIP/tabpTRUST_STRIP_FC2/ssubTRUST_STRIP_SCA:RS_RFC_TT_UI:0120/cntlCLIENT_CONTAINER/shellcont/shell/shellcont[1]/shell[1]    ${i}
-            Sleep    1
-            Click Toolbar Button    wnd[0]/usr/tabsTRUST_STRIP/tabpTRUST_STRIP_FC2/ssubTRUST_STRIP_SCA:RS_RFC_TT_UI:0120/cntlCLIENT_CONTAINER/shellcont/shell/shellcont[1]/shell[0]    DISPLAY
-            Sleep    1
-            Click Element    wnd[0]/usr/tabsTRUSTEDT_STRIP/tabpTRUSTEDT_STRIP_FC1
-            Take Screenshot    ${i}_System_that_trust_current_system_SYSTEM_SETTING.jpg
-            Sleep    1
-            Click Element    wnd[0]/usr/tabsTRUSTEDT_STRIP/tabpTRUSTEDT_STRIP_FC2
-            Take Screenshot    ${i}_System_that_trust_current_system_ADMINISTRATION.jpg
-            Sleep    1
-            Click Element    wnd[0]/tbar[0]/btn[3]
-            Sleep    1
-            Unselect    wnd[0]/usr/tabsTRUST_STRIP/tabpTRUST_STRIP_FC2/ssubTRUST_STRIP_SCA:RS_RFC_TT_UI:0120/cntlCLIENT_CONTAINER/shellcont/shell/shellcont[1]/shell[1]    ${i}
-            Sleep    1
-            ${Exit_point}    Run Keyword And Return Status    Run Keyword If     ${select_only} != 'NONE'    Log    Selected Rows: ${select_only}
-            Exit For Loop If    ${Exit_point} =='NONE'
-        END
+        ${select_1}=    Run Keyword And Return Status    Select Only    wnd[0]/usr/tabsTRUST_STRIP/tabpTRUST_STRIP_FC2/ssubTRUST_STRIP_SCA:RS_RFC_TT_UI:0120/cntlCLIENT_CONTAINER/shellcont/shell/shellcont[1]/shell[1]    ${i}
+        Sleep    1
+        Run Keyword If    not ${select_1}    Exit For Loop
+        Click Toolbar Button    wnd[0]/usr/tabsTRUST_STRIP/tabpTRUST_STRIP_FC2/ssubTRUST_STRIP_SCA:RS_RFC_TT_UI:0120/cntlCLIENT_CONTAINER/shellcont/shell/shellcont[1]/shell[0]    DISPLAY
+        Sleep    1
+        ${click}=    Run Keyword And Return Status    Click Element    wnd[0]/usr/tabsTRUSTEDT_STRIP/tabpTRUSTEDT_STRIP_FC1
+        Run Keyword If    not ${click}    Exit For Loop
+        Take Screenshot    ${i}_System_that_trust_current_system_SYSTEM_SETTING.jpg
+        Sleep    1
+        Click Element    wnd[0]/usr/tabsTRUSTEDT_STRIP/tabpTRUSTEDT_STRIP_FC2
+        Take Screenshot    ${i}_System_that_trust_current_system_ADMINISTRATION.jpg
+        Sleep    1
+        Click Element    wnd[0]/tbar[0]/btn[3]
+        Sleep    1
+        Unselect    wnd[0]/usr/tabsTRUST_STRIP/tabpTRUST_STRIP_FC2/ssubTRUST_STRIP_SCA:RS_RFC_TT_UI:0120/cntlCLIENT_CONTAINER/shellcont/shell/shellcont[1]/shell[1]    ${i}
+        Sleep    1
+    END
