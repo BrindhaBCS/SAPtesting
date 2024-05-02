@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    Resource/SMLG.robot
-Force Tags    SMLG
+Force Tags    Migration
 Suite Setup    SMLG.System Logon
 Suite Teardown    SMLG.System Logout
   

@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    Resource/STMS.robot
-Force Tags    STMS
+Force Tags    Migration
 Suite Setup    STMS.System Logon
 Suite Teardown    STMS.System Logout
   

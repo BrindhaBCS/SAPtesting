@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation     Testing functionality through Robot Framework
 Suite Setup       Setup highest level suite
-Force Tags        Regression
+# Force Tags        Regression
 Resource          Support.robot
 
 *** Keywords ***

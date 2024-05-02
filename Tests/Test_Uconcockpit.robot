@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    Resource/Uconcockpit.robot
-Force Tags    UCONCOCKPIT
+Force Tags    Migration
 Suite Setup    Uconcockpit.System Logon
 Suite Teardown    Uconcockpit.System Logout
   

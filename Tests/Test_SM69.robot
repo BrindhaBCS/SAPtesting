@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    Resource/SM69.robot
-Force Tags    SM69
+Force Tags    Migration
 Suite Setup    SM69.System Logon
 Suite Teardown    SM69.System Logout
 

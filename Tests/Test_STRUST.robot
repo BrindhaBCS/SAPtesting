@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    Resource/STRUST.robot
-Force Tags    STRUST
+Force Tags    Migration
 Suite Setup    STRUST.System Logon
 Suite Teardown    STRUST.System Logout
   

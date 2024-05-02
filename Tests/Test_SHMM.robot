@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    Resource/SHMM.robot
-Force Tags    SHMM
+Force Tags    Migration
 Suite Setup    SHMM.System Logon
 Suite Teardown    SHMM.System Logout
   

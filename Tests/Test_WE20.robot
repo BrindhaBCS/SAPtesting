@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    Resource/WE20.robot
-Force Tags    WE20
+Force Tags    Migration
 Suite Setup    WE20.System Logon
 Suite Teardown    WE20.System Logout
   

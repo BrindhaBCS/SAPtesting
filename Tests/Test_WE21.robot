@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    Resource/WE21.robot
-Force Tags    WE21
+Force Tags    Migration
 Suite Setup    WE21.System Logon
 Suite Teardown    WE21.System Logout
   

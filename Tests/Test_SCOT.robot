@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    Resource/SCOT.robot
-Force Tags    SCOT
+Force Tags    Migration
 Suite Setup    SCOT.System Logon
 Suite Teardown    SCOT.System Logout
 
