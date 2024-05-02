@@ -33,10 +33,10 @@ Installed_Software_component_Version_SM51_T_CODE
     Sleep    1
     Click Element    wnd[2]/usr/tabsVERSDETAILS/tabpCOMP_VERS
     Sleep    1
-    Set Focus    wnd[2]/usr/tabsVERSDETAILS/tabpPROD_VERS/ssubDETAIL_SUBSCREEN:SAPLOCS_UI_CONTROLS:0302/cntlPV_CU_CONTROL/shellcont/shell
+    Set Focus    wnd[2]/usr/tabsVERSDETAILS/tabpCOMP_VERS/ssubDETAIL_SUBSCREEN:SAPLOCS_UI_CONTROLS:0301/cntlSCV_CU_CONTROL/shellcont/shell
     Sleep    1
     FOR    ${i}    IN RANGE    17
-            ${selected_rows}    Selected Rows    wnd[2]/usr/tabsVERSDETAILS/tabpPROD_VERS/ssubDETAIL_SUBSCREEN:SAPLOCS_UI_CONTROLS:0302/cntlPV_CU_CONTROL/shellcont/shell    ${i*17}    
+            ${selected_rows}    Selected Rows    wnd[2]/usr/tabsVERSDETAILS/tabpCOMP_VERS/ssubDETAIL_SUBSCREEN:SAPLOCS_UI_CONTROLS:0301/cntlSCV_CU_CONTROL/shellcont/shell    ${i*17}    
             Take Screenshot    ${i+1}SM51.jpg
             Sleep    1
         END
