@@ -1,6 +1,6 @@
 *** Settings *
 Resource    Resource/SLDAPICUST.robot
-Force Tags    Migration
+Force Tags    SLDAPICUST
 Suite Setup    SLDAPICUST.System Logon
 Suite Teardown    SLDAPICUST.System Logout
   

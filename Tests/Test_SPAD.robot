@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    Resource/SPAD.robot
-Force Tags    Migration
+Force Tags    SPAD
 Suite Setup    SPAD.System Logon
 Suite Teardown    SPAD.System Logout
   

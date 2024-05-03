@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    Resource/SMQS.robot
-Force Tags    Migration
+Force Tags    SMQS
 Suite Setup    SMQS.System Logon
 Suite Teardown    SMQS.System Logout
 

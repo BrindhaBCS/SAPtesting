@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    ../Tests/Resource/OAC0.robot
-Force Tags    Migration
+Force Tags    OAC0
 Suite Setup    OAC0.System Logon
 Suite Teardown    OAC0.System Logout
   
