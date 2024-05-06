@@ -8,14 +8,14 @@ Suite Teardown    STMS.System Logout
 
      
 Executing STMS
-    [Tags]    migration
+    [Tags]    Migration
     Transaction STMS  
 Import Overview
-    [Tags]    migration
+    [Tags]    Migration
     Import Overview    
 Transport Routes
-    [Tags]    migration
+    [Tags]    Migration
     Transport Routes  
 Transport Layers
-    [Tags]    migration
+    [Tags]    Migration
     Transport Layers
