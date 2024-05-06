@@ -7,5 +7,5 @@ Suite Teardown    AL11.System Logout
 *** Test Cases ***
 
 Executing AL11
-    [Tags]    migration
+    [Tags]    Migration
     Transaction AL11
