@@ -7,11 +7,11 @@ Suite Teardown    Uconcockpit.System Logout
 *** Test Cases ***
 
 Executing Uconcockpit
-    [Tags]    migration
+    [Tags]    Migration
     Transaction Uconcockpit
 RFC Basic Scenario
-    [Tags]    migration
+    [Tags]    Migration
     RFC Basic Scenario
 Role Building Scenario
-    [Tags]    migration
+    [Tags]    Migration
     Role Building Scenario
