@@ -3,6 +3,11 @@ Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    String
+Library    PDF.py
+
+*** Variables ***
+${screenshot_directory}     ${OUTPUT_DIR}
+${PDF_Dir}    ${OUTPUT_DIR}\\AL11_REFRESH.pdf
 
 *** Keywords ***
 System Logon
@@ -23,7 +28,9 @@ System Logout
     Run Transaction   /nex
     Sleep    5
     Take Screenshot    logoutpage.jpg
-    Sleep    10
+    Sleep    2
+    Create Pdf    ${screenshot_directory}   ${PDF_Dir}
+    Sleep    2
 
 AL11_T_CODE
     Run Transaction    /nAL11
@@ -32,5 +39,5 @@ AL11_T_CODE
     Sleep    2
     Scroll Pagedown    wnd[0]/usr/cntlGRID1/shellcont/shell
     Sleep    1
-    Take Screenshot    AL11.jpg
+    Take Screenshot    01_AL11.jpg
     Sleep    4

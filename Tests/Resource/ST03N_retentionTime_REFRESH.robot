@@ -3,6 +3,11 @@ Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    String
+Library    PDF.py
+
+*** Variables ***
+${screenshot_directory}     ${OUTPUT_DIR}
+${PDF_Dir}    ${OUTPUT_DIR}\\ST03N_retentionTime_REFRESH.pdf
 
 *** Keywords ***
 System Logon
@@ -24,7 +29,9 @@ System Logout
     Run Transaction   /nex
     Sleep    5
     Take Screenshot    logoutpage.jpg
-    Sleep    10
+    Sleep    2
+    Create Pdf    ${screenshot_directory}   ${PDF_Dir}
+    Sleep    2
     
 scenario-retentionTime
     Run Transaction    /nST03N 
@@ -43,5 +50,5 @@ scenario-retentionTime
     Sleep    2
     Double Click On Tree Item    wnd[0]/shellcont/shell/shellcont[1]/shell    F.1.1.2
     Sleep    2
-    Take Screenshot    ST03N.jpg
+    Take Screenshot    01_ST03N.jpg
     Sleep    2

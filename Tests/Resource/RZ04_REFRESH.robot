@@ -3,6 +3,11 @@ Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    String
+Library    PDF.py
+
+*** Variables ***
+${screenshot_directory}     ${OUTPUT_DIR}
+${PDF_Dir}    ${OUTPUT_DIR}\\RZ04_REFRESH.pdf
 
 *** Keywords ***
 System Logon
@@ -24,10 +29,12 @@ System Logout
     Run Transaction   /nex
     Sleep    5
     Take Screenshot    logoutpage.jpg
-    Sleep    10
+    Sleep    2
+    Create Pdf    ${screenshot_directory}   ${PDF_Dir}
+    Sleep    2
 
 RZ04_T_CODE
     Run Transaction    /nRZ04
     Sleep    2
-    Take Screenshot    RZ04.jpg
+    Take Screenshot    01_RZ04.jpg
     Sleep    2

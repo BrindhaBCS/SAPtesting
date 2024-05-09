@@ -3,6 +3,11 @@ Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    String
+Library    PDF.py
+
+*** Variables ***
+${screenshot_directory}     ${OUTPUT_DIR}
+${PDF_Dir}    ${OUTPUT_DIR}\\SECSTORE_REFRESH.pdf
 
 *** Keywords ***
 System Logon
@@ -22,22 +27,24 @@ System Logout
     Run Transaction   /nex
     Sleep    5
     Take Screenshot    logoutpage.jpg
-    Sleep    10
+    Sleep    2
+    Create Pdf    ${screenshot_directory}   ${PDF_Dir}
+    Sleep    2
  
 SECSTORE_T_CODE
     Run Transaction    /nSECSTORE
     Sleep    2
     Click Element    /app/con[0]/ses[0]/wnd[0]/usr/tabsTABSTRIP_TAB/tabpT_CHECK
     Sleep    1
-    Take Screenshot    check Entries.jpg
+    Take Screenshot    01_check Entries.jpg
     Sleep    1
     Click Element    /app/con[0]/ses[0]/wnd[0]/usr/tabsTABSTRIP_TAB/tabpT_KEY
     Sleep    1
-    Take Screenshot    Key Management.jpg
+    Take Screenshot    02_Key Management.jpg
     Sleep    1
     Click Element    /app/con[0]/ses[0]/wnd[0]/usr/tabsTABSTRIP_TAB/tabpT_GLOB
     Sleep    1
-    Take Screenshot    global key changed.jpg
+    Take Screenshot    03_global key changed.jpg
     Sleep    1
     Click Element    /app/con[0]/ses[0]/wnd[0]/usr/tabsTABSTRIP_TAB/tabpT_CHECK
     Sleep    1
@@ -46,5 +53,5 @@ SECSTORE_T_CODE
     FOR    ${i}    IN RANGE    13
             Selected Rows    /app/con[0]/ses[0]/wnd[0]/usr/subSUBSCREEN:SAPLSBAL_DISPLAY:0101/cntlSAPLSBAL_DISPLAY_CONTAINER/shellcont/shell/shellcont[1]/shell    ${i*34}
             Sleep    1
-            Take Screenshot    ${i+1}fef.jpg
+            Take Screenshot   04_${i+1}fef.jpg
     END

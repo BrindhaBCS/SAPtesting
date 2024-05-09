@@ -3,6 +3,12 @@ Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    String
+Library    PDF.py
+
+
+*** Variables ***
+${screenshot_directory}     ${OUTPUT_DIR}
+${PDF_Dir}    ${OUTPUT_DIR}\\Installed_Software_component_SM51_REFRESH.pdf
 
 *** Keywords ***
 System Logon
@@ -23,7 +29,10 @@ System Logout
     Run Transaction   /nex
     Sleep    5
     Take Screenshot    logoutpage.jpg
-    Sleep    10
+    Sleep    2
+    Create Pdf    ${screenshot_directory}   ${PDF_Dir}
+    Sleep    2
+
 Installed_Software_component_Version_SM51_T_CODE
     Run Transaction    /nSM51
     Sleep    2

@@ -3,6 +3,11 @@ Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    String
+Library    PDF.py
+
+*** Variables ***
+${screenshot_directory}     ${OUTPUT_DIR}
+${PDF_Dir}    ${OUTPUT_DIR}\\RZ10_REFRESH.pdf
 
 *** Keywords ***
 System Logon
@@ -24,7 +29,9 @@ System Logout
     Run Transaction   /nex
     Sleep    5
     Take Screenshot    logoutpage.jpg
-    Sleep    10
+    Sleep    2
+    Create Pdf    ${screenshot_directory}   ${PDF_Dir}
+    Sleep    2
 RZ10_T_CODE
     Run Transaction    /nRZ10
     Sleep    2
@@ -38,7 +45,7 @@ RZ10_T_CODE
     Sleep    1
     Click Element   wnd[0]/usr/btnSHOW_PUSH
     Sleep    1
-    Take Screenshot    RZ10_Default_profile_parameter.jpg
+    Take Screenshot    01_RZ10_Default_profile_parameter.jpg
     Sleep    1
     Click Element    wnd[0]/tbar[0]/btn[3]
     Sleep    1
@@ -50,5 +57,5 @@ RZ10_T_CODE
     Sleep    1
     Click Element   wnd[0]/usr/btnSHOW_PUSH
     Sleep    1
-    Take Screenshot    RZ10_Instance_profile_parameter.jpg
+    Take Screenshot    02_RZ10_Instance_profile_parameter.jpg
     Sleep    1

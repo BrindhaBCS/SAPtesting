@@ -3,6 +3,11 @@ Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    String
+Library    PDF.py
+
+*** Variables ***
+${screenshot_directory}     ${OUTPUT_DIR}
+${PDF_Dir}    ${OUTPUT_DIR}\\SMQS_REFRESH.pdf
 
 *** Keywords ***
 System Logon
@@ -24,10 +29,12 @@ System Logout
     Run Transaction   /nex
     Sleep    5
     Take Screenshot    logoutpage.jpg
-    Sleep    10
+    Sleep    2
+    Create Pdf    ${screenshot_directory}   ${PDF_Dir}
+    Sleep    2
 
 SMQS_T_CODE
     Run Transaction    /nSMQS 
     Sleep    2
-    Take Screenshot    SMQS.jpg
+    Take Screenshot    01_SMQS.jpg
     Sleep    2

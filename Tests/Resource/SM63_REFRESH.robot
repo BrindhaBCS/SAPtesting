@@ -3,6 +3,11 @@ Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    String
+Library    PDF.py
+
+*** Variables ***
+${screenshot_directory}     ${OUTPUT_DIR}
+${PDF_Dir}    ${OUTPUT_DIR}\\SM63_REFRESH.pdf
 
 *** Keywords ***
 System Logon
@@ -24,12 +29,14 @@ System Logout
     Run Transaction   /nex
     Sleep    5
     Take Screenshot    logoutpage.jpg
-    Sleep    10
+    Sleep    2
+    Create Pdf    ${screenshot_directory}   ${PDF_Dir}
+    Sleep    2
 
 SM63_T_CODE
     Run Transaction    /nSM63
     Sleep    2
     Click Element    wnd[0]/usr/btnANZEIGEN
     Sleep    1
-    Take Screenshot    SM63.jpg
+    Take Screenshot    01_SM63.jpg
     Sleep    2

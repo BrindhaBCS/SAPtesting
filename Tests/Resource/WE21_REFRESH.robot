@@ -3,6 +3,11 @@ Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    String
+Library    PDF.py
+
+*** Variables ***
+${screenshot_directory}     ${OUTPUT_DIR}
+${PDF_Dir}    ${OUTPUT_DIR}\\WE21_REFRESH.pdf
 
 *** Keywords ***
 System Logon
@@ -23,29 +28,32 @@ System Logout
     Run Transaction   /nex
     Sleep    5
     Take Screenshot    logoutpage.jpg
-    Sleep    10
+    Sleep    2
+    Create Pdf    ${screenshot_directory}   ${PDF_Dir}
+    Sleep    2
+
 WE21_T_CODE
     Run Transaction     /nWE21
     Sleep   1
-    Take Screenshot    WE21.JPG
+    Take Screenshot    01_WE21.JPG
 XML File
     Select Node     wnd[0]/shellcont/shell  X
     Sleep   1
-    Take Screenshot    XML_0.1.jpg
+    Take Screenshot    02_XML_0.1.jpg
     Click Element   wnd[0]/tbar[1]/btn[20]
     Sleep   1
-    Take Screenshot    XML_0.2.jpg
+    Take Screenshot    03_XML_0.2.jpg
     Click Element   wnd[1]/tbar[0]/btn[0]
     Sleep   1
-    Take Screenshot    XML0.3.jpg
+    Take Screenshot    04_XML0.3.jpg
 
 XML HTTP
     Select Node     wnd[0]/shellcont/shell  H
     Sleep   1
-    Take Screenshot    HTTP_1.1.jpg
+    Take Screenshot    05_HTTP_1.1.jpg
     Click Element   wnd[0]/tbar[1]/btn[20]
     Sleep   1
-    Take Screenshot    HTTP_1.2.jpg
+    Take Screenshot    06_HTTP_1.2.jpg
     Click Element   wnd[1]/tbar[0]/btn[0]
     Sleep   1
-    Take Screenshot    HTTP_1.3.jpg
+    Take Screenshot    07_HTTP_1.3.jpg

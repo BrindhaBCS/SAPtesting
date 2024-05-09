@@ -3,6 +3,11 @@ Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    String
+Library    PDF.py
+
+*** Variables ***
+${screenshot_directory}     ${OUTPUT_DIR}
+${PDF_Dir}    ${OUTPUT_DIR}\\SMLG_REFRESH.pdf
 
 *** Keywords ***
 System Logon
@@ -24,14 +29,16 @@ System Logout
     Run Transaction   /nex
     Sleep    5
     Take Screenshot    logoutpage.jpg
-    Sleep    10
+    Sleep    2
+    Create Pdf    ${screenshot_directory}   ${PDF_Dir}
+    Sleep    2
 
 SMLG_T_CODE
     Run Transaction    /nSMLG 
     Sleep    2
-    Take Screenshot    SMLG.jpg
+    Take Screenshot    01_SMLG.jpg
     Sleep    1
     Click Element    wnd[0]/tbar[1]/btn[5]
     Sleep    1
-    Take Screenshot    SMLG.jpg
+    Take Screenshot    02_SMLG.jpg
     Sleep    2

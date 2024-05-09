@@ -3,6 +3,11 @@ Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    String
+Library    PDF.py
+
+*** Variables ***
+${screenshot_directory}     ${OUTPUT_DIR}
+${PDF_Dir}    ${OUTPUT_DIR}\\SM49_REFRESH.pdf
 
 *** Keywords ***
 System Logon
@@ -24,12 +29,14 @@ System Logout
     Run Transaction   /nex
     Sleep    5
     Take Screenshot    logoutpage.jpg
-    Sleep    10
+    Sleep    2
+    Create Pdf    ${screenshot_directory}   ${PDF_Dir}
+    Sleep    2
 SM49_T_CODE
     Run Transaction    /nSM49
     Sleep    2
     FOR    ${i}    IN RANGE    6
             ${selected_rows}    Selected Rows    /app/con[0]/ses[0]/wnd[0]/usr/cntlEXT_COM/shellcont/shell    ${i*30}    
-            Take Screenshot    ${i+1}SM49.jpg
+            Take Screenshot    01_${i+1}SM49.jpg
             Sleep    1
         END

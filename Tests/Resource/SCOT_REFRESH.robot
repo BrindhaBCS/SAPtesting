@@ -3,6 +3,11 @@ Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    String
+Library    PDF.py
+
+*** Variables ***
+${screenshot_directory}     ${OUTPUT_DIR}
+${PDF_Dir}    ${OUTPUT_DIR}\\SCOT_REFRESH.pdf
 
 *** Keywords ***
 System Logon
@@ -24,12 +29,14 @@ System Logout
     Run Transaction   /nex
     Sleep    5
     Take Screenshot    logoutpage.jpg
-    Sleep    10
+    Sleep    2
+    Create Pdf    ${screenshot_directory}   ${PDF_Dir}
+    Sleep    2
 
 SCOT_T_CODE
     Run Transaction    /nSCOT
     Sleep    2
     Click Toolbar Button    wnd[0]/usr/subCONTENT:SAPLSBCS_ADM:0104/subSUB_CONTENT:SAPLSBCS_NODES:0100/cntlSMTP_NODES_TOOLBAR_CONTAINER/shellcont/shell    EXPA
     Sleep    1
-    Take Screenshot    SCOT_SMTP.jpg
+    Take Screenshot    01_SCOT_SMTP.jpg
     Sleep    2

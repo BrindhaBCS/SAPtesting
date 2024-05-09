@@ -3,6 +3,11 @@ Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    String
+Library    PDF.py
+
+*** Variables ***
+${screenshot_directory}     ${OUTPUT_DIR}
+${PDF_Dir}    ${OUTPUT_DIR}\\STC02_REFRESH.pdf
 
 *** Keywords ***
 System Logon
@@ -24,7 +29,9 @@ System Logout
     Run Transaction   /nex
     Sleep    5
     Take Screenshot    logoutpage.jpg
-    Sleep    10
+    Sleep    2
+    Create Pdf    ${screenshot_directory}   ${PDF_Dir}
+    Sleep    2
 
 scenario-STCO2
     Run Transaction    STC02 
@@ -33,6 +40,6 @@ scenario-STCO2
     Sleep    10
     Click Element    wnd[0]/tbar[0]/btn[3]
     Sleep    2
-    Take Screenshot    STC02.jpg
+    Take Screenshot    01_STC02.jpg
     Sleep    2
 
