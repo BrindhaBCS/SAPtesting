@@ -1,3 +1,4 @@
+
 import pythoncom
 import win32com.client
 import time
@@ -1137,17 +1138,76 @@ class CustomSapGuiLibrary:
                 print(e)
         return(found_rows)
     
-    def saint_patch_select(session, search_comp, search_patch):
+    # def saint_patch_select(self, search_comp, search_patch):
+    #     comp_txt = "wnd[0]/usr/subLIST_AREA:SAPLSAINT_UI:0300/tabsQUEUE_COMP/tabpQUEUE_COMP_FC2/ssubQUEUE_COMP_SCA:SAPLSAINT_UI:0303/txtGV_"
+    #     patch_txt = "wnd[0]/usr/subLIST_AREA:SAPLSAINT_UI:0300/tabsQUEUE_COMP/tabpQUEUE_COMP_FC2/ssubQUEUE_COMP_SCA:SAPLSAINT_UI:0303/cmbGV_"
+    #     try:
+    #         for i in range(1,100):
+    #             comp_id = f"{comp_txt}{i:02}_COMPONENT"
+    #             print(comp_id)
+    #             patch_id = f"{patch_txt}{i:02}_PATCH_REQ"
+    #             print(patch_id)
+    #             # print(dir(comp_id))
+    #             patch = self.session.FindById(comp_id).Text
+    #             for j in range(0,len(search_comp)):
+    #                 if patch == search_comp[j]:
+    #                     self.session.FindById(patch_id).key = search_patch[j]
+    #     except Exception as e:
+    #          print(e)
+
+    def saint_patch_select(self, search_comp, search_patch):
         comp_txt = "wnd[0]/usr/subLIST_AREA:SAPLSAINT_UI:0300/tabsQUEUE_COMP/tabpQUEUE_COMP_FC2/ssubQUEUE_COMP_SCA:SAPLSAINT_UI:0303/txtGV_"
         patch_txt = "wnd[0]/usr/subLIST_AREA:SAPLSAINT_UI:0300/tabsQUEUE_COMP/tabpQUEUE_COMP_FC2/ssubQUEUE_COMP_SCA:SAPLSAINT_UI:0303/cmbGV_"
         try:
+            p = len(search_comp) + 1
             for i in range(1,100):
                 comp_id = f"{comp_txt}{i:02}_COMPONENT"
                 patch_id = f"{patch_txt}{i:02}_PATCH_REQ"
-                patch = session.FindById(comp_id).Text
-                for j in range(0,len(search_comp)):
+                patch = self.session.FindById(comp_id).Text
+                for j in range(0,p-1):
                     if patch == search_comp[j]:
-                        session.FindById(patch_id).key = search_patch[j]
+                        self.session.FindById(patch_id).key = search_patch[j]
+                       
         except Exception as e:
              print(e)
     
+
+    def select_item_from_guilabel(self, user_id, search_text):
+        user_area = self.session.findById(user_id)
+        labels = [child.Text for child in user_area.Children]
+        item_count = user_area.Children.Count
+        # print("User Area Labels:", labels, item_count)
+        for i in range(item_count):
+            element = user_area.Children.ElementAt(i)
+            if element.Text.strip() == search_text.strip():
+                print(f"Element found: {element.Text}")
+                element.SetFocus()
+                self.session.findById("wnd[0]").sendVKey(2)
+                return
+            
+    def search_and_select_addon_rows(self, component):
+        com_text = "wnd[0]/usr/subLIST_AREA:SAPLSAINT_UI:0104/tblSAPLSAINT_UIADDON_TO_INSTALL/txtWA_ADDON_TO_INSTALL-DISP_NAME[0,"
+        try:
+            for i in range(0, 100):
+                com_id = f"{com_text}{i}]"  # Construct the complete component ID
+                component_value = self.session.findById(com_id).Text
+                if component == component_value:
+                    return i
+        except Exception as e:
+            print(f"An error occurred while expanding node: {e}")
+
+           
+
+    def saint_select(self, patch_id, Patch):    
+        self.session.findById(patch_id).key = Patch
+
+
+
+
+
+
+
+
+
+
+            

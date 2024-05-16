@@ -3,8 +3,9 @@
 # Warning: Any variable with conflicting names will be overwritten with 
 #          values as they are imported through each file.
 
-from .Data import *
-from .urls import *
-from .xpaths import *
+from .role import *
+from .Variable import *
+from .Variable_BIS import *
+from .Variable_Nike import *
 
 
