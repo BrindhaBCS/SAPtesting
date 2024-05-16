@@ -7,19 +7,27 @@ Library    String
 
 *** Keywords ***
 System Logon
-    Start Process     ${symvar('SAP_SERVER')}     
-    Sleep    10s
+    Start Process    ${symvar('Nike_SAP')}
+    Sleep   5s
     Connect To Session
-    Open Connection    ${symvar('SAP_connection')}    
-    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('Client_Id')}
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('User_Name')}    
-    #Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('User_Password')}
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
+    Sleep    5
+    Open Connection     ${symvar('Nike_connection')}
+    Sleep   5
+    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('CFG_CLIENT')}
+    Sleep    1
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('CFG_USER')}    
+    Sleep    1
+    # ${CFG_PASS}   OperatingSystem.Get Environment Variable    CFG_PASS
+    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{CFG_PASS} 
+    # Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('CFG_PASS')}  
+
+    Sleep   2
     Send Vkey    0
-    Take Screenshot    00a_loginpage.jpg
+    Sleep    5
+    Take Screenshot    01_loginpage.jpg
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
     Sleep   1
-    Take Screenshot    00_multi_logon_handling.jpg
+    # Take Screenshot    00_multi_logon_handling.jpg
 
 System Logout
     Run Transaction   /nex
