@@ -7,7 +7,7 @@
 # Patch = "SAPK-70001INBNWVS"
 # CFG_addOn = "BNWVS"
 # patch_comp = "BNWVS"
-# patch_vers = "SAPK-70A01INBNWVS"
+# patch_vers = "SAPK-70A02INBNWVS"
 # CFG_CLIENT_1 = "100"
 # CFG_USER_1 = "brs2"
 
