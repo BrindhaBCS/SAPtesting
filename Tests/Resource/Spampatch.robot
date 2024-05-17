@@ -12,6 +12,7 @@ ${finish_str}   Confirm queue
 ${status_line}    wnd[0]/usr/txtPAT100-PATCH_STEP
 ${refresh_id}   wnd[0]/tbar[1]/btn[30]
 ${no_Queue_id}    wnd[0]/usr/txtPAT100-STAT_LINE2
+${button_id}    wnd[0]/mbar/menu[0]/menu[5]    
 ${screenshot_directory}     ${OUTPUT_DIR}
 ${output_pdf}   ${OUTPUT_DIR}\\Spampatch.pdf
 
