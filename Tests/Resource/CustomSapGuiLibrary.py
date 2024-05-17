@@ -1204,7 +1204,7 @@ class CustomSapGuiLibrary:
     def is_user_defined_existing(self, window_id, continue_id):   
         try:
             content = self.session.findById(window_id).Text
-            if content == "SPAM: User-defined stop":
+            if content == "User-defined stop":
                 print("Window exists")
                 self.session.findById(continue_id).press()
                 return content
