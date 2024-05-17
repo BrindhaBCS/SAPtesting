@@ -3,7 +3,7 @@
 Resource    ../Tests/Resource/Spampatch.robot
 Task Tags   spampatch
 Suite Setup    Spampatch.System Logon
-# Suite Teardown    Spampatch.System Logout
+Suite Teardown    Spampatch.System Logout
   
 *** Test Cases ***
 
@@ -20,7 +20,7 @@ Import Queue
     Importing queue from support package
     Start Options
     Import Option
-    # Confirm Queue
+    Confirm Queue
 
 
 
