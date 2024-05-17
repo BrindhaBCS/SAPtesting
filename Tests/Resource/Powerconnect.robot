@@ -14,7 +14,7 @@ ${status_line}    wnd[0]/usr/sub:SAPLSAINT_UI:0100/txtWA_COMMENT_TEXT-LINE[0,0]
 ${refresh_id}    wnd[0]/tbar[1]/btn[30]
 ${certificate_id}    wnd[0]/sbar/pane[0]
 ${screenshot_directory}     ${OUTPUT_DIR}
-${output_pdf}   ${OUTPUT_DIR}\\output.pdf
+${output_pdf}   ${OUTPUT_DIR}\\Saint.pdf
  
 *** Keywords ***
 System Logon
