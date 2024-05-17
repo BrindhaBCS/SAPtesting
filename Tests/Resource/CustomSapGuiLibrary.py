@@ -1210,8 +1210,7 @@ class CustomSapGuiLibrary:
                 return content
             else:
                 print("window does not exist.")
-            
-
+          
         except Exception as e:
             print(f"Error: {str(e)}")
             return False
@@ -1225,8 +1224,7 @@ class CustomSapGuiLibrary:
                 return content
             else:
                 print("window does not exist.")
-            
-
+           
         except Exception as e:
             print(f"Error: {str(e)}")
             return False
