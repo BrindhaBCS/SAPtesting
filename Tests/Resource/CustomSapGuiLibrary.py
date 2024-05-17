@@ -1201,7 +1201,34 @@ class CustomSapGuiLibrary:
     def saint_select(self, patch_id, Patch):    
         self.session.findById(patch_id).key = Patch
 
+    def is_user_defined_existing(self, window_id, continue_id):   
+        try:
+            content = self.session.findById(window_id).Text
+            if content == "SPAM: User-defined stop":
+                print("Window exists")
+                self.session.findById(continue_id).press()
+                return content
+            else:
+                print("window does not exist.")
+            
 
+        except Exception as e:
+            print(f"Error: {str(e)}")
+            return False
+
+    def is_errors_during_disassembling_existing(self, window_id, continue_id):   
+        try:
+            content = self.session.findById(window_id).Text
+            if content == "Errors during Disassembling OCS Packages":
+                print("Window exists")
+                self.session.findById(continue_id).press()
+                return content
+            else:
+                print("window does not exist.")
+           
+        except Exception as e:
+            print(f"Error: {str(e)}")
+            return False
 
 
 

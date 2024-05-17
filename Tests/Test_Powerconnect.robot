@@ -13,7 +13,8 @@ Check_Saint Transation Code
 Selecting the path for the Addon
     Patch selection for the Addon
     Important SAP note handling
-    FOR ST/BNWVS 
+    Start Options
+    Import Option 
 
 Process Until Finish Button Visible
     Process Until Finish Button Visible

@@ -1,8 +1,9 @@
+
 *** Settings ***
 Resource    ../Tests/Resource/Spampatch.robot
 Task Tags   spampatch
 Suite Setup    Spampatch.System Logon
-Suite Teardown    Spampatch.System Logout
+# Suite Teardown    Spampatch.System Logout
   
 *** Test Cases ***
 
@@ -17,7 +18,8 @@ Check_Spam_update
 
 Import Queue
     Importing queue from support package
-    # Additional logon
+    Start Options
+    Import Option
     # Confirm Queue
 
 
