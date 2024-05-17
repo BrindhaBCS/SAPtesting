@@ -1201,10 +1201,25 @@ class CustomSapGuiLibrary:
     def saint_select(self, patch_id, Patch):    
         self.session.findById(patch_id).key = Patch
 
-    def is_user_defined_existing(self, window_id, continue_id):   
+    def is_saint_user_defined_existing(self, window_id, continue_id):   
         try:
             content = self.session.findById(window_id).Text
-            if content == "User-defined stop":
+            if content == "SAINT: User-defined stop":
+                print("Window exists")
+                self.session.findById(continue_id).press()
+                return content
+            else:
+                print("window does not exist.")
+            
+
+        except Exception as e:
+            print(f"Error: {str(e)}")
+            return False
+
+    def is_spam_user_defined_existing(self, window_id, continue_id):   
+        try:
+            content = self.session.findById(window_id).Text
+            if content == "SPAM: User-defined stop":
                 print("Window exists")
                 self.session.findById(continue_id).press()
                 return content

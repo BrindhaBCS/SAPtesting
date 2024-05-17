@@ -112,7 +112,7 @@ Import Option
     CustomSapGuiLibrary.is errors during disassembling existing    wnd[0]   wnd[0]/tbar[1]/btn[20]
     Sleep    2
     Take Screenshot    021_ignore.jpg
-    CustomSapGuiLibrary.is user defined existing    wnd[1]    wnd[1]/tbar[0]/btn[0]        
+    CustomSapGuiLibrary.is spam user defined existing    wnd[1]    wnd[1]/tbar[0]/btn[0]        
     Sleep    2
     Take Screenshot    022_User_defined.jpg
 
