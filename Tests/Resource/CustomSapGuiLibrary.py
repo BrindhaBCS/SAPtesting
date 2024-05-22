@@ -1206,7 +1206,7 @@ class CustomSapGuiLibrary:
             content = self.session.findById(window_id).Text
             if content == "SAINT: User-defined stop":
                 print("Window exists")
-                self.take_screenshot()
+                # self.take_screenshot("022_User_defined.jpg")
                 self.session.findById(continue_id).press()
                 return content
             else:
@@ -1221,7 +1221,7 @@ class CustomSapGuiLibrary:
             content = self.session.findById(window_id).Text
             if content == "SPAM: User-defined stop":
                 print("Window exists")
-                self.take_screenshot()
+                # self.take_screenshot()
                 self.session.findById(continue_id).press()
                 return content
             else:
@@ -1236,7 +1236,7 @@ class CustomSapGuiLibrary:
             content = self.session.findById(window_id).Text
             if content == "Errors during Disassembling OCS Packages":
                 print("Window exists")
-                self.take_screenshot()
+                # self.take_screenshot()
                 self.session.findById(continue_id).press()
                 return content
             else:

@@ -53,6 +53,7 @@ SSL server standard
                 Log To Console    **gbStart**certificate_status**splitKeyValue**Valid**gbEnd**
             ELSE    
                 Log to console    Certificate is invalid from ${Valid_To} 
+                Log To Console    **gbStart**certificate_status**splitKeyValue**Expired**gbEnd**
             END 
         ELSE  
             Log to console    Certificate not matches with Splunk.com
