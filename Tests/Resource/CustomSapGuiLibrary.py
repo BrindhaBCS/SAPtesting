@@ -1206,6 +1206,7 @@ class CustomSapGuiLibrary:
             content = self.session.findById(window_id).Text
             if content == "SAINT: User-defined stop":
                 print("Window exists")
+                self.take_screenshot()
                 self.session.findById(continue_id).press()
                 return content
             else:
@@ -1220,6 +1221,7 @@ class CustomSapGuiLibrary:
             content = self.session.findById(window_id).Text
             if content == "SPAM: User-defined stop":
                 print("Window exists")
+                self.take_screenshot()
                 self.session.findById(continue_id).press()
                 return content
             else:
@@ -1234,6 +1236,7 @@ class CustomSapGuiLibrary:
             content = self.session.findById(window_id).Text
             if content == "Errors during Disassembling OCS Packages":
                 print("Window exists")
+                self.take_screenshot()
                 self.session.findById(continue_id).press()
                 return content
             else:
@@ -1243,7 +1246,19 @@ class CustomSapGuiLibrary:
             print(f"Error: {str(e)}")
             return False
 
-
+    def get_cell_value_from_gridtable(self, table_id):
+        try:
+            control = self.session.findById(table_id)
+            row_count = control.RowCount  # Assuming the control has a RowCount property
+            col_count = control.ColumnCount
+            print(row_count, col_count)
+            for row in range(row_count):
+                print(row)
+                cell_value = control.GetCellValue(row, "DEST")
+                print(cell_value)
+                return cell_value
+        except Exception as e:
+            return f"Error: {e}"
 
 
 
