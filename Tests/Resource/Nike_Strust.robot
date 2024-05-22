@@ -49,7 +49,8 @@ SSL server standard
             IF    '${Valid_from}' >= '${Valid_To}'
                 Log to console    Certificate is Valid till ${Valid_To}
                 Set Global Variable     ${Valid_To}
-                Log To Console    **gbStart**certificate_status**splitKeyValue**Certificate is Valid till ${Valid_To}**gbEnd**
+                # Log To Console    **gbStart**certificate_status**splitKeyValue**Certificate is Valid till ${Valid_To}**gbEnd**
+                Log To Console    **gbStart**certificate_status**splitKeyValue**Valid**gbEnd**
             ELSE    
                 Log to console    Certificate is invalid from ${Valid_To} 
             END 
