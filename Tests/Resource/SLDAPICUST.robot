@@ -32,6 +32,7 @@ SLDAPICUST
     Take Screenshot     sldapicust_1.jpg
     ${destination}  get cell value from gridtable       wnd[0]/usr/cntlCONTAINER/shellcont/shell
     Log     ${destination}
+    Log To Console    **gbStart**certificate_status**splitKeyValue**${destination}**gbEnd**
     Run Transaction     /nsm59
     Take Screenshot     sldapicust_2.jpg
     Click Element   wnd[0]/mbar/menu[1]/menu[5]
