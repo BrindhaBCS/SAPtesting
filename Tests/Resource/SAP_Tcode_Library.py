@@ -1271,6 +1271,14 @@ class SAP_Tcode_Library:
             self.session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").selectedRows = "29"
         except Exception as e:
             print(f"Error: {e}")    
+    
+    def clear_field_text(self, field_id):
+        try:
+            field = self.session.findById(field_id)
+            field.Text = ""
+            print(f"Text cleared in field with ID: {field_id}")
+        except Exception as e:
+            print(f"Error: {e}")
 
    
 
