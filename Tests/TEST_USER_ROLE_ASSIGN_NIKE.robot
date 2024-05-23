@@ -1,3 +1,4 @@
+
 *** Settings ***
 Resource    ../Tests/Resource/USER_ROLE_ASSIGN_NIKE.robot
 Suite Setup    USER_ROLE_ASSIGN_NIKE.System Logon
