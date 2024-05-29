@@ -20,8 +20,8 @@ System Logon
     Open Connection     ${symvar('Nike_connection')}
     SAP_Tcode_Library.Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('CFG_CLIENT_license')}
     SAP_Tcode_Library.Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('CFG_USER_license')}    
-    # SAP_Tcode_Library.Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{CFG_PASS_license} 
-    SAP_Tcode_Library.Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('CFG_PASS_license')}  
+    SAP_Tcode_Library.Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{CFG_PASS_license} 
+    # SAP_Tcode_Library.Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('CFG_PASS_license')}  
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
     Sleep   1
