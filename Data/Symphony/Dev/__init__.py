@@ -7,5 +7,5 @@ from .role import *
 from .Variable import *
 from .Variable_BIS import *
 from .Variable_Nike import *
-
+from .license import *
 

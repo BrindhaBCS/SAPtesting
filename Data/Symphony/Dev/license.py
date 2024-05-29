@@ -1,0 +1,8 @@
+Nike_SAP = "C:\\Program Files\\SAP\\FrontEnd\\SAPGUI\\saplogon.exe"
+Nike_connection = "CFG"
+CFG_CLIENT_license = "100"
+CFG_USER_license = "splunktest"
+CFG_PASS_license = "bcsWelcome55%"
+url = "https://nike.ent.box.com/s/xylrquturptchdamda0hwt0rnovy09zp"
+login_user = "Sathish.Sachidanandan@nike.com"
+login_pass = "bcsWelcome44$"

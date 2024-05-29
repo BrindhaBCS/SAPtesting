@@ -7,6 +7,8 @@ import os
 from robot.api import logger
 import sys
 import ast
+import pyperclip
+import openpyxl
 
 
 class SAP_Tcode_Library:
@@ -1280,6 +1282,52 @@ class SAP_Tcode_Library:
         except Exception as e:
             print(f"Error: {e}")
 
+    def count_excel_rows(self, abs_filename):
+        try:
+            wb = openpyxl.load_workbook(abs_filename)
+            ws = wb.active
+            count = 0
+            for row in ws:
+                if not all([cell.value == None for cell in row]):
+                    count += 1
+            print(count)
+            return(count)
    
+        except Exception as e:
+            print(e)
+
+    def copy_to_clipboard(self, text):
+        pyperclip.copy(text)
+        return(text)
 
 
+    def is_license_key_invalid(self, window_id, continue_id):   
+        try:
+            content = self.session.findById(window_id).Text
+            if content == "Information":
+                print("Window exists")
+                # self.take_screenshot()
+                self.session.findById(continue_id).press()
+                return content
+            else:
+                print("window does not exist.")
+           
+        except Exception as e:
+            print(f"Error: {str(e)}")
+            return False
+      
+       
+    def window_handling(self, window_id, text, continue_id):   
+        try:
+            content = self.session.findById(window_id).Text
+            if content == text:
+                print("Window exists")
+                # self.take_screenshot()
+                self.session.findById(continue_id).press()
+                return content
+            else:
+                print("window does not exist.")
+           
+        except Exception as e:
+            print(f"Error: {str(e)}")
+            return False
