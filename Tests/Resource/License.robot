@@ -67,14 +67,17 @@ Apply License
     SAP_Tcode_Library.Click Element    wnd[2]/usr/btnBUTTON_2
     Take Screenshot    No to action required.jpg
     Sleep    2
-    SAP_Tcode_Library.Input Text    wnd[1]/usr/txtGV_EMAIL_0061    ABC
-    # SAP_Tcode_Library.Window Handling    wnd[1]    SAP    wnd[1]/tbar[0]/btn[0]        
     SAP_Tcode_Library.Click Element    wnd[1]/tbar[0]/btn[0]
-    Take Screenshot    SAP.jpg
-    SAP_Tcode_Library.Click Element    wnd[1]/tbar[0]/btn[0]   
-
     Take Screenshot    license_usage.jpg
     Sleep    2
+    # SAP_Tcode_Library.Input Text    wnd[1]/usr/txtGV_EMAIL_0061    ABC
+    # # SAP_Tcode_Library.Window Handling    wnd[1]    SAP    wnd[1]/tbar[0]/btn[0]        
+    # SAP_Tcode_Library.Click Element    wnd[1]/tbar[0]/btn[0]
+    # Take Screenshot    SAP.jpg
+    # SAP_Tcode_Library.Click Element    wnd[1]/tbar[0]/btn[0]   
+
+    # Take Screenshot    license_usage.jpg
+    # Sleep    2
 
 Login Box
     Open Browser    ${symvar('url')}    Chrome
