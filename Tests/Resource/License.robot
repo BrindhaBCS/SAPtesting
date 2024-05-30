@@ -61,15 +61,19 @@ Apply License
     Is license key invalid  wnd[2]    wnd[2]/tbar[0]/btn[0]  
     Take Screenshot    Continue.jpg
     Sleep    3
-    SAP_Tcode_Library.Click Element    wnd[1]/tbar[0]/btn[11]
-    Take Screenshot    OK.jpg
+    SAP_Tcode_Library.Click Element    wnd[1]/tbar[0]/btn[12]
+    Take Screenshot    Cancel.jpg
     Sleep    2
-    SAP_Tcode_Library.Click Element    wnd[1]/tbar[0]/btn[0]
-    Take Screenshot    Agree.jpg
+    SAP_Tcode_Library.Click Element    wnd[2]/usr/btnBUTTON_2
+    Take Screenshot    No to action required.jpg
     Sleep    2
-    # SAP_Tcode_Library.Window Handling    wnd[1]    BCSET Activation warning    wnd[1]/tbar[0]/btn[0]        
+    SAP_Tcode_Library.Input Text    wnd[1]/usr/txtGV_EMAIL_0061    #
+    # SAP_Tcode_Library.Window Handling    wnd[1]    SAP    wnd[1]/tbar[0]/btn[0]        
     SAP_Tcode_Library.Click Element    wnd[1]/tbar[0]/btn[0]
-    Take Screenshot    BCset.jpg
+    Take Screenshot    SAP.jpg
+    SAP_Tcode_Library.Click Element    wnd[1]/tbar[0]/btn[0]   
+
+    Take Screenshot    license_usage.jpg
     Sleep    2
 
 Login Box
