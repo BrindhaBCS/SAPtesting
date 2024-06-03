@@ -3,14 +3,65 @@ Tests :: Testing functionality through Robot Framework
 ==============================================================================
 Tests.Test Spam version                                                       
 ==============================================================================
-Check_Spam_update                                                     | PASS |
+Check_Spam_update                                                       
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  D:\RobotFramework\SAPtesting\Tests\Test_Spam_version.robot:10
+    T:  Check_Spam_update    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  D:\RobotFramework\SAPtesting\Tests\Test_Spam_version.robot:18
+      Important SAP note handling    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  D:\RobotFramework\SAPtesting\Tests\Resource\Spam_version.robot:101
+      Click Element    wnd[1]/usr/btnBUTTON_2
+______________________________________________________________________________
+| FAIL |
+ValueError: Cannot find element with id 'wnd[1]/usr/btnBUTTON_2'
 ------------------------------------------------------------------------------
-Import Queue                                                          | PASS |
+Import Queue                                                            
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  D:\RobotFramework\SAPtesting\Tests\Test_Spam_version.robot:20
+    T:  Import Queue    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  D:\RobotFramework\SAPtesting\Tests\Test_Spam_version.robot:21
+      Importing queue from support package    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  D:\RobotFramework\SAPtesting\Tests\Resource\Spam_version.robot:109
+      Click Element    wnd[1]/tbar[0]/btn[27]
+______________________________________________________________________________
+| FAIL |
+ValueError: Cannot find element with id 'wnd[1]/tbar[0]/btn[27]'
 ------------------------------------------------------------------------------
-Tests.Test Spam version                                               | PASS |
-2 tests, 2 passed, 0 failed
+  
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  D:\RobotFramework\SAPtesting\Tests\Test_Spam_version.robot:6
+      System Logout    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  D:\RobotFramework\SAPtesting\Tests\Resource\Spam_version.robot:165
+      Run Transaction    /nex
+______________________________________________________________________________
+  
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  D:\RobotFramework\SAPtesting\Tests\Test_Spam_version.robot:6
+      System Logout    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  D:\RobotFramework\SAPtesting\Tests\Resource\Spam_version.robot:168
+      Sleep    2
+______________________________________________________________________________
+Tests.Test Spam version                                               | FAIL |
+Suite teardown failed:
+Several failures occurred:
+
+1) com_error: (-2147417848, 'The object invoked has disconnected from its clients.', None, None)
+
+2) Execution terminated by signal
+
+2 tests, 0 passed, 2 failed
 ==============================================================================
-Tests :: Testing functionality through Robot Framework                | PASS |
-2 tests, 2 passed, 0 failed
+Tests :: Testing functionality through Robot Framework                | FAIL |
+2 tests, 0 passed, 2 failed
 ==============================================================================
 Output:  D:\RobotFramework\SAPtesting\Output\pabot_results\0\Output.xml

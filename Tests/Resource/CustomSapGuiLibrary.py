@@ -1108,6 +1108,8 @@ class CustomSapGuiLibrary:
                 if search_text in cell_value:
                     result = row
                     print("Text Found in ${row}")
+                    self.session.findById(control_id).currentCellRow = row
+                    self.session.findById(control_id).selectedRows = row
                     return row
                 else:
                     print("not found")
