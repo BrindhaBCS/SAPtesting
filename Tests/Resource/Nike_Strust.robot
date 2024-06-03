@@ -21,7 +21,7 @@ System Logon
 System Logout
     Run Transaction   /nex
     Sleep    5
-    Sleep    10
+    
 
 Transaction STRUST
     Run Transaction     /nstrust
@@ -52,7 +52,7 @@ SSL server standard
                 # Log To Console    **gbStart**certificate_status**splitKeyValue**Certificate is Valid till ${Valid_To}**gbEnd**
                 Log To Console    **gbStart**certificate_status**splitKeyValue**Valid**gbEnd**
             ELSE    
-                Log to console    Certificate is invalid from ${Valid_To} 
+                # Log to console    Certificate is invalid from ${Valid_To} 
                 Log To Console    **gbStart**certificate_status**splitKeyValue**Expired**gbEnd**
             END 
         ELSE  

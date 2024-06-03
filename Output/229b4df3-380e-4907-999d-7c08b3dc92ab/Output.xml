@@ -1,0 +1,3293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot generated="20240531 17:01:50.490" generator="Rebot 6.0.2 (Python 3.12.3 on win32)" rpa="false" schemaversion="3">
+ <suite id="s1" name="Tests" source="D:\RobotFramework\SAPtesting\Tests">
+  <kw name="Setup highest level suite" type="SETUP">
+   <kw library="BuiltIn" name="Set Variable">
+    <var>
+     ${d.test_server}
+    </var>
+    <arg>
+     ${test_server}
+    </arg>
+    <doc>
+     Returns the given values which can then be assigned to a variables.
+    </doc>
+    <msg level="INFO" timestamp="20240531 16:58:00.633">
+     ${d.test_server} = Dev
+    </msg>
+    <status endtime="20240531 16:58:00.633" starttime="20240531 16:58:00.633" status="PASS"/>
+   </kw>
+   <kw library="Support" name="Reset screenshot count variable">
+    <kw library="BuiltIn" name="Set Variable">
+     <var>
+      ${screenshotCount}
+     </var>
+     <arg>
+      ${PABOTQUEUEINDEX}_1
+     </arg>
+     <doc>
+      Returns the given values which can then be assigned to a variables.
+     </doc>
+     <msg level="INFO" timestamp="20240531 16:58:00.648">
+      ${screenshotCount} = 0_1
+     </msg>
+     <status endtime="20240531 16:58:00.648" starttime="20240531 16:58:00.648" status="PASS"/>
+    </kw>
+    <kw library="BuiltIn" name="Set Global Variable">
+     <arg>
+      ${screenshotCount}
+     </arg>
+     <doc>
+      Makes a variable available globally in all tests and suites.
+     </doc>
+     <msg level="INFO" timestamp="20240531 16:58:00.648">
+      ${screenshotCount} = 0_1
+     </msg>
+     <status endtime="20240531 16:58:00.648" starttime="20240531 16:58:00.648" status="PASS"/>
+    </kw>
+    <kw library="Support" name="Set up screenshot directory">
+     <kw library="OperatingSystem" name="Create Directory">
+      <arg>
+       ${OUTPUTDIR}${/}${wvar('screenshot_dir')}
+      </arg>
+      <doc>
+       Creates the specified directory.
+      </doc>
+      <msg level="INFO" timestamp="20240531 16:58:00.648">
+       Web.Dev.screenshot_dir: Screenshot
+      </msg>
+      <msg html="true" level="INFO" timestamp="20240531 16:58:00.648">
+       Created directory '&lt;a href="file://D:\RobotFramework\SAPtesting\Output\229b4df3-380e-4907-999d-7c08b3dc92ab\pabot_results\0\Screenshot"&gt;D:\RobotFramework\SAPtesting\Output\229b4df3-380e-4907-999d-7c08b3dc92ab\pabot_results\0\Screenshot&lt;/a&gt;'.
+      </msg>
+      <status endtime="20240531 16:58:00.648" starttime="20240531 16:58:00.648" status="PASS"/>
+     </kw>
+     <status endtime="20240531 16:58:00.648" starttime="20240531 16:58:00.648" status="PASS"/>
+    </kw>
+    <status endtime="20240531 16:58:00.648" starttime="20240531 16:58:00.633" status="PASS"/>
+   </kw>
+   <kw library="BuiltIn" name="Set Global Variable">
+    <arg>
+     ${screenshot_taking}
+    </arg>
+    <arg>
+     ${True}
+    </arg>
+    <doc>
+     Makes a variable available globally in all tests and suites.
+    </doc>
+    <msg level="INFO" timestamp="20240531 16:58:00.648">
+     ${screenshot_taking} = True
+    </msg>
+    <status endtime="20240531 16:58:00.648" starttime="20240531 16:58:00.648" status="PASS"/>
+   </kw>
+   <kw library="Support" name="Setup linux execution">
+    <kw library="BuiltIn" name="Run Keyword And Return Status">
+     <var>
+      ${web_test_check}
+     </var>
+     <arg>
+      Variable Should Exist
+     </arg>
+     <arg>
+      ${web_test}
+     </arg>
+     <doc>
+      Runs the given keyword with given arguments and returns the status as a Boolean value.
+     </doc>
+     <kw library="BuiltIn" name="Variable Should Exist">
+      <arg>
+       ${web_test}
+      </arg>
+      <doc>
+       Fails unless the given variable exists within the current scope.
+      </doc>
+      <status endtime="20240531 16:58:00.648" starttime="20240531 16:58:00.648" status="PASS"/>
+     </kw>
+     <msg level="INFO" timestamp="20240531 16:58:00.648">
+      ${web_test_check} = True
+     </msg>
+     <status endtime="20240531 16:58:00.648" starttime="20240531 16:58:00.648" status="PASS"/>
+    </kw>
+    <kw library="BuiltIn" name="Run Keyword If">
+     <arg>
+      ${web_test_check}
+     </arg>
+     <arg>
+      Setup Docker Execution Options
+     </arg>
+     <doc>
+      Runs the given keyword with the given arguments, if ``condition`` is true.
+     </doc>
+     <kw library="Support_Web" name="Setup Docker Execution Options">
+      <kw library="Support_Web" name="Setup Suite Metadata">
+       <arg>
+        ${browser}
+       </arg>
+       <kw library="BrowserSupport" name="Get Browser Metadata">
+        <var>
+         &amp;{browser_information}
+        </var>
+        <arg>
+         browser=${browser}
+        </arg>
+        <doc>
+         Fetches browser metadata information
+:param browser: Name of the browser for which information is fetched
+:param reload: Re-read the metadata based on the browser
+:return: Browser metadata information, dict of format
+            {"browser_version": browser version value,
+             "driver_version": driver version value}
+        </doc>
+        <msg level="INFO" timestamp="20240531 16:58:04.609">
+         &amp;{browser_information} = { browser_version=125.0.6422.77 | driver_version=124.0.6367.207  }
+        </msg>
+        <status endtime="20240531 16:58:04.609" starttime="20240531 16:58:00.648" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Suite Metadata">
+        <arg>
+         test_browser_name
+        </arg>
+        <arg>
+         ${browser}
+        </arg>
+        <doc>
+         Sets metadata for the current test suite.
+        </doc>
+        <msg level="INFO" timestamp="20240531 16:58:04.609">
+         Set suite metadata 'test_browser_name' to value 'chrome'.
+        </msg>
+        <status endtime="20240531 16:58:04.609" starttime="20240531 16:58:04.609" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Suite Metadata">
+        <arg>
+         test_browser_version
+        </arg>
+        <arg>
+         ${browser_information.browser_version}
+        </arg>
+        <doc>
+         Sets metadata for the current test suite.
+        </doc>
+        <msg level="INFO" timestamp="20240531 16:58:04.609">
+         Set suite metadata 'test_browser_version' to value '125.0.6422.77'.
+        </msg>
+        <status endtime="20240531 16:58:04.609" starttime="20240531 16:58:04.609" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Suite Metadata">
+        <arg>
+         test_driver_version
+        </arg>
+        <arg>
+         ${browser_information.driver_version}
+        </arg>
+        <doc>
+         Sets metadata for the current test suite.
+        </doc>
+        <msg level="INFO" timestamp="20240531 16:58:04.609">
+         Set suite metadata 'test_driver_version' to value '124.0.6367.207 '.
+        </msg>
+        <status endtime="20240531 16:58:04.609" starttime="20240531 16:58:04.609" status="PASS"/>
+       </kw>
+       <status endtime="20240531 16:58:04.609" starttime="20240531 16:58:00.648" status="PASS"/>
+      </kw>
+      <kw library="Support_Web" name="Setup Global Docker Execution Options">
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${global_browser_options}
+        </arg>
+        <arg>
+         None
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240531 16:58:04.609">
+         ${global_browser_options} = None
+        </msg>
+        <status endtime="20240531 16:58:04.609" starttime="20240531 16:58:04.609" status="PASS"/>
+       </kw>
+       <kw library="OperatingSystem" name="Get Environment Variable">
+        <var>
+         ${docker_check}
+        </var>
+        <arg>
+         EXECUTION_ENVIRONMENT
+        </arg>
+        <arg>
+         not_found
+        </arg>
+        <doc>
+         Returns the value of an environment variable with the given name.
+        </doc>
+        <msg level="INFO" timestamp="20240531 16:58:04.609">
+         ${docker_check} = not_found
+        </msg>
+        <status endtime="20240531 16:58:04.609" starttime="20240531 16:58:04.609" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Run Keyword And Return If">
+        <arg>
+         "${docker_check}"!="docker"
+        </arg>
+        <arg>
+         Log
+        </arg>
+        <arg>
+         Not executing on Docker
+        </arg>
+        <doc>
+         Runs the specified keyword and returns from the enclosing user keyword.
+        </doc>
+        <kw library="BuiltIn" name="Log">
+         <arg>
+          Not executing on Docker
+         </arg>
+         <doc>
+          Logs the given message with the given level.
+         </doc>
+         <msg level="INFO" timestamp="20240531 16:58:04.609">
+          Not executing on Docker
+         </msg>
+         <status endtime="20240531 16:58:04.609" starttime="20240531 16:58:04.609" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240531 16:58:04.609">
+         Returning from the enclosing user keyword.
+        </msg>
+        <status endtime="20240531 16:58:04.609" starttime="20240531 16:58:04.609" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Create List">
+        <var>
+         @{options}
+        </var>
+        <arg>
+         --headless
+        </arg>
+        <arg>
+         --no-sandbox
+        </arg>
+        <arg>
+         --disable-dev-shm-usage
+        </arg>
+        <doc>
+         Returns a list containing given items.
+        </doc>
+        <status endtime="20240531 16:58:04.609" starttime="20240531 16:58:04.609" status="NOT RUN"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         @{docker_options}
+        </arg>
+        <arg>
+         @{options}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <status endtime="20240531 16:58:04.609" starttime="20240531 16:58:04.609" status="NOT RUN"/>
+       </kw>
+       <status endtime="20240531 16:58:04.609" starttime="20240531 16:58:04.609" status="PASS"/>
+      </kw>
+      <kw library="Support_Web" name="Create Webdriver for chrome preferences">
+       <kw library="Support_Web" name="Update Docker Execution Options">
+        <var>
+         ${list_prefs}
+        </var>
+        <arg>
+         ${list_prefs}
+        </arg>
+        <kw library="BuiltIn" name="Run Keyword And Return Status">
+         <var>
+          ${docker_check}
+         </var>
+         <arg>
+          Variable Should Exist
+         </arg>
+         <arg>
+          ${docker_options}
+         </arg>
+         <doc>
+          Runs the given keyword with given arguments and returns the status as a Boolean value.
+         </doc>
+         <kw library="BuiltIn" name="Variable Should Exist">
+          <arg>
+           ${docker_options}
+          </arg>
+          <doc>
+           Fails unless the given variable exists within the current scope.
+          </doc>
+          <msg level="FAIL" timestamp="20240531 16:58:04.609">
+           Variable '${docker_options}' does not exist.
+          </msg>
+          <status endtime="20240531 16:58:04.609" starttime="20240531 16:58:04.609" status="FAIL"/>
+         </kw>
+         <msg level="INFO" timestamp="20240531 16:58:04.625">
+          ${docker_check} = False
+         </msg>
+         <status endtime="20240531 16:58:04.625" starttime="20240531 16:58:04.609" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Get Length">
+         <var>
+          ${list_prefs_length}
+         </var>
+         <arg>
+          ${list_prefs}
+         </arg>
+         <doc>
+          Returns and logs the length of the given item as an integer.
+         </doc>
+         <msg level="INFO" timestamp="20240531 16:58:04.625">
+          Length is 1
+         </msg>
+         <msg level="INFO" timestamp="20240531 16:58:04.625">
+          ${list_prefs_length} = 1
+         </msg>
+         <status endtime="20240531 16:58:04.625" starttime="20240531 16:58:04.625" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Run Keyword If">
+         <var>
+          ${list_prefs}
+         </var>
+         <arg>
+          ${docker_check} and ${list_prefs_length}&gt;0 and ${list_prefs}[0] != []
+         </arg>
+         <arg>
+          Combine Lists
+         </arg>
+         <arg>
+          ${list_prefs}
+         </arg>
+         <arg>
+          ${docker_options}
+         </arg>
+         <arg>
+          ELSE IF
+         </arg>
+         <arg>
+          ${docker_check}
+         </arg>
+         <arg>
+          Set Variable
+         </arg>
+         <arg>
+          ${docker_options}
+         </arg>
+         <arg>
+          ELSE
+         </arg>
+         <arg>
+          Set Variable
+         </arg>
+         <arg>
+          ${list_prefs}
+         </arg>
+         <doc>
+          Runs the given keyword with the given arguments, if ``condition`` is true.
+         </doc>
+         <kw library="BuiltIn" name="Set Variable">
+          <arg>
+           ${list_prefs}
+          </arg>
+          <doc>
+           Returns the given values which can then be assigned to a variables.
+          </doc>
+          <status endtime="20240531 16:58:04.625" starttime="20240531 16:58:04.625" status="PASS"/>
+         </kw>
+         <msg level="INFO" timestamp="20240531 16:58:04.625">
+          ${list_prefs} = [[]]
+         </msg>
+         <status endtime="20240531 16:58:04.625" starttime="20240531 16:58:04.625" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240531 16:58:04.625">
+         ${list_prefs} = [[]]
+        </msg>
+        <status endtime="20240531 16:58:04.625" starttime="20240531 16:58:04.609" status="PASS"/>
+       </kw>
+       <kw library="Support_Web" name="Create Chrome Options for download preferences">
+        <var>
+         ${chrome_options}
+        </var>
+        <kw library="BuiltIn" name="Evaluate">
+         <var>
+          ${chrome_options}
+         </var>
+         <arg>
+          sys.modules['selenium.webdriver'].ChromeOptions()
+         </arg>
+         <arg>
+          sys
+         </arg>
+         <doc>
+          Evaluates the given expression in Python and returns the result.
+         </doc>
+         <msg level="INFO" timestamp="20240531 16:58:04.625">
+          ${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x00000269E568BE00&gt;
+         </msg>
+         <status endtime="20240531 16:58:04.625" starttime="20240531 16:58:04.625" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240531 16:58:04.625">
+         ${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x00000269E568BE00&gt;
+        </msg>
+        <status endtime="20240531 16:58:04.625" starttime="20240531 16:58:04.625" status="PASS"/>
+       </kw>
+       <kw library="Support_Web" name="Update Preferences List">
+        <arg>
+         ${chrome_options}
+        </arg>
+        <arg>
+         @{list_prefs}
+        </arg>
+        <kw library="BuiltIn" name="Convert To String">
+         <var>
+          ${string_prefs}
+         </var>
+         <arg>
+          ${list_prefs}
+         </arg>
+         <doc>
+          Converts the given item to a Unicode string.
+         </doc>
+         <msg level="INFO" timestamp="20240531 16:58:04.625">
+          ${string_prefs} = [[]]
+         </msg>
+         <status endtime="20240531 16:58:04.625" starttime="20240531 16:58:04.625" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Return From Keyword If">
+         <arg>
+          ${string_prefs} == [[]]
+         </arg>
+         <doc>
+          Returns from the enclosing user keyword if ``condition`` is true.
+         </doc>
+         <msg level="INFO" timestamp="20240531 16:58:04.625">
+          Returning from the enclosing user keyword.
+         </msg>
+         <status endtime="20240531 16:58:04.625" starttime="20240531 16:58:04.625" status="PASS"/>
+        </kw>
+        <for flavor="IN">
+         <var>
+          ${preference}
+         </var>
+         <value>
+          @{list_prefs}
+         </value>
+         <iter>
+          <var name="${preference}"/>
+          <kw library="BuiltIn" name="Call Method">
+           <arg>
+            ${chrome_options}
+           </arg>
+           <arg>
+            add_argument
+           </arg>
+           <arg>
+            ${preference}
+           </arg>
+           <doc>
+            Calls the named method of the given object with the provided arguments.
+           </doc>
+           <status endtime="20240531 16:58:04.625" starttime="20240531 16:58:04.625" status="NOT RUN"/>
+          </kw>
+          <status endtime="20240531 16:58:04.625" starttime="20240531 16:58:04.625" status="NOT RUN"/>
+         </iter>
+         <status endtime="20240531 16:58:04.625" starttime="20240531 16:58:04.625" status="NOT RUN"/>
+        </for>
+        <status endtime="20240531 16:58:04.625" starttime="20240531 16:58:04.625" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Call Method">
+        <arg>
+         ${chrome_options}
+        </arg>
+        <arg>
+         add_experimental_option
+        </arg>
+        <arg>
+         prefs
+        </arg>
+        <arg>
+         ${kw_prefs}
+        </arg>
+        <doc>
+         Calls the named method of the given object with the provided arguments.
+        </doc>
+        <status endtime="20240531 16:58:04.625" starttime="20240531 16:58:04.625" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${global_browser_options}
+        </arg>
+        <arg>
+         ${chrome options}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240531 16:58:04.625">
+         ${global_browser_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x00000269E568BE00&gt;
+        </msg>
+        <status endtime="20240531 16:58:04.625" starttime="20240531 16:58:04.625" status="PASS"/>
+       </kw>
+       <status endtime="20240531 16:58:04.625" starttime="20240531 16:58:04.609" status="PASS"/>
+      </kw>
+      <status endtime="20240531 16:58:04.625" starttime="20240531 16:58:00.648" status="PASS"/>
+     </kw>
+     <status endtime="20240531 16:58:04.625" starttime="20240531 16:58:00.648" status="PASS"/>
+    </kw>
+    <status endtime="20240531 16:58:04.625" starttime="20240531 16:58:00.648" status="PASS"/>
+   </kw>
+   <kw library="BuiltIn" name="Set Suite Metadata">
+    <arg>
+     environment
+    </arg>
+    <arg>
+     ${test_server}
+    </arg>
+    <doc>
+     Sets metadata for the current test suite.
+    </doc>
+    <msg level="INFO" timestamp="20240531 16:58:04.625">
+     Set suite metadata 'environment' to value 'Dev'.
+    </msg>
+    <status endtime="20240531 16:58:04.625" starttime="20240531 16:58:04.625" status="PASS"/>
+   </kw>
+   <status endtime="20240531 16:58:04.625" starttime="20240531 16:58:00.633" status="PASS"/>
+  </kw>
+  <suite id="s1-s1" name="TEST UPLOAD ROLE NIKE" source="D:\RobotFramework\SAPtesting\Tests\TEST_UPLOAD_ROLE_NIKE.robot">
+   <kw library="UPLOAD_ROLE_NIKE" name="System Logon" type="SETUP">
+    <kw library="Process" name="Start Process">
+     <arg>
+      ${symvar('Nike_SAP')}
+     </arg>
+     <doc>
+      Starts a new process on background.
+     </doc>
+     <msg level="INFO" timestamp="20240531 16:58:04.984">
+      Sym.Dev.Nike_SAP: C:\Program Files\SAP\FrontEnd\SAPGUI\saplogon.exe
+     </msg>
+     <msg level="INFO" timestamp="20240531 16:58:04.984">
+      Starting process:
+"C:\Program Files\SAP\FrontEnd\SAPGUI\saplogon.exe"
+     </msg>
+     <status endtime="20240531 16:58:05.000" starttime="20240531 16:58:04.984" status="PASS"/>
+    </kw>
+    <kw library="BuiltIn" name="Sleep">
+     <arg>
+      5
+     </arg>
+     <doc>
+      Pauses the test executed for the given time.
+     </doc>
+     <msg level="INFO" timestamp="20240531 16:58:10.007">
+      Slept 5 seconds
+     </msg>
+     <status endtime="20240531 16:58:10.007" starttime="20240531 16:58:05.000" status="PASS"/>
+    </kw>
+    <kw library="SAP_Tcode_Library" name="Connect To Session">
+     <doc>
+      Connects to an open session SAP.
+     </doc>
+     <status endtime="20240531 16:58:10.007" starttime="20240531 16:58:10.007" status="PASS"/>
+    </kw>
+    <kw library="SAP_Tcode_Library" name="Open Connection">
+     <arg>
+      ${symvar('Nike_connection')}
+     </arg>
+     <doc>
+      Opens a connection to the given connection name. Be sure to provide the full connection name, including the bracket part.
+     </doc>
+     <msg level="INFO" timestamp="20240531 16:58:10.007">
+      Sym.Dev.Nike_connection: CFG
+     </msg>
+     <status endtime="20240531 16:58:10.753" starttime="20240531 16:58:10.007" status="PASS"/>
+    </kw>
+    <kw library="SAP_Tcode_Library" name="Input Text">
+     <arg>
+      wnd[0]/usr/txtRSYST-MANDT
+     </arg>
+     <arg>
+      ${symvar('CFG_CLIENT_role')}
+     </arg>
+     <doc>
+      Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+     </doc>
+     <msg level="INFO" timestamp="20240531 16:58:10.753">
+      Sym.Dev.CFG_CLIENT_role: 100
+     </msg>
+     <msg level="INFO" timestamp="20240531 16:58:10.815">
+      Typing text '100' into text field 'wnd[0]/usr/txtRSYST-MANDT'.
+     </msg>
+     <status endtime="20240531 16:58:10.815" starttime="20240531 16:58:10.753" status="PASS"/>
+    </kw>
+    <kw library="SAP_Tcode_Library" name="Input Text">
+     <arg>
+      wnd[0]/usr/txtRSYST-BNAME
+     </arg>
+     <arg>
+      ${symvar('CFG_USER_role')}
+     </arg>
+     <doc>
+      Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+     </doc>
+     <msg level="INFO" timestamp="20240531 16:58:10.815">
+      Sym.Dev.CFG_USER_role: ssach8
+     </msg>
+     <msg level="INFO" timestamp="20240531 16:58:10.831">
+      Typing text 'ssach8' into text field 'wnd[0]/usr/txtRSYST-BNAME'.
+     </msg>
+     <status endtime="20240531 16:58:10.831" starttime="20240531 16:58:10.815" status="PASS"/>
+    </kw>
+    <kw library="SAP_Tcode_Library" name="Input Password">
+     <arg>
+      wnd[0]/usr/pwdRSYST-BCODE
+     </arg>
+     <arg>
+      %{CFG_PASS_role}
+     </arg>
+     <doc>
+      Inserts the given password into the text field identified by locator.
+The password is not recorded in the log.
+     </doc>
+     <msg level="INFO" timestamp="20240531 16:58:10.847">
+      Typing password into text field 'wnd[0]/usr/pwdRSYST-BCODE'.
+     </msg>
+     <status endtime="20240531 16:58:10.847" starttime="20240531 16:58:10.831" status="PASS"/>
+    </kw>
+    <kw library="SAP_Tcode_Library" name="Send Vkey">
+     <arg>
+      0
+     </arg>
+     <doc>
+      Sends a SAP virtual key combination to the window, not into an element.
+If you want to send a value to a text field, use `input text` instead.
+     </doc>
+     <status endtime="20240531 16:58:11.530" starttime="20240531 16:58:10.847" status="PASS"/>
+    </kw>
+    <kw library="SAP_Tcode_Library" name="Multiple Logon Handling">
+     <arg>
+      wnd[1]
+     </arg>
+     <arg>
+      wnd[1]/usr/radMULTI_LOGON_OPT2
+     </arg>
+     <arg>
+      wnd[1]/tbar[0]/btn[0]
+     </arg>
+     <status endtime="20240531 16:58:11.545" starttime="20240531 16:58:11.530" status="PASS"/>
+    </kw>
+    <kw library="BuiltIn" name="Sleep">
+     <arg>
+      2
+     </arg>
+     <doc>
+      Pauses the test executed for the given time.
+     </doc>
+     <msg level="INFO" timestamp="20240531 16:58:13.553">
+      Slept 2 seconds
+     </msg>
+     <status endtime="20240531 16:58:13.553" starttime="20240531 16:58:11.545" status="PASS"/>
+    </kw>
+    <status endtime="20240531 16:58:13.553" starttime="20240531 16:58:04.984" status="PASS"/>
+   </kw>
+   <test id="s1-s1-t1" line="9" name="uploading_role">
+    <kw library="UPLOAD_ROLE_NIKE" name="uploading_role">
+     <kw library="SAP_Tcode_Library" name="Run Transaction">
+      <arg>
+       /nPFCG
+      </arg>
+      <doc>
+       Runs a Sap transaction. An error is given when an unknown transaction is specified.
+      </doc>
+      <status endtime="20240531 16:58:14.080" starttime="20240531 16:58:13.553" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       2
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240531 16:58:16.080">
+       Slept 2 seconds
+      </msg>
+      <status endtime="20240531 16:58:16.080" starttime="20240531 16:58:14.080" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Get Length">
+      <var>
+       ${upload_function}
+      </var>
+      <arg>
+       ${symvar('uploading_file_names')}
+      </arg>
+      <doc>
+       Returns and logs the length of the given item as an integer.
+      </doc>
+      <msg level="INFO" timestamp="20240531 16:58:16.080">
+       Sym.Dev.uploading_file_names: ['Z_BNWVS_ADMIN_CHANGE.SAP', 'Z_BNWVS_ADMIN_CONTROL.SAP', 'Z_BNWVS_ADMIN_DISPLAY.SAP', 'Z_BNWVS_BATCHUSER.SAP']
+      </msg>
+      <msg level="INFO" timestamp="20240531 16:58:16.080">
+       Length is 4
+      </msg>
+      <msg level="INFO" timestamp="20240531 16:58:16.080">
+       ${upload_function} = 4
+      </msg>
+      <status endtime="20240531 16:58:16.080" starttime="20240531 16:58:16.080" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Log">
+      <arg>
+       ${upload_function}
+      </arg>
+      <doc>
+       Logs the given message with the given level.
+      </doc>
+      <msg level="INFO" timestamp="20240531 16:58:16.080">
+       4
+      </msg>
+      <status endtime="20240531 16:58:16.080" starttime="20240531 16:58:16.080" status="PASS"/>
+     </kw>
+     <for flavor="IN RANGE">
+      <var>
+       ${upload_index}
+      </var>
+      <value>
+       ${upload_function}
+      </value>
+      <iter>
+       <var name="${upload_index}">
+        0
+       </var>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         2
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 16:58:18.090">
+         Slept 2 seconds
+        </msg>
+        <status endtime="20240531 16:58:18.090" starttime="20240531 16:58:16.080" status="PASS"/>
+       </kw>
+       <kw library="SAP_Tcode_Library" name="Click Element">
+        <arg>
+         wnd[0]/mbar/menu[0]/menu[7]
+        </arg>
+        <doc>
+         Performs a single click on a given element. Used only for buttons, tabs and menu items.
+        </doc>
+        <status endtime="20240531 16:58:18.746" starttime="20240531 16:58:18.090" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         3
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 16:58:21.746">
+         Slept 3 seconds
+        </msg>
+        <status endtime="20240531 16:58:21.746" starttime="20240531 16:58:18.746" status="PASS"/>
+       </kw>
+       <kw library="SAP_Tcode_Library" name="Clear Field Text">
+        <arg>
+         wnd[1]/usr/ctxtDY_FILENAME
+        </arg>
+        <msg level="INFO" timestamp="20240531 16:58:21.762">
+         Text cleared in field with ID: wnd[1]/usr/ctxtDY_FILENAME
+        </msg>
+        <status endtime="20240531 16:58:21.762" starttime="20240531 16:58:21.746" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         2
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 16:58:23.773">
+         Slept 2 seconds
+        </msg>
+        <status endtime="20240531 16:58:23.773" starttime="20240531 16:58:21.762" status="PASS"/>
+       </kw>
+       <kw library="SAP_Tcode_Library" name="Clear Field Text">
+        <arg>
+         wnd[1]/usr/ctxtDY_PATH
+        </arg>
+        <msg level="INFO" timestamp="20240531 16:58:23.773">
+         Text cleared in field with ID: wnd[1]/usr/ctxtDY_PATH
+        </msg>
+        <status endtime="20240531 16:58:23.773" starttime="20240531 16:58:23.773" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         2
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 16:58:25.783">
+         Slept 2 seconds
+        </msg>
+        <status endtime="20240531 16:58:25.783" starttime="20240531 16:58:23.773" status="PASS"/>
+       </kw>
+       <kw library="SAP_Tcode_Library" name="Input Text">
+        <arg>
+         wnd[1]/usr/ctxtDY_PATH
+        </arg>
+        <arg>
+         ${symvar('uploading_path')}
+        </arg>
+        <doc>
+         Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+        </doc>
+        <msg level="INFO" timestamp="20240531 16:58:25.783">
+         Sym.Dev.uploading_path: D:\RobotFramework\SAPtesting\Tests\Resource\Roles
+        </msg>
+        <msg level="INFO" timestamp="20240531 16:58:25.783">
+         Typing text 'D:\RobotFramework\SAPtesting\Tests\Resource\Roles' into text field 'wnd[1]/usr/ctxtDY_PATH'.
+        </msg>
+        <status endtime="20240531 16:58:25.783" starttime="20240531 16:58:25.783" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         2
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 16:58:27.794">
+         Slept 2 seconds
+        </msg>
+        <status endtime="20240531 16:58:27.794" starttime="20240531 16:58:25.783" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Run Keyword And Return Status">
+        <var>
+         ${upload_role_input}
+        </var>
+        <arg>
+         Input Text
+        </arg>
+        <arg>
+         wnd[1]/usr/ctxtDY_FILENAME
+        </arg>
+        <arg>
+         ${symvar('uploading_file_names')}[${upload_index}]
+        </arg>
+        <doc>
+         Runs the given keyword with given arguments and returns the status as a Boolean value.
+        </doc>
+        <kw library="SAP_Tcode_Library" name="Input Text">
+         <arg>
+          wnd[1]/usr/ctxtDY_FILENAME
+         </arg>
+         <arg>
+          ${symvar('uploading_file_names')}[${upload_index}]
+         </arg>
+         <doc>
+          Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+         </doc>
+         <msg level="INFO" timestamp="20240531 16:58:27.794">
+          Sym.Dev.uploading_file_names: ['Z_BNWVS_ADMIN_CHANGE.SAP', 'Z_BNWVS_ADMIN_CONTROL.SAP', 'Z_BNWVS_ADMIN_DISPLAY.SAP', 'Z_BNWVS_BATCHUSER.SAP']
+         </msg>
+         <msg level="INFO" timestamp="20240531 16:58:27.810">
+          Typing text 'Z_BNWVS_ADMIN_CHANGE.SAP' into text field 'wnd[1]/usr/ctxtDY_FILENAME'.
+         </msg>
+         <status endtime="20240531 16:58:27.810" starttime="20240531 16:58:27.794" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240531 16:58:27.810">
+         ${upload_role_input} = True
+        </msg>
+        <status endtime="20240531 16:58:27.810" starttime="20240531 16:58:27.794" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Run Keyword If">
+        <arg>
+         not ${upload_role_input}
+        </arg>
+        <arg>
+         Exit For Loop
+        </arg>
+        <doc>
+         Runs the given keyword with the given arguments, if ``condition`` is true.
+        </doc>
+        <status endtime="20240531 16:58:27.810" starttime="20240531 16:58:27.810" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         2
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 16:58:29.818">
+         Slept 2 seconds
+        </msg>
+        <status endtime="20240531 16:58:29.818" starttime="20240531 16:58:27.810" status="PASS"/>
+       </kw>
+       <kw library="SAP_Tcode_Library" name="Click Element">
+        <arg>
+         wnd[1]/tbar[0]/btn[0]
+        </arg>
+        <doc>
+         Performs a single click on a given element. Used only for buttons, tabs and menu items.
+        </doc>
+        <status endtime="20240531 16:58:31.282" starttime="20240531 16:58:29.818" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         2
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 16:58:33.285">
+         Slept 2 seconds
+        </msg>
+        <status endtime="20240531 16:58:33.285" starttime="20240531 16:58:31.282" status="PASS"/>
+       </kw>
+       <kw library="SAP_Tcode_Library" name="Click Element">
+        <arg>
+         wnd[1]/tbar[0]/btn[0]
+        </arg>
+        <doc>
+         Performs a single click on a given element. Used only for buttons, tabs and menu items.
+        </doc>
+        <status endtime="20240531 16:58:34.498" starttime="20240531 16:58:33.285" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         3
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 16:58:37.509">
+         Slept 3 seconds
+        </msg>
+        <status endtime="20240531 16:58:37.509" starttime="20240531 16:58:34.498" status="PASS"/>
+       </kw>
+       <kw library="SAP_Tcode_Library" name="Get Value">
+        <var>
+         ${true_condition}
+        </var>
+        <arg>
+         wnd[0]/sbar/pane[0]
+        </arg>
+        <doc>
+         Gets the value of the given element. The possible return values depend on the type of element (see Return values).
+        </doc>
+        <msg level="INFO" timestamp="20240531 16:58:37.509">
+         ${true_condition} = One role was uploaded from the file
+        </msg>
+        <status endtime="20240531 16:58:37.509" starttime="20240531 16:58:37.509" status="PASS"/>
+       </kw>
+       <if>
+        <branch condition="'${true_condition}' == 'The file does not exist'" type="IF">
+         <kw library="SAP_Tcode_Library" name="Take Screenshot">
+          <arg>
+           Role_not exist01.jpg
+          </arg>
+          <doc>
+           Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.
+          </doc>
+          <status endtime="20240531 16:58:37.509" starttime="20240531 16:58:37.509" status="NOT RUN"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <status endtime="20240531 16:58:37.509" starttime="20240531 16:58:37.509" status="NOT RUN"/>
+         </kw>
+         <kw library="BuiltIn" name="Log">
+          <arg>
+           ${true_condition}
+          </arg>
+          <doc>
+           Logs the given message with the given level.
+          </doc>
+          <status endtime="20240531 16:58:37.509" starttime="20240531 16:58:37.509" status="NOT RUN"/>
+         </kw>
+         <kw library="BuiltIn" name="Log To Console">
+          <arg>
+           ${true_condition}
+          </arg>
+          <doc>
+           Logs the given message to the console.
+          </doc>
+          <status endtime="20240531 16:58:37.509" starttime="20240531 16:58:37.509" status="NOT RUN"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           3
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <status endtime="20240531 16:58:37.509" starttime="20240531 16:58:37.509" status="NOT RUN"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[1]/tbar[0]/btn[12]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 16:58:37.509" starttime="20240531 16:58:37.509" status="NOT RUN"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <status endtime="20240531 16:58:37.509" starttime="20240531 16:58:37.509" status="NOT RUN"/>
+         </kw>
+         <status endtime="20240531 16:58:37.509" starttime="20240531 16:58:37.509" status="NOT RUN"/>
+        </branch>
+        <branch condition="'${true_condition}' != 'The file does not exist'" type="ELSE IF">
+         <kw library="SAP_Tcode_Library" name="Take Screenshot">
+          <arg>
+           upload_role_02.jpg
+          </arg>
+          <doc>
+           Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.
+          </doc>
+          <msg html="true" level="INFO" timestamp="20240531 16:58:37.603">
+           &lt;a href="pabot_results%5C0%5Cupload_role_02.jpg"&gt;&lt;img src="pabot_results%5C0%5Cupload_role_02.jpg" width="800px"&gt;&lt;/a&gt;
+          </msg>
+          <status endtime="20240531 16:58:37.603" starttime="20240531 16:58:37.509" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 16:58:39.615">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 16:58:39.615" starttime="20240531 16:58:37.603" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[0]/mbar/menu[3]/menu[1]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 16:58:39.995" starttime="20240531 16:58:39.615" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 16:58:42.007">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 16:58:42.007" starttime="20240531 16:58:39.995" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Select Radio Button">
+          <arg>
+           wnd[0]/usr/radPRT_ALL
+          </arg>
+          <doc>
+           Sets radio button to the specified value.
+          </doc>
+          <status endtime="20240531 16:58:42.007" starttime="20240531 16:58:42.007" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 16:58:44.021">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 16:58:44.021" starttime="20240531 16:58:42.007" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[0]/usr/btn%_SEL_SHT_%_APP_%-VALU_PUSH
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 16:58:44.265" starttime="20240531 16:58:44.021" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 16:58:46.276">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 16:58:46.276" starttime="20240531 16:58:44.265" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Input Text">
+          <arg>
+           wnd[1]/usr/tabsTAB_STRIP/tabpSIVA/ssubSCREEN_HEADER:SAPLALDB:3010/tblSAPLALDBSINGLE/ctxtRSCSEL_255-SLOW_I[1,0]
+          </arg>
+          <arg>
+           ${symvar('upload_role_names')}[${upload_index}]
+          </arg>
+          <doc>
+           Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+          </doc>
+          <msg level="INFO" timestamp="20240531 16:58:46.276">
+           Sym.Dev.upload_role_names: ['Z_BNWVS_ADMIN_CHANGE', 'Z_BNWVS_ADMIN_CONTROL', 'Z_BNWVS_ADMIN_DISPLAY', 'Z_BNWVS_BATCHUSER']
+          </msg>
+          <msg level="INFO" timestamp="20240531 16:58:46.307">
+           Typing text 'Z_BNWVS_ADMIN_CHANGE' into text field 'wnd[1]/usr/tabsTAB_STRIP/tabpSIVA/ssubSCREEN_HEADER:SAPLALDB:3010/tblSAPLALDBSINGLE/ctxtRSCSEL_255-SLOW_I[1,0]'.
+          </msg>
+          <status endtime="20240531 16:58:46.307" starttime="20240531 16:58:46.276" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 16:58:48.318">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 16:58:48.318" starttime="20240531 16:58:46.307" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[1]/tbar[0]/btn[8]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 16:58:48.708" starttime="20240531 16:58:48.318" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 16:58:50.720">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 16:58:50.720" starttime="20240531 16:58:48.708" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Select Checkbox">
+          <arg>
+           wnd[0]/usr/chkAUTO_GEN
+          </arg>
+          <doc>
+           Selects checkbox identified by locator.
+Does nothing if the checkbox is already selected.
+          </doc>
+          <status endtime="20240531 16:58:50.720" starttime="20240531 16:58:50.720" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 16:58:52.726">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 16:58:52.726" starttime="20240531 16:58:50.720" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[0]/tbar[1]/btn[8]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 16:58:53.267" starttime="20240531 16:58:52.726" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 16:58:55.280">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 16:58:55.280" starttime="20240531 16:58:53.267" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[1]/usr/btnBUTTON_2
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 16:58:56.482" starttime="20240531 16:58:55.280" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 16:58:58.491">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 16:58:58.491" starttime="20240531 16:58:56.482" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[0]/tbar[0]/btn[3]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 16:58:58.866" starttime="20240531 16:58:58.491" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 16:59:00.879">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 16:59:00.879" starttime="20240531 16:58:58.866" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[0]/tbar[0]/btn[3]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 16:59:01.270" starttime="20240531 16:59:00.879" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 16:59:03.273">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 16:59:03.273" starttime="20240531 16:59:01.270" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[0]/tbar[0]/btn[3]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 16:59:03.445" starttime="20240531 16:59:03.273" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 16:59:05.448">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 16:59:05.448" starttime="20240531 16:59:03.445" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[0]/tbar[0]/btn[3]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 16:59:05.604" starttime="20240531 16:59:05.448" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 16:59:07.615">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 16:59:07.615" starttime="20240531 16:59:05.604" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Take Screenshot">
+          <arg>
+           upload_role_03.jpg
+          </arg>
+          <doc>
+           Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.
+          </doc>
+          <msg html="true" level="INFO" timestamp="20240531 16:59:07.693">
+           &lt;a href="pabot_results%5C0%5Cupload_role_03.jpg"&gt;&lt;img src="pabot_results%5C0%5Cupload_role_03.jpg" width="800px"&gt;&lt;/a&gt;
+          </msg>
+          <status endtime="20240531 16:59:07.693" starttime="20240531 16:59:07.615" status="PASS"/>
+         </kw>
+         <status endtime="20240531 16:59:07.693" starttime="20240531 16:58:37.509" status="PASS"/>
+        </branch>
+        <status endtime="20240531 16:59:07.693" starttime="20240531 16:58:37.509" status="PASS"/>
+       </if>
+       <status endtime="20240531 16:59:07.693" starttime="20240531 16:58:16.080" status="PASS"/>
+      </iter>
+      <iter>
+       <var name="${upload_index}">
+        1
+       </var>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         2
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 16:59:09.696">
+         Slept 2 seconds
+        </msg>
+        <status endtime="20240531 16:59:09.696" starttime="20240531 16:59:07.693" status="PASS"/>
+       </kw>
+       <kw library="SAP_Tcode_Library" name="Click Element">
+        <arg>
+         wnd[0]/mbar/menu[0]/menu[7]
+        </arg>
+        <doc>
+         Performs a single click on a given element. Used only for buttons, tabs and menu items.
+        </doc>
+        <status endtime="20240531 16:59:10.129" starttime="20240531 16:59:09.696" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         3
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 16:59:13.131">
+         Slept 3 seconds
+        </msg>
+        <status endtime="20240531 16:59:13.131" starttime="20240531 16:59:10.129" status="PASS"/>
+       </kw>
+       <kw library="SAP_Tcode_Library" name="Clear Field Text">
+        <arg>
+         wnd[1]/usr/ctxtDY_FILENAME
+        </arg>
+        <msg level="INFO" timestamp="20240531 16:59:13.146">
+         Text cleared in field with ID: wnd[1]/usr/ctxtDY_FILENAME
+        </msg>
+        <status endtime="20240531 16:59:13.146" starttime="20240531 16:59:13.131" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         2
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 16:59:15.157">
+         Slept 2 seconds
+        </msg>
+        <status endtime="20240531 16:59:15.157" starttime="20240531 16:59:13.146" status="PASS"/>
+       </kw>
+       <kw library="SAP_Tcode_Library" name="Clear Field Text">
+        <arg>
+         wnd[1]/usr/ctxtDY_PATH
+        </arg>
+        <msg level="INFO" timestamp="20240531 16:59:15.157">
+         Text cleared in field with ID: wnd[1]/usr/ctxtDY_PATH
+        </msg>
+        <status endtime="20240531 16:59:15.157" starttime="20240531 16:59:15.157" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         2
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 16:59:17.167">
+         Slept 2 seconds
+        </msg>
+        <status endtime="20240531 16:59:17.167" starttime="20240531 16:59:15.157" status="PASS"/>
+       </kw>
+       <kw library="SAP_Tcode_Library" name="Input Text">
+        <arg>
+         wnd[1]/usr/ctxtDY_PATH
+        </arg>
+        <arg>
+         ${symvar('uploading_path')}
+        </arg>
+        <doc>
+         Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+        </doc>
+        <msg level="INFO" timestamp="20240531 16:59:17.167">
+         Sym.Dev.uploading_path: D:\RobotFramework\SAPtesting\Tests\Resource\Roles
+        </msg>
+        <msg level="INFO" timestamp="20240531 16:59:17.167">
+         Typing text 'D:\RobotFramework\SAPtesting\Tests\Resource\Roles' into text field 'wnd[1]/usr/ctxtDY_PATH'.
+        </msg>
+        <status endtime="20240531 16:59:17.167" starttime="20240531 16:59:17.167" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         2
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 16:59:19.176">
+         Slept 2 seconds
+        </msg>
+        <status endtime="20240531 16:59:19.176" starttime="20240531 16:59:17.167" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Run Keyword And Return Status">
+        <var>
+         ${upload_role_input}
+        </var>
+        <arg>
+         Input Text
+        </arg>
+        <arg>
+         wnd[1]/usr/ctxtDY_FILENAME
+        </arg>
+        <arg>
+         ${symvar('uploading_file_names')}[${upload_index}]
+        </arg>
+        <doc>
+         Runs the given keyword with given arguments and returns the status as a Boolean value.
+        </doc>
+        <kw library="SAP_Tcode_Library" name="Input Text">
+         <arg>
+          wnd[1]/usr/ctxtDY_FILENAME
+         </arg>
+         <arg>
+          ${symvar('uploading_file_names')}[${upload_index}]
+         </arg>
+         <doc>
+          Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+         </doc>
+         <msg level="INFO" timestamp="20240531 16:59:19.176">
+          Sym.Dev.uploading_file_names: ['Z_BNWVS_ADMIN_CHANGE.SAP', 'Z_BNWVS_ADMIN_CONTROL.SAP', 'Z_BNWVS_ADMIN_DISPLAY.SAP', 'Z_BNWVS_BATCHUSER.SAP']
+         </msg>
+         <msg level="INFO" timestamp="20240531 16:59:19.192">
+          Typing text 'Z_BNWVS_ADMIN_CONTROL.SAP' into text field 'wnd[1]/usr/ctxtDY_FILENAME'.
+         </msg>
+         <status endtime="20240531 16:59:19.192" starttime="20240531 16:59:19.176" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240531 16:59:19.192">
+         ${upload_role_input} = True
+        </msg>
+        <status endtime="20240531 16:59:19.192" starttime="20240531 16:59:19.176" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Run Keyword If">
+        <arg>
+         not ${upload_role_input}
+        </arg>
+        <arg>
+         Exit For Loop
+        </arg>
+        <doc>
+         Runs the given keyword with the given arguments, if ``condition`` is true.
+        </doc>
+        <status endtime="20240531 16:59:19.192" starttime="20240531 16:59:19.192" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         2
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 16:59:21.193">
+         Slept 2 seconds
+        </msg>
+        <status endtime="20240531 16:59:21.193" starttime="20240531 16:59:19.192" status="PASS"/>
+       </kw>
+       <kw library="SAP_Tcode_Library" name="Click Element">
+        <arg>
+         wnd[1]/tbar[0]/btn[0]
+        </arg>
+        <doc>
+         Performs a single click on a given element. Used only for buttons, tabs and menu items.
+        </doc>
+        <status endtime="20240531 16:59:22.238" starttime="20240531 16:59:21.193" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         2
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 16:59:24.241">
+         Slept 2 seconds
+        </msg>
+        <status endtime="20240531 16:59:24.241" starttime="20240531 16:59:22.238" status="PASS"/>
+       </kw>
+       <kw library="SAP_Tcode_Library" name="Click Element">
+        <arg>
+         wnd[1]/tbar[0]/btn[0]
+        </arg>
+        <doc>
+         Performs a single click on a given element. Used only for buttons, tabs and menu items.
+        </doc>
+        <status endtime="20240531 16:59:24.709" starttime="20240531 16:59:24.241" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         3
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 16:59:27.715">
+         Slept 3 seconds
+        </msg>
+        <status endtime="20240531 16:59:27.715" starttime="20240531 16:59:24.709" status="PASS"/>
+       </kw>
+       <kw library="SAP_Tcode_Library" name="Get Value">
+        <var>
+         ${true_condition}
+        </var>
+        <arg>
+         wnd[0]/sbar/pane[0]
+        </arg>
+        <doc>
+         Gets the value of the given element. The possible return values depend on the type of element (see Return values).
+        </doc>
+        <msg level="INFO" timestamp="20240531 16:59:27.715">
+         ${true_condition} = One role was uploaded from the file
+        </msg>
+        <status endtime="20240531 16:59:27.715" starttime="20240531 16:59:27.715" status="PASS"/>
+       </kw>
+       <if>
+        <branch condition="'${true_condition}' == 'The file does not exist'" type="IF">
+         <kw library="SAP_Tcode_Library" name="Take Screenshot">
+          <arg>
+           Role_not exist01.jpg
+          </arg>
+          <doc>
+           Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.
+          </doc>
+          <status endtime="20240531 16:59:27.715" starttime="20240531 16:59:27.715" status="NOT RUN"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <status endtime="20240531 16:59:27.715" starttime="20240531 16:59:27.715" status="NOT RUN"/>
+         </kw>
+         <kw library="BuiltIn" name="Log">
+          <arg>
+           ${true_condition}
+          </arg>
+          <doc>
+           Logs the given message with the given level.
+          </doc>
+          <status endtime="20240531 16:59:27.715" starttime="20240531 16:59:27.715" status="NOT RUN"/>
+         </kw>
+         <kw library="BuiltIn" name="Log To Console">
+          <arg>
+           ${true_condition}
+          </arg>
+          <doc>
+           Logs the given message to the console.
+          </doc>
+          <status endtime="20240531 16:59:27.715" starttime="20240531 16:59:27.715" status="NOT RUN"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           3
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <status endtime="20240531 16:59:27.715" starttime="20240531 16:59:27.715" status="NOT RUN"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[1]/tbar[0]/btn[12]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 16:59:27.715" starttime="20240531 16:59:27.715" status="NOT RUN"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <status endtime="20240531 16:59:27.715" starttime="20240531 16:59:27.715" status="NOT RUN"/>
+         </kw>
+         <status endtime="20240531 16:59:27.715" starttime="20240531 16:59:27.715" status="NOT RUN"/>
+        </branch>
+        <branch condition="'${true_condition}' != 'The file does not exist'" type="ELSE IF">
+         <kw library="SAP_Tcode_Library" name="Take Screenshot">
+          <arg>
+           upload_role_02.jpg
+          </arg>
+          <doc>
+           Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.
+          </doc>
+          <msg html="true" level="INFO" timestamp="20240531 16:59:27.762">
+           &lt;a href="pabot_results%5C0%5Cupload_role_02.jpg"&gt;&lt;img src="pabot_results%5C0%5Cupload_role_02.jpg" width="800px"&gt;&lt;/a&gt;
+          </msg>
+          <status endtime="20240531 16:59:27.762" starttime="20240531 16:59:27.715" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 16:59:29.767">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 16:59:29.767" starttime="20240531 16:59:27.762" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[0]/mbar/menu[3]/menu[1]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 16:59:30.049" starttime="20240531 16:59:29.767" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 16:59:32.052">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 16:59:32.052" starttime="20240531 16:59:30.049" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Select Radio Button">
+          <arg>
+           wnd[0]/usr/radPRT_ALL
+          </arg>
+          <doc>
+           Sets radio button to the specified value.
+          </doc>
+          <status endtime="20240531 16:59:32.052" starttime="20240531 16:59:32.052" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 16:59:34.054">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 16:59:34.054" starttime="20240531 16:59:32.052" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[0]/usr/btn%_SEL_SHT_%_APP_%-VALU_PUSH
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 16:59:34.195" starttime="20240531 16:59:34.054" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 16:59:36.199">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 16:59:36.199" starttime="20240531 16:59:34.195" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Input Text">
+          <arg>
+           wnd[1]/usr/tabsTAB_STRIP/tabpSIVA/ssubSCREEN_HEADER:SAPLALDB:3010/tblSAPLALDBSINGLE/ctxtRSCSEL_255-SLOW_I[1,0]
+          </arg>
+          <arg>
+           ${symvar('upload_role_names')}[${upload_index}]
+          </arg>
+          <doc>
+           Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+          </doc>
+          <msg level="INFO" timestamp="20240531 16:59:36.199">
+           Sym.Dev.upload_role_names: ['Z_BNWVS_ADMIN_CHANGE', 'Z_BNWVS_ADMIN_CONTROL', 'Z_BNWVS_ADMIN_DISPLAY', 'Z_BNWVS_BATCHUSER']
+          </msg>
+          <msg level="INFO" timestamp="20240531 16:59:36.230">
+           Typing text 'Z_BNWVS_ADMIN_CONTROL' into text field 'wnd[1]/usr/tabsTAB_STRIP/tabpSIVA/ssubSCREEN_HEADER:SAPLALDB:3010/tblSAPLALDBSINGLE/ctxtRSCSEL_255-SLOW_I[1,0]'.
+          </msg>
+          <status endtime="20240531 16:59:36.230" starttime="20240531 16:59:36.199" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 16:59:38.234">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 16:59:38.234" starttime="20240531 16:59:36.230" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[1]/tbar[0]/btn[8]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 16:59:38.422" starttime="20240531 16:59:38.234" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 16:59:40.424">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 16:59:40.424" starttime="20240531 16:59:38.422" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Select Checkbox">
+          <arg>
+           wnd[0]/usr/chkAUTO_GEN
+          </arg>
+          <doc>
+           Selects checkbox identified by locator.
+Does nothing if the checkbox is already selected.
+          </doc>
+          <status endtime="20240531 16:59:40.424" starttime="20240531 16:59:40.424" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 16:59:42.450">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 16:59:42.450" starttime="20240531 16:59:40.424" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[0]/tbar[1]/btn[8]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 16:59:42.918" starttime="20240531 16:59:42.450" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 16:59:44.921">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 16:59:44.921" starttime="20240531 16:59:42.918" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[1]/usr/btnBUTTON_2
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 16:59:45.468" starttime="20240531 16:59:44.921" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 16:59:47.469">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 16:59:47.469" starttime="20240531 16:59:45.468" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[0]/tbar[0]/btn[3]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 16:59:47.781" starttime="20240531 16:59:47.469" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 16:59:49.784">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 16:59:49.784" starttime="20240531 16:59:47.781" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[0]/tbar[0]/btn[3]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 16:59:50.098" starttime="20240531 16:59:49.784" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 16:59:52.105">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 16:59:52.105" starttime="20240531 16:59:50.098" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[0]/tbar[0]/btn[3]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 16:59:52.276" starttime="20240531 16:59:52.105" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 16:59:54.283">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 16:59:54.283" starttime="20240531 16:59:52.276" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[0]/tbar[0]/btn[3]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 16:59:54.439" starttime="20240531 16:59:54.283" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 16:59:56.440">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 16:59:56.440" starttime="20240531 16:59:54.439" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Take Screenshot">
+          <arg>
+           upload_role_03.jpg
+          </arg>
+          <doc>
+           Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.
+          </doc>
+          <msg html="true" level="INFO" timestamp="20240531 16:59:56.503">
+           &lt;a href="pabot_results%5C0%5Cupload_role_03.jpg"&gt;&lt;img src="pabot_results%5C0%5Cupload_role_03.jpg" width="800px"&gt;&lt;/a&gt;
+          </msg>
+          <status endtime="20240531 16:59:56.518" starttime="20240531 16:59:56.440" status="PASS"/>
+         </kw>
+         <status endtime="20240531 16:59:56.518" starttime="20240531 16:59:27.715" status="PASS"/>
+        </branch>
+        <status endtime="20240531 16:59:56.518" starttime="20240531 16:59:27.715" status="PASS"/>
+       </if>
+       <status endtime="20240531 16:59:56.518" starttime="20240531 16:59:07.693" status="PASS"/>
+      </iter>
+      <iter>
+       <var name="${upload_index}">
+        2
+       </var>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         2
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 16:59:58.522">
+         Slept 2 seconds
+        </msg>
+        <status endtime="20240531 16:59:58.522" starttime="20240531 16:59:56.518" status="PASS"/>
+       </kw>
+       <kw library="SAP_Tcode_Library" name="Click Element">
+        <arg>
+         wnd[0]/mbar/menu[0]/menu[7]
+        </arg>
+        <doc>
+         Performs a single click on a given element. Used only for buttons, tabs and menu items.
+        </doc>
+        <status endtime="20240531 16:59:58.991" starttime="20240531 16:59:58.522" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         3
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 17:00:01.996">
+         Slept 3 seconds
+        </msg>
+        <status endtime="20240531 17:00:01.996" starttime="20240531 16:59:58.991" status="PASS"/>
+       </kw>
+       <kw library="SAP_Tcode_Library" name="Clear Field Text">
+        <arg>
+         wnd[1]/usr/ctxtDY_FILENAME
+        </arg>
+        <msg level="INFO" timestamp="20240531 17:00:01.996">
+         Text cleared in field with ID: wnd[1]/usr/ctxtDY_FILENAME
+        </msg>
+        <status endtime="20240531 17:00:01.996" starttime="20240531 17:00:01.996" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         2
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 17:00:03.999">
+         Slept 2 seconds
+        </msg>
+        <status endtime="20240531 17:00:03.999" starttime="20240531 17:00:01.996" status="PASS"/>
+       </kw>
+       <kw library="SAP_Tcode_Library" name="Clear Field Text">
+        <arg>
+         wnd[1]/usr/ctxtDY_PATH
+        </arg>
+        <msg level="INFO" timestamp="20240531 17:00:03.999">
+         Text cleared in field with ID: wnd[1]/usr/ctxtDY_PATH
+        </msg>
+        <status endtime="20240531 17:00:03.999" starttime="20240531 17:00:03.999" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         2
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 17:00:06.000">
+         Slept 2 seconds
+        </msg>
+        <status endtime="20240531 17:00:06.000" starttime="20240531 17:00:03.999" status="PASS"/>
+       </kw>
+       <kw library="SAP_Tcode_Library" name="Input Text">
+        <arg>
+         wnd[1]/usr/ctxtDY_PATH
+        </arg>
+        <arg>
+         ${symvar('uploading_path')}
+        </arg>
+        <doc>
+         Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+        </doc>
+        <msg level="INFO" timestamp="20240531 17:00:06.000">
+         Sym.Dev.uploading_path: D:\RobotFramework\SAPtesting\Tests\Resource\Roles
+        </msg>
+        <msg level="INFO" timestamp="20240531 17:00:06.000">
+         Typing text 'D:\RobotFramework\SAPtesting\Tests\Resource\Roles' into text field 'wnd[1]/usr/ctxtDY_PATH'.
+        </msg>
+        <status endtime="20240531 17:00:06.000" starttime="20240531 17:00:06.000" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         2
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 17:00:08.007">
+         Slept 2 seconds
+        </msg>
+        <status endtime="20240531 17:00:08.007" starttime="20240531 17:00:06.000" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Run Keyword And Return Status">
+        <var>
+         ${upload_role_input}
+        </var>
+        <arg>
+         Input Text
+        </arg>
+        <arg>
+         wnd[1]/usr/ctxtDY_FILENAME
+        </arg>
+        <arg>
+         ${symvar('uploading_file_names')}[${upload_index}]
+        </arg>
+        <doc>
+         Runs the given keyword with given arguments and returns the status as a Boolean value.
+        </doc>
+        <kw library="SAP_Tcode_Library" name="Input Text">
+         <arg>
+          wnd[1]/usr/ctxtDY_FILENAME
+         </arg>
+         <arg>
+          ${symvar('uploading_file_names')}[${upload_index}]
+         </arg>
+         <doc>
+          Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+         </doc>
+         <msg level="INFO" timestamp="20240531 17:00:08.007">
+          Sym.Dev.uploading_file_names: ['Z_BNWVS_ADMIN_CHANGE.SAP', 'Z_BNWVS_ADMIN_CONTROL.SAP', 'Z_BNWVS_ADMIN_DISPLAY.SAP', 'Z_BNWVS_BATCHUSER.SAP']
+         </msg>
+         <msg level="INFO" timestamp="20240531 17:00:08.024">
+          Typing text 'Z_BNWVS_ADMIN_DISPLAY.SAP' into text field 'wnd[1]/usr/ctxtDY_FILENAME'.
+         </msg>
+         <status endtime="20240531 17:00:08.024" starttime="20240531 17:00:08.007" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240531 17:00:08.024">
+         ${upload_role_input} = True
+        </msg>
+        <status endtime="20240531 17:00:08.024" starttime="20240531 17:00:08.007" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Run Keyword If">
+        <arg>
+         not ${upload_role_input}
+        </arg>
+        <arg>
+         Exit For Loop
+        </arg>
+        <doc>
+         Runs the given keyword with the given arguments, if ``condition`` is true.
+        </doc>
+        <status endtime="20240531 17:00:08.024" starttime="20240531 17:00:08.024" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         2
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 17:00:10.029">
+         Slept 2 seconds
+        </msg>
+        <status endtime="20240531 17:00:10.029" starttime="20240531 17:00:08.024" status="PASS"/>
+       </kw>
+       <kw library="SAP_Tcode_Library" name="Click Element">
+        <arg>
+         wnd[1]/tbar[0]/btn[0]
+        </arg>
+        <doc>
+         Performs a single click on a given element. Used only for buttons, tabs and menu items.
+        </doc>
+        <status endtime="20240531 17:00:11.092" starttime="20240531 17:00:10.029" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         2
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 17:00:13.099">
+         Slept 2 seconds
+        </msg>
+        <status endtime="20240531 17:00:13.099" starttime="20240531 17:00:11.092" status="PASS"/>
+       </kw>
+       <kw library="SAP_Tcode_Library" name="Click Element">
+        <arg>
+         wnd[1]/tbar[0]/btn[0]
+        </arg>
+        <doc>
+         Performs a single click on a given element. Used only for buttons, tabs and menu items.
+        </doc>
+        <status endtime="20240531 17:00:13.537" starttime="20240531 17:00:13.099" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         3
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 17:00:16.542">
+         Slept 3 seconds
+        </msg>
+        <status endtime="20240531 17:00:16.542" starttime="20240531 17:00:13.537" status="PASS"/>
+       </kw>
+       <kw library="SAP_Tcode_Library" name="Get Value">
+        <var>
+         ${true_condition}
+        </var>
+        <arg>
+         wnd[0]/sbar/pane[0]
+        </arg>
+        <doc>
+         Gets the value of the given element. The possible return values depend on the type of element (see Return values).
+        </doc>
+        <msg level="INFO" timestamp="20240531 17:00:16.542">
+         ${true_condition} = One role was uploaded from the file
+        </msg>
+        <status endtime="20240531 17:00:16.542" starttime="20240531 17:00:16.542" status="PASS"/>
+       </kw>
+       <if>
+        <branch condition="'${true_condition}' == 'The file does not exist'" type="IF">
+         <kw library="SAP_Tcode_Library" name="Take Screenshot">
+          <arg>
+           Role_not exist01.jpg
+          </arg>
+          <doc>
+           Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.
+          </doc>
+          <status endtime="20240531 17:00:16.542" starttime="20240531 17:00:16.542" status="NOT RUN"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <status endtime="20240531 17:00:16.542" starttime="20240531 17:00:16.542" status="NOT RUN"/>
+         </kw>
+         <kw library="BuiltIn" name="Log">
+          <arg>
+           ${true_condition}
+          </arg>
+          <doc>
+           Logs the given message with the given level.
+          </doc>
+          <status endtime="20240531 17:00:16.542" starttime="20240531 17:00:16.542" status="NOT RUN"/>
+         </kw>
+         <kw library="BuiltIn" name="Log To Console">
+          <arg>
+           ${true_condition}
+          </arg>
+          <doc>
+           Logs the given message to the console.
+          </doc>
+          <status endtime="20240531 17:00:16.542" starttime="20240531 17:00:16.542" status="NOT RUN"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           3
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <status endtime="20240531 17:00:16.542" starttime="20240531 17:00:16.542" status="NOT RUN"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[1]/tbar[0]/btn[12]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 17:00:16.542" starttime="20240531 17:00:16.542" status="NOT RUN"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <status endtime="20240531 17:00:16.542" starttime="20240531 17:00:16.542" status="NOT RUN"/>
+         </kw>
+         <status endtime="20240531 17:00:16.542" starttime="20240531 17:00:16.542" status="NOT RUN"/>
+        </branch>
+        <branch condition="'${true_condition}' != 'The file does not exist'" type="ELSE IF">
+         <kw library="SAP_Tcode_Library" name="Take Screenshot">
+          <arg>
+           upload_role_02.jpg
+          </arg>
+          <doc>
+           Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.
+          </doc>
+          <msg html="true" level="INFO" timestamp="20240531 17:00:16.605">
+           &lt;a href="pabot_results%5C0%5Cupload_role_02.jpg"&gt;&lt;img src="pabot_results%5C0%5Cupload_role_02.jpg" width="800px"&gt;&lt;/a&gt;
+          </msg>
+          <status endtime="20240531 17:00:16.605" starttime="20240531 17:00:16.542" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 17:00:18.608">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 17:00:18.608" starttime="20240531 17:00:16.605" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[0]/mbar/menu[3]/menu[1]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 17:00:18.843" starttime="20240531 17:00:18.608" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 17:00:20.862">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 17:00:20.862" starttime="20240531 17:00:18.858" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Select Radio Button">
+          <arg>
+           wnd[0]/usr/radPRT_ALL
+          </arg>
+          <doc>
+           Sets radio button to the specified value.
+          </doc>
+          <status endtime="20240531 17:00:20.862" starttime="20240531 17:00:20.862" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 17:00:22.871">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 17:00:22.871" starttime="20240531 17:00:20.862" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[0]/usr/btn%_SEL_SHT_%_APP_%-VALU_PUSH
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 17:00:23.011" starttime="20240531 17:00:22.871" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 17:00:25.021">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 17:00:25.021" starttime="20240531 17:00:23.011" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Input Text">
+          <arg>
+           wnd[1]/usr/tabsTAB_STRIP/tabpSIVA/ssubSCREEN_HEADER:SAPLALDB:3010/tblSAPLALDBSINGLE/ctxtRSCSEL_255-SLOW_I[1,0]
+          </arg>
+          <arg>
+           ${symvar('upload_role_names')}[${upload_index}]
+          </arg>
+          <doc>
+           Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+          </doc>
+          <msg level="INFO" timestamp="20240531 17:00:25.021">
+           Sym.Dev.upload_role_names: ['Z_BNWVS_ADMIN_CHANGE', 'Z_BNWVS_ADMIN_CONTROL', 'Z_BNWVS_ADMIN_DISPLAY', 'Z_BNWVS_BATCHUSER']
+          </msg>
+          <msg level="INFO" timestamp="20240531 17:00:25.053">
+           Typing text 'Z_BNWVS_ADMIN_DISPLAY' into text field 'wnd[1]/usr/tabsTAB_STRIP/tabpSIVA/ssubSCREEN_HEADER:SAPLALDB:3010/tblSAPLALDBSINGLE/ctxtRSCSEL_255-SLOW_I[1,0]'.
+          </msg>
+          <status endtime="20240531 17:00:25.053" starttime="20240531 17:00:25.021" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 17:00:27.066">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 17:00:27.066" starttime="20240531 17:00:25.053" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[1]/tbar[0]/btn[8]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 17:00:27.316" starttime="20240531 17:00:27.066" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 17:00:29.323">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 17:00:29.323" starttime="20240531 17:00:27.316" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Select Checkbox">
+          <arg>
+           wnd[0]/usr/chkAUTO_GEN
+          </arg>
+          <doc>
+           Selects checkbox identified by locator.
+Does nothing if the checkbox is already selected.
+          </doc>
+          <status endtime="20240531 17:00:29.323" starttime="20240531 17:00:29.323" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 17:00:31.328">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 17:00:31.328" starttime="20240531 17:00:29.323" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[0]/tbar[1]/btn[8]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 17:00:31.762" starttime="20240531 17:00:31.328" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 17:00:33.768">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 17:00:33.768" starttime="20240531 17:00:31.762" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[1]/usr/btnBUTTON_2
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 17:00:34.342" starttime="20240531 17:00:33.768" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 17:00:36.355">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 17:00:36.355" starttime="20240531 17:00:34.342" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[0]/tbar[0]/btn[3]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 17:00:36.698" starttime="20240531 17:00:36.355" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 17:00:38.709">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 17:00:38.709" starttime="20240531 17:00:36.698" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[0]/tbar[0]/btn[3]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 17:00:39.052" starttime="20240531 17:00:38.709" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 17:00:41.064">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 17:00:41.064" starttime="20240531 17:00:39.052" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[0]/tbar[0]/btn[3]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 17:00:41.282" starttime="20240531 17:00:41.064" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 17:00:43.284">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 17:00:43.284" starttime="20240531 17:00:41.282" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[0]/tbar[0]/btn[3]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 17:00:43.440" starttime="20240531 17:00:43.284" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 17:00:45.440">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 17:00:45.440" starttime="20240531 17:00:43.440" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Take Screenshot">
+          <arg>
+           upload_role_03.jpg
+          </arg>
+          <doc>
+           Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.
+          </doc>
+          <msg html="true" level="INFO" timestamp="20240531 17:00:45.503">
+           &lt;a href="pabot_results%5C0%5Cupload_role_03.jpg"&gt;&lt;img src="pabot_results%5C0%5Cupload_role_03.jpg" width="800px"&gt;&lt;/a&gt;
+          </msg>
+          <status endtime="20240531 17:00:45.503" starttime="20240531 17:00:45.440" status="PASS"/>
+         </kw>
+         <status endtime="20240531 17:00:45.503" starttime="20240531 17:00:16.542" status="PASS"/>
+        </branch>
+        <status endtime="20240531 17:00:45.503" starttime="20240531 17:00:16.542" status="PASS"/>
+       </if>
+       <status endtime="20240531 17:00:45.503" starttime="20240531 16:59:56.518" status="PASS"/>
+      </iter>
+      <iter>
+       <var name="${upload_index}">
+        3
+       </var>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         2
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 17:00:47.514">
+         Slept 2 seconds
+        </msg>
+        <status endtime="20240531 17:00:47.514" starttime="20240531 17:00:45.503" status="PASS"/>
+       </kw>
+       <kw library="SAP_Tcode_Library" name="Click Element">
+        <arg>
+         wnd[0]/mbar/menu[0]/menu[7]
+        </arg>
+        <doc>
+         Performs a single click on a given element. Used only for buttons, tabs and menu items.
+        </doc>
+        <status endtime="20240531 17:00:47.920" starttime="20240531 17:00:47.514" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         3
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 17:00:50.925">
+         Slept 3 seconds
+        </msg>
+        <status endtime="20240531 17:00:50.925" starttime="20240531 17:00:47.920" status="PASS"/>
+       </kw>
+       <kw library="SAP_Tcode_Library" name="Clear Field Text">
+        <arg>
+         wnd[1]/usr/ctxtDY_FILENAME
+        </arg>
+        <msg level="INFO" timestamp="20240531 17:00:50.925">
+         Text cleared in field with ID: wnd[1]/usr/ctxtDY_FILENAME
+        </msg>
+        <status endtime="20240531 17:00:50.940" starttime="20240531 17:00:50.925" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         2
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 17:00:52.947">
+         Slept 2 seconds
+        </msg>
+        <status endtime="20240531 17:00:52.947" starttime="20240531 17:00:50.940" status="PASS"/>
+       </kw>
+       <kw library="SAP_Tcode_Library" name="Clear Field Text">
+        <arg>
+         wnd[1]/usr/ctxtDY_PATH
+        </arg>
+        <msg level="INFO" timestamp="20240531 17:00:52.947">
+         Text cleared in field with ID: wnd[1]/usr/ctxtDY_PATH
+        </msg>
+        <status endtime="20240531 17:00:52.947" starttime="20240531 17:00:52.947" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         2
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 17:00:54.958">
+         Slept 2 seconds
+        </msg>
+        <status endtime="20240531 17:00:54.958" starttime="20240531 17:00:52.947" status="PASS"/>
+       </kw>
+       <kw library="SAP_Tcode_Library" name="Input Text">
+        <arg>
+         wnd[1]/usr/ctxtDY_PATH
+        </arg>
+        <arg>
+         ${symvar('uploading_path')}
+        </arg>
+        <doc>
+         Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+        </doc>
+        <msg level="INFO" timestamp="20240531 17:00:54.958">
+         Sym.Dev.uploading_path: D:\RobotFramework\SAPtesting\Tests\Resource\Roles
+        </msg>
+        <msg level="INFO" timestamp="20240531 17:00:54.958">
+         Typing text 'D:\RobotFramework\SAPtesting\Tests\Resource\Roles' into text field 'wnd[1]/usr/ctxtDY_PATH'.
+        </msg>
+        <status endtime="20240531 17:00:54.958" starttime="20240531 17:00:54.958" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         2
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 17:00:56.968">
+         Slept 2 seconds
+        </msg>
+        <status endtime="20240531 17:00:56.968" starttime="20240531 17:00:54.958" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Run Keyword And Return Status">
+        <var>
+         ${upload_role_input}
+        </var>
+        <arg>
+         Input Text
+        </arg>
+        <arg>
+         wnd[1]/usr/ctxtDY_FILENAME
+        </arg>
+        <arg>
+         ${symvar('uploading_file_names')}[${upload_index}]
+        </arg>
+        <doc>
+         Runs the given keyword with given arguments and returns the status as a Boolean value.
+        </doc>
+        <kw library="SAP_Tcode_Library" name="Input Text">
+         <arg>
+          wnd[1]/usr/ctxtDY_FILENAME
+         </arg>
+         <arg>
+          ${symvar('uploading_file_names')}[${upload_index}]
+         </arg>
+         <doc>
+          Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+         </doc>
+         <msg level="INFO" timestamp="20240531 17:00:56.968">
+          Sym.Dev.uploading_file_names: ['Z_BNWVS_ADMIN_CHANGE.SAP', 'Z_BNWVS_ADMIN_CONTROL.SAP', 'Z_BNWVS_ADMIN_DISPLAY.SAP', 'Z_BNWVS_BATCHUSER.SAP']
+         </msg>
+         <msg level="INFO" timestamp="20240531 17:00:56.984">
+          Typing text 'Z_BNWVS_BATCHUSER.SAP' into text field 'wnd[1]/usr/ctxtDY_FILENAME'.
+         </msg>
+         <status endtime="20240531 17:00:56.984" starttime="20240531 17:00:56.968" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240531 17:00:56.984">
+         ${upload_role_input} = True
+        </msg>
+        <status endtime="20240531 17:00:56.984" starttime="20240531 17:00:56.968" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Run Keyword If">
+        <arg>
+         not ${upload_role_input}
+        </arg>
+        <arg>
+         Exit For Loop
+        </arg>
+        <doc>
+         Runs the given keyword with the given arguments, if ``condition`` is true.
+        </doc>
+        <status endtime="20240531 17:00:56.984" starttime="20240531 17:00:56.984" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         2
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 17:00:58.995">
+         Slept 2 seconds
+        </msg>
+        <status endtime="20240531 17:00:58.995" starttime="20240531 17:00:56.984" status="PASS"/>
+       </kw>
+       <kw library="SAP_Tcode_Library" name="Click Element">
+        <arg>
+         wnd[1]/tbar[0]/btn[0]
+        </arg>
+        <doc>
+         Performs a single click on a given element. Used only for buttons, tabs and menu items.
+        </doc>
+        <status endtime="20240531 17:01:00.039" starttime="20240531 17:00:58.995" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         2
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 17:01:02.049">
+         Slept 2 seconds
+        </msg>
+        <status endtime="20240531 17:01:02.049" starttime="20240531 17:01:00.039" status="PASS"/>
+       </kw>
+       <kw library="SAP_Tcode_Library" name="Click Element">
+        <arg>
+         wnd[1]/tbar[0]/btn[0]
+        </arg>
+        <doc>
+         Performs a single click on a given element. Used only for buttons, tabs and menu items.
+        </doc>
+        <status endtime="20240531 17:01:02.627" starttime="20240531 17:01:02.049" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Sleep">
+        <arg>
+         3
+        </arg>
+        <doc>
+         Pauses the test executed for the given time.
+        </doc>
+        <msg level="INFO" timestamp="20240531 17:01:05.634">
+         Slept 3 seconds
+        </msg>
+        <status endtime="20240531 17:01:05.634" starttime="20240531 17:01:02.627" status="PASS"/>
+       </kw>
+       <kw library="SAP_Tcode_Library" name="Get Value">
+        <var>
+         ${true_condition}
+        </var>
+        <arg>
+         wnd[0]/sbar/pane[0]
+        </arg>
+        <doc>
+         Gets the value of the given element. The possible return values depend on the type of element (see Return values).
+        </doc>
+        <msg level="INFO" timestamp="20240531 17:01:05.634">
+         ${true_condition} = One role was uploaded from the file
+        </msg>
+        <status endtime="20240531 17:01:05.634" starttime="20240531 17:01:05.634" status="PASS"/>
+       </kw>
+       <if>
+        <branch condition="'${true_condition}' == 'The file does not exist'" type="IF">
+         <kw library="SAP_Tcode_Library" name="Take Screenshot">
+          <arg>
+           Role_not exist01.jpg
+          </arg>
+          <doc>
+           Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.
+          </doc>
+          <status endtime="20240531 17:01:05.634" starttime="20240531 17:01:05.634" status="NOT RUN"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <status endtime="20240531 17:01:05.634" starttime="20240531 17:01:05.634" status="NOT RUN"/>
+         </kw>
+         <kw library="BuiltIn" name="Log">
+          <arg>
+           ${true_condition}
+          </arg>
+          <doc>
+           Logs the given message with the given level.
+          </doc>
+          <status endtime="20240531 17:01:05.634" starttime="20240531 17:01:05.634" status="NOT RUN"/>
+         </kw>
+         <kw library="BuiltIn" name="Log To Console">
+          <arg>
+           ${true_condition}
+          </arg>
+          <doc>
+           Logs the given message to the console.
+          </doc>
+          <status endtime="20240531 17:01:05.634" starttime="20240531 17:01:05.634" status="NOT RUN"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           3
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <status endtime="20240531 17:01:05.634" starttime="20240531 17:01:05.634" status="NOT RUN"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[1]/tbar[0]/btn[12]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 17:01:05.634" starttime="20240531 17:01:05.634" status="NOT RUN"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <status endtime="20240531 17:01:05.634" starttime="20240531 17:01:05.634" status="NOT RUN"/>
+         </kw>
+         <status endtime="20240531 17:01:05.634" starttime="20240531 17:01:05.634" status="NOT RUN"/>
+        </branch>
+        <branch condition="'${true_condition}' != 'The file does not exist'" type="ELSE IF">
+         <kw library="SAP_Tcode_Library" name="Take Screenshot">
+          <arg>
+           upload_role_02.jpg
+          </arg>
+          <doc>
+           Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.
+          </doc>
+          <msg html="true" level="INFO" timestamp="20240531 17:01:05.697">
+           &lt;a href="pabot_results%5C0%5Cupload_role_02.jpg"&gt;&lt;img src="pabot_results%5C0%5Cupload_role_02.jpg" width="800px"&gt;&lt;/a&gt;
+          </msg>
+          <status endtime="20240531 17:01:05.697" starttime="20240531 17:01:05.634" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 17:01:07.699">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 17:01:07.699" starttime="20240531 17:01:05.697" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[0]/mbar/menu[3]/menu[1]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 17:01:07.949" starttime="20240531 17:01:07.699" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 17:01:09.960">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 17:01:09.960" starttime="20240531 17:01:07.949" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Select Radio Button">
+          <arg>
+           wnd[0]/usr/radPRT_ALL
+          </arg>
+          <doc>
+           Sets radio button to the specified value.
+          </doc>
+          <status endtime="20240531 17:01:09.960" starttime="20240531 17:01:09.960" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 17:01:11.967">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 17:01:11.967" starttime="20240531 17:01:09.960" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[0]/usr/btn%_SEL_SHT_%_APP_%-VALU_PUSH
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 17:01:12.119" starttime="20240531 17:01:11.967" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 17:01:14.126">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 17:01:14.126" starttime="20240531 17:01:12.119" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Input Text">
+          <arg>
+           wnd[1]/usr/tabsTAB_STRIP/tabpSIVA/ssubSCREEN_HEADER:SAPLALDB:3010/tblSAPLALDBSINGLE/ctxtRSCSEL_255-SLOW_I[1,0]
+          </arg>
+          <arg>
+           ${symvar('upload_role_names')}[${upload_index}]
+          </arg>
+          <doc>
+           Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+          </doc>
+          <msg level="INFO" timestamp="20240531 17:01:14.126">
+           Sym.Dev.upload_role_names: ['Z_BNWVS_ADMIN_CHANGE', 'Z_BNWVS_ADMIN_CONTROL', 'Z_BNWVS_ADMIN_DISPLAY', 'Z_BNWVS_BATCHUSER']
+          </msg>
+          <msg level="INFO" timestamp="20240531 17:01:14.157">
+           Typing text 'Z_BNWVS_BATCHUSER' into text field 'wnd[1]/usr/tabsTAB_STRIP/tabpSIVA/ssubSCREEN_HEADER:SAPLALDB:3010/tblSAPLALDBSINGLE/ctxtRSCSEL_255-SLOW_I[1,0]'.
+          </msg>
+          <status endtime="20240531 17:01:14.157" starttime="20240531 17:01:14.126" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 17:01:16.171">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 17:01:16.171" starttime="20240531 17:01:14.157" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[1]/tbar[0]/btn[8]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 17:01:16.358" starttime="20240531 17:01:16.171" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 17:01:18.371">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 17:01:18.371" starttime="20240531 17:01:16.358" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Select Checkbox">
+          <arg>
+           wnd[0]/usr/chkAUTO_GEN
+          </arg>
+          <doc>
+           Selects checkbox identified by locator.
+Does nothing if the checkbox is already selected.
+          </doc>
+          <status endtime="20240531 17:01:18.371" starttime="20240531 17:01:18.371" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 17:01:20.377">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 17:01:20.377" starttime="20240531 17:01:18.371" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[0]/tbar[1]/btn[8]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 17:01:20.862" starttime="20240531 17:01:20.377" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 17:01:22.871">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 17:01:22.871" starttime="20240531 17:01:20.862" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[1]/usr/btnBUTTON_2
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 17:01:23.445" starttime="20240531 17:01:22.871" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 17:01:25.455">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 17:01:25.455" starttime="20240531 17:01:23.445" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[0]/tbar[0]/btn[3]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 17:01:25.799" starttime="20240531 17:01:25.455" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 17:01:27.810">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 17:01:27.810" starttime="20240531 17:01:25.799" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[0]/tbar[0]/btn[3]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 17:01:28.118" starttime="20240531 17:01:27.810" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 17:01:30.128">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 17:01:30.128" starttime="20240531 17:01:28.118" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[0]/tbar[0]/btn[3]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 17:01:30.300" starttime="20240531 17:01:30.128" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 17:01:32.307">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 17:01:32.307" starttime="20240531 17:01:30.300" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Click Element">
+          <arg>
+           wnd[0]/tbar[0]/btn[3]
+          </arg>
+          <doc>
+           Performs a single click on a given element. Used only for buttons, tabs and menu items.
+          </doc>
+          <status endtime="20240531 17:01:32.447" starttime="20240531 17:01:32.307" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           2
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240531 17:01:34.453">
+           Slept 2 seconds
+          </msg>
+          <status endtime="20240531 17:01:34.453" starttime="20240531 17:01:32.447" status="PASS"/>
+         </kw>
+         <kw library="SAP_Tcode_Library" name="Take Screenshot">
+          <arg>
+           upload_role_03.jpg
+          </arg>
+          <doc>
+           Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.
+          </doc>
+          <msg html="true" level="INFO" timestamp="20240531 17:01:34.516">
+           &lt;a href="pabot_results%5C0%5Cupload_role_03.jpg"&gt;&lt;img src="pabot_results%5C0%5Cupload_role_03.jpg" width="800px"&gt;&lt;/a&gt;
+          </msg>
+          <status endtime="20240531 17:01:34.516" starttime="20240531 17:01:34.453" status="PASS"/>
+         </kw>
+         <status endtime="20240531 17:01:34.516" starttime="20240531 17:01:05.634" status="PASS"/>
+        </branch>
+        <status endtime="20240531 17:01:34.516" starttime="20240531 17:01:05.634" status="PASS"/>
+       </if>
+       <status endtime="20240531 17:01:34.516" starttime="20240531 17:00:45.503" status="PASS"/>
+      </iter>
+      <status endtime="20240531 17:01:34.516" starttime="20240531 16:58:16.080" status="PASS"/>
+     </for>
+     <status endtime="20240531 17:01:34.516" starttime="20240531 16:58:13.553" status="PASS"/>
+    </kw>
+    <tag>
+     Regression
+    </tag>
+    <tag>
+     upload_role
+    </tag>
+    <status endtime="20240531 17:01:34.516" starttime="20240531 16:58:13.553" status="PASS"/>
+   </test>
+   <kw library="UPLOAD_ROLE_NIKE" name="System Logout" type="TEARDOWN">
+    <kw library="SAP_Tcode_Library" name="Run Transaction">
+     <arg>
+      /nex
+     </arg>
+     <doc>
+      Runs a Sap transaction. An error is given when an unknown transaction is specified.
+     </doc>
+     <status endtime="20240531 17:01:34.610" starttime="20240531 17:01:34.516" status="PASS"/>
+    </kw>
+    <kw library="BuiltIn" name="Sleep">
+     <arg>
+      5
+     </arg>
+     <doc>
+      Pauses the test executed for the given time.
+     </doc>
+     <msg level="INFO" timestamp="20240531 17:01:39.612">
+      Slept 5 seconds
+     </msg>
+     <status endtime="20240531 17:01:39.612" starttime="20240531 17:01:34.610" status="PASS"/>
+    </kw>
+    <kw library="SAP_Tcode_Library" name="Take Screenshot">
+     <arg>
+      logoutpage.jpg
+     </arg>
+     <doc>
+      Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.
+     </doc>
+     <msg html="true" level="INFO" timestamp="20240531 17:01:39.690">
+      &lt;a href="pabot_results%5C0%5Clogoutpage.jpg"&gt;&lt;img src="pabot_results%5C0%5Clogoutpage.jpg" width="800px"&gt;&lt;/a&gt;
+     </msg>
+     <status endtime="20240531 17:01:39.690" starttime="20240531 17:01:39.612" status="PASS"/>
+    </kw>
+    <kw library="BuiltIn" name="Sleep">
+     <arg>
+      10
+     </arg>
+     <doc>
+      Pauses the test executed for the given time.
+     </doc>
+     <msg level="INFO" timestamp="20240531 17:01:49.692">
+      Slept 10 seconds
+     </msg>
+     <status endtime="20240531 17:01:49.692" starttime="20240531 17:01:39.690" status="PASS"/>
+    </kw>
+    <status endtime="20240531 17:01:49.692" starttime="20240531 17:01:34.516" status="PASS"/>
+   </kw>
+   <status endtime="20240531 17:01:49.692" starttime="20240531 16:58:04.625" status="PASS"/>
+  </suite>
+  <doc>
+   Testing functionality through Robot Framework
+  </doc>
+  <meta name="environment">
+   Dev
+  </meta>
+  <meta name="test_browser_name">
+   chrome
+  </meta>
+  <meta name="test_browser_version">
+   125.0.6422.77
+  </meta>
+  <meta name="test_driver_version">
+   124.0.6367.207
+  </meta>
+  <meta name="test_environment">
+   Dev
+  </meta>
+  <meta name="test_freeze_dependencies">
+   astroid==3.1.0,attrs==23.2.0,beautifulsoup4==4.12.3,bs4==0.0.2,build==1.2.1,certifi==2024.2.2,cffi==1.16.0,chardet==5.2.0,charset-normalizer==3.3.2,click==8.1.7,cmake==3.29.3,colorama==0.4.6,comtypes==1.4.2,cryptography==42.0.5,defusedxml==0.7.1,dill==0.3.8,docutils==0.21.2,et-xmlfile==1.1.0,exceptiongroup==1.2.1,fire==0.4.0,gitdb==4.0.11,GitPython==3.1.43,h11==0.14.0,idna==3.7,isort==5.13.2,Jinja2==3.1.3,jira==3.8.0,jsonpath-ng==1.6.1,jsonschema==4.21.1,jsonschema-specifications==2023.12.1,lazy-object-proxy==1.10.0,lxml==5.2.1,markdown-it-py==3.0.0,MarkupSafe==2.1.5,mccabe==0.7.0,mdurl==0.1.2,natsort==8.4.0,oauthlib==3.2.2,openpyxl==3.1.2,outcome==1.3.0.post0,packaging==24.0,pathspec==0.11.2,pendulum==3.0.0,pillow==10.3.0,pip==24.0,platformdirs==4.2.1,ply==3.11,psutil==5.9.8,pycparser==2.22,Pygments==2.17.2,pylint==3.1.0,pynput-robocorp-fork==5.0.0,pyperclip==1.8.2,pyproject-toml==0.0.10,pyproject_hooks==1.1.0,PySocks==1.7.1,python-dateutil==2.9.0.post0,python-dotenv==1.0.1,pywin32==306,PyYAML==6.0.1,referencing==0.35.0,reportlab==4.2.0,requests==2.31.0,requests-oauthlib==2.0.0,requests-toolbelt==1.0.0,rich==13.7.1,rich-click==1.6.1,robotframework==6.0.2,robotframework-datadriver==1.9.0,robotframework-excellib==2.0.1,robotframework-jsonlibrary==0.5,robotframework-pabot==2.16.0,robotframework-pythonlibcore==4.2.0,robotframework-requests==0.9.2,robotframework-sapguilibrary==1.1,robotframework-seleniumlibrary==5.1.3,robotframework-stacktrace==0.4.1,robotframework-tidy==4.5.0,rpaframework-core==11.3.2,rpaframework-windows==7.5.1,rpds-py==0.18.0,selenium==4.9.1,setuptools==70.0.0,six==1.16.0,smmap==5.0.1,sniffio==1.3.1,sortedcontainers==2.4.0,soupsieve==2.5,termcolor==2.4.0,time-machine==2.14.1,toml==0.10.2,tomli==2.0.1,tomlkit==0.12.4,trio==0.25.0,trio-websocket==0.11.1,typing_extensions==4.11.0,tzdata==2024.1,uiautomation==2.0.18,urllib3==2.2.1,webdriver-manager==4.0.1,wheel==0.43.0,wrapt==1.16.0,wsproto==1.2.0
+  </meta>
+  <status endtime="20240531 17:01:50.084" starttime="20240531 16:58:00.195" status="PASS"/>
+ </suite>
+ <statistics>
+  <total>
+   <stat fail="0" pass="1" skip="0">
+    All Tests
+   </stat>
+  </total>
+  <tag>
+   <stat fail="0" pass="1" skip="0">
+    Regression
+   </stat>
+   <stat fail="0" pass="1" skip="0">
+    upload_role
+   </stat>
+  </tag>
+  <suite>
+   <stat fail="0" id="s1" name="Tests" pass="1" skip="0">
+    Tests
+   </stat>
+   <stat fail="0" id="s1-s1" name="TEST UPLOAD ROLE NIKE" pass="1" skip="0">
+    Tests.TEST UPLOAD ROLE NIKE
+   </stat>
+  </suite>
+ </statistics>
+ <errors>
+ </errors>
+</robot>

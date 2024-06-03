@@ -9,8 +9,6 @@ from robot.api import logger
 import sys
 import ast
 
-
-
 class CustomSapGuiLibrary:
     """The SapGuiLibrary is a library that enables users to create tests for the Sap Gui application
 
@@ -1065,6 +1063,38 @@ class CustomSapGuiLibrary:
         except Exception as e:
             print(f"Error: {e}")
 
+    def select_spam_version(self, control_id, search_text, max_scrolls=50):
+        try:
+            control = self.session.findById(control_id)
+            row_count = control.RowCount  # Assuming the control has a RowCount property
+            print(row_count)
+            scroll_count = 0
+            found = False
+
+            while scroll_count < max_scrolls and not found:
+                for row in range(row_count):
+                    print(row)
+                    cell_value=control
+                    cell_value = control.GetCellValue(row,"COMPONENT")
+                    print(cell_value)
+                    if search_text in cell_value:
+                        result = row
+                        print("Text Found in ${row}")
+                        self.session.findById(control_id).currentCellRow = row
+                        self.session.findById(control_id).selectedRows = row
+                        return row
+                if not found:
+                    # Scroll down and wait for the content to update
+                    print(scroll_count)
+                    self.session.findById("wnd[1]").sendVKey(82)  # 86 is the code for Page Down
+                    time.sleep(1)  # Adjust as necessary for GUI response time
+                    scroll_count += 1
+            if not found:
+                print("Text not found after scrolling through all pages.")
+            
+        except Exception as e:
+            return f"Error: {e}"
+
     def select_spam_based_on_text(self, control_id, search_text):
         try:
             control = self.session.findById(control_id)
@@ -1123,7 +1153,7 @@ class CustomSapGuiLibrary:
         comp_area = self.session.FindById(comp_id)
         row_count = comp_area.RowCount
         found_rows = []
-        print(dir(comp_area))
+        # print(dir(comp_area))
 
         for i in range(len(search_comp)):
             comp = search_comp[i]
@@ -1259,10 +1289,46 @@ class CustomSapGuiLibrary:
                 return cell_value
         except Exception as e:
             return f"Error: {e}"
-
-
-
-
-
-
+        
+    def select_patch_rows(self, component):
+        com_text = "wnd[1]/usr/tabsVERSDETAILS/tabpCOMP_VERS/ssubDETAIL_SUBSCREEN:SAPLOCS_UI_CONTROLS:0301/cntlSCV_CU_CONTROL/shellcont/shell"
+        print(com_text)
+        try:
+            for i in range(0, 100):
+                com_id = f"{com_text}{i}]"  
+                print(com_id)# Construct the complete component ID
+                component_value = self.session.findById(com_id).Text
+                print(component_value)
+                if component == component_value:
+                    return i
+        except Exception as e:
+            print(f"An error occurred while expanding node: {e}")
+    
+    def selected_row_by_text(self, tree_id, text_to_find):
+        try:
+            tree = self.session.findById(tree_id)
             
+            for row in range(tree.rowCount):
+                cell_value = tree.getCellValue(row, 0)
+                if cell_value == text_to_find:
+                    tree.firstVisibleRow = row
+                    print(f"Selected row {row} containing text '{text_to_find}'")
+                    return
+            print(f"Text '{text_to_find}' not found in any row.")
+        except Exception as e:
+            print(f"Error: {e}")
+
+    def window_handling(self, window_id, text, continue_id):   
+        try:
+            content = self.session.findById(window_id).Text
+            if content == text:
+                print("Window exists")
+                # self.take_screenshot()
+                self.session.findById(continue_id).press()
+                return content
+            else:
+                print("window does not exist.")
+           
+        except Exception as e:
+            print(f"Error: {str(e)}")
+            return False

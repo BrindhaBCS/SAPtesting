@@ -1,0 +1,846 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.12.3 on win32)" generated="20240602 18:02:41.425" rpa="false" schemaversion="3">
+<suite id="s1" name="Tests" source="D:\RobotFramework\SAPtesting\Tests">
+<kw name="Setup highest level suite" type="SETUP">
+<kw name="Set Variable" library="BuiltIn">
+<var>${d.test_server}</var>
+<arg>${test_server}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240602 18:02:42.305" level="INFO">${d.test_server} = Dev</msg>
+<status status="PASS" starttime="20240602 18:02:42.305" endtime="20240602 18:02:42.306"/>
+</kw>
+<kw name="Reset screenshot count variable" library="Support">
+<kw name="Set Variable" library="BuiltIn">
+<var>${screenshotCount}</var>
+<arg>${PABOTQUEUEINDEX}_1</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240602 18:02:42.307" level="INFO">${screenshotCount} = 0_1</msg>
+<status status="PASS" starttime="20240602 18:02:42.306" endtime="20240602 18:02:42.307"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${screenshotCount}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240602 18:02:42.307" level="INFO">${screenshotCount} = 0_1</msg>
+<status status="PASS" starttime="20240602 18:02:42.307" endtime="20240602 18:02:42.307"/>
+</kw>
+<kw name="Set up screenshot directory" library="Support">
+<kw name="Create Directory" library="OperatingSystem">
+<arg>${OUTPUTDIR}${/}${wvar('screenshot_dir')}</arg>
+<doc>Creates the specified directory.</doc>
+<msg timestamp="20240602 18:02:42.309" level="INFO">Web.Dev.screenshot_dir: Screenshot</msg>
+<msg timestamp="20240602 18:02:42.312" level="INFO" html="true">Created directory '&lt;a href="file://D:\RobotFramework\SAPtesting\Output\fe866178-25e6-41a1-9443-57ec49b1a613\pabot_results\0\Screenshot"&gt;D:\RobotFramework\SAPtesting\Output\fe866178-25e6-41a1-9443-57ec49b1a613\pabot_results\0\Screenshot&lt;/a&gt;'.</msg>
+<status status="PASS" starttime="20240602 18:02:42.308" endtime="20240602 18:02:42.312"/>
+</kw>
+<status status="PASS" starttime="20240602 18:02:42.308" endtime="20240602 18:02:42.312"/>
+</kw>
+<status status="PASS" starttime="20240602 18:02:42.306" endtime="20240602 18:02:42.312"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${screenshot_taking}</arg>
+<arg>${True}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240602 18:02:42.312" level="INFO">${screenshot_taking} = True</msg>
+<status status="PASS" starttime="20240602 18:02:42.312" endtime="20240602 18:02:42.312"/>
+</kw>
+<kw name="Setup linux execution" library="Support">
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${web_test_check}</var>
+<arg>Variable Should Exist</arg>
+<arg>${web_test}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Variable Should Exist" library="BuiltIn">
+<arg>${web_test}</arg>
+<doc>Fails unless the given variable exists within the current scope.</doc>
+<status status="PASS" starttime="20240602 18:02:42.312" endtime="20240602 18:02:42.314"/>
+</kw>
+<msg timestamp="20240602 18:02:42.314" level="INFO">${web_test_check} = True</msg>
+<status status="PASS" starttime="20240602 18:02:42.312" endtime="20240602 18:02:42.314"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>${web_test_check}</arg>
+<arg>Setup Docker Execution Options</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<kw name="Setup Docker Execution Options" library="Support_Web">
+<kw name="Setup Suite Metadata" library="Support_Web">
+<arg>${browser}</arg>
+<kw name="Get Browser Metadata" library="BrowserSupport">
+<var>&amp;{browser_information}</var>
+<arg>browser=${browser}</arg>
+<doc>Fetches browser metadata information
+:param browser: Name of the browser for which information is fetched
+:param reload: Re-read the metadata based on the browser
+:return: Browser metadata information, dict of format
+            {"browser_version": browser version value,
+             "driver_version": driver version value}</doc>
+<msg timestamp="20240602 18:02:46.400" level="INFO">&amp;{browser_information} = { browser_version=125.0.6422.77 | driver_version=124.0.6367.207  }</msg>
+<status status="PASS" starttime="20240602 18:02:42.316" endtime="20240602 18:02:46.400"/>
+</kw>
+<kw name="Set Suite Metadata" library="BuiltIn">
+<arg>test_browser_name</arg>
+<arg>${browser}</arg>
+<doc>Sets metadata for the current test suite.</doc>
+<msg timestamp="20240602 18:02:46.401" level="INFO">Set suite metadata 'test_browser_name' to value 'chrome'.</msg>
+<status status="PASS" starttime="20240602 18:02:46.401" endtime="20240602 18:02:46.401"/>
+</kw>
+<kw name="Set Suite Metadata" library="BuiltIn">
+<arg>test_browser_version</arg>
+<arg>${browser_information.browser_version}</arg>
+<doc>Sets metadata for the current test suite.</doc>
+<msg timestamp="20240602 18:02:46.402" level="INFO">Set suite metadata 'test_browser_version' to value '125.0.6422.77'.</msg>
+<status status="PASS" starttime="20240602 18:02:46.401" endtime="20240602 18:02:46.403"/>
+</kw>
+<kw name="Set Suite Metadata" library="BuiltIn">
+<arg>test_driver_version</arg>
+<arg>${browser_information.driver_version}</arg>
+<doc>Sets metadata for the current test suite.</doc>
+<msg timestamp="20240602 18:02:46.404" level="INFO">Set suite metadata 'test_driver_version' to value '124.0.6367.207 '.</msg>
+<status status="PASS" starttime="20240602 18:02:46.403" endtime="20240602 18:02:46.404"/>
+</kw>
+<status status="PASS" starttime="20240602 18:02:42.316" endtime="20240602 18:02:46.404"/>
+</kw>
+<kw name="Setup Global Docker Execution Options" library="Support_Web">
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${global_browser_options}</arg>
+<arg>None</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240602 18:02:46.406" level="INFO">${global_browser_options} = None</msg>
+<status status="PASS" starttime="20240602 18:02:46.405" endtime="20240602 18:02:46.406"/>
+</kw>
+<kw name="Get Environment Variable" library="OperatingSystem">
+<var>${docker_check}</var>
+<arg>EXECUTION_ENVIRONMENT</arg>
+<arg>not_found</arg>
+<doc>Returns the value of an environment variable with the given name.</doc>
+<msg timestamp="20240602 18:02:46.407" level="INFO">${docker_check} = not_found</msg>
+<status status="PASS" starttime="20240602 18:02:46.407" endtime="20240602 18:02:46.407"/>
+</kw>
+<kw name="Run Keyword And Return If" library="BuiltIn">
+<arg>"${docker_check}"!="docker"</arg>
+<arg>Log</arg>
+<arg>Not executing on Docker</arg>
+<doc>Runs the specified keyword and returns from the enclosing user keyword.</doc>
+<kw name="Log" library="BuiltIn">
+<arg>Not executing on Docker</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240602 18:02:46.408" level="INFO">Not executing on Docker</msg>
+<status status="PASS" starttime="20240602 18:02:46.408" endtime="20240602 18:02:46.408"/>
+</kw>
+<msg timestamp="20240602 18:02:46.408" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20240602 18:02:46.407" endtime="20240602 18:02:46.408"/>
+</kw>
+<kw name="Create List" library="BuiltIn">
+<var>@{options}</var>
+<arg>--headless</arg>
+<arg>--no-sandbox</arg>
+<arg>--disable-dev-shm-usage</arg>
+<doc>Returns a list containing given items.</doc>
+<status status="NOT RUN" starttime="20240602 18:02:46.408" endtime="20240602 18:02:46.409"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>@{docker_options}</arg>
+<arg>@{options}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="NOT RUN" starttime="20240602 18:02:46.409" endtime="20240602 18:02:46.409"/>
+</kw>
+<status status="PASS" starttime="20240602 18:02:46.404" endtime="20240602 18:02:46.409"/>
+</kw>
+<kw name="Create Webdriver for chrome preferences" library="Support_Web">
+<kw name="Update Docker Execution Options" library="Support_Web">
+<var>${list_prefs}</var>
+<arg>${list_prefs}</arg>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${docker_check}</var>
+<arg>Variable Should Exist</arg>
+<arg>${docker_options}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Variable Should Exist" library="BuiltIn">
+<arg>${docker_options}</arg>
+<doc>Fails unless the given variable exists within the current scope.</doc>
+<msg timestamp="20240602 18:02:46.412" level="FAIL">Variable '${docker_options}' does not exist.</msg>
+<status status="FAIL" starttime="20240602 18:02:46.410" endtime="20240602 18:02:46.413"/>
+</kw>
+<msg timestamp="20240602 18:02:46.413" level="INFO">${docker_check} = False</msg>
+<status status="PASS" starttime="20240602 18:02:46.410" endtime="20240602 18:02:46.413"/>
+</kw>
+<kw name="Get Length" library="BuiltIn">
+<var>${list_prefs_length}</var>
+<arg>${list_prefs}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<msg timestamp="20240602 18:02:46.413" level="INFO">Length is 1</msg>
+<msg timestamp="20240602 18:02:46.413" level="INFO">${list_prefs_length} = 1</msg>
+<status status="PASS" starttime="20240602 18:02:46.413" endtime="20240602 18:02:46.413"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<var>${list_prefs}</var>
+<arg>${docker_check} and ${list_prefs_length}&gt;0 and ${list_prefs}[0] != []</arg>
+<arg>Combine Lists</arg>
+<arg>${list_prefs}</arg>
+<arg>${docker_options}</arg>
+<arg>ELSE IF</arg>
+<arg>${docker_check}</arg>
+<arg>Set Variable</arg>
+<arg>${docker_options}</arg>
+<arg>ELSE</arg>
+<arg>Set Variable</arg>
+<arg>${list_prefs}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<kw name="Set Variable" library="BuiltIn">
+<arg>${list_prefs}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" starttime="20240602 18:02:46.414" endtime="20240602 18:02:46.415"/>
+</kw>
+<msg timestamp="20240602 18:02:46.415" level="INFO">${list_prefs} = [[]]</msg>
+<status status="PASS" starttime="20240602 18:02:46.414" endtime="20240602 18:02:46.415"/>
+</kw>
+<msg timestamp="20240602 18:02:46.415" level="INFO">${list_prefs} = [[]]</msg>
+<status status="PASS" starttime="20240602 18:02:46.410" endtime="20240602 18:02:46.415"/>
+</kw>
+<kw name="Create Chrome Options for download preferences" library="Support_Web">
+<var>${chrome_options}</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${chrome_options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20240602 18:02:46.416" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x00000268E1583A10&gt;</msg>
+<status status="PASS" starttime="20240602 18:02:46.416" endtime="20240602 18:02:46.416"/>
+</kw>
+<msg timestamp="20240602 18:02:46.416" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x00000268E1583A10&gt;</msg>
+<status status="PASS" starttime="20240602 18:02:46.415" endtime="20240602 18:02:46.416"/>
+</kw>
+<kw name="Update Preferences List" library="Support_Web">
+<arg>${chrome_options}</arg>
+<arg>@{list_prefs}</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string_prefs}</var>
+<arg>${list_prefs}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20240602 18:02:46.417" level="INFO">${string_prefs} = [[]]</msg>
+<status status="PASS" starttime="20240602 18:02:46.417" endtime="20240602 18:02:46.417"/>
+</kw>
+<kw name="Return From Keyword If" library="BuiltIn">
+<arg>${string_prefs} == [[]]</arg>
+<doc>Returns from the enclosing user keyword if ``condition`` is true.</doc>
+<msg timestamp="20240602 18:02:46.418" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20240602 18:02:46.418" endtime="20240602 18:02:46.418"/>
+</kw>
+<for flavor="IN">
+<var>${preference}</var>
+<value>@{list_prefs}</value>
+<iter>
+<var name="${preference}"/>
+<kw name="Call Method" library="BuiltIn">
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>${preference}</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="NOT RUN" starttime="20240602 18:02:46.419" endtime="20240602 18:02:46.419"/>
+</kw>
+<status status="NOT RUN" starttime="20240602 18:02:46.418" endtime="20240602 18:02:46.419"/>
+</iter>
+<status status="NOT RUN" starttime="20240602 18:02:46.418" endtime="20240602 18:02:46.419"/>
+</for>
+<status status="PASS" starttime="20240602 18:02:46.417" endtime="20240602 18:02:46.419"/>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<arg>${chrome_options}</arg>
+<arg>add_experimental_option</arg>
+<arg>prefs</arg>
+<arg>${kw_prefs}</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20240602 18:02:46.419" endtime="20240602 18:02:46.420"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${global_browser_options}</arg>
+<arg>${chrome options}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240602 18:02:46.421" level="INFO">${global_browser_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x00000268E1583A10&gt;</msg>
+<status status="PASS" starttime="20240602 18:02:46.420" endtime="20240602 18:02:46.421"/>
+</kw>
+<status status="PASS" starttime="20240602 18:02:46.409" endtime="20240602 18:02:46.421"/>
+</kw>
+<status status="PASS" starttime="20240602 18:02:42.315" endtime="20240602 18:02:46.421"/>
+</kw>
+<status status="PASS" starttime="20240602 18:02:42.315" endtime="20240602 18:02:46.422"/>
+</kw>
+<status status="PASS" starttime="20240602 18:02:42.312" endtime="20240602 18:02:46.422"/>
+</kw>
+<kw name="Set Suite Metadata" library="BuiltIn">
+<arg>environment</arg>
+<arg>${test_server}</arg>
+<doc>Sets metadata for the current test suite.</doc>
+<msg timestamp="20240602 18:02:46.422" level="INFO">Set suite metadata 'environment' to value 'Dev'.</msg>
+<status status="PASS" starttime="20240602 18:02:46.422" endtime="20240602 18:02:46.422"/>
+</kw>
+<status status="PASS" starttime="20240602 18:02:42.304" endtime="20240602 18:02:46.423"/>
+</kw>
+<suite id="s1-s1" name="Test Powerconnect" source="D:\RobotFramework\SAPtesting\Tests\Test_Powerconnect.robot">
+<kw name="System Logon" library="powerconnect" type="SETUP">
+<kw name="Start Process" library="Process">
+<arg>${symvar('Nike_SAP')}</arg>
+<doc>Starts a new process on background.</doc>
+<msg timestamp="20240602 18:02:46.556" level="INFO">Sym.Dev.Nike_SAP: C:\Program Files\SAP\FrontEnd\SAPGUI\saplogon.exe</msg>
+<msg timestamp="20240602 18:02:46.557" level="INFO">Starting process:
+"C:\Program Files\SAP\FrontEnd\SAPGUI\saplogon.exe"</msg>
+<status status="PASS" starttime="20240602 18:02:46.555" endtime="20240602 18:02:46.649"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240602 18:02:51.650" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240602 18:02:46.649" endtime="20240602 18:02:51.650"/>
+</kw>
+<kw name="Connect To Session" library="CustomSapGuiLibrary">
+<doc>Connects to an open session SAP.</doc>
+<status status="PASS" starttime="20240602 18:02:51.650" endtime="20240602 18:02:51.667"/>
+</kw>
+<kw name="Open Connection" library="CustomSapGuiLibrary">
+<arg>${symvar('Nike_connection')}</arg>
+<doc>Opens a connection to the given connection name. Be sure to provide the full connection name, including the bracket part.</doc>
+<msg timestamp="20240602 18:02:51.668" level="INFO">Sym.Dev.Nike_connection: CFG</msg>
+<status status="PASS" starttime="20240602 18:02:51.667" endtime="20240602 18:02:52.510"/>
+</kw>
+<kw name="Input Text" library="CustomSapGuiLibrary">
+<arg>wnd[0]/usr/txtRSYST-MANDT</arg>
+<arg>${symvar('CFG_CLIENT')}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240602 18:02:52.512" level="INFO">Sym.Dev.CFG_CLIENT: 000</msg>
+<msg timestamp="20240602 18:02:52.595" level="INFO">Typing text '000' into text field 'wnd[0]/usr/txtRSYST-MANDT'.</msg>
+<status status="PASS" starttime="20240602 18:02:52.511" endtime="20240602 18:02:52.596"/>
+</kw>
+<kw name="Input Text" library="CustomSapGuiLibrary">
+<arg>wnd[0]/usr/txtRSYST-BNAME</arg>
+<arg>${symvar('CFG_USER')}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240602 18:02:52.597" level="INFO">Sym.Dev.CFG_USER: basisadmin</msg>
+<msg timestamp="20240602 18:02:52.614" level="INFO">Typing text 'basisadmin' into text field 'wnd[0]/usr/txtRSYST-BNAME'.</msg>
+<status status="PASS" starttime="20240602 18:02:52.596" endtime="20240602 18:02:52.614"/>
+</kw>
+<kw name="Input Password" library="CustomSapGuiLibrary">
+<arg>wnd[0]/usr/pwdRSYST-BCODE</arg>
+<arg>%{CFG_PASS}</arg>
+<doc>Inserts the given password into the text field identified by locator.
+The password is not recorded in the log.</doc>
+<msg timestamp="20240602 18:02:52.625" level="INFO">Typing password into text field 'wnd[0]/usr/pwdRSYST-BCODE'.</msg>
+<status status="PASS" starttime="20240602 18:02:52.614" endtime="20240602 18:02:52.625"/>
+</kw>
+<kw name="Send Vkey" library="CustomSapGuiLibrary">
+<arg>0</arg>
+<doc>Sends a SAP virtual key combination to the window, not into an element.
+If you want to send a value to a text field, use `input text` instead.</doc>
+<status status="PASS" starttime="20240602 18:02:52.626" endtime="20240602 18:02:53.471"/>
+</kw>
+<kw name="Multiple Logon Handling" library="CustomSapGuiLibrary">
+<arg>wnd[1]</arg>
+<arg>wnd[1]/usr/radMULTI_LOGON_OPT2</arg>
+<arg>wnd[1]/tbar[0]/btn[0]</arg>
+<status status="PASS" starttime="20240602 18:02:53.471" endtime="20240602 18:02:53.485"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240602 18:02:54.487" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240602 18:02:53.485" endtime="20240602 18:02:54.487"/>
+</kw>
+<status status="PASS" starttime="20240602 18:02:46.555" endtime="20240602 18:02:54.487"/>
+</kw>
+<test id="s1-s1-t1" name="Check_Saint Transation Code" line="9">
+<kw name="Saint Transation Code" library="powerconnect">
+<kw name="Run Transaction" library="CustomSapGuiLibrary">
+<arg>Saint</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240602 18:02:54.489" endtime="20240602 18:02:55.558"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240602 18:02:57.558" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240602 18:02:55.558" endtime="20240602 18:02:57.558"/>
+</kw>
+<kw name="Take Screenshot" library="CustomSapGuiLibrary">
+<arg>001_saintfrontpage.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240602 18:02:57.646" level="INFO" html="true">&lt;a href="001_saintfrontpage.jpg"&gt;&lt;img src="001_saintfrontpage.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240602 18:02:57.558" endtime="20240602 18:02:57.646"/>
+</kw>
+<kw name="Get Maintenance Certificate Text" library="CustomSapGuiLibrary">
+<arg>${certificate_id}</arg>
+<msg timestamp="20240602 18:02:57.650" level="INFO">License available to proceed further</msg>
+<status status="PASS" starttime="20240602 18:02:57.647" endtime="20240602 18:02:57.650"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240602 18:02:59.651" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240602 18:02:57.650" endtime="20240602 18:02:59.651"/>
+</kw>
+<kw name="Take Screenshot" library="CustomSapGuiLibrary">
+<arg>002_certificate.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240602 18:02:59.728" level="INFO" html="true">&lt;a href="002_certificate.jpg"&gt;&lt;img src="002_certificate.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240602 18:02:59.651" endtime="20240602 18:02:59.728"/>
+</kw>
+<kw name="Click Element" library="CustomSapGuiLibrary">
+<arg>wnd[0]/mbar/menu[0]/menu[0]/menu[1]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240602 18:02:59.728" endtime="20240602 18:03:00.166"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240602 18:03:02.167" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240602 18:03:00.167" endtime="20240602 18:03:02.167"/>
+</kw>
+<kw name="Take Screenshot" library="CustomSapGuiLibrary">
+<arg>003_saint_confirm_upload.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240602 18:03:02.238" level="INFO" html="true">&lt;a href="003_saint_confirm_upload.jpg"&gt;&lt;img src="003_saint_confirm_upload.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240602 18:03:02.167" endtime="20240602 18:03:02.238"/>
+</kw>
+<kw name="Click Element" library="CustomSapGuiLibrary">
+<arg>wnd[1]/usr/btnBUTTON_1</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240602 18:03:02.238" endtime="20240602 18:03:04.569"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240602 18:03:06.570" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240602 18:03:04.569" endtime="20240602 18:03:06.570"/>
+</kw>
+<kw name="Take Screenshot" library="CustomSapGuiLibrary">
+<arg>004_upl_pkg_from_file_system.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240602 18:03:06.635" level="INFO" html="true">&lt;a href="004_upl_pkg_from_file_system.jpg"&gt;&lt;img src="004_upl_pkg_from_file_system.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240602 18:03:06.570" endtime="20240602 18:03:06.635"/>
+</kw>
+<kw name="Click Element" library="CustomSapGuiLibrary">
+<arg>wnd[0]/tbar[0]/btn[3]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240602 18:03:06.635" endtime="20240602 18:03:07.237"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240602 18:03:09.239" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240602 18:03:07.238" endtime="20240602 18:03:09.239"/>
+</kw>
+<kw name="Take Screenshot" library="CustomSapGuiLibrary">
+<arg>005_installed_addons.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240602 18:03:09.299" level="INFO" html="true">&lt;a href="005_installed_addons.jpg"&gt;&lt;img src="005_installed_addons.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240602 18:03:09.239" endtime="20240602 18:03:09.299"/>
+</kw>
+<kw name="Click Element" library="CustomSapGuiLibrary">
+<arg>wnd[0]/usr/btnBUTTON_NEXT</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240602 18:03:09.299" endtime="20240602 18:03:09.637"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240602 18:03:11.638" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240602 18:03:09.637" endtime="20240602 18:03:11.638"/>
+</kw>
+<status status="PASS" starttime="20240602 18:02:54.488" endtime="20240602 18:03:11.638"/>
+</kw>
+<kw name="Get Cell Text From SAP Table" library="powerconnect">
+<kw name="Search And Select Addon Rows" library="CustomSapGuiLibrary">
+<var>${foundRow}</var>
+<arg>${symvar('addOn')}</arg>
+<msg timestamp="20240602 18:03:11.640" level="INFO">Sym.Dev.addOn: BNWVS</msg>
+<msg timestamp="20240602 18:03:11.649" level="INFO">${foundRow} = 2</msg>
+<status status="PASS" starttime="20240602 18:03:11.639" endtime="20240602 18:03:11.649"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Found text in row: ${foundRow}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240602 18:03:11.650" level="INFO">Found text in row: 2</msg>
+<status status="PASS" starttime="20240602 18:03:11.650" endtime="20240602 18:03:11.650"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240602 18:03:13.651" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240602 18:03:11.650" endtime="20240602 18:03:13.651"/>
+</kw>
+<kw name="Select Table Row" library="CustomSapGuiLibrary">
+<arg>wnd[0]/usr/subLIST_AREA:SAPLSAINT_UI:0104/tblSAPLSAINT_UIADDON_TO_INSTALL</arg>
+<arg>${foundRow}</arg>
+<doc>Selects an entire row of a table. This can either be a TableControl or a GridView 'table_id'
+which is contained within a shell object. The row is an index to select the row, starting from 0.</doc>
+<status status="PASS" starttime="20240602 18:03:13.651" endtime="20240602 18:03:13.675"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240602 18:03:15.677" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240602 18:03:13.675" endtime="20240602 18:03:15.677"/>
+</kw>
+<kw name="Take Screenshot" library="CustomSapGuiLibrary">
+<arg>008_select_addon.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240602 18:03:15.771" level="INFO" html="true">&lt;a href="008_select_addon.jpg"&gt;&lt;img src="008_select_addon.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240602 18:03:15.677" endtime="20240602 18:03:15.771"/>
+</kw>
+<kw name="Click Element" library="CustomSapGuiLibrary">
+<arg>wnd[0]/usr/btnBUTTON_NEXT</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240602 18:03:15.772" endtime="20240602 18:03:17.158"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240602 18:03:19.159" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240602 18:03:17.159" endtime="20240602 18:03:19.159"/>
+</kw>
+<kw name="Take Screenshot" library="CustomSapGuiLibrary">
+<arg>009_continue_to_start_calculation_package.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240602 18:03:19.233" level="INFO" html="true">&lt;a href="009_continue_to_start_calculation_package.jpg"&gt;&lt;img src="009_continue_to_start_calculation_package.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240602 18:03:19.159" endtime="20240602 18:03:19.233"/>
+</kw>
+<status status="PASS" starttime="20240602 18:03:11.638" endtime="20240602 18:03:19.233"/>
+</kw>
+<tag>powerconnect</tag>
+<tag>Regression</tag>
+<status status="PASS" starttime="20240602 18:02:54.487" endtime="20240602 18:03:19.233"/>
+</test>
+<test id="s1-s1-t2" name="Selecting the path for the Addon" line="13">
+<kw name="Patch selection for the Addon" library="powerconnect">
+<kw name="Saint Select" library="CustomSapGuiLibrary">
+<arg>wnd[0]/usr/subLIST_AREA:SAPLSAINT_UI:0300/tabsQUEUE_COMP/tabpQUEUE_COMP_FC2/ssubQUEUE_COMP_SCA:SAPLSAINT_UI:0303/cmbGV_01_PATCH_REQ</arg>
+<arg>${symvar('Patch')}</arg>
+<msg timestamp="20240602 18:03:19.236" level="INFO">Sym.Dev.Patch: SAPK-70001INBNWVS</msg>
+<status status="PASS" starttime="20240602 18:03:19.235" endtime="20240602 18:03:19.378"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240602 18:03:21.379" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240602 18:03:19.378" endtime="20240602 18:03:21.380"/>
+</kw>
+<kw name="Take Screenshot" library="CustomSapGuiLibrary">
+<arg>010_select_support_Package.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240602 18:03:21.457" level="INFO" html="true">&lt;a href="010_select_support_Package.jpg"&gt;&lt;img src="010_select_support_Package.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240602 18:03:21.380" endtime="20240602 18:03:21.457"/>
+</kw>
+<kw name="Click Element" library="CustomSapGuiLibrary">
+<arg>wnd[0]/usr/btnBUTTON_NEXT</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240602 18:03:21.458" endtime="20240602 18:03:21.897"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240602 18:03:23.899" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240602 18:03:21.897" endtime="20240602 18:03:23.899"/>
+</kw>
+<kw name="Take Screenshot" library="CustomSapGuiLibrary">
+<arg>011_continue to add modification adjustment transport.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240602 18:03:23.970" level="INFO" html="true">&lt;a href="011_continue%20to%20add%20modification%20adjustment%20transport.jpg"&gt;&lt;img src="011_continue%20to%20add%20modification%20adjustment%20transport.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240602 18:03:23.899" endtime="20240602 18:03:23.970"/>
+</kw>
+<kw name="Click Element" library="CustomSapGuiLibrary">
+<arg>wnd[0]/usr/btnBUTTON_NEXT</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240602 18:03:23.970" endtime="20240602 18:03:24.843"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240602 18:03:26.846" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240602 18:03:24.843" endtime="20240602 18:03:26.846"/>
+</kw>
+<kw name="Take Screenshot" library="CustomSapGuiLibrary">
+<arg>012_Add modification adjustment transport and continue.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240602 18:03:26.917" level="INFO" html="true">&lt;a href="012_Add%20modification%20adjustment%20transport%20and%20continue.jpg"&gt;&lt;img src="012_Add%20modification%20adjustment%20transport%20and%20continue.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240602 18:03:26.846" endtime="20240602 18:03:26.917"/>
+</kw>
+<kw name="Click Element" library="CustomSapGuiLibrary">
+<arg>wnd[1]/usr/btnBUTTON_2</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240602 18:03:26.917" endtime="20240602 18:03:27.665"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240602 18:03:29.666" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240602 18:03:27.665" endtime="20240602 18:03:29.666"/>
+</kw>
+<kw name="Take Screenshot" library="CustomSapGuiLibrary">
+<arg>013_start options.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240602 18:03:29.733" level="INFO" html="true">&lt;a href="013_start%20options.jpg"&gt;&lt;img src="013_start%20options.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240602 18:03:29.666" endtime="20240602 18:03:29.733"/>
+</kw>
+<status status="PASS" starttime="20240602 18:03:19.235" endtime="20240602 18:03:29.733"/>
+</kw>
+<kw name="Important SAP note handling" library="powerconnect">
+<kw name="Is Imp Notes Existing" library="CustomSapGuiLibrary">
+<var>${content}</var>
+<arg>wnd[1]</arg>
+<arg>wnd[1]/tbar[0]/btn[0]</arg>
+<msg timestamp="20240602 18:03:29.737" level="INFO">Modal window does not exist.</msg>
+<msg timestamp="20240602 18:03:29.737" level="INFO">${content} = None</msg>
+<status status="PASS" starttime="20240602 18:03:29.734" endtime="20240602 18:03:29.737"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>The window name is: ${content}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240602 18:03:29.738" level="INFO">The window name is: None</msg>
+<status status="PASS" starttime="20240602 18:03:29.737" endtime="20240602 18:03:29.738"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240602 18:03:31.740" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240602 18:03:29.738" endtime="20240602 18:03:31.740"/>
+</kw>
+<status status="PASS" starttime="20240602 18:03:29.733" endtime="20240602 18:03:31.740"/>
+</kw>
+<kw name="Start Options" library="powerconnect">
+<kw name="Click Element" library="CustomSapGuiLibrary">
+<arg>wnd[1]/tbar[0]/btn[27]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240602 18:03:31.741" endtime="20240602 18:03:31.886"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240602 18:03:33.887" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240602 18:03:31.886" endtime="20240602 18:03:33.887"/>
+</kw>
+<kw name="Take Screenshot" library="CustomSapGuiLibrary">
+<arg>015_start options_prep.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240602 18:03:33.975" level="INFO" html="true">&lt;a href="015_start%20options_prep.jpg"&gt;&lt;img src="015_start%20options_prep.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240602 18:03:33.887" endtime="20240602 18:03:33.975"/>
+</kw>
+<kw name="Select Radio Button" library="CustomSapGuiLibrary">
+<arg>wnd[1]/usr/tabsSTART_OPTIONS/tabpSTART_FC1/ssubSTART_OPTIONS_SCA:SAPLOCS_UI:0701/radLAY0700-RB1_DIA</arg>
+<doc>Sets radio button to the specified value.</doc>
+<status status="PASS" starttime="20240602 18:03:33.975" endtime="20240602 18:03:33.980"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240602 18:03:35.981" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240602 18:03:33.980" endtime="20240602 18:03:35.981"/>
+</kw>
+<kw name="Take Screenshot" library="CustomSapGuiLibrary">
+<arg>016_prepration_dialog.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240602 18:03:36.045" level="INFO" html="true">&lt;a href="016_prepration_dialog.jpg"&gt;&lt;img src="016_prepration_dialog.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240602 18:03:35.981" endtime="20240602 18:03:36.045"/>
+</kw>
+<kw name="Click Element" library="CustomSapGuiLibrary">
+<arg>wnd[1]/usr/tabsSTART_OPTIONS/tabpSTART_FC2</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240602 18:03:36.045" endtime="20240602 18:03:36.131"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240602 18:03:38.132" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240602 18:03:36.131" endtime="20240602 18:03:38.132"/>
+</kw>
+<kw name="Take Screenshot" library="CustomSapGuiLibrary">
+<arg>017_select_import_1.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240602 18:03:38.213" level="INFO" html="true">&lt;a href="017_select_import_1.jpg"&gt;&lt;img src="017_select_import_1.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240602 18:03:38.132" endtime="20240602 18:03:38.213"/>
+</kw>
+<kw name="Select Radio Button" library="CustomSapGuiLibrary">
+<arg>wnd[1]/usr/tabsSTART_OPTIONS/tabpSTART_FC2/ssubSTART_OPTIONS_SCA:SAPLOCS_UI:0702/radLAY0700-RB2_BTCHIM</arg>
+<doc>Sets radio button to the specified value.</doc>
+<status status="PASS" starttime="20240602 18:03:38.213" endtime="20240602 18:03:38.313"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240602 18:03:40.315" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240602 18:03:38.313" endtime="20240602 18:03:40.315"/>
+</kw>
+<kw name="Take Screenshot" library="CustomSapGuiLibrary">
+<arg>018_import_bkgd.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240602 18:03:40.387" level="INFO" html="true">&lt;a href="018_import_bkgd.jpg"&gt;&lt;img src="018_import_bkgd.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240602 18:03:40.315" endtime="20240602 18:03:40.387"/>
+</kw>
+<status status="PASS" starttime="20240602 18:03:31.740" endtime="20240602 18:03:40.387"/>
+</kw>
+<kw name="Import Option" library="powerconnect">
+<kw name="Click Element" library="CustomSapGuiLibrary">
+<arg>wnd[1]/tbar[0]/btn[0]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240602 18:03:40.388" endtime="20240602 18:03:40.534"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240602 18:03:41.535" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240602 18:03:40.534" endtime="20240602 18:03:41.535"/>
+</kw>
+<kw name="Take Screenshot" library="CustomSapGuiLibrary">
+<arg>019_start options selected.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240602 18:03:41.619" level="INFO" html="true">&lt;a href="019_start%20options%20selected.jpg"&gt;&lt;img src="019_start%20options%20selected.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240602 18:03:41.535" endtime="20240602 18:03:41.619"/>
+</kw>
+<kw name="Click Element" library="CustomSapGuiLibrary">
+<arg>wnd[1]/tbar[0]/btn[25]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240602 18:03:41.619" endtime="20240602 18:03:43.842"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240602 18:03:46.842" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240602 18:03:43.842" endtime="20240602 18:03:46.842"/>
+</kw>
+<kw name="Is Errors During Disassembling Existing" library="CustomSapGuiLibrary">
+<arg>wnd[0]</arg>
+<arg>wnd[0]/tbar[1]/btn[20]</arg>
+<msg timestamp="20240602 18:03:47.511" level="INFO">Window exists</msg>
+<status status="PASS" starttime="20240602 18:03:46.842" endtime="20240602 18:03:47.511"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240602 18:03:49.513" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240602 18:03:47.511" endtime="20240602 18:03:49.513"/>
+</kw>
+<kw name="Is Saint User Defined Existing" library="CustomSapGuiLibrary">
+<arg>wnd[1]</arg>
+<arg>wnd[1]/tbar[0]/btn[0]</arg>
+<msg timestamp="20240602 18:04:44.784" level="INFO">Window exists</msg>
+<status status="PASS" starttime="20240602 18:03:49.513" endtime="20240602 18:04:44.785"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240602 18:04:46.785" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240602 18:04:44.785" endtime="20240602 18:04:46.785"/>
+</kw>
+<status status="PASS" starttime="20240602 18:03:40.388" endtime="20240602 18:04:46.785"/>
+</kw>
+<tag>powerconnect</tag>
+<tag>Regression</tag>
+<status status="PASS" starttime="20240602 18:03:19.234" endtime="20240602 18:04:46.785"/>
+</test>
+<test id="s1-s1-t3" name="Process Until Finish Button Visible" line="19">
+<kw name="Process Until Finish Button Visible" library="powerconnect">
+<kw name="Get Finish Cell Text" library="CustomSapGuiLibrary">
+<var>${cell_text_2}</var>
+<arg>${finish_str}</arg>
+<arg>${button_id}</arg>
+<arg>${status_line}</arg>
+<arg>${refresh_id}</arg>
+<msg timestamp="20240602 18:12:52.597" level="INFO">Installation Successful</msg>
+<msg timestamp="20240602 18:12:52.598" level="INFO">${cell_text_2} = The Add-on was successfully imported with the displayed queue</msg>
+<status status="PASS" starttime="20240602 18:04:46.789" endtime="20240602 18:12:52.598"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${cell_text_2}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240602 18:12:52.598" level="INFO">The Add-on was successfully imported with the displayed queue</msg>
+<status status="PASS" starttime="20240602 18:12:52.598" endtime="20240602 18:12:52.599"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240602 18:12:54.599" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240602 18:12:52.599" endtime="20240602 18:12:54.599"/>
+</kw>
+<kw name="Click Element" library="CustomSapGuiLibrary">
+<arg>wnd[1]/tbar[0]/btn[27]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240602 18:12:54.599" endtime="20240602 18:12:54.930"/>
+</kw>
+<kw name="Take Screenshot" library="CustomSapGuiLibrary">
+<arg>023_Addon_import2.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240602 18:12:55.019" level="INFO" html="true">&lt;a href="023_Addon_import2.jpg"&gt;&lt;img src="023_Addon_import2.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240602 18:12:54.930" endtime="20240602 18:12:55.020"/>
+</kw>
+<status status="PASS" starttime="20240602 18:04:46.788" endtime="20240602 18:12:55.020"/>
+</kw>
+<tag>powerconnect</tag>
+<tag>Regression</tag>
+<status status="PASS" starttime="20240602 18:04:46.788" endtime="20240602 18:12:55.020"/>
+</test>
+<kw name="System Logout" library="powerconnect" type="TEARDOWN">
+<kw name="Run Transaction" library="CustomSapGuiLibrary">
+<arg>/nex</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240602 18:12:55.021" endtime="20240602 18:12:55.068"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240602 18:12:57.069" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240602 18:12:55.068" endtime="20240602 18:12:57.069"/>
+</kw>
+<kw name="Create Pdf" library="PDF">
+<arg>${screenshot_directory}</arg>
+<arg>${output_pdf}</arg>
+<status status="PASS" starttime="20240602 18:12:57.069" endtime="20240602 18:13:15.828"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240602 18:13:17.830" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240602 18:13:15.828" endtime="20240602 18:13:17.830"/>
+</kw>
+<status status="PASS" starttime="20240602 18:12:55.021" endtime="20240602 18:13:17.830"/>
+</kw>
+<status status="PASS" starttime="20240602 18:02:46.423" endtime="20240602 18:13:17.830"/>
+</suite>
+<doc>Testing functionality through Robot Framework</doc>
+<meta name="environment">Dev</meta>
+<meta name="test_browser_name">chrome</meta>
+<meta name="test_browser_version">125.0.6422.77</meta>
+<meta name="test_driver_version">124.0.6367.207 </meta>
+<meta name="test_environment">Dev</meta>
+<meta name="test_freeze_dependencies">astroid==3.1.0,attrs==23.2.0,beautifulsoup4==4.12.3,bs4==0.0.2,build==1.2.1,certifi==2024.2.2,cffi==1.16.0,chardet==5.2.0,charset-normalizer==3.3.2,click==8.1.7,cmake==3.29.3,colorama==0.4.6,comtypes==1.4.2,cryptography==42.0.5,defusedxml==0.7.1,dill==0.3.8,docutils==0.21.2,et-xmlfile==1.1.0,exceptiongroup==1.2.1,fire==0.4.0,gitdb==4.0.11,GitPython==3.1.43,h11==0.14.0,idna==3.7,isort==5.13.2,Jinja2==3.1.3,jira==3.8.0,jsonpath-ng==1.6.1,jsonschema==4.21.1,jsonschema-specifications==2023.12.1,lazy-object-proxy==1.10.0,lxml==5.2.1,markdown-it-py==3.0.0,MarkupSafe==2.1.5,mccabe==0.7.0,mdurl==0.1.2,natsort==8.4.0,oauthlib==3.2.2,openpyxl==3.1.2,outcome==1.3.0.post0,packaging==24.0,pathspec==0.11.2,pendulum==3.0.0,pillow==10.3.0,pip==24.0,platformdirs==4.2.1,ply==3.11,psutil==5.9.8,pycparser==2.22,Pygments==2.17.2,pylint==3.1.0,pynput-robocorp-fork==5.0.0,pyperclip==1.8.2,pyproject-toml==0.0.10,pyproject_hooks==1.1.0,PySocks==1.7.1,python-dateutil==2.9.0.post0,python-dotenv==1.0.1,pywin32==306,PyYAML==6.0.1,referencing==0.35.0,reportlab==4.2.0,requests==2.31.0,requests-oauthlib==2.0.0,requests-toolbelt==1.0.0,rich==13.7.1,rich-click==1.6.1,robotframework==6.0.2,robotframework-datadriver==1.9.0,robotframework-excellib==2.0.1,robotframework-jsonlibrary==0.5,robotframework-pabot==2.16.0,robotframework-pythonlibcore==4.2.0,robotframework-requests==0.9.2,robotframework-sapguilibrary==1.1,robotframework-seleniumlibrary==5.1.3,robotframework-stacktrace==0.4.1,robotframework-tidy==4.5.0,rpaframework-core==11.3.2,rpaframework-windows==7.5.1,rpds-py==0.18.0,selenium==4.9.1,setuptools==70.0.0,six==1.16.0,smmap==5.0.1,sniffio==1.3.1,sortedcontainers==2.4.0,soupsieve==2.5,termcolor==2.4.0,time-machine==2.14.1,toml==0.10.2,tomli==2.0.1,tomlkit==0.12.4,trio==0.25.0,trio-websocket==0.11.1,typing_extensions==4.11.0,tzdata==2024.1,uiautomation==2.0.18,urllib3==2.2.1,webdriver-manager==4.0.1,wheel==0.43.0,wrapt==1.16.0,wsproto==1.2.0</meta>
+<status status="PASS" starttime="20240602 18:02:41.859" endtime="20240602 18:13:18.365"/>
+</suite>
+<statistics>
+<total>
+<stat pass="3" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="3" fail="0" skip="0">powerconnect</stat>
+<stat pass="3" fail="0" skip="0">Regression</stat>
+</tag>
+<suite>
+<stat pass="3" fail="0" skip="0" id="s1" name="Tests">Tests</stat>
+<stat pass="3" fail="0" skip="0" id="s1-s1" name="Test Powerconnect">Tests.Test Powerconnect</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
