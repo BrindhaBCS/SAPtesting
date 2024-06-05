@@ -1,6 +1,6 @@
 *** Settings ***
 Library    Process
-Library    SAP_Tocde_Library_one.py
+Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 # Library    ../../Symphony/Lib/site-packages/SeleniumLibrary/__init__.py
 Resource    ../Web/Support_Web.robot
@@ -23,7 +23,7 @@ ${link_id8_Req8}    03${SPACE*2}2${SPACE*6}7
 ${link_id9}    04${SPACE*2}3${SPACE*6}8
 ${link_id9_Req8}    04${SPACE*2}2${SPACE*6}8
 #${link_id10}    1
-${Results_Directory_Path}    C:\\Users\\BCS268\\Documents\\Results
+${Results_Directory_Path}    C:\\Users\\Administrator\\Documents\\Results
 ${Req_Result1_Filename}      SAP_Profiles.xls
 ${Req_Result2_Filename}      User_Accounts.xls
 ${Req_Result3_Filename}      Users_By_Complex_Selection.xls
@@ -33,7 +33,7 @@ ${Req_Result5_noid_Filename}  Users_with_no_license.xls
 ${Req_Result6_Filename}       SAP_Support_Users.xls
 ${Req_Result7_Filename}       Batch_Job_Users.xlsx
 ${Req_Result7_usernames_Filename}    Req7_users_filter.xlsx
-${Req7_usernames_path}        C:\\SAP_Robot\\SAPtesting
+${Req7_usernames_path}        C:\\SAP_Testing\\SAPtesting
 ${Req7_usernames_textfile}    output_req7.txt
 ${Req_Result8_Filename}       Transportstraat_Users.xls
 ${Req_Result9_Filename}       Table_Authorization_Group_Users.xls
@@ -41,9 +41,9 @@ ${Req_Result9_2_Filename}     Table_Authorization_Group_Users2.xls
 
 ${Req9_input}    "#*"
 
-${directory}    C://SAP_Robot//SAPtesting//Output//pabot_results//0
-${file_loc}      C://Users//BCS268//Documents//Results//Batch_Job_Users.xlsx
-${images_directory}    C://SAP_Robot//SAPtesting//Output//pabot_results//0//
+${directory}    C:\\SAP_Testing\\SAPtesting\\Output\\pabot_results\\0
+${file_loc}      C:\\Users\\Administrator\\Documents\\Results\\Batch_Job_Users.xlsx
+${images_directory}    C:\\SAP_Testing\\SAPtesting\\Output\\pabot_results\\0\\
 
 
 
@@ -525,7 +525,6 @@ Executing Monthly compliance report
 
     ########### Generation of the Report ##########################
     Image Resize    ${directory}
-Report
     Mcr Report Pdf    ${images_directory}
 
 

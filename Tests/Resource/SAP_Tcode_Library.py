@@ -7,6 +7,19 @@ import os
 from robot.api import logger
 import sys
 import ast
+import docx
+from docx import Document
+from docx.enum.table import WD_TABLE_ALIGNMENT
+from docx.shared import Cm, Pt, Mm, Inches
+from docx.enum.section import WD_ORIENT
+
+import pandas as pd
+import docx
+# from spire.doc import*
+#from spire.doc.common import*
+from docx.enum.section import WD_ORIENT
+from docx2pdf import convert
+from PIL import Image
 
 
 class SAP_Tcode_Library:
@@ -1357,6 +1370,127 @@ class SAP_Tcode_Library:
         except Exception as e:
             print(f"Error: {e}")
  
+    def click_node_link(self, tree_id, link_id1, link_id2, link_id3, link_id4, link_id5):
+        """Selects a link of a TableTreeControl 'tree_id' which is contained within a shell object.
+        
+        Use the Scripting tracker recorder to find the 'link_id1' and 'link_id2' of the link to select.
+        """
+            
+        self.session.findById(tree_id).expandNode(link_id1)
+        self.session.findById(tree_id).topNode = link_id2
+        self.session.findById(tree_id).expandNode(link_id3)
+        self.session.findById(tree_id).selectItem(link_id4, link_id5)
+        self.session.findById(tree_id).ensureVisibleHorizontalItem(link_id4, link_id5)
+        self.session.findById(tree_id).topNode = link_id2
+        self.session.findById(tree_id).clickLink(link_id4, link_id5)
+
+    def sap_tcode_usmm_reg5(self):
+        self.session.findbyId("wnd[0]/usr/cntlSLIM_USER_CONTAINER/shellcont/shell").pressToolbarContextButton("&MB_EXPORT")
+        self.session.findbyId("wnd[0]/usr/cntlSLIM_USER_CONTAINER/shellcont/shell").selectContextMenuItem("&PC")
+
+    def sap_tcode_usmm_reg5_filter(self):
+        self.session.findbyId("wnd[0]/usr/cntlSLIM_USER_CONTAINER/shellcont/shell").selectcolumn("LICENSE_TYPE")
+        self.session.findbyId("wnd[0]/usr/cntlSLIM_USER_CONTAINER/shellcont/shell").pressToolbarButton("&MB_FILTER")
+
+    def mcr_report_pdf(self, images_directory):
+        # Read data from the Excel file
+        df = pd.read_excel("C:\\SAP_Testing\\SAPtesting\\Execution\\MCR_Input.xlsx")
+
+        # Create a new Word document
+        doc = docx.Document()
+
+        section = doc.sections[-1]
+        section.orientation = WD_ORIENT.LANDSCAPE
+
+        # Add a Title to the document 
+        doc.add_heading('Monthly Compliance Report', 0)
+
+        # Add a table to the Word document
+        table = doc.add_table(rows=df.shape[0] + 1, cols=df.shape[1], style="Table Grid")
+        table.autofit = False
+        table.alignment = WD_TABLE_ALIGNMENT.CENTER
+
+        # Add column headers to the table
+        for j in range(df.shape[1]):
+            table.cell(0, j).text = df.columns[j]
+
+        # Add data from the DataFrame to the table
+        for i in range(df.shape[0]):
+            for j in range(df.shape[1]):
+                table.cell(i + 1, j).text = str(df.values[i, j])
+
+        print("Data from test.xlsx has been successfully added to output.docx as a table.")
+
+        widths = (Inches(0.5), Inches(1.0),  Inches(0.8), Inches(1.6), Inches(4))
+        for row in table.rows:
+            for idx, width in enumerate(widths):
+                row.cells[idx].width=width
+
+        for i in range(df.shape[0]):
+            cell_value = str(df.values[i,4])
+            no_of_images=list(cell_value.split(','))
+            for j in range(len(no_of_images)):
+                cell_1=table.cell(i+1,4)
+                cell_1.add_paragraph().add_run().add_picture((os.path.join(images_directory, str(no_of_images[j]))), width=Inches(3.5), height=Inches(2.5))
+        # Save the Word document
+        doc.save("MCR_output.docx")
+        #Convert to PDF
+        convert("MCR_output.docx", "MCR_output_New.pdf")
+        #doc.Close()
+   
+    def image_resize(self, screenshots_directory):
+        # Define the directory path where your images are stored
+        #directory = "C://RobotFramework//SAPtesting//Output//pabot_results//0"
+
+        # Define the new size you want for your images
+        new_size = (800, 600)
+        keyword="Req5"
+        # Loop through all the files in the directory
+        for filename in os.listdir(screenshots_directory):
+            if filename.endswith('.jpg') or filename.endswith('.png'):  # Add or remove file types as needed
+                img_path = os.path.join(screenshots_directory, filename)
+                if keyword in filename:
+                    with Image.open(img_path) as image:
+                    # Resize the image
+                        width, height = image.size
+                        # Setting the points for cropped image
+                        left = 5
+                        top = height / 12
+                        right = 1800
+                        bottom = 4 * height / 4
+                        # Cropped image of above dimension
+                        # (It will not change original image)
+                        image_resize = image.crop((left, top, right, bottom))
+                else:
+                    with Image.open(img_path) as image:
+                        # Resize the image
+                        #img = img.resize(new_size, Image.ANTIALIAS)
+                        width, height = image.size
+                        # Setting the points for cropped image
+                        left = 5
+                        top = height / 12
+                        right = 1200
+                        bottom = 4 * height / 4
+
+                        # Cropped image of above dimension
+                        # (It will not change original image)
+                        image_resize = image.crop((left, top, right, bottom))
+                
+                # Define the new filename
+                new_filename = f"resized_{filename}"
+                new_img_path = os.path.join(screenshots_directory, new_filename)
+                
+                # Save the resized image with the new name
+                image_resize.save(new_img_path)
+
+        print('All images have been resized.')
+
+    def req7_usernames_extract(self, file_loc):
+        df = pd.read_excel(file_loc, header=None, usecols=[0])
+
+        with open("output_req7.txt", 'w') as f:
+            dfAsString = df.to_string(header=None, index=False)
+            f.write(dfAsString)
 
    
 

@@ -9,6 +9,8 @@ from robot.api import logger
 import sys
 import ast
 
+
+
 import docx
 # from docx import Document
 from docx.enum.table import WD_TABLE_ALIGNMENT
@@ -1412,55 +1414,5 @@ class SAP_Tcode_Library:
 
 
 
-    def report_pdf_SAP(images_directory):
-    # Read data from the Excel file
-        df = pd.read_excel("MCR_Input.xlsx")
 
-    # Create a new Word document
-        doc = docx.Document()
 
-        section = doc.sections[-1]
-        section.orientation = WD_ORIENT.LANDSCAPE
-
-    # Add a Title to the document 
-        doc.add_heading('Monthly Compliance Report', 0)
-
-    # Add a table to the Word document
-        table = doc.add_table(rows=df.shape[0] + 1, cols=df.shape[1], style="Table Grid")
-        table.autofit = False
-        table.alignment = WD_TABLE_ALIGNMENT.CENTER
-
-    # Add column headers to the table
-        for j in range(df.shape[1]):
-            table.cell(0, j).text = df.columns[j]
-
-    # Add data from the DataFrame to the table
-        for i in range(df.shape[0]):
-            for j in range(df.shape[1]):
-                table.cell(i + 1, j).text = str(df.values[i, j])
-
-        print("Data from test.xlsx has been successfully added to output.docx as a table.")
-
-        widths = (Inches(0.5), Inches(1.0),  Inches(0.8), Inches(1.6), Inches(4))
-        for row in table.rows:
-            for idx, width in enumerate(widths):
-                row.cells[idx].width = width
-
-    # Filter and add images to the Word document
-        for i in range(df.shape[0]):
-            cell_value = str(df.values[i, 4])
-            no_of_images = list(cell_value.split(','))
-            for image_name in no_of_images:
-                image_path = os.path.join(images_directory, image_name.strip())
-                if os.path.isfile(image_path) and (image_name.lower().startswith('resized') and (image_name.lower().endswith('.jpg') or image_name.lower().endswith('.png'))):
-                    cell_1 = table.cell(i + 1, 4)
-                    cell_1.add_paragraph().add_run().add_picture(image_path, width=Inches(3.5), height=Inches(2.5))
-
-    # Save the Word document
-        doc.save("MCR_output.docx")
-
-    # Convert to PDF
-        convert("MCR_output.docx", "MCR_output_New.pdf")
-
-# Example usage:
-    report_pdf_SAP('C:\\SAP_Robot\\SAPtesting\\Output\\pabot_results\\0')
