@@ -15,8 +15,8 @@ Selecting the path for the Addon
     Important SAP note handling
     FOR ST/BNWVS 
 
-#Process Until Finish Button Visible
-    #Process Until Finish Button Visible
+Process Until Finish Button Visible
+    Process Until Finish Button Visible
 
 
 
