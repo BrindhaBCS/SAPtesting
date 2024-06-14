@@ -1151,3 +1151,16 @@ class CustomSapGuiLibrary:
         except Exception as e:
             print(e)
     
+    def window_handling(self, window_id, text, continue_id):   
+        try:
+            content = self.session.findById(window_id).Text
+            if content == text:
+                print("Window exists")
+                # self.take_screenshot()
+                self.session.findById(continue_id).press()
+                return content
+            else:
+                print("window does not exist.")
+        except Exception as e:
+            print(f"Error: {str(e)}")
+            return False

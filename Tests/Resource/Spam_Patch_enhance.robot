@@ -14,10 +14,10 @@ ${text_id}    wnd[1]/usr/txtMESSTXT1
 ${status_line}    wnd[0]/usr/txtPAT100-PATCH_STEP
 ${no_Queue_id}    wnd[0]/usr/txtPAT100-STAT_LINE2
 ${finish_str}   Confirm queue
-${status_line}    wnd[0]/usr/sub:SAPLSAINT_UI:0100/txtWA_COMMENT_TEXT-LINE[0,0]
+# ${status_line}    wnd[0]/usr/sub:SAPLSAINT_UI:0100/txtWA_COMMENT_TEXT-LINE[0,0]
 ${refresh_id}   wnd[0]/tbar[1]/btn[30]
 ${button_id}    wnd[0]/mbar/menu[0]/menu[5]
-${comp_id}  wnd[1]/usr/tabsQUEUE_CALC/tabpQUEUE_CALC_FC1/ssubQUEUE_CALC_SCA:SAPLOCS_ALV_UI:0306/cntlCONTROL_ALL_COMP/shellcont/shell
+${comp_id}    wnd[1]/usr/tabsQUEUE_CALC/tabpQUEUE_CALC_FC1/ssubQUEUE_CALC_SCA:SAPLOCS_ALV_UI:0306/cntlCONTROL_ALL_COMP/shellcont/shell
 
 
 *** Keywords *** 
@@ -73,8 +73,8 @@ Spam software selection
     CustomSapGuiLibrary.Click Element    wnd[1]/tbar[0]/btn[7]
     Sleep    2
     Take Screenshot    F01_patch_1.jpg
-    # CustomSapGuiLibrary.Spam Multiple Patch Version Select  ${comp_id}  ${symvar('search_comp')}  ${symvar('search_patch')}
-    CustomSapGuiLibrary.Spam Multiple Patch Version Select  ${comp_id}  ${search_comp}  ${search_patch}
+    # CustomSapGuiLibrary.Spam Multiple Patch Version Select    ${comp_id}    ${symvar('search_comp')}    ${symvar('search_patch')}
+    CustomSapGuiLibrary.Spam Multiple Patch Version Select    ${comp_id}    ${search_comp}    ${search_patch}
     Sleep    4
     Take Screenshot    F02_patch_2.jpg
     CustomSapGuiLibrary.Click Element    wnd[1]/tbar[0]/btn[0]
@@ -122,6 +122,8 @@ Confirm Queue
     CustomSapGuiLibrary.No Queue Pending    ${no_Queue_id}
     Take Screenshot    G02_Status_Confirmed_queue1.jpg
     #Click DoNOTSEND
+    Window Handling    wnd[0]    Preimported Transport Requests in TMS Queue   wnd[0]/tbar[1]/btn[20]
+    Take Screenshot    TMSQ.jpg
     CustomSapGuiLibrary.Click Element   wnd[1]/tbar[0]/btn[27]
     Take Screenshot    G03_Status_Confirmed_queue2.jpg
 
