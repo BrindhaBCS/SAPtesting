@@ -3,6 +3,11 @@ Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    String
+Library    Merger.py
+
+
+*** Variables ***
+${screenshot_directory}     ${OUTPUT_DIR}
 
 *** Keywords ***
 System Logon
@@ -42,4 +47,5 @@ Transaction OACO
     Scroll      wnd[0]/usr/tblSAPLSCMS_CREPC_SREP       140
     Sleep   1
     Take Screenshot    057_OACO.jpg
-
+    Merger.create pdf    ${screenshot_directory}    
+    Sleep    2
