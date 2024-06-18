@@ -48,9 +48,9 @@ Sldapicust display
     Sleep   5s
     Take Screenshot    071_display.jpg
     Sleep   5s
-    Click Element   wnd[0]/usr/tabsTAB_SM59/tabpSIGN
-    Sleep   5s
-    Take Screenshot    072_display.jpg  
+    #Click Element   wnd[0]/usr/tabsTAB_SM59/tabpSIGN
+    #Sleep   5s
+    #Take Screenshot    072_display.jpg  
     Merger.create pdf    ${screenshot_directory}    
     Sleep    2 
 
