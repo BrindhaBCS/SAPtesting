@@ -8,6 +8,6 @@ Suite Teardown    SCOT.System Logout
 
 Executing SCOT            
     Transaction SCOT
-    #SMTP Nodes    
-    #Settings Nodes
+    SMTP Nodes    
+    Settings Nodes
   
