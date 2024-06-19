@@ -9,4 +9,4 @@ Suite Teardown    SLDAPICUST.System Logout
 Executing SLDAPICUST
 
     Transaction SLDAPICUST
-    #Sldapicust display  
+    Sldapicust display  
