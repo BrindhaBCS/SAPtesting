@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<robot generated="20240619 13:37:54.751" generator="Rebot 6.0.2 (Python 3.12.1 on win32)" rpa="false" schemaversion="3">
- <suite id="s1" name="Tests" source="C:\SAP_Testing\SAPtesting\Tests">
+<robot generated="20240620 16:51:54.188" generator="Rebot 6.0.2 (Python 3.12.1 on win32)" rpa="false" schemaversion="3">
+ <suite id="s1" name="Tests" source="C:\Anugal_Testing\Anugal\Tests">
   <kw name="Setup highest level suite" type="SETUP">
    <kw library="BuiltIn" name="Set Variable">
     <var>
@@ -12,10 +12,10 @@
     <doc>
      Returns the given values which can then be assigned to a variables.
     </doc>
-    <msg level="INFO" timestamp="20240619 13:37:48.220">
+    <msg level="INFO" timestamp="20240620 16:49:29.740">
      ${d.test_server} = Dev
     </msg>
-    <status endtime="20240619 13:37:48.220" starttime="20240619 13:37:48.219" status="PASS"/>
+    <status endtime="20240620 16:49:29.740" starttime="20240620 16:49:29.740" status="PASS"/>
    </kw>
    <kw library="Support" name="Reset screenshot count variable">
     <kw library="BuiltIn" name="Set Variable">
@@ -28,10 +28,10 @@
      <doc>
       Returns the given values which can then be assigned to a variables.
      </doc>
-     <msg level="INFO" timestamp="20240619 13:37:48.221">
+     <msg level="INFO" timestamp="20240620 16:49:29.741">
       ${screenshotCount} = 0_1
      </msg>
-     <status endtime="20240619 13:37:48.221" starttime="20240619 13:37:48.220" status="PASS"/>
+     <status endtime="20240620 16:49:29.741" starttime="20240620 16:49:29.741" status="PASS"/>
     </kw>
     <kw library="BuiltIn" name="Set Global Variable">
      <arg>
@@ -40,10 +40,10 @@
      <doc>
       Makes a variable available globally in all tests and suites.
      </doc>
-     <msg level="INFO" timestamp="20240619 13:37:48.221">
+     <msg level="INFO" timestamp="20240620 16:49:29.742">
       ${screenshotCount} = 0_1
      </msg>
-     <status endtime="20240619 13:37:48.221" starttime="20240619 13:37:48.221" status="PASS"/>
+     <status endtime="20240620 16:49:29.742" starttime="20240620 16:49:29.742" status="PASS"/>
     </kw>
     <kw library="Support" name="Set up screenshot directory">
      <kw library="OperatingSystem" name="Create Directory">
@@ -53,17 +53,17 @@
       <doc>
        Creates the specified directory.
       </doc>
-      <msg level="INFO" timestamp="20240619 13:37:48.223">
+      <msg level="INFO" timestamp="20240620 16:49:29.743">
        Web.Dev.screenshot_dir: Screenshot
       </msg>
-      <msg html="true" level="INFO" timestamp="20240619 13:37:48.228">
-       Created directory '&lt;a href="file://C:\SAP_Testing\SAPtesting\Output\pabot_results\0\Screenshot"&gt;C:\SAP_Testing\SAPtesting\Output\pabot_results\0\Screenshot&lt;/a&gt;'.
+      <msg html="true" level="INFO" timestamp="20240620 16:49:29.749">
+       Created directory '&lt;a href="file://C:\Anugal_Testing\Anugal\Output\pabot_results\0\Screenshot"&gt;C:\Anugal_Testing\Anugal\Output\pabot_results\0\Screenshot&lt;/a&gt;'.
       </msg>
-      <status endtime="20240619 13:37:48.228" starttime="20240619 13:37:48.222" status="PASS"/>
+      <status endtime="20240620 16:49:29.749" starttime="20240620 16:49:29.742" status="PASS"/>
      </kw>
-     <status endtime="20240619 13:37:48.228" starttime="20240619 13:37:48.221" status="PASS"/>
+     <status endtime="20240620 16:49:29.750" starttime="20240620 16:49:29.742" status="PASS"/>
     </kw>
-    <status endtime="20240619 13:37:48.229" starttime="20240619 13:37:48.220" status="PASS"/>
+    <status endtime="20240620 16:49:29.750" starttime="20240620 16:49:29.740" status="PASS"/>
    </kw>
    <kw library="BuiltIn" name="Set Global Variable">
     <arg>
@@ -75,10 +75,10 @@
     <doc>
      Makes a variable available globally in all tests and suites.
     </doc>
-    <msg level="INFO" timestamp="20240619 13:37:48.229">
+    <msg level="INFO" timestamp="20240620 16:49:29.750">
      ${screenshot_taking} = True
     </msg>
-    <status endtime="20240619 13:37:48.229" starttime="20240619 13:37:48.229" status="PASS"/>
+    <status endtime="20240620 16:49:29.750" starttime="20240620 16:49:29.750" status="PASS"/>
    </kw>
    <kw library="Support" name="Setup linux execution">
     <kw library="BuiltIn" name="Run Keyword And Return Status">
@@ -101,12 +101,12 @@
       <doc>
        Fails unless the given variable exists within the current scope.
       </doc>
-      <status endtime="20240619 13:37:48.231" starttime="20240619 13:37:48.230" status="PASS"/>
+      <status endtime="20240620 16:49:29.752" starttime="20240620 16:49:29.751" status="PASS"/>
      </kw>
-     <msg level="INFO" timestamp="20240619 13:37:48.231">
+     <msg level="INFO" timestamp="20240620 16:49:29.752">
       ${web_test_check} = True
      </msg>
-     <status endtime="20240619 13:37:48.231" starttime="20240619 13:37:48.230" status="PASS"/>
+     <status endtime="20240620 16:49:29.752" starttime="20240620 16:49:29.751" status="PASS"/>
     </kw>
     <kw library="BuiltIn" name="Run Keyword If">
      <arg>
@@ -138,10 +138,10 @@
             {"browser_version": browser version value,
              "driver_version": driver version value}
         </doc>
-        <msg level="INFO" timestamp="20240619 13:37:53.109">
+        <msg level="INFO" timestamp="20240620 16:49:36.920">
          &amp;{browser_information} = { browser_version=126.0.6478.62 | driver_version=126.0.6478.62  }
         </msg>
-        <status endtime="20240619 13:37:53.109" starttime="20240619 13:37:48.232" status="PASS"/>
+        <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:29.753" status="PASS"/>
        </kw>
        <kw library="BuiltIn" name="Set Suite Metadata">
         <arg>
@@ -153,10 +153,10 @@
         <doc>
          Sets metadata for the current test suite.
         </doc>
-        <msg level="INFO" timestamp="20240619 13:37:53.109">
+        <msg level="INFO" timestamp="20240620 16:49:36.920">
          Set suite metadata 'test_browser_name' to value 'chrome'.
         </msg>
-        <status endtime="20240619 13:37:53.109" starttime="20240619 13:37:53.109" status="PASS"/>
+        <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:36.920" status="PASS"/>
        </kw>
        <kw library="BuiltIn" name="Set Suite Metadata">
         <arg>
@@ -168,10 +168,10 @@
         <doc>
          Sets metadata for the current test suite.
         </doc>
-        <msg level="INFO" timestamp="20240619 13:37:53.112">
+        <msg level="INFO" timestamp="20240620 16:49:36.920">
          Set suite metadata 'test_browser_version' to value '126.0.6478.62'.
         </msg>
-        <status endtime="20240619 13:37:53.112" starttime="20240619 13:37:53.109" status="PASS"/>
+        <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:36.920" status="PASS"/>
        </kw>
        <kw library="BuiltIn" name="Set Suite Metadata">
         <arg>
@@ -183,12 +183,12 @@
         <doc>
          Sets metadata for the current test suite.
         </doc>
-        <msg level="INFO" timestamp="20240619 13:37:53.112">
+        <msg level="INFO" timestamp="20240620 16:49:36.920">
          Set suite metadata 'test_driver_version' to value '126.0.6478.62 '.
         </msg>
-        <status endtime="20240619 13:37:53.112" starttime="20240619 13:37:53.112" status="PASS"/>
+        <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:36.920" status="PASS"/>
        </kw>
-       <status endtime="20240619 13:37:53.112" starttime="20240619 13:37:48.232" status="PASS"/>
+       <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:29.753" status="PASS"/>
       </kw>
       <kw library="Support_Web" name="Setup Global Docker Execution Options">
        <kw library="BuiltIn" name="Set Global Variable">
@@ -201,10 +201,10 @@
         <doc>
          Makes a variable available globally in all tests and suites.
         </doc>
-        <msg level="INFO" timestamp="20240619 13:37:53.112">
+        <msg level="INFO" timestamp="20240620 16:49:36.920">
          ${global_browser_options} = None
         </msg>
-        <status endtime="20240619 13:37:53.112" starttime="20240619 13:37:53.112" status="PASS"/>
+        <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:36.920" status="PASS"/>
        </kw>
        <kw library="OperatingSystem" name="Get Environment Variable">
         <var>
@@ -219,10 +219,10 @@
         <doc>
          Returns the value of an environment variable with the given name.
         </doc>
-        <msg level="INFO" timestamp="20240619 13:37:53.116">
+        <msg level="INFO" timestamp="20240620 16:49:36.920">
          ${docker_check} = not_found
         </msg>
-        <status endtime="20240619 13:37:53.116" starttime="20240619 13:37:53.112" status="PASS"/>
+        <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:36.920" status="PASS"/>
        </kw>
        <kw library="BuiltIn" name="Run Keyword And Return If">
         <arg>
@@ -244,15 +244,15 @@
          <doc>
           Logs the given message with the given level.
          </doc>
-         <msg level="INFO" timestamp="20240619 13:37:53.116">
+         <msg level="INFO" timestamp="20240620 16:49:36.920">
           Not executing on Docker
          </msg>
-         <status endtime="20240619 13:37:53.116" starttime="20240619 13:37:53.116" status="PASS"/>
+         <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:36.920" status="PASS"/>
         </kw>
-        <msg level="INFO" timestamp="20240619 13:37:53.116">
+        <msg level="INFO" timestamp="20240620 16:49:36.920">
          Returning from the enclosing user keyword.
         </msg>
-        <status endtime="20240619 13:37:53.116" starttime="20240619 13:37:53.116" status="PASS"/>
+        <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:36.920" status="PASS"/>
        </kw>
        <kw library="BuiltIn" name="Create List">
         <var>
@@ -270,7 +270,7 @@
         <doc>
          Returns a list containing given items.
         </doc>
-        <status endtime="20240619 13:37:53.116" starttime="20240619 13:37:53.116" status="NOT RUN"/>
+        <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:36.920" status="NOT RUN"/>
        </kw>
        <kw library="BuiltIn" name="Set Global Variable">
         <arg>
@@ -282,9 +282,9 @@
         <doc>
          Makes a variable available globally in all tests and suites.
         </doc>
-        <status endtime="20240619 13:37:53.116" starttime="20240619 13:37:53.116" status="NOT RUN"/>
+        <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:36.920" status="NOT RUN"/>
        </kw>
-       <status endtime="20240619 13:37:53.116" starttime="20240619 13:37:53.112" status="PASS"/>
+       <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:36.920" status="PASS"/>
       </kw>
       <kw library="Support_Web" name="Create Webdriver for chrome preferences">
        <kw library="Support_Web" name="Update Docker Execution Options">
@@ -314,15 +314,15 @@
           <doc>
            Fails unless the given variable exists within the current scope.
           </doc>
-          <msg level="FAIL" timestamp="20240619 13:37:53.116">
+          <msg level="FAIL" timestamp="20240620 16:49:36.920">
            Variable '${docker_options}' does not exist.
           </msg>
-          <status endtime="20240619 13:37:53.116" starttime="20240619 13:37:53.116" status="FAIL"/>
+          <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:36.920" status="FAIL"/>
          </kw>
-         <msg level="INFO" timestamp="20240619 13:37:53.116">
+         <msg level="INFO" timestamp="20240620 16:49:36.920">
           ${docker_check} = False
          </msg>
-         <status endtime="20240619 13:37:53.116" starttime="20240619 13:37:53.116" status="PASS"/>
+         <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:36.920" status="PASS"/>
         </kw>
         <kw library="BuiltIn" name="Get Length">
          <var>
@@ -334,13 +334,13 @@
          <doc>
           Returns and logs the length of the given item as an integer.
          </doc>
-         <msg level="INFO" timestamp="20240619 13:37:53.116">
+         <msg level="INFO" timestamp="20240620 16:49:36.920">
           Length is 1
          </msg>
-         <msg level="INFO" timestamp="20240619 13:37:53.116">
+         <msg level="INFO" timestamp="20240620 16:49:36.920">
           ${list_prefs_length} = 1
          </msg>
-         <status endtime="20240619 13:37:53.116" starttime="20240619 13:37:53.116" status="PASS"/>
+         <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:36.920" status="PASS"/>
         </kw>
         <kw library="BuiltIn" name="Run Keyword If">
          <var>
@@ -389,17 +389,17 @@
           <doc>
            Returns the given values which can then be assigned to a variables.
           </doc>
-          <status endtime="20240619 13:37:53.116" starttime="20240619 13:37:53.116" status="PASS"/>
+          <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:36.920" status="PASS"/>
          </kw>
-         <msg level="INFO" timestamp="20240619 13:37:53.116">
+         <msg level="INFO" timestamp="20240620 16:49:36.920">
           ${list_prefs} = [[]]
          </msg>
-         <status endtime="20240619 13:37:53.116" starttime="20240619 13:37:53.116" status="PASS"/>
+         <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:36.920" status="PASS"/>
         </kw>
-        <msg level="INFO" timestamp="20240619 13:37:53.116">
+        <msg level="INFO" timestamp="20240620 16:49:36.920">
          ${list_prefs} = [[]]
         </msg>
-        <status endtime="20240619 13:37:53.116" starttime="20240619 13:37:53.116" status="PASS"/>
+        <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:36.920" status="PASS"/>
        </kw>
        <kw library="Support_Web" name="Create Chrome Options for download preferences">
         <var>
@@ -418,15 +418,15 @@
          <doc>
           Evaluates the given expression in Python and returns the result.
          </doc>
-         <msg level="INFO" timestamp="20240619 13:37:53.116">
-          ${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000027DF6647140&gt;
+         <msg level="INFO" timestamp="20240620 16:49:36.920">
+          ${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001DD66F163C0&gt;
          </msg>
-         <status endtime="20240619 13:37:53.116" starttime="20240619 13:37:53.116" status="PASS"/>
+         <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:36.920" status="PASS"/>
         </kw>
-        <msg level="INFO" timestamp="20240619 13:37:53.116">
-         ${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000027DF6647140&gt;
+        <msg level="INFO" timestamp="20240620 16:49:36.920">
+         ${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001DD66F163C0&gt;
         </msg>
-        <status endtime="20240619 13:37:53.116" starttime="20240619 13:37:53.116" status="PASS"/>
+        <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:36.920" status="PASS"/>
        </kw>
        <kw library="Support_Web" name="Update Preferences List">
         <arg>
@@ -445,10 +445,10 @@
          <doc>
           Converts the given item to a Unicode string.
          </doc>
-         <msg level="INFO" timestamp="20240619 13:37:53.116">
+         <msg level="INFO" timestamp="20240620 16:49:36.920">
           ${string_prefs} = [[]]
          </msg>
-         <status endtime="20240619 13:37:53.116" starttime="20240619 13:37:53.116" status="PASS"/>
+         <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:36.920" status="PASS"/>
         </kw>
         <kw library="BuiltIn" name="Return From Keyword If">
          <arg>
@@ -457,10 +457,10 @@
          <doc>
           Returns from the enclosing user keyword if ``condition`` is true.
          </doc>
-         <msg level="INFO" timestamp="20240619 13:37:53.116">
+         <msg level="INFO" timestamp="20240620 16:49:36.920">
           Returning from the enclosing user keyword.
          </msg>
-         <status endtime="20240619 13:37:53.116" starttime="20240619 13:37:53.116" status="PASS"/>
+         <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:36.920" status="PASS"/>
         </kw>
         <for flavor="IN">
          <var>
@@ -484,13 +484,13 @@
            <doc>
             Calls the named method of the given object with the provided arguments.
            </doc>
-           <status endtime="20240619 13:37:53.116" starttime="20240619 13:37:53.116" status="NOT RUN"/>
+           <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:36.920" status="NOT RUN"/>
           </kw>
-          <status endtime="20240619 13:37:53.116" starttime="20240619 13:37:53.116" status="NOT RUN"/>
+          <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:36.920" status="NOT RUN"/>
          </iter>
-         <status endtime="20240619 13:37:53.116" starttime="20240619 13:37:53.116" status="NOT RUN"/>
+         <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:36.920" status="NOT RUN"/>
         </for>
-        <status endtime="20240619 13:37:53.116" starttime="20240619 13:37:53.116" status="PASS"/>
+        <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:36.920" status="PASS"/>
        </kw>
        <kw library="BuiltIn" name="Call Method">
         <arg>
@@ -508,7 +508,7 @@
         <doc>
          Calls the named method of the given object with the provided arguments.
         </doc>
-        <status endtime="20240619 13:37:53.116" starttime="20240619 13:37:53.116" status="PASS"/>
+        <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:36.920" status="PASS"/>
        </kw>
        <kw library="BuiltIn" name="Set Global Variable">
         <arg>
@@ -520,18 +520,18 @@
         <doc>
          Makes a variable available globally in all tests and suites.
         </doc>
-        <msg level="INFO" timestamp="20240619 13:37:53.116">
-         ${global_browser_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000027DF6647140&gt;
+        <msg level="INFO" timestamp="20240620 16:49:36.920">
+         ${global_browser_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001DD66F163C0&gt;
         </msg>
-        <status endtime="20240619 13:37:53.116" starttime="20240619 13:37:53.116" status="PASS"/>
+        <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:36.920" status="PASS"/>
        </kw>
-       <status endtime="20240619 13:37:53.116" starttime="20240619 13:37:53.116" status="PASS"/>
+       <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:36.920" status="PASS"/>
       </kw>
-      <status endtime="20240619 13:37:53.116" starttime="20240619 13:37:48.232" status="PASS"/>
+      <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:29.753" status="PASS"/>
      </kw>
-     <status endtime="20240619 13:37:53.116" starttime="20240619 13:37:48.231" status="PASS"/>
+     <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:29.752" status="PASS"/>
     </kw>
-    <status endtime="20240619 13:37:53.116" starttime="20240619 13:37:48.230" status="PASS"/>
+    <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:29.751" status="PASS"/>
    </kw>
    <kw library="BuiltIn" name="Set Suite Metadata">
     <arg>
@@ -543,136 +543,869 @@
     <doc>
      Sets metadata for the current test suite.
     </doc>
-    <msg level="INFO" timestamp="20240619 13:37:53.116">
+    <msg level="INFO" timestamp="20240620 16:49:36.920">
      Set suite metadata 'environment' to value 'Dev'.
     </msg>
-    <status endtime="20240619 13:37:53.116" starttime="20240619 13:37:53.116" status="PASS"/>
+    <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:36.920" status="PASS"/>
    </kw>
-   <status endtime="20240619 13:37:53.116" starttime="20240619 13:37:48.218" status="PASS"/>
+   <status endtime="20240620 16:49:36.920" starttime="20240620 16:49:29.739" status="PASS"/>
   </kw>
-  <suite id="s1-s1" name="Test Read CSV file" source="C:\SAP_Testing\SAPtesting\Tests\Test_Read_CSV_file.robot">
-   <test id="s1-s1-t1" line="6" name="Read and Write CSV with Pandas">
-    <kw library="Read_CSV_file" name="Read CSV File">
-     <doc>
-      Read the content from the CSV file using Pandas.
-     </doc>
-     <kw library="PandasLibrary" name="Read Csv File To Dataframe">
-      <var>
-       ${dataframe}
-      </var>
-      <arg>
-       ${INPUT_FILE}
-      </arg>
-      <msg level="INFO" timestamp="20240619 13:37:53.781">
-       ${dataframe} =       Name  Age   Department
-0    Alice   30           HR
-1      Bob   24  Engineering
-2  Charlie   28        Sales
-      </msg>
-      <status endtime="20240619 13:37:53.781" starttime="20240619 13:37:53.765" status="PASS"/>
-     </kw>
-     <kw library="PandasLibrary" name="Log Dataframe Info">
-      <arg>
-       ${dataframe}
-      </arg>
-      <msg level="INFO" timestamp="20240619 13:37:53.781">
-       &lt;class 'pandas.core.frame.DataFrame'&gt;
-RangeIndex: 3 entries, 0 to 2
-Data columns (total 3 columns):
- #   Column      Non-Null Count  Dtype 
----  ------      --------------  ----- 
- 0   Name        3 non-null      object
- 1   Age         3 non-null      int64 
- 2   Department  3 non-null      object
-dtypes: int64(1), object(2)
-memory usage: 204.0+ bytes
-None
-      </msg>
-      <status endtime="20240619 13:37:53.781" starttime="20240619 13:37:53.781" status="PASS"/>
-     </kw>
-     <kw library="PandasLibrary" name="Dataframe To List">
-      <var>
-       ${data}
-      </var>
-      <arg>
-       ${dataframe}
-      </arg>
-      <msg level="INFO" timestamp="20240619 13:37:53.781">
-       ${data} = [['Alice', 30, 'HR'], ['Bob', 24, 'Engineering'], ['Charlie', 28, 'Sales']]
-      </msg>
-      <status endtime="20240619 13:37:53.781" starttime="20240619 13:37:53.781" status="PASS"/>
-     </kw>
+  <suite id="s1-s1" name="Test Role configuration" source="C:\Anugal_Testing\Anugal\Tests\Test_Role_configuration.robot">
+   <test id="s1-s1-t1" line="6" name="Start TestCase">
+    <kw library="Role_configuration" name="Start TestCase">
      <kw library="BuiltIn" name="Log">
       <arg>
-       ${data}
+       Opening browser
       </arg>
       <doc>
        Logs the given message with the given level.
       </doc>
-      <msg level="INFO" timestamp="20240619 13:37:53.781">
-       [['Alice', 30, 'HR'], ['Bob', 24, 'Engineering'], ['Charlie', 28, 'Sales']]
+      <msg level="INFO" timestamp="20240620 16:49:36.936">
+       Opening browser
       </msg>
-      <status endtime="20240619 13:37:53.781" starttime="20240619 13:37:53.781" status="PASS"/>
+      <status endtime="20240620 16:49:36.936" starttime="20240620 16:49:36.936" status="PASS"/>
      </kw>
-     <status endtime="20240619 13:37:53.781" starttime="20240619 13:37:53.765" status="PASS"/>
-    </kw>
-    <kw library="Read_CSV_file" name="Write CSV File">
-     <doc>
-      Write content to a new CSV file using Pandas.
-     </doc>
-     <kw library="PandasLibrary" name="Read Csv File To Dataframe">
-      <var>
-       ${dataframe}
-      </var>
+     <kw library="SeleniumLibrary" name="Open Browser">
       <arg>
-       ${INPUT_FILE}
+       ${angvar('url')}
       </arg>
-      <msg level="INFO" timestamp="20240619 13:37:53.796">
-       ${dataframe} =       Name  Age   Department
-0    Alice   30           HR
-1      Bob   24  Engineering
-2  Charlie   28        Sales
+      <arg>
+       ${angvar('browser')}
+      </arg>
+      <doc>
+       Opens a new browser instance to the optional ``url``.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:49:36.936">
+       Ang.Dev.url: https://dev.anugalid.com/login
       </msg>
-      <status endtime="20240619 13:37:53.796" starttime="20240619 13:37:53.781" status="PASS"/>
-     </kw>
-     <kw library="PandasLibrary" name="Add Column To Dataframe">
-      <var>
-       ${dataframe}
-      </var>
-      <arg>
-       ${dataframe}
-      </arg>
-      <arg>
-       Salary
-      </arg>
-      <arg>
-       50000
-      </arg>
-      <msg level="INFO" timestamp="20240619 13:37:53.796">
-       ${dataframe} =       Name  Age   Department Salary
-0    Alice   30           HR  50000
-1      Bob   24  Engineering  50000
-2  Charlie   28        Sales  50000
+      <msg level="INFO" timestamp="20240620 16:49:36.936">
+       Ang.Dev.browser: Chrome
       </msg>
-      <status endtime="20240619 13:37:53.796" starttime="20240619 13:37:53.796" status="PASS"/>
+      <msg level="INFO" timestamp="20240620 16:49:36.942">
+       Opening browser 'Chrome' to base url 'https://dev.anugalid.com/login'.
+      </msg>
+      <status endtime="20240620 16:49:39.389" starttime="20240620 16:49:36.936" status="PASS"/>
      </kw>
-     <kw library="PandasLibrary" name="Write Dataframe To Csv">
-      <arg>
-       ${dataframe}
-      </arg>
-      <arg>
-       ${OUTPUT_FILE}
-      </arg>
-      <status endtime="20240619 13:37:53.796" starttime="20240619 13:37:53.796" status="PASS"/>
-     </kw>
-     <status endtime="20240619 13:37:53.796" starttime="20240619 13:37:53.781" status="PASS"/>
+     <status endtime="20240620 16:49:39.389" starttime="20240620 16:49:36.936" status="PASS"/>
     </kw>
     <tag>
-     CSVfile
+     role_configuration
     </tag>
-    <status endtime="20240619 13:37:53.796" starttime="20240619 13:37:53.765" status="PASS"/>
+    <status endtime="20240620 16:49:39.389" starttime="20240620 16:49:36.936" status="PASS"/>
    </test>
-   <status endtime="20240619 13:37:53.796" starttime="20240619 13:37:53.116" status="PASS"/>
+   <test id="s1-s1-t2" line="9" name="Submit Anugal username and password">
+    <kw library="Role_configuration" name="Submit Anugal username and password">
+     <kw library="SeleniumLibrary" name="Wait Until Element Is Visible">
+      <arg>
+       ${angvar('user_text_box')}
+      </arg>
+      <doc>
+       Waits until the element ``locator`` is visible.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:49:39.397">
+       Ang.Dev.user_text_box: id:emailId
+      </msg>
+      <status endtime="20240620 16:49:39.460" starttime="20240620 16:49:39.397" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       10
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:49:49.461">
+       Slept 10 seconds
+      </msg>
+      <status endtime="20240620 16:49:49.462" starttime="20240620 16:49:39.461" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Click Element">
+      <arg>
+       xpath:(//div[@class='MuiStack-root css-1ed5314']//button)[2]
+      </arg>
+      <doc>
+       Click the element identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:49:49.462">
+       Clicking element 'xpath:(//div[@class='MuiStack-root css-1ed5314']//button)[2]'.
+      </msg>
+      <status endtime="20240620 16:49:49.592" starttime="20240620 16:49:49.462" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       5
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:49:54.594">
+       Slept 5 seconds
+      </msg>
+      <status endtime="20240620 16:49:54.594" starttime="20240620 16:49:49.592" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Input Text">
+      <arg>
+       xpath://*[@id="i0116"]
+      </arg>
+      <arg>
+       malayranjan.s@basiscloudsolutions.com
+      </arg>
+      <doc>
+       Types the given ``text`` into the text field identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:49:54.594">
+       Typing text 'malayranjan.s@basiscloudsolutions.com' into text field 'xpath://*[@id="i0116"]'.
+      </msg>
+      <status endtime="20240620 16:49:54.744" starttime="20240620 16:49:54.594" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       3
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:49:57.744">
+       Slept 3 seconds
+      </msg>
+      <status endtime="20240620 16:49:57.744" starttime="20240620 16:49:54.744" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Click Element">
+      <arg>
+       xpath://*[@id="idSIButton9"]
+      </arg>
+      <doc>
+       Click the element identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:49:57.744">
+       Clicking element 'xpath://*[@id="idSIButton9"]'.
+      </msg>
+      <status endtime="20240620 16:49:57.796" starttime="20240620 16:49:57.744" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Wait Until Element Is Visible">
+      <arg>
+       xpath://*[@id="i0118"]
+      </arg>
+      <arg>
+       60s
+      </arg>
+      <doc>
+       Waits until the element ``locator`` is visible.
+      </doc>
+      <status endtime="20240620 16:49:58.692" starttime="20240620 16:49:57.796" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Input Text">
+      <arg>
+       xpath://*[@id="i0118"]
+      </arg>
+      <arg>
+       Malay@Ranjan!@#
+      </arg>
+      <doc>
+       Types the given ``text`` into the text field identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:49:58.693">
+       Typing text 'Malay@Ranjan!@#' into text field 'xpath://*[@id="i0118"]'.
+      </msg>
+      <status endtime="20240620 16:49:58.802" starttime="20240620 16:49:58.692" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Click Element">
+      <arg>
+       xpath://*[@id="idSIButton9"]
+      </arg>
+      <doc>
+       Click the element identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:49:58.803">
+       Clicking element 'xpath://*[@id="idSIButton9"]'.
+      </msg>
+      <status endtime="20240620 16:49:59.346" starttime="20240620 16:49:58.802" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       2
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:50:01.347">
+       Slept 2 seconds
+      </msg>
+      <status endtime="20240620 16:50:01.347" starttime="20240620 16:49:59.346" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Click Element">
+      <arg>
+       xpath://*[@id="idBtn_Back"]
+      </arg>
+      <doc>
+       Click the element identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:50:01.347">
+       Clicking element 'xpath://*[@id="idBtn_Back"]'.
+      </msg>
+      <status endtime="20240620 16:50:02.914" starttime="20240620 16:50:01.347" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       5
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:50:07.914">
+       Slept 5 seconds
+      </msg>
+      <status endtime="20240620 16:50:07.914" starttime="20240620 16:50:02.914" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Maximize Browser Window">
+      <doc>
+       Maximizes current browser window.
+      </doc>
+      <status endtime="20240620 16:50:07.967" starttime="20240620 16:50:07.914" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       20
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:50:27.967">
+       Slept 20 seconds
+      </msg>
+      <status endtime="20240620 16:50:27.967" starttime="20240620 16:50:07.967" status="PASS"/>
+     </kw>
+     <status endtime="20240620 16:50:27.967" starttime="20240620 16:49:39.396" status="PASS"/>
+    </kw>
+    <tag>
+     role_configuration
+    </tag>
+    <status endtime="20240620 16:50:27.967" starttime="20240620 16:49:39.390" status="PASS"/>
+   </test>
+   <test id="s1-s1-t3" line="12" name="Role_configuartion">
+    <kw library="Role_configuration" name="Role_configuartion">
+     <kw library="SeleniumLibrary" name="Click Element">
+      <arg>
+       xpath://span[text()='Admin']
+      </arg>
+      <doc>
+       Click the element identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:50:27.967">
+       Clicking element 'xpath://span[text()='Admin']'.
+      </msg>
+      <status endtime="20240620 16:50:28.096" starttime="20240620 16:50:27.967" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       5
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:50:33.096">
+       Slept 5 seconds
+      </msg>
+      <status endtime="20240620 16:50:33.096" starttime="20240620 16:50:28.096" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Click Element">
+      <arg>
+       xpath://div[text()='Role Configuration']
+      </arg>
+      <doc>
+       Click the element identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:50:33.096">
+       Clicking element 'xpath://div[text()='Role Configuration']'.
+      </msg>
+      <status endtime="20240620 16:50:33.249" starttime="20240620 16:50:33.096" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       5
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:50:38.251">
+       Slept 5 seconds
+      </msg>
+      <status endtime="20240620 16:50:38.251" starttime="20240620 16:50:33.249" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Click Element">
+      <arg>
+       xpath://button[text()='Create New Role']
+      </arg>
+      <doc>
+       Click the element identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:50:38.251">
+       Clicking element 'xpath://button[text()='Create New Role']'.
+      </msg>
+      <status endtime="20240620 16:50:38.427" starttime="20240620 16:50:38.251" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       2
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:50:40.434">
+       Slept 2 seconds
+      </msg>
+      <status endtime="20240620 16:50:40.434" starttime="20240620 16:50:38.427" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Input Text">
+      <arg>
+       id:roleConfigName
+      </arg>
+      <arg>
+       Anugal@123
+      </arg>
+      <doc>
+       Types the given ``text`` into the text field identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:50:40.435">
+       Typing text 'Anugal@123' into text field 'id:roleConfigName'.
+      </msg>
+      <status endtime="20240620 16:50:41.089" starttime="20240620 16:50:40.434" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       1
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:50:42.090">
+       Slept 1 second
+      </msg>
+      <status endtime="20240620 16:50:42.090" starttime="20240620 16:50:41.089" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Input Text">
+      <arg>
+       id:roleConfigDescription
+      </arg>
+      <arg>
+       Anugal@test
+      </arg>
+      <doc>
+       Types the given ``text`` into the text field identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:50:42.090">
+       Typing text 'Anugal@test' into text field 'id:roleConfigDescription'.
+      </msg>
+      <status endtime="20240620 16:50:42.588" starttime="20240620 16:50:42.090" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       1
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:50:43.590">
+       Slept 1 second
+      </msg>
+      <status endtime="20240620 16:50:43.590" starttime="20240620 16:50:42.588" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Click Element">
+      <arg>
+       name:User Administration
+      </arg>
+      <doc>
+       Click the element identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:50:43.590">
+       Clicking element 'name:User Administration'.
+      </msg>
+      <status endtime="20240620 16:50:43.690" starttime="20240620 16:50:43.590" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       2
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:50:45.691">
+       Slept 2 seconds
+      </msg>
+      <status endtime="20240620 16:50:45.691" starttime="20240620 16:50:43.690" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Execute Javascript">
+      <arg>
+       window.scrollTo(0,400)
+      </arg>
+      <doc>
+       Executes the given JavaScript code with possible arguments.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:50:45.691">
+       Executing JavaScript:
+window.scrollTo(0,400)
+Without any arguments.
+      </msg>
+      <status endtime="20240620 16:50:45.699" starttime="20240620 16:50:45.691" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       2
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:50:47.701">
+       Slept 2 seconds
+      </msg>
+      <status endtime="20240620 16:50:47.701" starttime="20240620 16:50:45.699" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Click Element">
+      <arg>
+       name:My Access
+      </arg>
+      <doc>
+       Click the element identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:50:47.701">
+       Clicking element 'name:My Access'.
+      </msg>
+      <status endtime="20240620 16:50:47.795" starttime="20240620 16:50:47.701" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       2
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:50:49.796">
+       Slept 2 seconds
+      </msg>
+      <status endtime="20240620 16:50:49.796" starttime="20240620 16:50:47.795" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Click Element">
+      <arg>
+       name:Status
+      </arg>
+      <doc>
+       Click the element identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:50:49.796">
+       Clicking element 'name:Status'.
+      </msg>
+      <status endtime="20240620 16:50:49.889" starttime="20240620 16:50:49.796" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       2
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:50:51.889">
+       Slept 2 seconds
+      </msg>
+      <status endtime="20240620 16:50:51.889" starttime="20240620 16:50:49.889" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Click Element">
+      <arg>
+       xpath://button[text()='Next']
+      </arg>
+      <doc>
+       Click the element identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:50:51.889">
+       Clicking element 'xpath://button[text()='Next']'.
+      </msg>
+      <status endtime="20240620 16:50:51.950" starttime="20240620 16:50:51.889" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       5
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:50:56.952">
+       Slept 5 seconds
+      </msg>
+      <status endtime="20240620 16:50:56.952" starttime="20240620 16:50:51.951" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Click Element">
+      <arg>
+       xpath://button[text()='Create']
+      </arg>
+      <doc>
+       Click the element identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:50:56.952">
+       Clicking element 'xpath://button[text()='Create']'.
+      </msg>
+      <status endtime="20240620 16:50:57.004" starttime="20240620 16:50:56.952" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       9
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:51:06.005">
+       Slept 9 seconds
+      </msg>
+      <status endtime="20240620 16:51:06.005" starttime="20240620 16:50:57.004" status="PASS"/>
+     </kw>
+     <status endtime="20240620 16:51:06.005" starttime="20240620 16:50:27.967" status="PASS"/>
+    </kw>
+    <kw library="Role_configuration" name="Provisioning the role">
+     <kw library="SeleniumLibrary" name="Click Element">
+      <arg>
+       xpath:(//input[@type='checkbox'])[1]
+      </arg>
+      <doc>
+       Click the element identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:51:06.005">
+       Clicking element 'xpath:(//input[@type='checkbox'])[1]'.
+      </msg>
+      <status endtime="20240620 16:51:06.230" starttime="20240620 16:51:06.005" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       2
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:51:08.231">
+       Slept 2 seconds
+      </msg>
+      <status endtime="20240620 16:51:08.231" starttime="20240620 16:51:06.231" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Click Element">
+      <arg>
+       xpath://button[text()='Confirm']
+      </arg>
+      <doc>
+       Click the element identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:51:08.231">
+       Clicking element 'xpath://button[text()='Confirm']'.
+      </msg>
+      <status endtime="20240620 16:51:08.363" starttime="20240620 16:51:08.231" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       5
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:51:13.363">
+       Slept 5 seconds
+      </msg>
+      <status endtime="20240620 16:51:13.363" starttime="20240620 16:51:08.363" status="PASS"/>
+     </kw>
+     <status endtime="20240620 16:51:13.363" starttime="20240620 16:51:06.005" status="PASS"/>
+    </kw>
+    <kw library="Role_configuration" name="View the role">
+     <kw library="SeleniumLibrary" name="Click Element">
+      <arg>
+       xpath:(//span[@aria-label='view'])[1]
+      </arg>
+      <doc>
+       Click the element identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:51:13.363">
+       Clicking element 'xpath:(//span[@aria-label='view'])[1]'.
+      </msg>
+      <status endtime="20240620 16:51:13.637" starttime="20240620 16:51:13.363" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       2
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:51:15.638">
+       Slept 2 seconds
+      </msg>
+      <status endtime="20240620 16:51:15.638" starttime="20240620 16:51:13.637" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Click Element">
+      <arg>
+       xpath:(//div[@role='button'])[1]
+      </arg>
+      <doc>
+       Click the element identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:51:15.638">
+       Clicking element 'xpath:(//div[@role='button'])[1]'.
+      </msg>
+      <status endtime="20240620 16:51:15.690" starttime="20240620 16:51:15.638" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       2
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:51:17.692">
+       Slept 2 seconds
+      </msg>
+      <status endtime="20240620 16:51:17.692" starttime="20240620 16:51:15.690" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Click Element">
+      <arg>
+       xpath:(//div[@role='button'])[2]
+      </arg>
+      <doc>
+       Click the element identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:51:17.692">
+       Clicking element 'xpath:(//div[@role='button'])[2]'.
+      </msg>
+      <status endtime="20240620 16:51:17.745" starttime="20240620 16:51:17.692" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       2
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:51:19.747">
+       Slept 2 seconds
+      </msg>
+      <status endtime="20240620 16:51:19.747" starttime="20240620 16:51:17.745" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Click Element">
+      <arg>
+       xpath://body/div[2]/div[3]/div[1]/div[1]
+      </arg>
+      <doc>
+       Click the element identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:51:19.747">
+       Clicking element 'xpath://body/div[2]/div[3]/div[1]/div[1]'.
+      </msg>
+      <status endtime="20240620 16:51:19.856" starttime="20240620 16:51:19.747" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       2
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:51:21.856">
+       Slept 2 seconds
+      </msg>
+      <status endtime="20240620 16:51:21.856" starttime="20240620 16:51:19.856" status="PASS"/>
+     </kw>
+     <status endtime="20240620 16:51:21.856" starttime="20240620 16:51:13.363" status="PASS"/>
+    </kw>
+    <kw library="Role_configuration" name="Edit the role">
+     <kw library="SeleniumLibrary" name="Click Element">
+      <arg>
+       xpath:(//span[@aria-label='edit'])[1]
+      </arg>
+      <doc>
+       Click the element identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:51:21.856">
+       Clicking element 'xpath:(//span[@aria-label='edit'])[1]'.
+      </msg>
+      <status endtime="20240620 16:51:22.062" starttime="20240620 16:51:21.856" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       5
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:51:27.063">
+       Slept 5 seconds
+      </msg>
+      <status endtime="20240620 16:51:27.063" starttime="20240620 16:51:22.062" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Click Element">
+      <arg>
+       xpath:(//input[@name='approver'])[2]
+      </arg>
+      <doc>
+       Click the element identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:51:27.063">
+       Clicking element 'xpath:(//input[@name='approver'])[2]'.
+      </msg>
+      <status endtime="20240620 16:51:27.169" starttime="20240620 16:51:27.063" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       2
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:51:29.169">
+       Slept 2 seconds
+      </msg>
+      <status endtime="20240620 16:51:29.169" starttime="20240620 16:51:27.169" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Click Element">
+      <arg>
+       xpath://button[text()='Next']
+      </arg>
+      <doc>
+       Click the element identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:51:29.169">
+       Clicking element 'xpath://button[text()='Next']'.
+      </msg>
+      <status endtime="20240620 16:51:29.223" starttime="20240620 16:51:29.169" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       2
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:51:31.224">
+       Slept 2 seconds
+      </msg>
+      <status endtime="20240620 16:51:31.224" starttime="20240620 16:51:29.223" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Click Element">
+      <arg>
+       xpath://span[@sx='[object Object]']//button[1]
+      </arg>
+      <doc>
+       Click the element identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:51:31.224">
+       Clicking element 'xpath://span[@sx='[object Object]']//button[1]'.
+      </msg>
+      <status endtime="20240620 16:51:31.281" starttime="20240620 16:51:31.224" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       8
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:51:39.282">
+       Slept 8 seconds
+      </msg>
+      <status endtime="20240620 16:51:39.282" starttime="20240620 16:51:31.282" status="PASS"/>
+     </kw>
+     <status endtime="20240620 16:51:39.282" starttime="20240620 16:51:21.856" status="PASS"/>
+    </kw>
+    <kw library="Role_configuration" name="Delete the role">
+     <kw library="SeleniumLibrary" name="Click Element">
+      <arg>
+       xpath:(//span[@aria-label='delete'])[1]
+      </arg>
+      <doc>
+       Click the element identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:51:39.282">
+       Clicking element 'xpath:(//span[@aria-label='delete'])[1]'.
+      </msg>
+      <status endtime="20240620 16:51:39.484" starttime="20240620 16:51:39.282" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       2
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:51:41.484">
+       Slept 2 seconds
+      </msg>
+      <status endtime="20240620 16:51:41.484" starttime="20240620 16:51:39.484" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Input Text">
+      <arg>
+       name:deleteRole
+      </arg>
+      <arg>
+       Anugal@123
+      </arg>
+      <doc>
+       Types the given ``text`` into the text field identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:51:41.484">
+       Typing text 'Anugal@123' into text field 'name:deleteRole'.
+      </msg>
+      <status endtime="20240620 16:51:41.960" starttime="20240620 16:51:41.484" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       2
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:51:43.960">
+       Slept 2 seconds
+      </msg>
+      <status endtime="20240620 16:51:43.960" starttime="20240620 16:51:41.960" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Click Element">
+      <arg>
+       xpath://button[text()='Delete']
+      </arg>
+      <doc>
+       Click the element identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:51:43.960">
+       Clicking element 'xpath://button[text()='Delete']'.
+      </msg>
+      <status endtime="20240620 16:51:44.078" starttime="20240620 16:51:43.960" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       5
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240620 16:51:49.079">
+       Slept 5 seconds
+      </msg>
+      <status endtime="20240620 16:51:49.079" starttime="20240620 16:51:44.078" status="PASS"/>
+     </kw>
+     <status endtime="20240620 16:51:49.079" starttime="20240620 16:51:39.282" status="PASS"/>
+    </kw>
+    <tag>
+     role_configuration
+    </tag>
+    <status endtime="20240620 16:51:49.079" starttime="20240620 16:50:27.967" status="PASS"/>
+   </test>
+   <test id="s1-s1-t4" line="19" name="Finish TestCase">
+    <kw library="Role_configuration" name="Finish TestCase">
+     <kw library="SeleniumLibrary" name="Close All Browsers">
+      <doc>
+       Closes all open browsers and resets the browser cache.
+      </doc>
+      <status endtime="20240620 16:51:53.595" starttime="20240620 16:51:49.079" status="PASS"/>
+     </kw>
+     <status endtime="20240620 16:51:53.595" starttime="20240620 16:51:49.079" status="PASS"/>
+    </kw>
+    <tag>
+     role_configuration
+    </tag>
+    <status endtime="20240620 16:51:53.595" starttime="20240620 16:51:49.079" status="PASS"/>
+   </test>
+   <status endtime="20240620 16:51:53.595" starttime="20240620 16:49:36.920" status="PASS"/>
   </suite>
   <doc>
    Testing functionality through Robot Framework
@@ -695,25 +1428,25 @@ None
   <meta name="test_freeze_dependencies">
    astroid==3.1.0,attrs==23.2.0,beautifulsoup4==4.12.3,bs4==0.0.2,certifi==2024.2.2,cffi==1.16.0,chardet==5.2.0,charset-normalizer==3.3.2,click==8.1.7,colorama==0.4.6,cryptography==42.0.5,defusedxml==0.7.1,dill==0.3.8,docutils==0.20.1,docx==0.2.4,docx2pdf==0.1.8,et-xmlfile==1.1.0,exceptiongroup==1.2.0,fsspec==2024.5.0,gitdb==4.0.11,GitPython==3.1.42,h11==0.14.0,idna==3.6,isort==5.13.2,Jinja2==3.1.3,jira==3.6.0,jsonpath-ng==1.6.1,jsonschema==4.21.1,jsonschema-specifications==2023.12.1,lazy-object-proxy==1.10.0,lxml==5.1.0,markdown-it-py==3.0.0,MarkupSafe==2.1.5,mccabe==0.7.0,mdurl==0.1.2,natsort==8.4.0,numpy==1.26.4,oauthlib==3.2.2,openpyxl==3.1.2,outcome==1.3.0.post0,packaging==24.0,pandas==2.2.2,pathspec==0.11.2,pillow==10.2.0,pip==24.0,platformdirs==4.2.0,ply==3.11,pycparser==2.21,Pygments==2.17.2,pylint==3.1.0,PyPDF2==3.0.1,PySocks==1.7.1,python-dateutil==2.9.0.post0,python-docx==1.1.2,pytz==2024.1,pywin32==306,PyYAML==6.0.1,referencing==0.33.0,reportlab==4.2.0,requests==2.31.0,requests-oauthlib==1.4.0,requests-toolbelt==1.0.0,rich==13.7.1,rich-click==1.6.1,robotframework==6.0.2,robotframework-datadriver==1.9.0,robotframework-jsonlibrary==0.5,robotframework-pabot==2.16.0,robotframework-pythonlibcore==4.2.0,robotframework-requests==0.9.2,robotframework-sapguilibrary==1.1,robotframework-seleniumlibrary==5.1.3,robotframework-stacktrace==0.4.1,robotframework-tidy==4.5.0,rpds-py==0.18.0,selenium==4.9.1,setuptools==69.2.0,six==1.16.0,smmap==5.0.1,sniffio==1.3.1,sortedcontainers==2.4.0,soupsieve==2.5,tomli==2.0.1,tomlkit==0.12.4,tqdm==4.66.4,trio==0.24.0,trio-websocket==0.11.1,typing_extensions==4.10.0,tzdata==2024.1,urllib3==2.2.1,wheel==0.43.0,wrapt==1.16.0,wsproto==1.2.0
   </meta>
-  <status endtime="20240619 13:37:54.237" starttime="20240619 13:37:47.893" status="PASS"/>
+  <status endtime="20240620 16:51:53.881" starttime="20240620 16:49:29.326" status="PASS"/>
  </suite>
  <statistics>
   <total>
-   <stat fail="0" pass="1" skip="0">
+   <stat fail="0" pass="4" skip="0">
     All Tests
    </stat>
   </total>
   <tag>
-   <stat fail="0" pass="1" skip="0">
-    CSVfile
+   <stat fail="0" pass="4" skip="0">
+    role_configuration
    </stat>
   </tag>
   <suite>
-   <stat fail="0" id="s1" name="Tests" pass="1" skip="0">
+   <stat fail="0" id="s1" name="Tests" pass="4" skip="0">
     Tests
    </stat>
-   <stat fail="0" id="s1-s1" name="Test Read CSV file" pass="1" skip="0">
-    Tests.Test Read CSV file
+   <stat fail="0" id="s1-s1" name="Test Role configuration" pass="4" skip="0">
+    Tests.Test Role configuration
    </stat>
   </suite>
  </statistics>
