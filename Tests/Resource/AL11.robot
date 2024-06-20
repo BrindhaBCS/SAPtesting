@@ -4,11 +4,11 @@ Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    String
-#Library    Merger.py
+Library    Merger.py
 
 
-#*** Variables ***
-#${screenshot_directory}     ${OUTPUT_DIR}
+*** Variables ***
+${screenshot_directory}     ${OUTPUT_DIR}
 
 *** Keywords ***
 System Logon
@@ -41,5 +41,5 @@ Transaction AL11
     Table Scroll   wnd[0]/usr/cntlEXT_COM/shellcont/shell    23 
     Sleep    2
     Take Screenshot    026_al11.jpg
-    #Merger.create pdf    ${screenshot_directory}    
-    #Sleep    2
+    Merger.create pdf    ${screenshot_directory}    
+    Sleep    2
