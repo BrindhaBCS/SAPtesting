@@ -28,11 +28,11 @@ System Logout
 
 STMS_T_CODE
     Run Transaction    /nSTMS
-    Sleep    2
+    Sleep    3
     Take Screenshot    STMS.jpg
     Sleep    1
     Click Element    /app/con[0]/ses[0]/wnd[0]/tbar[1]/btn[19]
-    Sleep    1
+    Sleep    2
     Take Screenshot    TRANSPORT.jpg
     Sleep    1
     Click Element    wnd[0]/tbar[0]/btn[3]
