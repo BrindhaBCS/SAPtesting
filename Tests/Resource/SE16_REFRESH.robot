@@ -16,6 +16,7 @@ System Logon
     Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
     Send Vkey    0
     Take Screenshot    00a_loginpage.jpg
+
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
     Sleep   1
     Take Screenshot    00_multi_logon_handling.jpg
@@ -34,7 +35,7 @@ SE16_T_CODE
     Click Element    wnd[0]/tbar[1]/btn[7]
     Sleep    1
     Click Element    wnd[0]/tbar[1]/btn[8]
-    Sleep    1
+    Sleep    2
     Take Screenshot    SE16_E0701.jpg
     Sleep    1
     Click Element    wnd[0]/tbar[0]/btn[3]
