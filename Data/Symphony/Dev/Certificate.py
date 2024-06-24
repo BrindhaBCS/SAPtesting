@@ -1,0 +1,6 @@
+CPI_URL1= "https://070d8411trial.integrationsuite-trial.cfapps.ap21.hana.ondemand.com/shell/monitoring/Overview"
+CPI_URL= "https://070d8411trial.integrationsuite-trial.cfapps.ap21.hana.ondemand.com/shell/monitoring/Keystore"
+browsertype = "chrome"
+username= "arif.shaikh@basiscloudsolutions.com"
+password= "Welcome@12345"
+filename= "SID_CERT.crt"    
