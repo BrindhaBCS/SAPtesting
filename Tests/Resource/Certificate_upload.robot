@@ -19,7 +19,7 @@ Browser Login
     Sleep    10
     Scroll Element Into View    xpath://*[@id="password"]
     Sleep    2
-    Input Password    xpath://*[@id="password"]    ${symvar('password')}  
+    Input Password    xpath://*[@id="password"]    %{password}  
     Sleep    2
     Scroll Element Into View    xpath://button[@class='uid-login-as__submit-button test-button ds-button ds-button--primary' and text()='Sign in']
     Sleep     2    
