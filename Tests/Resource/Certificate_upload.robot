@@ -43,7 +43,7 @@ Upload_Certificate
     Sleep    10
     Press Keys    xpath://bdi[normalize-space()='Add']    ENTER
     Sleep    2
-    Input Text    id:txtAlias-inner    $Alias
+    Input Text    id:txtAlias-inner    ${symvar('Alias')}
     Sleep    2
     Choose File    id:CertificateUploadDialog-FileSelectionEntry-fu    ${file_path}    
     Sleep    5
