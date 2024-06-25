@@ -41,6 +41,7 @@ Window_Handling
 
 Close Notification 
     Click Element       //span[@id='__button19-img']
+    Capture Page Screenshot
 
 Notification Handling
     Sleep    5
@@ -49,10 +50,13 @@ Notification Handling
     
 Upload_Certificate
     Notification Handling
+    Capture Page Screenshot
     Sleep    10
     Press Keys    xpath://bdi[normalize-space()='Add']    ENTER
+    Capture Page Screenshot
     Sleep    2
     Input Text    id:txtAlias-inner    ${symvar('Alias')}
+    Capture Page Screenshot
     Sleep    2
     Choose File    id:CertificateUploadDialog-FileSelectionEntry-fu    ${file_path}    
     Sleep    5
@@ -63,8 +67,11 @@ Upload_Certificate
     Capture Page Screenshot  
     Sleep    2
     Click Element    xpath://bdi[@id='btnDeploy-BDI-content']
+    Capture Page Screenshot
     Sleep    2
     Click Element    xpath://bdi[text()='Confirm']
+    Capture Page Screenshot
+    Sleep    2
 
 Uploading Certificate into SAP
     IF    '${Title}' == '${symvar('CPI_URL1')}'
