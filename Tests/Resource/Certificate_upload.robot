@@ -16,7 +16,7 @@ Browser Login
     Input Text    id:j_username    ${symvar('username')}    
     Sleep    2
     Click Element    xpath://*[@id="logOnFormSubmit"]
-    Sleep    10
+    Sleep    20
     Scroll Element Into View    xpath://*[@id="password"]
     Sleep    2
     Input Password    xpath://*[@id="password"]    %{password}  
@@ -39,7 +39,16 @@ Window_Handling
     Sleep    20
     Upload_Certificate
 
+Close Notification 
+    Click Element       //span[@id='__button19-img']
+
+Notification Handling
+    Sleep    5
+    ${Status}=     Run Keyword And Return Status   Page Should Contain Element    id:__popover4-title-inner    
+    Run Keyword If    '${Status}'=='True'    Close Notification            
+    
 Upload_Certificate
+    Notification Handling
     Sleep    10
     Press Keys    xpath://bdi[normalize-space()='Add']    ENTER
     Sleep    2
@@ -55,6 +64,7 @@ Upload_Certificate
     Sleep    2
     Click Element    xpath://bdi[@id='btnDeploy-BDI-content']
     Sleep    2
+    Click Element    xpath://bdi[text()='Confirm']
 
 Uploading Certificate into SAP
     IF    '${Title}' == '${symvar('CPI_URL1')}'
@@ -63,5 +73,7 @@ Uploading Certificate into SAP
         Upload_Certificate
     END
 
+
 Browser Logout
     Close All Browsers
+
