@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.0.2 (Python 3.12.1 on win32)" generated="20240625 16:47:31.384" rpa="false" schemaversion="3">
+<robot generator="Robot 6.0.2 (Python 3.12.1 on win32)" generated="20240625 20:12:42.526" rpa="false" schemaversion="3">
 <suite id="s1" name="Tests" source="C:\SAP_Testing\SAPtesting\Tests">
 <kw name="Setup highest level suite" type="SETUP">
 <kw name="Set Variable" library="BuiltIn">
 <var>${d.test_server}</var>
 <arg>${test_server}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20240625 16:47:32.134" level="INFO">${d.test_server} = Dev</msg>
-<status status="PASS" starttime="20240625 16:47:32.134" endtime="20240625 16:47:32.134"/>
+<msg timestamp="20240625 20:12:43.135" level="INFO">${d.test_server} = Dev</msg>
+<status status="PASS" starttime="20240625 20:12:43.135" endtime="20240625 20:12:43.135"/>
 </kw>
 <kw name="Reset screenshot count variable" library="Support">
 <kw name="Set Variable" library="BuiltIn">
 <var>${screenshotCount}</var>
 <arg>${PABOTQUEUEINDEX}_1</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20240625 16:47:32.135" level="INFO">${screenshotCount} = 0_1</msg>
-<status status="PASS" starttime="20240625 16:47:32.135" endtime="20240625 16:47:32.135"/>
+<msg timestamp="20240625 20:12:43.136" level="INFO">${screenshotCount} = 0_1</msg>
+<status status="PASS" starttime="20240625 20:12:43.136" endtime="20240625 20:12:43.136"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${screenshotCount}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240625 16:47:32.136" level="INFO">${screenshotCount} = 0_1</msg>
-<status status="PASS" starttime="20240625 16:47:32.135" endtime="20240625 16:47:32.136"/>
+<msg timestamp="20240625 20:12:43.137" level="INFO">${screenshotCount} = 0_1</msg>
+<status status="PASS" starttime="20240625 20:12:43.136" endtime="20240625 20:12:43.137"/>
 </kw>
 <kw name="Set up screenshot directory" library="Support">
 <kw name="Create Directory" library="OperatingSystem">
 <arg>${OUTPUTDIR}${/}${wvar('screenshot_dir')}</arg>
 <doc>Creates the specified directory.</doc>
-<msg timestamp="20240625 16:47:32.137" level="INFO">Web.Dev.screenshot_dir: Screenshot</msg>
-<msg timestamp="20240625 16:47:32.141" level="INFO" html="true">Created directory '&lt;a href="file://C:\SAP_Testing\SAPtesting\Output\pabot_results\0\Screenshot"&gt;C:\SAP_Testing\SAPtesting\Output\pabot_results\0\Screenshot&lt;/a&gt;'.</msg>
-<status status="PASS" starttime="20240625 16:47:32.136" endtime="20240625 16:47:32.141"/>
+<msg timestamp="20240625 20:12:43.138" level="INFO">Web.Dev.screenshot_dir: Screenshot</msg>
+<msg timestamp="20240625 20:12:43.144" level="INFO" html="true">Created directory '&lt;a href="file://C:\SAP_Testing\SAPtesting\Output\pabot_results\0\Screenshot"&gt;C:\SAP_Testing\SAPtesting\Output\pabot_results\0\Screenshot&lt;/a&gt;'.</msg>
+<status status="PASS" starttime="20240625 20:12:43.137" endtime="20240625 20:12:43.144"/>
 </kw>
-<status status="PASS" starttime="20240625 16:47:32.136" endtime="20240625 16:47:32.141"/>
+<status status="PASS" starttime="20240625 20:12:43.137" endtime="20240625 20:12:43.144"/>
 </kw>
-<status status="PASS" starttime="20240625 16:47:32.134" endtime="20240625 16:47:32.141"/>
+<status status="PASS" starttime="20240625 20:12:43.135" endtime="20240625 20:12:43.144"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${screenshot_taking}</arg>
 <arg>${True}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240625 16:47:32.142" level="INFO">${screenshot_taking} = True</msg>
-<status status="PASS" starttime="20240625 16:47:32.141" endtime="20240625 16:47:32.142"/>
+<msg timestamp="20240625 20:12:43.145" level="INFO">${screenshot_taking} = True</msg>
+<status status="PASS" starttime="20240625 20:12:43.144" endtime="20240625 20:12:43.145"/>
 </kw>
 <kw name="Setup linux execution" library="Support">
 <kw name="Run Keyword And Return Status" library="BuiltIn">
@@ -51,10 +51,10 @@
 <kw name="Variable Should Exist" library="BuiltIn">
 <arg>${web_test}</arg>
 <doc>Fails unless the given variable exists within the current scope.</doc>
-<status status="PASS" starttime="20240625 16:47:32.143" endtime="20240625 16:47:32.143"/>
+<status status="PASS" starttime="20240625 20:12:43.146" endtime="20240625 20:12:43.146"/>
 </kw>
-<msg timestamp="20240625 16:47:32.143" level="INFO">${web_test_check} = True</msg>
-<status status="PASS" starttime="20240625 16:47:32.142" endtime="20240625 16:47:32.143"/>
+<msg timestamp="20240625 20:12:43.146" level="INFO">${web_test_check} = True</msg>
+<status status="PASS" starttime="20240625 20:12:43.145" endtime="20240625 20:12:43.146"/>
 </kw>
 <kw name="Run Keyword If" library="BuiltIn">
 <arg>${web_test_check}</arg>
@@ -72,47 +72,47 @@
 :return: Browser metadata information, dict of format
             {"browser_version": browser version value,
              "driver_version": driver version value}</doc>
-<msg timestamp="20240625 16:47:35.782" level="INFO">&amp;{browser_information} = { browser_version=126.0.6478.115 | driver_version=126.0.6478.62  }</msg>
-<status status="PASS" starttime="20240625 16:47:32.144" endtime="20240625 16:47:35.782"/>
+<msg timestamp="20240625 20:12:48.013" level="INFO">&amp;{browser_information} = { browser_version=126.0.6478.115 | driver_version=126.0.6478.62  }</msg>
+<status status="PASS" starttime="20240625 20:12:43.147" endtime="20240625 20:12:48.013"/>
 </kw>
 <kw name="Set Suite Metadata" library="BuiltIn">
 <arg>test_browser_name</arg>
 <arg>${browser}</arg>
 <doc>Sets metadata for the current test suite.</doc>
-<msg timestamp="20240625 16:47:35.783" level="INFO">Set suite metadata 'test_browser_name' to value 'chrome'.</msg>
-<status status="PASS" starttime="20240625 16:47:35.783" endtime="20240625 16:47:35.783"/>
+<msg timestamp="20240625 20:12:48.014" level="INFO">Set suite metadata 'test_browser_name' to value 'chrome'.</msg>
+<status status="PASS" starttime="20240625 20:12:48.014" endtime="20240625 20:12:48.014"/>
 </kw>
 <kw name="Set Suite Metadata" library="BuiltIn">
 <arg>test_browser_version</arg>
 <arg>${browser_information.browser_version}</arg>
 <doc>Sets metadata for the current test suite.</doc>
-<msg timestamp="20240625 16:47:35.784" level="INFO">Set suite metadata 'test_browser_version' to value '126.0.6478.115'.</msg>
-<status status="PASS" starttime="20240625 16:47:35.783" endtime="20240625 16:47:35.784"/>
+<msg timestamp="20240625 20:12:48.015" level="INFO">Set suite metadata 'test_browser_version' to value '126.0.6478.115'.</msg>
+<status status="PASS" starttime="20240625 20:12:48.014" endtime="20240625 20:12:48.015"/>
 </kw>
 <kw name="Set Suite Metadata" library="BuiltIn">
 <arg>test_driver_version</arg>
 <arg>${browser_information.driver_version}</arg>
 <doc>Sets metadata for the current test suite.</doc>
-<msg timestamp="20240625 16:47:35.785" level="INFO">Set suite metadata 'test_driver_version' to value '126.0.6478.62 '.</msg>
-<status status="PASS" starttime="20240625 16:47:35.784" endtime="20240625 16:47:35.785"/>
+<msg timestamp="20240625 20:12:48.016" level="INFO">Set suite metadata 'test_driver_version' to value '126.0.6478.62 '.</msg>
+<status status="PASS" starttime="20240625 20:12:48.015" endtime="20240625 20:12:48.016"/>
 </kw>
-<status status="PASS" starttime="20240625 16:47:32.144" endtime="20240625 16:47:35.786"/>
+<status status="PASS" starttime="20240625 20:12:43.147" endtime="20240625 20:12:48.016"/>
 </kw>
 <kw name="Setup Global Docker Execution Options" library="Support_Web">
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${global_browser_options}</arg>
 <arg>None</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240625 16:47:35.787" level="INFO">${global_browser_options} = None</msg>
-<status status="PASS" starttime="20240625 16:47:35.786" endtime="20240625 16:47:35.787"/>
+<msg timestamp="20240625 20:12:48.018" level="INFO">${global_browser_options} = None</msg>
+<status status="PASS" starttime="20240625 20:12:48.016" endtime="20240625 20:12:48.018"/>
 </kw>
 <kw name="Get Environment Variable" library="OperatingSystem">
 <var>${docker_check}</var>
 <arg>EXECUTION_ENVIRONMENT</arg>
 <arg>not_found</arg>
 <doc>Returns the value of an environment variable with the given name.</doc>
-<msg timestamp="20240625 16:47:35.788" level="INFO">${docker_check} = not_found</msg>
-<status status="PASS" starttime="20240625 16:47:35.788" endtime="20240625 16:47:35.788"/>
+<msg timestamp="20240625 20:12:48.018" level="INFO">${docker_check} = not_found</msg>
+<status status="PASS" starttime="20240625 20:12:48.018" endtime="20240625 20:12:48.018"/>
 </kw>
 <kw name="Run Keyword And Return If" library="BuiltIn">
 <arg>"${docker_check}"!="docker"</arg>
@@ -122,11 +122,11 @@
 <kw name="Log" library="BuiltIn">
 <arg>Not executing on Docker</arg>
 <doc>Logs the given message with the given level.</doc>
-<msg timestamp="20240625 16:47:35.789" level="INFO">Not executing on Docker</msg>
-<status status="PASS" starttime="20240625 16:47:35.789" endtime="20240625 16:47:35.789"/>
+<msg timestamp="20240625 20:12:48.019" level="INFO">Not executing on Docker</msg>
+<status status="PASS" starttime="20240625 20:12:48.018" endtime="20240625 20:12:48.019"/>
 </kw>
-<msg timestamp="20240625 16:47:35.789" level="INFO">Returning from the enclosing user keyword.</msg>
-<status status="PASS" starttime="20240625 16:47:35.788" endtime="20240625 16:47:35.789"/>
+<msg timestamp="20240625 20:12:48.019" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20240625 20:12:48.018" endtime="20240625 20:12:48.019"/>
 </kw>
 <kw name="Create List" library="BuiltIn">
 <var>@{options}</var>
@@ -134,15 +134,15 @@
 <arg>--no-sandbox</arg>
 <arg>--disable-dev-shm-usage</arg>
 <doc>Returns a list containing given items.</doc>
-<status status="NOT RUN" starttime="20240625 16:47:35.789" endtime="20240625 16:47:35.789"/>
+<status status="NOT RUN" starttime="20240625 20:12:48.019" endtime="20240625 20:12:48.019"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>@{docker_options}</arg>
 <arg>@{options}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<status status="NOT RUN" starttime="20240625 16:47:35.790" endtime="20240625 16:47:35.790"/>
+<status status="NOT RUN" starttime="20240625 20:12:48.019" endtime="20240625 20:12:48.019"/>
 </kw>
-<status status="PASS" starttime="20240625 16:47:35.786" endtime="20240625 16:47:35.790"/>
+<status status="PASS" starttime="20240625 20:12:48.016" endtime="20240625 20:12:48.019"/>
 </kw>
 <kw name="Create Webdriver for chrome preferences" library="Support_Web">
 <kw name="Update Docker Execution Options" library="Support_Web">
@@ -156,19 +156,19 @@
 <kw name="Variable Should Exist" library="BuiltIn">
 <arg>${docker_options}</arg>
 <doc>Fails unless the given variable exists within the current scope.</doc>
-<msg timestamp="20240625 16:47:35.794" level="FAIL">Variable '${docker_options}' does not exist.</msg>
-<status status="FAIL" starttime="20240625 16:47:35.791" endtime="20240625 16:47:35.794"/>
+<msg timestamp="20240625 20:12:48.022" level="FAIL">Variable '${docker_options}' does not exist.</msg>
+<status status="FAIL" starttime="20240625 20:12:48.020" endtime="20240625 20:12:48.022"/>
 </kw>
-<msg timestamp="20240625 16:47:35.794" level="INFO">${docker_check} = False</msg>
-<status status="PASS" starttime="20240625 16:47:35.791" endtime="20240625 16:47:35.794"/>
+<msg timestamp="20240625 20:12:48.022" level="INFO">${docker_check} = False</msg>
+<status status="PASS" starttime="20240625 20:12:48.020" endtime="20240625 20:12:48.022"/>
 </kw>
 <kw name="Get Length" library="BuiltIn">
 <var>${list_prefs_length}</var>
 <arg>${list_prefs}</arg>
 <doc>Returns and logs the length of the given item as an integer.</doc>
-<msg timestamp="20240625 16:47:35.794" level="INFO">Length is 1</msg>
-<msg timestamp="20240625 16:47:35.795" level="INFO">${list_prefs_length} = 1</msg>
-<status status="PASS" starttime="20240625 16:47:35.794" endtime="20240625 16:47:35.795"/>
+<msg timestamp="20240625 20:12:48.022" level="INFO">Length is 1</msg>
+<msg timestamp="20240625 20:12:48.023" level="INFO">${list_prefs_length} = 1</msg>
+<status status="PASS" starttime="20240625 20:12:48.022" endtime="20240625 20:12:48.023"/>
 </kw>
 <kw name="Run Keyword If" library="BuiltIn">
 <var>${list_prefs}</var>
@@ -187,13 +187,13 @@
 <kw name="Set Variable" library="BuiltIn">
 <arg>${list_prefs}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" starttime="20240625 16:47:35.795" endtime="20240625 16:47:35.796"/>
+<status status="PASS" starttime="20240625 20:12:48.023" endtime="20240625 20:12:48.024"/>
 </kw>
-<msg timestamp="20240625 16:47:35.796" level="INFO">${list_prefs} = [[]]</msg>
-<status status="PASS" starttime="20240625 16:47:35.795" endtime="20240625 16:47:35.796"/>
+<msg timestamp="20240625 20:12:48.024" level="INFO">${list_prefs} = [[]]</msg>
+<status status="PASS" starttime="20240625 20:12:48.023" endtime="20240625 20:12:48.024"/>
 </kw>
-<msg timestamp="20240625 16:47:35.796" level="INFO">${list_prefs} = [[]]</msg>
-<status status="PASS" starttime="20240625 16:47:35.790" endtime="20240625 16:47:35.796"/>
+<msg timestamp="20240625 20:12:48.024" level="INFO">${list_prefs} = [[]]</msg>
+<status status="PASS" starttime="20240625 20:12:48.020" endtime="20240625 20:12:48.024"/>
 </kw>
 <kw name="Create Chrome Options for download preferences" library="Support_Web">
 <var>${chrome_options}</var>
@@ -202,11 +202,11 @@
 <arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
 <arg>sys</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240625 16:47:35.797" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000023E76793350&gt;</msg>
-<status status="PASS" starttime="20240625 16:47:35.797" endtime="20240625 16:47:35.797"/>
+<msg timestamp="20240625 20:12:48.025" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000002B05B9073B0&gt;</msg>
+<status status="PASS" starttime="20240625 20:12:48.024" endtime="20240625 20:12:48.025"/>
 </kw>
-<msg timestamp="20240625 16:47:35.797" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000023E76793350&gt;</msg>
-<status status="PASS" starttime="20240625 16:47:35.796" endtime="20240625 16:47:35.797"/>
+<msg timestamp="20240625 20:12:48.025" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000002B05B9073B0&gt;</msg>
+<status status="PASS" starttime="20240625 20:12:48.024" endtime="20240625 20:12:48.025"/>
 </kw>
 <kw name="Update Preferences List" library="Support_Web">
 <arg>${chrome_options}</arg>
@@ -215,14 +215,14 @@
 <var>${string_prefs}</var>
 <arg>${list_prefs}</arg>
 <doc>Converts the given item to a Unicode string.</doc>
-<msg timestamp="20240625 16:47:35.798" level="INFO">${string_prefs} = [[]]</msg>
-<status status="PASS" starttime="20240625 16:47:35.798" endtime="20240625 16:47:35.798"/>
+<msg timestamp="20240625 20:12:48.025" level="INFO">${string_prefs} = [[]]</msg>
+<status status="PASS" starttime="20240625 20:12:48.025" endtime="20240625 20:12:48.025"/>
 </kw>
 <kw name="Return From Keyword If" library="BuiltIn">
 <arg>${string_prefs} == [[]]</arg>
 <doc>Returns from the enclosing user keyword if ``condition`` is true.</doc>
-<msg timestamp="20240625 16:47:35.799" level="INFO">Returning from the enclosing user keyword.</msg>
-<status status="PASS" starttime="20240625 16:47:35.799" endtime="20240625 16:47:35.799"/>
+<msg timestamp="20240625 20:12:48.026" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20240625 20:12:48.026" endtime="20240625 20:12:48.026"/>
 </kw>
 <for flavor="IN">
 <var>${preference}</var>
@@ -234,13 +234,13 @@
 <arg>add_argument</arg>
 <arg>${preference}</arg>
 <doc>Calls the named method of the given object with the provided arguments.</doc>
-<status status="NOT RUN" starttime="20240625 16:47:35.800" endtime="20240625 16:47:35.800"/>
+<status status="NOT RUN" starttime="20240625 20:12:48.026" endtime="20240625 20:12:48.026"/>
 </kw>
-<status status="NOT RUN" starttime="20240625 16:47:35.799" endtime="20240625 16:47:35.800"/>
+<status status="NOT RUN" starttime="20240625 20:12:48.026" endtime="20240625 20:12:48.026"/>
 </iter>
-<status status="NOT RUN" starttime="20240625 16:47:35.799" endtime="20240625 16:47:35.800"/>
+<status status="NOT RUN" starttime="20240625 20:12:48.026" endtime="20240625 20:12:48.026"/>
 </for>
-<status status="PASS" starttime="20240625 16:47:35.798" endtime="20240625 16:47:35.800"/>
+<status status="PASS" starttime="20240625 20:12:48.025" endtime="20240625 20:12:48.027"/>
 </kw>
 <kw name="Call Method" library="BuiltIn">
 <arg>${chrome_options}</arg>
@@ -248,311 +248,378 @@
 <arg>prefs</arg>
 <arg>${kw_prefs}</arg>
 <doc>Calls the named method of the given object with the provided arguments.</doc>
-<status status="PASS" starttime="20240625 16:47:35.800" endtime="20240625 16:47:35.801"/>
+<status status="PASS" starttime="20240625 20:12:48.027" endtime="20240625 20:12:48.027"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${global_browser_options}</arg>
 <arg>${chrome options}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240625 16:47:35.801" level="INFO">${global_browser_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000023E76793350&gt;</msg>
-<status status="PASS" starttime="20240625 16:47:35.801" endtime="20240625 16:47:35.801"/>
+<msg timestamp="20240625 20:12:48.027" level="INFO">${global_browser_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000002B05B9073B0&gt;</msg>
+<status status="PASS" starttime="20240625 20:12:48.027" endtime="20240625 20:12:48.027"/>
 </kw>
-<status status="PASS" starttime="20240625 16:47:35.790" endtime="20240625 16:47:35.802"/>
+<status status="PASS" starttime="20240625 20:12:48.020" endtime="20240625 20:12:48.027"/>
 </kw>
-<status status="PASS" starttime="20240625 16:47:32.144" endtime="20240625 16:47:35.802"/>
+<status status="PASS" starttime="20240625 20:12:43.147" endtime="20240625 20:12:48.028"/>
 </kw>
-<status status="PASS" starttime="20240625 16:47:32.143" endtime="20240625 16:47:35.802"/>
+<status status="PASS" starttime="20240625 20:12:43.147" endtime="20240625 20:12:48.028"/>
 </kw>
-<status status="PASS" starttime="20240625 16:47:32.142" endtime="20240625 16:47:35.802"/>
+<status status="PASS" starttime="20240625 20:12:43.145" endtime="20240625 20:12:48.028"/>
 </kw>
 <kw name="Set Suite Metadata" library="BuiltIn">
 <arg>environment</arg>
 <arg>${test_server}</arg>
 <doc>Sets metadata for the current test suite.</doc>
-<msg timestamp="20240625 16:47:35.803" level="INFO">Set suite metadata 'environment' to value 'Dev'.</msg>
-<status status="PASS" starttime="20240625 16:47:35.802" endtime="20240625 16:47:35.803"/>
+<msg timestamp="20240625 20:12:48.028" level="INFO">Set suite metadata 'environment' to value 'Dev'.</msg>
+<status status="PASS" starttime="20240625 20:12:48.028" endtime="20240625 20:12:48.028"/>
 </kw>
-<status status="PASS" starttime="20240625 16:47:32.133" endtime="20240625 16:47:35.803"/>
+<status status="PASS" starttime="20240625 20:12:43.134" endtime="20240625 20:12:48.028"/>
 </kw>
-<suite id="s1-s1" name="Test strustsso2" source="C:\SAP_Testing\SAPtesting\Tests\Test_strustsso2.robot">
-<kw name="System Logon" library="strustsso2" type="SETUP">
-<kw name="Start Process" library="Process">
-<arg>${symvar('TH5_SERVER')}</arg>
-<doc>Starts a new process on background.</doc>
-<msg timestamp="20240625 16:47:35.824" level="INFO">Sym.Dev.TH5_SERVER: C:\Program Files\SAP\FrontEnd\SAPGUI\saplogon.exe</msg>
-<msg timestamp="20240625 16:47:35.825" level="INFO">Starting process:
-"C:\Program Files\SAP\FrontEnd\SAPGUI\saplogon.exe"</msg>
-<status status="PASS" starttime="20240625 16:47:35.824" endtime="20240625 16:47:35.831"/>
+<suite id="s1-s1" name="Test Certificate upload" source="C:\SAP_Testing\SAPtesting\Tests\Test_Certificate_upload.robot">
+<kw name="Browser Login" library="Certificate_upload" type="SETUP">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${symvar('CPI_URL')}</arg>
+<arg>${symvar('browsertype')}</arg>
+<arg>options=add_argument("--ignore-certificate-errors")</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20240625 20:12:48.038" level="INFO">Sym.Dev.CPI_URL: https://070d8411trial.integrationsuite-trial.cfapps.ap21.hana.ondemand.com/shell/monitoring/Keystore</msg>
+<msg timestamp="20240625 20:12:48.039" level="INFO">Sym.Dev.browsertype: chrome</msg>
+<msg timestamp="20240625 20:12:48.039" level="INFO">Opening browser 'chrome' to base url 'https://070d8411trial.integrationsuite-trial.cfapps.ap21.hana.ondemand.com/shell/monitoring/Keystore'.</msg>
+<status status="PASS" starttime="20240625 20:12:48.037" endtime="20240625 20:12:53.658"/>
 </kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>10s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240625 16:47:45.833" level="INFO">Slept 10 seconds</msg>
-<status status="PASS" starttime="20240625 16:47:35.832" endtime="20240625 16:47:45.833"/>
-</kw>
-<kw name="Connect To Session" library="SAP_Tcode_Library">
-<doc>Connects to an open session SAP.</doc>
-<status status="PASS" starttime="20240625 16:47:45.833" endtime="20240625 16:47:45.841"/>
-</kw>
-<kw name="Open Connection" library="SAP_Tcode_Library">
-<arg>${symvar('TH5_connection')}</arg>
-<doc>Opens a connection to the given connection name. Be sure to provide the full connection name, including the bracket part.</doc>
-<msg timestamp="20240625 16:47:45.842" level="INFO">Sym.Dev.TH5_connection: TH5</msg>
-<status status="PASS" starttime="20240625 16:47:45.841" endtime="20240625 16:47:47.420"/>
-</kw>
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/txtRSYST-MANDT</arg>
-<arg>${symvar('TH5_Client_Id')}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240625 16:47:47.421" level="INFO">Sym.Dev.TH5_Client_Id: 001</msg>
-<msg timestamp="20240625 16:47:47.429" level="INFO">Typing text '001' into text field 'wnd[0]/usr/txtRSYST-MANDT'.</msg>
-<status status="PASS" starttime="20240625 16:47:47.420" endtime="20240625 16:47:47.429"/>
-</kw>
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/txtRSYST-BNAME</arg>
-<arg>${symvar('TH5_User_Name')}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240625 16:47:47.430" level="INFO">Sym.Dev.TH5_User_Name: CPITEST</msg>
-<msg timestamp="20240625 16:47:47.448" level="INFO">Typing text 'CPITEST' into text field 'wnd[0]/usr/txtRSYST-BNAME'.</msg>
-<status status="PASS" starttime="20240625 16:47:47.429" endtime="20240625 16:47:47.448"/>
-</kw>
-<kw name="Input Password" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/pwdRSYST-BCODE</arg>
-<arg>${symvar('TH5_PASSWORD')}</arg>
-<doc>Inserts the given password into the text field identified by locator.
-The password is not recorded in the log.</doc>
-<msg timestamp="20240625 16:47:47.449" level="INFO">Sym.Dev.TH5_PASSWORD: Welc0me$</msg>
-<msg timestamp="20240625 16:47:47.454" level="INFO">Typing password into text field 'wnd[0]/usr/pwdRSYST-BCODE'.</msg>
-<status status="PASS" starttime="20240625 16:47:47.449" endtime="20240625 16:47:47.454"/>
-</kw>
-<kw name="Send Vkey" library="SAP_Tcode_Library">
-<arg>0</arg>
-<doc>Sends a SAP virtual key combination to the window, not into an element.
-If you want to send a value to a text field, use `input text` instead.</doc>
-<status status="PASS" starttime="20240625 16:47:47.455" endtime="20240625 16:47:47.726"/>
-</kw>
-<kw name="Multiple Logon Handling" library="SAP_Tcode_Library">
-<arg>wnd[1]</arg>
-<arg>wnd[1]/usr/radMULTI_LOGON_OPT2</arg>
-<arg>wnd[1]/tbar[0]/btn[0]</arg>
-<msg timestamp="20240625 16:47:48.010" level="INFO">Multiple logon exists</msg>
-<status status="PASS" starttime="20240625 16:47:47.726" endtime="20240625 16:47:48.010"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>4</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240625 16:47:52.018" level="INFO">Slept 4 seconds</msg>
-<status status="PASS" starttime="20240625 16:47:48.017" endtime="20240625 16:47:52.018"/>
-</kw>
-<status status="PASS" starttime="20240625 16:47:35.823" endtime="20240625 16:47:52.018"/>
-</kw>
-<test id="s1-s1-t1" name="Executing STRUST" line="9">
-<kw name="Transaction STRUST" library="strustsso2">
-<kw name="Run Transaction" library="SAP_Tcode_Library">
-<arg>/nstrustsso2</arg>
-<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
-<status status="PASS" starttime="20240625 16:47:52.020" endtime="20240625 16:47:52.475"/>
-</kw>
-<kw name="Send Vkey" library="SAP_Tcode_Library">
-<arg>0</arg>
-<doc>Sends a SAP virtual key combination to the window, not into an element.
-If you want to send a value to a text field, use `input text` instead.</doc>
-<status status="PASS" starttime="20240625 16:47:52.475" endtime="20240625 16:47:52.644"/>
-</kw>
-<kw name="Take Screenshot" library="SAP_Tcode_Library">
-<arg>strustsso2.jpg</arg>
-<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
-either at import of with keyword `enable screenshots on error`.</doc>
-<msg timestamp="20240625 16:47:52.725" level="INFO" html="true">&lt;a href="strustsso2.jpg"&gt;&lt;img src="strustsso2.jpg" width="800px"&gt;&lt;/a&gt;</msg>
-<status status="PASS" starttime="20240625 16:47:52.644" endtime="20240625 16:47:52.726"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>2</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240625 16:47:54.727" level="INFO">Slept 2 seconds</msg>
-<status status="PASS" starttime="20240625 16:47:52.726" endtime="20240625 16:47:54.727"/>
-</kw>
-<status status="PASS" starttime="20240625 16:47:52.019" endtime="20240625 16:47:54.727"/>
-</kw>
-<kw name="SSL server standard" library="strustsso2">
-<kw name="Expand Element" library="SAP_Tcode_Library">
-<arg>wnd[0]/shellcont/shell</arg>
-<arg>SSLSDFAULT</arg>
-<status status="PASS" starttime="20240625 16:47:54.727" endtime="20240625 16:47:54.929"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>2</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240625 16:47:56.929" level="INFO">Slept 2 seconds</msg>
-<status status="PASS" starttime="20240625 16:47:54.929" endtime="20240625 16:47:56.929"/>
-</kw>
-<kw name="Take Screenshot" library="SAP_Tcode_Library">
-<arg>instance1.jpg</arg>
-<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
-either at import of with keyword `enable screenshots on error`.</doc>
-<msg timestamp="20240625 16:47:56.982" level="INFO" html="true">&lt;a href="instance1.jpg"&gt;&lt;img src="instance1.jpg" width="800px"&gt;&lt;/a&gt;</msg>
-<status status="PASS" starttime="20240625 16:47:56.929" endtime="20240625 16:47:56.982"/>
-</kw>
-<kw name="Double Click On Tree Item" library="SAP_Tcode_Library">
-<arg>wnd[0]/shellcont/shell</arg>
-<arg>SSLSDFAULT1</arg>
-<status status="PASS" starttime="20240625 16:47:56.982" endtime="20240625 16:47:57.142"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>2</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240625 16:47:59.144" level="INFO">Slept 2 seconds</msg>
-<status status="PASS" starttime="20240625 16:47:57.142" endtime="20240625 16:47:59.144"/>
-</kw>
-<kw name="Take Screenshot" library="SAP_Tcode_Library">
-<arg>instance2.jpg</arg>
-<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
-either at import of with keyword `enable screenshots on error`.</doc>
-<msg timestamp="20240625 16:47:59.196" level="INFO" html="true">&lt;a href="instance2.jpg"&gt;&lt;img src="instance2.jpg" width="800px"&gt;&lt;/a&gt;</msg>
-<status status="PASS" starttime="20240625 16:47:59.144" endtime="20240625 16:47:59.196"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>2</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240625 16:48:01.197" level="INFO">Slept 2 seconds</msg>
-<status status="PASS" starttime="20240625 16:47:59.197" endtime="20240625 16:48:01.197"/>
-</kw>
-<kw name="Set Caret Position" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/txtPSE-OWNCERT-SUBJECT</arg>
-<arg>32</arg>
-<status status="PASS" starttime="20240625 16:48:01.197" endtime="20240625 16:48:01.201"/>
-</kw>
-<kw name="Send Vkey" library="SAP_Tcode_Library">
-<arg>2</arg>
-<doc>Sends a SAP virtual key combination to the window, not into an element.
-If you want to send a value to a text field, use `input text` instead.</doc>
-<status status="PASS" starttime="20240625 16:48:01.201" endtime="20240625 16:48:01.318"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>2</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240625 16:48:03.328" level="INFO">Slept 2 seconds</msg>
-<status status="PASS" starttime="20240625 16:48:01.327" endtime="20240625 16:48:03.328"/>
-</kw>
-<kw name="Scroll Pagedown" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/btnCERTDETAIL</arg>
-<status status="PASS" starttime="20240625 16:48:03.328" endtime="20240625 16:48:03.392"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>2</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240625 16:48:05.394" level="INFO">Slept 2 seconds</msg>
-<status status="PASS" starttime="20240625 16:48:03.392" endtime="20240625 16:48:05.394"/>
-</kw>
-<kw name="Take Screenshot" library="SAP_Tcode_Library">
-<arg>instance3.jpg</arg>
-<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
-either at import of with keyword `enable screenshots on error`.</doc>
-<msg timestamp="20240625 16:48:05.461" level="INFO" html="true">&lt;a href="instance3.jpg"&gt;&lt;img src="instance3.jpg" width="800px"&gt;&lt;/a&gt;</msg>
-<status status="PASS" starttime="20240625 16:48:05.394" endtime="20240625 16:48:05.461"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>2</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240625 16:48:07.462" level="INFO">Slept 2 seconds</msg>
-<status status="PASS" starttime="20240625 16:48:05.462" endtime="20240625 16:48:07.462"/>
-</kw>
-<kw name="Click Element" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/btnEXPORT</arg>
-<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
-<status status="PASS" starttime="20240625 16:48:07.462" endtime="20240625 16:48:07.645"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>2</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240625 16:48:09.646" level="INFO">Slept 2 seconds</msg>
-<status status="PASS" starttime="20240625 16:48:07.646" endtime="20240625 16:48:09.646"/>
-</kw>
-<kw name="Select Radio Button" library="SAP_Tcode_Library">
-<arg>wnd[1]/usr/tabsTS_CTRL/tabpSFIL/ssubSUB1:S_TRUSTMANAGER:0202/radB64</arg>
-<doc>Sets radio button to the specified value.</doc>
-<status status="PASS" starttime="20240625 16:48:09.646" endtime="20240625 16:48:09.652"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>2</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240625 16:48:11.652" level="INFO">Slept 2 seconds</msg>
-<status status="PASS" starttime="20240625 16:48:09.652" endtime="20240625 16:48:11.652"/>
-</kw>
-<kw name="Input Text" library="SAP_Tcode_Library">
-<var>${path}</var>
-<arg>wnd[1]/usr/tabsTS_CTRL/tabpSFIL/ssubSUB1:S_TRUSTMANAGER:0202/ctxtFILEPATH</arg>
-<arg>${file_path}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240625 16:48:11.669" level="INFO">Typing text 'C:\SAP_Testing\SAPtesting\Tests\Resource\file.cer' into text field 'wnd[1]/usr/tabsTS_CTRL/tabpSFIL/ssubSUB1:S_TRUSTMANAGER:0202/ctxtFILEPATH'.</msg>
-<msg timestamp="20240625 16:48:11.669" level="INFO">${path} = None</msg>
-<status status="PASS" starttime="20240625 16:48:11.652" endtime="20240625 16:48:11.669"/>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<arg>${path}</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20240625 16:48:11.670" endtime="20240625 16:48:11.670"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>2</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240625 16:48:13.672" level="INFO">Slept 2 seconds</msg>
-<status status="PASS" starttime="20240625 16:48:11.670" endtime="20240625 16:48:13.672"/>
-</kw>
-<kw name="Take Screenshot" library="SAP_Tcode_Library">
-<arg>instance4.jpg</arg>
-<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
-either at import of with keyword `enable screenshots on error`.</doc>
-<msg timestamp="20240625 16:48:13.724" level="INFO" html="true">&lt;a href="instance4.jpg"&gt;&lt;img src="instance4.jpg" width="800px"&gt;&lt;/a&gt;</msg>
-<status status="PASS" starttime="20240625 16:48:13.672" endtime="20240625 16:48:13.724"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>2</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240625 16:48:15.724" level="INFO">Slept 2 seconds</msg>
-<status status="PASS" starttime="20240625 16:48:13.724" endtime="20240625 16:48:15.724"/>
-</kw>
-<kw name="Click Element" library="SAP_Tcode_Library">
-<arg>wnd[1]/tbar[0]/btn[0]</arg>
-<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
-<status status="PASS" starttime="20240625 16:48:15.724" endtime="20240625 16:48:15.938"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>2</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240625 16:48:17.940" level="INFO">Slept 2 seconds</msg>
-<status status="PASS" starttime="20240625 16:48:15.938" endtime="20240625 16:48:17.940"/>
-</kw>
-<kw name="Take Screenshot" library="SAP_Tcode_Library">
-<arg>instance5.jpg</arg>
-<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
-either at import of with keyword `enable screenshots on error`.</doc>
-<msg timestamp="20240625 16:48:17.986" level="INFO" html="true">&lt;a href="instance5.jpg"&gt;&lt;img src="instance5.jpg" width="800px"&gt;&lt;/a&gt;</msg>
-<status status="PASS" starttime="20240625 16:48:17.940" endtime="20240625 16:48:17.986"/>
-</kw>
-<status status="PASS" starttime="20240625 16:47:54.727" endtime="20240625 16:48:17.986"/>
-</kw>
-<tag>strustsso2</tag>
-<status status="PASS" starttime="20240625 16:47:52.018" endtime="20240625 16:48:17.986"/>
-</test>
-<kw name="System Logout" library="strustsso2" type="TEARDOWN">
-<kw name="Run Transaction" library="SAP_Tcode_Library">
-<arg>/nex</arg>
-<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
-<status status="PASS" starttime="20240625 16:48:17.988" endtime="20240625 16:48:18.012"/>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20240625 20:12:53.658" endtime="20240625 20:12:53.737"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>5</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240625 16:48:23.014" level="INFO">Slept 5 seconds</msg>
-<status status="PASS" starttime="20240625 16:48:18.012" endtime="20240625 16:48:23.014"/>
+<msg timestamp="20240625 20:12:58.738" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240625 20:12:53.737" endtime="20240625 20:12:58.738"/>
 </kw>
-<status status="PASS" starttime="20240625 16:48:17.988" endtime="20240625 16:48:23.014"/>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id:j_username</arg>
+<arg>${symvar('username')}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240625 20:12:58.739" level="INFO">Sym.Dev.username: arif.shaikh@basiscloudsolutions.com</msg>
+<msg timestamp="20240625 20:12:58.740" level="INFO">Typing text 'arif.shaikh@basiscloudsolutions.com' into text field 'id:j_username'.</msg>
+<status status="PASS" starttime="20240625 20:12:58.738" endtime="20240625 20:12:58.948"/>
 </kw>
-<status status="PASS" starttime="20240625 16:47:35.803" endtime="20240625 16:48:23.014"/>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240625 20:13:00.950" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240625 20:12:58.948" endtime="20240625 20:13:00.950"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://*[@id="logOnFormSubmit"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240625 20:13:00.951" level="INFO">Clicking element 'xpath://*[@id="logOnFormSubmit"]'.</msg>
+<status status="PASS" starttime="20240625 20:13:00.950" endtime="20240625 20:13:02.832"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>20</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240625 20:13:22.833" level="INFO">Slept 20 seconds</msg>
+<status status="PASS" starttime="20240625 20:13:02.833" endtime="20240625 20:13:22.833"/>
+</kw>
+<kw name="Scroll Element Into View" library="SeleniumLibrary">
+<arg>xpath://*[@id="password"]</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" starttime="20240625 20:13:22.833" endtime="20240625 20:13:23.128"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240625 20:13:25.129" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240625 20:13:23.128" endtime="20240625 20:13:25.129"/>
+</kw>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>xpath://*[@id="password"]</arg>
+<arg>%{password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20240625 20:13:25.130" level="INFO">Typing password into text field 'xpath://*[@id="password"]'.</msg>
+<msg timestamp="20240625 20:13:25.184" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20240625 20:13:25.301" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20240625 20:13:25.129" endtime="20240625 20:13:25.301"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240625 20:13:27.307" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240625 20:13:25.301" endtime="20240625 20:13:27.307"/>
+</kw>
+<kw name="Scroll Element Into View" library="SeleniumLibrary">
+<arg>xpath://button[@class='uid-login-as__submit-button test-button ds-button ds-button--primary' and text()='Sign in']</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" starttime="20240625 20:13:27.307" endtime="20240625 20:13:27.587"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240625 20:13:29.588" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240625 20:13:27.587" endtime="20240625 20:13:29.588"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://button[@class='uid-login-as__submit-button test-button ds-button ds-button--primary' and text()='Sign in']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240625 20:13:29.589" level="INFO">Clicking element 'xpath://button[@class='uid-login-as__submit-button test-button ds-button ds-button--primary' and text()='Sign in']'.</msg>
+<status status="PASS" starttime="20240625 20:13:29.589" endtime="20240625 20:13:29.659"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>20</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240625 20:13:49.660" level="INFO">Slept 20 seconds</msg>
+<status status="PASS" starttime="20240625 20:13:29.659" endtime="20240625 20:13:49.660"/>
+</kw>
+<kw name="Get Location" library="SeleniumLibrary">
+<var>${Title}</var>
+<doc>Returns the current browser window URL.</doc>
+<msg timestamp="20240625 20:14:08.729" level="INFO">${Title} = https://070d8411trial.integrationsuite-trial.cfapps.ap21.hana.ondemand.com/shell/monitoring/Keystore</msg>
+<status status="PASS" starttime="20240625 20:13:49.660" endtime="20240625 20:14:08.729"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${Title}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240625 20:14:08.730" level="INFO">${Title} = https://070d8411trial.integrationsuite-trial.cfapps.ap21.hana.ondemand.com/shell/monitoring/Keystore</msg>
+<status status="PASS" starttime="20240625 20:14:08.729" endtime="20240625 20:14:08.730"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${Title}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20240625 20:14:08.730" endtime="20240625 20:14:08.731"/>
+</kw>
+<status status="PASS" starttime="20240625 20:12:48.037" endtime="20240625 20:14:08.731"/>
+</kw>
+<test id="s1-s1-t1" name="Certificate_upload" line="8">
+<kw name="Uploading Certificate into SAP" library="Certificate_upload">
+<if>
+<msg timestamp="20240625 20:14:08.733" level="INFO">Sym.Dev.CPI_URL1: https://070d8411trial.integrationsuite-trial.cfapps.ap21.hana.ondemand.com/shell/monitoring/Overview</msg>
+<branch type="IF" condition="'${Title}' == '${symvar('CPI_URL1')}'">
+<kw name="Window_Handling" library="Certificate_upload">
+<status status="NOT RUN" starttime="20240625 20:14:08.734" endtime="20240625 20:14:08.734"/>
+</kw>
+<status status="NOT RUN" starttime="20240625 20:14:08.732" endtime="20240625 20:14:08.734"/>
+</branch>
+<branch type="ELSE">
+<kw name="Upload_Certificate" library="Certificate_upload">
+<kw name="Notification Handling" library="Certificate_upload">
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240625 20:14:13.736" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240625 20:14:08.735" endtime="20240625 20:14:13.736"/>
+</kw>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${Status}</var>
+<arg>Page Should Contain Element</arg>
+<arg>id:__popover4-title-inner</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Page Should Contain Element" library="SeleniumLibrary">
+<arg>id:__popover4-title-inner</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<msg timestamp="20240625 20:14:13.747" level="INFO">Current page contains element 'id:__popover4-title-inner'.</msg>
+<status status="PASS" starttime="20240625 20:14:13.736" endtime="20240625 20:14:13.747"/>
+</kw>
+<msg timestamp="20240625 20:14:13.747" level="INFO">${Status} = True</msg>
+<status status="PASS" starttime="20240625 20:14:13.736" endtime="20240625 20:14:13.747"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>'${Status}'=='True'</arg>
+<arg>Close Notification</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<kw name="Close Notification" library="Certificate_upload">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>//span[@id='__button19-img']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240625 20:14:13.748" level="INFO">Clicking element '//span[@id='__button19-img']'.</msg>
+<status status="PASS" starttime="20240625 20:14:13.748" endtime="20240625 20:14:13.802"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20240625 20:14:13.977" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240625 20:14:13.802" endtime="20240625 20:14:13.977"/>
+</kw>
+<status status="PASS" starttime="20240625 20:14:13.747" endtime="20240625 20:14:13.977"/>
+</kw>
+<status status="PASS" starttime="20240625 20:14:13.747" endtime="20240625 20:14:13.977"/>
+</kw>
+<status status="PASS" starttime="20240625 20:14:08.734" endtime="20240625 20:14:13.978"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20240625 20:14:14.136" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-2.png"&gt;&lt;img src="selenium-screenshot-2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240625 20:14:13.978" endtime="20240625 20:14:14.136"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>10</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240625 20:14:24.137" level="INFO">Slept 10 seconds</msg>
+<status status="PASS" starttime="20240625 20:14:14.136" endtime="20240625 20:14:24.137"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>xpath://input[@id='__component0---com.sap.it.op.web.ui.pages.keystore.KeystoreManagement--SEARCHFIELD_KEYSTORE-I']</arg>
+<arg>${symvar('Alias')}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240625 20:14:24.138" level="INFO">Sym.Dev.Alias: TH5_ssl</msg>
+<msg timestamp="20240625 20:14:24.138" level="INFO">Typing text 'TH5_ssl' into text field 'xpath://input[@id='__component0---com.sap.it.op.web.ui.pages.keystore.KeystoreManagement--SEARCHFIELD_KEYSTORE-I']'.</msg>
+<status status="PASS" starttime="20240625 20:14:24.137" endtime="20240625 20:14:24.340"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20240625 20:14:24.450" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-3.png"&gt;&lt;img src="selenium-screenshot-3.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240625 20:14:24.340" endtime="20240625 20:14:24.450"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240625 20:14:26.451" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240625 20:14:24.451" endtime="20240625 20:14:26.451"/>
+</kw>
+<kw name="Scroll Element Into View" library="SeleniumLibrary">
+<arg>xpath://span[@id='KEYSTORE_LISTITEM_ACTION-__clone8-img']</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" starttime="20240625 20:14:26.451" endtime="20240625 20:14:26.736"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20240625 20:14:26.838" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-4.png"&gt;&lt;img src="selenium-screenshot-4.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240625 20:14:26.736" endtime="20240625 20:14:26.838"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240625 20:14:28.838" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240625 20:14:26.838" endtime="20240625 20:14:28.838"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>//span[@id='KEYSTORE_LISTITEM_ACTION-__clone8-img']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240625 20:14:28.838" level="INFO">Clicking element '//span[@id='KEYSTORE_LISTITEM_ACTION-__clone8-img']'.</msg>
+<status status="PASS" starttime="20240625 20:14:28.838" endtime="20240625 20:14:29.636"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20240625 20:14:29.774" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-5.png"&gt;&lt;img src="selenium-screenshot-5.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240625 20:14:29.636" endtime="20240625 20:14:29.774"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240625 20:14:31.776" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240625 20:14:29.775" endtime="20240625 20:14:31.776"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://bdi[text()='Update']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240625 20:14:31.777" level="INFO">Clicking element 'xpath://bdi[text()='Update']'.</msg>
+<status status="PASS" starttime="20240625 20:14:31.776" endtime="20240625 20:14:32.131"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20240625 20:14:32.434" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-6.png"&gt;&lt;img src="selenium-screenshot-6.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240625 20:14:32.132" endtime="20240625 20:14:32.434"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240625 20:14:34.434" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240625 20:14:32.434" endtime="20240625 20:14:34.434"/>
+</kw>
+<kw name="Choose File" library="SeleniumLibrary">
+<arg>id:CertificateUploadDialog-FileSelectionEntry-fu</arg>
+<arg>${file_path}</arg>
+<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
+<msg timestamp="20240625 20:14:34.435" level="INFO">Sending C:\SAP_Testing\SAPtesting\Tests\Resource\SID_CERT.crt to browser.</msg>
+<status status="PASS" starttime="20240625 20:14:34.434" endtime="20240625 20:14:34.513"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240625 20:14:39.515" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240625 20:14:34.514" endtime="20240625 20:14:39.515"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20240625 20:14:39.651" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-7.png"&gt;&lt;img src="selenium-screenshot-7.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240625 20:14:39.515" endtime="20240625 20:14:39.651"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240625 20:14:41.651" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240625 20:14:39.651" endtime="20240625 20:14:41.651"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id:CertificateUploadDialog-FileSelectionEntry-fu</arg>
+<arg>${file_path}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240625 20:14:41.652" level="INFO">Typing text 'C:\SAP_Testing\SAPtesting\Tests\Resource\SID_CERT.crt' into text field 'id:CertificateUploadDialog-FileSelectionEntry-fu'.</msg>
+<status status="PASS" starttime="20240625 20:14:41.651" endtime="20240625 20:14:41.741"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20240625 20:14:41.859" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-8.png"&gt;&lt;img src="selenium-screenshot-8.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240625 20:14:41.742" endtime="20240625 20:14:41.859"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240625 20:14:43.860" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240625 20:14:41.859" endtime="20240625 20:14:43.860"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>id:btnUpdate-BDI-content</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240625 20:14:43.861" level="INFO">Clicking element 'id:btnUpdate-BDI-content'.</msg>
+<status status="PASS" starttime="20240625 20:14:43.860" endtime="20240625 20:14:43.904"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20240625 20:14:44.031" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-9.png"&gt;&lt;img src="selenium-screenshot-9.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240625 20:14:43.904" endtime="20240625 20:14:44.031"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240625 20:14:46.033" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240625 20:14:44.031" endtime="20240625 20:14:46.033"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://bdi[text()='Confirm']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240625 20:14:46.034" level="INFO">Clicking element 'xpath://bdi[text()='Confirm']'.</msg>
+<status status="PASS" starttime="20240625 20:14:46.033" endtime="20240625 20:14:46.079"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20240625 20:14:46.323" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-10.png"&gt;&lt;img src="selenium-screenshot-10.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240625 20:14:46.079" endtime="20240625 20:14:46.323"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240625 20:14:48.325" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240625 20:14:46.323" endtime="20240625 20:14:48.325"/>
+</kw>
+<status status="PASS" starttime="20240625 20:14:08.734" endtime="20240625 20:14:48.325"/>
+</kw>
+<status status="PASS" starttime="20240625 20:14:08.734" endtime="20240625 20:14:48.325"/>
+</branch>
+<status status="PASS" starttime="20240625 20:14:08.732" endtime="20240625 20:14:48.325"/>
+</if>
+<status status="PASS" starttime="20240625 20:14:08.732" endtime="20240625 20:14:48.326"/>
+</kw>
+<tag>cert_upload</tag>
+<status status="PASS" starttime="20240625 20:14:08.731" endtime="20240625 20:14:48.326"/>
+</test>
+<kw name="Browser Logout" library="Certificate_upload" type="TEARDOWN">
+<kw name="Close All Browsers" library="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20240625 20:14:48.333" endtime="20240625 20:14:53.047"/>
+</kw>
+<status status="PASS" starttime="20240625 20:14:48.333" endtime="20240625 20:14:53.047"/>
+</kw>
+<status status="PASS" starttime="20240625 20:12:48.028" endtime="20240625 20:14:53.048"/>
 </suite>
 <doc>Testing functionality through Robot Framework</doc>
 <meta name="environment">Dev</meta>
@@ -561,18 +628,18 @@ either at import of with keyword `enable screenshots on error`.</doc>
 <meta name="test_driver_version">126.0.6478.62 </meta>
 <meta name="test_environment">Dev</meta>
 <meta name="test_freeze_dependencies">astroid==3.1.0,attrs==23.2.0,beautifulsoup4==4.12.3,bs4==0.0.2,certifi==2024.2.2,cffi==1.16.0,chardet==5.2.0,charset-normalizer==3.3.2,click==8.1.7,colorama==0.4.6,cryptography==42.0.5,defusedxml==0.7.1,dill==0.3.8,docutils==0.20.1,docx==0.2.4,docx2pdf==0.1.8,et-xmlfile==1.1.0,exceptiongroup==1.2.0,fsspec==2024.5.0,gitdb==4.0.11,GitPython==3.1.42,h11==0.14.0,idna==3.6,isort==5.13.2,Jinja2==3.1.3,jira==3.6.0,jsonpath-ng==1.6.1,jsonschema==4.21.1,jsonschema-specifications==2023.12.1,lazy-object-proxy==1.10.0,lxml==5.1.0,markdown-it-py==3.0.0,MarkupSafe==2.1.5,mccabe==0.7.0,mdurl==0.1.2,natsort==8.4.0,numpy==1.26.4,oauthlib==3.2.2,openpyxl==3.1.2,outcome==1.3.0.post0,packaging==24.0,pandas==2.2.2,pathspec==0.11.2,pillow==10.2.0,pip==24.0,platformdirs==4.2.0,ply==3.11,pycparser==2.21,Pygments==2.17.2,pylint==3.1.0,PyPDF2==3.0.1,PySocks==1.7.1,python-dateutil==2.9.0.post0,python-docx==1.1.2,pytz==2024.1,pywin32==306,PyYAML==6.0.1,referencing==0.33.0,reportlab==4.2.0,requests==2.31.0,requests-oauthlib==1.4.0,requests-toolbelt==1.0.0,rich==13.7.1,rich-click==1.6.1,robotframework==6.0.2,robotframework-datadriver==1.9.0,robotframework-jsonlibrary==0.5,robotframework-pabot==2.16.0,robotframework-pythonlibcore==4.2.0,robotframework-requests==0.9.2,robotframework-sapguilibrary==1.1,robotframework-seleniumlibrary==5.1.3,robotframework-stacktrace==0.4.1,robotframework-tidy==4.5.0,rpds-py==0.18.0,selenium==4.9.1,setuptools==69.2.0,six==1.16.0,smmap==5.0.1,sniffio==1.3.1,sortedcontainers==2.4.0,soupsieve==2.5,tomli==2.0.1,tomlkit==0.12.4,tqdm==4.66.4,trio==0.24.0,trio-websocket==0.11.1,typing_extensions==4.10.0,tzdata==2024.1,urllib3==2.2.1,wheel==0.43.0,wrapt==1.16.0,wsproto==1.2.0</meta>
-<status status="PASS" starttime="20240625 16:47:31.732" endtime="20240625 16:48:23.342"/>
+<status status="PASS" starttime="20240625 20:12:42.811" endtime="20240625 20:14:53.406"/>
 </suite>
 <statistics>
 <total>
 <stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="1" fail="0" skip="0">strustsso2</stat>
+<stat pass="1" fail="0" skip="0">cert_upload</stat>
 </tag>
 <suite>
 <stat pass="1" fail="0" skip="0" id="s1" name="Tests">Tests</stat>
-<stat pass="1" fail="0" skip="0" id="s1-s1" name="Test strustsso2">Tests.Test strustsso2</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="Test Certificate upload">Tests.Test Certificate upload</stat>
 </suite>
 </statistics>
 <errors>

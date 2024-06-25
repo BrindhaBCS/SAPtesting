@@ -52,21 +52,33 @@ Upload_Certificate
     Notification Handling
     Capture Page Screenshot
     Sleep    10
-    Press Keys    xpath://bdi[normalize-space()='Add']    ENTER
-    Capture Page Screenshot
+    # Press Keys    xpath://bdi[normalize-space()='Add']    ENTER
+    # Capture Page Screenshot
+    # Sleep    2
+    # Input Text    id:txtAlias-inner    ${symvar('Alias')}
+    # Capture Page Screenshot
+    # Sleep    2
+
+    Input Text    xpath://input[@id='__component0---com.sap.it.op.web.ui.pages.keystore.KeystoreManagement--SEARCHFIELD_KEYSTORE-I']    ${symvar('Alias')}
+    Capture Page Screenshot  
     Sleep    2
-    Input Text    id:txtAlias-inner    ${symvar('Alias')}
-    Capture Page Screenshot
+    Scroll Element Into View    xpath://span[@id='KEYSTORE_LISTITEM_ACTION-__clone8-img']
+    Capture Page Screenshot  
+    Sleep    2
+    Click Element    //span[@id='KEYSTORE_LISTITEM_ACTION-__clone8-img']
+    Capture Page Screenshot  
+    Sleep    2
+    Click Element    xpath://bdi[text()='Update']
+    Capture Page Screenshot  
     Sleep    2
     Choose File    id:CertificateUploadDialog-FileSelectionEntry-fu    ${file_path}    
     Sleep    5
     Capture Page Screenshot  
     Sleep    2
     Input Text    id:CertificateUploadDialog-FileSelectionEntry-fu    ${file_path}    
-    Sleep    2
     Capture Page Screenshot  
     Sleep    2
-    Click Element    xpath://bdi[@id='btnDeploy-BDI-content']
+    Click Element    id:btnUpdate-BDI-content
     Capture Page Screenshot
     Sleep    2
     Click Element    xpath://bdi[text()='Confirm']
