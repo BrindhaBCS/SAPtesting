@@ -61,29 +61,39 @@ Upload_Certificate
 
     Input Text    xpath://input[@id='__component0---com.sap.it.op.web.ui.pages.keystore.KeystoreManagement--SEARCHFIELD_KEYSTORE-I']    ${symvar('Alias')}
     Capture Page Screenshot  
-    Sleep    2
+    Sleep    3
     Scroll Element Into View    xpath://span[@id='KEYSTORE_LISTITEM_ACTION-__clone8-img']
     Capture Page Screenshot  
-    Sleep    2
+    Sleep    3
     Click Element    //span[@id='KEYSTORE_LISTITEM_ACTION-__clone8-img']
     Capture Page Screenshot  
-    Sleep    2
+    Sleep    3
     Click Element    xpath://bdi[text()='Update']
     Capture Page Screenshot  
-    Sleep    2
+    Sleep    3
     Choose File    id:CertificateUploadDialog-FileSelectionEntry-fu    ${file_path}    
     Sleep    5
     Capture Page Screenshot  
-    Sleep    2
+    Sleep    3
     Input Text    id:CertificateUploadDialog-FileSelectionEntry-fu    ${file_path}    
     Capture Page Screenshot  
-    Sleep    2
+    Sleep    3
     Click Element    id:btnUpdate-BDI-content
     Capture Page Screenshot
-    Sleep    2
-    Click Element    xpath://bdi[text()='Confirm']
+    Sleep    3
+    Capture Page Screenshot
+    Confirm certificate
     Capture Page Screenshot
     Sleep    2
+
+Confirm certificate
+    Sleep    5
+    ${Window}=     Run Keyword And Return Status   Page Should Contain Element    id:__mbox0-title-inner    
+    Run Keyword If    '${Window}'=='True'    Confirm Notification 
+
+Confirm Notification
+    Click Element       xpath://bdi[text()='Confirm']
+    Capture Page Screenshot
 
 Uploading Certificate into SAP
     IF    '${Title}' == '${symvar('CPI_URL1')}'
