@@ -83,8 +83,8 @@ Upload_Certificate
     Sleep    5
     Capture Page Screenshot
     Confirm certificate
-    # Capture Page Screenshot
-    # Sleep    5
+    Capture Page Screenshot
+    Sleep    5
 
 Confirm certificate
     Sleep    5
