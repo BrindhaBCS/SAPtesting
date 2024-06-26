@@ -80,19 +80,21 @@ Upload_Certificate
     Sleep    3
     Click Element    id:btnUpdate-BDI-content
     Capture Page Screenshot
-    Sleep    3
+    Sleep    5
     Capture Page Screenshot
     Confirm certificate
-    Capture Page Screenshot
-    Sleep    2
+    # Capture Page Screenshot
+    # Sleep    5
 
 Confirm certificate
     Sleep    5
     ${Window}=     Run Keyword And Return Status   Page Should Contain Element    id:__mbox0-title-inner    
     Run Keyword If    '${Window}'=='True'    Confirm Notification 
+    Sleep    5
 
 Confirm Notification
     Click Element       xpath://bdi[text()='Confirm']
+    Sleep    5
     Capture Page Screenshot
 
 Uploading Certificate into SAP
