@@ -79,21 +79,26 @@ Upload_Certificate
     Capture Page Screenshot  
     Sleep    3
     Click Element    id:btnUpdate-BDI-content
+    Sleep    5
     Capture Page Screenshot
     Sleep    5
     Capture Page Screenshot
+    Sleep    2
     Confirm certificate
     Capture Page Screenshot
     Sleep    5
 
 Confirm certificate
     Sleep    5
-    ${Window}=     Run Keyword And Return Status   Page Should Contain Element    id:__mbox0-title-inner    
+    ${Window}=     Run Keyword And Return Status   Page Should Contain Element    id:__mbox0-title-inner 
+    Capture Page Screenshot   
     Run Keyword If    '${Window}'=='True'    Confirm Notification 
+    Capture Page Screenshot
     Sleep    5
 
 Confirm Notification
     Click Element       xpath://bdi[text()='Confirm']
+    Capture Page Screenshot
     Sleep    5
     Capture Page Screenshot
 
