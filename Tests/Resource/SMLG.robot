@@ -37,7 +37,7 @@ Transaction SMLG
     Take Screenshot     041_smlg.jpg
 
 SMLG Attributes
-    Select Item From Guilabel   wnd[0]/usr      AWSORAVM_BCS_01    
+    Select Item From Guilabel   wnd[0]/usr      BCSIDESSYS_BIS_00    
     Sleep   1
     Take Screenshot    042_smlg.jpg
     Click Element   wnd[0]/tbar[1]/btn[14]
