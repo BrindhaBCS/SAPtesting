@@ -65,7 +65,9 @@ Upload_Certificate
     Scroll Element Into View    xpath://table[@id='__component0---com.sap.it.op.web.ui.pages.keystore.KeystoreManagement--KEYSTOREMANAGEMENT_TABLE_ID-listUl']
     Capture Page Screenshot  
     Sleep    5
-    Click Element    xpath://span[contains(@class, "sapUiIcon") and contains(@data-sap-ui, "KEYSTORE_LISTITEM_ACTION") and @data-sap-ui-icon-content=""]
+    Click Element    xpath://button[@aria-label='More' and @title='More' and contains(@class, 'sapMBtn')]
+
+
 
     Capture Page Screenshot  
     Sleep    5
