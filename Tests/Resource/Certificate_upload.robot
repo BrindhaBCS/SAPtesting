@@ -65,7 +65,8 @@ Upload_Certificate
     Scroll Element Into View    xpath://table[@id='__component0---com.sap.it.op.web.ui.pages.keystore.KeystoreManagement--KEYSTOREMANAGEMENT_TABLE_ID-listUl']
     Capture Page Screenshot  
     Sleep    5
-    Click Element    xpath:(//span[@data-sap-ui-icon-content=''])[3]
+    Click Element    xpath://span[contains(@class, "sapUiIcon") and contains(@data-sap-ui, "KEYSTORE_LISTITEM_ACTION") and @data-sap-ui-icon-content=""]
+
     Capture Page Screenshot  
     Sleep    5
     Click Element    xpath://bdi[text()='Update']
@@ -79,29 +80,21 @@ Upload_Certificate
     Capture Page Screenshot  
     Sleep    3
     Click Element    id:btnUpdate-BDI-content
-    Sleep    5
-    Capture Page Screenshot
-    Sleep    5
-    Capture Page Screenshot
     Sleep    2
+    Capture Page Screenshot
+    Sleep    5
     Confirm certificate
     Capture Page Screenshot
-    Sleep    5
 
 Confirm certificate
-    Sleep    5
     ${Window}=     Run Keyword And Return Status   Page Should Contain Element    id:__mbox0-title-inner 
     Capture Page Screenshot   
     Run Keyword If    '${Window}'=='True'    Confirm Notification 
-    Capture Page Screenshot
-    Sleep    5
-
+    
 Confirm Notification
     Click Element       xpath://bdi[text()='Confirm']
     Capture Page Screenshot
-    Sleep    5
-    Capture Page Screenshot
-
+    
 Uploading Certificate into SAP
     IF    '${Title}' == '${symvar('CPI_URL1')}'
         Window_Handling
