@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.0.2 (Python 3.12.1 on win32)" generated="20240314 06:36:16.144" rpa="false" schemaversion="3">
-<suite id="s1" name="Tests" source="C:\SAP_Testing\SAPtesting\Tests">
+<robot generator="Robot 6.0.2 (Python 3.12.2 on win32)" generated="20240710 16:44:59.854" rpa="false" schemaversion="3">
+<suite id="s1" name="Tests" source="D:\Robotframework-Github\SAPtesting\Tests">
 <kw name="Setup highest level suite" type="SETUP">
 <kw name="Set Variable" library="BuiltIn">
 <var>${d.test_server}</var>
 <arg>${test_server}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20240314 06:36:16.784" level="INFO">${d.test_server} = Dev</msg>
-<status status="PASS" starttime="20240314 06:36:16.784" endtime="20240314 06:36:16.784"/>
+<msg timestamp="20240710 16:45:00.431" level="INFO">${d.test_server} = Dev</msg>
+<status status="PASS" starttime="20240710 16:45:00.431" endtime="20240710 16:45:00.431"/>
 </kw>
 <kw name="Reset screenshot count variable" library="Support">
 <kw name="Set Variable" library="BuiltIn">
 <var>${screenshotCount}</var>
 <arg>${PABOTQUEUEINDEX}_1</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20240314 06:36:16.785" level="INFO">${screenshotCount} = 0_1</msg>
-<status status="PASS" starttime="20240314 06:36:16.785" endtime="20240314 06:36:16.785"/>
+<msg timestamp="20240710 16:45:00.432" level="INFO">${screenshotCount} = 0_1</msg>
+<status status="PASS" starttime="20240710 16:45:00.432" endtime="20240710 16:45:00.432"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${screenshotCount}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240314 06:36:16.786" level="INFO">${screenshotCount} = 0_1</msg>
-<status status="PASS" starttime="20240314 06:36:16.786" endtime="20240314 06:36:16.786"/>
+<msg timestamp="20240710 16:45:00.432" level="INFO">${screenshotCount} = 0_1</msg>
+<status status="PASS" starttime="20240710 16:45:00.432" endtime="20240710 16:45:00.432"/>
 </kw>
 <kw name="Set up screenshot directory" library="Support">
 <kw name="Create Directory" library="OperatingSystem">
 <arg>${OUTPUTDIR}${/}${wvar('screenshot_dir')}</arg>
 <doc>Creates the specified directory.</doc>
-<msg timestamp="20240314 06:36:16.787" level="INFO">Web.Dev.screenshot_dir: Screenshot</msg>
-<msg timestamp="20240314 06:36:16.791" level="INFO" html="true">Created directory '&lt;a href="file://C:\SAP_Testing\SAPtesting\Output\pabot_results\0\Screenshot"&gt;C:\SAP_Testing\SAPtesting\Output\pabot_results\0\Screenshot&lt;/a&gt;'.</msg>
-<status status="PASS" starttime="20240314 06:36:16.786" endtime="20240314 06:36:16.792"/>
+<msg timestamp="20240710 16:45:00.433" level="INFO">Web.Dev.screenshot_dir: Screenshot</msg>
+<msg timestamp="20240710 16:45:00.433" level="INFO" html="true">Created directory '&lt;a href="file://D:\Robotframework-Github\SAPtesting\Output\pabot_results\0\Screenshot"&gt;D:\Robotframework-Github\SAPtesting\Output\pabot_results\0\Screenshot&lt;/a&gt;'.</msg>
+<status status="PASS" starttime="20240710 16:45:00.432" endtime="20240710 16:45:00.433"/>
 </kw>
-<status status="PASS" starttime="20240314 06:36:16.786" endtime="20240314 06:36:16.792"/>
+<status status="PASS" starttime="20240710 16:45:00.432" endtime="20240710 16:45:00.433"/>
 </kw>
-<status status="PASS" starttime="20240314 06:36:16.784" endtime="20240314 06:36:16.792"/>
+<status status="PASS" starttime="20240710 16:45:00.431" endtime="20240710 16:45:00.433"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${screenshot_taking}</arg>
 <arg>${True}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240314 06:36:16.793" level="INFO">${screenshot_taking} = True</msg>
-<status status="PASS" starttime="20240314 06:36:16.792" endtime="20240314 06:36:16.793"/>
+<msg timestamp="20240710 16:45:00.433" level="INFO">${screenshot_taking} = True</msg>
+<status status="PASS" starttime="20240710 16:45:00.433" endtime="20240710 16:45:00.433"/>
 </kw>
 <kw name="Setup linux execution" library="Support">
 <kw name="Run Keyword And Return Status" library="BuiltIn">
@@ -51,10 +51,10 @@
 <kw name="Variable Should Exist" library="BuiltIn">
 <arg>${web_test}</arg>
 <doc>Fails unless the given variable exists within the current scope.</doc>
-<status status="PASS" starttime="20240314 06:36:16.793" endtime="20240314 06:36:16.794"/>
+<status status="PASS" starttime="20240710 16:45:00.433" endtime="20240710 16:45:00.433"/>
 </kw>
-<msg timestamp="20240314 06:36:16.794" level="INFO">${web_test_check} = True</msg>
-<status status="PASS" starttime="20240314 06:36:16.793" endtime="20240314 06:36:16.794"/>
+<msg timestamp="20240710 16:45:00.433" level="INFO">${web_test_check} = True</msg>
+<status status="PASS" starttime="20240710 16:45:00.433" endtime="20240710 16:45:00.433"/>
 </kw>
 <kw name="Run Keyword If" library="BuiltIn">
 <arg>${web_test_check}</arg>
@@ -72,47 +72,47 @@
 :return: Browser metadata information, dict of format
             {"browser_version": browser version value,
              "driver_version": driver version value}</doc>
-<msg timestamp="20240314 06:36:20.040" level="INFO">&amp;{browser_information} = { browser_version=122.0.6261.128 | driver_version=121.0.6167.85  }</msg>
-<status status="PASS" starttime="20240314 06:36:16.795" endtime="20240314 06:36:20.040"/>
+<msg timestamp="20240710 16:45:03.787" level="INFO">&amp;{browser_information} = { browser_version=126.0.6478.127 | driver_version=126.0.6478.126  }</msg>
+<status status="PASS" starttime="20240710 16:45:00.435" endtime="20240710 16:45:03.787"/>
 </kw>
 <kw name="Set Suite Metadata" library="BuiltIn">
 <arg>test_browser_name</arg>
 <arg>${browser}</arg>
 <doc>Sets metadata for the current test suite.</doc>
-<msg timestamp="20240314 06:36:20.040" level="INFO">Set suite metadata 'test_browser_name' to value 'chrome'.</msg>
-<status status="PASS" starttime="20240314 06:36:20.040" endtime="20240314 06:36:20.040"/>
+<msg timestamp="20240710 16:45:03.788" level="INFO">Set suite metadata 'test_browser_name' to value 'chrome'.</msg>
+<status status="PASS" starttime="20240710 16:45:03.788" endtime="20240710 16:45:03.788"/>
 </kw>
 <kw name="Set Suite Metadata" library="BuiltIn">
 <arg>test_browser_version</arg>
 <arg>${browser_information.browser_version}</arg>
 <doc>Sets metadata for the current test suite.</doc>
-<msg timestamp="20240314 06:36:20.040" level="INFO">Set suite metadata 'test_browser_version' to value '122.0.6261.128'.</msg>
-<status status="PASS" starttime="20240314 06:36:20.040" endtime="20240314 06:36:20.040"/>
+<msg timestamp="20240710 16:45:03.790" level="INFO">Set suite metadata 'test_browser_version' to value '126.0.6478.127'.</msg>
+<status status="PASS" starttime="20240710 16:45:03.789" endtime="20240710 16:45:03.790"/>
 </kw>
 <kw name="Set Suite Metadata" library="BuiltIn">
 <arg>test_driver_version</arg>
 <arg>${browser_information.driver_version}</arg>
 <doc>Sets metadata for the current test suite.</doc>
-<msg timestamp="20240314 06:36:20.040" level="INFO">Set suite metadata 'test_driver_version' to value '121.0.6167.85 '.</msg>
-<status status="PASS" starttime="20240314 06:36:20.040" endtime="20240314 06:36:20.040"/>
+<msg timestamp="20240710 16:45:03.792" level="INFO">Set suite metadata 'test_driver_version' to value '126.0.6478.126 '.</msg>
+<status status="PASS" starttime="20240710 16:45:03.790" endtime="20240710 16:45:03.792"/>
 </kw>
-<status status="PASS" starttime="20240314 06:36:16.795" endtime="20240314 06:36:20.040"/>
+<status status="PASS" starttime="20240710 16:45:00.433" endtime="20240710 16:45:03.792"/>
 </kw>
 <kw name="Setup Global Docker Execution Options" library="Support_Web">
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${global_browser_options}</arg>
 <arg>None</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240314 06:36:20.040" level="INFO">${global_browser_options} = None</msg>
-<status status="PASS" starttime="20240314 06:36:20.040" endtime="20240314 06:36:20.040"/>
+<msg timestamp="20240710 16:45:03.794" level="INFO">${global_browser_options} = None</msg>
+<status status="PASS" starttime="20240710 16:45:03.792" endtime="20240710 16:45:03.794"/>
 </kw>
 <kw name="Get Environment Variable" library="OperatingSystem">
 <var>${docker_check}</var>
 <arg>EXECUTION_ENVIRONMENT</arg>
 <arg>not_found</arg>
 <doc>Returns the value of an environment variable with the given name.</doc>
-<msg timestamp="20240314 06:36:20.040" level="INFO">${docker_check} = not_found</msg>
-<status status="PASS" starttime="20240314 06:36:20.040" endtime="20240314 06:36:20.040"/>
+<msg timestamp="20240710 16:45:03.794" level="INFO">${docker_check} = not_found</msg>
+<status status="PASS" starttime="20240710 16:45:03.794" endtime="20240710 16:45:03.794"/>
 </kw>
 <kw name="Run Keyword And Return If" library="BuiltIn">
 <arg>"${docker_check}"!="docker"</arg>
@@ -122,11 +122,11 @@
 <kw name="Log" library="BuiltIn">
 <arg>Not executing on Docker</arg>
 <doc>Logs the given message with the given level.</doc>
-<msg timestamp="20240314 06:36:20.040" level="INFO">Not executing on Docker</msg>
-<status status="PASS" starttime="20240314 06:36:20.040" endtime="20240314 06:36:20.040"/>
+<msg timestamp="20240710 16:45:03.795" level="INFO">Not executing on Docker</msg>
+<status status="PASS" starttime="20240710 16:45:03.794" endtime="20240710 16:45:03.795"/>
 </kw>
-<msg timestamp="20240314 06:36:20.040" level="INFO">Returning from the enclosing user keyword.</msg>
-<status status="PASS" starttime="20240314 06:36:20.040" endtime="20240314 06:36:20.040"/>
+<msg timestamp="20240710 16:45:03.795" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20240710 16:45:03.794" endtime="20240710 16:45:03.795"/>
 </kw>
 <kw name="Create List" library="BuiltIn">
 <var>@{options}</var>
@@ -134,15 +134,15 @@
 <arg>--no-sandbox</arg>
 <arg>--disable-dev-shm-usage</arg>
 <doc>Returns a list containing given items.</doc>
-<status status="NOT RUN" starttime="20240314 06:36:20.040" endtime="20240314 06:36:20.040"/>
+<status status="NOT RUN" starttime="20240710 16:45:03.795" endtime="20240710 16:45:03.795"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>@{docker_options}</arg>
 <arg>@{options}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<status status="NOT RUN" starttime="20240314 06:36:20.040" endtime="20240314 06:36:20.040"/>
+<status status="NOT RUN" starttime="20240710 16:45:03.795" endtime="20240710 16:45:03.795"/>
 </kw>
-<status status="PASS" starttime="20240314 06:36:20.040" endtime="20240314 06:36:20.040"/>
+<status status="PASS" starttime="20240710 16:45:03.792" endtime="20240710 16:45:03.795"/>
 </kw>
 <kw name="Create Webdriver for chrome preferences" library="Support_Web">
 <kw name="Update Docker Execution Options" library="Support_Web">
@@ -156,19 +156,19 @@
 <kw name="Variable Should Exist" library="BuiltIn">
 <arg>${docker_options}</arg>
 <doc>Fails unless the given variable exists within the current scope.</doc>
-<msg timestamp="20240314 06:36:20.040" level="FAIL">Variable '${docker_options}' does not exist.</msg>
-<status status="FAIL" starttime="20240314 06:36:20.040" endtime="20240314 06:36:20.040"/>
+<msg timestamp="20240710 16:45:03.797" level="FAIL">Variable '${docker_options}' does not exist.</msg>
+<status status="FAIL" starttime="20240710 16:45:03.796" endtime="20240710 16:45:03.797"/>
 </kw>
-<msg timestamp="20240314 06:36:20.040" level="INFO">${docker_check} = False</msg>
-<status status="PASS" starttime="20240314 06:36:20.040" endtime="20240314 06:36:20.040"/>
+<msg timestamp="20240710 16:45:03.797" level="INFO">${docker_check} = False</msg>
+<status status="PASS" starttime="20240710 16:45:03.796" endtime="20240710 16:45:03.797"/>
 </kw>
 <kw name="Get Length" library="BuiltIn">
 <var>${list_prefs_length}</var>
 <arg>${list_prefs}</arg>
 <doc>Returns and logs the length of the given item as an integer.</doc>
-<msg timestamp="20240314 06:36:20.040" level="INFO">Length is 1</msg>
-<msg timestamp="20240314 06:36:20.040" level="INFO">${list_prefs_length} = 1</msg>
-<status status="PASS" starttime="20240314 06:36:20.040" endtime="20240314 06:36:20.040"/>
+<msg timestamp="20240710 16:45:03.797" level="INFO">Length is 1</msg>
+<msg timestamp="20240710 16:45:03.797" level="INFO">${list_prefs_length} = 1</msg>
+<status status="PASS" starttime="20240710 16:45:03.797" endtime="20240710 16:45:03.797"/>
 </kw>
 <kw name="Run Keyword If" library="BuiltIn">
 <var>${list_prefs}</var>
@@ -187,13 +187,13 @@
 <kw name="Set Variable" library="BuiltIn">
 <arg>${list_prefs}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" starttime="20240314 06:36:20.040" endtime="20240314 06:36:20.040"/>
+<status status="PASS" starttime="20240710 16:45:03.798" endtime="20240710 16:45:03.798"/>
 </kw>
-<msg timestamp="20240314 06:36:20.040" level="INFO">${list_prefs} = [[]]</msg>
-<status status="PASS" starttime="20240314 06:36:20.040" endtime="20240314 06:36:20.040"/>
+<msg timestamp="20240710 16:45:03.798" level="INFO">${list_prefs} = [[]]</msg>
+<status status="PASS" starttime="20240710 16:45:03.797" endtime="20240710 16:45:03.798"/>
 </kw>
-<msg timestamp="20240314 06:36:20.040" level="INFO">${list_prefs} = [[]]</msg>
-<status status="PASS" starttime="20240314 06:36:20.040" endtime="20240314 06:36:20.040"/>
+<msg timestamp="20240710 16:45:03.798" level="INFO">${list_prefs} = [[]]</msg>
+<status status="PASS" starttime="20240710 16:45:03.795" endtime="20240710 16:45:03.798"/>
 </kw>
 <kw name="Create Chrome Options for download preferences" library="Support_Web">
 <var>${chrome_options}</var>
@@ -202,11 +202,11 @@
 <arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
 <arg>sys</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240314 06:36:20.040" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000026A629FA6C0&gt;</msg>
-<status status="PASS" starttime="20240314 06:36:20.040" endtime="20240314 06:36:20.040"/>
+<msg timestamp="20240710 16:45:03.798" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001A1E8F263F0&gt;</msg>
+<status status="PASS" starttime="20240710 16:45:03.798" endtime="20240710 16:45:03.798"/>
 </kw>
-<msg timestamp="20240314 06:36:20.040" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000026A629FA6C0&gt;</msg>
-<status status="PASS" starttime="20240314 06:36:20.040" endtime="20240314 06:36:20.040"/>
+<msg timestamp="20240710 16:45:03.798" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001A1E8F263F0&gt;</msg>
+<status status="PASS" starttime="20240710 16:45:03.798" endtime="20240710 16:45:03.798"/>
 </kw>
 <kw name="Update Preferences List" library="Support_Web">
 <arg>${chrome_options}</arg>
@@ -215,14 +215,14 @@
 <var>${string_prefs}</var>
 <arg>${list_prefs}</arg>
 <doc>Converts the given item to a Unicode string.</doc>
-<msg timestamp="20240314 06:36:20.040" level="INFO">${string_prefs} = [[]]</msg>
-<status status="PASS" starttime="20240314 06:36:20.040" endtime="20240314 06:36:20.040"/>
+<msg timestamp="20240710 16:45:03.799" level="INFO">${string_prefs} = [[]]</msg>
+<status status="PASS" starttime="20240710 16:45:03.799" endtime="20240710 16:45:03.799"/>
 </kw>
 <kw name="Return From Keyword If" library="BuiltIn">
 <arg>${string_prefs} == [[]]</arg>
 <doc>Returns from the enclosing user keyword if ``condition`` is true.</doc>
-<msg timestamp="20240314 06:36:20.055" level="INFO">Returning from the enclosing user keyword.</msg>
-<status status="PASS" starttime="20240314 06:36:20.055" endtime="20240314 06:36:20.055"/>
+<msg timestamp="20240710 16:45:03.799" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20240710 16:45:03.799" endtime="20240710 16:45:03.799"/>
 </kw>
 <for flavor="IN">
 <var>${preference}</var>
@@ -234,13 +234,13 @@
 <arg>add_argument</arg>
 <arg>${preference}</arg>
 <doc>Calls the named method of the given object with the provided arguments.</doc>
-<status status="NOT RUN" starttime="20240314 06:36:20.055" endtime="20240314 06:36:20.055"/>
+<status status="NOT RUN" starttime="20240710 16:45:03.799" endtime="20240710 16:45:03.800"/>
 </kw>
-<status status="NOT RUN" starttime="20240314 06:36:20.055" endtime="20240314 06:36:20.055"/>
+<status status="NOT RUN" starttime="20240710 16:45:03.799" endtime="20240710 16:45:03.800"/>
 </iter>
-<status status="NOT RUN" starttime="20240314 06:36:20.055" endtime="20240314 06:36:20.055"/>
+<status status="NOT RUN" starttime="20240710 16:45:03.799" endtime="20240710 16:45:03.800"/>
 </for>
-<status status="PASS" starttime="20240314 06:36:20.040" endtime="20240314 06:36:20.055"/>
+<status status="PASS" starttime="20240710 16:45:03.799" endtime="20240710 16:45:03.800"/>
 </kw>
 <kw name="Call Method" library="BuiltIn">
 <arg>${chrome_options}</arg>
@@ -248,185 +248,994 @@
 <arg>prefs</arg>
 <arg>${kw_prefs}</arg>
 <doc>Calls the named method of the given object with the provided arguments.</doc>
-<status status="PASS" starttime="20240314 06:36:20.055" endtime="20240314 06:36:20.055"/>
+<status status="PASS" starttime="20240710 16:45:03.800" endtime="20240710 16:45:03.800"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${global_browser_options}</arg>
 <arg>${chrome options}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240314 06:36:20.055" level="INFO">${global_browser_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000026A629FA6C0&gt;</msg>
-<status status="PASS" starttime="20240314 06:36:20.055" endtime="20240314 06:36:20.055"/>
+<msg timestamp="20240710 16:45:03.800" level="INFO">${global_browser_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001A1E8F263F0&gt;</msg>
+<status status="PASS" starttime="20240710 16:45:03.800" endtime="20240710 16:45:03.800"/>
 </kw>
-<status status="PASS" starttime="20240314 06:36:20.040" endtime="20240314 06:36:20.055"/>
+<status status="PASS" starttime="20240710 16:45:03.795" endtime="20240710 16:45:03.800"/>
 </kw>
-<status status="PASS" starttime="20240314 06:36:16.794" endtime="20240314 06:36:20.055"/>
+<status status="PASS" starttime="20240710 16:45:00.433" endtime="20240710 16:45:03.800"/>
 </kw>
-<status status="PASS" starttime="20240314 06:36:16.794" endtime="20240314 06:36:20.055"/>
+<status status="PASS" starttime="20240710 16:45:00.433" endtime="20240710 16:45:03.800"/>
 </kw>
-<status status="PASS" starttime="20240314 06:36:16.793" endtime="20240314 06:36:20.055"/>
+<status status="PASS" starttime="20240710 16:45:00.433" endtime="20240710 16:45:03.800"/>
 </kw>
 <kw name="Set Suite Metadata" library="BuiltIn">
 <arg>environment</arg>
 <arg>${test_server}</arg>
 <doc>Sets metadata for the current test suite.</doc>
-<msg timestamp="20240314 06:36:20.055" level="INFO">Set suite metadata 'environment' to value 'Dev'.</msg>
-<status status="PASS" starttime="20240314 06:36:20.055" endtime="20240314 06:36:20.055"/>
+<msg timestamp="20240710 16:45:03.801" level="INFO">Set suite metadata 'environment' to value 'Dev'.</msg>
+<status status="PASS" starttime="20240710 16:45:03.800" endtime="20240710 16:45:03.801"/>
 </kw>
-<status status="PASS" starttime="20240314 06:36:16.783" endtime="20240314 06:36:20.055"/>
+<status status="PASS" starttime="20240710 16:45:00.431" endtime="20240710 16:45:03.801"/>
 </kw>
-<suite id="s1-s1" name="Test SM02" source="C:\SAP_Testing\SAPtesting\Tests\Test_SM02.robot">
-<kw name="System Logon" library="SM02" type="SETUP">
+<suite id="s1-s1" name="Test Get User Roles" source="D:\Robotframework-Github\SAPtesting\Tests\Test_Get_User_Roles.robot">
+<kw name="System Logon" library="Get_User_Roles" type="SETUP">
 <kw name="Start Process" library="Process">
 <arg>${symvar('SAP_SERVER')}</arg>
 <doc>Starts a new process on background.</doc>
-<msg timestamp="20240314 06:36:20.321" level="INFO">Sym.Dev.SAP_SERVER: C:\Program Files (x86)\SAP\FrontEnd\SAPGUI\saplogon.exe</msg>
-<msg timestamp="20240314 06:36:20.321" level="INFO">Starting process:
-"C:\Program Files (x86)\SAP\FrontEnd\SAPGUI\saplogon.exe"</msg>
-<status status="PASS" starttime="20240314 06:36:20.321" endtime="20240314 06:36:20.321"/>
+<msg timestamp="20240710 16:45:03.939" level="INFO">Sym.Dev.SAP_SERVER: C:\Program Files (x86)\SAP\FrontEnd\SAPgui\saplogon.exe</msg>
+<msg timestamp="20240710 16:45:03.939" level="INFO">Starting process:
+"C:\Program Files (x86)\SAP\FrontEnd\SAPgui\saplogon.exe"</msg>
+<status status="PASS" starttime="20240710 16:45:03.938" endtime="20240710 16:45:03.943"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>10s</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240314 06:36:30.321" level="INFO">Slept 10 seconds</msg>
-<status status="PASS" starttime="20240314 06:36:20.321" endtime="20240314 06:36:30.321"/>
+<msg timestamp="20240710 16:45:13.943" level="INFO">Slept 10 seconds</msg>
+<status status="PASS" starttime="20240710 16:45:03.943" endtime="20240710 16:45:13.943"/>
 </kw>
-<kw name="Connect To Session" library="CustomSapGuiLibrary">
+<kw name="Connect To Session" library="SAP_Tcode_Library">
 <doc>Connects to an open session SAP.</doc>
-<status status="PASS" starttime="20240314 06:36:30.321" endtime="20240314 06:36:30.330"/>
+<status status="PASS" starttime="20240710 16:45:13.943" endtime="20240710 16:45:13.966"/>
 </kw>
-<kw name="Open Connection" library="CustomSapGuiLibrary">
-<arg>${symvar('SAP_connection')}</arg>
+<kw name="Open Connection" library="SAP_Tcode_Library">
+<arg>${symvar('sap_connection')}</arg>
 <doc>Opens a connection to the given connection name. Be sure to provide the full connection name, including the bracket part.</doc>
-<msg timestamp="20240314 06:36:30.330" level="INFO">Sym.Dev.SAP_connection: BIS</msg>
-<status status="PASS" starttime="20240314 06:36:30.330" endtime="20240314 06:36:32.383"/>
+<msg timestamp="20240710 16:45:13.967" level="INFO">Sym.Dev.sap_connection: DEV_PRD</msg>
+<status status="PASS" starttime="20240710 16:45:13.966" endtime="20240710 16:45:14.851"/>
 </kw>
-<kw name="Input Text" library="CustomSapGuiLibrary">
+<kw name="Input Text" library="SAP_Tcode_Library">
 <arg>wnd[0]/usr/txtRSYST-MANDT</arg>
 <arg>${symvar('Client_Id')}</arg>
 <doc>Inserts the given text into the text field identified by locator.
 Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240314 06:36:32.383" level="INFO">Sym.Dev.Client_Id: 001</msg>
-<msg timestamp="20240314 06:36:32.394" level="INFO">Typing text '001' into text field 'wnd[0]/usr/txtRSYST-MANDT'.</msg>
-<status status="PASS" starttime="20240314 06:36:32.383" endtime="20240314 06:36:32.394"/>
+<msg timestamp="20240710 16:45:14.853" level="INFO">Sym.Dev.Client_Id: 001</msg>
+<msg timestamp="20240710 16:45:14.898" level="INFO">Typing text '001' into text field 'wnd[0]/usr/txtRSYST-MANDT'.</msg>
+<status status="PASS" starttime="20240710 16:45:14.851" endtime="20240710 16:45:14.898"/>
 </kw>
-<kw name="Input Text" library="CustomSapGuiLibrary">
+<kw name="Input Text" library="SAP_Tcode_Library">
 <arg>wnd[0]/usr/txtRSYST-BNAME</arg>
-<arg>${symvar('User_Name')}</arg>
+<arg>${symvar('user_name')}</arg>
 <doc>Inserts the given text into the text field identified by locator.
 Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240314 06:36:32.395" level="INFO">Sym.Dev.User_Name: ramyap</msg>
-<msg timestamp="20240314 06:36:32.413" level="INFO">Typing text 'ramyap' into text field 'wnd[0]/usr/txtRSYST-BNAME'.</msg>
-<status status="PASS" starttime="20240314 06:36:32.394" endtime="20240314 06:36:32.413"/>
+<msg timestamp="20240710 16:45:14.899" level="INFO">Sym.Dev.user_name: ramyap</msg>
+<msg timestamp="20240710 16:45:14.915" level="INFO">Typing text 'ramyap' into text field 'wnd[0]/usr/txtRSYST-BNAME'.</msg>
+<status status="PASS" starttime="20240710 16:45:14.898" endtime="20240710 16:45:14.915"/>
 </kw>
-<kw name="Input Password" library="CustomSapGuiLibrary">
+<kw name="Input Password" library="SAP_Tcode_Library">
 <arg>wnd[0]/usr/pwdRSYST-BCODE</arg>
-<arg>${symvar('User_Password')}</arg>
+<arg>${symvar('password')}</arg>
 <doc>Inserts the given password into the text field identified by locator.
 The password is not recorded in the log.</doc>
-<msg timestamp="20240314 06:36:32.413" level="INFO">Sym.Dev.User_Password: Ramya@95</msg>
-<msg timestamp="20240314 06:36:32.420" level="INFO">Typing password into text field 'wnd[0]/usr/pwdRSYST-BCODE'.</msg>
-<status status="PASS" starttime="20240314 06:36:32.413" endtime="20240314 06:36:32.420"/>
+<msg timestamp="20240710 16:45:14.916" level="INFO">Sym.Dev.password: Ramya@95</msg>
+<msg timestamp="20240710 16:45:14.921" level="INFO">Typing password into text field 'wnd[0]/usr/pwdRSYST-BCODE'.</msg>
+<status status="PASS" starttime="20240710 16:45:14.915" endtime="20240710 16:45:14.922"/>
 </kw>
-<kw name="Send Vkey" library="CustomSapGuiLibrary">
+<kw name="Send Vkey" library="SAP_Tcode_Library">
 <arg>0</arg>
 <doc>Sends a SAP virtual key combination to the window, not into an element.
 If you want to send a value to a text field, use `input text` instead.</doc>
-<status status="PASS" starttime="20240314 06:36:32.420" endtime="20240314 06:36:33.120"/>
+<status status="PASS" starttime="20240710 16:45:14.922" endtime="20240710 16:45:16.162"/>
 </kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>3s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240314 06:36:36.120" level="INFO">Slept 3 seconds</msg>
-<status status="PASS" starttime="20240314 06:36:33.120" endtime="20240314 06:36:36.120"/>
-</kw>
-<kw name="Multiple Logon Handling" library="CustomSapGuiLibrary">
+<kw name="Multiple Logon Handling" library="SAP_Tcode_Library">
 <arg>wnd[1]</arg>
 <arg>wnd[1]/usr/radMULTI_LOGON_OPT2</arg>
 <arg>wnd[1]/tbar[0]/btn[0]</arg>
-<msg timestamp="20240314 06:36:36.120" level="INFO">Multiple logon does not exist.</msg>
-<status status="PASS" starttime="20240314 06:36:36.120" endtime="20240314 06:36:36.120"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>5s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240314 06:36:41.121" level="INFO">Slept 5 seconds</msg>
-<status status="PASS" starttime="20240314 06:36:36.120" endtime="20240314 06:36:41.121"/>
-</kw>
-<status status="PASS" starttime="20240314 06:36:20.321" endtime="20240314 06:36:41.121"/>
-</kw>
-<test id="s1-s1-t1" name="Certificate Validation" line="8">
-<kw name="SM02" library="SM02">
-<kw name="Run Transaction" library="CustomSapGuiLibrary">
-<arg>/nSM02</arg>
-<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
-<status status="PASS" starttime="20240314 06:36:41.125" endtime="20240314 06:36:41.734"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>3s</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240314 06:36:44.734" level="INFO">Slept 3 seconds</msg>
-<status status="PASS" starttime="20240314 06:36:41.734" endtime="20240314 06:36:44.734"/>
-</kw>
-<kw name="Get Lable Value" library="CustomSapGuiLibrary">
-<var>${log_value}</var>
-<arg>wnd[0]/usr</arg>
-<arg>${symvar('search_texts')}</arg>
-<msg timestamp="20240314 06:36:44.734" level="INFO">Sym.Dev.search_texts: ['Validity of certificate from list with PSE type &gt;SSL', 'Client (Standrad)&lt; ends in 7 days, for more information, see', 'the SAP System Log (transation SM21)']</msg>
-<msg timestamp="20240314 06:36:45.553" level="INFO">Validity of certificate from list with PSE type &gt;SSL
-Client (Standrad)&lt; ends in 7 days, for more information, see
-the SAP System Log (transation SM21)</msg>
-<msg timestamp="20240314 06:36:45.553" level="INFO">${log_value} = ['Validity of certificate from list with PSE type &gt;SSL', 'Client (Standrad)&lt; ends in 7 days, for more information, see', 'the SAP System Log (transation SM21)']</msg>
-<status status="PASS" starttime="20240314 06:36:44.734" endtime="20240314 06:36:45.553"/>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<arg>${log_value}</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20240314 06:36:45.553" endtime="20240314 06:36:45.553"/>
-</kw>
-<status status="PASS" starttime="20240314 06:36:41.123" endtime="20240314 06:36:45.553"/>
-</kw>
-<tag>Regression</tag>
-<tag>SM02</tag>
-<status status="PASS" starttime="20240314 06:36:41.122" endtime="20240314 06:36:45.553"/>
-</test>
-<kw name="System Logout" library="SM02" type="TEARDOWN">
-<kw name="Run Transaction" library="CustomSapGuiLibrary">
-<arg>/nex</arg>
-<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
-<status status="PASS" starttime="20240314 06:36:45.553" endtime="20240314 06:36:45.790"/>
+<status status="PASS" starttime="20240710 16:45:16.162" endtime="20240710 16:45:16.171"/>
 </kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>5</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240314 06:36:50.790" level="INFO">Slept 5 seconds</msg>
-<status status="PASS" starttime="20240314 06:36:45.790" endtime="20240314 06:36:50.790"/>
+<msg timestamp="20240710 16:45:21.172" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240710 16:45:16.172" endtime="20240710 16:45:21.172"/>
 </kw>
-<status status="PASS" starttime="20240314 06:36:45.553" endtime="20240314 06:36:50.790"/>
+<status status="PASS" starttime="20240710 16:45:03.938" endtime="20240710 16:45:21.172"/>
 </kw>
-<status status="PASS" starttime="20240314 06:36:20.055" endtime="20240314 06:36:50.790"/>
+<test id="s1-s1-t1" name="Write User Role into Excel sheet" line="9">
+<kw name="Getting User Role" library="Get_User_Roles">
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/nsu01</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240710 16:45:21.175" endtime="20240710 16:45:21.767"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240710 16:45:23.767" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240710 16:45:21.767" endtime="20240710 16:45:23.767"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>01_get_Role.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240710 16:45:23.826" level="INFO" html="true">&lt;a href="01_get_Role.jpg"&gt;&lt;img src="01_get_Role.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240710 16:45:23.767" endtime="20240710 16:45:23.826"/>
+</kw>
+<kw name="Count Excel Rows" library="SAP_Tcode_Library">
+<var>${user_count}</var>
+<arg>${symvar('excel_path')}</arg>
+<arg>${symvar('sheet_name3')}</arg>
+<msg timestamp="20240710 16:45:23.827" level="INFO">Sym.Dev.excel_path: D:\Robotframework-Github\SAPtesting\Tests\Resource\User_Role_Assignment.xlsx</msg>
+<msg timestamp="20240710 16:45:23.827" level="INFO">Sym.Dev.sheet_name3: Get_Role</msg>
+<msg timestamp="20240710 16:45:23.849" level="INFO">6</msg>
+<msg timestamp="20240710 16:45:23.850" level="INFO">${user_count} = 6</msg>
+<status status="PASS" starttime="20240710 16:45:23.826" endtime="20240710 16:45:23.850"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${rows}</var>
+<arg>${user_count} + 1</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20240710 16:45:23.850" level="INFO">${rows} = 7</msg>
+<status status="PASS" starttime="20240710 16:45:23.850" endtime="20240710 16:45:23.850"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${rows}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240710 16:45:23.851" level="INFO">${rows} = 7</msg>
+<status status="PASS" starttime="20240710 16:45:23.850" endtime="20240710 16:45:23.851"/>
+</kw>
+<for flavor="IN RANGE">
+<var>${i}</var>
+<value>2</value>
+<value>${rows}</value>
+<iter>
+<var name="${i}">2</var>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${i}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240710 16:45:23.851" level="INFO">${i} = 2</msg>
+<status status="PASS" starttime="20240710 16:45:23.851" endtime="20240710 16:45:23.851"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${j}</var>
+<arg>${i} - 2</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20240710 16:45:23.852" level="INFO">${j} = 0</msg>
+<status status="PASS" starttime="20240710 16:45:23.852" endtime="20240710 16:45:23.852"/>
+</kw>
+<kw name="Read Excel Cell Value" library="SAP_Tcode_Library">
+<var>${user_names}</var>
+<arg>${symvar('excel_path')}</arg>
+<arg>${symvar('sheet_name3')}</arg>
+<arg>${i}</arg>
+<arg>2</arg>
+<msg timestamp="20240710 16:45:23.852" level="INFO">Sym.Dev.excel_path: D:\Robotframework-Github\SAPtesting\Tests\Resource\User_Role_Assignment.xlsx</msg>
+<msg timestamp="20240710 16:45:23.853" level="INFO">Sym.Dev.sheet_name3: Get_Role</msg>
+<msg timestamp="20240710 16:45:23.873" level="INFO">${user_names} = TEST011</msg>
+<status status="PASS" starttime="20240710 16:45:23.852" endtime="20240710 16:45:23.873"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME</arg>
+<arg>${user_names}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240710 16:45:23.889" level="INFO">Typing text 'TEST011' into text field 'wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME'.</msg>
+<status status="PASS" starttime="20240710 16:45:23.873" endtime="20240710 16:45:23.889"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240710 16:45:24.890" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240710 16:45:23.889" endtime="20240710 16:45:24.890"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[7]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240710 16:45:24.891" endtime="20240710 16:45:25.232"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240710 16:45:28.233" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240710 16:45:25.232" endtime="20240710 16:45:28.233"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/tabsTABSTRIP1/tabpACTG</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240710 16:45:28.233" endtime="20240710 16:45:29.106"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240710 16:45:30.109" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240710 16:45:29.107" endtime="20240710 16:45:30.109"/>
+</kw>
+<kw name="Get Row Count" library="SAP_Tcode_Library">
+<var>${length}</var>
+<arg>wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell</arg>
+<doc>Returns the number of rows found in the specified table.</doc>
+<msg timestamp="20240710 16:45:30.124" level="INFO">${length} = 1</msg>
+<status status="PASS" starttime="20240710 16:45:30.111" endtime="20240710 16:45:30.124"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>${i}_Get_Role.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240710 16:45:30.249" level="INFO" html="true">&lt;a href="2_Get_Role.jpg"&gt;&lt;img src="2_Get_Role.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240710 16:45:30.124" endtime="20240710 16:45:30.249"/>
+</kw>
+<for flavor="IN RANGE">
+<var>${k}</var>
+<value>0</value>
+<value>${length}</value>
+<iter>
+<var name="${k}">0</var>
+<kw name="Get Cell Value" library="SAP_Tcode_Library">
+<var>${y_role}</var>
+<arg>wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell</arg>
+<arg>${k}</arg>
+<arg>AGR_NAME</arg>
+<doc>Returns the cell value for the specified cell.</doc>
+<msg timestamp="20240710 16:45:30.257" level="INFO">${y_role} = Y_BASIS_TEST</msg>
+<status status="PASS" starttime="20240710 16:45:30.250" endtime="20240710 16:45:30.257"/>
+</kw>
+<kw name="Check Text Start With Y" library="SAP_Tcode_Library">
+<var>${role}</var>
+<arg>${y_role}</arg>
+<msg timestamp="20240710 16:45:30.258" level="INFO">${role} = Y_BASIS_TEST</msg>
+<status status="PASS" starttime="20240710 16:45:30.257" endtime="20240710 16:45:30.258"/>
+</kw>
+<if>
+<branch type="IF" condition="'${role}' != 'None'">
+<kw name="Evaluate" library="BuiltIn">
+<var>${h}</var>
+<arg>${k} + 4</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20240710 16:45:30.259" level="INFO">${h} = 4</msg>
+<status status="PASS" starttime="20240710 16:45:30.259" endtime="20240710 16:45:30.259"/>
+</kw>
+<kw name="Write Excel" library="Get_User_Roles">
+<arg>${symvar('excel_path')}</arg>
+<arg>${symvar('sheet_name3')}</arg>
+<arg>${i}</arg>
+<arg>${h}</arg>
+<arg>${role}</arg>
+<msg timestamp="20240710 16:45:30.259" level="INFO">Sym.Dev.excel_path: D:\Robotframework-Github\SAPtesting\Tests\Resource\User_Role_Assignment.xlsx</msg>
+<msg timestamp="20240710 16:45:30.260" level="INFO">Sym.Dev.sheet_name3: Get_Role</msg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240710 16:45:30.260" endtime="20240710 16:45:30.287"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240710 16:45:30.288" endtime="20240710 16:45:30.288"/>
+</kw>
+<kw name="Write Excel Cell" library="ExcelLibrary">
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<arg>${cell_value}</arg>
+<arg>${sheetname}</arg>
+<doc>Writes value to the cell.</doc>
+<status status="PASS" starttime="20240710 16:45:30.289" endtime="20240710 16:45:30.290"/>
+</kw>
+<kw name="Save Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<doc>Saves the current document to disk.</doc>
+<status status="PASS" starttime="20240710 16:45:30.290" endtime="20240710 16:45:30.340"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240710 16:45:30.340" endtime="20240710 16:45:30.340"/>
+</kw>
+<status status="PASS" starttime="20240710 16:45:30.259" endtime="20240710 16:45:30.342"/>
+</kw>
+<status status="PASS" starttime="20240710 16:45:30.258" endtime="20240710 16:45:30.342"/>
+</branch>
+<status status="PASS" starttime="20240710 16:45:30.258" endtime="20240710 16:45:30.342"/>
+</if>
+<status status="PASS" starttime="20240710 16:45:30.250" endtime="20240710 16:45:30.342"/>
+</iter>
+<status status="PASS" starttime="20240710 16:45:30.249" endtime="20240710 16:45:30.342"/>
+</for>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[0]/btn[3]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240710 16:45:30.342" endtime="20240710 16:45:30.628"/>
+</kw>
+<status status="PASS" starttime="20240710 16:45:23.851" endtime="20240710 16:45:30.628"/>
+</iter>
+<iter>
+<var name="${i}">3</var>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${i}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240710 16:45:30.629" level="INFO">${i} = 3</msg>
+<status status="PASS" starttime="20240710 16:45:30.628" endtime="20240710 16:45:30.629"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${j}</var>
+<arg>${i} - 2</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20240710 16:45:30.630" level="INFO">${j} = 1</msg>
+<status status="PASS" starttime="20240710 16:45:30.629" endtime="20240710 16:45:30.630"/>
+</kw>
+<kw name="Read Excel Cell Value" library="SAP_Tcode_Library">
+<var>${user_names}</var>
+<arg>${symvar('excel_path')}</arg>
+<arg>${symvar('sheet_name3')}</arg>
+<arg>${i}</arg>
+<arg>2</arg>
+<msg timestamp="20240710 16:45:30.630" level="INFO">Sym.Dev.excel_path: D:\Robotframework-Github\SAPtesting\Tests\Resource\User_Role_Assignment.xlsx</msg>
+<msg timestamp="20240710 16:45:30.631" level="INFO">Sym.Dev.sheet_name3: Get_Role</msg>
+<msg timestamp="20240710 16:45:30.658" level="INFO">${user_names} = TEST012</msg>
+<status status="PASS" starttime="20240710 16:45:30.630" endtime="20240710 16:45:30.658"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME</arg>
+<arg>${user_names}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240710 16:45:30.670" level="INFO">Typing text 'TEST012' into text field 'wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME'.</msg>
+<status status="PASS" starttime="20240710 16:45:30.658" endtime="20240710 16:45:30.670"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240710 16:45:31.670" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240710 16:45:30.670" endtime="20240710 16:45:31.670"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[7]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240710 16:45:31.671" endtime="20240710 16:45:31.987"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240710 16:45:34.988" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240710 16:45:31.988" endtime="20240710 16:45:34.988"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/tabsTABSTRIP1/tabpACTG</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240710 16:45:34.988" endtime="20240710 16:45:35.852"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240710 16:45:36.853" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240710 16:45:35.852" endtime="20240710 16:45:36.853"/>
+</kw>
+<kw name="Get Row Count" library="SAP_Tcode_Library">
+<var>${length}</var>
+<arg>wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell</arg>
+<doc>Returns the number of rows found in the specified table.</doc>
+<msg timestamp="20240710 16:45:36.864" level="INFO">${length} = 1</msg>
+<status status="PASS" starttime="20240710 16:45:36.853" endtime="20240710 16:45:36.864"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>${i}_Get_Role.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240710 16:45:36.927" level="INFO" html="true">&lt;a href="3_Get_Role.jpg"&gt;&lt;img src="3_Get_Role.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240710 16:45:36.864" endtime="20240710 16:45:36.927"/>
+</kw>
+<for flavor="IN RANGE">
+<var>${k}</var>
+<value>0</value>
+<value>${length}</value>
+<iter>
+<var name="${k}">0</var>
+<kw name="Get Cell Value" library="SAP_Tcode_Library">
+<var>${y_role}</var>
+<arg>wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell</arg>
+<arg>${k}</arg>
+<arg>AGR_NAME</arg>
+<doc>Returns the cell value for the specified cell.</doc>
+<msg timestamp="20240710 16:45:36.939" level="INFO">${y_role} = Y_SECURITY_TEST</msg>
+<status status="PASS" starttime="20240710 16:45:36.929" endtime="20240710 16:45:36.939"/>
+</kw>
+<kw name="Check Text Start With Y" library="SAP_Tcode_Library">
+<var>${role}</var>
+<arg>${y_role}</arg>
+<msg timestamp="20240710 16:45:36.940" level="INFO">${role} = Y_SECURITY_TEST</msg>
+<status status="PASS" starttime="20240710 16:45:36.939" endtime="20240710 16:45:36.940"/>
+</kw>
+<if>
+<branch type="IF" condition="'${role}' != 'None'">
+<kw name="Evaluate" library="BuiltIn">
+<var>${h}</var>
+<arg>${k} + 4</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20240710 16:45:36.942" level="INFO">${h} = 4</msg>
+<status status="PASS" starttime="20240710 16:45:36.941" endtime="20240710 16:45:36.942"/>
+</kw>
+<kw name="Write Excel" library="Get_User_Roles">
+<arg>${symvar('excel_path')}</arg>
+<arg>${symvar('sheet_name3')}</arg>
+<arg>${i}</arg>
+<arg>${h}</arg>
+<arg>${role}</arg>
+<msg timestamp="20240710 16:45:36.943" level="INFO">Sym.Dev.excel_path: D:\Robotframework-Github\SAPtesting\Tests\Resource\User_Role_Assignment.xlsx</msg>
+<msg timestamp="20240710 16:45:36.945" level="INFO">Sym.Dev.sheet_name3: Get_Role</msg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240710 16:45:36.945" endtime="20240710 16:45:36.974"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240710 16:45:36.974" endtime="20240710 16:45:36.975"/>
+</kw>
+<kw name="Write Excel Cell" library="ExcelLibrary">
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<arg>${cell_value}</arg>
+<arg>${sheetname}</arg>
+<doc>Writes value to the cell.</doc>
+<status status="PASS" starttime="20240710 16:45:36.975" endtime="20240710 16:45:36.975"/>
+</kw>
+<kw name="Save Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<doc>Saves the current document to disk.</doc>
+<status status="PASS" starttime="20240710 16:45:36.976" endtime="20240710 16:45:37.033"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240710 16:45:37.033" endtime="20240710 16:45:37.035"/>
+</kw>
+<status status="PASS" starttime="20240710 16:45:36.942" endtime="20240710 16:45:37.035"/>
+</kw>
+<status status="PASS" starttime="20240710 16:45:36.940" endtime="20240710 16:45:37.035"/>
+</branch>
+<status status="PASS" starttime="20240710 16:45:36.940" endtime="20240710 16:45:37.035"/>
+</if>
+<status status="PASS" starttime="20240710 16:45:36.929" endtime="20240710 16:45:37.035"/>
+</iter>
+<status status="PASS" starttime="20240710 16:45:36.927" endtime="20240710 16:45:37.035"/>
+</for>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[0]/btn[3]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240710 16:45:37.035" endtime="20240710 16:45:37.321"/>
+</kw>
+<status status="PASS" starttime="20240710 16:45:30.628" endtime="20240710 16:45:37.321"/>
+</iter>
+<iter>
+<var name="${i}">4</var>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${i}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240710 16:45:37.321" level="INFO">${i} = 4</msg>
+<status status="PASS" starttime="20240710 16:45:37.321" endtime="20240710 16:45:37.322"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${j}</var>
+<arg>${i} - 2</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20240710 16:45:37.322" level="INFO">${j} = 2</msg>
+<status status="PASS" starttime="20240710 16:45:37.322" endtime="20240710 16:45:37.322"/>
+</kw>
+<kw name="Read Excel Cell Value" library="SAP_Tcode_Library">
+<var>${user_names}</var>
+<arg>${symvar('excel_path')}</arg>
+<arg>${symvar('sheet_name3')}</arg>
+<arg>${i}</arg>
+<arg>2</arg>
+<msg timestamp="20240710 16:45:37.323" level="INFO">Sym.Dev.excel_path: D:\Robotframework-Github\SAPtesting\Tests\Resource\User_Role_Assignment.xlsx</msg>
+<msg timestamp="20240710 16:45:37.324" level="INFO">Sym.Dev.sheet_name3: Get_Role</msg>
+<msg timestamp="20240710 16:45:37.352" level="INFO">${user_names} = TEST013</msg>
+<status status="PASS" starttime="20240710 16:45:37.322" endtime="20240710 16:45:37.352"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME</arg>
+<arg>${user_names}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240710 16:45:37.364" level="INFO">Typing text 'TEST013' into text field 'wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME'.</msg>
+<status status="PASS" starttime="20240710 16:45:37.353" endtime="20240710 16:45:37.364"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240710 16:45:38.366" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240710 16:45:37.365" endtime="20240710 16:45:38.366"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[7]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240710 16:45:38.366" endtime="20240710 16:45:38.677"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240710 16:45:41.679" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240710 16:45:38.678" endtime="20240710 16:45:41.679"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/tabsTABSTRIP1/tabpACTG</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240710 16:45:41.679" endtime="20240710 16:45:42.569"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240710 16:45:43.570" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240710 16:45:42.570" endtime="20240710 16:45:43.570"/>
+</kw>
+<kw name="Get Row Count" library="SAP_Tcode_Library">
+<var>${length}</var>
+<arg>wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell</arg>
+<doc>Returns the number of rows found in the specified table.</doc>
+<msg timestamp="20240710 16:45:43.583" level="INFO">${length} = 1</msg>
+<status status="PASS" starttime="20240710 16:45:43.571" endtime="20240710 16:45:43.583"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>${i}_Get_Role.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240710 16:45:43.626" level="INFO" html="true">&lt;a href="4_Get_Role.jpg"&gt;&lt;img src="4_Get_Role.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240710 16:45:43.583" endtime="20240710 16:45:43.626"/>
+</kw>
+<for flavor="IN RANGE">
+<var>${k}</var>
+<value>0</value>
+<value>${length}</value>
+<iter>
+<var name="${k}">0</var>
+<kw name="Get Cell Value" library="SAP_Tcode_Library">
+<var>${y_role}</var>
+<arg>wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell</arg>
+<arg>${k}</arg>
+<arg>AGR_NAME</arg>
+<doc>Returns the cell value for the specified cell.</doc>
+<msg timestamp="20240710 16:45:43.633" level="INFO">${y_role} = Y_FINANCE_TEST</msg>
+<status status="PASS" starttime="20240710 16:45:43.627" endtime="20240710 16:45:43.633"/>
+</kw>
+<kw name="Check Text Start With Y" library="SAP_Tcode_Library">
+<var>${role}</var>
+<arg>${y_role}</arg>
+<msg timestamp="20240710 16:45:43.633" level="INFO">${role} = Y_FINANCE_TEST</msg>
+<status status="PASS" starttime="20240710 16:45:43.633" endtime="20240710 16:45:43.634"/>
+</kw>
+<if>
+<branch type="IF" condition="'${role}' != 'None'">
+<kw name="Evaluate" library="BuiltIn">
+<var>${h}</var>
+<arg>${k} + 4</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20240710 16:45:43.635" level="INFO">${h} = 4</msg>
+<status status="PASS" starttime="20240710 16:45:43.634" endtime="20240710 16:45:43.635"/>
+</kw>
+<kw name="Write Excel" library="Get_User_Roles">
+<arg>${symvar('excel_path')}</arg>
+<arg>${symvar('sheet_name3')}</arg>
+<arg>${i}</arg>
+<arg>${h}</arg>
+<arg>${role}</arg>
+<msg timestamp="20240710 16:45:43.636" level="INFO">Sym.Dev.excel_path: D:\Robotframework-Github\SAPtesting\Tests\Resource\User_Role_Assignment.xlsx</msg>
+<msg timestamp="20240710 16:45:43.636" level="INFO">Sym.Dev.sheet_name3: Get_Role</msg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240710 16:45:43.637" endtime="20240710 16:45:43.661"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240710 16:45:43.661" endtime="20240710 16:45:43.661"/>
+</kw>
+<kw name="Write Excel Cell" library="ExcelLibrary">
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<arg>${cell_value}</arg>
+<arg>${sheetname}</arg>
+<doc>Writes value to the cell.</doc>
+<status status="PASS" starttime="20240710 16:45:43.661" endtime="20240710 16:45:43.661"/>
+</kw>
+<kw name="Save Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<doc>Saves the current document to disk.</doc>
+<status status="PASS" starttime="20240710 16:45:43.661" endtime="20240710 16:45:43.756"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240710 16:45:43.757" endtime="20240710 16:45:43.757"/>
+</kw>
+<status status="PASS" starttime="20240710 16:45:43.635" endtime="20240710 16:45:43.757"/>
+</kw>
+<status status="PASS" starttime="20240710 16:45:43.634" endtime="20240710 16:45:43.757"/>
+</branch>
+<status status="PASS" starttime="20240710 16:45:43.634" endtime="20240710 16:45:43.757"/>
+</if>
+<status status="PASS" starttime="20240710 16:45:43.627" endtime="20240710 16:45:43.758"/>
+</iter>
+<status status="PASS" starttime="20240710 16:45:43.626" endtime="20240710 16:45:43.758"/>
+</for>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[0]/btn[3]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240710 16:45:43.758" endtime="20240710 16:45:44.042"/>
+</kw>
+<status status="PASS" starttime="20240710 16:45:37.321" endtime="20240710 16:45:44.042"/>
+</iter>
+<iter>
+<var name="${i}">5</var>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${i}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240710 16:45:44.043" level="INFO">${i} = 5</msg>
+<status status="PASS" starttime="20240710 16:45:44.043" endtime="20240710 16:45:44.043"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${j}</var>
+<arg>${i} - 2</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20240710 16:45:44.043" level="INFO">${j} = 3</msg>
+<status status="PASS" starttime="20240710 16:45:44.043" endtime="20240710 16:45:44.043"/>
+</kw>
+<kw name="Read Excel Cell Value" library="SAP_Tcode_Library">
+<var>${user_names}</var>
+<arg>${symvar('excel_path')}</arg>
+<arg>${symvar('sheet_name3')}</arg>
+<arg>${i}</arg>
+<arg>2</arg>
+<msg timestamp="20240710 16:45:44.044" level="INFO">Sym.Dev.excel_path: D:\Robotframework-Github\SAPtesting\Tests\Resource\User_Role_Assignment.xlsx</msg>
+<msg timestamp="20240710 16:45:44.045" level="INFO">Sym.Dev.sheet_name3: Get_Role</msg>
+<msg timestamp="20240710 16:45:44.073" level="INFO">${user_names} = TEST014</msg>
+<status status="PASS" starttime="20240710 16:45:44.043" endtime="20240710 16:45:44.073"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME</arg>
+<arg>${user_names}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240710 16:45:44.086" level="INFO">Typing text 'TEST014' into text field 'wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME'.</msg>
+<status status="PASS" starttime="20240710 16:45:44.073" endtime="20240710 16:45:44.086"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240710 16:45:45.087" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240710 16:45:44.086" endtime="20240710 16:45:45.087"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[7]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240710 16:45:45.087" endtime="20240710 16:45:45.400"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240710 16:45:48.402" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240710 16:45:45.401" endtime="20240710 16:45:48.402"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/tabsTABSTRIP1/tabpACTG</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240710 16:45:48.402" endtime="20240710 16:45:49.260"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240710 16:45:50.262" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240710 16:45:49.260" endtime="20240710 16:45:50.262"/>
+</kw>
+<kw name="Get Row Count" library="SAP_Tcode_Library">
+<var>${length}</var>
+<arg>wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell</arg>
+<doc>Returns the number of rows found in the specified table.</doc>
+<msg timestamp="20240710 16:45:50.273" level="INFO">${length} = 1</msg>
+<status status="PASS" starttime="20240710 16:45:50.262" endtime="20240710 16:45:50.273"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>${i}_Get_Role.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240710 16:45:50.333" level="INFO" html="true">&lt;a href="5_Get_Role.jpg"&gt;&lt;img src="5_Get_Role.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240710 16:45:50.273" endtime="20240710 16:45:50.333"/>
+</kw>
+<for flavor="IN RANGE">
+<var>${k}</var>
+<value>0</value>
+<value>${length}</value>
+<iter>
+<var name="${k}">0</var>
+<kw name="Get Cell Value" library="SAP_Tcode_Library">
+<var>${y_role}</var>
+<arg>wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell</arg>
+<arg>${k}</arg>
+<arg>AGR_NAME</arg>
+<doc>Returns the cell value for the specified cell.</doc>
+<msg timestamp="20240710 16:45:50.340" level="INFO">${y_role} = Y_ABAP_TEST</msg>
+<status status="PASS" starttime="20240710 16:45:50.334" endtime="20240710 16:45:50.340"/>
+</kw>
+<kw name="Check Text Start With Y" library="SAP_Tcode_Library">
+<var>${role}</var>
+<arg>${y_role}</arg>
+<msg timestamp="20240710 16:45:50.341" level="INFO">${role} = Y_ABAP_TEST</msg>
+<status status="PASS" starttime="20240710 16:45:50.341" endtime="20240710 16:45:50.341"/>
+</kw>
+<if>
+<branch type="IF" condition="'${role}' != 'None'">
+<kw name="Evaluate" library="BuiltIn">
+<var>${h}</var>
+<arg>${k} + 4</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20240710 16:45:50.341" level="INFO">${h} = 4</msg>
+<status status="PASS" starttime="20240710 16:45:50.341" endtime="20240710 16:45:50.341"/>
+</kw>
+<kw name="Write Excel" library="Get_User_Roles">
+<arg>${symvar('excel_path')}</arg>
+<arg>${symvar('sheet_name3')}</arg>
+<arg>${i}</arg>
+<arg>${h}</arg>
+<arg>${role}</arg>
+<msg timestamp="20240710 16:45:50.341" level="INFO">Sym.Dev.excel_path: D:\Robotframework-Github\SAPtesting\Tests\Resource\User_Role_Assignment.xlsx</msg>
+<msg timestamp="20240710 16:45:50.342" level="INFO">Sym.Dev.sheet_name3: Get_Role</msg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240710 16:45:50.343" endtime="20240710 16:45:50.374"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240710 16:45:50.374" endtime="20240710 16:45:50.375"/>
+</kw>
+<kw name="Write Excel Cell" library="ExcelLibrary">
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<arg>${cell_value}</arg>
+<arg>${sheetname}</arg>
+<doc>Writes value to the cell.</doc>
+<status status="PASS" starttime="20240710 16:45:50.375" endtime="20240710 16:45:50.375"/>
+</kw>
+<kw name="Save Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<doc>Saves the current document to disk.</doc>
+<status status="PASS" starttime="20240710 16:45:50.376" endtime="20240710 16:45:50.438"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240710 16:45:50.438" endtime="20240710 16:45:50.439"/>
+</kw>
+<status status="PASS" starttime="20240710 16:45:50.341" endtime="20240710 16:45:50.439"/>
+</kw>
+<status status="PASS" starttime="20240710 16:45:50.341" endtime="20240710 16:45:50.439"/>
+</branch>
+<status status="PASS" starttime="20240710 16:45:50.341" endtime="20240710 16:45:50.439"/>
+</if>
+<status status="PASS" starttime="20240710 16:45:50.334" endtime="20240710 16:45:50.440"/>
+</iter>
+<status status="PASS" starttime="20240710 16:45:50.334" endtime="20240710 16:45:50.440"/>
+</for>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[0]/btn[3]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240710 16:45:50.440" endtime="20240710 16:45:50.730"/>
+</kw>
+<status status="PASS" starttime="20240710 16:45:44.042" endtime="20240710 16:45:50.730"/>
+</iter>
+<iter>
+<var name="${i}">6</var>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${i}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240710 16:45:50.730" level="INFO">${i} = 6</msg>
+<status status="PASS" starttime="20240710 16:45:50.730" endtime="20240710 16:45:50.730"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${j}</var>
+<arg>${i} - 2</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20240710 16:45:50.731" level="INFO">${j} = 4</msg>
+<status status="PASS" starttime="20240710 16:45:50.730" endtime="20240710 16:45:50.731"/>
+</kw>
+<kw name="Read Excel Cell Value" library="SAP_Tcode_Library">
+<var>${user_names}</var>
+<arg>${symvar('excel_path')}</arg>
+<arg>${symvar('sheet_name3')}</arg>
+<arg>${i}</arg>
+<arg>2</arg>
+<msg timestamp="20240710 16:45:50.731" level="INFO">Sym.Dev.excel_path: D:\Robotframework-Github\SAPtesting\Tests\Resource\User_Role_Assignment.xlsx</msg>
+<msg timestamp="20240710 16:45:50.731" level="INFO">Sym.Dev.sheet_name3: Get_Role</msg>
+<msg timestamp="20240710 16:45:50.754" level="INFO">${user_names} = TEST015</msg>
+<status status="PASS" starttime="20240710 16:45:50.731" endtime="20240710 16:45:50.754"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME</arg>
+<arg>${user_names}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240710 16:45:50.767" level="INFO">Typing text 'TEST015' into text field 'wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME'.</msg>
+<status status="PASS" starttime="20240710 16:45:50.754" endtime="20240710 16:45:50.767"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240710 16:45:51.768" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240710 16:45:50.767" endtime="20240710 16:45:51.768"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[7]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240710 16:45:51.769" endtime="20240710 16:45:52.075"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240710 16:45:55.076" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240710 16:45:52.075" endtime="20240710 16:45:55.076"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/tabsTABSTRIP1/tabpACTG</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240710 16:45:55.076" endtime="20240710 16:45:55.940"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240710 16:45:56.942" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240710 16:45:55.942" endtime="20240710 16:45:56.942"/>
+</kw>
+<kw name="Get Row Count" library="SAP_Tcode_Library">
+<var>${length}</var>
+<arg>wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell</arg>
+<doc>Returns the number of rows found in the specified table.</doc>
+<msg timestamp="20240710 16:45:56.955" level="INFO">${length} = 1</msg>
+<status status="PASS" starttime="20240710 16:45:56.943" endtime="20240710 16:45:56.955"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>${i}_Get_Role.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240710 16:45:57.028" level="INFO" html="true">&lt;a href="6_Get_Role.jpg"&gt;&lt;img src="6_Get_Role.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240710 16:45:56.955" endtime="20240710 16:45:57.028"/>
+</kw>
+<for flavor="IN RANGE">
+<var>${k}</var>
+<value>0</value>
+<value>${length}</value>
+<iter>
+<var name="${k}">0</var>
+<kw name="Get Cell Value" library="SAP_Tcode_Library">
+<var>${y_role}</var>
+<arg>wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell</arg>
+<arg>${k}</arg>
+<arg>AGR_NAME</arg>
+<doc>Returns the cell value for the specified cell.</doc>
+<msg timestamp="20240710 16:45:57.043" level="INFO">${y_role} = Y_DEVELOPER_TEST</msg>
+<status status="PASS" starttime="20240710 16:45:57.029" endtime="20240710 16:45:57.043"/>
+</kw>
+<kw name="Check Text Start With Y" library="SAP_Tcode_Library">
+<var>${role}</var>
+<arg>${y_role}</arg>
+<msg timestamp="20240710 16:45:57.044" level="INFO">${role} = Y_DEVELOPER_TEST</msg>
+<status status="PASS" starttime="20240710 16:45:57.043" endtime="20240710 16:45:57.044"/>
+</kw>
+<if>
+<branch type="IF" condition="'${role}' != 'None'">
+<kw name="Evaluate" library="BuiltIn">
+<var>${h}</var>
+<arg>${k} + 4</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20240710 16:45:57.045" level="INFO">${h} = 4</msg>
+<status status="PASS" starttime="20240710 16:45:57.045" endtime="20240710 16:45:57.045"/>
+</kw>
+<kw name="Write Excel" library="Get_User_Roles">
+<arg>${symvar('excel_path')}</arg>
+<arg>${symvar('sheet_name3')}</arg>
+<arg>${i}</arg>
+<arg>${h}</arg>
+<arg>${role}</arg>
+<msg timestamp="20240710 16:45:57.047" level="INFO">Sym.Dev.excel_path: D:\Robotframework-Github\SAPtesting\Tests\Resource\User_Role_Assignment.xlsx</msg>
+<msg timestamp="20240710 16:45:57.048" level="INFO">Sym.Dev.sheet_name3: Get_Role</msg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240710 16:45:57.048" endtime="20240710 16:45:57.080"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240710 16:45:57.081" endtime="20240710 16:45:57.081"/>
+</kw>
+<kw name="Write Excel Cell" library="ExcelLibrary">
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<arg>${cell_value}</arg>
+<arg>${sheetname}</arg>
+<doc>Writes value to the cell.</doc>
+<status status="PASS" starttime="20240710 16:45:57.081" endtime="20240710 16:45:57.082"/>
+</kw>
+<kw name="Save Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<doc>Saves the current document to disk.</doc>
+<status status="PASS" starttime="20240710 16:45:57.082" endtime="20240710 16:45:57.151"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240710 16:45:57.151" endtime="20240710 16:45:57.152"/>
+</kw>
+<status status="PASS" starttime="20240710 16:45:57.045" endtime="20240710 16:45:57.152"/>
+</kw>
+<status status="PASS" starttime="20240710 16:45:57.044" endtime="20240710 16:45:57.152"/>
+</branch>
+<status status="PASS" starttime="20240710 16:45:57.044" endtime="20240710 16:45:57.152"/>
+</if>
+<status status="PASS" starttime="20240710 16:45:57.029" endtime="20240710 16:45:57.152"/>
+</iter>
+<status status="PASS" starttime="20240710 16:45:57.028" endtime="20240710 16:45:57.152"/>
+</for>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[0]/btn[3]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240710 16:45:57.153" endtime="20240710 16:45:57.444"/>
+</kw>
+<status status="PASS" starttime="20240710 16:45:50.730" endtime="20240710 16:45:57.444"/>
+</iter>
+<status status="PASS" starttime="20240710 16:45:23.851" endtime="20240710 16:45:57.445"/>
+</for>
+<status status="PASS" starttime="20240710 16:45:21.174" endtime="20240710 16:45:57.445"/>
+</kw>
+<tag>Get_User_role</tag>
+<tag>Regression</tag>
+<status status="PASS" starttime="20240710 16:45:21.172" endtime="20240710 16:45:57.445"/>
+</test>
+<kw name="System Logout" library="Get_User_Roles" type="TEARDOWN">
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/nex</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240710 16:45:57.446" endtime="20240710 16:45:57.733"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240710 16:45:59.736" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240710 16:45:57.734" endtime="20240710 16:45:59.736"/>
+</kw>
+<status status="PASS" starttime="20240710 16:45:57.446" endtime="20240710 16:45:59.736"/>
+</kw>
+<status status="PASS" starttime="20240710 16:45:03.801" endtime="20240710 16:45:59.736"/>
 </suite>
 <doc>Testing functionality through Robot Framework</doc>
 <meta name="environment">Dev</meta>
 <meta name="test_browser_name">chrome</meta>
-<meta name="test_browser_version">122.0.6261.128</meta>
-<meta name="test_driver_version">121.0.6167.85 </meta>
+<meta name="test_browser_version">126.0.6478.127</meta>
+<meta name="test_driver_version">126.0.6478.126 </meta>
 <meta name="test_environment">Dev</meta>
-<meta name="test_freeze_dependencies">astroid==3.0.3,attrs==23.2.0,beautifulsoup4==4.12.3,bs4==0.0.2,certifi==2024.2.2,cffi==1.16.0,chardet==5.2.0,charset-normalizer==3.3.2,click==8.1.7,colorama==0.4.6,cryptography==42.0.2,defusedxml==0.7.1,dill==0.3.8,docutils==0.20.1,et-xmlfile==1.1.0,exceptiongroup==1.2.0,gitdb==4.0.11,GitPython==3.1.41,h11==0.14.0,idna==3.6,isort==5.13.2,Jinja2==3.1.3,jira==3.6.0,jsonpath-ng==1.6.1,jsonschema==4.21.1,jsonschema-specifications==2023.12.1,lazy-object-proxy==1.10.0,lxml==5.1.0,markdown-it-py==3.0.0,MarkupSafe==2.1.5,mccabe==0.7.0,mdurl==0.1.2,natsort==8.4.0,oauthlib==3.2.2,openpyxl==3.1.2,outcome==1.3.0.post0,packaging==23.2,pathspec==0.11.2,pillow==10.2.0,pip==24.0,platformdirs==4.2.0,ply==3.11,pycparser==2.21,Pygments==2.17.2,pylint==3.0.3,PySocks==1.7.1,PyVirtualDisplay==3.0,pywin32==306,PyYAML==6.0.1,referencing==0.33.0,reportlab==4.1.0,requests==2.31.0,requests-oauthlib==1.3.1,requests-toolbelt==1.0.0,rich==13.7.0,rich-click==1.6.1,robotframework==6.0.2,robotframework-datadriver==1.9.0,robotframework-excellib==2.0.1,robotframework-jsonlibrary==0.5,robotframework-pabot==2.16.0,robotframework-pythonlibcore==4.2.0,robotframework-requests==0.9.2,robotframework-sapguilibrary==1.1,robotframework-seleniumlibrary==5.1.3,robotframework-stacktrace==0.4.1,robotframework-tidy==4.5.0,rpds-py==0.17.1,selenium==4.9.1,setuptools==69.0.3,smmap==5.0.1,sniffio==1.3.0,sortedcontainers==2.4.0,soupsieve==2.5,tomli==2.0.1,tomlkit==0.12.3,trio==0.24.0,trio-websocket==0.11.1,typing_extensions==4.9.0,urllib3==2.2.0,wheel==0.42.0,wrapt==1.16.0,wsproto==1.2.0</meta>
-<status status="PASS" starttime="20240314 06:36:16.429" endtime="20240314 06:36:51.215"/>
+<meta name="test_freeze_dependencies">astroid==3.2.2,attrs==23.2.0,beautifulsoup4==4.12.3,bs4==0.0.2,certifi==2024.6.2,cffi==1.16.0,chardet==5.2.0,charset-normalizer==3.3.2,click==8.1.7,colorama==0.4.6,cryptography==42.0.8,defusedxml==0.7.1,dill==0.3.8,docutils==0.21.2,et-xmlfile==1.1.0,exceptiongroup==1.2.1,gitdb==4.0.11,GitPython==3.1.43,h11==0.14.0,idna==3.7,isort==5.13.2,Jinja2==3.1.4,jira==3.8.0,jsonpath-ng==1.6.1,jsonschema==4.22.0,jsonschema-specifications==2023.12.1,lazy-object-proxy==1.10.0,lxml==5.2.2,markdown-it-py==3.0.0,MarkupSafe==2.1.5,mccabe==0.7.0,mdurl==0.1.2,natsort==8.4.0,oauthlib==3.2.2,openpyxl==3.1.4,outcome==1.3.0.post0,packaging==24.1,pathspec==0.11.2,pillow==10.3.0,pip==24.1.2,platformdirs==4.2.2,ply==3.11,pycparser==2.22,Pygments==2.18.0,pylint==3.2.3,PySocks==1.7.1,pywin32==306,PyYAML==6.0.1,referencing==0.35.1,requests==2.32.3,requests-oauthlib==2.0.0,requests-toolbelt==1.0.0,rich==13.7.1,rich-click==1.6.1,robotframework==6.0.2,robotframework-datadriver==1.9.0,robotframework-excellib==2.0.1,robotframework-jsonlibrary==0.5,robotframework-pabot==2.16.0,robotframework-pythonlibcore==4.2.0,robotframework-requests==0.9.2,robotframework-sapguilibrary==1.1,robotframework-seleniumlibrary==5.1.3,robotframework-stacktrace==0.4.1,robotframework-tidy==4.5.0,rpds-py==0.18.1,selenium==4.9.1,setuptools==70.1.0,smmap==5.0.1,sniffio==1.3.1,sortedcontainers==2.4.0,soupsieve==2.5,tomli==2.0.1,tomlkit==0.12.5,trio==0.25.1,trio-websocket==0.11.1,typing_extensions==4.12.2,urllib3==2.2.2,wheel==0.43.0,wrapt==1.16.0,wsproto==1.2.0</meta>
+<status status="PASS" starttime="20240710 16:45:00.260" endtime="20240710 16:45:59.831"/>
 </suite>
 <statistics>
 <total>
 <stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
+<stat pass="1" fail="0" skip="0">Get_User_role</stat>
 <stat pass="1" fail="0" skip="0">Regression</stat>
-<stat pass="1" fail="0" skip="0">SM02</stat>
 </tag>
 <suite>
 <stat pass="1" fail="0" skip="0" id="s1" name="Tests">Tests</stat>
-<stat pass="1" fail="0" skip="0" id="s1-s1" name="Test SM02">Tests.Test SM02</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="Test Get User Roles">Tests.Test Get User Roles</stat>
 </suite>
 </statistics>
 <errors>
+<msg timestamp="20240710 16:45:03.937" level="ERROR">Error in file 'D:\Robotframework-Github\SAPtesting\Tests\Resource\Get_User_Roles.robot' on line 8: Library 'ScreenshotProcessor.py' does not exist.</msg>
 </errors>
 </robot>
