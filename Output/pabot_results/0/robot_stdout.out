@@ -3,22 +3,8 @@ Tests :: Testing functionality through Robot Framework
 ==============================================================================
 Tests.Test testtags                                                           
 ==============================================================================
-Verifying Certificate                                                   
-  Traceback (most recent call last):
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    File  D:\Robotframework-Github\SAPtesting\Tests\Test_testtags.robot:8
-    T:  Verifying Certificate    
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    File  D:\Robotframework-Github\SAPtesting\Tests\Test_testtags.robot:10
-      System Logon    
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    File  D:\Robotframework-Github\SAPtesting\Tests\Resource\testtags.robot:14
-      Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
-      |  %{SAP_PASSWORD} = <Unable to define variable value>
-______________________________________________________________________________
-| FAIL |
-Setup failed:
-Environment variable '%{SAP_PASSWORD}' not found.
+Verifying Certificate                                                 search text is not found
+| PASS |
 ------------------------------------------------------------------------------
 Read excel and create invoice                                           
   Traceback (most recent call last):
@@ -29,7 +15,7 @@ Read excel and create invoice
     File  D:\Robotframework-Github\SAPtesting\Tests\Test_testtags.robot:15
       SAP logon    
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    File  D:\Robotframework-Github\SAPtesting\Tests\Resource\testtags.robot:34
+    File  D:\Robotframework-Github\SAPtesting\Tests\Resource\testtags.robot:36
       Open Connection    ${symvar('connection')}
       |  ${symvar('connection')} = $connection (str)
 ______________________________________________________________________________
@@ -42,7 +28,7 @@ ______________________________________________________________________________
     File  D:\Robotframework-Github\SAPtesting\Tests\Test_testtags.robot:17
       SAP Logout    
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    File  D:\Robotframework-Github\SAPtesting\Tests\Resource\testtags.robot:167
+    File  D:\Robotframework-Github\SAPtesting\Tests\Resource\testtags.robot:169
       Run Transaction    /nex
 ______________________________________________________________________________
 | FAIL |
@@ -61,7 +47,7 @@ Read excel and view invoice
     File  D:\Robotframework-Github\SAPtesting\Tests\Test_testtags.robot:20
       SAP logon    
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    File  D:\Robotframework-Github\SAPtesting\Tests\Resource\testtags.robot:34
+    File  D:\Robotframework-Github\SAPtesting\Tests\Resource\testtags.robot:36
       Open Connection    ${symvar('connection')}
       |  ${symvar('connection')} = $connection (str)
 ______________________________________________________________________________
@@ -74,7 +60,7 @@ ______________________________________________________________________________
     File  D:\Robotframework-Github\SAPtesting\Tests\Test_testtags.robot:22
       SAP Logout    
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    File  D:\Robotframework-Github\SAPtesting\Tests\Resource\testtags.robot:167
+    File  D:\Robotframework-Github\SAPtesting\Tests\Resource\testtags.robot:169
       Run Transaction    /nex
 ______________________________________________________________________________
 | FAIL |
@@ -85,9 +71,9 @@ Also teardown failed:
 com_error: (-2147417848, 'The object invoked has disconnected from its clients.', None, None)
 ------------------------------------------------------------------------------
 Tests.Test testtags                                                   | FAIL |
-3 tests, 0 passed, 3 failed
+3 tests, 1 passed, 2 failed
 ==============================================================================
 Tests :: Testing functionality through Robot Framework                | FAIL |
-3 tests, 0 passed, 3 failed
+3 tests, 1 passed, 2 failed
 ==============================================================================
 Output:  D:\Robotframework-Github\SAPtesting\Output\pabot_results\0\Output.xml
