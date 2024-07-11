@@ -5,7 +5,7 @@ Library    OperatingSystem
 Library    String
 Library     ExcelLibrary
 Library     openpyxl
-Library     ScreenshotProcessor.py
+# Library     ScreenshotProcessor.py
 
 *** Keywords ***
 System Logon
