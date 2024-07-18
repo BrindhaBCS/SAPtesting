@@ -11,6 +11,6 @@ from .invoice import *
 from .SM02 import *
 from .Certificate import *
 from .payments import *
-from .Tag import *
+# from .Tag import *
 
 
