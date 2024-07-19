@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<robot generated="20240719 17:13:07.739" generator="Rebot 6.0.2 (Python 3.12.1 on win32)" rpa="false" schemaversion="3">
+<robot generated="20240719 19:33:12.070" generator="Rebot 6.0.2 (Python 3.12.1 on win32)" rpa="false" schemaversion="3">
  <suite id="s1" name="Tests" source="C:\SAP_Testing\SAPtesting\Tests">
   <kw name="Setup highest level suite" type="SETUP">
    <kw library="BuiltIn" name="Set Variable">
@@ -12,10 +12,10 @@
     <doc>
      Returns the given values which can then be assigned to a variables.
     </doc>
-    <msg level="INFO" timestamp="20240719 17:10:49.585">
+    <msg level="INFO" timestamp="20240719 19:30:34.392">
      ${d.test_server} = Dev
     </msg>
-    <status endtime="20240719 17:10:49.585" starttime="20240719 17:10:49.585" status="PASS"/>
+    <status endtime="20240719 19:30:34.392" starttime="20240719 19:30:34.391" status="PASS"/>
    </kw>
    <kw library="Support" name="Reset screenshot count variable">
     <kw library="BuiltIn" name="Set Variable">
@@ -28,10 +28,10 @@
      <doc>
       Returns the given values which can then be assigned to a variables.
      </doc>
-     <msg level="INFO" timestamp="20240719 17:10:49.586">
+     <msg level="INFO" timestamp="20240719 19:30:34.393">
       ${screenshotCount} = 0_1
      </msg>
-     <status endtime="20240719 17:10:49.586" starttime="20240719 17:10:49.586" status="PASS"/>
+     <status endtime="20240719 19:30:34.393" starttime="20240719 19:30:34.392" status="PASS"/>
     </kw>
     <kw library="BuiltIn" name="Set Global Variable">
      <arg>
@@ -40,10 +40,10 @@
      <doc>
       Makes a variable available globally in all tests and suites.
      </doc>
-     <msg level="INFO" timestamp="20240719 17:10:49.587">
+     <msg level="INFO" timestamp="20240719 19:30:34.393">
       ${screenshotCount} = 0_1
      </msg>
-     <status endtime="20240719 17:10:49.587" starttime="20240719 17:10:49.586" status="PASS"/>
+     <status endtime="20240719 19:30:34.393" starttime="20240719 19:30:34.393" status="PASS"/>
     </kw>
     <kw library="Support" name="Set up screenshot directory">
      <kw library="OperatingSystem" name="Create Directory">
@@ -53,17 +53,17 @@
       <doc>
        Creates the specified directory.
       </doc>
-      <msg level="INFO" timestamp="20240719 17:10:49.588">
+      <msg level="INFO" timestamp="20240719 19:30:34.394">
        Web.Dev.screenshot_dir: Screenshot
       </msg>
-      <msg html="true" level="INFO" timestamp="20240719 17:10:49.593">
+      <msg html="true" level="INFO" timestamp="20240719 19:30:34.399">
        Created directory '&lt;a href="file://C:\SAP_Testing\SAPtesting\Output\pabot_results\0\Screenshot"&gt;C:\SAP_Testing\SAPtesting\Output\pabot_results\0\Screenshot&lt;/a&gt;'.
       </msg>
-      <status endtime="20240719 17:10:49.593" starttime="20240719 17:10:49.587" status="PASS"/>
+      <status endtime="20240719 19:30:34.399" starttime="20240719 19:30:34.393" status="PASS"/>
      </kw>
-     <status endtime="20240719 17:10:49.594" starttime="20240719 17:10:49.587" status="PASS"/>
+     <status endtime="20240719 19:30:34.400" starttime="20240719 19:30:34.393" status="PASS"/>
     </kw>
-    <status endtime="20240719 17:10:49.594" starttime="20240719 17:10:49.586" status="PASS"/>
+    <status endtime="20240719 19:30:34.400" starttime="20240719 19:30:34.392" status="PASS"/>
    </kw>
    <kw library="BuiltIn" name="Set Global Variable">
     <arg>
@@ -75,10 +75,10 @@
     <doc>
      Makes a variable available globally in all tests and suites.
     </doc>
-    <msg level="INFO" timestamp="20240719 17:10:49.594">
+    <msg level="INFO" timestamp="20240719 19:30:34.400">
      ${screenshot_taking} = True
     </msg>
-    <status endtime="20240719 17:10:49.595" starttime="20240719 17:10:49.594" status="PASS"/>
+    <status endtime="20240719 19:30:34.400" starttime="20240719 19:30:34.400" status="PASS"/>
    </kw>
    <kw library="Support" name="Setup linux execution">
     <kw library="BuiltIn" name="Run Keyword And Return Status">
@@ -101,12 +101,12 @@
       <doc>
        Fails unless the given variable exists within the current scope.
       </doc>
-      <status endtime="20240719 17:10:49.596" starttime="20240719 17:10:49.595" status="PASS"/>
+      <status endtime="20240719 19:30:34.401" starttime="20240719 19:30:34.401" status="PASS"/>
      </kw>
-     <msg level="INFO" timestamp="20240719 17:10:49.596">
+     <msg level="INFO" timestamp="20240719 19:30:34.401">
       ${web_test_check} = True
      </msg>
-     <status endtime="20240719 17:10:49.596" starttime="20240719 17:10:49.595" status="PASS"/>
+     <status endtime="20240719 19:30:34.401" starttime="20240719 19:30:34.400" status="PASS"/>
     </kw>
     <kw library="BuiltIn" name="Run Keyword If">
      <arg>
@@ -138,10 +138,10 @@
             {"browser_version": browser version value,
              "driver_version": driver version value}
         </doc>
-        <msg level="INFO" timestamp="20240719 17:10:52.736">
+        <msg level="INFO" timestamp="20240719 19:30:37.515">
          &amp;{browser_information} = { browser_version=126.0.6478.128 | driver_version=126.0.6478.182  }
         </msg>
-        <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:49.597" status="PASS"/>
+        <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:34.402" status="PASS"/>
        </kw>
        <kw library="BuiltIn" name="Set Suite Metadata">
         <arg>
@@ -153,10 +153,10 @@
         <doc>
          Sets metadata for the current test suite.
         </doc>
-        <msg level="INFO" timestamp="20240719 17:10:52.736">
+        <msg level="INFO" timestamp="20240719 19:30:37.515">
          Set suite metadata 'test_browser_name' to value 'chrome'.
         </msg>
-        <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:52.736" status="PASS"/>
+        <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:37.515" status="PASS"/>
        </kw>
        <kw library="BuiltIn" name="Set Suite Metadata">
         <arg>
@@ -168,10 +168,10 @@
         <doc>
          Sets metadata for the current test suite.
         </doc>
-        <msg level="INFO" timestamp="20240719 17:10:52.736">
+        <msg level="INFO" timestamp="20240719 19:30:37.515">
          Set suite metadata 'test_browser_version' to value '126.0.6478.128'.
         </msg>
-        <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:52.736" status="PASS"/>
+        <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:37.515" status="PASS"/>
        </kw>
        <kw library="BuiltIn" name="Set Suite Metadata">
         <arg>
@@ -183,12 +183,12 @@
         <doc>
          Sets metadata for the current test suite.
         </doc>
-        <msg level="INFO" timestamp="20240719 17:10:52.736">
+        <msg level="INFO" timestamp="20240719 19:30:37.515">
          Set suite metadata 'test_driver_version' to value '126.0.6478.182 '.
         </msg>
-        <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:52.736" status="PASS"/>
+        <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:37.515" status="PASS"/>
        </kw>
-       <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:49.597" status="PASS"/>
+       <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:34.402" status="PASS"/>
       </kw>
       <kw library="Support_Web" name="Setup Global Docker Execution Options">
        <kw library="BuiltIn" name="Set Global Variable">
@@ -201,10 +201,10 @@
         <doc>
          Makes a variable available globally in all tests and suites.
         </doc>
-        <msg level="INFO" timestamp="20240719 17:10:52.736">
+        <msg level="INFO" timestamp="20240719 19:30:37.515">
          ${global_browser_options} = None
         </msg>
-        <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:52.736" status="PASS"/>
+        <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:37.515" status="PASS"/>
        </kw>
        <kw library="OperatingSystem" name="Get Environment Variable">
         <var>
@@ -219,10 +219,10 @@
         <doc>
          Returns the value of an environment variable with the given name.
         </doc>
-        <msg level="INFO" timestamp="20240719 17:10:52.736">
+        <msg level="INFO" timestamp="20240719 19:30:37.515">
          ${docker_check} = not_found
         </msg>
-        <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:52.736" status="PASS"/>
+        <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:37.515" status="PASS"/>
        </kw>
        <kw library="BuiltIn" name="Run Keyword And Return If">
         <arg>
@@ -244,15 +244,15 @@
          <doc>
           Logs the given message with the given level.
          </doc>
-         <msg level="INFO" timestamp="20240719 17:10:52.736">
+         <msg level="INFO" timestamp="20240719 19:30:37.515">
           Not executing on Docker
          </msg>
-         <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:52.736" status="PASS"/>
+         <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:37.515" status="PASS"/>
         </kw>
-        <msg level="INFO" timestamp="20240719 17:10:52.736">
+        <msg level="INFO" timestamp="20240719 19:30:37.515">
          Returning from the enclosing user keyword.
         </msg>
-        <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:52.736" status="PASS"/>
+        <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:37.515" status="PASS"/>
        </kw>
        <kw library="BuiltIn" name="Create List">
         <var>
@@ -270,7 +270,7 @@
         <doc>
          Returns a list containing given items.
         </doc>
-        <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:52.736" status="NOT RUN"/>
+        <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:37.515" status="NOT RUN"/>
        </kw>
        <kw library="BuiltIn" name="Set Global Variable">
         <arg>
@@ -282,9 +282,9 @@
         <doc>
          Makes a variable available globally in all tests and suites.
         </doc>
-        <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:52.736" status="NOT RUN"/>
+        <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:37.515" status="NOT RUN"/>
        </kw>
-       <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:52.736" status="PASS"/>
+       <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:37.515" status="PASS"/>
       </kw>
       <kw library="Support_Web" name="Create Webdriver for chrome preferences">
        <kw library="Support_Web" name="Update Docker Execution Options">
@@ -314,15 +314,15 @@
           <doc>
            Fails unless the given variable exists within the current scope.
           </doc>
-          <msg level="FAIL" timestamp="20240719 17:10:52.736">
+          <msg level="FAIL" timestamp="20240719 19:30:37.515">
            Variable '${docker_options}' does not exist.
           </msg>
-          <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:52.736" status="FAIL"/>
+          <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:37.515" status="FAIL"/>
          </kw>
-         <msg level="INFO" timestamp="20240719 17:10:52.736">
+         <msg level="INFO" timestamp="20240719 19:30:37.515">
           ${docker_check} = False
          </msg>
-         <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:52.736" status="PASS"/>
+         <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:37.515" status="PASS"/>
         </kw>
         <kw library="BuiltIn" name="Get Length">
          <var>
@@ -334,13 +334,13 @@
          <doc>
           Returns and logs the length of the given item as an integer.
          </doc>
-         <msg level="INFO" timestamp="20240719 17:10:52.736">
+         <msg level="INFO" timestamp="20240719 19:30:37.515">
           Length is 1
          </msg>
-         <msg level="INFO" timestamp="20240719 17:10:52.736">
+         <msg level="INFO" timestamp="20240719 19:30:37.515">
           ${list_prefs_length} = 1
          </msg>
-         <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:52.736" status="PASS"/>
+         <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:37.515" status="PASS"/>
         </kw>
         <kw library="BuiltIn" name="Run Keyword If">
          <var>
@@ -389,17 +389,17 @@
           <doc>
            Returns the given values which can then be assigned to a variables.
           </doc>
-          <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:52.736" status="PASS"/>
+          <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:37.515" status="PASS"/>
          </kw>
-         <msg level="INFO" timestamp="20240719 17:10:52.736">
+         <msg level="INFO" timestamp="20240719 19:30:37.515">
           ${list_prefs} = [[]]
          </msg>
-         <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:52.736" status="PASS"/>
+         <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:37.515" status="PASS"/>
         </kw>
-        <msg level="INFO" timestamp="20240719 17:10:52.736">
+        <msg level="INFO" timestamp="20240719 19:30:37.515">
          ${list_prefs} = [[]]
         </msg>
-        <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:52.736" status="PASS"/>
+        <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:37.515" status="PASS"/>
        </kw>
        <kw library="Support_Web" name="Create Chrome Options for download preferences">
         <var>
@@ -418,15 +418,15 @@
          <doc>
           Evaluates the given expression in Python and returns the result.
          </doc>
-         <msg level="INFO" timestamp="20240719 17:10:52.736">
-          ${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001F7FF3D35F0&gt;
+         <msg level="INFO" timestamp="20240719 19:30:37.515">
+          ${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001BCB67C7530&gt;
          </msg>
-         <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:52.736" status="PASS"/>
+         <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:37.515" status="PASS"/>
         </kw>
-        <msg level="INFO" timestamp="20240719 17:10:52.736">
-         ${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001F7FF3D35F0&gt;
+        <msg level="INFO" timestamp="20240719 19:30:37.515">
+         ${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001BCB67C7530&gt;
         </msg>
-        <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:52.736" status="PASS"/>
+        <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:37.515" status="PASS"/>
        </kw>
        <kw library="Support_Web" name="Update Preferences List">
         <arg>
@@ -445,10 +445,10 @@
          <doc>
           Converts the given item to a Unicode string.
          </doc>
-         <msg level="INFO" timestamp="20240719 17:10:52.736">
+         <msg level="INFO" timestamp="20240719 19:30:37.515">
           ${string_prefs} = [[]]
          </msg>
-         <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:52.736" status="PASS"/>
+         <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:37.515" status="PASS"/>
         </kw>
         <kw library="BuiltIn" name="Return From Keyword If">
          <arg>
@@ -457,10 +457,10 @@
          <doc>
           Returns from the enclosing user keyword if ``condition`` is true.
          </doc>
-         <msg level="INFO" timestamp="20240719 17:10:52.736">
+         <msg level="INFO" timestamp="20240719 19:30:37.515">
           Returning from the enclosing user keyword.
          </msg>
-         <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:52.736" status="PASS"/>
+         <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:37.515" status="PASS"/>
         </kw>
         <for flavor="IN">
          <var>
@@ -484,13 +484,13 @@
            <doc>
             Calls the named method of the given object with the provided arguments.
            </doc>
-           <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:52.736" status="NOT RUN"/>
+           <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:37.515" status="NOT RUN"/>
           </kw>
-          <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:52.736" status="NOT RUN"/>
+          <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:37.515" status="NOT RUN"/>
          </iter>
-         <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:52.736" status="NOT RUN"/>
+         <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:37.515" status="NOT RUN"/>
         </for>
-        <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:52.736" status="PASS"/>
+        <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:37.515" status="PASS"/>
        </kw>
        <kw library="BuiltIn" name="Call Method">
         <arg>
@@ -508,7 +508,7 @@
         <doc>
          Calls the named method of the given object with the provided arguments.
         </doc>
-        <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:52.736" status="PASS"/>
+        <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:37.515" status="PASS"/>
        </kw>
        <kw library="BuiltIn" name="Set Global Variable">
         <arg>
@@ -520,18 +520,18 @@
         <doc>
          Makes a variable available globally in all tests and suites.
         </doc>
-        <msg level="INFO" timestamp="20240719 17:10:52.736">
-         ${global_browser_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001F7FF3D35F0&gt;
+        <msg level="INFO" timestamp="20240719 19:30:37.515">
+         ${global_browser_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001BCB67C7530&gt;
         </msg>
-        <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:52.736" status="PASS"/>
+        <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:37.515" status="PASS"/>
        </kw>
-       <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:52.736" status="PASS"/>
+       <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:37.515" status="PASS"/>
       </kw>
-      <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:49.596" status="PASS"/>
+      <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:34.401" status="PASS"/>
      </kw>
-     <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:49.596" status="PASS"/>
+     <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:34.401" status="PASS"/>
     </kw>
-    <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:49.595" status="PASS"/>
+    <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:34.400" status="PASS"/>
    </kw>
    <kw library="BuiltIn" name="Set Suite Metadata">
     <arg>
@@ -543,12 +543,12 @@
     <doc>
      Sets metadata for the current test suite.
     </doc>
-    <msg level="INFO" timestamp="20240719 17:10:52.736">
+    <msg level="INFO" timestamp="20240719 19:30:37.515">
      Set suite metadata 'environment' to value 'Dev'.
     </msg>
-    <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:52.736" status="PASS"/>
+    <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:37.515" status="PASS"/>
    </kw>
-   <status endtime="20240719 17:10:52.736" starttime="20240719 17:10:49.584" status="PASS"/>
+   <status endtime="20240719 19:30:37.515" starttime="20240719 19:30:34.391" status="PASS"/>
   </kw>
   <suite id="s1-s1" name="Test Certificate upload" source="C:\SAP_Testing\SAPtesting\Tests\Test_Certificate_upload.robot">
    <kw library="Certificate_upload" name="Browser Login" type="SETUP">
@@ -565,22 +565,22 @@
      <doc>
       Opens a new browser instance to the optional ``url``.
      </doc>
-     <msg level="INFO" timestamp="20240719 17:10:52.752">
+     <msg level="INFO" timestamp="20240719 19:30:37.530">
       Sym.Dev.CPI_URL: https://070d8411trial.integrationsuite-trial.cfapps.ap21.hana.ondemand.com/shell/monitoring/Keystore
      </msg>
-     <msg level="INFO" timestamp="20240719 17:10:52.752">
+     <msg level="INFO" timestamp="20240719 19:30:37.530">
       Sym.Dev.browsertype: chrome
      </msg>
-     <msg level="INFO" timestamp="20240719 17:10:52.752">
+     <msg level="INFO" timestamp="20240719 19:30:37.530">
       Opening browser 'chrome' to base url 'https://070d8411trial.integrationsuite-trial.cfapps.ap21.hana.ondemand.com/shell/monitoring/Keystore'.
      </msg>
-     <status endtime="20240719 17:10:57.140" starttime="20240719 17:10:52.752" status="PASS"/>
+     <status endtime="20240719 19:30:42.133" starttime="20240719 19:30:37.530" status="PASS"/>
     </kw>
     <kw library="SeleniumLibrary" name="Maximize Browser Window">
      <doc>
       Maximizes current browser window.
      </doc>
-     <status endtime="20240719 17:10:57.171" starttime="20240719 17:10:57.140" status="PASS"/>
+     <status endtime="20240719 19:30:42.167" starttime="20240719 19:30:42.133" status="PASS"/>
     </kw>
     <kw library="BuiltIn" name="Sleep">
      <arg>
@@ -589,10 +589,10 @@
      <doc>
       Pauses the test executed for the given time.
      </doc>
-     <msg level="INFO" timestamp="20240719 17:11:02.171">
+     <msg level="INFO" timestamp="20240719 19:30:47.168">
       Slept 5 seconds
      </msg>
-     <status endtime="20240719 17:11:02.171" starttime="20240719 17:10:57.171" status="PASS"/>
+     <status endtime="20240719 19:30:47.168" starttime="20240719 19:30:42.168" status="PASS"/>
     </kw>
     <kw library="SeleniumLibrary" name="Input Text">
      <arg>
@@ -604,13 +604,13 @@
      <doc>
       Types the given ``text`` into the text field identified by ``locator``.
      </doc>
-     <msg level="INFO" timestamp="20240719 17:11:02.172">
+     <msg level="INFO" timestamp="20240719 19:30:47.169">
       Sym.Dev.username: arif.shaikh@basiscloudsolutions.com
      </msg>
-     <msg level="INFO" timestamp="20240719 17:11:02.172">
+     <msg level="INFO" timestamp="20240719 19:30:47.169">
       Typing text 'arif.shaikh@basiscloudsolutions.com' into text field 'id:j_username'.
      </msg>
-     <status endtime="20240719 17:11:02.257" starttime="20240719 17:11:02.171" status="PASS"/>
+     <status endtime="20240719 19:30:47.259" starttime="20240719 19:30:47.169" status="PASS"/>
     </kw>
     <kw library="BuiltIn" name="Sleep">
      <arg>
@@ -619,10 +619,10 @@
      <doc>
       Pauses the test executed for the given time.
      </doc>
-     <msg level="INFO" timestamp="20240719 17:11:04.259">
+     <msg level="INFO" timestamp="20240719 19:30:49.259">
       Slept 2 seconds
      </msg>
-     <status endtime="20240719 17:11:04.259" starttime="20240719 17:11:02.257" status="PASS"/>
+     <status endtime="20240719 19:30:49.259" starttime="20240719 19:30:47.259" status="PASS"/>
     </kw>
     <kw library="SeleniumLibrary" name="Click Element">
      <arg>
@@ -631,10 +631,10 @@
      <doc>
       Click the element identified by ``locator``.
      </doc>
-     <msg level="INFO" timestamp="20240719 17:11:04.260">
+     <msg level="INFO" timestamp="20240719 19:30:49.260">
       Clicking element 'xpath://*[@id="logOnFormSubmit"]'.
      </msg>
-     <status endtime="20240719 17:11:04.649" starttime="20240719 17:11:04.259" status="PASS"/>
+     <status endtime="20240719 19:30:50.507" starttime="20240719 19:30:49.259" status="PASS"/>
     </kw>
     <kw library="BuiltIn" name="Sleep">
      <arg>
@@ -643,10 +643,10 @@
      <doc>
       Pauses the test executed for the given time.
      </doc>
-     <msg level="INFO" timestamp="20240719 17:11:24.650">
+     <msg level="INFO" timestamp="20240719 19:31:10.507">
       Slept 20 seconds
      </msg>
-     <status endtime="20240719 17:11:24.650" starttime="20240719 17:11:04.649" status="PASS"/>
+     <status endtime="20240719 19:31:10.507" starttime="20240719 19:30:50.507" status="PASS"/>
     </kw>
     <kw library="SeleniumLibrary" name="Scroll Element Into View">
      <arg>
@@ -655,7 +655,7 @@
      <doc>
       Scrolls the element identified by ``locator`` into view.
      </doc>
-     <status endtime="20240719 17:11:24.936" starttime="20240719 17:11:24.650" status="PASS"/>
+     <status endtime="20240719 19:31:10.784" starttime="20240719 19:31:10.507" status="PASS"/>
     </kw>
     <kw library="BuiltIn" name="Sleep">
      <arg>
@@ -664,10 +664,10 @@
      <doc>
       Pauses the test executed for the given time.
      </doc>
-     <msg level="INFO" timestamp="20240719 17:11:26.937">
+     <msg level="INFO" timestamp="20240719 19:31:12.784">
       Slept 2 seconds
      </msg>
-     <status endtime="20240719 17:11:26.937" starttime="20240719 17:11:24.936" status="PASS"/>
+     <status endtime="20240719 19:31:12.784" starttime="20240719 19:31:10.784" status="PASS"/>
     </kw>
     <kw library="SeleniumLibrary" name="Input Password">
      <arg>
@@ -679,16 +679,16 @@
      <doc>
       Types the given password into the text field identified by ``locator``.
      </doc>
-     <msg level="INFO" timestamp="20240719 17:11:26.938">
+     <msg level="INFO" timestamp="20240719 19:31:12.785">
       Typing password into text field 'xpath://*[@id="password"]'.
      </msg>
-     <msg level="INFO" timestamp="20240719 17:11:26.964">
+     <msg level="INFO" timestamp="20240719 19:31:12.810">
       Temporally setting log level to: NONE
      </msg>
-     <msg level="INFO" timestamp="20240719 17:11:27.023">
+     <msg level="INFO" timestamp="20240719 19:31:12.873">
       Log level changed from NONE to INFO.
      </msg>
-     <status endtime="20240719 17:11:27.024" starttime="20240719 17:11:26.937" status="PASS"/>
+     <status endtime="20240719 19:31:12.873" starttime="20240719 19:31:12.784" status="PASS"/>
     </kw>
     <kw library="BuiltIn" name="Sleep">
      <arg>
@@ -697,10 +697,10 @@
      <doc>
       Pauses the test executed for the given time.
      </doc>
-     <msg level="INFO" timestamp="20240719 17:11:29.024">
+     <msg level="INFO" timestamp="20240719 19:31:14.873">
       Slept 2 seconds
      </msg>
-     <status endtime="20240719 17:11:29.024" starttime="20240719 17:11:27.024" status="PASS"/>
+     <status endtime="20240719 19:31:14.873" starttime="20240719 19:31:12.873" status="PASS"/>
     </kw>
     <kw library="SeleniumLibrary" name="Scroll Element Into View">
      <arg>
@@ -709,7 +709,7 @@
      <doc>
       Scrolls the element identified by ``locator`` into view.
      </doc>
-     <status endtime="20240719 17:11:29.303" starttime="20240719 17:11:29.024" status="PASS"/>
+     <status endtime="20240719 19:31:15.154" starttime="20240719 19:31:14.873" status="PASS"/>
     </kw>
     <kw library="BuiltIn" name="Sleep">
      <arg>
@@ -718,10 +718,10 @@
      <doc>
       Pauses the test executed for the given time.
      </doc>
-     <msg level="INFO" timestamp="20240719 17:11:31.304">
+     <msg level="INFO" timestamp="20240719 19:31:17.155">
       Slept 2 seconds
      </msg>
-     <status endtime="20240719 17:11:31.304" starttime="20240719 17:11:29.303" status="PASS"/>
+     <status endtime="20240719 19:31:17.155" starttime="20240719 19:31:15.154" status="PASS"/>
     </kw>
     <kw library="SeleniumLibrary" name="Click Element">
      <arg>
@@ -730,10 +730,10 @@
      <doc>
       Click the element identified by ``locator``.
      </doc>
-     <msg level="INFO" timestamp="20240719 17:11:31.305">
+     <msg level="INFO" timestamp="20240719 19:31:17.155">
       Clicking element 'xpath://button[@class='uid-login-as__submit-button test-button ds-button ds-button--primary' and text()='Sign in']'.
      </msg>
-     <status endtime="20240719 17:11:31.350" starttime="20240719 17:11:31.304" status="PASS"/>
+     <status endtime="20240719 19:31:17.197" starttime="20240719 19:31:17.155" status="PASS"/>
     </kw>
     <kw library="BuiltIn" name="Sleep">
      <arg>
@@ -742,10 +742,10 @@
      <doc>
       Pauses the test executed for the given time.
      </doc>
-     <msg level="INFO" timestamp="20240719 17:11:51.351">
+     <msg level="INFO" timestamp="20240719 19:31:37.198">
       Slept 20 seconds
      </msg>
-     <status endtime="20240719 17:11:51.351" starttime="20240719 17:11:31.350" status="PASS"/>
+     <status endtime="20240719 19:31:37.198" starttime="20240719 19:31:17.197" status="PASS"/>
     </kw>
     <kw library="SeleniumLibrary" name="Get Location">
      <var>
@@ -754,10 +754,10 @@
      <doc>
       Returns the current browser window URL.
      </doc>
-     <msg level="INFO" timestamp="20240719 17:12:08.319">
+     <msg level="INFO" timestamp="20240719 19:31:50.583">
       ${Title} = https://070d8411trial.integrationsuite-trial.cfapps.ap21.hana.ondemand.com/shell/monitoring/Keystore
      </msg>
-     <status endtime="20240719 17:12:08.319" starttime="20240719 17:11:51.351" status="PASS"/>
+     <status endtime="20240719 19:31:50.583" starttime="20240719 19:31:37.198" status="PASS"/>
     </kw>
     <kw library="BuiltIn" name="Set Global Variable">
      <arg>
@@ -766,10 +766,10 @@
      <doc>
       Makes a variable available globally in all tests and suites.
      </doc>
-     <msg level="INFO" timestamp="20240719 17:12:08.319">
+     <msg level="INFO" timestamp="20240719 19:31:50.584">
       ${Title} = https://070d8411trial.integrationsuite-trial.cfapps.ap21.hana.ondemand.com/shell/monitoring/Keystore
      </msg>
-     <status endtime="20240719 17:12:08.319" starttime="20240719 17:12:08.319" status="PASS"/>
+     <status endtime="20240719 19:31:50.584" starttime="20240719 19:31:50.583" status="PASS"/>
     </kw>
     <kw library="BuiltIn" name="Log To Console">
      <arg>
@@ -778,21 +778,21 @@
      <doc>
       Logs the given message to the console.
      </doc>
-     <status endtime="20240719 17:12:08.319" starttime="20240719 17:12:08.319" status="PASS"/>
+     <status endtime="20240719 19:31:50.585" starttime="20240719 19:31:50.584" status="PASS"/>
     </kw>
-    <status endtime="20240719 17:12:08.319" starttime="20240719 17:10:52.752" status="PASS"/>
+    <status endtime="20240719 19:31:50.585" starttime="20240719 19:30:37.530" status="PASS"/>
    </kw>
    <test id="s1-s1-t1" line="8" name="Certificate_upload">
     <kw library="Certificate_upload" name="Uploading Certificate into SAP">
      <if>
-      <msg level="INFO" timestamp="20240719 17:12:08.324">
+      <msg level="INFO" timestamp="20240719 19:31:50.587">
        Sym.Dev.CPI_URL1: https://070d8411trial.integrationsuite-trial.cfapps.ap21.hana.ondemand.com/shell/monitoring/Overview
       </msg>
       <branch condition="'${Title}' == '${symvar('CPI_URL1')}'" type="IF">
        <kw library="Certificate_upload" name="Window_Handling">
-        <status endtime="20240719 17:12:08.324" starttime="20240719 17:12:08.324" status="NOT RUN"/>
+        <status endtime="20240719 19:31:50.588" starttime="20240719 19:31:50.588" status="NOT RUN"/>
        </kw>
-       <status endtime="20240719 17:12:08.325" starttime="20240719 17:12:08.319" status="NOT RUN"/>
+       <status endtime="20240719 19:31:50.588" starttime="20240719 19:31:50.586" status="NOT RUN"/>
       </branch>
       <branch type="ELSE">
        <kw library="Certificate_upload" name="Upload_Certificate">
@@ -804,10 +804,10 @@
           <doc>
            Pauses the test executed for the given time.
           </doc>
-          <msg level="INFO" timestamp="20240719 17:12:13.327">
+          <msg level="INFO" timestamp="20240719 19:31:55.590">
            Slept 5 seconds
           </msg>
-          <status endtime="20240719 17:12:13.327" starttime="20240719 17:12:08.325" status="PASS"/>
+          <status endtime="20240719 19:31:55.590" starttime="20240719 19:31:50.589" status="PASS"/>
          </kw>
          <kw library="BuiltIn" name="Run Keyword And Return Status">
           <var>
@@ -829,15 +829,15 @@
            <doc>
             Verifies that element ``locator`` is found on the current page.
            </doc>
-           <msg level="INFO" timestamp="20240719 17:12:13.327">
+           <msg level="INFO" timestamp="20240719 19:31:55.590">
             Current page contains element 'id:__popover4-title-inner'.
            </msg>
-           <status endtime="20240719 17:12:13.327" starttime="20240719 17:12:13.327" status="PASS"/>
+           <status endtime="20240719 19:31:55.590" starttime="20240719 19:31:55.590" status="PASS"/>
           </kw>
-          <msg level="INFO" timestamp="20240719 17:12:13.327">
+          <msg level="INFO" timestamp="20240719 19:31:55.590">
            ${Status} = True
           </msg>
-          <status endtime="20240719 17:12:13.327" starttime="20240719 17:12:13.327" status="PASS"/>
+          <status endtime="20240719 19:31:55.590" starttime="20240719 19:31:55.590" status="PASS"/>
          </kw>
          <kw library="BuiltIn" name="Run Keyword If">
           <arg>
@@ -857,46 +857,46 @@
             <doc>
              Click the element identified by ``locator``.
             </doc>
-            <msg level="INFO" timestamp="20240719 17:12:13.327">
+            <msg level="INFO" timestamp="20240719 19:31:55.590">
              Clicking element '//span[@id='__button19-img']'.
             </msg>
-            <status endtime="20240719 17:12:13.384" starttime="20240719 17:12:13.327" status="PASS"/>
+            <status endtime="20240719 19:31:55.645" starttime="20240719 19:31:55.590" status="PASS"/>
            </kw>
            <kw library="SeleniumLibrary" name="Capture Page Screenshot">
             <doc>
              Takes a screenshot of the current page and embeds it into a log file.
             </doc>
-            <msg html="true" level="INFO" timestamp="20240719 17:12:13.526">
+            <msg html="true" level="INFO" timestamp="20240719 19:31:55.790">
              &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="0-selenium-screenshot-1.png"&gt;&lt;img src="0-selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;
             </msg>
-            <status endtime="20240719 17:12:13.526" starttime="20240719 17:12:13.384" status="PASS"/>
+            <status endtime="20240719 19:31:55.790" starttime="20240719 19:31:55.645" status="PASS"/>
            </kw>
-           <status endtime="20240719 17:12:13.526" starttime="20240719 17:12:13.327" status="PASS"/>
+           <status endtime="20240719 19:31:55.794" starttime="20240719 19:31:55.590" status="PASS"/>
           </kw>
-          <status endtime="20240719 17:12:13.526" starttime="20240719 17:12:13.327" status="PASS"/>
+          <status endtime="20240719 19:31:55.794" starttime="20240719 19:31:55.590" status="PASS"/>
          </kw>
-         <status endtime="20240719 17:12:13.526" starttime="20240719 17:12:08.325" status="PASS"/>
+         <status endtime="20240719 19:31:55.794" starttime="20240719 19:31:50.588" status="PASS"/>
         </kw>
         <kw library="SeleniumLibrary" name="Capture Page Screenshot">
          <doc>
           Takes a screenshot of the current page and embeds it into a log file.
          </doc>
-         <msg html="true" level="INFO" timestamp="20240719 17:12:13.665">
+         <msg html="true" level="INFO" timestamp="20240719 19:31:55.898">
           &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="0-selenium-screenshot-2.png"&gt;&lt;img src="0-selenium-screenshot-2.png" width="800px"&gt;&lt;/a&gt;
          </msg>
-         <status endtime="20240719 17:12:13.665" starttime="20240719 17:12:13.526" status="PASS"/>
+         <status endtime="20240719 19:31:55.898" starttime="20240719 19:31:55.794" status="PASS"/>
         </kw>
         <kw library="BuiltIn" name="Sleep">
          <arg>
-          10
+          20
          </arg>
          <doc>
           Pauses the test executed for the given time.
          </doc>
-         <msg level="INFO" timestamp="20240719 17:12:23.666">
-          Slept 10 seconds
+         <msg level="INFO" timestamp="20240719 19:32:15.914">
+          Slept 20 seconds
          </msg>
-         <status endtime="20240719 17:12:23.666" starttime="20240719 17:12:13.665" status="PASS"/>
+         <status endtime="20240719 19:32:15.915" starttime="20240719 19:31:55.898" status="PASS"/>
         </kw>
         <kw library="SeleniumLibrary" name="Input Text">
          <arg>
@@ -908,22 +908,22 @@
          <doc>
           Types the given ``text`` into the text field identified by ``locator``.
          </doc>
-         <msg level="INFO" timestamp="20240719 17:12:23.666">
+         <msg level="INFO" timestamp="20240719 19:32:15.916">
           Sym.Dev.Alias: TH5_ssl
          </msg>
-         <msg level="INFO" timestamp="20240719 17:12:23.666">
+         <msg level="INFO" timestamp="20240719 19:32:15.916">
           Typing text 'TH5_ssl' into text field 'id:__component0---com.sap.it.op.web.ui.pages.keystore.KeystoreManagement--SEARCHFIELD_KEYSTORE-I'.
          </msg>
-         <status endtime="20240719 17:12:23.815" starttime="20240719 17:12:23.666" status="PASS"/>
+         <status endtime="20240719 19:32:16.066" starttime="20240719 19:32:15.915" status="PASS"/>
         </kw>
         <kw library="SeleniumLibrary" name="Capture Page Screenshot">
          <doc>
           Takes a screenshot of the current page and embeds it into a log file.
          </doc>
-         <msg html="true" level="INFO" timestamp="20240719 17:12:23.926">
+         <msg html="true" level="INFO" timestamp="20240719 19:32:16.172">
           &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="0-selenium-screenshot-3.png"&gt;&lt;img src="0-selenium-screenshot-3.png" width="800px"&gt;&lt;/a&gt;
          </msg>
-         <status endtime="20240719 17:12:23.926" starttime="20240719 17:12:23.815" status="PASS"/>
+         <status endtime="20240719 19:32:16.172" starttime="20240719 19:32:16.066" status="PASS"/>
         </kw>
         <kw library="BuiltIn" name="Sleep">
          <arg>
@@ -932,10 +932,88 @@
          <doc>
           Pauses the test executed for the given time.
          </doc>
-         <msg level="INFO" timestamp="20240719 17:12:26.926">
+         <msg level="INFO" timestamp="20240719 19:32:19.173">
           Slept 3 seconds
          </msg>
-         <status endtime="20240719 17:12:26.926" starttime="20240719 17:12:23.926" status="PASS"/>
+         <status endtime="20240719 19:32:19.173" starttime="20240719 19:32:16.172" status="PASS"/>
+        </kw>
+        <kw library="Certificate_upload" name="Notification Handling">
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           5
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240719 19:32:24.173">
+           Slept 5 seconds
+          </msg>
+          <status endtime="20240719 19:32:24.173" starttime="20240719 19:32:19.173" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Run Keyword And Return Status">
+          <var>
+           ${Status}
+          </var>
+          <arg>
+           Page Should Contain Element
+          </arg>
+          <arg>
+           id:__popover4-title-inner
+          </arg>
+          <doc>
+           Runs the given keyword with given arguments and returns the status as a Boolean value.
+          </doc>
+          <kw library="SeleniumLibrary" name="Page Should Contain Element">
+           <arg>
+            id:__popover4-title-inner
+           </arg>
+           <doc>
+            Verifies that element ``locator`` is found on the current page.
+           </doc>
+           <kw library="SeleniumLibrary" name="Capture Page Screenshot">
+            <doc>
+             Takes a screenshot of the current page and embeds it into a log file.
+            </doc>
+            <msg html="true" level="INFO" timestamp="20240719 19:32:24.286">
+             &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="0-selenium-screenshot-4.png"&gt;&lt;img src="0-selenium-screenshot-4.png" width="800px"&gt;&lt;/a&gt;
+            </msg>
+            <status endtime="20240719 19:32:24.286" starttime="20240719 19:32:24.173" status="PASS"/>
+           </kw>
+           <msg level="FAIL" timestamp="20240719 19:32:24.286">
+            Page should have contained element 'id:__popover4-title-inner' but did not.
+           </msg>
+           <status endtime="20240719 19:32:24.286" starttime="20240719 19:32:24.173" status="FAIL"/>
+          </kw>
+          <msg level="INFO" timestamp="20240719 19:32:24.286">
+           ${Status} = False
+          </msg>
+          <status endtime="20240719 19:32:24.286" starttime="20240719 19:32:24.173" status="PASS"/>
+         </kw>
+         <kw library="BuiltIn" name="Run Keyword If">
+          <arg>
+           '${Status}'=='True'
+          </arg>
+          <arg>
+           Close Notification
+          </arg>
+          <doc>
+           Runs the given keyword with the given arguments, if ``condition`` is true.
+          </doc>
+          <status endtime="20240719 19:32:24.286" starttime="20240719 19:32:24.286" status="PASS"/>
+         </kw>
+         <status endtime="20240719 19:32:24.286" starttime="20240719 19:32:19.173" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Sleep">
+         <arg>
+          2
+         </arg>
+         <doc>
+          Pauses the test executed for the given time.
+         </doc>
+         <msg level="INFO" timestamp="20240719 19:32:26.286">
+          Slept 2 seconds
+         </msg>
+         <status endtime="20240719 19:32:26.286" starttime="20240719 19:32:24.286" status="PASS"/>
         </kw>
         <kw library="SeleniumLibrary" name="Scroll Element Into View">
          <arg>
@@ -944,16 +1022,16 @@
          <doc>
           Scrolls the element identified by ``locator`` into view.
          </doc>
-         <status endtime="20240719 17:12:27.205" starttime="20240719 17:12:26.926" status="PASS"/>
+         <status endtime="20240719 19:32:26.564" starttime="20240719 19:32:26.286" status="PASS"/>
         </kw>
         <kw library="SeleniumLibrary" name="Capture Page Screenshot">
          <doc>
           Takes a screenshot of the current page and embeds it into a log file.
          </doc>
-         <msg html="true" level="INFO" timestamp="20240719 17:12:27.296">
-          &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="0-selenium-screenshot-4.png"&gt;&lt;img src="0-selenium-screenshot-4.png" width="800px"&gt;&lt;/a&gt;
+         <msg html="true" level="INFO" timestamp="20240719 19:32:26.663">
+          &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="0-selenium-screenshot-5.png"&gt;&lt;img src="0-selenium-screenshot-5.png" width="800px"&gt;&lt;/a&gt;
          </msg>
-         <status endtime="20240719 17:12:27.296" starttime="20240719 17:12:27.205" status="PASS"/>
+         <status endtime="20240719 19:32:26.664" starttime="20240719 19:32:26.564" status="PASS"/>
         </kw>
         <kw library="BuiltIn" name="Sleep">
          <arg>
@@ -962,10 +1040,10 @@
          <doc>
           Pauses the test executed for the given time.
          </doc>
-         <msg level="INFO" timestamp="20240719 17:12:32.296">
+         <msg level="INFO" timestamp="20240719 19:32:31.665">
           Slept 5 seconds
          </msg>
-         <status endtime="20240719 17:12:32.296" starttime="20240719 17:12:27.296" status="PASS"/>
+         <status endtime="20240719 19:32:31.665" starttime="20240719 19:32:26.664" status="PASS"/>
         </kw>
         <kw library="SeleniumLibrary" name="Click Element">
          <arg>
@@ -974,19 +1052,19 @@
          <doc>
           Click the element identified by ``locator``.
          </doc>
-         <msg level="INFO" timestamp="20240719 17:12:32.297">
+         <msg level="INFO" timestamp="20240719 19:32:31.665">
           Clicking element 'xpath://button[@title='More' and contains(@class, 'sapMBtn')]'.
          </msg>
-         <status endtime="20240719 17:12:33.097" starttime="20240719 17:12:32.296" status="PASS"/>
+         <status endtime="20240719 19:32:32.487" starttime="20240719 19:32:31.665" status="PASS"/>
         </kw>
         <kw library="SeleniumLibrary" name="Capture Page Screenshot">
          <doc>
           Takes a screenshot of the current page and embeds it into a log file.
          </doc>
-         <msg html="true" level="INFO" timestamp="20240719 17:12:33.233">
-          &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="0-selenium-screenshot-5.png"&gt;&lt;img src="0-selenium-screenshot-5.png" width="800px"&gt;&lt;/a&gt;
+         <msg html="true" level="INFO" timestamp="20240719 19:32:32.625">
+          &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="0-selenium-screenshot-6.png"&gt;&lt;img src="0-selenium-screenshot-6.png" width="800px"&gt;&lt;/a&gt;
          </msg>
-         <status endtime="20240719 17:12:33.233" starttime="20240719 17:12:33.097" status="PASS"/>
+         <status endtime="20240719 19:32:32.625" starttime="20240719 19:32:32.487" status="PASS"/>
         </kw>
         <kw library="BuiltIn" name="Sleep">
          <arg>
@@ -995,10 +1073,10 @@
          <doc>
           Pauses the test executed for the given time.
          </doc>
-         <msg level="INFO" timestamp="20240719 17:12:38.233">
+         <msg level="INFO" timestamp="20240719 19:32:37.625">
           Slept 5 seconds
          </msg>
-         <status endtime="20240719 17:12:38.233" starttime="20240719 17:12:33.233" status="PASS"/>
+         <status endtime="20240719 19:32:37.625" starttime="20240719 19:32:32.625" status="PASS"/>
         </kw>
         <kw library="SeleniumLibrary" name="Click Element">
          <arg>
@@ -1007,19 +1085,19 @@
          <doc>
           Click the element identified by ``locator``.
          </doc>
-         <msg level="INFO" timestamp="20240719 17:12:38.233">
+         <msg level="INFO" timestamp="20240719 19:32:37.626">
           Clicking element 'xpath://bdi[text()='Update']'.
          </msg>
-         <status endtime="20240719 17:12:38.574" starttime="20240719 17:12:38.233" status="PASS"/>
+         <status endtime="20240719 19:32:37.977" starttime="20240719 19:32:37.625" status="PASS"/>
         </kw>
         <kw library="SeleniumLibrary" name="Capture Page Screenshot">
          <doc>
           Takes a screenshot of the current page and embeds it into a log file.
          </doc>
-         <msg html="true" level="INFO" timestamp="20240719 17:12:38.750">
-          &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="0-selenium-screenshot-6.png"&gt;&lt;img src="0-selenium-screenshot-6.png" width="800px"&gt;&lt;/a&gt;
+         <msg html="true" level="INFO" timestamp="20240719 19:32:38.179">
+          &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="0-selenium-screenshot-7.png"&gt;&lt;img src="0-selenium-screenshot-7.png" width="800px"&gt;&lt;/a&gt;
          </msg>
-         <status endtime="20240719 17:12:38.752" starttime="20240719 17:12:38.574" status="PASS"/>
+         <status endtime="20240719 19:32:38.179" starttime="20240719 19:32:37.978" status="PASS"/>
         </kw>
         <kw library="BuiltIn" name="Sleep">
          <arg>
@@ -1028,10 +1106,10 @@
          <doc>
           Pauses the test executed for the given time.
          </doc>
-         <msg level="INFO" timestamp="20240719 17:12:43.752">
+         <msg level="INFO" timestamp="20240719 19:32:43.179">
           Slept 5 seconds
          </msg>
-         <status endtime="20240719 17:12:43.752" starttime="20240719 17:12:38.752" status="PASS"/>
+         <status endtime="20240719 19:32:43.179" starttime="20240719 19:32:38.179" status="PASS"/>
         </kw>
         <kw library="SeleniumLibrary" name="Choose File">
          <arg>
@@ -1043,10 +1121,10 @@
          <doc>
           Inputs the ``file_path`` into the file input field ``locator``.
          </doc>
-         <msg level="INFO" timestamp="20240719 17:12:43.752">
+         <msg level="INFO" timestamp="20240719 19:32:43.179">
           Sending C:\SAP_Testing\SAPtesting\Tests\Resource\SID_CERT.crt to browser.
          </msg>
-         <status endtime="20240719 17:12:43.831" starttime="20240719 17:12:43.752" status="PASS"/>
+         <status endtime="20240719 19:32:43.230" starttime="20240719 19:32:43.179" status="PASS"/>
         </kw>
         <kw library="BuiltIn" name="Sleep">
          <arg>
@@ -1055,19 +1133,19 @@
          <doc>
           Pauses the test executed for the given time.
          </doc>
-         <msg level="INFO" timestamp="20240719 17:12:48.831">
+         <msg level="INFO" timestamp="20240719 19:32:48.231">
           Slept 5 seconds
          </msg>
-         <status endtime="20240719 17:12:48.831" starttime="20240719 17:12:43.831" status="PASS"/>
+         <status endtime="20240719 19:32:48.231" starttime="20240719 19:32:43.231" status="PASS"/>
         </kw>
         <kw library="SeleniumLibrary" name="Capture Page Screenshot">
          <doc>
           Takes a screenshot of the current page and embeds it into a log file.
          </doc>
-         <msg html="true" level="INFO" timestamp="20240719 17:12:48.925">
-          &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="0-selenium-screenshot-7.png"&gt;&lt;img src="0-selenium-screenshot-7.png" width="800px"&gt;&lt;/a&gt;
+         <msg html="true" level="INFO" timestamp="20240719 19:32:48.333">
+          &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="0-selenium-screenshot-8.png"&gt;&lt;img src="0-selenium-screenshot-8.png" width="800px"&gt;&lt;/a&gt;
          </msg>
-         <status endtime="20240719 17:12:48.925" starttime="20240719 17:12:48.831" status="PASS"/>
+         <status endtime="20240719 19:32:48.333" starttime="20240719 19:32:48.231" status="PASS"/>
         </kw>
         <kw library="BuiltIn" name="Sleep">
          <arg>
@@ -1076,10 +1154,10 @@
          <doc>
           Pauses the test executed for the given time.
          </doc>
-         <msg level="INFO" timestamp="20240719 17:12:51.925">
+         <msg level="INFO" timestamp="20240719 19:32:51.334">
           Slept 3 seconds
          </msg>
-         <status endtime="20240719 17:12:51.925" starttime="20240719 17:12:48.925" status="PASS"/>
+         <status endtime="20240719 19:32:51.334" starttime="20240719 19:32:48.333" status="PASS"/>
         </kw>
         <kw library="SeleniumLibrary" name="Input Text">
          <arg>
@@ -1091,19 +1169,19 @@
          <doc>
           Types the given ``text`` into the text field identified by ``locator``.
          </doc>
-         <msg level="INFO" timestamp="20240719 17:12:51.925">
+         <msg level="INFO" timestamp="20240719 19:32:51.334">
           Typing text 'C:\SAP_Testing\SAPtesting\Tests\Resource\SID_CERT.crt' into text field 'id:CertificateUploadDialog-FileSelectionEntry-fu'.
          </msg>
-         <status endtime="20240719 17:12:52.002" starttime="20240719 17:12:51.925" status="PASS"/>
+         <status endtime="20240719 19:32:51.406" starttime="20240719 19:32:51.334" status="PASS"/>
         </kw>
         <kw library="SeleniumLibrary" name="Capture Page Screenshot">
          <doc>
           Takes a screenshot of the current page and embeds it into a log file.
          </doc>
-         <msg html="true" level="INFO" timestamp="20240719 17:12:52.114">
-          &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="0-selenium-screenshot-8.png"&gt;&lt;img src="0-selenium-screenshot-8.png" width="800px"&gt;&lt;/a&gt;
+         <msg html="true" level="INFO" timestamp="20240719 19:32:51.516">
+          &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="0-selenium-screenshot-9.png"&gt;&lt;img src="0-selenium-screenshot-9.png" width="800px"&gt;&lt;/a&gt;
          </msg>
-         <status endtime="20240719 17:12:52.114" starttime="20240719 17:12:52.002" status="PASS"/>
+         <status endtime="20240719 19:32:51.516" starttime="20240719 19:32:51.406" status="PASS"/>
         </kw>
         <kw library="BuiltIn" name="Sleep">
          <arg>
@@ -1112,10 +1190,10 @@
          <doc>
           Pauses the test executed for the given time.
          </doc>
-         <msg level="INFO" timestamp="20240719 17:12:55.115">
+         <msg level="INFO" timestamp="20240719 19:32:54.517">
           Slept 3 seconds
          </msg>
-         <status endtime="20240719 17:12:55.115" starttime="20240719 17:12:52.114" status="PASS"/>
+         <status endtime="20240719 19:32:54.517" starttime="20240719 19:32:51.516" status="PASS"/>
         </kw>
         <kw library="SeleniumLibrary" name="Click Element">
          <arg>
@@ -1124,10 +1202,10 @@
          <doc>
           Click the element identified by ``locator``.
          </doc>
-         <msg level="INFO" timestamp="20240719 17:12:55.115">
+         <msg level="INFO" timestamp="20240719 19:32:54.517">
           Clicking element 'id:btnUpdate-BDI-content'.
          </msg>
-         <status endtime="20240719 17:12:55.170" starttime="20240719 17:12:55.115" status="PASS"/>
+         <status endtime="20240719 19:32:54.555" starttime="20240719 19:32:54.517" status="PASS"/>
         </kw>
         <kw library="BuiltIn" name="Sleep">
          <arg>
@@ -1136,19 +1214,19 @@
          <doc>
           Pauses the test executed for the given time.
          </doc>
-         <msg level="INFO" timestamp="20240719 17:12:57.170">
+         <msg level="INFO" timestamp="20240719 19:32:56.556">
           Slept 2 seconds
          </msg>
-         <status endtime="20240719 17:12:57.170" starttime="20240719 17:12:55.170" status="PASS"/>
+         <status endtime="20240719 19:32:56.556" starttime="20240719 19:32:54.555" status="PASS"/>
         </kw>
         <kw library="SeleniumLibrary" name="Capture Page Screenshot">
          <doc>
           Takes a screenshot of the current page and embeds it into a log file.
          </doc>
-         <msg html="true" level="INFO" timestamp="20240719 17:12:57.277">
-          &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="0-selenium-screenshot-9.png"&gt;&lt;img src="0-selenium-screenshot-9.png" width="800px"&gt;&lt;/a&gt;
+         <msg html="true" level="INFO" timestamp="20240719 19:32:56.632">
+          &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="0-selenium-screenshot-10.png"&gt;&lt;img src="0-selenium-screenshot-10.png" width="800px"&gt;&lt;/a&gt;
          </msg>
-         <status endtime="20240719 17:12:57.277" starttime="20240719 17:12:57.170" status="PASS"/>
+         <status endtime="20240719 19:32:56.632" starttime="20240719 19:32:56.556" status="PASS"/>
         </kw>
         <kw library="BuiltIn" name="Sleep">
          <arg>
@@ -1157,10 +1235,10 @@
          <doc>
           Pauses the test executed for the given time.
          </doc>
-         <msg level="INFO" timestamp="20240719 17:13:02.277">
+         <msg level="INFO" timestamp="20240719 19:33:01.633">
           Slept 5 seconds
          </msg>
-         <status endtime="20240719 17:13:02.277" starttime="20240719 17:12:57.277" status="PASS"/>
+         <status endtime="20240719 19:33:01.633" starttime="20240719 19:32:56.632" status="PASS"/>
         </kw>
         <kw library="Certificate_upload" name="Confirm certificate">
          <kw library="BuiltIn" name="Run Keyword And Return Status">
@@ -1183,24 +1261,33 @@
            <doc>
             Verifies that element ``locator`` is found on the current page.
            </doc>
-           <msg level="INFO" timestamp="20240719 17:13:02.283">
-            Current page contains element 'id:__mbox0-title-inner'.
+           <kw library="SeleniumLibrary" name="Capture Page Screenshot">
+            <doc>
+             Takes a screenshot of the current page and embeds it into a log file.
+            </doc>
+            <msg html="true" level="INFO" timestamp="20240719 19:33:01.739">
+             &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="0-selenium-screenshot-11.png"&gt;&lt;img src="0-selenium-screenshot-11.png" width="800px"&gt;&lt;/a&gt;
+            </msg>
+            <status endtime="20240719 19:33:01.739" starttime="20240719 19:33:01.649" status="PASS"/>
+           </kw>
+           <msg level="FAIL" timestamp="20240719 19:33:01.739">
+            Page should have contained element 'id:__mbox0-title-inner' but did not.
            </msg>
-           <status endtime="20240719 17:13:02.283" starttime="20240719 17:13:02.277" status="PASS"/>
+           <status endtime="20240719 19:33:01.739" starttime="20240719 19:33:01.634" status="FAIL"/>
           </kw>
-          <msg level="INFO" timestamp="20240719 17:13:02.283">
-           ${Window} = True
+          <msg level="INFO" timestamp="20240719 19:33:01.739">
+           ${Window} = False
           </msg>
-          <status endtime="20240719 17:13:02.283" starttime="20240719 17:13:02.277" status="PASS"/>
+          <status endtime="20240719 19:33:01.739" starttime="20240719 19:33:01.633" status="PASS"/>
          </kw>
          <kw library="SeleniumLibrary" name="Capture Page Screenshot">
           <doc>
            Takes a screenshot of the current page and embeds it into a log file.
           </doc>
-          <msg html="true" level="INFO" timestamp="20240719 17:13:02.395">
-           &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="0-selenium-screenshot-10.png"&gt;&lt;img src="0-selenium-screenshot-10.png" width="800px"&gt;&lt;/a&gt;
+          <msg html="true" level="INFO" timestamp="20240719 19:33:01.825">
+           &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="0-selenium-screenshot-12.png"&gt;&lt;img src="0-selenium-screenshot-12.png" width="800px"&gt;&lt;/a&gt;
           </msg>
-          <status endtime="20240719 17:13:02.395" starttime="20240719 17:13:02.283" status="PASS"/>
+          <status endtime="20240719 19:33:01.825" starttime="20240719 19:33:01.739" status="PASS"/>
          </kw>
          <kw library="BuiltIn" name="Run Keyword If">
           <arg>
@@ -1212,66 +1299,63 @@
           <doc>
            Runs the given keyword with the given arguments, if ``condition`` is true.
           </doc>
-          <kw library="Certificate_upload" name="Confirm Notification">
-           <kw library="SeleniumLibrary" name="Click Element">
-            <arg>
-             xpath://bdi[text()='Confirm']
-            </arg>
-            <doc>
-             Click the element identified by ``locator``.
-            </doc>
-            <msg level="INFO" timestamp="20240719 17:13:02.395">
-             Clicking element 'xpath://bdi[text()='Confirm']'.
-            </msg>
-            <status endtime="20240719 17:13:02.445" starttime="20240719 17:13:02.395" status="PASS"/>
-           </kw>
-           <kw library="SeleniumLibrary" name="Capture Page Screenshot">
-            <doc>
-             Takes a screenshot of the current page and embeds it into a log file.
-            </doc>
-            <msg html="true" level="INFO" timestamp="20240719 17:13:02.637">
-             &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="0-selenium-screenshot-11.png"&gt;&lt;img src="0-selenium-screenshot-11.png" width="800px"&gt;&lt;/a&gt;
-            </msg>
-            <status endtime="20240719 17:13:02.637" starttime="20240719 17:13:02.446" status="PASS"/>
-           </kw>
-           <status endtime="20240719 17:13:02.638" starttime="20240719 17:13:02.395" status="PASS"/>
-          </kw>
-          <status endtime="20240719 17:13:02.638" starttime="20240719 17:13:02.395" status="PASS"/>
+          <status endtime="20240719 19:33:01.825" starttime="20240719 19:33:01.825" status="PASS"/>
          </kw>
-         <status endtime="20240719 17:13:02.638" starttime="20240719 17:13:02.277" status="PASS"/>
+         <kw library="BuiltIn" name="Sleep">
+          <arg>
+           5
+          </arg>
+          <doc>
+           Pauses the test executed for the given time.
+          </doc>
+          <msg level="INFO" timestamp="20240719 19:33:06.826">
+           Slept 5 seconds
+          </msg>
+          <status endtime="20240719 19:33:06.826" starttime="20240719 19:33:01.825" status="PASS"/>
+         </kw>
+         <kw library="SeleniumLibrary" name="Capture Page Screenshot">
+          <doc>
+           Takes a screenshot of the current page and embeds it into a log file.
+          </doc>
+          <msg html="true" level="INFO" timestamp="20240719 19:33:06.926">
+           &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="0-selenium-screenshot-13.png"&gt;&lt;img src="0-selenium-screenshot-13.png" width="800px"&gt;&lt;/a&gt;
+          </msg>
+          <status endtime="20240719 19:33:06.926" starttime="20240719 19:33:06.826" status="PASS"/>
+         </kw>
+         <status endtime="20240719 19:33:06.926" starttime="20240719 19:33:01.633" status="PASS"/>
         </kw>
         <kw library="SeleniumLibrary" name="Capture Page Screenshot">
          <doc>
           Takes a screenshot of the current page and embeds it into a log file.
          </doc>
-         <msg html="true" level="INFO" timestamp="20240719 17:13:02.734">
-          &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="0-selenium-screenshot-12.png"&gt;&lt;img src="0-selenium-screenshot-12.png" width="800px"&gt;&lt;/a&gt;
+         <msg html="true" level="INFO" timestamp="20240719 19:33:07.018">
+          &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="0-selenium-screenshot-14.png"&gt;&lt;img src="0-selenium-screenshot-14.png" width="800px"&gt;&lt;/a&gt;
          </msg>
-         <status endtime="20240719 17:13:02.734" starttime="20240719 17:13:02.638" status="PASS"/>
+         <status endtime="20240719 19:33:07.018" starttime="20240719 19:33:06.926" status="PASS"/>
         </kw>
-        <status endtime="20240719 17:13:02.734" starttime="20240719 17:12:08.325" status="PASS"/>
+        <status endtime="20240719 19:33:07.018" starttime="20240719 19:31:50.588" status="PASS"/>
        </kw>
-       <status endtime="20240719 17:13:02.734" starttime="20240719 17:12:08.325" status="PASS"/>
+       <status endtime="20240719 19:33:07.018" starttime="20240719 19:31:50.588" status="PASS"/>
       </branch>
-      <status endtime="20240719 17:13:02.734" starttime="20240719 17:12:08.319" status="PASS"/>
+      <status endtime="20240719 19:33:07.018" starttime="20240719 19:31:50.586" status="PASS"/>
      </if>
-     <status endtime="20240719 17:13:02.734" starttime="20240719 17:12:08.319" status="PASS"/>
+     <status endtime="20240719 19:33:07.018" starttime="20240719 19:31:50.586" status="PASS"/>
     </kw>
     <tag>
      cert_upload
     </tag>
-    <status endtime="20240719 17:13:02.734" starttime="20240719 17:12:08.319" status="PASS"/>
+    <status endtime="20240719 19:33:07.018" starttime="20240719 19:31:50.585" status="PASS"/>
    </test>
    <kw library="Certificate_upload" name="Browser Logout" type="TEARDOWN">
     <kw library="SeleniumLibrary" name="Close All Browsers">
      <doc>
       Closes all open browsers and resets the browser cache.
      </doc>
-     <status endtime="20240719 17:13:07.094" starttime="20240719 17:13:02.754" status="PASS"/>
+     <status endtime="20240719 19:33:11.335" starttime="20240719 19:33:07.018" status="PASS"/>
     </kw>
-    <status endtime="20240719 17:13:07.094" starttime="20240719 17:13:02.754" status="PASS"/>
+    <status endtime="20240719 19:33:11.335" starttime="20240719 19:33:07.018" status="PASS"/>
    </kw>
-   <status endtime="20240719 17:13:07.094" starttime="20240719 17:10:52.736" status="PASS"/>
+   <status endtime="20240719 19:33:11.335" starttime="20240719 19:30:37.515" status="PASS"/>
   </suite>
   <doc>
    Testing functionality through Robot Framework
@@ -1294,7 +1378,7 @@
   <meta name="test_freeze_dependencies">
    astroid==3.1.0,attrs==23.2.0,beautifulsoup4==4.12.3,bs4==0.0.2,certifi==2024.2.2,cffi==1.16.0,chardet==5.2.0,charset-normalizer==3.3.2,click==8.1.7,colorama==0.4.6,cryptography==42.0.5,defusedxml==0.7.1,dill==0.3.8,docutils==0.20.1,docx==0.2.4,docx2pdf==0.1.8,et-xmlfile==1.1.0,exceptiongroup==1.2.0,fsspec==2024.5.0,gitdb==4.0.11,GitPython==3.1.42,h11==0.14.0,idna==3.6,isort==5.13.2,Jinja2==3.1.3,jira==3.6.0,jsonpath-ng==1.6.1,jsonschema==4.21.1,jsonschema-specifications==2023.12.1,lazy-object-proxy==1.10.0,lxml==5.1.0,markdown-it-py==3.0.0,MarkupSafe==2.1.5,mccabe==0.7.0,mdurl==0.1.2,natsort==8.4.0,numpy==1.26.4,oauthlib==3.2.2,openpyxl==3.1.2,outcome==1.3.0.post0,packaging==24.0,pandas==2.2.2,pathspec==0.11.2,pillow==10.2.0,pip==24.0,platformdirs==4.2.0,ply==3.11,pycparser==2.21,Pygments==2.17.2,pylint==3.1.0,PyPDF2==3.0.1,PySocks==1.7.1,python-dateutil==2.9.0.post0,python-docx==1.1.2,pytz==2024.1,pywin32==306,PyYAML==6.0.1,referencing==0.33.0,reportlab==4.2.0,requests==2.31.0,requests-oauthlib==1.4.0,requests-toolbelt==1.0.0,rich==13.7.1,rich-click==1.6.1,robotframework==6.0.2,robotframework-datadriver==1.9.0,robotframework-jsonlibrary==0.5,robotframework-pabot==2.16.0,robotframework-pythonlibcore==4.2.0,robotframework-requests==0.9.2,robotframework-sapguilibrary==1.1,robotframework-seleniumlibrary==5.1.3,robotframework-stacktrace==0.4.1,robotframework-tidy==4.5.0,rpds-py==0.18.0,selenium==4.9.1,setuptools==69.2.0,six==1.16.0,smmap==5.0.1,sniffio==1.3.1,sortedcontainers==2.4.0,soupsieve==2.5,tomli==2.0.1,tomlkit==0.12.4,tqdm==4.66.4,trio==0.24.0,trio-websocket==0.11.1,typing_extensions==4.10.0,tzdata==2024.1,urllib3==2.2.1,wheel==0.43.0,wrapt==1.16.0,wsproto==1.2.0
   </meta>
-  <status endtime="20240719 17:13:07.340" starttime="20240719 17:10:49.268" status="PASS"/>
+  <status endtime="20240719 19:33:11.641" starttime="20240719 19:30:34.117" status="PASS"/>
  </suite>
  <statistics>
   <total>
