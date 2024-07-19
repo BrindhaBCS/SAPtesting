@@ -59,7 +59,8 @@ Upload_Certificate
     # Capture Page Screenshot
     # Sleep    2
 
-    Input Text    xpath://input[@id='__component0---com.sap.it.op.web.ui.pages.keystore.KeystoreManagement--SEARCHFIELD_KEYSTORE-I']    ${symvar('Alias')}
+    # Input Text    xpath://input[@id='__component0---com.sap.it.op.web.ui.pages.keystore.KeystoreManagement--SEARCHFIELD_KEYSTORE-I']    ${symvar('Alias')}
+    Input Text    id:__component0---com.sap.it.op.web.ui.pages.keystore.KeystoreManagement--SEARCHFIELD_KEYSTORE-I    ${symvar('Alias')}    
     Capture Page Screenshot  
     Sleep    3
     Scroll Element Into View    xpath://table[@id='__component0---com.sap.it.op.web.ui.pages.keystore.KeystoreManagement--KEYSTOREMANAGEMENT_TABLE_ID-listUl']

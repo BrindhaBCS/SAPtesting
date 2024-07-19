@@ -1,0 +1,683 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.12.1 on win32)" generated="20240719 17:10:48.990" rpa="false" schemaversion="3">
+<suite id="s1" name="Tests" source="C:\SAP_Testing\SAPtesting\Tests">
+<kw name="Setup highest level suite" type="SETUP">
+<kw name="Set Variable" library="BuiltIn">
+<var>${d.test_server}</var>
+<arg>${test_server}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240719 17:10:49.585" level="INFO">${d.test_server} = Dev</msg>
+<status status="PASS" starttime="20240719 17:10:49.585" endtime="20240719 17:10:49.585"/>
+</kw>
+<kw name="Reset screenshot count variable" library="Support">
+<kw name="Set Variable" library="BuiltIn">
+<var>${screenshotCount}</var>
+<arg>${PABOTQUEUEINDEX}_1</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240719 17:10:49.586" level="INFO">${screenshotCount} = 0_1</msg>
+<status status="PASS" starttime="20240719 17:10:49.586" endtime="20240719 17:10:49.586"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${screenshotCount}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240719 17:10:49.587" level="INFO">${screenshotCount} = 0_1</msg>
+<status status="PASS" starttime="20240719 17:10:49.586" endtime="20240719 17:10:49.587"/>
+</kw>
+<kw name="Set up screenshot directory" library="Support">
+<kw name="Create Directory" library="OperatingSystem">
+<arg>${OUTPUTDIR}${/}${wvar('screenshot_dir')}</arg>
+<doc>Creates the specified directory.</doc>
+<msg timestamp="20240719 17:10:49.588" level="INFO">Web.Dev.screenshot_dir: Screenshot</msg>
+<msg timestamp="20240719 17:10:49.593" level="INFO" html="true">Created directory '&lt;a href="file://C:\SAP_Testing\SAPtesting\Output\pabot_results\0\Screenshot"&gt;C:\SAP_Testing\SAPtesting\Output\pabot_results\0\Screenshot&lt;/a&gt;'.</msg>
+<status status="PASS" starttime="20240719 17:10:49.587" endtime="20240719 17:10:49.593"/>
+</kw>
+<status status="PASS" starttime="20240719 17:10:49.587" endtime="20240719 17:10:49.594"/>
+</kw>
+<status status="PASS" starttime="20240719 17:10:49.586" endtime="20240719 17:10:49.594"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${screenshot_taking}</arg>
+<arg>${True}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240719 17:10:49.594" level="INFO">${screenshot_taking} = True</msg>
+<status status="PASS" starttime="20240719 17:10:49.594" endtime="20240719 17:10:49.595"/>
+</kw>
+<kw name="Setup linux execution" library="Support">
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${web_test_check}</var>
+<arg>Variable Should Exist</arg>
+<arg>${web_test}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Variable Should Exist" library="BuiltIn">
+<arg>${web_test}</arg>
+<doc>Fails unless the given variable exists within the current scope.</doc>
+<status status="PASS" starttime="20240719 17:10:49.595" endtime="20240719 17:10:49.596"/>
+</kw>
+<msg timestamp="20240719 17:10:49.596" level="INFO">${web_test_check} = True</msg>
+<status status="PASS" starttime="20240719 17:10:49.595" endtime="20240719 17:10:49.596"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>${web_test_check}</arg>
+<arg>Setup Docker Execution Options</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<kw name="Setup Docker Execution Options" library="Support_Web">
+<kw name="Setup Suite Metadata" library="Support_Web">
+<arg>${browser}</arg>
+<kw name="Get Browser Metadata" library="BrowserSupport">
+<var>&amp;{browser_information}</var>
+<arg>browser=${browser}</arg>
+<doc>Fetches browser metadata information
+:param browser: Name of the browser for which information is fetched
+:param reload: Re-read the metadata based on the browser
+:return: Browser metadata information, dict of format
+            {"browser_version": browser version value,
+             "driver_version": driver version value}</doc>
+<msg timestamp="20240719 17:10:52.736" level="INFO">&amp;{browser_information} = { browser_version=126.0.6478.128 | driver_version=126.0.6478.182  }</msg>
+<status status="PASS" starttime="20240719 17:10:49.597" endtime="20240719 17:10:52.736"/>
+</kw>
+<kw name="Set Suite Metadata" library="BuiltIn">
+<arg>test_browser_name</arg>
+<arg>${browser}</arg>
+<doc>Sets metadata for the current test suite.</doc>
+<msg timestamp="20240719 17:10:52.736" level="INFO">Set suite metadata 'test_browser_name' to value 'chrome'.</msg>
+<status status="PASS" starttime="20240719 17:10:52.736" endtime="20240719 17:10:52.736"/>
+</kw>
+<kw name="Set Suite Metadata" library="BuiltIn">
+<arg>test_browser_version</arg>
+<arg>${browser_information.browser_version}</arg>
+<doc>Sets metadata for the current test suite.</doc>
+<msg timestamp="20240719 17:10:52.736" level="INFO">Set suite metadata 'test_browser_version' to value '126.0.6478.128'.</msg>
+<status status="PASS" starttime="20240719 17:10:52.736" endtime="20240719 17:10:52.736"/>
+</kw>
+<kw name="Set Suite Metadata" library="BuiltIn">
+<arg>test_driver_version</arg>
+<arg>${browser_information.driver_version}</arg>
+<doc>Sets metadata for the current test suite.</doc>
+<msg timestamp="20240719 17:10:52.736" level="INFO">Set suite metadata 'test_driver_version' to value '126.0.6478.182 '.</msg>
+<status status="PASS" starttime="20240719 17:10:52.736" endtime="20240719 17:10:52.736"/>
+</kw>
+<status status="PASS" starttime="20240719 17:10:49.597" endtime="20240719 17:10:52.736"/>
+</kw>
+<kw name="Setup Global Docker Execution Options" library="Support_Web">
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${global_browser_options}</arg>
+<arg>None</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240719 17:10:52.736" level="INFO">${global_browser_options} = None</msg>
+<status status="PASS" starttime="20240719 17:10:52.736" endtime="20240719 17:10:52.736"/>
+</kw>
+<kw name="Get Environment Variable" library="OperatingSystem">
+<var>${docker_check}</var>
+<arg>EXECUTION_ENVIRONMENT</arg>
+<arg>not_found</arg>
+<doc>Returns the value of an environment variable with the given name.</doc>
+<msg timestamp="20240719 17:10:52.736" level="INFO">${docker_check} = not_found</msg>
+<status status="PASS" starttime="20240719 17:10:52.736" endtime="20240719 17:10:52.736"/>
+</kw>
+<kw name="Run Keyword And Return If" library="BuiltIn">
+<arg>"${docker_check}"!="docker"</arg>
+<arg>Log</arg>
+<arg>Not executing on Docker</arg>
+<doc>Runs the specified keyword and returns from the enclosing user keyword.</doc>
+<kw name="Log" library="BuiltIn">
+<arg>Not executing on Docker</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240719 17:10:52.736" level="INFO">Not executing on Docker</msg>
+<status status="PASS" starttime="20240719 17:10:52.736" endtime="20240719 17:10:52.736"/>
+</kw>
+<msg timestamp="20240719 17:10:52.736" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20240719 17:10:52.736" endtime="20240719 17:10:52.736"/>
+</kw>
+<kw name="Create List" library="BuiltIn">
+<var>@{options}</var>
+<arg>--headless</arg>
+<arg>--no-sandbox</arg>
+<arg>--disable-dev-shm-usage</arg>
+<doc>Returns a list containing given items.</doc>
+<status status="NOT RUN" starttime="20240719 17:10:52.736" endtime="20240719 17:10:52.736"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>@{docker_options}</arg>
+<arg>@{options}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="NOT RUN" starttime="20240719 17:10:52.736" endtime="20240719 17:10:52.736"/>
+</kw>
+<status status="PASS" starttime="20240719 17:10:52.736" endtime="20240719 17:10:52.736"/>
+</kw>
+<kw name="Create Webdriver for chrome preferences" library="Support_Web">
+<kw name="Update Docker Execution Options" library="Support_Web">
+<var>${list_prefs}</var>
+<arg>${list_prefs}</arg>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${docker_check}</var>
+<arg>Variable Should Exist</arg>
+<arg>${docker_options}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Variable Should Exist" library="BuiltIn">
+<arg>${docker_options}</arg>
+<doc>Fails unless the given variable exists within the current scope.</doc>
+<msg timestamp="20240719 17:10:52.736" level="FAIL">Variable '${docker_options}' does not exist.</msg>
+<status status="FAIL" starttime="20240719 17:10:52.736" endtime="20240719 17:10:52.736"/>
+</kw>
+<msg timestamp="20240719 17:10:52.736" level="INFO">${docker_check} = False</msg>
+<status status="PASS" starttime="20240719 17:10:52.736" endtime="20240719 17:10:52.736"/>
+</kw>
+<kw name="Get Length" library="BuiltIn">
+<var>${list_prefs_length}</var>
+<arg>${list_prefs}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<msg timestamp="20240719 17:10:52.736" level="INFO">Length is 1</msg>
+<msg timestamp="20240719 17:10:52.736" level="INFO">${list_prefs_length} = 1</msg>
+<status status="PASS" starttime="20240719 17:10:52.736" endtime="20240719 17:10:52.736"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<var>${list_prefs}</var>
+<arg>${docker_check} and ${list_prefs_length}&gt;0 and ${list_prefs}[0] != []</arg>
+<arg>Combine Lists</arg>
+<arg>${list_prefs}</arg>
+<arg>${docker_options}</arg>
+<arg>ELSE IF</arg>
+<arg>${docker_check}</arg>
+<arg>Set Variable</arg>
+<arg>${docker_options}</arg>
+<arg>ELSE</arg>
+<arg>Set Variable</arg>
+<arg>${list_prefs}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<kw name="Set Variable" library="BuiltIn">
+<arg>${list_prefs}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" starttime="20240719 17:10:52.736" endtime="20240719 17:10:52.736"/>
+</kw>
+<msg timestamp="20240719 17:10:52.736" level="INFO">${list_prefs} = [[]]</msg>
+<status status="PASS" starttime="20240719 17:10:52.736" endtime="20240719 17:10:52.736"/>
+</kw>
+<msg timestamp="20240719 17:10:52.736" level="INFO">${list_prefs} = [[]]</msg>
+<status status="PASS" starttime="20240719 17:10:52.736" endtime="20240719 17:10:52.736"/>
+</kw>
+<kw name="Create Chrome Options for download preferences" library="Support_Web">
+<var>${chrome_options}</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${chrome_options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20240719 17:10:52.736" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001F7FF3D35F0&gt;</msg>
+<status status="PASS" starttime="20240719 17:10:52.736" endtime="20240719 17:10:52.736"/>
+</kw>
+<msg timestamp="20240719 17:10:52.736" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001F7FF3D35F0&gt;</msg>
+<status status="PASS" starttime="20240719 17:10:52.736" endtime="20240719 17:10:52.736"/>
+</kw>
+<kw name="Update Preferences List" library="Support_Web">
+<arg>${chrome_options}</arg>
+<arg>@{list_prefs}</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string_prefs}</var>
+<arg>${list_prefs}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20240719 17:10:52.736" level="INFO">${string_prefs} = [[]]</msg>
+<status status="PASS" starttime="20240719 17:10:52.736" endtime="20240719 17:10:52.736"/>
+</kw>
+<kw name="Return From Keyword If" library="BuiltIn">
+<arg>${string_prefs} == [[]]</arg>
+<doc>Returns from the enclosing user keyword if ``condition`` is true.</doc>
+<msg timestamp="20240719 17:10:52.736" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20240719 17:10:52.736" endtime="20240719 17:10:52.736"/>
+</kw>
+<for flavor="IN">
+<var>${preference}</var>
+<value>@{list_prefs}</value>
+<iter>
+<var name="${preference}"/>
+<kw name="Call Method" library="BuiltIn">
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>${preference}</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="NOT RUN" starttime="20240719 17:10:52.736" endtime="20240719 17:10:52.736"/>
+</kw>
+<status status="NOT RUN" starttime="20240719 17:10:52.736" endtime="20240719 17:10:52.736"/>
+</iter>
+<status status="NOT RUN" starttime="20240719 17:10:52.736" endtime="20240719 17:10:52.736"/>
+</for>
+<status status="PASS" starttime="20240719 17:10:52.736" endtime="20240719 17:10:52.736"/>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<arg>${chrome_options}</arg>
+<arg>add_experimental_option</arg>
+<arg>prefs</arg>
+<arg>${kw_prefs}</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20240719 17:10:52.736" endtime="20240719 17:10:52.736"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${global_browser_options}</arg>
+<arg>${chrome options}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240719 17:10:52.736" level="INFO">${global_browser_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001F7FF3D35F0&gt;</msg>
+<status status="PASS" starttime="20240719 17:10:52.736" endtime="20240719 17:10:52.736"/>
+</kw>
+<status status="PASS" starttime="20240719 17:10:52.736" endtime="20240719 17:10:52.736"/>
+</kw>
+<status status="PASS" starttime="20240719 17:10:49.596" endtime="20240719 17:10:52.736"/>
+</kw>
+<status status="PASS" starttime="20240719 17:10:49.596" endtime="20240719 17:10:52.736"/>
+</kw>
+<status status="PASS" starttime="20240719 17:10:49.595" endtime="20240719 17:10:52.736"/>
+</kw>
+<kw name="Set Suite Metadata" library="BuiltIn">
+<arg>environment</arg>
+<arg>${test_server}</arg>
+<doc>Sets metadata for the current test suite.</doc>
+<msg timestamp="20240719 17:10:52.736" level="INFO">Set suite metadata 'environment' to value 'Dev'.</msg>
+<status status="PASS" starttime="20240719 17:10:52.736" endtime="20240719 17:10:52.736"/>
+</kw>
+<status status="PASS" starttime="20240719 17:10:49.584" endtime="20240719 17:10:52.736"/>
+</kw>
+<suite id="s1-s1" name="Test Certificate upload" source="C:\SAP_Testing\SAPtesting\Tests\Test_Certificate_upload.robot">
+<kw name="Browser Login" library="Certificate_upload" type="SETUP">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${symvar('CPI_URL')}</arg>
+<arg>${symvar('browsertype')}</arg>
+<arg>options=add_argument("--ignore-certificate-errors")</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20240719 17:10:52.752" level="INFO">Sym.Dev.CPI_URL: https://070d8411trial.integrationsuite-trial.cfapps.ap21.hana.ondemand.com/shell/monitoring/Keystore</msg>
+<msg timestamp="20240719 17:10:52.752" level="INFO">Sym.Dev.browsertype: chrome</msg>
+<msg timestamp="20240719 17:10:52.752" level="INFO">Opening browser 'chrome' to base url 'https://070d8411trial.integrationsuite-trial.cfapps.ap21.hana.ondemand.com/shell/monitoring/Keystore'.</msg>
+<status status="PASS" starttime="20240719 17:10:52.752" endtime="20240719 17:10:57.140"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20240719 17:10:57.140" endtime="20240719 17:10:57.171"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240719 17:11:02.171" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240719 17:10:57.171" endtime="20240719 17:11:02.171"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id:j_username</arg>
+<arg>${symvar('username')}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240719 17:11:02.172" level="INFO">Sym.Dev.username: arif.shaikh@basiscloudsolutions.com</msg>
+<msg timestamp="20240719 17:11:02.172" level="INFO">Typing text 'arif.shaikh@basiscloudsolutions.com' into text field 'id:j_username'.</msg>
+<status status="PASS" starttime="20240719 17:11:02.171" endtime="20240719 17:11:02.257"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240719 17:11:04.259" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240719 17:11:02.257" endtime="20240719 17:11:04.259"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://*[@id="logOnFormSubmit"]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240719 17:11:04.260" level="INFO">Clicking element 'xpath://*[@id="logOnFormSubmit"]'.</msg>
+<status status="PASS" starttime="20240719 17:11:04.259" endtime="20240719 17:11:04.649"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>20</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240719 17:11:24.650" level="INFO">Slept 20 seconds</msg>
+<status status="PASS" starttime="20240719 17:11:04.649" endtime="20240719 17:11:24.650"/>
+</kw>
+<kw name="Scroll Element Into View" library="SeleniumLibrary">
+<arg>xpath://*[@id="password"]</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" starttime="20240719 17:11:24.650" endtime="20240719 17:11:24.936"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240719 17:11:26.937" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240719 17:11:24.936" endtime="20240719 17:11:26.937"/>
+</kw>
+<kw name="Input Password" library="SeleniumLibrary">
+<arg>xpath://*[@id="password"]</arg>
+<arg>%{password}</arg>
+<doc>Types the given password into the text field identified by ``locator``.</doc>
+<msg timestamp="20240719 17:11:26.938" level="INFO">Typing password into text field 'xpath://*[@id="password"]'.</msg>
+<msg timestamp="20240719 17:11:26.964" level="INFO">Temporally setting log level to: NONE</msg>
+<msg timestamp="20240719 17:11:27.023" level="INFO">Log level changed from NONE to INFO.</msg>
+<status status="PASS" starttime="20240719 17:11:26.937" endtime="20240719 17:11:27.024"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240719 17:11:29.024" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240719 17:11:27.024" endtime="20240719 17:11:29.024"/>
+</kw>
+<kw name="Scroll Element Into View" library="SeleniumLibrary">
+<arg>xpath://button[@class='uid-login-as__submit-button test-button ds-button ds-button--primary' and text()='Sign in']</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" starttime="20240719 17:11:29.024" endtime="20240719 17:11:29.303"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240719 17:11:31.304" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240719 17:11:29.303" endtime="20240719 17:11:31.304"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://button[@class='uid-login-as__submit-button test-button ds-button ds-button--primary' and text()='Sign in']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240719 17:11:31.305" level="INFO">Clicking element 'xpath://button[@class='uid-login-as__submit-button test-button ds-button ds-button--primary' and text()='Sign in']'.</msg>
+<status status="PASS" starttime="20240719 17:11:31.304" endtime="20240719 17:11:31.350"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>20</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240719 17:11:51.351" level="INFO">Slept 20 seconds</msg>
+<status status="PASS" starttime="20240719 17:11:31.350" endtime="20240719 17:11:51.351"/>
+</kw>
+<kw name="Get Location" library="SeleniumLibrary">
+<var>${Title}</var>
+<doc>Returns the current browser window URL.</doc>
+<msg timestamp="20240719 17:12:08.319" level="INFO">${Title} = https://070d8411trial.integrationsuite-trial.cfapps.ap21.hana.ondemand.com/shell/monitoring/Keystore</msg>
+<status status="PASS" starttime="20240719 17:11:51.351" endtime="20240719 17:12:08.319"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${Title}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240719 17:12:08.319" level="INFO">${Title} = https://070d8411trial.integrationsuite-trial.cfapps.ap21.hana.ondemand.com/shell/monitoring/Keystore</msg>
+<status status="PASS" starttime="20240719 17:12:08.319" endtime="20240719 17:12:08.319"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${Title}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20240719 17:12:08.319" endtime="20240719 17:12:08.319"/>
+</kw>
+<status status="PASS" starttime="20240719 17:10:52.752" endtime="20240719 17:12:08.319"/>
+</kw>
+<test id="s1-s1-t1" name="Certificate_upload" line="8">
+<kw name="Uploading Certificate into SAP" library="Certificate_upload">
+<if>
+<msg timestamp="20240719 17:12:08.324" level="INFO">Sym.Dev.CPI_URL1: https://070d8411trial.integrationsuite-trial.cfapps.ap21.hana.ondemand.com/shell/monitoring/Overview</msg>
+<branch type="IF" condition="'${Title}' == '${symvar('CPI_URL1')}'">
+<kw name="Window_Handling" library="Certificate_upload">
+<status status="NOT RUN" starttime="20240719 17:12:08.324" endtime="20240719 17:12:08.324"/>
+</kw>
+<status status="NOT RUN" starttime="20240719 17:12:08.319" endtime="20240719 17:12:08.325"/>
+</branch>
+<branch type="ELSE">
+<kw name="Upload_Certificate" library="Certificate_upload">
+<kw name="Notification Handling" library="Certificate_upload">
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240719 17:12:13.327" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240719 17:12:08.325" endtime="20240719 17:12:13.327"/>
+</kw>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${Status}</var>
+<arg>Page Should Contain Element</arg>
+<arg>id:__popover4-title-inner</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Page Should Contain Element" library="SeleniumLibrary">
+<arg>id:__popover4-title-inner</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<msg timestamp="20240719 17:12:13.327" level="INFO">Current page contains element 'id:__popover4-title-inner'.</msg>
+<status status="PASS" starttime="20240719 17:12:13.327" endtime="20240719 17:12:13.327"/>
+</kw>
+<msg timestamp="20240719 17:12:13.327" level="INFO">${Status} = True</msg>
+<status status="PASS" starttime="20240719 17:12:13.327" endtime="20240719 17:12:13.327"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>'${Status}'=='True'</arg>
+<arg>Close Notification</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<kw name="Close Notification" library="Certificate_upload">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>//span[@id='__button19-img']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240719 17:12:13.327" level="INFO">Clicking element '//span[@id='__button19-img']'.</msg>
+<status status="PASS" starttime="20240719 17:12:13.327" endtime="20240719 17:12:13.384"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20240719 17:12:13.526" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240719 17:12:13.384" endtime="20240719 17:12:13.526"/>
+</kw>
+<status status="PASS" starttime="20240719 17:12:13.327" endtime="20240719 17:12:13.526"/>
+</kw>
+<status status="PASS" starttime="20240719 17:12:13.327" endtime="20240719 17:12:13.526"/>
+</kw>
+<status status="PASS" starttime="20240719 17:12:08.325" endtime="20240719 17:12:13.526"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20240719 17:12:13.665" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-2.png"&gt;&lt;img src="selenium-screenshot-2.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240719 17:12:13.526" endtime="20240719 17:12:13.665"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>10</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240719 17:12:23.666" level="INFO">Slept 10 seconds</msg>
+<status status="PASS" starttime="20240719 17:12:13.665" endtime="20240719 17:12:23.666"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id:__component0---com.sap.it.op.web.ui.pages.keystore.KeystoreManagement--SEARCHFIELD_KEYSTORE-I</arg>
+<arg>${symvar('Alias')}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240719 17:12:23.666" level="INFO">Sym.Dev.Alias: TH5_ssl</msg>
+<msg timestamp="20240719 17:12:23.666" level="INFO">Typing text 'TH5_ssl' into text field 'id:__component0---com.sap.it.op.web.ui.pages.keystore.KeystoreManagement--SEARCHFIELD_KEYSTORE-I'.</msg>
+<status status="PASS" starttime="20240719 17:12:23.666" endtime="20240719 17:12:23.815"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20240719 17:12:23.926" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-3.png"&gt;&lt;img src="selenium-screenshot-3.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240719 17:12:23.815" endtime="20240719 17:12:23.926"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240719 17:12:26.926" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240719 17:12:23.926" endtime="20240719 17:12:26.926"/>
+</kw>
+<kw name="Scroll Element Into View" library="SeleniumLibrary">
+<arg>xpath://table[@id='__component0---com.sap.it.op.web.ui.pages.keystore.KeystoreManagement--KEYSTOREMANAGEMENT_TABLE_ID-listUl']</arg>
+<doc>Scrolls the element identified by ``locator`` into view.</doc>
+<status status="PASS" starttime="20240719 17:12:26.926" endtime="20240719 17:12:27.205"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20240719 17:12:27.296" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-4.png"&gt;&lt;img src="selenium-screenshot-4.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240719 17:12:27.205" endtime="20240719 17:12:27.296"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240719 17:12:32.296" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240719 17:12:27.296" endtime="20240719 17:12:32.296"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://button[@title='More' and contains(@class, 'sapMBtn')]</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240719 17:12:32.297" level="INFO">Clicking element 'xpath://button[@title='More' and contains(@class, 'sapMBtn')]'.</msg>
+<status status="PASS" starttime="20240719 17:12:32.296" endtime="20240719 17:12:33.097"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20240719 17:12:33.233" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-5.png"&gt;&lt;img src="selenium-screenshot-5.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240719 17:12:33.097" endtime="20240719 17:12:33.233"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240719 17:12:38.233" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240719 17:12:33.233" endtime="20240719 17:12:38.233"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://bdi[text()='Update']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240719 17:12:38.233" level="INFO">Clicking element 'xpath://bdi[text()='Update']'.</msg>
+<status status="PASS" starttime="20240719 17:12:38.233" endtime="20240719 17:12:38.574"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20240719 17:12:38.750" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-6.png"&gt;&lt;img src="selenium-screenshot-6.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240719 17:12:38.574" endtime="20240719 17:12:38.752"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240719 17:12:43.752" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240719 17:12:38.752" endtime="20240719 17:12:43.752"/>
+</kw>
+<kw name="Choose File" library="SeleniumLibrary">
+<arg>id:CertificateUploadDialog-FileSelectionEntry-fu</arg>
+<arg>${file_path}</arg>
+<doc>Inputs the ``file_path`` into the file input field ``locator``.</doc>
+<msg timestamp="20240719 17:12:43.752" level="INFO">Sending C:\SAP_Testing\SAPtesting\Tests\Resource\SID_CERT.crt to browser.</msg>
+<status status="PASS" starttime="20240719 17:12:43.752" endtime="20240719 17:12:43.831"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240719 17:12:48.831" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240719 17:12:43.831" endtime="20240719 17:12:48.831"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20240719 17:12:48.925" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-7.png"&gt;&lt;img src="selenium-screenshot-7.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240719 17:12:48.831" endtime="20240719 17:12:48.925"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240719 17:12:51.925" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240719 17:12:48.925" endtime="20240719 17:12:51.925"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id:CertificateUploadDialog-FileSelectionEntry-fu</arg>
+<arg>${file_path}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240719 17:12:51.925" level="INFO">Typing text 'C:\SAP_Testing\SAPtesting\Tests\Resource\SID_CERT.crt' into text field 'id:CertificateUploadDialog-FileSelectionEntry-fu'.</msg>
+<status status="PASS" starttime="20240719 17:12:51.925" endtime="20240719 17:12:52.002"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20240719 17:12:52.114" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-8.png"&gt;&lt;img src="selenium-screenshot-8.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240719 17:12:52.002" endtime="20240719 17:12:52.114"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240719 17:12:55.115" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240719 17:12:52.114" endtime="20240719 17:12:55.115"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>id:btnUpdate-BDI-content</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240719 17:12:55.115" level="INFO">Clicking element 'id:btnUpdate-BDI-content'.</msg>
+<status status="PASS" starttime="20240719 17:12:55.115" endtime="20240719 17:12:55.170"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240719 17:12:57.170" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240719 17:12:55.170" endtime="20240719 17:12:57.170"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20240719 17:12:57.277" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-9.png"&gt;&lt;img src="selenium-screenshot-9.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240719 17:12:57.170" endtime="20240719 17:12:57.277"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240719 17:13:02.277" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240719 17:12:57.277" endtime="20240719 17:13:02.277"/>
+</kw>
+<kw name="Confirm certificate" library="Certificate_upload">
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${Window}</var>
+<arg>Page Should Contain Element</arg>
+<arg>id:__mbox0-title-inner</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Page Should Contain Element" library="SeleniumLibrary">
+<arg>id:__mbox0-title-inner</arg>
+<doc>Verifies that element ``locator`` is found on the current page.</doc>
+<msg timestamp="20240719 17:13:02.283" level="INFO">Current page contains element 'id:__mbox0-title-inner'.</msg>
+<status status="PASS" starttime="20240719 17:13:02.277" endtime="20240719 17:13:02.283"/>
+</kw>
+<msg timestamp="20240719 17:13:02.283" level="INFO">${Window} = True</msg>
+<status status="PASS" starttime="20240719 17:13:02.277" endtime="20240719 17:13:02.283"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20240719 17:13:02.395" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-10.png"&gt;&lt;img src="selenium-screenshot-10.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240719 17:13:02.283" endtime="20240719 17:13:02.395"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>'${Window}'=='True'</arg>
+<arg>Confirm Notification</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<kw name="Confirm Notification" library="Certificate_upload">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://bdi[text()='Confirm']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240719 17:13:02.395" level="INFO">Clicking element 'xpath://bdi[text()='Confirm']'.</msg>
+<status status="PASS" starttime="20240719 17:13:02.395" endtime="20240719 17:13:02.445"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20240719 17:13:02.637" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-11.png"&gt;&lt;img src="selenium-screenshot-11.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240719 17:13:02.446" endtime="20240719 17:13:02.637"/>
+</kw>
+<status status="PASS" starttime="20240719 17:13:02.395" endtime="20240719 17:13:02.638"/>
+</kw>
+<status status="PASS" starttime="20240719 17:13:02.395" endtime="20240719 17:13:02.638"/>
+</kw>
+<status status="PASS" starttime="20240719 17:13:02.277" endtime="20240719 17:13:02.638"/>
+</kw>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20240719 17:13:02.734" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-12.png"&gt;&lt;img src="selenium-screenshot-12.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240719 17:13:02.638" endtime="20240719 17:13:02.734"/>
+</kw>
+<status status="PASS" starttime="20240719 17:12:08.325" endtime="20240719 17:13:02.734"/>
+</kw>
+<status status="PASS" starttime="20240719 17:12:08.325" endtime="20240719 17:13:02.734"/>
+</branch>
+<status status="PASS" starttime="20240719 17:12:08.319" endtime="20240719 17:13:02.734"/>
+</if>
+<status status="PASS" starttime="20240719 17:12:08.319" endtime="20240719 17:13:02.734"/>
+</kw>
+<tag>cert_upload</tag>
+<status status="PASS" starttime="20240719 17:12:08.319" endtime="20240719 17:13:02.734"/>
+</test>
+<kw name="Browser Logout" library="Certificate_upload" type="TEARDOWN">
+<kw name="Close All Browsers" library="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20240719 17:13:02.754" endtime="20240719 17:13:07.094"/>
+</kw>
+<status status="PASS" starttime="20240719 17:13:02.754" endtime="20240719 17:13:07.094"/>
+</kw>
+<status status="PASS" starttime="20240719 17:10:52.736" endtime="20240719 17:13:07.094"/>
+</suite>
+<doc>Testing functionality through Robot Framework</doc>
+<meta name="environment">Dev</meta>
+<meta name="test_browser_name">chrome</meta>
+<meta name="test_browser_version">126.0.6478.128</meta>
+<meta name="test_driver_version">126.0.6478.182 </meta>
+<meta name="test_environment">Dev</meta>
+<meta name="test_freeze_dependencies">astroid==3.1.0,attrs==23.2.0,beautifulsoup4==4.12.3,bs4==0.0.2,certifi==2024.2.2,cffi==1.16.0,chardet==5.2.0,charset-normalizer==3.3.2,click==8.1.7,colorama==0.4.6,cryptography==42.0.5,defusedxml==0.7.1,dill==0.3.8,docutils==0.20.1,docx==0.2.4,docx2pdf==0.1.8,et-xmlfile==1.1.0,exceptiongroup==1.2.0,fsspec==2024.5.0,gitdb==4.0.11,GitPython==3.1.42,h11==0.14.0,idna==3.6,isort==5.13.2,Jinja2==3.1.3,jira==3.6.0,jsonpath-ng==1.6.1,jsonschema==4.21.1,jsonschema-specifications==2023.12.1,lazy-object-proxy==1.10.0,lxml==5.1.0,markdown-it-py==3.0.0,MarkupSafe==2.1.5,mccabe==0.7.0,mdurl==0.1.2,natsort==8.4.0,numpy==1.26.4,oauthlib==3.2.2,openpyxl==3.1.2,outcome==1.3.0.post0,packaging==24.0,pandas==2.2.2,pathspec==0.11.2,pillow==10.2.0,pip==24.0,platformdirs==4.2.0,ply==3.11,pycparser==2.21,Pygments==2.17.2,pylint==3.1.0,PyPDF2==3.0.1,PySocks==1.7.1,python-dateutil==2.9.0.post0,python-docx==1.1.2,pytz==2024.1,pywin32==306,PyYAML==6.0.1,referencing==0.33.0,reportlab==4.2.0,requests==2.31.0,requests-oauthlib==1.4.0,requests-toolbelt==1.0.0,rich==13.7.1,rich-click==1.6.1,robotframework==6.0.2,robotframework-datadriver==1.9.0,robotframework-jsonlibrary==0.5,robotframework-pabot==2.16.0,robotframework-pythonlibcore==4.2.0,robotframework-requests==0.9.2,robotframework-sapguilibrary==1.1,robotframework-seleniumlibrary==5.1.3,robotframework-stacktrace==0.4.1,robotframework-tidy==4.5.0,rpds-py==0.18.0,selenium==4.9.1,setuptools==69.2.0,six==1.16.0,smmap==5.0.1,sniffio==1.3.1,sortedcontainers==2.4.0,soupsieve==2.5,tomli==2.0.1,tomlkit==0.12.4,tqdm==4.66.4,trio==0.24.0,trio-websocket==0.11.1,typing_extensions==4.10.0,tzdata==2024.1,urllib3==2.2.1,wheel==0.43.0,wrapt==1.16.0,wsproto==1.2.0</meta>
+<status status="PASS" starttime="20240719 17:10:49.268" endtime="20240719 17:13:07.340"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">cert_upload</stat>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Tests">Tests</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="Test Certificate upload">Tests.Test Certificate upload</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
