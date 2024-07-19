@@ -1,5 +1,0 @@
-sap_user = ${user}
-sap_client = ${client}
-connection = ${connection}
-filepath = ${filepath}
-filename = ${filename}
