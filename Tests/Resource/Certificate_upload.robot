@@ -69,10 +69,6 @@ Upload_Certificate
     Click Element    xpath://button[@title='More' and contains(@class, 'sapMBtn')]
 
 
-
-
-
-
     Capture Page Screenshot  
     Sleep    5
     Click Element    xpath://bdi[text()='Update']
