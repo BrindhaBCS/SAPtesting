@@ -9,9 +9,12 @@ System Logon
     Start Process     ${symvar('SAP_SERVER')}    
     Sleep    10s
     Connect To Session
-    Open Connection    ${symvar('connection')}    
+    Open Connection    ${symvar('connection')}
+    Sleep    2    
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('sap_client')}
+    Sleep    2
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('sap_user')}
+    Sleep    2
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('sap_pass')}      
     Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
     Send Vkey    0
@@ -21,16 +24,16 @@ System Logon
 System Logout
     Run Transaction   /nex
     Sleep    2
-   
-pending payments
-    Run Transaction     /nfbl5n
+
+Cleared Payments
+    Run Transaction     /nfbl1n
     Sleep   4
-    Click Element   wnd[0]/tbar[1]/btn[17]
+    Input Text      wnd[0]/usr/ctxtKD_LIFNR-LOW     ${symvar('customer_no')}
     Sleep   2
-    Input Text      wnd[1]/usr/txtV-LOW     bpm-demo
-    Sleep   2
-    Click Element   wnd[1]/tbar[0]/btn[8]
-    Sleep   2
+    Input Text    wnd[0]/usr/ctxtKD_BUKRS-LOW    ${symvar('company_code')}
+    Sleep    2
+    Select Radio Button    wnd[0]/usr/radX_CLSEL
+    Sleep    2
     Click Element   wnd[0]/tbar[1]/btn[8]
     Sleep   2
     Click Element   wnd[0]/mbar/menu[0]/menu[3]/menu[1]
