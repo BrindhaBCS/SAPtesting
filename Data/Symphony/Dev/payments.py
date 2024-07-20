@@ -6,8 +6,8 @@
 # filename = "payments.xlsx"
 
 SAP_SERVER = "$SAP_SERVER"
-sap_user = "$user"
-sap_client = "$client"
+sap_user = "$sap_user"
+sap_client = "$sap_client"
 connection = "$connection"
 filepath = "$filepath"
 filename = "$filename"
