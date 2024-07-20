@@ -13,5 +13,6 @@ from .Certificate import *
 # from .payments import *
 # from .Tag import *
 from .closing_payment import *
+from .Vendor_invoice import *
 
 
