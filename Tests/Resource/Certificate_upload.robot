@@ -51,7 +51,7 @@ Notification Handling
 Upload_Certificate
     Notification Handling
     Capture Page Screenshot
-    Sleep    10
+    Sleep    20
     # Press Keys    xpath://bdi[normalize-space()='Add']    ENTER
     # Capture Page Screenshot
     # Sleep    2
@@ -59,15 +59,17 @@ Upload_Certificate
     # Capture Page Screenshot
     # Sleep    2
 
-    Input Text    xpath://input[@id='__component0---com.sap.it.op.web.ui.pages.keystore.KeystoreManagement--SEARCHFIELD_KEYSTORE-I']    ${symvar('Alias')}
+    # Input Text    xpath://input[@id='__component0---com.sap.it.op.web.ui.pages.keystore.KeystoreManagement--SEARCHFIELD_KEYSTORE-I']    ${symvar('Alias')}
+    Input Text    id:__component0---com.sap.it.op.web.ui.pages.keystore.KeystoreManagement--SEARCHFIELD_KEYSTORE-I    ${symvar('Alias')}    
     Capture Page Screenshot  
     Sleep    3
+    Notification Handling
+    Sleep    2
     Scroll Element Into View    xpath://table[@id='__component0---com.sap.it.op.web.ui.pages.keystore.KeystoreManagement--KEYSTOREMANAGEMENT_TABLE_ID-listUl']
     Capture Page Screenshot  
     Sleep    5
     # Click Element    xpath://button[@aria-label='More' and @title='More' and contains(@class, 'sapMBtn')]
     Click Element    xpath://button[@title='More' and contains(@class, 'sapMBtn')]
-
 
 
     Capture Page Screenshot  
@@ -93,9 +95,13 @@ Confirm certificate
     ${Window}=     Run Keyword And Return Status   Page Should Contain Element    id:__mbox0-title-inner 
     Capture Page Screenshot   
     Run Keyword If    '${Window}'=='True'    Confirm Notification 
+    Sleep    5
+    Capture Page Screenshot
     
 Confirm Notification
     Click Element       xpath://bdi[text()='Confirm']
+    Capture Page Screenshot
+    Sleep    5
     Capture Page Screenshot
     
 Uploading Certificate into SAP
