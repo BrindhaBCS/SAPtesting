@@ -52,4 +52,4 @@ Customer payments
     Click Element    wnd[0]/tbar[0]/btn[11]
     Sleep    4
     ${output}   Get Value    wnd[0]/sbar/pane[0]
-    Log To Console      ${output}
+    Log To Console      **gbStart**copilot_status**splitKeyValue**${output}**gbEnd**
