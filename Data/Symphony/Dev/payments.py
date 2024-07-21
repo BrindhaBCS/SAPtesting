@@ -2,6 +2,7 @@
 # sap_user = "BCSADMIN"
 # sap_client = "800"
 # connection = "BPM"
+# company_code = "BCS1"
 # filepath = "C:\\tmp"
 # filename = "payments.xlsx"
 
