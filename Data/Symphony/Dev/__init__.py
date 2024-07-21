@@ -6,13 +6,13 @@
 from .Data import *
 from .urls import *
 from .xpaths import *
-from .Variable import *
-from .invoice import *
-from .SM02 import *
-from .Certificate import *
+# from .Variable import *
+# from .invoice import *
+# from .SM02 import *
+# from .Certificate import *
 from .payments import *
 # from .Tag import *
-from .closing_payment import *
-from .Vendor_invoice import *
+# from .closing_payment import *
+# from .Vendor_invoice import *
 
 

@@ -33,4 +33,4 @@ Vendor Open Items
     Click Element   wnd[0]/tbar[1]/btn[8]
     Sleep   4
     ${Open_Items}    Get Open Items    wnd[0]/sbar/pane[0]
-    Log To Console    **gbStart**copilot_open_items**splitKeyValue**${Open_Items}**gbEnd**
+    Log To Console    **gbStart**copilot_open_items**splitKeyValue**Number of open items in company code ${symvar('company_code')} is ${Open_Items}**gbEnd**
