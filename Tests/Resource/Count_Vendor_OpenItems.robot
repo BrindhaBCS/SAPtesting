@@ -7,7 +7,7 @@ Library    String
 *** Keywords ***
 System Logon
     Start Process     ${symvar('SAP_SERVER')}    
-    Sleep    5
+    # Sleep    5
     Connect To Session
     Open Connection    ${symvar('connection')}
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('sap_client')}
@@ -17,7 +17,7 @@ System Logon
     Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
-    Sleep   2
+    # Sleep   2
    
 System Logout
     Run Transaction   /nex
@@ -25,10 +25,10 @@ System Logout
    
 Vendor Open Items
     Run Transaction     /nfbl1n
-    Sleep   2
+    # Sleep   2
     Input Text    wnd[0]/usr/ctxtKD_BUKRS-LOW    ${symvar('company_code')}
     # Sleep    2
     Click Element   wnd[0]/tbar[1]/btn[8]
-    Sleep   2
+    # Sleep   2
     ${Open_Items}    Get Open Items    wnd[0]/sbar/pane[0]
     Log To Console    **gbStart**copilot_open_items**splitKeyValue**Number of open items in company code ${symvar('company_code')} is ${Open_Items}**gbEnd**
