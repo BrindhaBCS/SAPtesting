@@ -10,9 +10,7 @@ System Logon
     Sleep    10s
     Connect To Session
     Open Connection    ${symvar('connection')}
-    Sleep    2    
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('sap_client')}
-    Sleep    2
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('sap_user')}
     Sleep    2
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('sap_pass')}      
@@ -23,14 +21,14 @@ System Logon
    
 System Logout
     Run Transaction   /nex
-    Sleep    2
+    # Sleep    2
    
 Vendor Open Items
     Run Transaction     /nfbl1n
     Sleep   4
     Input Text    wnd[0]/usr/ctxtKD_BUKRS-LOW    ${symvar('company_code')}
-    Sleep    2
+    # Sleep    2
     Click Element   wnd[0]/tbar[1]/btn[8]
-    Sleep   4
+    Sleep   2
     ${Open_Items}    Get Open Items    wnd[0]/sbar/pane[0]
     Log To Console    **gbStart**copilot_open_items**splitKeyValue**Number of open items in company code ${symvar('company_code')} is ${Open_Items}**gbEnd**
