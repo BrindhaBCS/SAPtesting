@@ -7,7 +7,7 @@ Library    String
 *** Keywords ***
 System Logon
     Start Process     ${symvar('SAP_SERVER')}    
-    Sleep    5
+    # Sleep    5
     Connect To Session
     Open Connection    ${symvar('connection')}
     # Sleep    2    
@@ -19,14 +19,14 @@ System Logon
     Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
-    Sleep   5
+    # Sleep   5
    
 System Logout
     Run Transaction   /nex
    
 pending payments
     Run Transaction     /nfbl1n
-    Sleep   2
+    # Sleep   2
     Input Text      wnd[0]/usr/ctxtKD_LIFNR-LOW     ${symvar('customer_no')}
     # Sleep   2
     Input Text    wnd[0]/usr/ctxtKD_BUKRS-LOW    ${symvar('company_code')}
