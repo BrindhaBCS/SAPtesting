@@ -50,7 +50,7 @@ Vendor payments
     Click Element    wnd[0]/tbar[1]/btn[16]
     # Sleep    2
     Input Text    wnd[0]/usr/sub:SAPMF05A:0731/txtRF05A-SEL01[0,0]    ${symvar('document_no')}
-    # Sleep    2
+    Sleep    2
     Click Element    wnd[0]/tbar[1]/btn[16]
     # Sleep    2
     Click Element    wnd[0]/tbar[0]/btn[11]
