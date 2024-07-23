@@ -14,3 +14,13 @@ connection = "$connection"
 # filename = "$filename"
 customer_no = "$customer_no"
 company_code = "$company_code"
+
+
+text = "$text"
+account = "$account"
+invoice_date = "$invoice_date"
+amount = "$amount"
+
+document_no = "$document_no"
+
+currency_key = "$currency_key"
