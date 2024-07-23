@@ -28,9 +28,9 @@ System Logout
    
 Vendor payments
     Run Transaction     /nf-53
-    # Sleep   2
+    Sleep   4
     Input Text    wnd[0]/usr/ctxtBKPF-BLDAT    ${symvar('invoice_date')}
-    # Sleep   4
+    Sleep   2
     Input Text    wnd[0]/usr/ctxtBKPF-BUKRS    ${symvar('company_code')}
     # Sleep    2
     Input Text    wnd[0]/usr/ctxtBKPF-WAERS    ${symvar('currency_key')}
