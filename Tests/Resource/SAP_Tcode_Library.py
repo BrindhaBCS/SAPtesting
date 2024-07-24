@@ -7,6 +7,7 @@ import os
 from robot.api import logger
 import sys
 import ast
+import re
 
 
 class SAP_Tcode_Library:
@@ -1320,11 +1321,21 @@ class SAP_Tcode_Library:
 
     def select_item(self, tree_id, nodeid1, nodeid2):
         element=self.session.findById(tree_id)
-        element.selectItem(f"{nodeid1}",nodeid2)    
-                     
+        element.selectItem(f"{nodeid1}",nodeid2)
 
-                        
-
-   
-
+    def get_open_items(self, status_id):
+        try:
+            status = self.session.findById(status_id).Text
+            pattern = r"(\d+)\s+items\s+displayed"
+            match = re.search(pattern, status)
+            if match:
+                open_items = match.group(1)
+                return open_items
+            else:
+                print("No match found")
+                return None
+        except Exception as e:
+            return f"Error: {str(e)}"
+    
+              
 
