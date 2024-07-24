@@ -108,8 +108,3 @@ FB70 Invoice entry
 SAP Logout
     Run Transaction     /nex
     Sleep   5
-    
-    
-    
-
-
