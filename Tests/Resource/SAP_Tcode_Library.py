@@ -1336,6 +1336,10 @@ class SAP_Tcode_Library:
                 return None
         except Exception as e:
             return f"Error: {str(e)}"
+        
+    def set_key_value(self, element_id, key_value):
+        self.session.FindById(element_id).key = key_value
+
     
               
 
