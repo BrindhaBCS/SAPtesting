@@ -34,9 +34,9 @@ pending payments
     Click Element   wnd[0]/tbar[1]/btn[8]
     # Sleep   2
     Click Element   wnd[0]/mbar/menu[0]/menu[3]/menu[1]
-    Sleep   2
+    # Sleep   2
     Set Key Value    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/cmbGS_EXPORT-FORMAT    xlsx-TT
-    Sleep    10
+    # Sleep    10
     Click Element   wnd[1]/tbar[0]/btn[20]
     # Sleep   2
     Input Text      wnd[1]/usr/ctxtDY_PATH  ${EMPTY}
