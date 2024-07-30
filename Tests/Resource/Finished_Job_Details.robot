@@ -68,8 +68,8 @@ Display cancelled job Details
         Click Element    wnd[1]/tbar[0]/btn[0]
 
         Input Text      wnd[1]/usr/ctxtDY_PATH  ${EMPTY}
-        Input Text  wnd[1]/usr/ctxtDY_PATH      ${symvar('job_filepath')}
-        Input Text  wnd[1]/usr/ctxtDY_FILENAME    ${symvar('job_filename')}
+        Input Text  wnd[1]/usr/ctxtDY_PATH      ${symvar('finished_job_filepath')}
+        Input Text  wnd[1]/usr/ctxtDY_FILENAME    ${symvar('finished_job_filename')}
         Click Element   wnd[1]/tbar[0]/btn[0]
     END
     
