@@ -42,20 +42,27 @@ Close Notification
 Notification Handling
     Sleep    5
     ${Status}=     Run Keyword And Return Status   Page Should Contain Element    id:__popover4-title-inner    
-    Run Keyword If    '${Status}'=='True'    Close Notification            
+    Run Keyword If    '${Status}'=='True'    Close Notification    
+close_news_notification
+    Click Element    id:__dialog0-closeBtn-BDI-content
+    Capture Page Screenshot
+News_Handling
+    Sleep    5
+    ${Status}=     Run Keyword And Return Status   Page Should Contain Element    id:__dialog0-title-inner   
+    Run Keyword If    '${Status}'=='True'    close_news_notification            
     
 Upload_Certificate
+    News_Handling
     Notification Handling
     Capture Page Screenshot
-    Sleep    20
+    Sleep    10
     # Press Keys    xpath://bdi[normalize-space()='Add']    ENTER
     # Capture Page Screenshot
     # Sleep    2
     # Input Text    id:txtAlias-inner    ${symvar('Alias')}
     # Capture Page Screenshot
     # Sleep    2
-    Notification Handling
-    Click Element    xpath://*[@id="__dialog0-closeBtn-BDI-content"]
+    News_Handling
     # Input Text    xpath://input[@id='__component0---com.sap.it.op.web.ui.pages.keystore.KeystoreManagement--SEARCHFIELD_KEYSTORE-I']    ${symvar('Alias')}
     Input Text    id:__component0---com.sap.it.op.web.ui.pages.keystore.KeystoreManagement--SEARCHFIELD_KEYSTORE-I    ${symvar('Alias')}    
     Capture Page Screenshot  

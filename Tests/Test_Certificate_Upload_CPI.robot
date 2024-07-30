@@ -6,5 +6,4 @@ Test Tags    cert_upload_CPI
   
 *** Test Cases ***
 Certificate_upload
-    Notification Handling
     Upload_Certificate
