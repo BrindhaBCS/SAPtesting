@@ -1340,6 +1340,33 @@ class SAP_Tcode_Library:
     def set_key_value(self, element_id, key_value):
         self.session.FindById(element_id).key = key_value
 
+    def double_click_table(self, table_id, row, column):
+        self.session.FindById(table_id).doubleClickCurrentCell(row, column)
+
+    def search_and_select_lock(self, table_id, lock):
+        try:
+            table = self.session.FindById(table_id)
+            row_count = table.RowCount  # Assuming the control has a RowCount property
+            print(row_count)
+            for row in range(row_count):
+                print(row)
+                cell_value=table
+                cell_value = table.GetCellValue(row,"GNAME")
+                print(cell_value)
+                if lock in cell_value:
+                    result = row
+                    self.session.findById(table_id).selectedRows = row
+                    print("Text Found in ${row}")
+                    return row
+                else:
+                    print("not found")
+        except Exception as e:
+            return f"Error: {e}"
+    def window_handling(self, element_id, text, button_id):
+        window = self.session.findById(element_id).Text
+        if window == text :
+            self.session.findById(button_id).press()
+
     
               
 

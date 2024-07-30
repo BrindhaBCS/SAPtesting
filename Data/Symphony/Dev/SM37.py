@@ -1,0 +1,10 @@
+SAP_SERVER = "C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPGUI\\saplogon.exe"
+sap_user = "BCSADMIN"
+sap_client = "800"
+connection = "BPM"
+job_filepath = "C:\\tmp"
+job_filename = "jobs.xlsx"
+job_name = "*"
+job_user_name = "BCSADMIN"
+cancelled_job = "CRBPA:DC_CONTROLLER(BCS_CALM)"
+

@@ -1,0 +1,8 @@
+SAP_SERVER = "C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPGUI\\saplogon.exe"
+sap_user = "BCSADMIN"
+sap_client = "800"
+connection = "BPM"
+lock_entry_filepath = "C:\\tmp"
+lock_entry_filename = "locks.xlsx"
+table_name = "/SDF/CALM_HM_KEY"
+lock_user_name = "*"
