@@ -55,6 +55,7 @@ Upload_Certificate
     # Capture Page Screenshot
     # Sleep    2
     Notification Handling
+    Click Element    xpath://*[@id="__dialog0-closeBtn-BDI-content"]
     # Input Text    xpath://input[@id='__component0---com.sap.it.op.web.ui.pages.keystore.KeystoreManagement--SEARCHFIELD_KEYSTORE-I']    ${symvar('Alias')}
     Input Text    id:__component0---com.sap.it.op.web.ui.pages.keystore.KeystoreManagement--SEARCHFIELD_KEYSTORE-I    ${symvar('Alias')}    
     Capture Page Screenshot  
