@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.0.2 (Python 3.12.4 on win32)" generated="20240730 06:20:16.061" rpa="false" schemaversion="3">
+<robot generator="Robot 6.0.2 (Python 3.12.4 on win32)" generated="20240730 11:28:12.921" rpa="false" schemaversion="3">
 <suite id="s1" name="Tests" source="C:\SAP_Testing\SAPtesting\Tests">
 <kw name="Setup highest level suite" type="SETUP">
 <kw name="Set Variable" library="BuiltIn">
 <var>${d.test_server}</var>
 <arg>${test_server}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20240730 06:20:16.923" level="INFO">${d.test_server} = Dev</msg>
-<status status="PASS" starttime="20240730 06:20:16.923" endtime="20240730 06:20:16.923"/>
+<msg timestamp="20240730 11:28:13.806" level="INFO">${d.test_server} = Dev</msg>
+<status status="PASS" starttime="20240730 11:28:13.806" endtime="20240730 11:28:13.806"/>
 </kw>
 <kw name="Reset screenshot count variable" library="Support">
 <kw name="Set Variable" library="BuiltIn">
 <var>${screenshotCount}</var>
 <arg>${PABOTQUEUEINDEX}_1</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20240730 06:20:16.924" level="INFO">${screenshotCount} = 0_1</msg>
-<status status="PASS" starttime="20240730 06:20:16.924" endtime="20240730 06:20:16.924"/>
+<msg timestamp="20240730 11:28:13.807" level="INFO">${screenshotCount} = 0_1</msg>
+<status status="PASS" starttime="20240730 11:28:13.807" endtime="20240730 11:28:13.807"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${screenshotCount}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240730 06:20:16.925" level="INFO">${screenshotCount} = 0_1</msg>
-<status status="PASS" starttime="20240730 06:20:16.924" endtime="20240730 06:20:16.925"/>
+<msg timestamp="20240730 11:28:13.807" level="INFO">${screenshotCount} = 0_1</msg>
+<status status="PASS" starttime="20240730 11:28:13.807" endtime="20240730 11:28:13.807"/>
 </kw>
 <kw name="Set up screenshot directory" library="Support">
 <kw name="Create Directory" library="OperatingSystem">
 <arg>${OUTPUTDIR}${/}${wvar('screenshot_dir')}</arg>
 <doc>Creates the specified directory.</doc>
-<msg timestamp="20240730 06:20:16.926" level="INFO">Web.Dev.screenshot_dir: Screenshot</msg>
-<msg timestamp="20240730 06:20:16.930" level="INFO" html="true">Created directory '&lt;a href="file://C:\SAP_Testing\SAPtesting\Output\pabot_results\0\Screenshot"&gt;C:\SAP_Testing\SAPtesting\Output\pabot_results\0\Screenshot&lt;/a&gt;'.</msg>
-<status status="PASS" starttime="20240730 06:20:16.925" endtime="20240730 06:20:16.930"/>
+<msg timestamp="20240730 11:28:13.808" level="INFO">Web.Dev.screenshot_dir: Screenshot</msg>
+<msg timestamp="20240730 11:28:13.810" level="INFO" html="true">Created directory '&lt;a href="file://C:\SAP_Testing\SAPtesting\Output\pabot_results\0\Screenshot"&gt;C:\SAP_Testing\SAPtesting\Output\pabot_results\0\Screenshot&lt;/a&gt;'.</msg>
+<status status="PASS" starttime="20240730 11:28:13.808" endtime="20240730 11:28:13.810"/>
 </kw>
-<status status="PASS" starttime="20240730 06:20:16.925" endtime="20240730 06:20:16.930"/>
+<status status="PASS" starttime="20240730 11:28:13.808" endtime="20240730 11:28:13.810"/>
 </kw>
-<status status="PASS" starttime="20240730 06:20:16.923" endtime="20240730 06:20:16.930"/>
+<status status="PASS" starttime="20240730 11:28:13.806" endtime="20240730 11:28:13.811"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${screenshot_taking}</arg>
 <arg>${True}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240730 06:20:16.930" level="INFO">${screenshot_taking} = True</msg>
-<status status="PASS" starttime="20240730 06:20:16.930" endtime="20240730 06:20:16.930"/>
+<msg timestamp="20240730 11:28:13.811" level="INFO">${screenshot_taking} = True</msg>
+<status status="PASS" starttime="20240730 11:28:13.811" endtime="20240730 11:28:13.811"/>
 </kw>
 <kw name="Setup linux execution" library="Support">
 <kw name="Run Keyword And Return Status" library="BuiltIn">
@@ -51,10 +51,10 @@
 <kw name="Variable Should Exist" library="BuiltIn">
 <arg>${web_test}</arg>
 <doc>Fails unless the given variable exists within the current scope.</doc>
-<status status="PASS" starttime="20240730 06:20:16.931" endtime="20240730 06:20:16.931"/>
+<status status="PASS" starttime="20240730 11:28:13.812" endtime="20240730 11:28:13.812"/>
 </kw>
-<msg timestamp="20240730 06:20:16.932" level="INFO">${web_test_check} = True</msg>
-<status status="PASS" starttime="20240730 06:20:16.931" endtime="20240730 06:20:16.932"/>
+<msg timestamp="20240730 11:28:13.812" level="INFO">${web_test_check} = True</msg>
+<status status="PASS" starttime="20240730 11:28:13.811" endtime="20240730 11:28:13.812"/>
 </kw>
 <kw name="Run Keyword If" library="BuiltIn">
 <arg>${web_test_check}</arg>
@@ -72,47 +72,47 @@
 :return: Browser metadata information, dict of format
             {"browser_version": browser version value,
              "driver_version": driver version value}</doc>
-<msg timestamp="20240730 06:20:20.060" level="INFO">&amp;{browser_information} = { browser_version=127.0.6533.73 | driver_version=126.0.6478.182  }</msg>
-<status status="PASS" starttime="20240730 06:20:16.932" endtime="20240730 06:20:20.060"/>
+<msg timestamp="20240730 11:28:16.901" level="INFO">&amp;{browser_information} = { browser_version=127.0.6533.73 | driver_version=126.0.6478.182  }</msg>
+<status status="PASS" starttime="20240730 11:28:13.813" endtime="20240730 11:28:16.901"/>
 </kw>
 <kw name="Set Suite Metadata" library="BuiltIn">
 <arg>test_browser_name</arg>
 <arg>${browser}</arg>
 <doc>Sets metadata for the current test suite.</doc>
-<msg timestamp="20240730 06:20:20.061" level="INFO">Set suite metadata 'test_browser_name' to value 'chrome'.</msg>
-<status status="PASS" starttime="20240730 06:20:20.060" endtime="20240730 06:20:20.061"/>
+<msg timestamp="20240730 11:28:16.902" level="INFO">Set suite metadata 'test_browser_name' to value 'chrome'.</msg>
+<status status="PASS" starttime="20240730 11:28:16.901" endtime="20240730 11:28:16.902"/>
 </kw>
 <kw name="Set Suite Metadata" library="BuiltIn">
 <arg>test_browser_version</arg>
 <arg>${browser_information.browser_version}</arg>
 <doc>Sets metadata for the current test suite.</doc>
-<msg timestamp="20240730 06:20:20.062" level="INFO">Set suite metadata 'test_browser_version' to value '127.0.6533.73'.</msg>
-<status status="PASS" starttime="20240730 06:20:20.061" endtime="20240730 06:20:20.062"/>
+<msg timestamp="20240730 11:28:16.903" level="INFO">Set suite metadata 'test_browser_version' to value '127.0.6533.73'.</msg>
+<status status="PASS" starttime="20240730 11:28:16.902" endtime="20240730 11:28:16.903"/>
 </kw>
 <kw name="Set Suite Metadata" library="BuiltIn">
 <arg>test_driver_version</arg>
 <arg>${browser_information.driver_version}</arg>
 <doc>Sets metadata for the current test suite.</doc>
-<msg timestamp="20240730 06:20:20.063" level="INFO">Set suite metadata 'test_driver_version' to value '126.0.6478.182 '.</msg>
-<status status="PASS" starttime="20240730 06:20:20.062" endtime="20240730 06:20:20.063"/>
+<msg timestamp="20240730 11:28:16.904" level="INFO">Set suite metadata 'test_driver_version' to value '126.0.6478.182 '.</msg>
+<status status="PASS" starttime="20240730 11:28:16.903" endtime="20240730 11:28:16.904"/>
 </kw>
-<status status="PASS" starttime="20240730 06:20:16.932" endtime="20240730 06:20:20.063"/>
+<status status="PASS" starttime="20240730 11:28:13.813" endtime="20240730 11:28:16.904"/>
 </kw>
 <kw name="Setup Global Docker Execution Options" library="Support_Web">
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${global_browser_options}</arg>
 <arg>None</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240730 06:20:20.064" level="INFO">${global_browser_options} = None</msg>
-<status status="PASS" starttime="20240730 06:20:20.063" endtime="20240730 06:20:20.064"/>
+<msg timestamp="20240730 11:28:16.905" level="INFO">${global_browser_options} = None</msg>
+<status status="PASS" starttime="20240730 11:28:16.904" endtime="20240730 11:28:16.905"/>
 </kw>
 <kw name="Get Environment Variable" library="OperatingSystem">
 <var>${docker_check}</var>
 <arg>EXECUTION_ENVIRONMENT</arg>
 <arg>not_found</arg>
 <doc>Returns the value of an environment variable with the given name.</doc>
-<msg timestamp="20240730 06:20:20.065" level="INFO">${docker_check} = not_found</msg>
-<status status="PASS" starttime="20240730 06:20:20.064" endtime="20240730 06:20:20.065"/>
+<msg timestamp="20240730 11:28:16.906" level="INFO">${docker_check} = not_found</msg>
+<status status="PASS" starttime="20240730 11:28:16.905" endtime="20240730 11:28:16.906"/>
 </kw>
 <kw name="Run Keyword And Return If" library="BuiltIn">
 <arg>"${docker_check}"!="docker"</arg>
@@ -122,11 +122,11 @@
 <kw name="Log" library="BuiltIn">
 <arg>Not executing on Docker</arg>
 <doc>Logs the given message with the given level.</doc>
-<msg timestamp="20240730 06:20:20.065" level="INFO">Not executing on Docker</msg>
-<status status="PASS" starttime="20240730 06:20:20.065" endtime="20240730 06:20:20.065"/>
+<msg timestamp="20240730 11:28:16.906" level="INFO">Not executing on Docker</msg>
+<status status="PASS" starttime="20240730 11:28:16.906" endtime="20240730 11:28:16.906"/>
 </kw>
-<msg timestamp="20240730 06:20:20.065" level="INFO">Returning from the enclosing user keyword.</msg>
-<status status="PASS" starttime="20240730 06:20:20.065" endtime="20240730 06:20:20.066"/>
+<msg timestamp="20240730 11:28:16.907" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20240730 11:28:16.906" endtime="20240730 11:28:16.907"/>
 </kw>
 <kw name="Create List" library="BuiltIn">
 <var>@{options}</var>
@@ -134,15 +134,15 @@
 <arg>--no-sandbox</arg>
 <arg>--disable-dev-shm-usage</arg>
 <doc>Returns a list containing given items.</doc>
-<status status="NOT RUN" starttime="20240730 06:20:20.066" endtime="20240730 06:20:20.066"/>
+<status status="NOT RUN" starttime="20240730 11:28:16.907" endtime="20240730 11:28:16.907"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>@{docker_options}</arg>
 <arg>@{options}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<status status="NOT RUN" starttime="20240730 06:20:20.066" endtime="20240730 06:20:20.066"/>
+<status status="NOT RUN" starttime="20240730 11:28:16.907" endtime="20240730 11:28:16.907"/>
 </kw>
-<status status="PASS" starttime="20240730 06:20:20.063" endtime="20240730 06:20:20.066"/>
+<status status="PASS" starttime="20240730 11:28:16.904" endtime="20240730 11:28:16.907"/>
 </kw>
 <kw name="Create Webdriver for chrome preferences" library="Support_Web">
 <kw name="Update Docker Execution Options" library="Support_Web">
@@ -156,19 +156,19 @@
 <kw name="Variable Should Exist" library="BuiltIn">
 <arg>${docker_options}</arg>
 <doc>Fails unless the given variable exists within the current scope.</doc>
-<msg timestamp="20240730 06:20:20.069" level="FAIL">Variable '${docker_options}' does not exist.</msg>
-<status status="FAIL" starttime="20240730 06:20:20.067" endtime="20240730 06:20:20.069"/>
+<msg timestamp="20240730 11:28:16.910" level="FAIL">Variable '${docker_options}' does not exist.</msg>
+<status status="FAIL" starttime="20240730 11:28:16.908" endtime="20240730 11:28:16.910"/>
 </kw>
-<msg timestamp="20240730 06:20:20.069" level="INFO">${docker_check} = False</msg>
-<status status="PASS" starttime="20240730 06:20:20.067" endtime="20240730 06:20:20.069"/>
+<msg timestamp="20240730 11:28:16.910" level="INFO">${docker_check} = False</msg>
+<status status="PASS" starttime="20240730 11:28:16.908" endtime="20240730 11:28:16.910"/>
 </kw>
 <kw name="Get Length" library="BuiltIn">
 <var>${list_prefs_length}</var>
 <arg>${list_prefs}</arg>
 <doc>Returns and logs the length of the given item as an integer.</doc>
-<msg timestamp="20240730 06:20:20.069" level="INFO">Length is 1</msg>
-<msg timestamp="20240730 06:20:20.069" level="INFO">${list_prefs_length} = 1</msg>
-<status status="PASS" starttime="20240730 06:20:20.069" endtime="20240730 06:20:20.069"/>
+<msg timestamp="20240730 11:28:16.910" level="INFO">Length is 1</msg>
+<msg timestamp="20240730 11:28:16.910" level="INFO">${list_prefs_length} = 1</msg>
+<status status="PASS" starttime="20240730 11:28:16.910" endtime="20240730 11:28:16.911"/>
 </kw>
 <kw name="Run Keyword If" library="BuiltIn">
 <var>${list_prefs}</var>
@@ -187,13 +187,13 @@
 <kw name="Set Variable" library="BuiltIn">
 <arg>${list_prefs}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" starttime="20240730 06:20:20.070" endtime="20240730 06:20:20.070"/>
+<status status="PASS" starttime="20240730 11:28:16.911" endtime="20240730 11:28:16.911"/>
 </kw>
-<msg timestamp="20240730 06:20:20.070" level="INFO">${list_prefs} = [[]]</msg>
-<status status="PASS" starttime="20240730 06:20:20.070" endtime="20240730 06:20:20.070"/>
+<msg timestamp="20240730 11:28:16.911" level="INFO">${list_prefs} = [[]]</msg>
+<status status="PASS" starttime="20240730 11:28:16.911" endtime="20240730 11:28:16.911"/>
 </kw>
-<msg timestamp="20240730 06:20:20.070" level="INFO">${list_prefs} = [[]]</msg>
-<status status="PASS" starttime="20240730 06:20:20.066" endtime="20240730 06:20:20.070"/>
+<msg timestamp="20240730 11:28:16.912" level="INFO">${list_prefs} = [[]]</msg>
+<status status="PASS" starttime="20240730 11:28:16.908" endtime="20240730 11:28:16.912"/>
 </kw>
 <kw name="Create Chrome Options for download preferences" library="Support_Web">
 <var>${chrome_options}</var>
@@ -202,11 +202,11 @@
 <arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
 <arg>sys</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240730 06:20:20.071" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000019AD84145F0&gt;</msg>
-<status status="PASS" starttime="20240730 06:20:20.071" endtime="20240730 06:20:20.071"/>
+<msg timestamp="20240730 11:28:16.912" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000016A5C5D8710&gt;</msg>
+<status status="PASS" starttime="20240730 11:28:16.912" endtime="20240730 11:28:16.912"/>
 </kw>
-<msg timestamp="20240730 06:20:20.071" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000019AD84145F0&gt;</msg>
-<status status="PASS" starttime="20240730 06:20:20.071" endtime="20240730 06:20:20.071"/>
+<msg timestamp="20240730 11:28:16.912" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000016A5C5D8710&gt;</msg>
+<status status="PASS" starttime="20240730 11:28:16.912" endtime="20240730 11:28:16.912"/>
 </kw>
 <kw name="Update Preferences List" library="Support_Web">
 <arg>${chrome_options}</arg>
@@ -215,14 +215,14 @@
 <var>${string_prefs}</var>
 <arg>${list_prefs}</arg>
 <doc>Converts the given item to a Unicode string.</doc>
-<msg timestamp="20240730 06:20:20.072" level="INFO">${string_prefs} = [[]]</msg>
-<status status="PASS" starttime="20240730 06:20:20.072" endtime="20240730 06:20:20.072"/>
+<msg timestamp="20240730 11:28:16.913" level="INFO">${string_prefs} = [[]]</msg>
+<status status="PASS" starttime="20240730 11:28:16.913" endtime="20240730 11:28:16.913"/>
 </kw>
 <kw name="Return From Keyword If" library="BuiltIn">
 <arg>${string_prefs} == [[]]</arg>
 <doc>Returns from the enclosing user keyword if ``condition`` is true.</doc>
-<msg timestamp="20240730 06:20:20.072" level="INFO">Returning from the enclosing user keyword.</msg>
-<status status="PASS" starttime="20240730 06:20:20.072" endtime="20240730 06:20:20.072"/>
+<msg timestamp="20240730 11:28:16.914" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20240730 11:28:16.913" endtime="20240730 11:28:16.914"/>
 </kw>
 <for flavor="IN">
 <var>${preference}</var>
@@ -234,13 +234,13 @@
 <arg>add_argument</arg>
 <arg>${preference}</arg>
 <doc>Calls the named method of the given object with the provided arguments.</doc>
-<status status="NOT RUN" starttime="20240730 06:20:20.073" endtime="20240730 06:20:20.073"/>
+<status status="NOT RUN" starttime="20240730 11:28:16.914" endtime="20240730 11:28:16.914"/>
 </kw>
-<status status="NOT RUN" starttime="20240730 06:20:20.073" endtime="20240730 06:20:20.073"/>
+<status status="NOT RUN" starttime="20240730 11:28:16.914" endtime="20240730 11:28:16.914"/>
 </iter>
-<status status="NOT RUN" starttime="20240730 06:20:20.073" endtime="20240730 06:20:20.073"/>
+<status status="NOT RUN" starttime="20240730 11:28:16.914" endtime="20240730 11:28:16.914"/>
 </for>
-<status status="PASS" starttime="20240730 06:20:20.071" endtime="20240730 06:20:20.073"/>
+<status status="PASS" starttime="20240730 11:28:16.913" endtime="20240730 11:28:16.914"/>
 </kw>
 <kw name="Call Method" library="BuiltIn">
 <arg>${chrome_options}</arg>
@@ -248,466 +248,379 @@
 <arg>prefs</arg>
 <arg>${kw_prefs}</arg>
 <doc>Calls the named method of the given object with the provided arguments.</doc>
-<status status="PASS" starttime="20240730 06:20:20.073" endtime="20240730 06:20:20.074"/>
+<status status="PASS" starttime="20240730 11:28:16.914" endtime="20240730 11:28:16.915"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${global_browser_options}</arg>
 <arg>${chrome options}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240730 06:20:20.074" level="INFO">${global_browser_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000019AD84145F0&gt;</msg>
-<status status="PASS" starttime="20240730 06:20:20.074" endtime="20240730 06:20:20.074"/>
+<msg timestamp="20240730 11:28:16.915" level="INFO">${global_browser_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000016A5C5D8710&gt;</msg>
+<status status="PASS" starttime="20240730 11:28:16.915" endtime="20240730 11:28:16.915"/>
 </kw>
-<status status="PASS" starttime="20240730 06:20:20.066" endtime="20240730 06:20:20.074"/>
+<status status="PASS" starttime="20240730 11:28:16.907" endtime="20240730 11:28:16.915"/>
 </kw>
-<status status="PASS" starttime="20240730 06:20:16.932" endtime="20240730 06:20:20.074"/>
+<status status="PASS" starttime="20240730 11:28:13.813" endtime="20240730 11:28:16.915"/>
 </kw>
-<status status="PASS" starttime="20240730 06:20:16.932" endtime="20240730 06:20:20.074"/>
+<status status="PASS" starttime="20240730 11:28:13.812" endtime="20240730 11:28:16.916"/>
 </kw>
-<status status="PASS" starttime="20240730 06:20:16.931" endtime="20240730 06:20:20.074"/>
+<status status="PASS" starttime="20240730 11:28:13.811" endtime="20240730 11:28:16.916"/>
 </kw>
 <kw name="Set Suite Metadata" library="BuiltIn">
 <arg>environment</arg>
 <arg>${test_server}</arg>
 <doc>Sets metadata for the current test suite.</doc>
-<msg timestamp="20240730 06:20:20.075" level="INFO">Set suite metadata 'environment' to value 'Dev'.</msg>
-<status status="PASS" starttime="20240730 06:20:20.075" endtime="20240730 06:20:20.075"/>
+<msg timestamp="20240730 11:28:16.916" level="INFO">Set suite metadata 'environment' to value 'Dev'.</msg>
+<status status="PASS" starttime="20240730 11:28:16.916" endtime="20240730 11:28:16.916"/>
 </kw>
-<status status="PASS" starttime="20240730 06:20:16.922" endtime="20240730 06:20:20.075"/>
+<status status="PASS" starttime="20240730 11:28:13.805" endtime="20240730 11:28:16.916"/>
 </kw>
-<suite id="s1-s1" name="Test Trigger Cancelled Job" source="C:\SAP_Testing\SAPtesting\Tests\Test_Trigger_Cancelled_Job.robot">
-<kw name="System Logon" library="Trigger_Cancelled_Job" type="SETUP">
+<suite id="s1-s1" name="Test Finished Job Details" source="C:\SAP_Testing\SAPtesting\Tests\Test_Finished_Job_Details.robot">
+<kw name="System Logon" library="Finished_Job_Details" type="SETUP">
 <kw name="Start Process" library="Process">
 <arg>${symvar('SAP_SERVER')}</arg>
 <doc>Starts a new process on background.</doc>
-<msg timestamp="20240730 06:20:20.098" level="INFO">Sym.Dev.SAP_SERVER: C:\Program Files (x86)\SAP\FrontEnd\SAPGUI\saplogon.exe</msg>
-<msg timestamp="20240730 06:20:20.098" level="INFO">Starting process:
+<msg timestamp="20240730 11:28:16.934" level="INFO">Sym.Dev.SAP_SERVER: C:\Program Files (x86)\SAP\FrontEnd\SAPGUI\saplogon.exe</msg>
+<msg timestamp="20240730 11:28:16.934" level="INFO">Starting process:
 "C:\Program Files (x86)\SAP\FrontEnd\SAPGUI\saplogon.exe"</msg>
-<status status="PASS" starttime="20240730 06:20:20.098" endtime="20240730 06:20:20.102"/>
+<status status="PASS" starttime="20240730 11:28:16.933" endtime="20240730 11:28:16.937"/>
 </kw>
 <kw name="Connect To Session" library="SAP_Tcode_Library">
 <doc>Connects to an open session SAP.</doc>
-<status status="PASS" starttime="20240730 06:20:20.102" endtime="20240730 06:20:20.126"/>
+<status status="PASS" starttime="20240730 11:28:16.937" endtime="20240730 11:28:16.965"/>
 </kw>
 <kw name="Open Connection" library="SAP_Tcode_Library">
 <arg>${symvar('connection')}</arg>
 <doc>Opens a connection to the given connection name. Be sure to provide the full connection name, including the bracket part.</doc>
-<msg timestamp="20240730 06:20:20.127" level="INFO">Sym.Dev.connection: BPM</msg>
-<status status="PASS" starttime="20240730 06:20:20.126" endtime="20240730 06:20:21.000"/>
+<msg timestamp="20240730 11:28:16.966" level="INFO">Sym.Dev.connection: BPM</msg>
+<status status="PASS" starttime="20240730 11:28:16.965" endtime="20240730 11:28:17.882"/>
 </kw>
 <kw name="Input Text" library="SAP_Tcode_Library">
 <arg>wnd[0]/usr/txtRSYST-MANDT</arg>
 <arg>${symvar('sap_client')}</arg>
 <doc>Inserts the given text into the text field identified by locator.
 Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240730 06:20:21.003" level="INFO">Sym.Dev.sap_client: 800</msg>
-<msg timestamp="20240730 06:20:21.040" level="INFO">Typing text '800' into text field 'wnd[0]/usr/txtRSYST-MANDT'.</msg>
-<status status="PASS" starttime="20240730 06:20:21.000" endtime="20240730 06:20:21.040"/>
+<msg timestamp="20240730 11:28:17.884" level="INFO">Sym.Dev.sap_client: 800</msg>
+<msg timestamp="20240730 11:28:17.923" level="INFO">Typing text '800' into text field 'wnd[0]/usr/txtRSYST-MANDT'.</msg>
+<status status="PASS" starttime="20240730 11:28:17.883" endtime="20240730 11:28:17.923"/>
 </kw>
 <kw name="Input Text" library="SAP_Tcode_Library">
 <arg>wnd[0]/usr/txtRSYST-BNAME</arg>
 <arg>${symvar('sap_user')}</arg>
 <doc>Inserts the given text into the text field identified by locator.
 Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240730 06:20:21.042" level="INFO">Sym.Dev.sap_user: BCSADMIN</msg>
-<msg timestamp="20240730 06:20:21.052" level="INFO">Typing text 'BCSADMIN' into text field 'wnd[0]/usr/txtRSYST-BNAME'.</msg>
-<status status="PASS" starttime="20240730 06:20:21.041" endtime="20240730 06:20:21.052"/>
+<msg timestamp="20240730 11:28:17.924" level="INFO">Sym.Dev.sap_user: BCSADMIN</msg>
+<msg timestamp="20240730 11:28:17.939" level="INFO">Typing text 'BCSADMIN' into text field 'wnd[0]/usr/txtRSYST-BNAME'.</msg>
+<status status="PASS" starttime="20240730 11:28:17.923" endtime="20240730 11:28:17.940"/>
 </kw>
 <kw name="Input Password" library="SAP_Tcode_Library">
 <arg>wnd[0]/usr/pwdRSYST-BCODE</arg>
 <arg>%{SAP_PASSWORD}</arg>
 <doc>Inserts the given password into the text field identified by locator.
 The password is not recorded in the log.</doc>
-<msg timestamp="20240730 06:20:21.057" level="INFO">Typing password into text field 'wnd[0]/usr/pwdRSYST-BCODE'.</msg>
-<status status="PASS" starttime="20240730 06:20:21.052" endtime="20240730 06:20:21.057"/>
+<msg timestamp="20240730 11:28:17.948" level="INFO">Typing password into text field 'wnd[0]/usr/pwdRSYST-BCODE'.</msg>
+<status status="PASS" starttime="20240730 11:28:17.940" endtime="20240730 11:28:17.949"/>
 </kw>
 <kw name="Send Vkey" library="SAP_Tcode_Library">
 <arg>0</arg>
 <doc>Sends a SAP virtual key combination to the window, not into an element.
 If you want to send a value to a text field, use `input text` instead.</doc>
-<status status="PASS" starttime="20240730 06:20:21.057" endtime="20240730 06:20:21.957"/>
+<status status="PASS" starttime="20240730 11:28:17.949" endtime="20240730 11:28:18.838"/>
 </kw>
 <kw name="Multiple Logon Handling" library="SAP_Tcode_Library">
 <arg>wnd[1]</arg>
 <arg>wnd[1]/usr/radMULTI_LOGON_OPT2</arg>
 <arg>wnd[1]/tbar[0]/btn[0]</arg>
-<status status="PASS" starttime="20240730 06:20:21.958" endtime="20240730 06:20:21.988"/>
+<status status="PASS" starttime="20240730 11:28:18.839" endtime="20240730 11:28:18.870"/>
 </kw>
-<status status="PASS" starttime="20240730 06:20:20.098" endtime="20240730 06:20:21.988"/>
+<status status="PASS" starttime="20240730 11:28:16.933" endtime="20240730 11:28:18.870"/>
 </kw>
-<test id="s1-s1-t1" name="Resheduling the cancelled job" line="8">
-<kw name="Trigger cancelled job" library="Trigger_Cancelled_Job">
+<test id="s1-s1-t1" name="Providing finished job details" line="8">
+<kw name="Display cancelled job Details" library="Finished_Job_Details">
 <kw name="Run Transaction" library="SAP_Tcode_Library">
 <arg>/nsm37</arg>
 <doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
-<status status="PASS" starttime="20240730 06:20:21.989" endtime="20240730 06:20:22.476"/>
+<status status="PASS" starttime="20240730 11:28:18.871" endtime="20240730 11:28:19.369"/>
 </kw>
 <kw name="Input Text" library="SAP_Tcode_Library">
 <arg>wnd[0]/usr/txtBTCH2170-JOBNAME</arg>
 <arg>${EMPTY}</arg>
 <doc>Inserts the given text into the text field identified by locator.
 Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240730 06:20:22.489" level="INFO">Typing text '' into text field 'wnd[0]/usr/txtBTCH2170-JOBNAME'.</msg>
-<status status="PASS" starttime="20240730 06:20:22.477" endtime="20240730 06:20:22.489"/>
+<msg timestamp="20240730 11:28:19.382" level="INFO">Typing text '' into text field 'wnd[0]/usr/txtBTCH2170-JOBNAME'.</msg>
+<status status="PASS" starttime="20240730 11:28:19.370" endtime="20240730 11:28:19.382"/>
 </kw>
 <kw name="Input Text" library="SAP_Tcode_Library">
 <arg>wnd[0]/usr/txtBTCH2170-JOBNAME</arg>
 <arg>${symvar('job_name')}</arg>
 <doc>Inserts the given text into the text field identified by locator.
 Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240730 06:20:22.490" level="INFO">Sym.Dev.job_name: *</msg>
-<msg timestamp="20240730 06:20:22.500" level="INFO">Typing text '*' into text field 'wnd[0]/usr/txtBTCH2170-JOBNAME'.</msg>
-<status status="PASS" starttime="20240730 06:20:22.489" endtime="20240730 06:20:22.500"/>
+<msg timestamp="20240730 11:28:19.383" level="INFO">Sym.Dev.job_name: *</msg>
+<msg timestamp="20240730 11:28:19.396" level="INFO">Typing text '*' into text field 'wnd[0]/usr/txtBTCH2170-JOBNAME'.</msg>
+<status status="PASS" starttime="20240730 11:28:19.382" endtime="20240730 11:28:19.396"/>
 </kw>
 <kw name="Input Text" library="SAP_Tcode_Library">
 <arg>wnd[0]/usr/txtBTCH2170-USERNAME</arg>
 <arg>${EMPTY}</arg>
 <doc>Inserts the given text into the text field identified by locator.
 Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240730 06:20:22.507" level="INFO">Typing text '' into text field 'wnd[0]/usr/txtBTCH2170-USERNAME'.</msg>
-<status status="PASS" starttime="20240730 06:20:22.500" endtime="20240730 06:20:22.507"/>
+<msg timestamp="20240730 11:28:19.403" level="INFO">Typing text '' into text field 'wnd[0]/usr/txtBTCH2170-USERNAME'.</msg>
+<status status="PASS" starttime="20240730 11:28:19.396" endtime="20240730 11:28:19.403"/>
 </kw>
 <kw name="Input Text" library="SAP_Tcode_Library">
 <arg>wnd[0]/usr/txtBTCH2170-USERNAME</arg>
 <arg>${symvar('job_user_name')}</arg>
 <doc>Inserts the given text into the text field identified by locator.
 Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240730 06:20:22.508" level="INFO">Sym.Dev.job_user_name: BCSADMIN</msg>
-<msg timestamp="20240730 06:20:22.513" level="INFO">Typing text 'BCSADMIN' into text field 'wnd[0]/usr/txtBTCH2170-USERNAME'.</msg>
-<status status="PASS" starttime="20240730 06:20:22.507" endtime="20240730 06:20:22.513"/>
+<msg timestamp="20240730 11:28:19.404" level="INFO">Sym.Dev.job_user_name: BCSADMIN</msg>
+<msg timestamp="20240730 11:28:19.409" level="INFO">Typing text 'BCSADMIN' into text field 'wnd[0]/usr/txtBTCH2170-USERNAME'.</msg>
+<status status="PASS" starttime="20240730 11:28:19.403" endtime="20240730 11:28:19.409"/>
 </kw>
-<kw name="Get Value" library="SAP_Tcode_Library">
-<var>${value}</var>
-<arg>wnd[0]/usr/chkBTCH2170-PRELIM</arg>
-<doc>Gets the value of the given element. The possible return values depend on the type of element (see Return values).</doc>
-<msg timestamp="20240730 06:20:22.518" level="INFO">${value} = unchecked</msg>
-<status status="PASS" starttime="20240730 06:20:22.513" endtime="20240730 06:20:22.518"/>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<arg>${value}</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20240730 06:20:22.518" endtime="20240730 06:20:22.518"/>
-</kw>
-<if>
-<branch type="IF" condition="'${value}' == 'checked'">
 <kw name="Unselect Checkbox" library="SAP_Tcode_Library">
 <arg>wnd[0]/usr/chkBTCH2170-PRELIM</arg>
 <doc>Removes selection of checkbox identified by locator.
 Does nothing if the checkbox is not selected.</doc>
-<status status="NOT RUN" starttime="20240730 06:20:22.519" endtime="20240730 06:20:22.519"/>
+<status status="PASS" starttime="20240730 11:28:19.409" endtime="20240730 11:28:19.414"/>
 </kw>
-<status status="NOT RUN" starttime="20240730 06:20:22.518" endtime="20240730 06:20:22.519"/>
-</branch>
-<status status="PASS" starttime="20240730 06:20:22.518" endtime="20240730 06:20:22.519"/>
-</if>
-<kw name="Get Value" library="SAP_Tcode_Library">
-<var>${value1}</var>
-<arg>wnd[0]/usr/chkBTCH2170-SCHEDUL</arg>
-<doc>Gets the value of the given element. The possible return values depend on the type of element (see Return values).</doc>
-<msg timestamp="20240730 06:20:22.524" level="INFO">${value1} = checked</msg>
-<status status="PASS" starttime="20240730 06:20:22.519" endtime="20240730 06:20:22.524"/>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<arg>${value1}</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20240730 06:20:22.524" endtime="20240730 06:20:22.524"/>
-</kw>
-<if>
-<branch type="IF" condition="'${value1}' == 'checked'">
 <kw name="Unselect Checkbox" library="SAP_Tcode_Library">
 <arg>wnd[0]/usr/chkBTCH2170-SCHEDUL</arg>
 <doc>Removes selection of checkbox identified by locator.
 Does nothing if the checkbox is not selected.</doc>
-<status status="PASS" starttime="20240730 06:20:22.525" endtime="20240730 06:20:22.529"/>
+<status status="PASS" starttime="20240730 11:28:19.414" endtime="20240730 11:28:19.419"/>
 </kw>
-<status status="PASS" starttime="20240730 06:20:22.524" endtime="20240730 06:20:22.530"/>
-</branch>
-<status status="PASS" starttime="20240730 06:20:22.524" endtime="20240730 06:20:22.530"/>
-</if>
-<kw name="Get Value" library="SAP_Tcode_Library">
-<var>${value2}</var>
-<arg>wnd[0]/usr/chkBTCH2170-READY</arg>
-<doc>Gets the value of the given element. The possible return values depend on the type of element (see Return values).</doc>
-<msg timestamp="20240730 06:20:22.536" level="INFO">${value2} = checked</msg>
-<status status="PASS" starttime="20240730 06:20:22.530" endtime="20240730 06:20:22.536"/>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<arg>${value2}</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20240730 06:20:22.536" endtime="20240730 06:20:22.536"/>
-</kw>
-<if>
-<branch type="IF" condition="'${value2}' == 'checked'">
 <kw name="Unselect Checkbox" library="SAP_Tcode_Library">
 <arg>wnd[0]/usr/chkBTCH2170-READY</arg>
 <doc>Removes selection of checkbox identified by locator.
 Does nothing if the checkbox is not selected.</doc>
-<status status="PASS" starttime="20240730 06:20:22.537" endtime="20240730 06:20:22.542"/>
+<status status="PASS" starttime="20240730 11:28:19.419" endtime="20240730 11:28:19.425"/>
 </kw>
-<status status="PASS" starttime="20240730 06:20:22.536" endtime="20240730 06:20:22.542"/>
-</branch>
-<status status="PASS" starttime="20240730 06:20:22.536" endtime="20240730 06:20:22.542"/>
-</if>
-<kw name="Get Value" library="SAP_Tcode_Library">
-<var>${value3}</var>
-<arg>wnd[0]/usr/chkBTCH2170-RUNNING</arg>
-<doc>Gets the value of the given element. The possible return values depend on the type of element (see Return values).</doc>
-<msg timestamp="20240730 06:20:22.547" level="INFO">${value3} = checked</msg>
-<status status="PASS" starttime="20240730 06:20:22.542" endtime="20240730 06:20:22.547"/>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<arg>${value3}</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20240730 06:20:22.547" endtime="20240730 06:20:22.547"/>
-</kw>
-<if>
-<branch type="IF" condition="'${value3}' == 'checked'">
 <kw name="Unselect Checkbox" library="SAP_Tcode_Library">
 <arg>wnd[0]/usr/chkBTCH2170-RUNNING</arg>
 <doc>Removes selection of checkbox identified by locator.
 Does nothing if the checkbox is not selected.</doc>
-<status status="PASS" starttime="20240730 06:20:22.548" endtime="20240730 06:20:22.552"/>
+<status status="PASS" starttime="20240730 11:28:19.425" endtime="20240730 11:28:19.430"/>
 </kw>
-<status status="PASS" starttime="20240730 06:20:22.547" endtime="20240730 06:20:22.553"/>
-</branch>
-<status status="PASS" starttime="20240730 06:20:22.547" endtime="20240730 06:20:22.553"/>
-</if>
-<kw name="Get Value" library="SAP_Tcode_Library">
-<var>${value}</var>
-<arg>wnd[0]/usr/chkBTCH2170-FINISHED</arg>
-<doc>Gets the value of the given element. The possible return values depend on the type of element (see Return values).</doc>
-<msg timestamp="20240730 06:20:22.557" level="INFO">${value} = checked</msg>
-<status status="PASS" starttime="20240730 06:20:22.553" endtime="20240730 06:20:22.557"/>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<arg>${value}</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20240730 06:20:22.557" endtime="20240730 06:20:22.558"/>
-</kw>
-<if>
-<branch type="IF" condition="'${value}' == 'checked'">
-<kw name="Unselect Checkbox" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/chkBTCH2170-FINISHED</arg>
-<doc>Removes selection of checkbox identified by locator.
-Does nothing if the checkbox is not selected.</doc>
-<status status="PASS" starttime="20240730 06:20:22.558" endtime="20240730 06:20:22.564"/>
-</kw>
-<status status="PASS" starttime="20240730 06:20:22.558" endtime="20240730 06:20:22.564"/>
-</branch>
-<status status="PASS" starttime="20240730 06:20:22.558" endtime="20240730 06:20:22.564"/>
-</if>
-<kw name="Get Value" library="SAP_Tcode_Library">
-<var>${value}</var>
-<arg>wnd[0]/usr/chkBTCH2170-ABORTED</arg>
-<doc>Gets the value of the given element. The possible return values depend on the type of element (see Return values).</doc>
-<msg timestamp="20240730 06:20:22.569" level="INFO">${value} = checked</msg>
-<status status="PASS" starttime="20240730 06:20:22.564" endtime="20240730 06:20:22.569"/>
-</kw>
-<kw name="Log To Console" library="BuiltIn">
-<arg>${value}</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20240730 06:20:22.569" endtime="20240730 06:20:22.570"/>
-</kw>
-<if>
-<branch type="IF" condition="'${value}' == 'checked'">
 <kw name="Select Checkbox" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/chkBTCH2170-ABORTED</arg>
+<arg>wnd[0]/usr/chkBTCH2170-FINISHED</arg>
 <doc>Selects checkbox identified by locator.
 Does nothing if the checkbox is already selected.</doc>
-<status status="PASS" starttime="20240730 06:20:22.570" endtime="20240730 06:20:22.575"/>
+<status status="PASS" starttime="20240730 11:28:19.430" endtime="20240730 11:28:19.435"/>
 </kw>
-<status status="PASS" starttime="20240730 06:20:22.570" endtime="20240730 06:20:22.575"/>
-</branch>
-<status status="PASS" starttime="20240730 06:20:22.570" endtime="20240730 06:20:22.575"/>
-</if>
+<kw name="Unselect Checkbox" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/chkBTCH2170-ABORTED</arg>
+<doc>Removes selection of checkbox identified by locator.
+Does nothing if the checkbox is not selected.</doc>
+<status status="PASS" starttime="20240730 11:28:19.435" endtime="20240730 11:28:19.440"/>
+</kw>
+<if>
+<msg timestamp="20240730 11:28:19.441" level="INFO">Sym.Dev.job_from_date: None</msg>
+<branch type="IF" condition="'${symvar('job_from_date')}' == 'None'">
 <kw name="Input Text" library="SAP_Tcode_Library">
 <arg>wnd[0]/usr/ctxtBTCH2170-FROM_DATE</arg>
 <arg>${EMPTY}</arg>
 <doc>Inserts the given text into the text field identified by locator.
 Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240730 06:20:22.581" level="INFO">Typing text '' into text field 'wnd[0]/usr/ctxtBTCH2170-FROM_DATE'.</msg>
-<status status="PASS" starttime="20240730 06:20:22.575" endtime="20240730 06:20:22.581"/>
+<msg timestamp="20240730 11:28:19.446" level="INFO">Typing text '' into text field 'wnd[0]/usr/ctxtBTCH2170-FROM_DATE'.</msg>
+<status status="PASS" starttime="20240730 11:28:19.441" endtime="20240730 11:28:19.447"/>
 </kw>
+<status status="PASS" starttime="20240730 11:28:19.440" endtime="20240730 11:28:19.447"/>
+</branch>
+<branch type="ELSE">
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtBTCH2170-FROM_DATE</arg>
+<arg>${EMPTY}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<status status="NOT RUN" starttime="20240730 11:28:19.447" endtime="20240730 11:28:19.447"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtBTCH2170-FROM_DATE</arg>
+<arg>${symvar('job_from_date')}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<status status="NOT RUN" starttime="20240730 11:28:19.447" endtime="20240730 11:28:19.447"/>
+</kw>
+<status status="NOT RUN" starttime="20240730 11:28:19.447" endtime="20240730 11:28:19.447"/>
+</branch>
+<status status="PASS" starttime="20240730 11:28:19.440" endtime="20240730 11:28:19.447"/>
+</if>
+<if>
+<msg timestamp="20240730 11:28:19.448" level="INFO">Sym.Dev.job_to_date: 30.07.2024</msg>
+<branch type="IF" condition="'${symvar('job_to_date')}' == 'None'">
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtBTCH2170-TO_DATE</arg>
+<arg>${EMPTY}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<status status="NOT RUN" starttime="20240730 11:28:19.448" endtime="20240730 11:28:19.448"/>
+</kw>
+<status status="NOT RUN" starttime="20240730 11:28:19.447" endtime="20240730 11:28:19.449"/>
+</branch>
+<branch type="ELSE">
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtBTCH2170-TO_DATE</arg>
+<arg>${EMPTY}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240730 11:28:19.454" level="INFO">Typing text '' into text field 'wnd[0]/usr/ctxtBTCH2170-TO_DATE'.</msg>
+<status status="PASS" starttime="20240730 11:28:19.449" endtime="20240730 11:28:19.454"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtBTCH2170-TO_DATE</arg>
+<arg>${symvar('job_to_date')}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240730 11:28:19.455" level="INFO">Sym.Dev.job_to_date: 30.07.2024</msg>
+<msg timestamp="20240730 11:28:19.461" level="INFO">Typing text '30.07.2024' into text field 'wnd[0]/usr/ctxtBTCH2170-TO_DATE'.</msg>
+<status status="PASS" starttime="20240730 11:28:19.454" endtime="20240730 11:28:19.461"/>
+</kw>
+<status status="PASS" starttime="20240730 11:28:19.449" endtime="20240730 11:28:19.461"/>
+</branch>
+<status status="PASS" starttime="20240730 11:28:19.447" endtime="20240730 11:28:19.461"/>
+</if>
 <kw name="Sleep" library="BuiltIn">
-<arg>5</arg>
+<arg>10</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240730 06:20:27.582" level="INFO">Slept 5 seconds</msg>
-<status status="PASS" starttime="20240730 06:20:22.581" endtime="20240730 06:20:27.582"/>
+<msg timestamp="20240730 11:28:29.461" level="INFO">Slept 10 seconds</msg>
+<status status="PASS" starttime="20240730 11:28:19.461" endtime="20240730 11:28:29.461"/>
+</kw>
+<if>
+<msg timestamp="20240730 11:28:29.461" level="INFO">Sym.Dev.job_from_time: 04:00:00</msg>
+<branch type="IF" condition="'${symvar('job_from_time')}' != 'None'">
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtBTCH2170-FROM_TIME</arg>
+<arg>${EMPTY}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240730 11:28:29.468" level="INFO">Typing text '' into text field 'wnd[0]/usr/ctxtBTCH2170-FROM_TIME'.</msg>
+<status status="PASS" starttime="20240730 11:28:29.462" endtime="20240730 11:28:29.468"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtBTCH2170-FROM_TIME</arg>
+<arg>${symvar('job_from_time')}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240730 11:28:29.469" level="INFO">Sym.Dev.job_from_time: 04:00:00</msg>
+<msg timestamp="20240730 11:28:29.474" level="INFO">Typing text '04:00:00' into text field 'wnd[0]/usr/ctxtBTCH2170-FROM_TIME'.</msg>
+<status status="PASS" starttime="20240730 11:28:29.468" endtime="20240730 11:28:29.474"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtBTCH2170-TO_TIME</arg>
+<arg>${EMPTY}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240730 11:28:29.480" level="INFO">Typing text '' into text field 'wnd[0]/usr/ctxtBTCH2170-TO_TIME'.</msg>
+<status status="PASS" starttime="20240730 11:28:29.474" endtime="20240730 11:28:29.480"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtBTCH2170-TO_TIME</arg>
+<arg>${symvar('job_to_time')}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240730 11:28:29.481" level="INFO">Sym.Dev.job_to_time: 16:30:00</msg>
+<msg timestamp="20240730 11:28:29.486" level="INFO">Typing text '16:30:00' into text field 'wnd[0]/usr/ctxtBTCH2170-TO_TIME'.</msg>
+<status status="PASS" starttime="20240730 11:28:29.480" endtime="20240730 11:28:29.486"/>
+</kw>
+<status status="PASS" starttime="20240730 11:28:29.461" endtime="20240730 11:28:29.486"/>
+</branch>
+<status status="PASS" starttime="20240730 11:28:29.461" endtime="20240730 11:28:29.486"/>
+</if>
+<kw name="Sleep" library="BuiltIn">
+<arg>10</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240730 11:28:39.488" level="INFO">Slept 10 seconds</msg>
+<status status="PASS" starttime="20240730 11:28:29.486" endtime="20240730 11:28:39.488"/>
 </kw>
 <kw name="Click Element" library="SAP_Tcode_Library">
 <arg>wnd[0]/tbar[1]/btn[8]</arg>
 <doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
-<status status="PASS" starttime="20240730 06:20:27.582" endtime="20240730 06:20:28.476"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>5</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240730 06:20:33.476" level="INFO">Slept 5 seconds</msg>
-<status status="PASS" starttime="20240730 06:20:28.476" endtime="20240730 06:20:33.476"/>
-</kw>
-<kw name="Spam Search And Select Label" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr</arg>
-<arg>CRBPA:DC_CONTROLLER(BCS_CALM)</arg>
-<msg timestamp="20240730 06:20:34.208" level="INFO">Text Found: CRBPA:DC_CONTROLLER(BCS_CALM)
-Error: (-2147352567, 'Exception occurred.', (619, 'SAP Frontend Server', 'The control could not be found by id.', 'C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPGUI\\sapfront.HLP', 393215, 0), None)</msg>
-<status status="PASS" starttime="20240730 06:20:33.476" endtime="20240730 06:20:34.208"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>5</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240730 06:20:39.208" level="INFO">Slept 5 seconds</msg>
-<status status="PASS" starttime="20240730 06:20:34.208" endtime="20240730 06:20:39.208"/>
-</kw>
-<kw name="Click Element" library="SAP_Tcode_Library">
-<arg>wnd[0]/mbar/menu[0]/menu[13]</arg>
-<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
-<status status="PASS" starttime="20240730 06:20:39.208" endtime="20240730 06:20:39.506"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>5</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240730 06:20:44.507" level="INFO">Slept 5 seconds</msg>
-<status status="PASS" starttime="20240730 06:20:39.506" endtime="20240730 06:20:44.507"/>
-</kw>
-<kw name="Click Element" library="SAP_Tcode_Library">
-<arg>wnd[1]/tbar[0]/btn[0]</arg>
-<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
-<status status="PASS" starttime="20240730 06:20:44.507" endtime="20240730 06:20:44.858"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>5</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240730 06:20:49.859" level="INFO">Slept 5 seconds</msg>
-<status status="PASS" starttime="20240730 06:20:44.858" endtime="20240730 06:20:49.859"/>
-</kw>
-<kw name="Window Handling" library="SAP_Tcode_Library">
-<arg>wnd[2]</arg>
-<arg>Warning</arg>
-<arg>wnd[2]/tbar[0]/btn[0]</arg>
-<status status="PASS" starttime="20240730 06:20:49.859" endtime="20240730 06:20:50.261"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>5</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240730 06:20:55.262" level="INFO">Slept 5 seconds</msg>
-<status status="PASS" starttime="20240730 06:20:50.262" endtime="20240730 06:20:55.262"/>
+<status status="PASS" starttime="20240730 11:28:39.488" endtime="20240730 11:28:43.232"/>
 </kw>
 <kw name="Get Value" library="SAP_Tcode_Library">
 <var>${log}</var>
 <arg>wnd[0]/sbar/pane[0]</arg>
 <doc>Gets the value of the given element. The possible return values depend on the type of element (see Return values).</doc>
-<msg timestamp="20240730 06:20:55.267" level="INFO">${log} = Job CRBPA:DC_CONTROLLER(BCS_CALM) copied with status: Scheduled</msg>
-<status status="PASS" starttime="20240730 06:20:55.262" endtime="20240730 06:20:55.267"/>
+<msg timestamp="20240730 11:28:43.292" level="INFO">${log} = </msg>
+<status status="PASS" starttime="20240730 11:28:43.232" endtime="20240730 11:28:43.292"/>
 </kw>
+<if>
+<branch type="IF" condition="'${log}' == 'No job matches the selection criteria'">
 <kw name="Log To Console" library="BuiltIn">
 <arg>${log}</arg>
 <doc>Logs the given message to the console.</doc>
-<status status="PASS" starttime="20240730 06:20:55.268" endtime="20240730 06:20:55.268"/>
+<status status="NOT RUN" starttime="20240730 11:28:43.293" endtime="20240730 11:28:43.293"/>
+</kw>
+<status status="NOT RUN" starttime="20240730 11:28:43.293" endtime="20240730 11:28:43.293"/>
+</branch>
+<branch type="ELSE">
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/mbar/menu[3]/menu[0]/menu[1]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240730 11:28:43.293" endtime="20240730 11:28:44.619"/>
+</kw>
+<kw name="Select Radio Button" library="SAP_Tcode_Library">
+<arg>wnd[1]/usr/radRB_OTHERS</arg>
+<doc>Sets radio button to the specified value.</doc>
+<status status="PASS" starttime="20240730 11:28:44.619" endtime="20240730 11:28:44.682"/>
+</kw>
+<kw name="Set Key Value" library="SAP_Tcode_Library">
+<arg>wnd[1]/usr/cmbG_LISTBOX</arg>
+<arg>10</arg>
+<status status="PASS" starttime="20240730 11:28:44.682" endtime="20240730 11:28:44.921"/>
 </kw>
 <kw name="Click Element" library="SAP_Tcode_Library">
-<arg>wnd[0]/tbar[0]/btn[3]</arg>
+<arg>wnd[1]/tbar[0]/btn[0]</arg>
 <doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
-<status status="PASS" starttime="20240730 06:20:55.268" endtime="20240730 06:20:55.511"/>
+<status status="PASS" starttime="20240730 11:28:44.921" endtime="20240730 11:28:51.468"/>
 </kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>5</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240730 06:21:00.513" level="INFO">Slept 5 seconds</msg>
-<status status="PASS" starttime="20240730 06:20:55.512" endtime="20240730 06:21:00.513"/>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[1]/usr/ctxtDY_PATH</arg>
+<arg>${EMPTY}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240730 11:28:51.531" level="INFO">Typing text '' into text field 'wnd[1]/usr/ctxtDY_PATH'.</msg>
+<status status="PASS" starttime="20240730 11:28:51.468" endtime="20240730 11:28:51.531"/>
 </kw>
-<kw name="Select Checkbox" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/chkBTCH2170-PRELIM</arg>
-<doc>Selects checkbox identified by locator.
-Does nothing if the checkbox is already selected.</doc>
-<status status="PASS" starttime="20240730 06:21:00.513" endtime="20240730 06:21:00.519"/>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[1]/usr/ctxtDY_PATH</arg>
+<arg>${symvar('job_filepath')}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240730 11:28:51.532" level="INFO">Sym.Dev.job_filepath: C:\tmp</msg>
+<msg timestamp="20240730 11:28:51.537" level="INFO">Typing text 'C:\tmp' into text field 'wnd[1]/usr/ctxtDY_PATH'.</msg>
+<status status="PASS" starttime="20240730 11:28:51.531" endtime="20240730 11:28:51.537"/>
 </kw>
-<kw name="Unselect Checkbox" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/chkBTCH2170-SCHEDUL</arg>
-<doc>Removes selection of checkbox identified by locator.
-Does nothing if the checkbox is not selected.</doc>
-<status status="PASS" starttime="20240730 06:21:00.519" endtime="20240730 06:21:00.524"/>
-</kw>
-<kw name="Unselect Checkbox" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/chkBTCH2170-READY</arg>
-<doc>Removes selection of checkbox identified by locator.
-Does nothing if the checkbox is not selected.</doc>
-<status status="PASS" starttime="20240730 06:21:00.524" endtime="20240730 06:21:00.529"/>
-</kw>
-<kw name="Unselect Checkbox" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/chkBTCH2170-RUNNING</arg>
-<doc>Removes selection of checkbox identified by locator.
-Does nothing if the checkbox is not selected.</doc>
-<status status="PASS" starttime="20240730 06:21:00.529" endtime="20240730 06:21:00.534"/>
-</kw>
-<kw name="Unselect Checkbox" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/chkBTCH2170-FINISHED</arg>
-<doc>Removes selection of checkbox identified by locator.
-Does nothing if the checkbox is not selected.</doc>
-<status status="PASS" starttime="20240730 06:21:00.534" endtime="20240730 06:21:00.539"/>
-</kw>
-<kw name="Unselect Checkbox" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/chkBTCH2170-ABORTED</arg>
-<doc>Removes selection of checkbox identified by locator.
-Does nothing if the checkbox is not selected.</doc>
-<status status="PASS" starttime="20240730 06:21:00.539" endtime="20240730 06:21:00.544"/>
-</kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>5</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240730 06:21:05.545" level="INFO">Slept 5 seconds</msg>
-<status status="PASS" starttime="20240730 06:21:00.545" endtime="20240730 06:21:05.545"/>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[1]/usr/ctxtDY_FILENAME</arg>
+<arg>${symvar('job_filename')}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240730 11:28:51.538" level="INFO">Sym.Dev.job_filename: jobs.xlsx</msg>
+<msg timestamp="20240730 11:28:51.551" level="INFO">Typing text 'jobs.xlsx' into text field 'wnd[1]/usr/ctxtDY_FILENAME'.</msg>
+<status status="PASS" starttime="20240730 11:28:51.537" endtime="20240730 11:28:51.551"/>
 </kw>
 <kw name="Click Element" library="SAP_Tcode_Library">
-<arg>wnd[0]/tbar[1]/btn[8]</arg>
+<arg>wnd[1]/tbar[0]/btn[0]</arg>
 <doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
-<status status="PASS" starttime="20240730 06:21:05.545" endtime="20240730 06:21:05.836"/>
+<status status="PASS" starttime="20240730 11:28:51.551" endtime="20240730 11:28:52.490"/>
 </kw>
-<kw name="Sleep" library="BuiltIn">
-<arg>5</arg>
-<doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240730 06:21:10.836" level="INFO">Slept 5 seconds</msg>
-<status status="PASS" starttime="20240730 06:21:05.836" endtime="20240730 06:21:10.836"/>
+<status status="PASS" starttime="20240730 11:28:43.293" endtime="20240730 11:28:52.491"/>
+</branch>
+<status status="PASS" starttime="20240730 11:28:43.293" endtime="20240730 11:28:52.491"/>
+</if>
+<status status="PASS" starttime="20240730 11:28:18.871" endtime="20240730 11:28:52.491"/>
 </kw>
-<kw name="Spam Search And Select Label" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr</arg>
-<arg>CRBPA:DC_CONTROLLER(BCS_CALM)</arg>
-<msg timestamp="20240730 06:21:11.089" level="INFO">Text Found: CRBPA:DC_CONTROLLER(BCS_CALM)
-Error: (-2147352567, 'Exception occurred.', (619, 'SAP Frontend Server', 'The control could not be found by id.', 'C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPGUI\\sapfront.HLP', 393215, 0), None)</msg>
-<status status="PASS" starttime="20240730 06:21:10.836" endtime="20240730 06:21:11.089"/>
-</kw>
-<kw name="Click Element" library="SAP_Tcode_Library">
-<arg>wnd[0]/mbar/menu[0]/menu[2]</arg>
-<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
-<status status="PASS" starttime="20240730 06:21:11.089" endtime="20240730 06:21:11.353"/>
-</kw>
-<kw name="Click Element" library="SAP_Tcode_Library">
-<arg>wnd[0]/tbar[1]/btn[5]</arg>
-<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
-<status status="PASS" starttime="20240730 06:21:11.353" endtime="20240730 06:21:11.616"/>
-</kw>
-<kw name="Click Element" library="SAP_Tcode_Library">
-<arg>wnd[1]/usr/btnSOFORT_PUSH</arg>
-<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
-<status status="PASS" starttime="20240730 06:21:11.616" endtime="20240730 06:21:11.864"/>
-</kw>
-<kw name="Click Element" library="SAP_Tcode_Library">
-<arg>wnd[1]/tbar[0]/btn[11]</arg>
-<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
-<status status="PASS" starttime="20240730 06:21:11.864" endtime="20240730 06:21:12.173"/>
-</kw>
-<status status="PASS" starttime="20240730 06:20:21.989" endtime="20240730 06:21:12.173"/>
-</kw>
-<tag>TriggerJob</tag>
-<status status="PASS" starttime="20240730 06:20:21.989" endtime="20240730 06:21:12.173"/>
+<tag>FinishJob</tag>
+<status status="PASS" starttime="20240730 11:28:18.870" endtime="20240730 11:28:52.491"/>
 </test>
-<kw name="System Logout" library="Trigger_Cancelled_Job" type="TEARDOWN">
+<kw name="System Logout" library="Finished_Job_Details" type="TEARDOWN">
 <kw name="Run Transaction" library="SAP_Tcode_Library">
 <arg>/nex</arg>
 <doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
-<status status="PASS" starttime="20240730 06:21:12.179" endtime="20240730 06:21:12.385"/>
+<status status="PASS" starttime="20240730 11:28:52.493" endtime="20240730 11:28:52.758"/>
 </kw>
-<status status="PASS" starttime="20240730 06:21:12.179" endtime="20240730 06:21:12.386"/>
+<status status="PASS" starttime="20240730 11:28:52.492" endtime="20240730 11:28:52.758"/>
 </kw>
-<status status="PASS" starttime="20240730 06:20:20.075" endtime="20240730 06:21:12.386"/>
+<status status="PASS" starttime="20240730 11:28:16.916" endtime="20240730 11:28:52.759"/>
 </suite>
 <doc>Testing functionality through Robot Framework</doc>
 <meta name="environment">Dev</meta>
@@ -716,18 +629,18 @@ Error: (-2147352567, 'Exception occurred.', (619, 'SAP Frontend Server', 'The co
 <meta name="test_driver_version">126.0.6478.182 </meta>
 <meta name="test_environment">Dev</meta>
 <meta name="test_freeze_dependencies">astroid==3.2.3,attrs==23.2.0,beautifulsoup4==4.12.3,bs4==0.0.2,certifi==2024.7.4,cffi==1.16.0,chardet==5.2.0,charset-normalizer==3.3.2,click==8.1.7,colorama==0.4.6,cryptography==42.0.8,defusedxml==0.7.1,dill==0.3.8,docutils==0.21.2,et-xmlfile==1.1.0,ExcelLib==0.0.1b2,exceptiongroup==1.2.2,gitdb==4.0.11,GitPython==3.1.43,h11==0.14.0,idna==3.7,isort==5.13.2,Jinja2==3.1.4,jira==3.8.0,jsonpath-ng==1.6.1,jsonschema==4.23.0,jsonschema-specifications==2023.12.1,lazy-object-proxy==1.10.0,lxml==5.2.2,markdown-it-py==3.0.0,MarkupSafe==2.1.5,mccabe==0.7.0,mdurl==0.1.2,natsort==8.4.0,numpy==2.0.0,oauthlib==3.2.2,openpyxl==3.1.5,outcome==1.3.0.post0,packaging==24.1,pandas==2.2.2,pathspec==0.11.2,pillow==10.4.0,pip==24.1.2,platformdirs==4.2.2,ply==3.11,pycparser==2.22,Pygments==2.18.0,pylint==3.2.5,PySocks==1.7.1,python-dateutil==2.9.0.post0,pytz==2024.1,pywin32==306,PyYAML==6.0.1,referencing==0.35.1,requests==2.32.3,requests-oauthlib==2.0.0,requests-toolbelt==1.0.0,rich==13.7.1,rich-click==1.6.1,robotframework==6.0.2,robotframework-datadriver==1.9.0,robotframework-excellib==2.0.1,robotframework-jsonlibrary==0.5,robotframework-pabot==2.16.0,robotframework-pythonlibcore==4.2.0,robotframework-requests==0.9.2,robotframework-sapguilibrary==1.1,robotframework-seleniumlibrary==5.1.3,robotframework-stacktrace==0.4.1,robotframework-tidy==4.5.0,rpds-py==0.19.0,selenium==4.9.1,setuptools==71.0.2,six==1.16.0,smmap==5.0.1,sniffio==1.3.1,sortedcontainers==2.4.0,soupsieve==2.5,tomli==2.0.1,tomlkit==0.13.0,trio==0.26.0,trio-websocket==0.11.1,typing_extensions==4.12.2,tzdata==2024.1,urllib3==2.2.2,wheel==0.43.0,wrapt==1.16.0,wsproto==1.2.0,xlrd==2.0.1,XlsxWriter==3.2.0</meta>
-<status status="PASS" starttime="20240730 06:20:16.553" endtime="20240730 06:21:12.454"/>
+<status status="PASS" starttime="20240730 11:28:13.432" endtime="20240730 11:28:52.834"/>
 </suite>
 <statistics>
 <total>
 <stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="1" fail="0" skip="0">TriggerJob</stat>
+<stat pass="1" fail="0" skip="0">FinishJob</stat>
 </tag>
 <suite>
 <stat pass="1" fail="0" skip="0" id="s1" name="Tests">Tests</stat>
-<stat pass="1" fail="0" skip="0" id="s1-s1" name="Test Trigger Cancelled Job">Tests.Test Trigger Cancelled Job</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="Test Finished Job Details">Tests.Test Finished Job Details</stat>
 </suite>
 </statistics>
 <errors>

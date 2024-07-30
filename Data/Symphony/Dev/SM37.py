@@ -7,4 +7,7 @@ job_filename = "jobs.xlsx"
 job_name = "*"
 job_user_name = "BCSADMIN"
 cancelled_job = "CRBPA:DC_CONTROLLER(BCS_CALM)"
-
+job_from_date = "None"
+job_to_date = "30.07.2024"
+job_from_time = "04:00:00"
+job_to_time = "16:30:00"
