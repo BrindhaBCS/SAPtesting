@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.0.2 (Python 3.12.4 on win32)" generated="20240730 11:28:12.921" rpa="false" schemaversion="3">
+<robot generator="Robot 6.0.2 (Python 3.12.4 on win32)" generated="20240731 12:07:46.754" rpa="false" schemaversion="3">
 <suite id="s1" name="Tests" source="C:\SAP_Testing\SAPtesting\Tests">
 <kw name="Setup highest level suite" type="SETUP">
 <kw name="Set Variable" library="BuiltIn">
 <var>${d.test_server}</var>
 <arg>${test_server}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20240730 11:28:13.806" level="INFO">${d.test_server} = Dev</msg>
-<status status="PASS" starttime="20240730 11:28:13.806" endtime="20240730 11:28:13.806"/>
+<msg timestamp="20240731 12:07:47.651" level="INFO">${d.test_server} = Dev</msg>
+<status status="PASS" starttime="20240731 12:07:47.651" endtime="20240731 12:07:47.651"/>
 </kw>
 <kw name="Reset screenshot count variable" library="Support">
 <kw name="Set Variable" library="BuiltIn">
 <var>${screenshotCount}</var>
 <arg>${PABOTQUEUEINDEX}_1</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20240730 11:28:13.807" level="INFO">${screenshotCount} = 0_1</msg>
-<status status="PASS" starttime="20240730 11:28:13.807" endtime="20240730 11:28:13.807"/>
+<msg timestamp="20240731 12:07:47.652" level="INFO">${screenshotCount} = 0_1</msg>
+<status status="PASS" starttime="20240731 12:07:47.652" endtime="20240731 12:07:47.652"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${screenshotCount}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240730 11:28:13.807" level="INFO">${screenshotCount} = 0_1</msg>
-<status status="PASS" starttime="20240730 11:28:13.807" endtime="20240730 11:28:13.807"/>
+<msg timestamp="20240731 12:07:47.653" level="INFO">${screenshotCount} = 0_1</msg>
+<status status="PASS" starttime="20240731 12:07:47.652" endtime="20240731 12:07:47.653"/>
 </kw>
 <kw name="Set up screenshot directory" library="Support">
 <kw name="Create Directory" library="OperatingSystem">
 <arg>${OUTPUTDIR}${/}${wvar('screenshot_dir')}</arg>
 <doc>Creates the specified directory.</doc>
-<msg timestamp="20240730 11:28:13.808" level="INFO">Web.Dev.screenshot_dir: Screenshot</msg>
-<msg timestamp="20240730 11:28:13.810" level="INFO" html="true">Created directory '&lt;a href="file://C:\SAP_Testing\SAPtesting\Output\pabot_results\0\Screenshot"&gt;C:\SAP_Testing\SAPtesting\Output\pabot_results\0\Screenshot&lt;/a&gt;'.</msg>
-<status status="PASS" starttime="20240730 11:28:13.808" endtime="20240730 11:28:13.810"/>
+<msg timestamp="20240731 12:07:47.654" level="INFO">Web.Dev.screenshot_dir: Screenshot</msg>
+<msg timestamp="20240731 12:07:47.657" level="INFO" html="true">Created directory '&lt;a href="file://C:\SAP_Testing\SAPtesting\Output\pabot_results\0\Screenshot"&gt;C:\SAP_Testing\SAPtesting\Output\pabot_results\0\Screenshot&lt;/a&gt;'.</msg>
+<status status="PASS" starttime="20240731 12:07:47.653" endtime="20240731 12:07:47.657"/>
 </kw>
-<status status="PASS" starttime="20240730 11:28:13.808" endtime="20240730 11:28:13.810"/>
+<status status="PASS" starttime="20240731 12:07:47.653" endtime="20240731 12:07:47.658"/>
 </kw>
-<status status="PASS" starttime="20240730 11:28:13.806" endtime="20240730 11:28:13.811"/>
+<status status="PASS" starttime="20240731 12:07:47.651" endtime="20240731 12:07:47.658"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${screenshot_taking}</arg>
 <arg>${True}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240730 11:28:13.811" level="INFO">${screenshot_taking} = True</msg>
-<status status="PASS" starttime="20240730 11:28:13.811" endtime="20240730 11:28:13.811"/>
+<msg timestamp="20240731 12:07:47.658" level="INFO">${screenshot_taking} = True</msg>
+<status status="PASS" starttime="20240731 12:07:47.658" endtime="20240731 12:07:47.658"/>
 </kw>
 <kw name="Setup linux execution" library="Support">
 <kw name="Run Keyword And Return Status" library="BuiltIn">
@@ -51,10 +51,10 @@
 <kw name="Variable Should Exist" library="BuiltIn">
 <arg>${web_test}</arg>
 <doc>Fails unless the given variable exists within the current scope.</doc>
-<status status="PASS" starttime="20240730 11:28:13.812" endtime="20240730 11:28:13.812"/>
+<status status="PASS" starttime="20240731 12:07:47.659" endtime="20240731 12:07:47.659"/>
 </kw>
-<msg timestamp="20240730 11:28:13.812" level="INFO">${web_test_check} = True</msg>
-<status status="PASS" starttime="20240730 11:28:13.811" endtime="20240730 11:28:13.812"/>
+<msg timestamp="20240731 12:07:47.659" level="INFO">${web_test_check} = True</msg>
+<status status="PASS" starttime="20240731 12:07:47.659" endtime="20240731 12:07:47.659"/>
 </kw>
 <kw name="Run Keyword If" library="BuiltIn">
 <arg>${web_test_check}</arg>
@@ -72,47 +72,47 @@
 :return: Browser metadata information, dict of format
             {"browser_version": browser version value,
              "driver_version": driver version value}</doc>
-<msg timestamp="20240730 11:28:16.901" level="INFO">&amp;{browser_information} = { browser_version=127.0.6533.73 | driver_version=126.0.6478.182  }</msg>
-<status status="PASS" starttime="20240730 11:28:13.813" endtime="20240730 11:28:16.901"/>
+<msg timestamp="20240731 12:07:50.801" level="INFO">&amp;{browser_information} = { browser_version=127.0.6533.88 | driver_version=126.0.6478.182  }</msg>
+<status status="PASS" starttime="20240731 12:07:47.660" endtime="20240731 12:07:50.801"/>
 </kw>
 <kw name="Set Suite Metadata" library="BuiltIn">
 <arg>test_browser_name</arg>
 <arg>${browser}</arg>
 <doc>Sets metadata for the current test suite.</doc>
-<msg timestamp="20240730 11:28:16.902" level="INFO">Set suite metadata 'test_browser_name' to value 'chrome'.</msg>
-<status status="PASS" starttime="20240730 11:28:16.901" endtime="20240730 11:28:16.902"/>
+<msg timestamp="20240731 12:07:50.801" level="INFO">Set suite metadata 'test_browser_name' to value 'chrome'.</msg>
+<status status="PASS" starttime="20240731 12:07:50.801" endtime="20240731 12:07:50.801"/>
 </kw>
 <kw name="Set Suite Metadata" library="BuiltIn">
 <arg>test_browser_version</arg>
 <arg>${browser_information.browser_version}</arg>
 <doc>Sets metadata for the current test suite.</doc>
-<msg timestamp="20240730 11:28:16.903" level="INFO">Set suite metadata 'test_browser_version' to value '127.0.6533.73'.</msg>
-<status status="PASS" starttime="20240730 11:28:16.902" endtime="20240730 11:28:16.903"/>
+<msg timestamp="20240731 12:07:50.803" level="INFO">Set suite metadata 'test_browser_version' to value '127.0.6533.88'.</msg>
+<status status="PASS" starttime="20240731 12:07:50.801" endtime="20240731 12:07:50.803"/>
 </kw>
 <kw name="Set Suite Metadata" library="BuiltIn">
 <arg>test_driver_version</arg>
 <arg>${browser_information.driver_version}</arg>
 <doc>Sets metadata for the current test suite.</doc>
-<msg timestamp="20240730 11:28:16.904" level="INFO">Set suite metadata 'test_driver_version' to value '126.0.6478.182 '.</msg>
-<status status="PASS" starttime="20240730 11:28:16.903" endtime="20240730 11:28:16.904"/>
+<msg timestamp="20240731 12:07:50.803" level="INFO">Set suite metadata 'test_driver_version' to value '126.0.6478.182 '.</msg>
+<status status="PASS" starttime="20240731 12:07:50.803" endtime="20240731 12:07:50.803"/>
 </kw>
-<status status="PASS" starttime="20240730 11:28:13.813" endtime="20240730 11:28:16.904"/>
+<status status="PASS" starttime="20240731 12:07:47.660" endtime="20240731 12:07:50.803"/>
 </kw>
 <kw name="Setup Global Docker Execution Options" library="Support_Web">
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${global_browser_options}</arg>
 <arg>None</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240730 11:28:16.905" level="INFO">${global_browser_options} = None</msg>
-<status status="PASS" starttime="20240730 11:28:16.904" endtime="20240730 11:28:16.905"/>
+<msg timestamp="20240731 12:07:50.803" level="INFO">${global_browser_options} = None</msg>
+<status status="PASS" starttime="20240731 12:07:50.803" endtime="20240731 12:07:50.803"/>
 </kw>
 <kw name="Get Environment Variable" library="OperatingSystem">
 <var>${docker_check}</var>
 <arg>EXECUTION_ENVIRONMENT</arg>
 <arg>not_found</arg>
 <doc>Returns the value of an environment variable with the given name.</doc>
-<msg timestamp="20240730 11:28:16.906" level="INFO">${docker_check} = not_found</msg>
-<status status="PASS" starttime="20240730 11:28:16.905" endtime="20240730 11:28:16.906"/>
+<msg timestamp="20240731 12:07:50.803" level="INFO">${docker_check} = not_found</msg>
+<status status="PASS" starttime="20240731 12:07:50.803" endtime="20240731 12:07:50.803"/>
 </kw>
 <kw name="Run Keyword And Return If" library="BuiltIn">
 <arg>"${docker_check}"!="docker"</arg>
@@ -122,11 +122,11 @@
 <kw name="Log" library="BuiltIn">
 <arg>Not executing on Docker</arg>
 <doc>Logs the given message with the given level.</doc>
-<msg timestamp="20240730 11:28:16.906" level="INFO">Not executing on Docker</msg>
-<status status="PASS" starttime="20240730 11:28:16.906" endtime="20240730 11:28:16.906"/>
+<msg timestamp="20240731 12:07:50.803" level="INFO">Not executing on Docker</msg>
+<status status="PASS" starttime="20240731 12:07:50.803" endtime="20240731 12:07:50.803"/>
 </kw>
-<msg timestamp="20240730 11:28:16.907" level="INFO">Returning from the enclosing user keyword.</msg>
-<status status="PASS" starttime="20240730 11:28:16.906" endtime="20240730 11:28:16.907"/>
+<msg timestamp="20240731 12:07:50.803" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20240731 12:07:50.803" endtime="20240731 12:07:50.803"/>
 </kw>
 <kw name="Create List" library="BuiltIn">
 <var>@{options}</var>
@@ -134,15 +134,15 @@
 <arg>--no-sandbox</arg>
 <arg>--disable-dev-shm-usage</arg>
 <doc>Returns a list containing given items.</doc>
-<status status="NOT RUN" starttime="20240730 11:28:16.907" endtime="20240730 11:28:16.907"/>
+<status status="NOT RUN" starttime="20240731 12:07:50.803" endtime="20240731 12:07:50.803"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>@{docker_options}</arg>
 <arg>@{options}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<status status="NOT RUN" starttime="20240730 11:28:16.907" endtime="20240730 11:28:16.907"/>
+<status status="NOT RUN" starttime="20240731 12:07:50.803" endtime="20240731 12:07:50.803"/>
 </kw>
-<status status="PASS" starttime="20240730 11:28:16.904" endtime="20240730 11:28:16.907"/>
+<status status="PASS" starttime="20240731 12:07:50.803" endtime="20240731 12:07:50.803"/>
 </kw>
 <kw name="Create Webdriver for chrome preferences" library="Support_Web">
 <kw name="Update Docker Execution Options" library="Support_Web">
@@ -156,19 +156,19 @@
 <kw name="Variable Should Exist" library="BuiltIn">
 <arg>${docker_options}</arg>
 <doc>Fails unless the given variable exists within the current scope.</doc>
-<msg timestamp="20240730 11:28:16.910" level="FAIL">Variable '${docker_options}' does not exist.</msg>
-<status status="FAIL" starttime="20240730 11:28:16.908" endtime="20240730 11:28:16.910"/>
+<msg timestamp="20240731 12:07:50.803" level="FAIL">Variable '${docker_options}' does not exist.</msg>
+<status status="FAIL" starttime="20240731 12:07:50.803" endtime="20240731 12:07:50.803"/>
 </kw>
-<msg timestamp="20240730 11:28:16.910" level="INFO">${docker_check} = False</msg>
-<status status="PASS" starttime="20240730 11:28:16.908" endtime="20240730 11:28:16.910"/>
+<msg timestamp="20240731 12:07:50.803" level="INFO">${docker_check} = False</msg>
+<status status="PASS" starttime="20240731 12:07:50.803" endtime="20240731 12:07:50.803"/>
 </kw>
 <kw name="Get Length" library="BuiltIn">
 <var>${list_prefs_length}</var>
 <arg>${list_prefs}</arg>
 <doc>Returns and logs the length of the given item as an integer.</doc>
-<msg timestamp="20240730 11:28:16.910" level="INFO">Length is 1</msg>
-<msg timestamp="20240730 11:28:16.910" level="INFO">${list_prefs_length} = 1</msg>
-<status status="PASS" starttime="20240730 11:28:16.910" endtime="20240730 11:28:16.911"/>
+<msg timestamp="20240731 12:07:50.803" level="INFO">Length is 1</msg>
+<msg timestamp="20240731 12:07:50.803" level="INFO">${list_prefs_length} = 1</msg>
+<status status="PASS" starttime="20240731 12:07:50.803" endtime="20240731 12:07:50.803"/>
 </kw>
 <kw name="Run Keyword If" library="BuiltIn">
 <var>${list_prefs}</var>
@@ -187,13 +187,13 @@
 <kw name="Set Variable" library="BuiltIn">
 <arg>${list_prefs}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" starttime="20240730 11:28:16.911" endtime="20240730 11:28:16.911"/>
+<status status="PASS" starttime="20240731 12:07:50.803" endtime="20240731 12:07:50.803"/>
 </kw>
-<msg timestamp="20240730 11:28:16.911" level="INFO">${list_prefs} = [[]]</msg>
-<status status="PASS" starttime="20240730 11:28:16.911" endtime="20240730 11:28:16.911"/>
+<msg timestamp="20240731 12:07:50.803" level="INFO">${list_prefs} = [[]]</msg>
+<status status="PASS" starttime="20240731 12:07:50.803" endtime="20240731 12:07:50.803"/>
 </kw>
-<msg timestamp="20240730 11:28:16.912" level="INFO">${list_prefs} = [[]]</msg>
-<status status="PASS" starttime="20240730 11:28:16.908" endtime="20240730 11:28:16.912"/>
+<msg timestamp="20240731 12:07:50.803" level="INFO">${list_prefs} = [[]]</msg>
+<status status="PASS" starttime="20240731 12:07:50.803" endtime="20240731 12:07:50.803"/>
 </kw>
 <kw name="Create Chrome Options for download preferences" library="Support_Web">
 <var>${chrome_options}</var>
@@ -202,11 +202,11 @@
 <arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
 <arg>sys</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240730 11:28:16.912" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000016A5C5D8710&gt;</msg>
-<status status="PASS" starttime="20240730 11:28:16.912" endtime="20240730 11:28:16.912"/>
+<msg timestamp="20240731 12:07:50.803" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001D908DB4380&gt;</msg>
+<status status="PASS" starttime="20240731 12:07:50.803" endtime="20240731 12:07:50.803"/>
 </kw>
-<msg timestamp="20240730 11:28:16.912" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000016A5C5D8710&gt;</msg>
-<status status="PASS" starttime="20240730 11:28:16.912" endtime="20240730 11:28:16.912"/>
+<msg timestamp="20240731 12:07:50.803" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001D908DB4380&gt;</msg>
+<status status="PASS" starttime="20240731 12:07:50.803" endtime="20240731 12:07:50.803"/>
 </kw>
 <kw name="Update Preferences List" library="Support_Web">
 <arg>${chrome_options}</arg>
@@ -215,14 +215,14 @@
 <var>${string_prefs}</var>
 <arg>${list_prefs}</arg>
 <doc>Converts the given item to a Unicode string.</doc>
-<msg timestamp="20240730 11:28:16.913" level="INFO">${string_prefs} = [[]]</msg>
-<status status="PASS" starttime="20240730 11:28:16.913" endtime="20240730 11:28:16.913"/>
+<msg timestamp="20240731 12:07:50.803" level="INFO">${string_prefs} = [[]]</msg>
+<status status="PASS" starttime="20240731 12:07:50.803" endtime="20240731 12:07:50.803"/>
 </kw>
 <kw name="Return From Keyword If" library="BuiltIn">
 <arg>${string_prefs} == [[]]</arg>
 <doc>Returns from the enclosing user keyword if ``condition`` is true.</doc>
-<msg timestamp="20240730 11:28:16.914" level="INFO">Returning from the enclosing user keyword.</msg>
-<status status="PASS" starttime="20240730 11:28:16.913" endtime="20240730 11:28:16.914"/>
+<msg timestamp="20240731 12:07:50.803" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20240731 12:07:50.803" endtime="20240731 12:07:50.803"/>
 </kw>
 <for flavor="IN">
 <var>${preference}</var>
@@ -234,13 +234,13 @@
 <arg>add_argument</arg>
 <arg>${preference}</arg>
 <doc>Calls the named method of the given object with the provided arguments.</doc>
-<status status="NOT RUN" starttime="20240730 11:28:16.914" endtime="20240730 11:28:16.914"/>
+<status status="NOT RUN" starttime="20240731 12:07:50.803" endtime="20240731 12:07:50.803"/>
 </kw>
-<status status="NOT RUN" starttime="20240730 11:28:16.914" endtime="20240730 11:28:16.914"/>
+<status status="NOT RUN" starttime="20240731 12:07:50.803" endtime="20240731 12:07:50.803"/>
 </iter>
-<status status="NOT RUN" starttime="20240730 11:28:16.914" endtime="20240730 11:28:16.914"/>
+<status status="NOT RUN" starttime="20240731 12:07:50.803" endtime="20240731 12:07:50.803"/>
 </for>
-<status status="PASS" starttime="20240730 11:28:16.913" endtime="20240730 11:28:16.914"/>
+<status status="PASS" starttime="20240731 12:07:50.803" endtime="20240731 12:07:50.803"/>
 </kw>
 <kw name="Call Method" library="BuiltIn">
 <arg>${chrome_options}</arg>
@@ -248,399 +248,772 @@
 <arg>prefs</arg>
 <arg>${kw_prefs}</arg>
 <doc>Calls the named method of the given object with the provided arguments.</doc>
-<status status="PASS" starttime="20240730 11:28:16.914" endtime="20240730 11:28:16.915"/>
+<status status="PASS" starttime="20240731 12:07:50.803" endtime="20240731 12:07:50.803"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${global_browser_options}</arg>
 <arg>${chrome options}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240730 11:28:16.915" level="INFO">${global_browser_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000016A5C5D8710&gt;</msg>
-<status status="PASS" starttime="20240730 11:28:16.915" endtime="20240730 11:28:16.915"/>
+<msg timestamp="20240731 12:07:50.803" level="INFO">${global_browser_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001D908DB4380&gt;</msg>
+<status status="PASS" starttime="20240731 12:07:50.803" endtime="20240731 12:07:50.803"/>
 </kw>
-<status status="PASS" starttime="20240730 11:28:16.907" endtime="20240730 11:28:16.915"/>
+<status status="PASS" starttime="20240731 12:07:50.803" endtime="20240731 12:07:50.803"/>
 </kw>
-<status status="PASS" starttime="20240730 11:28:13.813" endtime="20240730 11:28:16.915"/>
+<status status="PASS" starttime="20240731 12:07:47.660" endtime="20240731 12:07:50.803"/>
 </kw>
-<status status="PASS" starttime="20240730 11:28:13.812" endtime="20240730 11:28:16.916"/>
+<status status="PASS" starttime="20240731 12:07:47.660" endtime="20240731 12:07:50.803"/>
 </kw>
-<status status="PASS" starttime="20240730 11:28:13.811" endtime="20240730 11:28:16.916"/>
+<status status="PASS" starttime="20240731 12:07:47.658" endtime="20240731 12:07:50.803"/>
 </kw>
 <kw name="Set Suite Metadata" library="BuiltIn">
 <arg>environment</arg>
 <arg>${test_server}</arg>
 <doc>Sets metadata for the current test suite.</doc>
-<msg timestamp="20240730 11:28:16.916" level="INFO">Set suite metadata 'environment' to value 'Dev'.</msg>
-<status status="PASS" starttime="20240730 11:28:16.916" endtime="20240730 11:28:16.916"/>
+<msg timestamp="20240731 12:07:50.803" level="INFO">Set suite metadata 'environment' to value 'Dev'.</msg>
+<status status="PASS" starttime="20240731 12:07:50.803" endtime="20240731 12:07:50.803"/>
 </kw>
-<status status="PASS" starttime="20240730 11:28:13.805" endtime="20240730 11:28:16.916"/>
+<status status="PASS" starttime="20240731 12:07:47.650" endtime="20240731 12:07:50.803"/>
 </kw>
-<suite id="s1-s1" name="Test Finished Job Details" source="C:\SAP_Testing\SAPtesting\Tests\Test_Finished_Job_Details.robot">
-<kw name="System Logon" library="Finished_Job_Details" type="SETUP">
-<kw name="Start Process" library="Process">
-<arg>${symvar('SAP_SERVER')}</arg>
-<doc>Starts a new process on background.</doc>
-<msg timestamp="20240730 11:28:16.934" level="INFO">Sym.Dev.SAP_SERVER: C:\Program Files (x86)\SAP\FrontEnd\SAPGUI\saplogon.exe</msg>
-<msg timestamp="20240730 11:28:16.934" level="INFO">Starting process:
-"C:\Program Files (x86)\SAP\FrontEnd\SAPGUI\saplogon.exe"</msg>
-<status status="PASS" starttime="20240730 11:28:16.933" endtime="20240730 11:28:16.937"/>
+<suite id="s1-s1" name="Test SAP Portal" source="C:\SAP_Testing\SAPtesting\Tests\Test_SAP_Portal.robot">
+<kw name="login page" library="SAP_Portal" type="SETUP">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${symvar('SAP_portal_url')}</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20240731 12:07:50.818" level="INFO">Sym.Dev.SAP_portal_url: https://me.sap.com/licensekey/wizard</msg>
+<msg timestamp="20240731 12:07:50.818" level="INFO">Opening browser 'chrome' to base url 'https://me.sap.com/licensekey/wizard'.</msg>
+<status status="PASS" starttime="20240731 12:07:50.818" endtime="20240731 12:07:54.944"/>
 </kw>
-<kw name="Connect To Session" library="SAP_Tcode_Library">
-<doc>Connects to an open session SAP.</doc>
-<status status="PASS" starttime="20240730 11:28:16.937" endtime="20240730 11:28:16.965"/>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20240731 12:07:54.944" endtime="20240731 12:07:54.993"/>
 </kw>
-<kw name="Open Connection" library="SAP_Tcode_Library">
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:07:59.994" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240731 12:07:54.993" endtime="20240731 12:07:59.994"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id:j_username</arg>
+<arg>${symvar('SAP_portal_username')}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240731 12:07:59.994" level="INFO">Sym.Dev.SAP_portal_username: S0023459113</msg>
+<msg timestamp="20240731 12:07:59.994" level="INFO">Typing text 'S0023459113' into text field 'id:j_username'.</msg>
+<status status="PASS" starttime="20240731 12:07:59.994" endtime="20240731 12:08:00.085"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:08:02.087" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240731 12:08:00.085" endtime="20240731 12:08:02.087"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://div[text()='Continue']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240731 12:08:02.087" level="INFO">Clicking element 'xpath://div[text()='Continue']'.</msg>
+<status status="PASS" starttime="20240731 12:08:02.087" endtime="20240731 12:08:03.803"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>20</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:08:23.803" level="INFO">Slept 20 seconds</msg>
+<status status="PASS" starttime="20240731 12:08:03.803" endtime="20240731 12:08:23.803"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>id:password</arg>
+<arg>${symvar('password')}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240731 12:08:23.803" level="INFO">Sym.Dev.password: Whitetiger@2024</msg>
+<msg timestamp="20240731 12:08:23.803" level="INFO">Typing text 'Whitetiger@2024' into text field 'id:password'.</msg>
+<status status="PASS" starttime="20240731 12:08:23.803" endtime="20240731 12:08:23.913"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:08:28.913" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240731 12:08:23.913" endtime="20240731 12:08:28.913"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://button[text()='Sign in']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240731 12:08:28.913" level="INFO">Clicking element 'xpath://button[text()='Sign in']'.</msg>
+<status status="PASS" starttime="20240731 12:08:28.913" endtime="20240731 12:08:28.971"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>50</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:09:18.973" level="INFO">Slept 50 seconds</msg>
+<status status="PASS" starttime="20240731 12:08:28.972" endtime="20240731 12:09:18.973"/>
+</kw>
+<status status="PASS" starttime="20240731 12:07:50.818" endtime="20240731 12:09:18.973"/>
+</kw>
+<test id="s1-s1-t1" name="Installation" line="8">
+<kw name="Installation" library="SAP_Portal">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>xpath://*[@id="shell-component---application266795052--frame"]</arg>
+<arg>20s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240731 12:09:18.974" endtime="20240731 12:09:19.001"/>
+</kw>
+<kw name="Select Frame" library="SeleniumLibrary">
+<arg>xpath://*[@id="shell-component---application266795052--frame"]</arg>
+<doc>Sets frame identified by ``locator`` as the current frame.</doc>
+<msg timestamp="20240731 12:09:19.002" level="INFO">Selecting frame 'xpath://*[@id="shell-component---application266795052--frame"]'.</msg>
+<status status="PASS" starttime="20240731 12:09:19.001" endtime="20240731 12:09:19.049"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:09:21.051" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240731 12:09:19.049" endtime="20240731 12:09:21.051"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>xpath://bdi[text()='Search']</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240731 12:09:21.051" endtime="20240731 12:09:21.076"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://bdi[text()='Search']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240731 12:09:21.077" level="INFO">Clicking element 'xpath://bdi[text()='Search']'.</msg>
+<status status="PASS" starttime="20240731 12:09:21.076" endtime="20240731 12:09:21.451"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:09:26.451" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240731 12:09:21.451" endtime="20240731 12:09:26.451"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>xpath://bdi[text()='Filters']</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240731 12:09:26.451" endtime="20240731 12:09:26.474"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://bdi[text()='Filters']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240731 12:09:26.475" level="INFO">Clicking element 'xpath://bdi[text()='Filters']'.</msg>
+<status status="PASS" starttime="20240731 12:09:26.474" endtime="20240731 12:09:26.584"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:09:28.585" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240731 12:09:26.585" endtime="20240731 12:09:28.585"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>xpath://bdi[text()='Installation']</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240731 12:09:28.585" endtime="20240731 12:09:28.662"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://bdi[text()='Installation']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240731 12:09:28.663" level="INFO">Clicking element 'xpath://bdi[text()='Installation']'.</msg>
+<status status="PASS" starttime="20240731 12:09:28.662" endtime="20240731 12:09:28.749"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:09:30.750" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240731 12:09:28.750" endtime="20240731 12:09:30.750"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:Key</arg>
+<arg>${symvar('Installation_Value')}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240731 12:09:30.751" level="INFO">Sym.Dev.Installation_Value: 21053529</msg>
+<msg timestamp="20240731 12:09:30.751" level="INFO">Typing text '21053529' into text field 'name:Key'.</msg>
+<status status="PASS" starttime="20240731 12:09:30.750" endtime="20240731 12:09:30.872"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:09:32.872" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240731 12:09:30.872" endtime="20240731 12:09:32.872"/>
+</kw>
+<kw name="Press Keys" library="SeleniumLibrary">
+<arg>xpath://bdi[text()='Installation']</arg>
+<arg>ARROW_DOWN</arg>
+<arg>ENTER</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20240731 12:09:32.873" level="INFO">Sending key(s) ('ARROW_DOWN', 'ENTER') to xpath://bdi[text()='Installation'] element.</msg>
+<msg timestamp="20240731 12:09:33.217" level="INFO">Pressing special key ARROW_DOWN to element.</msg>
+<msg timestamp="20240731 12:09:33.217" level="INFO">Releasing special key ARROW_DOWN.</msg>
+<msg timestamp="20240731 12:09:33.239" level="INFO">Pressing special key ENTER to element.</msg>
+<msg timestamp="20240731 12:09:33.239" level="INFO">Releasing special key ENTER.</msg>
+<status status="PASS" starttime="20240731 12:09:32.872" endtime="20240731 12:09:33.243"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:09:35.243" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240731 12:09:33.243" endtime="20240731 12:09:35.243"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://bdi[text()='OK']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240731 12:09:35.244" level="INFO">Clicking element 'xpath://bdi[text()='OK']'.</msg>
+<status status="PASS" starttime="20240731 12:09:35.243" endtime="20240731 12:09:35.345"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:09:37.346" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240731 12:09:35.345" endtime="20240731 12:09:37.346"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://bdi[text()='Go']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240731 12:09:37.346" level="INFO">Clicking element 'xpath://bdi[text()='Go']'.</msg>
+<status status="PASS" starttime="20240731 12:09:37.346" endtime="20240731 12:09:37.452"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:09:39.453" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240731 12:09:37.452" endtime="20240731 12:09:39.453"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>xpath://span[text()='SAP NetWeaver']</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240731 12:09:39.453" endtime="20240731 12:09:39.476"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://span[text()='SAP NetWeaver']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240731 12:09:39.477" level="INFO">Clicking element 'xpath://span[text()='SAP NetWeaver']'.</msg>
+<status status="PASS" starttime="20240731 12:09:39.476" endtime="20240731 12:09:39.722"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:09:44.724" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240731 12:09:39.722" endtime="20240731 12:09:44.724"/>
+</kw>
+<status status="PASS" starttime="20240731 12:09:18.974" endtime="20240731 12:09:44.724"/>
+</kw>
+<kw name="System_id" library="SAP_Portal">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://bdi[text()='Filters']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240731 12:09:44.725" level="INFO">Clicking element 'xpath://bdi[text()='Filters']'.</msg>
+<status status="PASS" starttime="20240731 12:09:44.724" endtime="20240731 12:09:44.815"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:09:49.816" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240731 12:09:44.816" endtime="20240731 12:09:49.816"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>name:sysid</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240731 12:09:49.816" level="INFO">Clicking element 'name:sysid'.</msg>
+<status status="PASS" starttime="20240731 12:09:49.816" endtime="20240731 12:09:49.979"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:09:51.981" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240731 12:09:49.979" endtime="20240731 12:09:51.981"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:sysid</arg>
 <arg>${symvar('connection')}</arg>
-<doc>Opens a connection to the given connection name. Be sure to provide the full connection name, including the bracket part.</doc>
-<msg timestamp="20240730 11:28:16.966" level="INFO">Sym.Dev.connection: BPM</msg>
-<status status="PASS" starttime="20240730 11:28:16.965" endtime="20240730 11:28:17.882"/>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240731 12:09:51.982" level="INFO">Sym.Dev.connection: BIS</msg>
+<msg timestamp="20240731 12:09:51.982" level="INFO">Typing text 'BIS' into text field 'name:sysid'.</msg>
+<status status="PASS" starttime="20240731 12:09:51.981" endtime="20240731 12:09:52.057"/>
 </kw>
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/txtRSYST-MANDT</arg>
-<arg>${symvar('sap_client')}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240730 11:28:17.884" level="INFO">Sym.Dev.sap_client: 800</msg>
-<msg timestamp="20240730 11:28:17.923" level="INFO">Typing text '800' into text field 'wnd[0]/usr/txtRSYST-MANDT'.</msg>
-<status status="PASS" starttime="20240730 11:28:17.883" endtime="20240730 11:28:17.923"/>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:09:54.059" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240731 12:09:52.058" endtime="20240731 12:09:54.059"/>
 </kw>
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/txtRSYST-BNAME</arg>
-<arg>${symvar('sap_user')}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240730 11:28:17.924" level="INFO">Sym.Dev.sap_user: BCSADMIN</msg>
-<msg timestamp="20240730 11:28:17.939" level="INFO">Typing text 'BCSADMIN' into text field 'wnd[0]/usr/txtRSYST-BNAME'.</msg>
-<status status="PASS" starttime="20240730 11:28:17.923" endtime="20240730 11:28:17.940"/>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://bdi[text()='OK']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240731 12:09:54.059" level="INFO">Clicking element 'xpath://bdi[text()='OK']'.</msg>
+<status status="PASS" starttime="20240731 12:09:54.059" endtime="20240731 12:09:54.136"/>
 </kw>
-<kw name="Input Password" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/pwdRSYST-BCODE</arg>
-<arg>%{SAP_PASSWORD}</arg>
-<doc>Inserts the given password into the text field identified by locator.
-The password is not recorded in the log.</doc>
-<msg timestamp="20240730 11:28:17.948" level="INFO">Typing password into text field 'wnd[0]/usr/pwdRSYST-BCODE'.</msg>
-<status status="PASS" starttime="20240730 11:28:17.940" endtime="20240730 11:28:17.949"/>
+<kw name="Sleep" library="BuiltIn">
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:09:57.137" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240731 12:09:54.136" endtime="20240731 12:09:57.137"/>
 </kw>
-<kw name="Send Vkey" library="SAP_Tcode_Library">
-<arg>0</arg>
-<doc>Sends a SAP virtual key combination to the window, not into an element.
-If you want to send a value to a text field, use `input text` instead.</doc>
-<status status="PASS" starttime="20240730 11:28:17.949" endtime="20240730 11:28:18.838"/>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://bdi[text()='Go']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240731 12:09:57.137" level="INFO">Clicking element 'xpath://bdi[text()='Go']'.</msg>
+<status status="PASS" starttime="20240731 12:09:57.137" endtime="20240731 12:09:57.299"/>
 </kw>
-<kw name="Multiple Logon Handling" library="SAP_Tcode_Library">
-<arg>wnd[1]</arg>
-<arg>wnd[1]/usr/radMULTI_LOGON_OPT2</arg>
-<arg>wnd[1]/tbar[0]/btn[0]</arg>
-<status status="PASS" starttime="20240730 11:28:18.839" endtime="20240730 11:28:18.870"/>
+<kw name="Sleep" library="BuiltIn">
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:10:00.300" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240731 12:09:57.299" endtime="20240731 12:10:00.300"/>
 </kw>
-<status status="PASS" starttime="20240730 11:28:16.933" endtime="20240730 11:28:18.870"/>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>xpath://span[text()='BIS']</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240731 12:10:00.300" endtime="20240731 12:10:00.326"/>
 </kw>
-<test id="s1-s1-t1" name="Providing finished job details" line="8">
-<kw name="Display cancelled job Details" library="Finished_Job_Details">
-<kw name="Run Transaction" library="SAP_Tcode_Library">
-<arg>/nsm37</arg>
-<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
-<status status="PASS" starttime="20240730 11:28:18.871" endtime="20240730 11:28:19.369"/>
+<kw name="Double Click Element" library="SeleniumLibrary">
+<arg>xpath://span[text()='BIS']</arg>
+<doc>Double clicks the element identified by ``locator``.</doc>
+<msg timestamp="20240731 12:10:00.326" level="INFO">Double clicking element 'xpath://span[text()='BIS']'.</msg>
+<status status="PASS" starttime="20240731 12:10:00.326" endtime="20240731 12:10:00.698"/>
 </kw>
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/txtBTCH2170-JOBNAME</arg>
-<arg>${EMPTY}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240730 11:28:19.382" level="INFO">Typing text '' into text field 'wnd[0]/usr/txtBTCH2170-JOBNAME'.</msg>
-<status status="PASS" starttime="20240730 11:28:19.370" endtime="20240730 11:28:19.382"/>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:10:05.700" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240731 12:10:00.698" endtime="20240731 12:10:05.700"/>
 </kw>
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/txtBTCH2170-JOBNAME</arg>
-<arg>${symvar('job_name')}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240730 11:28:19.383" level="INFO">Sym.Dev.job_name: *</msg>
-<msg timestamp="20240730 11:28:19.396" level="INFO">Typing text '*' into text field 'wnd[0]/usr/txtBTCH2170-JOBNAME'.</msg>
-<status status="PASS" starttime="20240730 11:28:19.382" endtime="20240730 11:28:19.396"/>
+<status status="PASS" starttime="20240731 12:09:44.724" endtime="20240731 12:10:05.700"/>
 </kw>
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/txtBTCH2170-USERNAME</arg>
-<arg>${EMPTY}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240730 11:28:19.403" level="INFO">Typing text '' into text field 'wnd[0]/usr/txtBTCH2170-USERNAME'.</msg>
-<status status="PASS" starttime="20240730 11:28:19.396" endtime="20240730 11:28:19.403"/>
+<kw name="Filtering" library="SAP_Portal">
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>xpath://bdi[text()='Filters']</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20240731 12:10:05.700" endtime="20240731 12:10:05.718"/>
 </kw>
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/txtBTCH2170-USERNAME</arg>
-<arg>${symvar('job_user_name')}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240730 11:28:19.404" level="INFO">Sym.Dev.job_user_name: BCSADMIN</msg>
-<msg timestamp="20240730 11:28:19.409" level="INFO">Typing text 'BCSADMIN' into text field 'wnd[0]/usr/txtBTCH2170-USERNAME'.</msg>
-<status status="PASS" starttime="20240730 11:28:19.403" endtime="20240730 11:28:19.409"/>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://bdi[text()='Filters']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240731 12:10:05.719" level="INFO">Clicking element 'xpath://bdi[text()='Filters']'.</msg>
+<status status="PASS" starttime="20240731 12:10:05.719" endtime="20240731 12:10:05.820"/>
 </kw>
-<kw name="Unselect Checkbox" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/chkBTCH2170-PRELIM</arg>
-<doc>Removes selection of checkbox identified by locator.
-Does nothing if the checkbox is not selected.</doc>
-<status status="PASS" starttime="20240730 11:28:19.409" endtime="20240730 11:28:19.414"/>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:10:10.821" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240731 12:10:05.820" endtime="20240731 12:10:10.821"/>
 </kw>
-<kw name="Unselect Checkbox" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/chkBTCH2170-SCHEDUL</arg>
-<doc>Removes selection of checkbox identified by locator.
-Does nothing if the checkbox is not selected.</doc>
-<status status="PASS" starttime="20240730 11:28:19.414" endtime="20240730 11:28:19.419"/>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>name:HWKEY</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240731 12:10:10.821" level="INFO">Clicking element 'name:HWKEY'.</msg>
+<status status="PASS" starttime="20240731 12:10:10.821" endtime="20240731 12:10:10.924"/>
 </kw>
-<kw name="Unselect Checkbox" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/chkBTCH2170-READY</arg>
-<doc>Removes selection of checkbox identified by locator.
-Does nothing if the checkbox is not selected.</doc>
-<status status="PASS" starttime="20240730 11:28:19.419" endtime="20240730 11:28:19.425"/>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:10:12.924" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240731 12:10:10.924" endtime="20240731 12:10:12.924"/>
 </kw>
-<kw name="Unselect Checkbox" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/chkBTCH2170-RUNNING</arg>
-<doc>Removes selection of checkbox identified by locator.
-Does nothing if the checkbox is not selected.</doc>
-<status status="PASS" starttime="20240730 11:28:19.425" endtime="20240730 11:28:19.430"/>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:HWKEY</arg>
+<arg>${symvar('HardwareKey')}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240731 12:10:12.925" level="INFO">Sym.Dev.HardwareKey: S0396073254</msg>
+<msg timestamp="20240731 12:10:12.925" level="INFO">Typing text 'S0396073254' into text field 'name:HWKEY'.</msg>
+<status status="PASS" starttime="20240731 12:10:12.924" endtime="20240731 12:10:13.062"/>
 </kw>
-<kw name="Select Checkbox" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/chkBTCH2170-FINISHED</arg>
-<doc>Selects checkbox identified by locator.
-Does nothing if the checkbox is already selected.</doc>
-<status status="PASS" starttime="20240730 11:28:19.430" endtime="20240730 11:28:19.435"/>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:10:14.063" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240731 12:10:13.063" endtime="20240731 12:10:14.063"/>
 </kw>
-<kw name="Unselect Checkbox" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/chkBTCH2170-ABORTED</arg>
-<doc>Removes selection of checkbox identified by locator.
-Does nothing if the checkbox is not selected.</doc>
-<status status="PASS" starttime="20240730 11:28:19.435" endtime="20240730 11:28:19.440"/>
+<kw name="Press Keys" library="SeleniumLibrary">
+<arg>name:HWKEY</arg>
+<arg>ARROW_DOWN</arg>
+<arg>ENTER</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20240731 12:10:14.064" level="INFO">Sending key(s) ('ARROW_DOWN', 'ENTER') to name:HWKEY element.</msg>
+<msg timestamp="20240731 12:10:14.371" level="INFO">Pressing special key ARROW_DOWN to element.</msg>
+<msg timestamp="20240731 12:10:14.371" level="INFO">Releasing special key ARROW_DOWN.</msg>
+<msg timestamp="20240731 12:10:14.382" level="INFO">Pressing special key ENTER to element.</msg>
+<msg timestamp="20240731 12:10:14.382" level="INFO">Releasing special key ENTER.</msg>
+<status status="PASS" starttime="20240731 12:10:14.063" endtime="20240731 12:10:14.403"/>
 </kw>
-<if>
-<msg timestamp="20240730 11:28:19.441" level="INFO">Sym.Dev.job_from_date: None</msg>
-<branch type="IF" condition="'${symvar('job_from_date')}' == 'None'">
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/ctxtBTCH2170-FROM_DATE</arg>
-<arg>${EMPTY}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240730 11:28:19.446" level="INFO">Typing text '' into text field 'wnd[0]/usr/ctxtBTCH2170-FROM_DATE'.</msg>
-<status status="PASS" starttime="20240730 11:28:19.441" endtime="20240730 11:28:19.447"/>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:10:16.404" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240731 12:10:14.403" endtime="20240731 12:10:16.404"/>
 </kw>
-<status status="PASS" starttime="20240730 11:28:19.440" endtime="20240730 11:28:19.447"/>
-</branch>
-<branch type="ELSE">
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/ctxtBTCH2170-FROM_DATE</arg>
-<arg>${EMPTY}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<status status="NOT RUN" starttime="20240730 11:28:19.447" endtime="20240730 11:28:19.447"/>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>name:LICENSETYPETEXT</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240731 12:10:16.404" level="INFO">Clicking element 'name:LICENSETYPETEXT'.</msg>
+<status status="PASS" starttime="20240731 12:10:16.404" endtime="20240731 12:10:16.496"/>
 </kw>
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/ctxtBTCH2170-FROM_DATE</arg>
-<arg>${symvar('job_from_date')}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<status status="NOT RUN" starttime="20240730 11:28:19.447" endtime="20240730 11:28:19.447"/>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:10:18.498" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240731 12:10:16.496" endtime="20240731 12:10:18.498"/>
 </kw>
-<status status="NOT RUN" starttime="20240730 11:28:19.447" endtime="20240730 11:28:19.447"/>
-</branch>
-<status status="PASS" starttime="20240730 11:28:19.440" endtime="20240730 11:28:19.447"/>
-</if>
-<if>
-<msg timestamp="20240730 11:28:19.448" level="INFO">Sym.Dev.job_to_date: 30.07.2024</msg>
-<branch type="IF" condition="'${symvar('job_to_date')}' == 'None'">
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/ctxtBTCH2170-TO_DATE</arg>
-<arg>${EMPTY}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<status status="NOT RUN" starttime="20240730 11:28:19.448" endtime="20240730 11:28:19.448"/>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:LICENSETYPETEXT</arg>
+<arg>${symvar('LicenseType_1')}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240731 12:10:18.499" level="INFO">Sym.Dev.LicenseType_1: Maintenance Entitlement</msg>
+<msg timestamp="20240731 12:10:18.499" level="INFO">Typing text 'Maintenance Entitlement' into text field 'name:LICENSETYPETEXT'.</msg>
+<status status="PASS" starttime="20240731 12:10:18.498" endtime="20240731 12:10:18.716"/>
 </kw>
-<status status="NOT RUN" starttime="20240730 11:28:19.447" endtime="20240730 11:28:19.449"/>
-</branch>
-<branch type="ELSE">
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/ctxtBTCH2170-TO_DATE</arg>
-<arg>${EMPTY}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240730 11:28:19.454" level="INFO">Typing text '' into text field 'wnd[0]/usr/ctxtBTCH2170-TO_DATE'.</msg>
-<status status="PASS" starttime="20240730 11:28:19.449" endtime="20240730 11:28:19.454"/>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:10:19.716" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240731 12:10:18.716" endtime="20240731 12:10:19.716"/>
 </kw>
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/ctxtBTCH2170-TO_DATE</arg>
-<arg>${symvar('job_to_date')}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240730 11:28:19.455" level="INFO">Sym.Dev.job_to_date: 30.07.2024</msg>
-<msg timestamp="20240730 11:28:19.461" level="INFO">Typing text '30.07.2024' into text field 'wnd[0]/usr/ctxtBTCH2170-TO_DATE'.</msg>
-<status status="PASS" starttime="20240730 11:28:19.454" endtime="20240730 11:28:19.461"/>
+<kw name="Press Keys" library="SeleniumLibrary">
+<arg>name:LICENSETYPETEXT</arg>
+<arg>ARROW_DOWN</arg>
+<arg>ENTER</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20240731 12:10:19.717" level="INFO">Sending key(s) ('ARROW_DOWN', 'ENTER') to name:LICENSETYPETEXT element.</msg>
+<msg timestamp="20240731 12:10:20.028" level="INFO">Pressing special key ARROW_DOWN to element.</msg>
+<msg timestamp="20240731 12:10:20.028" level="INFO">Releasing special key ARROW_DOWN.</msg>
+<msg timestamp="20240731 12:10:20.037" level="INFO">Pressing special key ENTER to element.</msg>
+<msg timestamp="20240731 12:10:20.037" level="INFO">Releasing special key ENTER.</msg>
+<status status="PASS" starttime="20240731 12:10:19.716" endtime="20240731 12:10:20.052"/>
 </kw>
-<status status="PASS" starttime="20240730 11:28:19.449" endtime="20240730 11:28:19.461"/>
-</branch>
-<status status="PASS" starttime="20240730 11:28:19.447" endtime="20240730 11:28:19.461"/>
-</if>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:10:22.052" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240731 12:10:20.052" endtime="20240731 12:10:22.052"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:LICENSETYPETEXT</arg>
+<arg>${symvar('LicenseType_2')}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240731 12:10:22.053" level="INFO">Sym.Dev.LicenseType_2: Standard - Web Application Server ABAP or ABAP+JAVA</msg>
+<msg timestamp="20240731 12:10:22.053" level="INFO">Typing text 'Standard - Web Application Server ABAP or ABAP+JAVA' into text field 'name:LICENSETYPETEXT'.</msg>
+<status status="PASS" starttime="20240731 12:10:22.052" endtime="20240731 12:10:22.331"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:10:23.333" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240731 12:10:22.331" endtime="20240731 12:10:23.333"/>
+</kw>
+<kw name="Press Keys" library="SeleniumLibrary">
+<arg>name:LICENSETYPETEXT</arg>
+<arg>ARROW_DOWN</arg>
+<arg>ENTER</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20240731 12:10:23.334" level="INFO">Sending key(s) ('ARROW_DOWN', 'ENTER') to name:LICENSETYPETEXT element.</msg>
+<msg timestamp="20240731 12:10:23.655" level="INFO">Pressing special key ARROW_DOWN to element.</msg>
+<msg timestamp="20240731 12:10:23.655" level="INFO">Releasing special key ARROW_DOWN.</msg>
+<msg timestamp="20240731 12:10:23.666" level="INFO">Pressing special key ENTER to element.</msg>
+<msg timestamp="20240731 12:10:23.666" level="INFO">Releasing special key ENTER.</msg>
+<status status="PASS" starttime="20240731 12:10:23.333" endtime="20240731 12:10:23.694"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:10:25.695" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240731 12:10:23.694" endtime="20240731 12:10:25.695"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://bdi[text()='OK']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240731 12:10:25.695" level="INFO">Clicking element 'xpath://bdi[text()='OK']'.</msg>
+<status status="PASS" starttime="20240731 12:10:25.695" endtime="20240731 12:10:25.775"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:10:27.777" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240731 12:10:25.775" endtime="20240731 12:10:27.777"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://bdi[text()='Go']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240731 12:10:27.777" level="INFO">Clicking element 'xpath://bdi[text()='Go']'.</msg>
+<status status="PASS" starttime="20240731 12:10:27.777" endtime="20240731 12:10:27.879"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:10:32.880" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240731 12:10:27.880" endtime="20240731 12:10:32.880"/>
+</kw>
+<status status="PASS" starttime="20240731 12:10:05.700" endtime="20240731 12:10:32.880"/>
+</kw>
+<kw name="Edit" library="SAP_Portal">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://bdi[text()='Edit']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240731 12:10:32.881" level="INFO">Clicking element 'xpath://bdi[text()='Edit']'.</msg>
+<status status="PASS" starttime="20240731 12:10:32.880" endtime="20240731 12:10:32.984"/>
+</kw>
 <kw name="Sleep" library="BuiltIn">
 <arg>10</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240730 11:28:29.461" level="INFO">Slept 10 seconds</msg>
-<status status="PASS" starttime="20240730 11:28:19.461" endtime="20240730 11:28:29.461"/>
+<msg timestamp="20240731 12:10:42.986" level="INFO">Slept 10 seconds</msg>
+<status status="PASS" starttime="20240731 12:10:32.984" endtime="20240731 12:10:42.986"/>
 </kw>
-<if>
-<msg timestamp="20240730 11:28:29.461" level="INFO">Sym.Dev.job_from_time: 04:00:00</msg>
-<branch type="IF" condition="'${symvar('job_from_time')}' != 'None'">
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/ctxtBTCH2170-FROM_TIME</arg>
-<arg>${EMPTY}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240730 11:28:29.468" level="INFO">Typing text '' into text field 'wnd[0]/usr/ctxtBTCH2170-FROM_TIME'.</msg>
-<status status="PASS" starttime="20240730 11:28:29.462" endtime="20240730 11:28:29.468"/>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://bdi[text()='Continue']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240731 12:10:42.986" level="INFO">Clicking element 'xpath://bdi[text()='Continue']'.</msg>
+<status status="PASS" starttime="20240731 12:10:42.986" endtime="20240731 12:10:43.078"/>
 </kw>
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/ctxtBTCH2170-FROM_TIME</arg>
-<arg>${symvar('job_from_time')}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240730 11:28:29.469" level="INFO">Sym.Dev.job_from_time: 04:00:00</msg>
-<msg timestamp="20240730 11:28:29.474" level="INFO">Typing text '04:00:00' into text field 'wnd[0]/usr/ctxtBTCH2170-FROM_TIME'.</msg>
-<status status="PASS" starttime="20240730 11:28:29.468" endtime="20240730 11:28:29.474"/>
-</kw>
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/ctxtBTCH2170-TO_TIME</arg>
-<arg>${EMPTY}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240730 11:28:29.480" level="INFO">Typing text '' into text field 'wnd[0]/usr/ctxtBTCH2170-TO_TIME'.</msg>
-<status status="PASS" starttime="20240730 11:28:29.474" endtime="20240730 11:28:29.480"/>
-</kw>
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/ctxtBTCH2170-TO_TIME</arg>
-<arg>${symvar('job_to_time')}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240730 11:28:29.481" level="INFO">Sym.Dev.job_to_time: 16:30:00</msg>
-<msg timestamp="20240730 11:28:29.486" level="INFO">Typing text '16:30:00' into text field 'wnd[0]/usr/ctxtBTCH2170-TO_TIME'.</msg>
-<status status="PASS" starttime="20240730 11:28:29.480" endtime="20240730 11:28:29.486"/>
-</kw>
-<status status="PASS" starttime="20240730 11:28:29.461" endtime="20240730 11:28:29.486"/>
-</branch>
-<status status="PASS" starttime="20240730 11:28:29.461" endtime="20240730 11:28:29.486"/>
-</if>
 <kw name="Sleep" library="BuiltIn">
 <arg>10</arg>
 <doc>Pauses the test executed for the given time.</doc>
-<msg timestamp="20240730 11:28:39.488" level="INFO">Slept 10 seconds</msg>
-<status status="PASS" starttime="20240730 11:28:29.486" endtime="20240730 11:28:39.488"/>
+<msg timestamp="20240731 12:10:53.080" level="INFO">Slept 10 seconds</msg>
+<status status="PASS" starttime="20240731 12:10:43.079" endtime="20240731 12:10:53.080"/>
 </kw>
-<kw name="Click Element" library="SAP_Tcode_Library">
-<arg>wnd[0]/tbar[1]/btn[8]</arg>
-<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
-<status status="PASS" starttime="20240730 11:28:39.488" endtime="20240730 11:28:43.232"/>
+<status status="PASS" starttime="20240731 12:10:32.880" endtime="20240731 12:10:53.080"/>
 </kw>
-<kw name="Get Value" library="SAP_Tcode_Library">
-<var>${log}</var>
-<arg>wnd[0]/sbar/pane[0]</arg>
-<doc>Gets the value of the given element. The possible return values depend on the type of element (see Return values).</doc>
-<msg timestamp="20240730 11:28:43.292" level="INFO">${log} = </msg>
-<status status="PASS" starttime="20240730 11:28:43.232" endtime="20240730 11:28:43.292"/>
+<kw name="Generate" library="SAP_Portal">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://bdi[text()='Generate']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240731 12:10:53.081" level="INFO">Clicking element 'xpath://bdi[text()='Generate']'.</msg>
+<status status="PASS" starttime="20240731 12:10:53.080" endtime="20240731 12:10:53.182"/>
 </kw>
-<if>
-<branch type="IF" condition="'${log}' == 'No job matches the selection criteria'">
-<kw name="Log To Console" library="BuiltIn">
-<arg>${log}</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="NOT RUN" starttime="20240730 11:28:43.293" endtime="20240730 11:28:43.293"/>
-</kw>
-<status status="NOT RUN" starttime="20240730 11:28:43.293" endtime="20240730 11:28:43.293"/>
-</branch>
-<branch type="ELSE">
-<kw name="Click Element" library="SAP_Tcode_Library">
-<arg>wnd[0]/mbar/menu[3]/menu[0]/menu[1]</arg>
-<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
-<status status="PASS" starttime="20240730 11:28:43.293" endtime="20240730 11:28:44.619"/>
-</kw>
-<kw name="Select Radio Button" library="SAP_Tcode_Library">
-<arg>wnd[1]/usr/radRB_OTHERS</arg>
-<doc>Sets radio button to the specified value.</doc>
-<status status="PASS" starttime="20240730 11:28:44.619" endtime="20240730 11:28:44.682"/>
-</kw>
-<kw name="Set Key Value" library="SAP_Tcode_Library">
-<arg>wnd[1]/usr/cmbG_LISTBOX</arg>
+<kw name="Sleep" library="BuiltIn">
 <arg>10</arg>
-<status status="PASS" starttime="20240730 11:28:44.682" endtime="20240730 11:28:44.921"/>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:11:03.183" level="INFO">Slept 10 seconds</msg>
+<status status="PASS" starttime="20240731 12:10:53.182" endtime="20240731 12:11:03.183"/>
 </kw>
-<kw name="Click Element" library="SAP_Tcode_Library">
-<arg>wnd[1]/tbar[0]/btn[0]</arg>
-<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
-<status status="PASS" starttime="20240730 11:28:44.921" endtime="20240730 11:28:51.468"/>
+<status status="PASS" starttime="20240731 12:10:53.080" endtime="20240731 12:11:03.183"/>
 </kw>
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[1]/usr/ctxtDY_PATH</arg>
-<arg>${EMPTY}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240730 11:28:51.531" level="INFO">Typing text '' into text field 'wnd[1]/usr/ctxtDY_PATH'.</msg>
-<status status="PASS" starttime="20240730 11:28:51.468" endtime="20240730 11:28:51.531"/>
+<kw name="Show Filter Bar" library="SAP_Portal">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://bdi[text()='Show Filter Bar']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240731 12:11:03.184" level="INFO">Clicking element 'xpath://bdi[text()='Show Filter Bar']'.</msg>
+<status status="PASS" starttime="20240731 12:11:03.183" endtime="20240731 12:11:03.311"/>
 </kw>
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[1]/usr/ctxtDY_PATH</arg>
-<arg>${symvar('job_filepath')}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240730 11:28:51.532" level="INFO">Sym.Dev.job_filepath: C:\tmp</msg>
-<msg timestamp="20240730 11:28:51.537" level="INFO">Typing text 'C:\tmp' into text field 'wnd[1]/usr/ctxtDY_PATH'.</msg>
-<status status="PASS" starttime="20240730 11:28:51.531" endtime="20240730 11:28:51.537"/>
+<kw name="Sleep" library="BuiltIn">
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:11:06.313" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240731 12:11:03.312" endtime="20240731 12:11:06.313"/>
 </kw>
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[1]/usr/ctxtDY_FILENAME</arg>
-<arg>${symvar('job_filename')}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240730 11:28:51.538" level="INFO">Sym.Dev.job_filename: jobs.xlsx</msg>
-<msg timestamp="20240730 11:28:51.551" level="INFO">Typing text 'jobs.xlsx' into text field 'wnd[1]/usr/ctxtDY_FILENAME'.</msg>
-<status status="PASS" starttime="20240730 11:28:51.537" endtime="20240730 11:28:51.551"/>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>name:HWKEY</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240731 12:11:06.313" level="INFO">Clicking element 'name:HWKEY'.</msg>
+<status status="PASS" starttime="20240731 12:11:06.313" endtime="20240731 12:11:06.408"/>
 </kw>
-<kw name="Click Element" library="SAP_Tcode_Library">
-<arg>wnd[1]/tbar[0]/btn[0]</arg>
-<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
-<status status="PASS" starttime="20240730 11:28:51.551" endtime="20240730 11:28:52.490"/>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:11:08.408" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240731 12:11:06.408" endtime="20240731 12:11:08.408"/>
 </kw>
-<status status="PASS" starttime="20240730 11:28:43.293" endtime="20240730 11:28:52.491"/>
-</branch>
-<status status="PASS" starttime="20240730 11:28:43.293" endtime="20240730 11:28:52.491"/>
-</if>
-<status status="PASS" starttime="20240730 11:28:18.871" endtime="20240730 11:28:52.491"/>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:HWKEY</arg>
+<arg>S0396073254</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240731 12:11:08.408" level="INFO">Typing text 'S0396073254' into text field 'name:HWKEY'.</msg>
+<status status="PASS" starttime="20240731 12:11:08.408" endtime="20240731 12:11:08.608"/>
 </kw>
-<tag>FinishJob</tag>
-<status status="PASS" starttime="20240730 11:28:18.870" endtime="20240730 11:28:52.491"/>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:11:09.609" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240731 12:11:08.608" endtime="20240731 12:11:09.609"/>
+</kw>
+<kw name="Press Keys" library="SeleniumLibrary">
+<arg>name:HWKEY</arg>
+<arg>ARROW_DOWN</arg>
+<arg>ENTER</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20240731 12:11:09.610" level="INFO">Sending key(s) ('ARROW_DOWN', 'ENTER') to name:HWKEY element.</msg>
+<msg timestamp="20240731 12:11:09.935" level="INFO">Pressing special key ARROW_DOWN to element.</msg>
+<msg timestamp="20240731 12:11:09.936" level="INFO">Releasing special key ARROW_DOWN.</msg>
+<msg timestamp="20240731 12:11:09.946" level="INFO">Pressing special key ENTER to element.</msg>
+<msg timestamp="20240731 12:11:09.946" level="INFO">Releasing special key ENTER.</msg>
+<status status="PASS" starttime="20240731 12:11:09.609" endtime="20240731 12:11:09.969"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:11:11.969" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240731 12:11:09.969" endtime="20240731 12:11:11.969"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>name:LICENSETYPETEXT</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240731 12:11:11.969" level="INFO">Clicking element 'name:LICENSETYPETEXT'.</msg>
+<status status="PASS" starttime="20240731 12:11:11.969" endtime="20240731 12:11:12.065"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:11:14.065" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240731 12:11:12.065" endtime="20240731 12:11:14.065"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:LICENSETYPETEXT</arg>
+<arg>${symvar('LicenseType_1')}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240731 12:11:14.066" level="INFO">Sym.Dev.LicenseType_1: Maintenance Entitlement</msg>
+<msg timestamp="20240731 12:11:14.066" level="INFO">Typing text 'Maintenance Entitlement' into text field 'name:LICENSETYPETEXT'.</msg>
+<status status="PASS" starttime="20240731 12:11:14.065" endtime="20240731 12:11:14.280"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:11:15.281" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240731 12:11:14.280" endtime="20240731 12:11:15.281"/>
+</kw>
+<kw name="Press Keys" library="SeleniumLibrary">
+<arg>name:LICENSETYPETEXT</arg>
+<arg>ARROW_DOWN</arg>
+<arg>ENTER</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20240731 12:11:15.282" level="INFO">Sending key(s) ('ARROW_DOWN', 'ENTER') to name:LICENSETYPETEXT element.</msg>
+<msg timestamp="20240731 12:11:15.592" level="INFO">Pressing special key ARROW_DOWN to element.</msg>
+<msg timestamp="20240731 12:11:15.592" level="INFO">Releasing special key ARROW_DOWN.</msg>
+<msg timestamp="20240731 12:11:15.602" level="INFO">Pressing special key ENTER to element.</msg>
+<msg timestamp="20240731 12:11:15.602" level="INFO">Releasing special key ENTER.</msg>
+<status status="PASS" starttime="20240731 12:11:15.281" endtime="20240731 12:11:15.620"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:11:17.621" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240731 12:11:15.621" endtime="20240731 12:11:17.621"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>name:LICENSETYPETEXT</arg>
+<arg>${symvar('LicenseType_2')}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20240731 12:11:17.622" level="INFO">Sym.Dev.LicenseType_2: Standard - Web Application Server ABAP or ABAP+JAVA</msg>
+<msg timestamp="20240731 12:11:17.622" level="INFO">Typing text 'Standard - Web Application Server ABAP or ABAP+JAVA' into text field 'name:LICENSETYPETEXT'.</msg>
+<status status="PASS" starttime="20240731 12:11:17.621" endtime="20240731 12:11:17.977"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:11:18.979" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240731 12:11:17.977" endtime="20240731 12:11:18.979"/>
+</kw>
+<kw name="Press Keys" library="SeleniumLibrary">
+<arg>name:LICENSETYPETEXT</arg>
+<arg>ARROW_DOWN</arg>
+<arg>ENTER</arg>
+<doc>Simulates the user pressing key(s) to an element or on the active browser.</doc>
+<msg timestamp="20240731 12:11:18.980" level="INFO">Sending key(s) ('ARROW_DOWN', 'ENTER') to name:LICENSETYPETEXT element.</msg>
+<msg timestamp="20240731 12:11:19.281" level="INFO">Pressing special key ARROW_DOWN to element.</msg>
+<msg timestamp="20240731 12:11:19.281" level="INFO">Releasing special key ARROW_DOWN.</msg>
+<msg timestamp="20240731 12:11:19.291" level="INFO">Pressing special key ENTER to element.</msg>
+<msg timestamp="20240731 12:11:19.292" level="INFO">Releasing special key ENTER.</msg>
+<status status="PASS" starttime="20240731 12:11:18.979" endtime="20240731 12:11:19.309"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:11:21.310" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240731 12:11:19.309" endtime="20240731 12:11:21.310"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://bdi[text()='Go']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240731 12:11:21.310" level="INFO">Clicking element 'xpath://bdi[text()='Go']'.</msg>
+<status status="PASS" starttime="20240731 12:11:21.310" endtime="20240731 12:11:21.435"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>7</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:11:28.435" level="INFO">Slept 7 seconds</msg>
+<status status="PASS" starttime="20240731 12:11:21.435" endtime="20240731 12:11:28.435"/>
+</kw>
+<kw name="Unselect Frame" library="SeleniumLibrary">
+<doc>Sets the main frame as the current frame.</doc>
+<status status="PASS" starttime="20240731 12:11:28.435" endtime="20240731 12:11:28.437"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:11:30.439" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240731 12:11:28.437" endtime="20240731 12:11:30.439"/>
+</kw>
+<kw name="Select Frame" library="SeleniumLibrary">
+<arg>xpath://iframe[@id='shell-component---application266795052--frame']</arg>
+<doc>Sets frame identified by ``locator`` as the current frame.</doc>
+<msg timestamp="20240731 12:11:30.439" level="INFO">Selecting frame 'xpath://iframe[@id='shell-component---application266795052--frame']'.</msg>
+<status status="PASS" starttime="20240731 12:11:30.439" endtime="20240731 12:11:30.491"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:11:32.492" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240731 12:11:30.492" endtime="20240731 12:11:32.492"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://div[@aria-label='Select all rows']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240731 12:11:32.492" level="INFO">Clicking element 'xpath://div[@aria-label='Select all rows']'.</msg>
+<status status="PASS" starttime="20240731 12:11:32.492" endtime="20240731 12:11:32.603"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:11:35.604" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240731 12:11:32.604" endtime="20240731 12:11:35.604"/>
+</kw>
+<status status="PASS" starttime="20240731 12:11:03.183" endtime="20240731 12:11:35.604"/>
+</kw>
+<kw name="Download License Key" library="SAP_Portal">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>xpath://*[@aria-label='Download License Key']</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20240731 12:11:35.605" level="INFO">Clicking element 'xpath://*[@aria-label='Download License Key']'.</msg>
+<status status="PASS" starttime="20240731 12:11:35.604" endtime="20240731 12:11:35.758"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>4</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240731 12:11:39.759" level="INFO">Slept 4 seconds</msg>
+<status status="PASS" starttime="20240731 12:11:35.758" endtime="20240731 12:11:39.759"/>
+</kw>
+<status status="PASS" starttime="20240731 12:11:35.604" endtime="20240731 12:11:39.759"/>
+</kw>
+<tag>SAP_Portal</tag>
+<status status="PASS" starttime="20240731 12:09:18.973" endtime="20240731 12:11:39.759"/>
 </test>
-<kw name="System Logout" library="Finished_Job_Details" type="TEARDOWN">
-<kw name="Run Transaction" library="SAP_Tcode_Library">
-<arg>/nex</arg>
-<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
-<status status="PASS" starttime="20240730 11:28:52.493" endtime="20240730 11:28:52.758"/>
+<kw name="close" library="SAP_Portal" type="TEARDOWN">
+<kw name="Close All Browsers" library="SeleniumLibrary">
+<doc>Closes all open browsers and resets the browser cache.</doc>
+<status status="PASS" starttime="20240731 12:11:39.760" endtime="20240731 12:11:46.133"/>
 </kw>
-<status status="PASS" starttime="20240730 11:28:52.492" endtime="20240730 11:28:52.758"/>
+<status status="PASS" starttime="20240731 12:11:39.760" endtime="20240731 12:11:46.133"/>
 </kw>
-<status status="PASS" starttime="20240730 11:28:16.916" endtime="20240730 11:28:52.759"/>
+<status status="PASS" starttime="20240731 12:07:50.803" endtime="20240731 12:11:46.133"/>
 </suite>
 <doc>Testing functionality through Robot Framework</doc>
 <meta name="environment">Dev</meta>
 <meta name="test_browser_name">chrome</meta>
-<meta name="test_browser_version">127.0.6533.73</meta>
+<meta name="test_browser_version">127.0.6533.88</meta>
 <meta name="test_driver_version">126.0.6478.182 </meta>
 <meta name="test_environment">Dev</meta>
 <meta name="test_freeze_dependencies">astroid==3.2.3,attrs==23.2.0,beautifulsoup4==4.12.3,bs4==0.0.2,certifi==2024.7.4,cffi==1.16.0,chardet==5.2.0,charset-normalizer==3.3.2,click==8.1.7,colorama==0.4.6,cryptography==42.0.8,defusedxml==0.7.1,dill==0.3.8,docutils==0.21.2,et-xmlfile==1.1.0,ExcelLib==0.0.1b2,exceptiongroup==1.2.2,gitdb==4.0.11,GitPython==3.1.43,h11==0.14.0,idna==3.7,isort==5.13.2,Jinja2==3.1.4,jira==3.8.0,jsonpath-ng==1.6.1,jsonschema==4.23.0,jsonschema-specifications==2023.12.1,lazy-object-proxy==1.10.0,lxml==5.2.2,markdown-it-py==3.0.0,MarkupSafe==2.1.5,mccabe==0.7.0,mdurl==0.1.2,natsort==8.4.0,numpy==2.0.0,oauthlib==3.2.2,openpyxl==3.1.5,outcome==1.3.0.post0,packaging==24.1,pandas==2.2.2,pathspec==0.11.2,pillow==10.4.0,pip==24.1.2,platformdirs==4.2.2,ply==3.11,pycparser==2.22,Pygments==2.18.0,pylint==3.2.5,PySocks==1.7.1,python-dateutil==2.9.0.post0,pytz==2024.1,pywin32==306,PyYAML==6.0.1,referencing==0.35.1,requests==2.32.3,requests-oauthlib==2.0.0,requests-toolbelt==1.0.0,rich==13.7.1,rich-click==1.6.1,robotframework==6.0.2,robotframework-datadriver==1.9.0,robotframework-excellib==2.0.1,robotframework-jsonlibrary==0.5,robotframework-pabot==2.16.0,robotframework-pythonlibcore==4.2.0,robotframework-requests==0.9.2,robotframework-sapguilibrary==1.1,robotframework-seleniumlibrary==5.1.3,robotframework-stacktrace==0.4.1,robotframework-tidy==4.5.0,rpds-py==0.19.0,selenium==4.9.1,setuptools==71.0.2,six==1.16.0,smmap==5.0.1,sniffio==1.3.1,sortedcontainers==2.4.0,soupsieve==2.5,tomli==2.0.1,tomlkit==0.13.0,trio==0.26.0,trio-websocket==0.11.1,typing_extensions==4.12.2,tzdata==2024.1,urllib3==2.2.2,wheel==0.43.0,wrapt==1.16.0,wsproto==1.2.0,xlrd==2.0.1,XlsxWriter==3.2.0</meta>
-<status status="PASS" starttime="20240730 11:28:13.432" endtime="20240730 11:28:52.834"/>
+<status status="PASS" starttime="20240731 12:07:47.272" endtime="20240731 12:11:46.205"/>
 </suite>
 <statistics>
 <total>
 <stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="1" fail="0" skip="0">FinishJob</stat>
+<stat pass="1" fail="0" skip="0">SAP_Portal</stat>
 </tag>
 <suite>
 <stat pass="1" fail="0" skip="0" id="s1" name="Tests">Tests</stat>
-<stat pass="1" fail="0" skip="0" id="s1-s1" name="Test Finished Job Details">Tests.Test Finished Job Details</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="Test SAP Portal">Tests.Test SAP Portal</stat>
 </suite>
 </statistics>
 <errors>
