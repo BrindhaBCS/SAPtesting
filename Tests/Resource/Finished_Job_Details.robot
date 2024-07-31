@@ -43,20 +43,21 @@ Display cancelled job Details
         Input Text    wnd[0]/usr/ctxtBTCH2170-FROM_DATE    ${EMPTY}
         Input Text    wnd[0]/usr/ctxtBTCH2170-FROM_DATE    ${symvar('job_from_date')}
     END
+
     IF    '${symvar('job_to_date')}' == 'None'
         Input Text    wnd[0]/usr/ctxtBTCH2170-TO_DATE    ${EMPTY}
     ELSE
         Input Text    wnd[0]/usr/ctxtBTCH2170-TO_DATE    ${EMPTY}
         Input Text    wnd[0]/usr/ctxtBTCH2170-TO_DATE    ${symvar('job_to_date')}
     END
-    Sleep    10
+
     IF    '${symvar('job_from_time')}' != 'None'
         Input Text    wnd[0]/usr/ctxtBTCH2170-FROM_TIME    ${EMPTY}
         Input Text    wnd[0]/usr/ctxtBTCH2170-FROM_TIME    ${symvar('job_from_time')}
         Input Text    wnd[0]/usr/ctxtBTCH2170-TO_TIME    ${EMPTY}
         Input Text    wnd[0]/usr/ctxtBTCH2170-TO_TIME    ${symvar('job_to_time')}
     END
-    Sleep    10
+    
     Click Element    wnd[0]/tbar[1]/btn[8]
     ${log}    Get Value    wnd[0]/sbar/pane[0]
     IF    '${log}' == 'No job matches the selection criteria'
