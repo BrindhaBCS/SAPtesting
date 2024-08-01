@@ -7,9 +7,16 @@
 # login_client = "800"
 # connection = "$connection"
 
+# SAP_SERVER = "$SAP_SERVER"
+# login_user = "$login_user"
+# excel_path = "$excel_path"
+# sheet_name = "$sheet_name" 
+# login_client = "$login_client"
+# connection = "$connection"
+
 SAP_SERVER = "$SAP_SERVER"
-login_user = "$login_user"
+sap_user = "$sap_user"
 excel_path = "$excel_path"
 sheet_name = "$sheet_name" 
-login_client = "$login_client"
+sap_client = "$sap_client"
 connection = "$connection"
