@@ -94,6 +94,7 @@ Upload_Certificate
     Sleep    5
     Confirm certificate
     Capture Page Screenshot
+    Log To Console    **gbStart**copilot_status**splitKeyValue**SSL Certificate Uploaded to CPI Successfully**gbEnd**    
 
 Confirm certificate
     ${Window}=     Run Keyword And Return Status   Page Should Contain Element    id:__mbox0-title-inner 
