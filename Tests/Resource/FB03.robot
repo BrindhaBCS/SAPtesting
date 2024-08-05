@@ -41,6 +41,7 @@ SAP Logout
     Sleep   5
 
 Transaction code FB03
+    Sleep    5
     Input Text  wnd[0]/usr/txtRF05L-BELNR       ${document}
     Sleep   2
     Input Text  wnd[0]/usr/ctxtRF05L-BUKRS       ${company_code}

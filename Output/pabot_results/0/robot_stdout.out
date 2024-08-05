@@ -1,15 +1,41 @@
 ==============================================================================
 Tests :: Testing functionality through Robot Framework                        
 ==============================================================================
-Tests.Test Count Vendor OpenItems                                             
+Tests.Test FB03                                                               
 ==============================================================================
-Getting the pending payments count for a specific customer code       **gbStart**copilot_open_items**splitKeyValue**Number of open items in company_code BCS1 is 7**gbEnd**
-| PASS |
+  
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\SAP_Testing\SAPtesting\Tests\Test_FB03.robot:4
+      SAP logon    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\SAP_Testing\SAPtesting\Tests\Resource\FB03.robot:26
+      Start Process    ${symvar('SAP_SERVER')}
+      |  ${symvar('SAP_SERVER')} = $SAP_SERVER (str)
+______________________________________________________________________________
+Interlinked transactions for Invoice                                  | FAIL |
+Parent suite setup failed:
+FileNotFoundError: [WinError 2] The system cannot find the file specified
 ------------------------------------------------------------------------------
-Tests.Test Count Vendor OpenItems                                     | PASS |
-1 test, 1 passed, 0 failed
+  
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\SAP_Testing\SAPtesting\Tests\Test_FB03.robot:5
+      SAP Logout    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\SAP_Testing\SAPtesting\Tests\Resource\FB03.robot:40
+      Run Transaction    /nex
+______________________________________________________________________________
+Tests.Test FB03                                                       | FAIL |
+Suite setup failed:
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+Also suite teardown failed:
+AttributeError: 'int' object has no attribute 'findById'
+
+1 test, 0 passed, 1 failed
 ==============================================================================
-Tests :: Testing functionality through Robot Framework                | PASS |
-1 test, 1 passed, 0 failed
+Tests :: Testing functionality through Robot Framework                | FAIL |
+1 test, 0 passed, 1 failed
 ==============================================================================
 Output:  C:\SAP_Testing\SAPtesting\Output\pabot_results\0\Output.xml
