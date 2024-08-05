@@ -26,7 +26,7 @@ SAP logon
     Start Process     ${symvar('SAP_SERVER')}
     Sleep    10s
     Connect To Session
-    Open Connection    ${symvar('connection')}
+    Open Connection    ${symvar('invoice_connection')}
     Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('sap_client')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('sap_user')}
     Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
