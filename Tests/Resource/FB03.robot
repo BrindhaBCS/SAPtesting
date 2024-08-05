@@ -40,13 +40,12 @@ SAP Logout
     Sleep   5
 
 Transaction code FB03
-    Sleep   10
     Input Text  wnd[0]/usr/txtRF05L-BELNR       ${document}
-    Sleep   5
+    Sleep   2
     Input Text  wnd[0]/usr/ctxtRF05L-BUKRS       ${company_code}
-    Sleep   5
+    Sleep   2
     Input Text  wnd[0]/usr/txtRF05L-GJAHR        ${fiscal_year}
-    Sleep   5
+    Sleep   2
     Send Vkey    0
     Sleep   5
     Click Element   wnd[0]/tbar[0]/btn[3]
