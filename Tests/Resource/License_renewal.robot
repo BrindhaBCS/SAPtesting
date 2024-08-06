@@ -26,7 +26,9 @@ System Logout
 
 Get License Data
     Run Transaction    /nslicense
+    Sleep    2
     ${hardware_key}    Get Value    wnd[0]/usr/txtCUSTKEY
+    Sleep    2
     ${installation_no}    Get Value    wnd[0]/usr/txtINSTNR
     Log To Console    **gbStart**hardware_key**splitKeyValue**${hardware_key}**gbEnd**
     Log To Console    **gbStart**installation_no**splitKeyValue**${installation_no}**gbEnd**
