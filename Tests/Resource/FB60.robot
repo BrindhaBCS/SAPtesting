@@ -25,11 +25,11 @@ SAP logon
     Start Process     ${symvar('SAP_SERVER')}
     Sleep    10s
     Connect To Session
-    Open Connection    ${symvar('connection')}
+    Open Connection    ${symvar('vendor_connection')}
     Sleep    2
-    Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('sap_client')}
+    Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('vendor_client')}
     Sleep    2
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('sap_user')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('vendor_user')}
     Sleep    2
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('sap_pass')}
     Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
@@ -56,15 +56,15 @@ Transaction FB60
     Sleep   2
     ${output}   Get Value    wnd[0]/sbar/pane[0]
     Log To Console      ${output}
-    Write Excel     ${symvar('vendor_excel_path')}    ${symvar('sheet_name')}    ${row_count}    8      ${output}
+    Write Excel     ${symvar('vendor_excel_path')}    ${symvar('vendor_sheet_name')}    ${row_count}    8      ${output}
 
     ${document}     Get Document Number     wnd[0]/sbar/pane[0]
     Log To Console      ${document}
-    Write Excel     ${symvar('vendor_excel_path')}    ${symvar('sheet_name')}    ${row_count}    9      ${document}
+    Write Excel     ${symvar('vendor_excel_path')}    ${symvar('vendor_sheet_name')}    ${row_count}    9      ${document}
 
     ${company_code}     Get Company Code    ${output}
     Log To Console      ${company_code}
-    Write Excel     ${symvar('vendor_excel_path')}    ${symvar('sheet_name')}    ${row_count}    10      ${company_code}
+    Write Excel     ${symvar('vendor_excel_path')}    ${symvar('vendor_sheet_name')}    ${row_count}    10      ${company_code}
     
 FB60 Invoice entry
 
@@ -77,31 +77,31 @@ FB60 Invoice entry
     FOR    ${row_count}    IN RANGE    2    ${rows}
 
         Set Global Variable     ${row_count}
-        ${customer}    Read Excel    ${symvar('vendor_excel_path')}    ${symvar('sheet_name')}    ${row_count}    1
+        ${customer}    Read Excel    ${symvar('vendor_excel_path')}    ${symvar('vendor_sheet_name')}    ${row_count}    1
         Log To Console  ${customer}
         Set Global Variable     ${customer}
         
-        ${invoice_date}    Read Excel    ${symvar('vendor_excel_path')}    ${symvar('sheet_name')}    ${row_count}    2
+        ${invoice_date}    Read Excel    ${symvar('vendor_excel_path')}    ${symvar('vendor_sheet_name')}    ${row_count}    2
         Log To Console  ${invoice_date}
         Set Global Variable     ${invoice_date}
         
-        ${amount}    Read Excel    ${symvar('vendor_excel_path')}    ${symvar('sheet_name')}    ${row_count}    3
+        ${amount}    Read Excel    ${symvar('vendor_excel_path')}    ${symvar('vendor_sheet_name')}    ${row_count}    3
         Log To Console  ${amount}
         Set Global Variable     ${amount}
         
-        ${text}    Read Excel    ${symvar('vendor_excel_path')}    ${symvar('sheet_name')}    ${row_count}    4
+        ${text}    Read Excel    ${symvar('vendor_excel_path')}    ${symvar('vendor_sheet_name')}    ${row_count}    4
         Log To Console  ${text}
         Set Global Variable     ${text}
         
-        ${gl_amount}    Read Excel    ${symvar('vendor_excel_path')}    ${symvar('sheet_name')}    ${row_count}    5
+        ${gl_amount}    Read Excel    ${symvar('vendor_excel_path')}    ${symvar('vendor_sheet_name')}    ${row_count}    5
         Log To Console  ${gl_amount}
         Set Global Variable     ${gl_amount}
         
-        ${amount_cur_doc}    Read Excel    ${symvar('vendor_excel_path')}    ${symvar('sheet_name')}    ${row_count}    6
+        ${amount_cur_doc}    Read Excel    ${symvar('vendor_excel_path')}    ${symvar('vendor_sheet_name')}    ${row_count}    6
         Log To Console  ${amount_cur_doc}
         Set Global Variable     ${amount_cur_doc}
         
-        # ${cost_center}    Read Excel    ${symvar('vendor_excel_path')}    ${symvar('sheet_name')}    ${row_count}    7
+        # ${cost_center}    Read Excel    ${symvar('vendor_excel_path')}    ${symvar('vendor_sheet_name')}    ${row_count}    7
         # Log To Console  ${cost_center}
         # Set Global Variable     ${cost_center}
         

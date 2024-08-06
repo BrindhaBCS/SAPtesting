@@ -7,9 +7,9 @@
 
 
 SAP_SERVER = "$SAP_SERVER"
-sap_user = "$user"
-sap_client = "$client"
-connection = "$connection"
+vendor_user = "$vendor_user"
+vendor_client = "$vendor_client"
+vendor_connection = "$vendor_connection"
 vendor_excel_path = "$vendor_excel_path"
-sheet_name = "$vendor_excel_path"
+vendor_sheet_name = "$vendor_sheet_name"
 

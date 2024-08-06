@@ -26,11 +26,11 @@ SAP logon
     Start Process     ${symvar('SAP_SERVER')}
     Sleep    10s
     Connect To Session
-    Open Connection    ${symvar('connection')}
+    Open Connection    ${symvar('vendor_connection')}
     Sleep    2
-    Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('sap_client')}
+    Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('vendor_client')}
     Sleep    2
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('sap_user')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('vendor_user')}
     Sleep    2
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('sap_pass')}
     Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
@@ -63,15 +63,15 @@ FB03 display the invoice document
     Sleep   5
     FOR    ${row_count}    IN RANGE    2    ${rows}
 
-        ${document}    Read Excel    ${symvar('vendor_excel_path')}    ${symvar('sheet_name')}    ${row_count}    9
+        ${document}    Read Excel    ${symvar('vendor_excel_path')}    ${symvar('vendor_sheet_name')}    ${row_count}    9
         Log To Console  ${document}
         Set Global Variable     ${document}
 
-        ${company_code}    Read Excel    ${symvar('vendor_excel_path')}    ${symvar('sheet_name')}    ${row_count}    10
+        ${company_code}    Read Excel    ${symvar('vendor_excel_path')}    ${symvar('vendor_sheet_name')}    ${row_count}    10
         Log To Console  ${company_code}
         Set Global Variable     ${company_code}
 
-        ${fiscal_year}    Read Excel    ${symvar('vendor_excel_path')}    ${symvar('sheet_name')}    ${row_count}    11
+        ${fiscal_year}    Read Excel    ${symvar('vendor_excel_path')}    ${symvar('vendor_sheet_name')}    ${row_count}    11
         Log To Console  ${fiscal_year}
         Set Global Variable     ${fiscal_year}
         Transaction code FB03
