@@ -46,7 +46,7 @@ System_id
     Sleep    5
     Click Element    name:sysid
     Sleep    2
-    Input Text    name:sysid    ${symvar('connection')}
+    Input Text    name:sysid    ${symvar('license_connection')}
     Sleep    2
     Click Element    xpath://bdi[text()='OK'] 
     Sleep    3
