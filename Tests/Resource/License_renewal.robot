@@ -9,11 +9,11 @@ System Logon
     Start Process     ${symvar('SAP_SERVER')}    
     # Sleep    5
     Connect To Session
-    Open Connection    ${symvar('connection')}
+    Open Connection    ${symvar('license_connection')}
     # Sleep    2    
-    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('sap_client')}
+    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('license_client')}
     # Sleep    2
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('sap_user')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('license_user')}
     # Sleep    2
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('sap_pass')}      
     Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
