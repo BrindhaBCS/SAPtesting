@@ -9,11 +9,11 @@ System Logon
     Start Process     ${symvar('SAP_SERVER')}    
     # Sleep    5
     Connect To Session
-    Open Connection    ${symvar('connection')}
+    Open Connection    ${symvar('license_connection')}
     # Sleep    2    
-    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('sap_client')}
+    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('license_client')}
     # Sleep    2
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('sap_user')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('license_user')}
     # Sleep    2
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('sap_pass')}      
     Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
@@ -26,7 +26,9 @@ System Logout
 
 Get License Data
     Run Transaction    /nslicense
+    Sleep    2
     ${hardware_key}    Get Value    wnd[0]/usr/txtCUSTKEY
+    Sleep    2
     ${installation_no}    Get Value    wnd[0]/usr/txtINSTNR
     Log To Console    **gbStart**hardware_key**splitKeyValue**${hardware_key}**gbEnd**
     Log To Console    **gbStart**installation_no**splitKeyValue**${installation_no}**gbEnd**
