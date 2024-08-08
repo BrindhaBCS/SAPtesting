@@ -62,4 +62,4 @@ Trigger cancelled job
     Click Element    wnd[0]/tbar[1]/btn[5]
     Click Element    wnd[1]/usr/btnSOFORT_PUSH
     Click Element    wnd[1]/tbar[0]/btn[11]
-    
+    Log To Console      **gbStart**copilot_status**splitKeyValue**Job retriggered successfully**gbEnd**
