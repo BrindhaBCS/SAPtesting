@@ -1,16 +1,41 @@
 ==============================================================================
 Tests :: Testing functionality through Robot Framework                        
 ==============================================================================
-Tests.Test Get License Data                                                   
+Tests.Test License renewal                                                    
 ==============================================================================
-Get data for license renewal                                          **gbStart**hardware_key**splitKeyValue**S0396073254**gbEnd**
-**gbStart**installation_no**splitKeyValue**0021053529**gbEnd**
-| PASS |
+  
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\SAP_Testing\SAPtesting\Tests\Test_License_renewal.robot:4
+      System Logon    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\SAP_Testing\SAPtesting\Tests\Resource\License_renewal.robot:9
+      Start Process    ${symvar('SAP_SERVER')}
+      |  ${symvar('SAP_SERVER')} = $SAP_SERVER (str)
+______________________________________________________________________________
+Renewal of license                                                    | FAIL |
+Parent suite setup failed:
+FileNotFoundError: [WinError 2] The system cannot find the file specified
 ------------------------------------------------------------------------------
-Tests.Test Get License Data                                           | PASS |
-1 test, 1 passed, 0 failed
+  
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\SAP_Testing\SAPtesting\Tests\Test_License_renewal.robot:5
+      System Logout    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\SAP_Testing\SAPtesting\Tests\Resource\License_renewal.robot:25
+      Run Transaction    /nex
+______________________________________________________________________________
+Tests.Test License renewal                                            | FAIL |
+Suite setup failed:
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+
+Also suite teardown failed:
+AttributeError: 'int' object has no attribute 'findById'
+
+1 test, 0 passed, 1 failed
 ==============================================================================
-Tests :: Testing functionality through Robot Framework                | PASS |
-1 test, 1 passed, 0 failed
+Tests :: Testing functionality through Robot Framework                | FAIL |
+1 test, 0 passed, 1 failed
 ==============================================================================
 Output:  C:\SAP_Testing\SAPtesting\Output\pabot_results\0\Output.xml
