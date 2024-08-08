@@ -42,3 +42,4 @@ License Renewal
     Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${symvar('License_file')}
     Click Element    wnd[1]/tbar[0]/btn[0]
     Click Element    wnd[1]/tbar[0]/btn[0]
+    Log To Console      **gbStart**copilot_status**splitKeyValue**License Renewed Successfully**gbEnd**
