@@ -28,7 +28,7 @@ System Logout
 
 Assigning Roles to the User
         
-    ${row_count}    Count Excel Rows     ${symvar('excel_path')}       ${symvar('sheet_name2')}
+    ${row_count}    Count Excel Rows     ${symvar('User_excel_path')}       ${symvar('sheet_name2')}
     ${total_rows}=    Evaluate    ${row_count} + 1
     # Log To Console      Total row for sheet2 is :${total_rows}
 
@@ -36,11 +36,11 @@ Assigning Roles to the User
         Run Transaction    /nSU10
         Sleep    1
         Take Screenshot     image_2.jpg
-        ${functional_area}    Read Excel Cell Value    ${symvar('excel_path')}      ${symvar('sheet_name2')}     ${h}    3
+        ${functional_area}    Read Excel Cell Value    ${symvar('User_excel_path')}      ${symvar('sheet_name2')}     ${h}    3
         # Log To Console      ${functional_area}
         
         IF      '${functional_area}' == 'Basis'
-            ${user_count}    Count Excel Rows     ${symvar('excel_path')}       ${symvar('sheet_basis')}
+            ${user_count}    Count Excel Rows     ${symvar('User_excel_path')}       ${symvar('sheet_basis')}
             ${rows}=    Evaluate    ${user_count} + 1
             Set Global Variable     ${rows}
             # Log To Console      Total row for sheet1 is: ${rows}
@@ -48,7 +48,7 @@ Assigning Roles to the User
             FOR    ${i}    IN RANGE    2    ${rows}
                 ${j}    Evaluate    ${i} - 2
                 # Log To Console      ${symvar('sheet_name')}
-                ${user_names}    Read Excel Cell Value    ${symvar('excel_path')}      ${symvar('sheet_basis')}     ${i}    2
+                ${user_names}    Read Excel Cell Value    ${symvar('User_excel_path')}      ${symvar('sheet_basis')}     ${i}    2
                 Input Text    wnd[0]/usr/tblSAPLSUID_MAINTENANCETC_USERS/ctxtSUID_ST_BNAME-BNAME[0,${j}]    ${user_names}
                 Sleep   1
             END
@@ -63,14 +63,14 @@ Assigning Roles to the User
             Sleep    1
             Take Screenshot     image_4.jpg
 
-            ${col_count}      Count Excel Columns      ${symvar('excel_path')}    ${symvar('sheet_name2')}
+            ${col_count}      Count Excel Columns      ${symvar('User_excel_path')}    ${symvar('sheet_name2')}
             ${columns}=    Evaluate    ${col_count} + 1
             # Log To Console      Total no of columns are: ${columns}
 
             FOR     ${k}    IN RANGE    4       ${columns}
                 ${l}=   Evaluate    ${k} - 4
                 # Log To Console  ${l}
-                ${y_role}   Read Excel Cell Value    ${symvar('excel_path')}      ${symvar('sheet_name2')}     ${h}        ${k}
+                ${y_role}   Read Excel Cell Value    ${symvar('User_excel_path')}      ${symvar('sheet_name2')}     ${h}        ${k}
                 # Log To Console      Y_role is : ${y_role}
                 Set Cell Value    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    ${l}    AGR_NAME    ${y_role}
             END
@@ -83,7 +83,7 @@ Assigning Roles to the User
             Take Screenshot     image_6.jpg
         
         ELSE IF      '${functional_area}' == 'Developer'
-            ${user_count}    Count Excel Rows     ${symvar('excel_path')}       ${symvar('sheet_developer')}
+            ${user_count}    Count Excel Rows     ${symvar('User_excel_path')}       ${symvar('sheet_developer')}
             ${rows}=    Evaluate    ${user_count} + 1
             Set Global Variable     ${rows}
             # Log To Console      Total row for sheet1 is: ${rows}
@@ -91,7 +91,7 @@ Assigning Roles to the User
             FOR    ${i}    IN RANGE    2    ${rows}
                 ${j}    Evaluate    ${i} - 2
                 # Log To Console      ${symvar('sheet_name')}
-                ${user_names}    Read Excel Cell Value    ${symvar('excel_path')}      ${symvar('sheet_developer')}     ${i}    2
+                ${user_names}    Read Excel Cell Value    ${symvar('User_excel_path')}      ${symvar('sheet_developer')}     ${i}    2
                 Input Text    wnd[0]/usr/tblSAPLSUID_MAINTENANCETC_USERS/ctxtSUID_ST_BNAME-BNAME[0,${j}]    ${user_names}
                 Sleep   5
             END
@@ -106,14 +106,14 @@ Assigning Roles to the User
             Sleep    1
             Take Screenshot     image_4.jpg
 
-            ${col_count}      Count Excel Columns      ${symvar('excel_path')}    ${symvar('sheet_name2')}
+            ${col_count}      Count Excel Columns      ${symvar('User_excel_path')}    ${symvar('sheet_name2')}
             ${columns}=    Evaluate    ${col_count} + 1
             # Log To Console      Total no of columns are: ${columns}
 
             FOR     ${k}    IN RANGE    4       ${columns}
                 ${l}=   Evaluate    ${k} - 4
                 # Log To Console  ${l}
-                ${y_role}   Read Excel Cell Value    ${symvar('excel_path')}      ${symvar('sheet_name2')}     ${h}        ${k}
+                ${y_role}   Read Excel Cell Value    ${symvar('User_excel_path')}      ${symvar('sheet_name2')}     ${h}        ${k}
                 # Log To Console      Y_role is : ${y_role}
                 Set Cell Value    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    ${l}    AGR_NAME    ${y_role}
             END
@@ -126,7 +126,7 @@ Assigning Roles to the User
             Take Screenshot     image_6.jpg
 
         ELSE IF      '${functional_area}' == 'Security'
-            ${user_count}    Count Excel Rows     ${symvar('excel_path')}       ${symvar('sheet_security')}
+            ${user_count}    Count Excel Rows     ${symvar('User_excel_path')}       ${symvar('sheet_security')}
             ${rows}=    Evaluate    ${user_count} + 1
             Set Global Variable     ${rows}
             # Log To Console      Total row for sheet1 is: ${rows}
@@ -134,7 +134,7 @@ Assigning Roles to the User
             FOR    ${i}    IN RANGE    2    ${rows}
                 ${j}    Evaluate    ${i} - 2
                 # Log To Console      ${symvar('sheet_name')}
-                ${user_names}    Read Excel Cell Value    ${symvar('excel_path')}      ${symvar('sheet_security')}     ${i}    2
+                ${user_names}    Read Excel Cell Value    ${symvar('User_excel_path')}      ${symvar('sheet_security')}     ${i}    2
                 Input Text    wnd[0]/usr/tblSAPLSUID_MAINTENANCETC_USERS/ctxtSUID_ST_BNAME-BNAME[0,${j}]    ${user_names}
                 Sleep   1
             END
@@ -149,14 +149,14 @@ Assigning Roles to the User
             Sleep    1
             Take Screenshot     image_4.jpg
 
-            ${col_count}      Count Excel Columns      ${symvar('excel_path')}    ${symvar('sheet_name2')}
+            ${col_count}      Count Excel Columns      ${symvar('User_excel_path')}    ${symvar('sheet_name2')}
             ${columns}=    Evaluate    ${col_count} + 1
             # Log To Console      Total no of columns are: ${columns}
 
             FOR     ${k}    IN RANGE    4       ${columns}
                 ${l}=   Evaluate    ${k} - 4
                 # Log To Console  ${l}
-                ${y_role}   Read Excel Cell Value    ${symvar('excel_path')}      ${symvar('sheet_name2')}     ${h}        ${k}
+                ${y_role}   Read Excel Cell Value    ${symvar('User_excel_path')}      ${symvar('sheet_name2')}     ${h}        ${k}
                 # Log To Console      Y_role is : ${y_role}
                 Set Cell Value    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    ${l}    AGR_NAME    ${y_role}
             END
@@ -169,7 +169,7 @@ Assigning Roles to the User
             Take Screenshot     image_6.jpg
 
         ELSE IF      '${functional_area}' == 'ABAP'
-            ${user_count}    Count Excel Rows     ${symvar('excel_path')}       ${symvar('sheet_ABAP')}
+            ${user_count}    Count Excel Rows     ${symvar('User_excel_path')}       ${symvar('sheet_ABAP')}
             ${rows}=    Evaluate    ${user_count} + 1
             Set Global Variable     ${rows}
             # Log To Console      Total row for sheet1 is: ${rows}
@@ -177,7 +177,7 @@ Assigning Roles to the User
             FOR    ${i}    IN RANGE    2    ${rows}
                 ${j}    Evaluate    ${i} - 2
                 # Log To Console      ${symvar('sheet_name')}
-                ${user_names}    Read Excel Cell Value    ${symvar('excel_path')}      ${symvar('sheet_ABAP')}     ${i}    2
+                ${user_names}    Read Excel Cell Value    ${symvar('User_excel_path')}      ${symvar('sheet_ABAP')}     ${i}    2
                 Input Text    wnd[0]/usr/tblSAPLSUID_MAINTENANCETC_USERS/ctxtSUID_ST_BNAME-BNAME[0,${j}]    ${user_names}
                 Sleep   1
             END
@@ -192,14 +192,14 @@ Assigning Roles to the User
             Sleep    1
             Take Screenshot     image_4.jpg
 
-            ${col_count}      Count Excel Columns      ${symvar('excel_path')}    ${symvar('sheet_name2')}
+            ${col_count}      Count Excel Columns      ${symvar('User_excel_path')}    ${symvar('sheet_name2')}
             ${columns}=    Evaluate    ${col_count} + 1
             # Log To Console      Total no of columns are: ${columns}
 
             FOR     ${k}    IN RANGE    4       ${columns}
                 ${l}=   Evaluate    ${k} - 4
                 # Log To Console  ${l}
-                ${y_role}   Read Excel Cell Value    ${symvar('excel_path')}      ${symvar('sheet_name2')}     ${h}        ${k}
+                ${y_role}   Read Excel Cell Value    ${symvar('User_excel_path')}      ${symvar('sheet_name2')}     ${h}        ${k}
                 # Log To Console      Y_role is : ${y_role}
                 Set Cell Value    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    ${l}    AGR_NAME    ${y_role}
             END
@@ -212,7 +212,7 @@ Assigning Roles to the User
             Take Screenshot     image_6.jpg
 
         ELSE IF      '${functional_area}' == 'Finance'
-            ${user_count}    Count Excel Rows     ${symvar('excel_path')}       ${symvar('sheet_finance')}
+            ${user_count}    Count Excel Rows     ${symvar('User_excel_path')}       ${symvar('sheet_finance')}
             ${rows}=    Evaluate    ${user_count} + 1
             Set Global Variable     ${rows}
             # Log To Console      Total row for sheet1 is: ${rows}
@@ -220,7 +220,7 @@ Assigning Roles to the User
             FOR    ${i}    IN RANGE    2    ${rows}
                 ${j}    Evaluate    ${i} - 2
                 # Log To Console      ${symvar('sheet_name')}
-                ${user_names}    Read Excel Cell Value    ${symvar('excel_path')}      ${symvar('sheet_finance')}     ${i}    2
+                ${user_names}    Read Excel Cell Value    ${symvar('User_excel_path')}      ${symvar('sheet_finance')}     ${i}    2
                 Input Text    wnd[0]/usr/tblSAPLSUID_MAINTENANCETC_USERS/ctxtSUID_ST_BNAME-BNAME[0,${j}]    ${user_names}
                 Sleep   1
             END
@@ -235,14 +235,14 @@ Assigning Roles to the User
             Sleep    1
             Take Screenshot     image_4.jpg
 
-            ${col_count}      Count Excel Columns      ${symvar('excel_path')}    ${symvar('sheet_name2')}
+            ${col_count}      Count Excel Columns      ${symvar('User_excel_path')}    ${symvar('sheet_name2')}
             ${columns}=    Evaluate    ${col_count} + 1
             # Log To Console      Total no of columns are: ${columns}
 
             FOR     ${k}    IN RANGE    4       ${columns}
                 ${l}=   Evaluate    ${k} - 4
                 # Log To Console  ${l}
-                ${y_role}   Read Excel Cell Value    ${symvar('excel_path')}      ${symvar('sheet_name2')}     ${h}        ${k}
+                ${y_role}   Read Excel Cell Value    ${symvar('User_excel_path')}      ${symvar('sheet_name2')}     ${h}        ${k}
                 # Log To Console      Y_role is : ${y_role}
                 Set Cell Value    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    ${l}    AGR_NAME    ${y_role}
             END
@@ -259,7 +259,7 @@ Assigning Roles to the User
 
 
 user_role_Remove
-    ${row_count}    Count Excel Rows     ${symvar('excel_path')}       ${symvar('sheet_name2')}
+    ${row_count}    Count Excel Rows     ${symvar('User_excel_path')}       ${symvar('sheet_name2')}
     ${total_rows}=    Evaluate    ${row_count} + 1
     # Log To Console      Total row for sheet2 is :${total_rows}
 
@@ -267,11 +267,11 @@ user_role_Remove
         Run Transaction    /nSU10
         Sleep    1
         Take Screenshot     image_2.jpg
-        ${functional_area}    Read Excel Cell Value    ${symvar('excel_path')}      ${symvar('sheet_name2')}     ${h}    3
+        ${functional_area}    Read Excel Cell Value    ${symvar('User_excel_path')}      ${symvar('sheet_name2')}     ${h}    3
         # Log To Console      ${functional_area}
         
         IF      '${functional_area}' == 'Basis'
-            ${user_count}    Count Excel Rows     ${symvar('excel_path')}       ${symvar('sheet_basis')}
+            ${user_count}    Count Excel Rows     ${symvar('User_excel_path')}       ${symvar('sheet_basis')}
             ${rows}=    Evaluate    ${user_count} + 1
             Set Global Variable     ${rows}
             # Log To Console      Total row for sheet1 is: ${rows}
@@ -279,7 +279,7 @@ user_role_Remove
             FOR    ${i}    IN RANGE    2    ${rows}
                 ${j}    Evaluate    ${i} - 2
                 # Log To Console      ${symvar('sheet_name')}
-                ${user_names}    Read Excel Cell Value    ${symvar('excel_path')}      ${symvar('sheet_basis')}     ${i}    2
+                ${user_names}    Read Excel Cell Value    ${symvar('User_excel_path')}      ${symvar('sheet_basis')}     ${i}    2
                 Input Text    wnd[0]/usr/tblSAPLSUID_MAINTENANCETC_USERS/ctxtSUID_ST_BNAME-BNAME[0,${j}]    ${user_names}
                 Sleep   1
             END
@@ -294,14 +294,14 @@ user_role_Remove
             Sleep    1
             Take Screenshot     image_4.jpg
 
-            ${col_count}      Count Excel Columns      ${symvar('excel_path')}    ${symvar('sheet_name2')}
+            ${col_count}      Count Excel Columns      ${symvar('User_excel_path')}    ${symvar('sheet_name2')}
             ${columns}=    Evaluate    ${col_count} + 1
             # Log To Console      Total no of columns are: ${columns}
 
             FOR     ${k}    IN RANGE    4       ${columns}
                 ${l}=   Evaluate    ${k} - 4
                 # Log To Console  ${l}
-                ${y_role}   Read Excel Cell Value    ${symvar('excel_path')}      ${symvar('sheet_name2')}     ${h}        ${k}
+                ${y_role}   Read Excel Cell Value    ${symvar('User_excel_path')}      ${symvar('sheet_name2')}     ${h}        ${k}
                 # Log To Console      Y_role is : ${y_role}
                 Set Cell Value    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    ${l}    AGR_NAME    ${y_role}
             END
@@ -314,7 +314,7 @@ user_role_Remove
             Take Screenshot     image_6.jpg
         
         ELSE IF      '${functional_area}' == 'Developer'
-            ${user_count}    Count Excel Rows     ${symvar('excel_path')}       ${symvar('sheet_developer')}
+            ${user_count}    Count Excel Rows     ${symvar('User_excel_path')}       ${symvar('sheet_developer')}
             ${rows}=    Evaluate    ${user_count} + 1
             Set Global Variable     ${rows}
             # Log To Console      Total row for sheet1 is: ${rows}
@@ -322,7 +322,7 @@ user_role_Remove
             FOR    ${i}    IN RANGE    2    ${rows}
                 ${j}    Evaluate    ${i} - 2
                 # Log To Console      ${symvar('sheet_name')}
-                ${user_names}    Read Excel Cell Value    ${symvar('excel_path')}      ${symvar('sheet_developer')}     ${i}    2
+                ${user_names}    Read Excel Cell Value    ${symvar('User_excel_path')}      ${symvar('sheet_developer')}     ${i}    2
                 Input Text    wnd[0]/usr/tblSAPLSUID_MAINTENANCETC_USERS/ctxtSUID_ST_BNAME-BNAME[0,${j}]    ${user_names}
                 Sleep   1
             END
@@ -337,14 +337,14 @@ user_role_Remove
             Sleep    1
             Take Screenshot     image_4.jpg
 
-            ${col_count}      Count Excel Columns      ${symvar('excel_path')}    ${symvar('sheet_name2')}
+            ${col_count}      Count Excel Columns      ${symvar('User_excel_path')}    ${symvar('sheet_name2')}
             ${columns}=    Evaluate    ${col_count} + 1
             # Log To Console      Total no of columns are: ${columns}
 
             FOR     ${k}    IN RANGE    4       ${columns}
                 ${l}=   Evaluate    ${k} - 4
                 # Log To Console  ${l}
-                ${y_role}   Read Excel Cell Value    ${symvar('excel_path')}      ${symvar('sheet_name2')}     ${h}        ${k}
+                ${y_role}   Read Excel Cell Value    ${symvar('User_excel_path')}      ${symvar('sheet_name2')}     ${h}        ${k}
                 # Log To Console      Y_role is : ${y_role}
                 Set Cell Value    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    ${l}    AGR_NAME    ${y_role}
             END
@@ -357,7 +357,7 @@ user_role_Remove
             Take Screenshot     image_6.jpg
 
         ELSE IF      '${functional_area}' == 'Security'
-            ${user_count}    Count Excel Rows     ${symvar('excel_path')}       ${symvar('sheet_security')}
+            ${user_count}    Count Excel Rows     ${symvar('User_excel_path')}       ${symvar('sheet_security')}
             ${rows}=    Evaluate    ${user_count} + 1
             Set Global Variable     ${rows}
             # Log To Console      Total row for sheet1 is: ${rows}
@@ -365,7 +365,7 @@ user_role_Remove
             FOR    ${i}    IN RANGE    2    ${rows}
                 ${j}    Evaluate    ${i} - 2
                 # Log To Console      ${symvar('sheet_name')}
-                ${user_names}    Read Excel Cell Value    ${symvar('excel_path')}      ${symvar('sheet_security')}     ${i}    2
+                ${user_names}    Read Excel Cell Value    ${symvar('User_excel_path')}      ${symvar('sheet_security')}     ${i}    2
                 Input Text    wnd[0]/usr/tblSAPLSUID_MAINTENANCETC_USERS/ctxtSUID_ST_BNAME-BNAME[0,${j}]    ${user_names}
                 Sleep   1
             END
@@ -380,14 +380,14 @@ user_role_Remove
             Sleep    1
             Take Screenshot     image_4.jpg
 
-            ${col_count}      Count Excel Columns      ${symvar('excel_path')}    ${symvar('sheet_name2')}
+            ${col_count}      Count Excel Columns      ${symvar('User_excel_path')}    ${symvar('sheet_name2')}
             ${columns}=    Evaluate    ${col_count} + 1
             # Log To Console      Total no of columns are: ${columns}
 
             FOR     ${k}    IN RANGE    4       ${columns}
                 ${l}=   Evaluate    ${k} - 4
                 # Log To Console  ${l}
-                ${y_role}   Read Excel Cell Value    ${symvar('excel_path')}      ${symvar('sheet_name2')}     ${h}        ${k}
+                ${y_role}   Read Excel Cell Value    ${symvar('User_excel_path')}      ${symvar('sheet_name2')}     ${h}        ${k}
                 # Log To Console      Y_role is : ${y_role}
                 Set Cell Value    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    ${l}    AGR_NAME    ${y_role}
             END
@@ -400,7 +400,7 @@ user_role_Remove
             Take Screenshot     image_6.jpg
 
         ELSE IF      '${functional_area}' == 'ABAP'
-            ${user_count}    Count Excel Rows     ${symvar('excel_path')}       ${symvar('sheet_ABAP')}
+            ${user_count}    Count Excel Rows     ${symvar('User_excel_path')}       ${symvar('sheet_ABAP')}
             ${rows}=    Evaluate    ${user_count} + 1
             Set Global Variable     ${rows}
             # Log To Console      Total row for sheet1 is: ${rows}
@@ -408,7 +408,7 @@ user_role_Remove
             FOR    ${i}    IN RANGE    2    ${rows}
                 ${j}    Evaluate    ${i} - 2
                 # Log To Console      ${symvar('sheet_name')}
-                ${user_names}    Read Excel Cell Value    ${symvar('excel_path')}      ${symvar('sheet_ABAP')}     ${i}    2
+                ${user_names}    Read Excel Cell Value    ${symvar('User_excel_path')}      ${symvar('sheet_ABAP')}     ${i}    2
                 Input Text    wnd[0]/usr/tblSAPLSUID_MAINTENANCETC_USERS/ctxtSUID_ST_BNAME-BNAME[0,${j}]    ${user_names}
                 Sleep   1
             END
@@ -423,14 +423,14 @@ user_role_Remove
             Sleep    1
             Take Screenshot     image_4.jpg
 
-            ${col_count}      Count Excel Columns      ${symvar('excel_path')}    ${symvar('sheet_name2')}
+            ${col_count}      Count Excel Columns      ${symvar('User_excel_path')}    ${symvar('sheet_name2')}
             ${columns}=    Evaluate    ${col_count} + 1
             # Log To Console      Total no of columns are: ${columns}
 
             FOR     ${k}    IN RANGE    4       ${columns}
                 ${l}=   Evaluate    ${k} - 4
                 # Log To Console  ${l}
-                ${y_role}   Read Excel Cell Value    ${symvar('excel_path')}      ${symvar('sheet_name2')}     ${h}        ${k}
+                ${y_role}   Read Excel Cell Value    ${symvar('User_excel_path')}      ${symvar('sheet_name2')}     ${h}        ${k}
                 # Log To Console      Y_role is : ${y_role}
                 Set Cell Value    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    ${l}    AGR_NAME    ${y_role}
             END
@@ -443,7 +443,7 @@ user_role_Remove
             Take Screenshot     image_6.jpg
 
         ELSE IF      '${functional_area}' == 'Finance'
-            ${user_count}    Count Excel Rows     ${symvar('excel_path')}       ${symvar('sheet_finance')}
+            ${user_count}    Count Excel Rows     ${symvar('User_excel_path')}       ${symvar('sheet_finance')}
             ${rows}=    Evaluate    ${user_count} + 1
             Set Global Variable     ${rows}
             # Log To Console      Total row for sheet1 is: ${rows}
@@ -451,7 +451,7 @@ user_role_Remove
             FOR    ${i}    IN RANGE    2    ${rows}
                 ${j}    Evaluate    ${i} - 2
                 # Log To Console      ${symvar('sheet_name')}
-                ${user_names}    Read Excel Cell Value    ${symvar('excel_path')}      ${symvar('sheet_finance')}     ${i}    2
+                ${user_names}    Read Excel Cell Value    ${symvar('User_excel_path')}      ${symvar('sheet_finance')}     ${i}    2
                 Input Text    wnd[0]/usr/tblSAPLSUID_MAINTENANCETC_USERS/ctxtSUID_ST_BNAME-BNAME[0,${j}]    ${user_names}
                 Sleep   1
             END
@@ -466,14 +466,14 @@ user_role_Remove
             Sleep    1
             Take Screenshot     image_4.jpg
 
-            ${col_count}      Count Excel Columns      ${symvar('excel_path')}    ${symvar('sheet_name2')}
+            ${col_count}      Count Excel Columns      ${symvar('User_excel_path')}    ${symvar('sheet_name2')}
             ${columns}=    Evaluate    ${col_count} + 1
             # Log To Console      Total no of columns are: ${columns}
 
             FOR     ${k}    IN RANGE    4       ${columns}
                 ${l}=   Evaluate    ${k} - 4
                 # Log To Console  ${l}
-                ${y_role}   Read Excel Cell Value    ${symvar('excel_path')}      ${symvar('sheet_name2')}     ${h}        ${k}
+                ${y_role}   Read Excel Cell Value    ${symvar('User_excel_path')}      ${symvar('sheet_name2')}     ${h}        ${k}
                 # Log To Console      Y_role is : ${y_role}
                 Set Cell Value    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    ${l}    AGR_NAME    ${y_role}
             END
@@ -489,7 +489,7 @@ user_role_Remove
     END
 
 Excel sheet
-    Open Excel Document    ${symvar('excel_path')}    1
+    Open Excel Document    ${symvar('User_excel_path')}    1
     ${sheets}   Get List Sheet Names
     Log To Console      ${sheets}
     ${sheet}    Get Sheet    ${symvar('sheet_name')} 
@@ -497,13 +497,13 @@ Excel sheet
     ${value}    Read Excel Cell     4       2
     Log To Console      data is:${value}
     Sleep   2 
-    ${data}    Read Excel Cell Value    ${symvar('excel_path')}     ${symvar('sheet_name')}     4       2
+    ${data}    Read Excel Cell Value    ${symvar('User_excel_path')}     ${symvar('sheet_name')}     4       2
     Log To Console      data in the ${symvar('sheet_name')} is:${data} 
 
     # FOR    ${i}    IN RANGE    2    ${rows}
     #     ${j}    Evaluate    ${i} - 2
     #     # Log To Console      ${symvar('sheet_name')}
-    #     ${user_names}    Read Excel    ${symvar('excel_path')}      Role_Assign     ${i}    2
+    #     ${user_names}    Read Excel    ${symvar('User_excel_path')}      Role_Assign     ${i}    2
     #     Input Text    wnd[0]/usr/tblSAPLSUID_MAINTENANCETC_USERS/ctxtSUID_ST_BNAME-BNAME[0,${j}]    ${user_names}
     #     Sleep   5
     # END  
