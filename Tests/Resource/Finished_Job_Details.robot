@@ -61,7 +61,7 @@ Display cancelled job Details
     Click Element    wnd[0]/tbar[1]/btn[8]
     ${log}    Get Value    wnd[0]/sbar/pane[0]
     IF    '${log}' == 'No job matches the selection criteria'
-        Log To Console    ${log}
+        Log To Console      **gbStart**copilot_status**splitKeyValue**${log}**gbEnd**
     ELSE
         Click Element    wnd[0]/mbar/menu[3]/menu[0]/menu[1]
         Select Radio Button    wnd[1]/usr/radRB_OTHERS
