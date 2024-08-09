@@ -17,5 +17,6 @@ from .xpaths import *
 from .slicense import *
 from .SM12 import *
 from .SM37 import *
+from .TS4 import *
 
 
