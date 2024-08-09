@@ -5,8 +5,8 @@ Library    String
 Library    CustomSapGuiLibrary.py
 
 *** Variables ***
-${search_comp}      ["ST-PI",    "BNWVS",    "ST-A/PI"]
-${search_patch}    ["SAPK-74003INSTPI",    "SAPK-70001INBNWVS",    "SAPKITABC5"]
+# ${search_comp}      ["ST-PI",    "BNWVS",    "ST-A/PI"]
+# ${search_patch}    ["SAPK-74003INSTPI",    "SAPK-70001INBNWVS",    "SAPKITABC5"]
 
 # System Variables
 ${continue_id}    wnd[1]/tbar[0]/btn[0]
