@@ -38,6 +38,10 @@ VF04
     Sleep    2
     Click Element    wnd[1]/tbar[0]/btn[20]
     Sleep    2
+    Clear Field Text    wnd[1]/usr/ctxtDY_PATH
+    Sleep    1
+    Input Text    wnd[1]/usr/ctxtDY_PATH    ${symvar('FilePath')}
+    Sleep    2
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    2
     

@@ -4,6 +4,7 @@
 # TS4_User_Name = "maestro"
 # TS4_User_Password = "Test@12345"
 # FileName = "Billing_invoice"
+# FilePath = "c:\\tmp"
 
 SAP_SERVER = "$SAP_SERVER"
 TS4_connection = "$TS4_connection"
@@ -11,3 +12,4 @@ TS4_Client_Id = "$TS4_Client_Id"
 TS4_User_Name = "$TS4_User_Name"
 TS4_User_Password = "$TS4_User_Password"
 FileName = "$FileName"
+FilePath = "$FilePath"
