@@ -122,8 +122,8 @@ Confirm Queue
     CustomSapGuiLibrary.No Queue Pending    ${no_Queue_id}
     Take Screenshot    G02_Status_Confirmed_queue1.jpg
     #Click DoNOTSEND
-    Window Handling    wnd[0]    Preimported Transport Requests in TMS Queue   wnd[0]/tbar[1]/btn[20]
-    Take Screenshot    TMSQ.jpg
+    # Window Handling    wnd[0]    Preimported Transport Requests in TMS Queue   wnd[0]/tbar[1]/btn[20]
+    # Take Screenshot    TMSQ.jpg
     CustomSapGuiLibrary.Click Element   wnd[1]/tbar[0]/btn[27]
     Take Screenshot    G03_Status_Confirmed_queue2.jpg
 
