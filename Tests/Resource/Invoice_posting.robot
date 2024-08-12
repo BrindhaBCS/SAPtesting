@@ -16,7 +16,7 @@ System Logon
     Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{TS4_User_Password}
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
-    Sleep   4
+    Sleep   2
   
 System Logout
     Run Transaction   /nex
@@ -37,6 +37,10 @@ VF04
     Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    ${symvar('FileName')} 
     Sleep    2
     Click Element    wnd[1]/tbar[0]/btn[20]
+    Sleep    2
+    Clear Field Text    wnd[1]/usr/ctxtDY_PATH
+    Sleep    1
+    Input Text    wnd[1]/usr/ctxtDY_PATH    ${symvar('FilePath')}
     Sleep    2
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    2
