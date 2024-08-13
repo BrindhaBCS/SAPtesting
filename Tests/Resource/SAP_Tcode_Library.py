@@ -8,6 +8,7 @@ from robot.api import logger
 import sys
 import ast
 import re
+import pandas as pd
 
 
 class SAP_Tcode_Library:
@@ -1374,7 +1375,21 @@ class SAP_Tcode_Library:
             print(f"Text cleared in field with ID: {field_id}")
         except Exception as e:
             print(f"Error: {e}")
- 
+    
+    def Excel_Arrange(self, file_location, sheet_name, filename):
+        try:
+            file_path = f"{file_location}\\{filename}"
+            df = pd.read_excel(file_path, sheet_name=sheet_name, header=None)
+            df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
+            df = df.iloc[4:].reset_index(drop=True)
+            df.columns = df.iloc[0]
+            df = df[1:].reset_index(drop=True)
+            df.dropna(how='all', inplace=True)
+            df.dropna(axis=1, how='all', inplace=True)
+            with pd.ExcelWriter(file_path, engine='openpyxl', mode='a', if_sheet_exists='replace') as writer:
+                df.to_excel(writer, sheet_name=sheet_name, index=False)
+        except Exception as e:
+            pass
     
               
 
