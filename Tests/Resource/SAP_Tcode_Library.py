@@ -1374,6 +1374,42 @@ class SAP_Tcode_Library:
             print(f"Text cleared in field with ID: {field_id}")
         except Exception as e:
             print(f"Error: {e}")
+
+    def software_component_version(self, comp_id, search_comp):      
+        comp_area = self.session.FindById(comp_id)
+        row_count = comp_area.RowCount
+        try:
+            for x in range(row_count):
+                print (x)   
+                cell_value = comp_area.GetCellValue(x, "COMPONENT")
+                print (cell_value)
+                if cell_value == search_comp:
+                    version = comp_area.GetCellValue(x, "RELEASE")
+                    print(f"Found version for {search_comp}: {version}")
+                    return version
+                    break  
+                else:
+                    print(f"Component {search_comp} not found.")
+        except Exception as e:
+            print(f"Error while searching for {search_comp}: {e}")
+
+    def software_support_package_version(self, comp_id, search_comp):      
+        comp_area = self.session.FindById(comp_id)
+        row_count = comp_area.RowCount
+        try:
+            for x in range(row_count):
+                print (x)   
+                cell_value = comp_area.GetCellValue(x, "COMPONENT")
+                print (cell_value)
+                if cell_value == search_comp:
+                    patch = comp_area.GetCellValue(x, "HIGH_PATCH")
+                    print(f"Found version for {search_comp}: {patch}")
+                    return patch
+                    break  
+                else:
+                    print(f"Component {search_comp} not found.")
+        except Exception as e:
+            print(f"Error while searching for {search_comp}: {e}")
  
     
               
