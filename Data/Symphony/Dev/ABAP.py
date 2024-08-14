@@ -1,7 +1,7 @@
 ABAP_SAP_SERVER = "C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPGUI\\saplogon.exe"
-ABAP_USER = "ramyap"
-ABAP_CLIENT = "001"
-ABAP_Connection = "BIS"
+ABAP_USER = "ddic"
+ABAP_CLIENT = "000"
+ABAP_Connection = "RBT"
 ST_PI_support_package = "SAPK-74027INSTPI"
 
 # ABAP_SAP_SERVER = "$ABAP_SAP_SERVER"

@@ -1454,7 +1454,26 @@ class SAP_Tcode_Library:
  
         except Exception as e:
             print(f"Error: {e}")
- 
-    
-              
 
+    def check_parameter_found(self, lable_id, parameter):
+        user_area = self.session.findById(lable_id)
+        item_count = user_area.Children.Count
+        for i in range(item_count):
+            element = user_area.Children.ElementAt(i)
+            if element.Text.strip() == parameter.strip():
+                print(element.Text)
+                return(element.Text)
+        not_found_message = f"Search text {parameter} not found"
+        print(f"Search text {parameter} not found")
+        return not_found_message
+    
+    def get_parameter_value(self, lable_id, parameter):
+        user_area = self.session.findById(lable_id)
+        item_count = user_area.Children.Count
+        for i in range(item_count):
+            element = user_area.Children.ElementAt(i)
+            if element.Text.strip() == parameter.strip():
+                element.setFocus()
+                self.session.findById("wnd[0]").sendVKey(2)
+                return
+    
