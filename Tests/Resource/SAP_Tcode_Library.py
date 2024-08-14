@@ -1426,6 +1426,34 @@ class SAP_Tcode_Library:
                     print(f"Component {search_comp} not found.")
         except Exception as e:
             print(f"Error while searching for {search_comp}: {e}")
+
+    def select_profile_label(self, user_area_id, search_text, max_scrolls=5):
+        try:
+            user_area = self.session.findById(user_area_id)
+            scroll_count = 0
+            found = False
+ 
+            while scroll_count < max_scrolls and not found:
+                for child in user_area.Children:
+                    if child.Text == search_text:
+                        print(f"Text Found: {child.Text}")
+                        child.SetFocus()
+                        # self.session.findById("wnd[1]").sendVKey(2)  # Simulate Enter key press
+                        found = True
+                        break
+ 
+                if not found:
+                    # Scroll down and wait for the content to update
+                    print(scroll_count)
+                    self.session.findById("wnd[1]").sendVKey(82)  # 86 is the code for Page Down
+                    time.sleep(1)  # Adjust as necessary for GUI response time
+                    scroll_count += 1
+ 
+            if not found:
+                print("Text not found after scrolling through all pages.")
+ 
+        except Exception as e:
+            print(f"Error: {e}")
  
     
               
