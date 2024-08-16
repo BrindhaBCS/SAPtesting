@@ -72,10 +72,12 @@ Verify parameter in RZ10
             Click Element    wnd[0]/tbar[0]/btn[3]
             Click Element    wnd[0]/tbar[1]/btn[16]
         END
-        Click Element    wnd[0]/tbar[0]/btn[3]
-        Click Element    wnd[0]/tbar[0]/btn[11]
-        Click Element    wnd[1]/usr/btnSPOP-OPTION1
-        Window Handling    wnd[1]    Information    wnd[1]/tbar[0]/btn[0]
-        Window Handling    wnd[1]    Note    wnd[1]/tbar[0]/btn[0]
+        
     END
+    Click Element    wnd[0]/tbar[0]/btn[3]
+    Click Element    wnd[0]/tbar[0]/btn[11]
+    Click Element    wnd[1]/usr/btnSPOP-OPTION1
+    Window Handling    wnd[1]    Information    wnd[1]/tbar[0]/btn[0]
+    Window Handling    wnd[1]    Note    wnd[1]/tbar[0]/btn[0]
+    Log To Console      **gbStart**copilot_status**splitKeyValue**Parameter values are updated successfully**gbEnd**
     
