@@ -50,13 +50,13 @@ Verify parameter in RZ10
                 Input Text    wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]    ${EMPTY}
                 Sleep    2
                 Input Text    wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]    ${values}[${i}]
-                Click Element    wnd[0]/tbar[1]/btn[18]
+                Click Element    wnd[0]/tbar[1]/btn[16]
                 Sleep    2
-                Click Element    wnd[1]/usr/btnKNOPF1
+                Click Element    wnd[0]/tbar[1]/btn[5]
                 Sleep    2
                 Click Element    wnd[0]/tbar[0]/btn[3]
+                Click Element    wnd[0]/tbar[1]/btn[16]
             END
-            # Log To Console    ${result}
         ELSE
             Sleep    2
             Click Element    wnd[0]/tbar[1]/btn[5]
@@ -65,15 +65,17 @@ Verify parameter in RZ10
             Sleep    2
             Input Text    wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]    ${values}[${i}]
             Sleep    2
-            Click Element    wnd[0]/tbar[1]/btn[18]
+            Click Element    wnd[0]/tbar[1]/btn[16]
             Sleep    2
-            Click Element    wnd[1]/usr/btnKNOPF1
-            Sleep    2
-            Click Element    wnd[1]/usr/btnKNOPF1
+            Click Element    wnd[0]/tbar[1]/btn[5]
             Sleep    2
             Click Element    wnd[0]/tbar[0]/btn[3]
+            Click Element    wnd[0]/tbar[1]/btn[16]
         END
-        Sleep    10
-        
+        Click Element    wnd[0]/tbar[0]/btn[3]
+        Click Element    wnd[0]/tbar[0]/btn[11]
+        Click Element    wnd[1]/usr/btnSPOP-OPTION1
+        Window Handling    wnd[1]    Information    wnd[1]/tbar[0]/btn[0]
+        Window Handling    wnd[1]    Note    wnd[1]/tbar[0]/btn[0]
     END
     
