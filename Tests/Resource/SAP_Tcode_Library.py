@@ -1477,3 +1477,10 @@ class SAP_Tcode_Library:
                 self.session.findById("wnd[0]").sendVKey(2)
                 return
     
+    def manage_window(self, element_id, text, button_id):
+        window_title = self.session.findById(element_id).Text
+        window_title_split = window_title.split()
+        window = " ".join(window_title_split[:-1])
+        if window == text :
+            self.session.findById(button_id).press()
+

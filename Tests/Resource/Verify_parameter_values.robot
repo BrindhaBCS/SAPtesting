@@ -70,6 +70,7 @@ Verify parameter in RZ10
             Click Element    wnd[0]/tbar[1]/btn[5]
             Sleep    2
             Click Element    wnd[0]/tbar[0]/btn[3]
+            Manage Window    wnd[1]    Maintain Profile 'DEFAULT' Version    wnd[1]/usr/btnKNOPF1
             Click Element    wnd[0]/tbar[1]/btn[16]
         END
         
