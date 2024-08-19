@@ -1391,5 +1391,11 @@ class SAP_Tcode_Library:
         except Exception as e:
             pass
     
-              
+    def double_click_current_cell_value(self, element_id, cell_value):
+        try:
+            element = self.session.findById(element_id)
+            element.currentCellColumn = cell_value
+            element.doubleClickCurrentCell()
+        except Exception as e:
+            print(f"Error: {e}")
 
