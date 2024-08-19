@@ -1270,3 +1270,21 @@ class CustomSapGuiLibrary:
                 return None
         except Exception as e:
             return f"Error: {str(e)}"
+        
+    def software_component_version(self, comp_id, search_comp):      
+        comp_area = self.session.FindById(comp_id)
+        row_count = comp_area.RowCount
+        try:
+            for x in range(row_count):
+                print (x)   
+                cell_value = comp_area.GetCellValue(x, "COMPONENT")
+                print (cell_value)
+                if cell_value == search_comp:
+                    version = comp_area.GetCellValue(x, "RELEASE")
+                    print(f"Found version for {search_comp}: {version}")
+                    return version
+                    break  
+                else:
+                    print(f"Component {search_comp} not found.")
+        except Exception as e:
+            print(f"Error while searching for {search_comp}: {e}")

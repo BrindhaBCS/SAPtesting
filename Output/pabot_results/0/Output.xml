@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 6.0.2 (Python 3.12.4 on win32)" generated="20240812 12:40:45.490" rpa="false" schemaversion="3">
+<robot generator="Robot 6.0.2 (Python 3.12.4 on win32)" generated="20240816 08:35:11.400" rpa="false" schemaversion="3">
 <suite id="s1" name="Tests" source="C:\SAP_Testing\SAPtesting\Tests">
 <kw name="Setup highest level suite" type="SETUP">
 <kw name="Set Variable" library="BuiltIn">
 <var>${d.test_server}</var>
 <arg>${test_server}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20240812 12:40:46.381" level="INFO">${d.test_server} = Dev</msg>
-<status status="PASS" starttime="20240812 12:40:46.380" endtime="20240812 12:40:46.381"/>
+<msg timestamp="20240816 08:35:12.258" level="INFO">${d.test_server} = Dev</msg>
+<status status="PASS" starttime="20240816 08:35:12.257" endtime="20240816 08:35:12.258"/>
 </kw>
 <kw name="Reset screenshot count variable" library="Support">
 <kw name="Set Variable" library="BuiltIn">
 <var>${screenshotCount}</var>
 <arg>${PABOTQUEUEINDEX}_1</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20240812 12:40:46.382" level="INFO">${screenshotCount} = 0_1</msg>
-<status status="PASS" starttime="20240812 12:40:46.381" endtime="20240812 12:40:46.382"/>
+<msg timestamp="20240816 08:35:12.259" level="INFO">${screenshotCount} = 0_1</msg>
+<status status="PASS" starttime="20240816 08:35:12.258" endtime="20240816 08:35:12.259"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${screenshotCount}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240812 12:40:46.382" level="INFO">${screenshotCount} = 0_1</msg>
-<status status="PASS" starttime="20240812 12:40:46.382" endtime="20240812 12:40:46.382"/>
+<msg timestamp="20240816 08:35:12.260" level="INFO">${screenshotCount} = 0_1</msg>
+<status status="PASS" starttime="20240816 08:35:12.260" endtime="20240816 08:35:12.260"/>
 </kw>
 <kw name="Set up screenshot directory" library="Support">
 <kw name="Create Directory" library="OperatingSystem">
 <arg>${OUTPUTDIR}${/}${wvar('screenshot_dir')}</arg>
 <doc>Creates the specified directory.</doc>
-<msg timestamp="20240812 12:40:46.383" level="INFO">Web.Dev.screenshot_dir: Screenshot</msg>
-<msg timestamp="20240812 12:40:46.388" level="INFO" html="true">Created directory '&lt;a href="file://C:\SAP_Testing\SAPtesting\Output\pabot_results\0\Screenshot"&gt;C:\SAP_Testing\SAPtesting\Output\pabot_results\0\Screenshot&lt;/a&gt;'.</msg>
-<status status="PASS" starttime="20240812 12:40:46.382" endtime="20240812 12:40:46.388"/>
+<msg timestamp="20240816 08:35:12.261" level="INFO">Web.Dev.screenshot_dir: Screenshot</msg>
+<msg timestamp="20240816 08:35:12.268" level="INFO" html="true">Created directory '&lt;a href="file://C:\SAP_Testing\SAPtesting\Output\pabot_results\0\Screenshot"&gt;C:\SAP_Testing\SAPtesting\Output\pabot_results\0\Screenshot&lt;/a&gt;'.</msg>
+<status status="PASS" starttime="20240816 08:35:12.261" endtime="20240816 08:35:12.268"/>
 </kw>
-<status status="PASS" starttime="20240812 12:40:46.382" endtime="20240812 12:40:46.388"/>
+<status status="PASS" starttime="20240816 08:35:12.260" endtime="20240816 08:35:12.268"/>
 </kw>
-<status status="PASS" starttime="20240812 12:40:46.381" endtime="20240812 12:40:46.388"/>
+<status status="PASS" starttime="20240816 08:35:12.258" endtime="20240816 08:35:12.268"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${screenshot_taking}</arg>
 <arg>${True}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240812 12:40:46.389" level="INFO">${screenshot_taking} = True</msg>
-<status status="PASS" starttime="20240812 12:40:46.388" endtime="20240812 12:40:46.389"/>
+<msg timestamp="20240816 08:35:12.268" level="INFO">${screenshot_taking} = True</msg>
+<status status="PASS" starttime="20240816 08:35:12.268" endtime="20240816 08:35:12.269"/>
 </kw>
 <kw name="Setup linux execution" library="Support">
 <kw name="Run Keyword And Return Status" library="BuiltIn">
@@ -51,10 +51,10 @@
 <kw name="Variable Should Exist" library="BuiltIn">
 <arg>${web_test}</arg>
 <doc>Fails unless the given variable exists within the current scope.</doc>
-<status status="PASS" starttime="20240812 12:40:46.389" endtime="20240812 12:40:46.390"/>
+<status status="PASS" starttime="20240816 08:35:12.269" endtime="20240816 08:35:12.270"/>
 </kw>
-<msg timestamp="20240812 12:40:46.390" level="INFO">${web_test_check} = True</msg>
-<status status="PASS" starttime="20240812 12:40:46.389" endtime="20240812 12:40:46.390"/>
+<msg timestamp="20240816 08:35:12.270" level="INFO">${web_test_check} = True</msg>
+<status status="PASS" starttime="20240816 08:35:12.269" endtime="20240816 08:35:12.270"/>
 </kw>
 <kw name="Run Keyword If" library="BuiltIn">
 <arg>${web_test_check}</arg>
@@ -72,47 +72,47 @@
 :return: Browser metadata information, dict of format
             {"browser_version": browser version value,
              "driver_version": driver version value}</doc>
-<msg timestamp="20240812 12:40:49.644" level="INFO">&amp;{browser_information} = { browser_version=127.0.6533.100 | driver_version=126.0.6478.182  }</msg>
-<status status="PASS" starttime="20240812 12:40:46.391" endtime="20240812 12:40:49.644"/>
+<msg timestamp="20240816 08:35:15.417" level="INFO">&amp;{browser_information} = { browser_version=127.0.6533.120 | driver_version=126.0.6478.182  }</msg>
+<status status="PASS" starttime="20240816 08:35:12.271" endtime="20240816 08:35:15.417"/>
 </kw>
 <kw name="Set Suite Metadata" library="BuiltIn">
 <arg>test_browser_name</arg>
 <arg>${browser}</arg>
 <doc>Sets metadata for the current test suite.</doc>
-<msg timestamp="20240812 12:40:49.644" level="INFO">Set suite metadata 'test_browser_name' to value 'chrome'.</msg>
-<status status="PASS" starttime="20240812 12:40:49.644" endtime="20240812 12:40:49.644"/>
+<msg timestamp="20240816 08:35:15.417" level="INFO">Set suite metadata 'test_browser_name' to value 'chrome'.</msg>
+<status status="PASS" starttime="20240816 08:35:15.417" endtime="20240816 08:35:15.417"/>
 </kw>
 <kw name="Set Suite Metadata" library="BuiltIn">
 <arg>test_browser_version</arg>
 <arg>${browser_information.browser_version}</arg>
 <doc>Sets metadata for the current test suite.</doc>
-<msg timestamp="20240812 12:40:49.644" level="INFO">Set suite metadata 'test_browser_version' to value '127.0.6533.100'.</msg>
-<status status="PASS" starttime="20240812 12:40:49.644" endtime="20240812 12:40:49.644"/>
+<msg timestamp="20240816 08:35:15.417" level="INFO">Set suite metadata 'test_browser_version' to value '127.0.6533.120'.</msg>
+<status status="PASS" starttime="20240816 08:35:15.417" endtime="20240816 08:35:15.417"/>
 </kw>
 <kw name="Set Suite Metadata" library="BuiltIn">
 <arg>test_driver_version</arg>
 <arg>${browser_information.driver_version}</arg>
 <doc>Sets metadata for the current test suite.</doc>
-<msg timestamp="20240812 12:40:49.644" level="INFO">Set suite metadata 'test_driver_version' to value '126.0.6478.182 '.</msg>
-<status status="PASS" starttime="20240812 12:40:49.644" endtime="20240812 12:40:49.644"/>
+<msg timestamp="20240816 08:35:15.417" level="INFO">Set suite metadata 'test_driver_version' to value '126.0.6478.182 '.</msg>
+<status status="PASS" starttime="20240816 08:35:15.417" endtime="20240816 08:35:15.417"/>
 </kw>
-<status status="PASS" starttime="20240812 12:40:46.390" endtime="20240812 12:40:49.644"/>
+<status status="PASS" starttime="20240816 08:35:12.270" endtime="20240816 08:35:15.417"/>
 </kw>
 <kw name="Setup Global Docker Execution Options" library="Support_Web">
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${global_browser_options}</arg>
 <arg>None</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240812 12:40:49.644" level="INFO">${global_browser_options} = None</msg>
-<status status="PASS" starttime="20240812 12:40:49.644" endtime="20240812 12:40:49.644"/>
+<msg timestamp="20240816 08:35:15.417" level="INFO">${global_browser_options} = None</msg>
+<status status="PASS" starttime="20240816 08:35:15.417" endtime="20240816 08:35:15.417"/>
 </kw>
 <kw name="Get Environment Variable" library="OperatingSystem">
 <var>${docker_check}</var>
 <arg>EXECUTION_ENVIRONMENT</arg>
 <arg>not_found</arg>
 <doc>Returns the value of an environment variable with the given name.</doc>
-<msg timestamp="20240812 12:40:49.644" level="INFO">${docker_check} = not_found</msg>
-<status status="PASS" starttime="20240812 12:40:49.644" endtime="20240812 12:40:49.644"/>
+<msg timestamp="20240816 08:35:15.417" level="INFO">${docker_check} = not_found</msg>
+<status status="PASS" starttime="20240816 08:35:15.417" endtime="20240816 08:35:15.417"/>
 </kw>
 <kw name="Run Keyword And Return If" library="BuiltIn">
 <arg>"${docker_check}"!="docker"</arg>
@@ -122,11 +122,11 @@
 <kw name="Log" library="BuiltIn">
 <arg>Not executing on Docker</arg>
 <doc>Logs the given message with the given level.</doc>
-<msg timestamp="20240812 12:40:49.644" level="INFO">Not executing on Docker</msg>
-<status status="PASS" starttime="20240812 12:40:49.644" endtime="20240812 12:40:49.644"/>
+<msg timestamp="20240816 08:35:15.417" level="INFO">Not executing on Docker</msg>
+<status status="PASS" starttime="20240816 08:35:15.417" endtime="20240816 08:35:15.417"/>
 </kw>
-<msg timestamp="20240812 12:40:49.644" level="INFO">Returning from the enclosing user keyword.</msg>
-<status status="PASS" starttime="20240812 12:40:49.644" endtime="20240812 12:40:49.644"/>
+<msg timestamp="20240816 08:35:15.417" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20240816 08:35:15.417" endtime="20240816 08:35:15.417"/>
 </kw>
 <kw name="Create List" library="BuiltIn">
 <var>@{options}</var>
@@ -134,15 +134,15 @@
 <arg>--no-sandbox</arg>
 <arg>--disable-dev-shm-usage</arg>
 <doc>Returns a list containing given items.</doc>
-<status status="NOT RUN" starttime="20240812 12:40:49.644" endtime="20240812 12:40:49.644"/>
+<status status="NOT RUN" starttime="20240816 08:35:15.417" endtime="20240816 08:35:15.417"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>@{docker_options}</arg>
 <arg>@{options}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<status status="NOT RUN" starttime="20240812 12:40:49.644" endtime="20240812 12:40:49.644"/>
+<status status="NOT RUN" starttime="20240816 08:35:15.417" endtime="20240816 08:35:15.417"/>
 </kw>
-<status status="PASS" starttime="20240812 12:40:49.644" endtime="20240812 12:40:49.644"/>
+<status status="PASS" starttime="20240816 08:35:15.417" endtime="20240816 08:35:15.417"/>
 </kw>
 <kw name="Create Webdriver for chrome preferences" library="Support_Web">
 <kw name="Update Docker Execution Options" library="Support_Web">
@@ -156,19 +156,19 @@
 <kw name="Variable Should Exist" library="BuiltIn">
 <arg>${docker_options}</arg>
 <doc>Fails unless the given variable exists within the current scope.</doc>
-<msg timestamp="20240812 12:40:49.644" level="FAIL">Variable '${docker_options}' does not exist.</msg>
-<status status="FAIL" starttime="20240812 12:40:49.644" endtime="20240812 12:40:49.644"/>
+<msg timestamp="20240816 08:35:15.417" level="FAIL">Variable '${docker_options}' does not exist.</msg>
+<status status="FAIL" starttime="20240816 08:35:15.417" endtime="20240816 08:35:15.417"/>
 </kw>
-<msg timestamp="20240812 12:40:49.644" level="INFO">${docker_check} = False</msg>
-<status status="PASS" starttime="20240812 12:40:49.644" endtime="20240812 12:40:49.644"/>
+<msg timestamp="20240816 08:35:15.417" level="INFO">${docker_check} = False</msg>
+<status status="PASS" starttime="20240816 08:35:15.417" endtime="20240816 08:35:15.417"/>
 </kw>
 <kw name="Get Length" library="BuiltIn">
 <var>${list_prefs_length}</var>
 <arg>${list_prefs}</arg>
 <doc>Returns and logs the length of the given item as an integer.</doc>
-<msg timestamp="20240812 12:40:49.644" level="INFO">Length is 1</msg>
-<msg timestamp="20240812 12:40:49.644" level="INFO">${list_prefs_length} = 1</msg>
-<status status="PASS" starttime="20240812 12:40:49.644" endtime="20240812 12:40:49.644"/>
+<msg timestamp="20240816 08:35:15.417" level="INFO">Length is 1</msg>
+<msg timestamp="20240816 08:35:15.417" level="INFO">${list_prefs_length} = 1</msg>
+<status status="PASS" starttime="20240816 08:35:15.417" endtime="20240816 08:35:15.417"/>
 </kw>
 <kw name="Run Keyword If" library="BuiltIn">
 <var>${list_prefs}</var>
@@ -187,13 +187,13 @@
 <kw name="Set Variable" library="BuiltIn">
 <arg>${list_prefs}</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" starttime="20240812 12:40:49.644" endtime="20240812 12:40:49.644"/>
+<status status="PASS" starttime="20240816 08:35:15.417" endtime="20240816 08:35:15.417"/>
 </kw>
-<msg timestamp="20240812 12:40:49.644" level="INFO">${list_prefs} = [[]]</msg>
-<status status="PASS" starttime="20240812 12:40:49.644" endtime="20240812 12:40:49.644"/>
+<msg timestamp="20240816 08:35:15.417" level="INFO">${list_prefs} = [[]]</msg>
+<status status="PASS" starttime="20240816 08:35:15.417" endtime="20240816 08:35:15.417"/>
 </kw>
-<msg timestamp="20240812 12:40:49.644" level="INFO">${list_prefs} = [[]]</msg>
-<status status="PASS" starttime="20240812 12:40:49.644" endtime="20240812 12:40:49.644"/>
+<msg timestamp="20240816 08:35:15.417" level="INFO">${list_prefs} = [[]]</msg>
+<status status="PASS" starttime="20240816 08:35:15.417" endtime="20240816 08:35:15.417"/>
 </kw>
 <kw name="Create Chrome Options for download preferences" library="Support_Web">
 <var>${chrome_options}</var>
@@ -202,11 +202,11 @@
 <arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
 <arg>sys</arg>
 <doc>Evaluates the given expression in Python and returns the result.</doc>
-<msg timestamp="20240812 12:40:49.644" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001B26A3A4800&gt;</msg>
-<status status="PASS" starttime="20240812 12:40:49.644" endtime="20240812 12:40:49.644"/>
+<msg timestamp="20240816 08:35:15.417" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000018B040E41D0&gt;</msg>
+<status status="PASS" starttime="20240816 08:35:15.417" endtime="20240816 08:35:15.417"/>
 </kw>
-<msg timestamp="20240812 12:40:49.644" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001B26A3A4800&gt;</msg>
-<status status="PASS" starttime="20240812 12:40:49.644" endtime="20240812 12:40:49.644"/>
+<msg timestamp="20240816 08:35:15.417" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000018B040E41D0&gt;</msg>
+<status status="PASS" starttime="20240816 08:35:15.417" endtime="20240816 08:35:15.417"/>
 </kw>
 <kw name="Update Preferences List" library="Support_Web">
 <arg>${chrome_options}</arg>
@@ -215,14 +215,14 @@
 <var>${string_prefs}</var>
 <arg>${list_prefs}</arg>
 <doc>Converts the given item to a Unicode string.</doc>
-<msg timestamp="20240812 12:40:49.644" level="INFO">${string_prefs} = [[]]</msg>
-<status status="PASS" starttime="20240812 12:40:49.644" endtime="20240812 12:40:49.644"/>
+<msg timestamp="20240816 08:35:15.429" level="INFO">${string_prefs} = [[]]</msg>
+<status status="PASS" starttime="20240816 08:35:15.429" endtime="20240816 08:35:15.429"/>
 </kw>
 <kw name="Return From Keyword If" library="BuiltIn">
 <arg>${string_prefs} == [[]]</arg>
 <doc>Returns from the enclosing user keyword if ``condition`` is true.</doc>
-<msg timestamp="20240812 12:40:49.644" level="INFO">Returning from the enclosing user keyword.</msg>
-<status status="PASS" starttime="20240812 12:40:49.644" endtime="20240812 12:40:49.644"/>
+<msg timestamp="20240816 08:35:15.429" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20240816 08:35:15.429" endtime="20240816 08:35:15.429"/>
 </kw>
 <for flavor="IN">
 <var>${preference}</var>
@@ -234,13 +234,13 @@
 <arg>add_argument</arg>
 <arg>${preference}</arg>
 <doc>Calls the named method of the given object with the provided arguments.</doc>
-<status status="NOT RUN" starttime="20240812 12:40:49.644" endtime="20240812 12:40:49.644"/>
+<status status="NOT RUN" starttime="20240816 08:35:15.429" endtime="20240816 08:35:15.429"/>
 </kw>
-<status status="NOT RUN" starttime="20240812 12:40:49.644" endtime="20240812 12:40:49.644"/>
+<status status="NOT RUN" starttime="20240816 08:35:15.429" endtime="20240816 08:35:15.429"/>
 </iter>
-<status status="NOT RUN" starttime="20240812 12:40:49.644" endtime="20240812 12:40:49.644"/>
+<status status="NOT RUN" starttime="20240816 08:35:15.429" endtime="20240816 08:35:15.429"/>
 </for>
-<status status="PASS" starttime="20240812 12:40:49.644" endtime="20240812 12:40:49.644"/>
+<status status="PASS" starttime="20240816 08:35:15.417" endtime="20240816 08:35:15.429"/>
 </kw>
 <kw name="Call Method" library="BuiltIn">
 <arg>${chrome_options}</arg>
@@ -248,388 +248,1592 @@
 <arg>prefs</arg>
 <arg>${kw_prefs}</arg>
 <doc>Calls the named method of the given object with the provided arguments.</doc>
-<status status="PASS" starttime="20240812 12:40:49.644" endtime="20240812 12:40:49.644"/>
+<status status="PASS" starttime="20240816 08:35:15.429" endtime="20240816 08:35:15.429"/>
 </kw>
 <kw name="Set Global Variable" library="BuiltIn">
 <arg>${global_browser_options}</arg>
 <arg>${chrome options}</arg>
 <doc>Makes a variable available globally in all tests and suites.</doc>
-<msg timestamp="20240812 12:40:49.644" level="INFO">${global_browser_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001B26A3A4800&gt;</msg>
-<status status="PASS" starttime="20240812 12:40:49.644" endtime="20240812 12:40:49.644"/>
+<msg timestamp="20240816 08:35:15.429" level="INFO">${global_browser_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000018B040E41D0&gt;</msg>
+<status status="PASS" starttime="20240816 08:35:15.429" endtime="20240816 08:35:15.429"/>
 </kw>
-<status status="PASS" starttime="20240812 12:40:49.644" endtime="20240812 12:40:49.644"/>
+<status status="PASS" starttime="20240816 08:35:15.417" endtime="20240816 08:35:15.429"/>
 </kw>
-<status status="PASS" starttime="20240812 12:40:46.390" endtime="20240812 12:40:49.644"/>
+<status status="PASS" starttime="20240816 08:35:12.270" endtime="20240816 08:35:15.429"/>
 </kw>
-<status status="PASS" starttime="20240812 12:40:46.390" endtime="20240812 12:40:49.644"/>
+<status status="PASS" starttime="20240816 08:35:12.270" endtime="20240816 08:35:15.429"/>
 </kw>
-<status status="PASS" starttime="20240812 12:40:46.389" endtime="20240812 12:40:49.644"/>
+<status status="PASS" starttime="20240816 08:35:12.269" endtime="20240816 08:35:15.429"/>
 </kw>
 <kw name="Set Suite Metadata" library="BuiltIn">
 <arg>environment</arg>
 <arg>${test_server}</arg>
 <doc>Sets metadata for the current test suite.</doc>
-<msg timestamp="20240812 12:40:49.660" level="INFO">Set suite metadata 'environment' to value 'Dev'.</msg>
-<status status="PASS" starttime="20240812 12:40:49.644" endtime="20240812 12:40:49.660"/>
+<msg timestamp="20240816 08:35:15.429" level="INFO">Set suite metadata 'environment' to value 'Dev'.</msg>
+<status status="PASS" starttime="20240816 08:35:15.429" endtime="20240816 08:35:15.429"/>
 </kw>
-<status status="PASS" starttime="20240812 12:40:46.380" endtime="20240812 12:40:49.660"/>
+<status status="PASS" starttime="20240816 08:35:12.257" endtime="20240816 08:35:15.429"/>
 </kw>
-<suite id="s1-s1" name="Test Job Status" source="C:\SAP_Testing\SAPtesting\Tests\Test_Job_Status.robot">
-<kw name="System Logon" library="Job_Status" type="SETUP">
+<suite id="s1-s1" name="Test Verify parameter values" source="C:\SAP_Testing\SAPtesting\Tests\Test_Verify_parameter_values.robot">
+<kw name="System Logon" library="Verify_parameter_values" type="SETUP">
 <kw name="Start Process" library="Process">
-<arg>${symvar('SAP_SERVER')}</arg>
+<arg>${symvar('ABAP_SAP_SERVER')}</arg>
 <doc>Starts a new process on background.</doc>
-<msg timestamp="20240812 12:40:49.676" level="INFO">Sym.Dev.SAP_SERVER: C:\Program Files (x86)\SAP\FrontEnd\SAPGUI\saplogon.exe</msg>
-<msg timestamp="20240812 12:40:49.676" level="INFO">Starting process:
+<msg timestamp="20240816 08:35:15.806" level="INFO">Sym.Dev.ABAP_SAP_SERVER: C:\Program Files (x86)\SAP\FrontEnd\SAPGUI\saplogon.exe</msg>
+<msg timestamp="20240816 08:35:15.806" level="INFO">Starting process:
 "C:\Program Files (x86)\SAP\FrontEnd\SAPGUI\saplogon.exe"</msg>
-<status status="PASS" starttime="20240812 12:40:49.676" endtime="20240812 12:40:49.676"/>
+<status status="PASS" starttime="20240816 08:35:15.806" endtime="20240816 08:35:15.810"/>
 </kw>
 <kw name="Connect To Session" library="SAP_Tcode_Library">
 <doc>Connects to an open session SAP.</doc>
-<status status="PASS" starttime="20240812 12:40:49.676" endtime="20240812 12:40:49.708"/>
+<status status="PASS" starttime="20240816 08:35:15.810" endtime="20240816 08:35:15.827"/>
 </kw>
 <kw name="Open Connection" library="SAP_Tcode_Library">
-<arg>${symvar('job_connection')}</arg>
+<arg>${symvar('ABAP_Connection')}</arg>
 <doc>Opens a connection to the given connection name. Be sure to provide the full connection name, including the bracket part.</doc>
-<msg timestamp="20240812 12:40:49.708" level="INFO">Sym.Dev.job_connection: BPM</msg>
-<status status="PASS" starttime="20240812 12:40:49.708" endtime="20240812 12:40:51.558"/>
+<msg timestamp="20240816 08:35:15.831" level="INFO">Sym.Dev.ABAP_Connection: BIS</msg>
+<status status="PASS" starttime="20240816 08:35:15.831" endtime="20240816 08:35:17.681"/>
 </kw>
 <kw name="Input Text" library="SAP_Tcode_Library">
 <arg>wnd[0]/usr/txtRSYST-MANDT</arg>
-<arg>${symvar('job_client')}</arg>
+<arg>${symvar('ABAP_CLIENT')}</arg>
 <doc>Inserts the given text into the text field identified by locator.
 Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240812 12:40:51.558" level="INFO">Sym.Dev.job_client: 800</msg>
-<msg timestamp="20240812 12:40:51.558" level="INFO">Typing text '800' into text field 'wnd[0]/usr/txtRSYST-MANDT'.</msg>
-<status status="PASS" starttime="20240812 12:40:51.558" endtime="20240812 12:40:51.558"/>
+<msg timestamp="20240816 08:35:17.697" level="INFO">Sym.Dev.ABAP_CLIENT: 001</msg>
+<msg timestamp="20240816 08:35:17.697" level="INFO">Typing text '001' into text field 'wnd[0]/usr/txtRSYST-MANDT'.</msg>
+<status status="PASS" starttime="20240816 08:35:17.681" endtime="20240816 08:35:17.697"/>
 </kw>
 <kw name="Input Text" library="SAP_Tcode_Library">
 <arg>wnd[0]/usr/txtRSYST-BNAME</arg>
-<arg>${symvar('job_user')}</arg>
+<arg>${symvar('ABAP_USER')}</arg>
 <doc>Inserts the given text into the text field identified by locator.
 Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240812 12:40:51.558" level="INFO">Sym.Dev.job_user: BCSADMIN</msg>
-<msg timestamp="20240812 12:40:51.580" level="INFO">Typing text 'BCSADMIN' into text field 'wnd[0]/usr/txtRSYST-BNAME'.</msg>
-<status status="PASS" starttime="20240812 12:40:51.558" endtime="20240812 12:40:51.580"/>
+<msg timestamp="20240816 08:35:17.697" level="INFO">Sym.Dev.ABAP_USER: ramyap</msg>
+<msg timestamp="20240816 08:35:17.712" level="INFO">Typing text 'ramyap' into text field 'wnd[0]/usr/txtRSYST-BNAME'.</msg>
+<status status="PASS" starttime="20240816 08:35:17.697" endtime="20240816 08:35:17.712"/>
 </kw>
 <kw name="Input Password" library="SAP_Tcode_Library">
 <arg>wnd[0]/usr/pwdRSYST-BCODE</arg>
-<arg>%{SAP_PASSWORD}</arg>
+<arg>%{ABAP_PASSWORD}</arg>
 <doc>Inserts the given password into the text field identified by locator.
 The password is not recorded in the log.</doc>
-<msg timestamp="20240812 12:40:51.589" level="INFO">Typing password into text field 'wnd[0]/usr/pwdRSYST-BCODE'.</msg>
-<status status="PASS" starttime="20240812 12:40:51.580" endtime="20240812 12:40:51.589"/>
+<msg timestamp="20240816 08:35:17.712" level="INFO">Typing password into text field 'wnd[0]/usr/pwdRSYST-BCODE'.</msg>
+<status status="PASS" starttime="20240816 08:35:17.712" endtime="20240816 08:35:17.712"/>
 </kw>
 <kw name="Send Vkey" library="SAP_Tcode_Library">
 <arg>0</arg>
 <doc>Sends a SAP virtual key combination to the window, not into an element.
 If you want to send a value to a text field, use `input text` instead.</doc>
-<status status="PASS" starttime="20240812 12:40:51.589" endtime="20240812 12:40:52.002"/>
+<status status="PASS" starttime="20240816 08:35:17.712" endtime="20240816 08:35:18.447"/>
 </kw>
 <kw name="Multiple Logon Handling" library="SAP_Tcode_Library">
 <arg>wnd[1]</arg>
 <arg>wnd[1]/usr/radMULTI_LOGON_OPT2</arg>
 <arg>wnd[1]/tbar[0]/btn[0]</arg>
-<msg timestamp="20240812 12:40:52.002" level="INFO">Multiple logon does not exist.</msg>
-<status status="PASS" starttime="20240812 12:40:52.002" endtime="20240812 12:40:52.002"/>
+<status status="PASS" starttime="20240816 08:35:18.447" endtime="20240816 08:35:18.455"/>
 </kw>
-<status status="PASS" starttime="20240812 12:40:49.676" endtime="20240812 12:40:52.002"/>
+<status status="PASS" starttime="20240816 08:35:15.805" endtime="20240816 08:35:18.455"/>
 </kw>
-<test id="s1-s1-t1" name="Providing Job Status for a user" line="8">
-<kw name="Display Job Status" library="Job_Status">
+<test id="s1-s1-t1" name="Verifying SAP Parameter values" line="8">
+<kw name="Verify parameter in RZ10" library="Verify_parameter_values">
 <kw name="Run Transaction" library="SAP_Tcode_Library">
-<arg>/nsm37</arg>
+<arg>/nRZ10</arg>
 <doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
-<status status="PASS" starttime="20240812 12:40:52.002" endtime="20240812 12:40:52.346"/>
+<status status="PASS" starttime="20240816 08:35:18.455" endtime="20240816 08:35:18.916"/>
 </kw>
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/txtBTCH2170-JOBNAME</arg>
-<arg>${EMPTY}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240812 12:40:52.346" level="INFO">Typing text '' into text field 'wnd[0]/usr/txtBTCH2170-JOBNAME'.</msg>
-<status status="PASS" starttime="20240812 12:40:52.346" endtime="20240812 12:40:52.346"/>
+<kw name="Send Vkey" library="SAP_Tcode_Library">
+<arg>4</arg>
+<arg>window=0</arg>
+<doc>Sends a SAP virtual key combination to the window, not into an element.
+If you want to send a value to a text field, use `input text` instead.</doc>
+<status status="PASS" starttime="20240816 08:35:18.916" endtime="20240816 08:35:19.615"/>
 </kw>
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/txtBTCH2170-JOBNAME</arg>
-<arg>${symvar('job_name')}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240812 12:40:52.346" level="INFO">Sym.Dev.job_name: *</msg>
-<msg timestamp="20240812 12:40:52.362" level="INFO">Typing text '*' into text field 'wnd[0]/usr/txtBTCH2170-JOBNAME'.</msg>
-<status status="PASS" starttime="20240812 12:40:52.346" endtime="20240812 12:40:52.362"/>
+<kw name="Select Profile Label" library="SAP_Tcode_Library">
+<arg>wnd[1]/usr</arg>
+<arg>DEFAULT</arg>
+<msg timestamp="20240816 08:35:19.648" level="INFO">Text Found: DEFAULT</msg>
+<status status="PASS" starttime="20240816 08:35:19.615" endtime="20240816 08:35:19.648"/>
 </kw>
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/txtBTCH2170-USERNAME</arg>
-<arg>${EMPTY}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240812 12:40:52.362" level="INFO">Typing text '' into text field 'wnd[0]/usr/txtBTCH2170-USERNAME'.</msg>
-<status status="PASS" starttime="20240812 12:40:52.362" endtime="20240812 12:40:52.362"/>
-</kw>
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/txtBTCH2170-USERNAME</arg>
-<arg>${symvar('job_user_name')}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240812 12:40:52.377" level="INFO">Sym.Dev.job_user_name: BCSADMIN</msg>
-<msg timestamp="20240812 12:40:52.377" level="INFO">Typing text 'BCSADMIN' into text field 'wnd[0]/usr/txtBTCH2170-USERNAME'.</msg>
-<status status="PASS" starttime="20240812 12:40:52.362" endtime="20240812 12:40:52.377"/>
-</kw>
-<kw name="Unselect Checkbox" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/chkBTCH2170-PRELIM</arg>
-<doc>Removes selection of checkbox identified by locator.
-Does nothing if the checkbox is not selected.</doc>
-<status status="PASS" starttime="20240812 12:40:52.377" endtime="20240812 12:40:52.377"/>
-</kw>
-<kw name="Unselect Checkbox" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/chkBTCH2170-SCHEDUL</arg>
-<doc>Removes selection of checkbox identified by locator.
-Does nothing if the checkbox is not selected.</doc>
-<status status="PASS" starttime="20240812 12:40:52.377" endtime="20240812 12:40:52.393"/>
-</kw>
-<kw name="Select Checkbox" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/chkBTCH2170-READY</arg>
-<doc>Selects checkbox identified by locator.
-Does nothing if the checkbox is already selected.</doc>
-<status status="PASS" starttime="20240812 12:40:52.393" endtime="20240812 12:40:52.393"/>
-</kw>
-<kw name="Unselect Checkbox" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/chkBTCH2170-RUNNING</arg>
-<doc>Removes selection of checkbox identified by locator.
-Does nothing if the checkbox is not selected.</doc>
-<status status="PASS" starttime="20240812 12:40:52.393" endtime="20240812 12:40:52.393"/>
-</kw>
-<kw name="Select Checkbox" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/chkBTCH2170-FINISHED</arg>
-<doc>Selects checkbox identified by locator.
-Does nothing if the checkbox is already selected.</doc>
-<status status="PASS" starttime="20240812 12:40:52.393" endtime="20240812 12:40:52.409"/>
-</kw>
-<kw name="Select Checkbox" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/chkBTCH2170-ABORTED</arg>
-<doc>Selects checkbox identified by locator.
-Does nothing if the checkbox is already selected.</doc>
-<status status="PASS" starttime="20240812 12:40:52.409" endtime="20240812 12:40:52.409"/>
-</kw>
-<if>
-<msg timestamp="20240812 12:40:52.409" level="INFO">Sym.Dev.job_from_date: None</msg>
-<branch type="IF" condition="'${symvar('job_from_date')}' == 'None'">
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/ctxtBTCH2170-FROM_DATE</arg>
-<arg>${EMPTY}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240812 12:40:52.409" level="INFO">Typing text '' into text field 'wnd[0]/usr/ctxtBTCH2170-FROM_DATE'.</msg>
-<status status="PASS" starttime="20240812 12:40:52.409" endtime="20240812 12:40:52.409"/>
-</kw>
-<status status="PASS" starttime="20240812 12:40:52.409" endtime="20240812 12:40:52.409"/>
-</branch>
-<branch type="ELSE">
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/ctxtBTCH2170-FROM_DATE</arg>
-<arg>${EMPTY}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<status status="NOT RUN" starttime="20240812 12:40:52.409" endtime="20240812 12:40:52.409"/>
-</kw>
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/ctxtBTCH2170-FROM_DATE</arg>
-<arg>${symvar('job_from_date')}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<status status="NOT RUN" starttime="20240812 12:40:52.409" endtime="20240812 12:40:52.409"/>
-</kw>
-<status status="NOT RUN" starttime="20240812 12:40:52.409" endtime="20240812 12:40:52.409"/>
-</branch>
-<status status="PASS" starttime="20240812 12:40:52.409" endtime="20240812 12:40:52.409"/>
-</if>
-<if>
-<msg timestamp="20240812 12:40:52.409" level="INFO">Sym.Dev.job_to_date: 09.08.2024</msg>
-<branch type="IF" condition="'${symvar('job_to_date')}' == 'None'">
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/ctxtBTCH2170-TO_DATE</arg>
-<arg>${EMPTY}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<status status="NOT RUN" starttime="20240812 12:40:52.409" endtime="20240812 12:40:52.409"/>
-</kw>
-<status status="NOT RUN" starttime="20240812 12:40:52.409" endtime="20240812 12:40:52.409"/>
-</branch>
-<branch type="ELSE">
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/ctxtBTCH2170-TO_DATE</arg>
-<arg>${EMPTY}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240812 12:40:52.424" level="INFO">Typing text '' into text field 'wnd[0]/usr/ctxtBTCH2170-TO_DATE'.</msg>
-<status status="PASS" starttime="20240812 12:40:52.409" endtime="20240812 12:40:52.424"/>
-</kw>
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/ctxtBTCH2170-TO_DATE</arg>
-<arg>${symvar('job_to_date')}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240812 12:40:52.424" level="INFO">Sym.Dev.job_to_date: 09.08.2024</msg>
-<msg timestamp="20240812 12:40:52.431" level="INFO">Typing text '09.08.2024' into text field 'wnd[0]/usr/ctxtBTCH2170-TO_DATE'.</msg>
-<status status="PASS" starttime="20240812 12:40:52.424" endtime="20240812 12:40:52.431"/>
-</kw>
-<status status="PASS" starttime="20240812 12:40:52.409" endtime="20240812 12:40:52.431"/>
-</branch>
-<status status="PASS" starttime="20240812 12:40:52.409" endtime="20240812 12:40:52.431"/>
-</if>
-<if>
-<msg timestamp="20240812 12:40:52.431" level="INFO">Sym.Dev.job_from_time: 04:00:00</msg>
-<branch type="IF" condition="'${symvar('job_from_time')}' != 'None'">
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/ctxtBTCH2170-FROM_TIME</arg>
-<arg>${EMPTY}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240812 12:40:52.431" level="INFO">Typing text '' into text field 'wnd[0]/usr/ctxtBTCH2170-FROM_TIME'.</msg>
-<status status="PASS" starttime="20240812 12:40:52.431" endtime="20240812 12:40:52.431"/>
-</kw>
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/ctxtBTCH2170-FROM_TIME</arg>
-<arg>${symvar('job_from_time')}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240812 12:40:52.440" level="INFO">Sym.Dev.job_from_time: 04:00:00</msg>
-<msg timestamp="20240812 12:40:52.440" level="INFO">Typing text '04:00:00' into text field 'wnd[0]/usr/ctxtBTCH2170-FROM_TIME'.</msg>
-<status status="PASS" starttime="20240812 12:40:52.431" endtime="20240812 12:40:52.440"/>
-</kw>
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/ctxtBTCH2170-TO_TIME</arg>
-<arg>${EMPTY}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240812 12:40:52.440" level="INFO">Typing text '' into text field 'wnd[0]/usr/ctxtBTCH2170-TO_TIME'.</msg>
-<status status="PASS" starttime="20240812 12:40:52.440" endtime="20240812 12:40:52.440"/>
-</kw>
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[0]/usr/ctxtBTCH2170-TO_TIME</arg>
-<arg>${symvar('job_to_time')}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240812 12:40:52.440" level="INFO">Sym.Dev.job_to_time: 16:30:00</msg>
-<msg timestamp="20240812 12:40:52.457" level="INFO">Typing text '16:30:00' into text field 'wnd[0]/usr/ctxtBTCH2170-TO_TIME'.</msg>
-<status status="PASS" starttime="20240812 12:40:52.440" endtime="20240812 12:40:52.457"/>
-</kw>
-<status status="PASS" starttime="20240812 12:40:52.431" endtime="20240812 12:40:52.457"/>
-</branch>
-<status status="PASS" starttime="20240812 12:40:52.431" endtime="20240812 12:40:52.457"/>
-</if>
 <kw name="Click Element" library="SAP_Tcode_Library">
-<arg>wnd[0]/tbar[1]/btn[8]</arg>
+<arg>wnd[1]/tbar[0]/btn[0]</arg>
 <doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
-<status status="PASS" starttime="20240812 12:40:52.457" endtime="20240812 12:40:56.268"/>
-</kw>
-<kw name="Get Value" library="SAP_Tcode_Library">
-<var>${log}</var>
-<arg>wnd[0]/sbar/pane[0]</arg>
-<doc>Gets the value of the given element. The possible return values depend on the type of element (see Return values).</doc>
-<msg timestamp="20240812 12:40:56.316" level="INFO">${log} = </msg>
-<status status="PASS" starttime="20240812 12:40:56.268" endtime="20240812 12:40:56.316"/>
-</kw>
-<if>
-<branch type="IF" condition="'${log}' == 'No job matches the selection criteria'">
-<kw name="Log To Console" library="BuiltIn">
-<arg>**gbStart**copilot_status**splitKeyValue**${log}**gbEnd**</arg>
-<doc>Logs the given message to the console.</doc>
-<status status="NOT RUN" starttime="20240812 12:40:56.316" endtime="20240812 12:40:56.316"/>
-</kw>
-<status status="NOT RUN" starttime="20240812 12:40:56.316" endtime="20240812 12:40:56.316"/>
-</branch>
-<branch type="ELSE">
-<kw name="Click Element" library="SAP_Tcode_Library">
-<arg>wnd[0]/mbar/menu[3]/menu[0]/menu[1]</arg>
-<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
-<status status="PASS" starttime="20240812 12:40:56.316" endtime="20240812 12:40:57.634"/>
+<status status="PASS" starttime="20240816 08:35:19.648" endtime="20240816 08:35:19.915"/>
 </kw>
 <kw name="Select Radio Button" library="SAP_Tcode_Library">
-<arg>wnd[1]/usr/radRB_OTHERS</arg>
+<arg>wnd[0]/usr/radSPFL1010-EXPERT</arg>
 <doc>Sets radio button to the specified value.</doc>
-<status status="PASS" starttime="20240812 12:40:57.634" endtime="20240812 12:40:57.675"/>
-</kw>
-<kw name="Set Key Value" library="SAP_Tcode_Library">
-<arg>wnd[1]/usr/cmbG_LISTBOX</arg>
-<arg>10</arg>
-<status status="PASS" starttime="20240812 12:40:57.675" endtime="20240812 12:40:57.893"/>
+<status status="PASS" starttime="20240816 08:35:19.915" endtime="20240816 08:35:19.915"/>
 </kw>
 <kw name="Click Element" library="SAP_Tcode_Library">
-<arg>wnd[1]/tbar[0]/btn[0]</arg>
+<arg>wnd[0]/usr/btnEDIT_PUSH</arg>
 <doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
-<status status="PASS" starttime="20240812 12:40:57.893" endtime="20240812 12:41:04.706"/>
+<status status="PASS" starttime="20240816 08:35:19.915" endtime="20240816 08:35:20.325"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>4</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:35:24.326" level="INFO">Slept 4 seconds</msg>
+<status status="PASS" starttime="20240816 08:35:20.325" endtime="20240816 08:35:24.326"/>
+</kw>
+<kw name="Get Length" library="BuiltIn">
+<var>${length}</var>
+<arg>${parameters}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<msg timestamp="20240816 08:35:24.326" level="INFO">Length is 7</msg>
+<msg timestamp="20240816 08:35:24.326" level="INFO">${length} = 7</msg>
+<status status="PASS" starttime="20240816 08:35:24.326" endtime="20240816 08:35:24.326"/>
+</kw>
+<for flavor="IN RANGE">
+<var>${i}</var>
+<value>0</value>
+<value>${length}</value>
+<iter>
+<var name="${i}">0</var>
+<kw name="Check Parameter Found" library="SAP_Tcode_Library">
+<var>${result}</var>
+<arg>wnd[0]/usr</arg>
+<arg>${parameters}[${i}]</arg>
+<msg timestamp="20240816 08:35:24.376" level="INFO">ssl/ciphersuites</msg>
+<msg timestamp="20240816 08:35:24.376" level="INFO">${result} = ssl/ciphersuites</msg>
+<status status="PASS" starttime="20240816 08:35:24.326" endtime="20240816 08:35:24.376"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${result}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20240816 08:35:24.376" endtime="20240816 08:35:24.376"/>
+</kw>
+<if>
+<branch type="IF" condition="'${result}' == '${parameters}[${i}]'">
+<kw name="Get Parameter Value" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr</arg>
+<arg>${parameters}[${i}]</arg>
+<status status="PASS" starttime="20240816 08:35:24.376" endtime="20240816 08:35:24.687"/>
+</kw>
+<kw name="Get Value" library="SAP_Tcode_Library">
+<var>${param_value}</var>
+<arg>wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]</arg>
+<doc>Gets the value of the given element. The possible return values depend on the type of element (see Return values).</doc>
+<msg timestamp="20240816 08:35:24.728" level="INFO">${param_value} = 135:PFS:HIGH::EC_X25519:EC_P256:EC_HIGH</msg>
+<status status="PASS" starttime="20240816 08:35:24.687" endtime="20240816 08:35:24.728"/>
+</kw>
+<if>
+<branch type="IF" condition="'${param_value}' == '${values}[${i}]'">
+<kw name="Log To Console" library="BuiltIn">
+<arg>${parameters}[${i}] value is ${values}[${i}]</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20240816 08:35:24.728" endtime="20240816 08:35:24.728"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[0]/btn[3]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:35:24.728" endtime="20240816 08:35:24.978"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:35:26.978" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:35:24.978" endtime="20240816 08:35:26.978"/>
+</kw>
+<status status="PASS" starttime="20240816 08:35:24.728" endtime="20240816 08:35:26.978"/>
+</branch>
+<branch type="ELSE">
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:26.978" endtime="20240816 08:35:26.978"/>
 </kw>
 <kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[1]/usr/ctxtDY_PATH</arg>
+<arg>wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]</arg>
 <arg>${EMPTY}</arg>
 <doc>Inserts the given text into the text field identified by locator.
 Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240812 12:41:04.737" level="INFO">Typing text '' into text field 'wnd[1]/usr/ctxtDY_PATH'.</msg>
-<status status="PASS" starttime="20240812 12:41:04.706" endtime="20240812 12:41:04.737"/>
+<status status="NOT RUN" starttime="20240816 08:35:26.978" endtime="20240816 08:35:26.978"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:26.978" endtime="20240816 08:35:26.978"/>
 </kw>
 <kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[1]/usr/ctxtDY_PATH</arg>
-<arg>${symvar('job_status_filepath')}</arg>
+<arg>wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]</arg>
+<arg>${values}[${i}]</arg>
 <doc>Inserts the given text into the text field identified by locator.
 Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240812 12:41:04.737" level="INFO">Sym.Dev.job_status_filepath: C:\tmp</msg>
-<msg timestamp="20240812 12:41:04.737" level="INFO">Typing text 'C:\tmp' into text field 'wnd[1]/usr/ctxtDY_PATH'.</msg>
-<status status="PASS" starttime="20240812 12:41:04.737" endtime="20240812 12:41:04.737"/>
-</kw>
-<kw name="Input Text" library="SAP_Tcode_Library">
-<arg>wnd[1]/usr/ctxtDY_FILENAME</arg>
-<arg>${symvar('job_status_filename')}</arg>
-<doc>Inserts the given text into the text field identified by locator.
-Use keyword `input password` to insert a password in a text field.</doc>
-<msg timestamp="20240812 12:41:04.752" level="INFO">Sym.Dev.job_status_filename: Job_Status.xlsx</msg>
-<msg timestamp="20240812 12:41:04.752" level="INFO">Typing text 'Job_Status.xlsx' into text field 'wnd[1]/usr/ctxtDY_FILENAME'.</msg>
-<status status="PASS" starttime="20240812 12:41:04.737" endtime="20240812 12:41:04.752"/>
+<status status="NOT RUN" starttime="20240816 08:35:26.978" endtime="20240816 08:35:26.978"/>
 </kw>
 <kw name="Click Element" library="SAP_Tcode_Library">
-<arg>wnd[1]/tbar[0]/btn[0]</arg>
+<arg>wnd[0]/tbar[1]/btn[16]</arg>
 <doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
-<status status="PASS" starttime="20240812 12:41:04.752" endtime="20240812 12:41:09.087"/>
+<status status="NOT RUN" starttime="20240816 08:35:26.978" endtime="20240816 08:35:26.978"/>
 </kw>
-<status status="PASS" starttime="20240812 12:40:56.316" endtime="20240812 12:41:09.087"/>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:26.978" endtime="20240816 08:35:26.978"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[5]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:26.978" endtime="20240816 08:35:26.978"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:26.978" endtime="20240816 08:35:26.978"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[0]/btn[3]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:26.978" endtime="20240816 08:35:26.978"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[16]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:26.978" endtime="20240816 08:35:26.978"/>
+</kw>
+<status status="NOT RUN" starttime="20240816 08:35:26.978" endtime="20240816 08:35:26.978"/>
 </branch>
-<status status="PASS" starttime="20240812 12:40:56.316" endtime="20240812 12:41:09.087"/>
+<status status="PASS" starttime="20240816 08:35:24.728" endtime="20240816 08:35:26.978"/>
 </if>
-<status status="PASS" starttime="20240812 12:40:52.002" endtime="20240812 12:41:09.087"/>
+<status status="PASS" starttime="20240816 08:35:24.376" endtime="20240816 08:35:26.978"/>
+</branch>
+<branch type="ELSE">
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:26.978" endtime="20240816 08:35:26.978"/>
 </kw>
-<tag>jobstatus</tag>
-<status status="PASS" starttime="20240812 12:40:52.002" endtime="20240812 12:41:09.087"/>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[5]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:26.978" endtime="20240816 08:35:26.978"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:26.978" endtime="20240816 08:35:26.978"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtPARAMETER_INTERNAL-PARNAME</arg>
+<arg>${parameters}[${i}]</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:26.978" endtime="20240816 08:35:26.978"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:26.978" endtime="20240816 08:35:26.978"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]</arg>
+<arg>${values}[${i}]</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:26.978" endtime="20240816 08:35:26.978"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:26.978" endtime="20240816 08:35:26.978"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[16]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:26.978" endtime="20240816 08:35:26.978"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:26.978" endtime="20240816 08:35:26.978"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[5]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:26.978" endtime="20240816 08:35:26.978"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:26.978" endtime="20240816 08:35:26.978"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[0]/btn[3]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:26.978" endtime="20240816 08:35:26.978"/>
+</kw>
+<kw name="Manage Window" library="SAP_Tcode_Library">
+<arg>wnd[1]</arg>
+<arg>Maintain Profile 'DEFAULT' Version</arg>
+<arg>wnd[1]/usr/btnKNOPF1</arg>
+<status status="NOT RUN" starttime="20240816 08:35:26.978" endtime="20240816 08:35:26.978"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[16]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:26.978" endtime="20240816 08:35:26.984"/>
+</kw>
+<status status="NOT RUN" starttime="20240816 08:35:26.978" endtime="20240816 08:35:26.984"/>
+</branch>
+<status status="PASS" starttime="20240816 08:35:24.376" endtime="20240816 08:35:26.984"/>
+</if>
+<status status="PASS" starttime="20240816 08:35:24.326" endtime="20240816 08:35:26.984"/>
+</iter>
+<iter>
+<var name="${i}">1</var>
+<kw name="Check Parameter Found" library="SAP_Tcode_Library">
+<var>${result}</var>
+<arg>wnd[0]/usr</arg>
+<arg>${parameters}[${i}]</arg>
+<msg timestamp="20240816 08:35:27.030" level="INFO">ssl/client_ciphersuites</msg>
+<msg timestamp="20240816 08:35:27.030" level="INFO">${result} = ssl/client_ciphersuites</msg>
+<status status="PASS" starttime="20240816 08:35:26.984" endtime="20240816 08:35:27.030"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${result}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20240816 08:35:27.030" endtime="20240816 08:35:27.030"/>
+</kw>
+<if>
+<branch type="IF" condition="'${result}' == '${parameters}[${i}]'">
+<kw name="Get Parameter Value" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr</arg>
+<arg>${parameters}[${i}]</arg>
+<status status="PASS" starttime="20240816 08:35:27.030" endtime="20240816 08:35:27.316"/>
+</kw>
+<kw name="Get Value" library="SAP_Tcode_Library">
+<var>${param_value}</var>
+<arg>wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]</arg>
+<doc>Gets the value of the given element. The possible return values depend on the type of element (see Return values).</doc>
+<msg timestamp="20240816 08:35:27.353" level="INFO">${param_value} = 150:PFS:HIGH::EC_X25519:EC_P256:EC_HIG</msg>
+<status status="PASS" starttime="20240816 08:35:27.316" endtime="20240816 08:35:27.353"/>
+</kw>
+<if>
+<branch type="IF" condition="'${param_value}' == '${values}[${i}]'">
+<kw name="Log To Console" library="BuiltIn">
+<arg>${parameters}[${i}] value is ${values}[${i}]</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:27.353" endtime="20240816 08:35:27.353"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[0]/btn[3]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:27.353" endtime="20240816 08:35:27.353"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:27.353" endtime="20240816 08:35:27.353"/>
+</kw>
+<status status="NOT RUN" starttime="20240816 08:35:27.353" endtime="20240816 08:35:27.353"/>
+</branch>
+<branch type="ELSE">
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:35:29.364" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:35:27.363" endtime="20240816 08:35:29.364"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]</arg>
+<arg>${EMPTY}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240816 08:35:29.364" level="INFO">Typing text '' into text field 'wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]'.</msg>
+<status status="PASS" starttime="20240816 08:35:29.364" endtime="20240816 08:35:29.364"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:35:31.364" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:35:29.364" endtime="20240816 08:35:31.364"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]</arg>
+<arg>${values}[${i}]</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240816 08:35:31.373" level="INFO">Typing text '150:PFS:HIGH::EC_X25519:EC_P256:EC_HIGH' into text field 'wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]'.</msg>
+<status status="PASS" starttime="20240816 08:35:31.364" endtime="20240816 08:35:31.373"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[16]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:35:31.373" endtime="20240816 08:35:31.612"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:35:33.612" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:35:31.612" endtime="20240816 08:35:33.612"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[5]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:35:33.612" endtime="20240816 08:35:33.826"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:35:35.826" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:35:33.826" endtime="20240816 08:35:35.826"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[0]/btn[3]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:35:35.826" endtime="20240816 08:35:36.072"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[16]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:35:36.072" endtime="20240816 08:35:36.322"/>
+</kw>
+<status status="PASS" starttime="20240816 08:35:27.363" endtime="20240816 08:35:36.322"/>
+</branch>
+<status status="PASS" starttime="20240816 08:35:27.353" endtime="20240816 08:35:36.322"/>
+</if>
+<status status="PASS" starttime="20240816 08:35:27.030" endtime="20240816 08:35:36.322"/>
+</branch>
+<branch type="ELSE">
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:36.322" endtime="20240816 08:35:36.322"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[5]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:36.324" endtime="20240816 08:35:36.324"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:36.324" endtime="20240816 08:35:36.324"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtPARAMETER_INTERNAL-PARNAME</arg>
+<arg>${parameters}[${i}]</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:36.324" endtime="20240816 08:35:36.324"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:36.324" endtime="20240816 08:35:36.324"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]</arg>
+<arg>${values}[${i}]</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:36.324" endtime="20240816 08:35:36.324"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:36.324" endtime="20240816 08:35:36.324"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[16]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:36.324" endtime="20240816 08:35:36.324"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:36.324" endtime="20240816 08:35:36.324"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[5]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:36.324" endtime="20240816 08:35:36.324"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:36.324" endtime="20240816 08:35:36.324"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[0]/btn[3]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:36.324" endtime="20240816 08:35:36.324"/>
+</kw>
+<kw name="Manage Window" library="SAP_Tcode_Library">
+<arg>wnd[1]</arg>
+<arg>Maintain Profile 'DEFAULT' Version</arg>
+<arg>wnd[1]/usr/btnKNOPF1</arg>
+<status status="NOT RUN" starttime="20240816 08:35:36.324" endtime="20240816 08:35:36.324"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[16]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:36.324" endtime="20240816 08:35:36.324"/>
+</kw>
+<status status="NOT RUN" starttime="20240816 08:35:36.322" endtime="20240816 08:35:36.324"/>
+</branch>
+<status status="PASS" starttime="20240816 08:35:27.030" endtime="20240816 08:35:36.324"/>
+</if>
+<status status="PASS" starttime="20240816 08:35:26.984" endtime="20240816 08:35:36.324"/>
+</iter>
+<iter>
+<var name="${i}">2</var>
+<kw name="Check Parameter Found" library="SAP_Tcode_Library">
+<var>${result}</var>
+<arg>wnd[0]/usr</arg>
+<arg>${parameters}[${i}]</arg>
+<msg timestamp="20240816 08:35:36.653" level="INFO">Search text icm/HTTPS/client_sni_enabled not found</msg>
+<msg timestamp="20240816 08:35:36.653" level="INFO">${result} = Search text icm/HTTPS/client_sni_enabled not found</msg>
+<status status="PASS" starttime="20240816 08:35:36.324" endtime="20240816 08:35:36.653"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${result}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20240816 08:35:36.653" endtime="20240816 08:35:36.653"/>
+</kw>
+<if>
+<branch type="IF" condition="'${result}' == '${parameters}[${i}]'">
+<kw name="Get Parameter Value" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr</arg>
+<arg>${parameters}[${i}]</arg>
+<status status="NOT RUN" starttime="20240816 08:35:36.653" endtime="20240816 08:35:36.653"/>
+</kw>
+<kw name="Get Value" library="SAP_Tcode_Library">
+<var>${param_value}</var>
+<arg>wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]</arg>
+<doc>Gets the value of the given element. The possible return values depend on the type of element (see Return values).</doc>
+<status status="NOT RUN" starttime="20240816 08:35:36.653" endtime="20240816 08:35:36.653"/>
+</kw>
+<if>
+<branch type="IF" condition="'${param_value}' == '${values}[${i}]'">
+<kw name="Log To Console" library="BuiltIn">
+<arg>${parameters}[${i}] value is ${values}[${i}]</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:36.653" endtime="20240816 08:35:36.653"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[0]/btn[3]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:36.653" endtime="20240816 08:35:36.653"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:36.653" endtime="20240816 08:35:36.653"/>
+</kw>
+<status status="NOT RUN" starttime="20240816 08:35:36.653" endtime="20240816 08:35:36.653"/>
+</branch>
+<branch type="ELSE">
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:36.653" endtime="20240816 08:35:36.653"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]</arg>
+<arg>${EMPTY}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:36.653" endtime="20240816 08:35:36.653"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:36.653" endtime="20240816 08:35:36.653"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]</arg>
+<arg>${values}[${i}]</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:36.653" endtime="20240816 08:35:36.653"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[16]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:36.653" endtime="20240816 08:35:36.653"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:36.653" endtime="20240816 08:35:36.653"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[5]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:36.653" endtime="20240816 08:35:36.653"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:36.653" endtime="20240816 08:35:36.653"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[0]/btn[3]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:36.653" endtime="20240816 08:35:36.653"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[16]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:36.653" endtime="20240816 08:35:36.653"/>
+</kw>
+<status status="NOT RUN" starttime="20240816 08:35:36.653" endtime="20240816 08:35:36.653"/>
+</branch>
+<status status="NOT RUN" starttime="20240816 08:35:36.653" endtime="20240816 08:35:36.653"/>
+</if>
+<status status="NOT RUN" starttime="20240816 08:35:36.653" endtime="20240816 08:35:36.653"/>
+</branch>
+<branch type="ELSE">
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:35:38.654" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:35:36.653" endtime="20240816 08:35:38.654"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[5]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:35:38.654" endtime="20240816 08:35:38.886"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:35:40.886" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:35:38.886" endtime="20240816 08:35:40.886"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtPARAMETER_INTERNAL-PARNAME</arg>
+<arg>${parameters}[${i}]</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240816 08:35:40.886" level="INFO">Typing text 'icm/HTTPS/client_sni_enabled' into text field 'wnd[0]/usr/ctxtPARAMETER_INTERNAL-PARNAME'.</msg>
+<status status="PASS" starttime="20240816 08:35:40.886" endtime="20240816 08:35:40.886"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:35:42.887" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:35:40.886" endtime="20240816 08:35:42.887"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]</arg>
+<arg>${values}[${i}]</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240816 08:35:42.887" level="INFO">Typing text 'TRUE' into text field 'wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]'.</msg>
+<status status="PASS" starttime="20240816 08:35:42.887" endtime="20240816 08:35:42.887"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:35:44.887" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:35:42.887" endtime="20240816 08:35:44.887"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[16]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:35:44.887" endtime="20240816 08:35:45.133"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:35:47.134" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:35:45.133" endtime="20240816 08:35:47.134"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[5]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:35:47.134" endtime="20240816 08:35:47.375"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:35:49.375" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:35:47.375" endtime="20240816 08:35:49.375"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[0]/btn[3]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:35:49.375" endtime="20240816 08:35:49.640"/>
+</kw>
+<kw name="Manage Window" library="SAP_Tcode_Library">
+<arg>wnd[1]</arg>
+<arg>Maintain Profile 'DEFAULT' Version</arg>
+<arg>wnd[1]/usr/btnKNOPF1</arg>
+<status status="PASS" starttime="20240816 08:35:49.640" endtime="20240816 08:35:49.927"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[16]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:35:49.927" endtime="20240816 08:35:50.181"/>
+</kw>
+<status status="PASS" starttime="20240816 08:35:36.653" endtime="20240816 08:35:50.181"/>
+</branch>
+<status status="PASS" starttime="20240816 08:35:36.653" endtime="20240816 08:35:50.181"/>
+</if>
+<status status="PASS" starttime="20240816 08:35:36.324" endtime="20240816 08:35:50.181"/>
+</iter>
+<iter>
+<var name="${i}">3</var>
+<kw name="Check Parameter Found" library="SAP_Tcode_Library">
+<var>${result}</var>
+<arg>wnd[0]/usr</arg>
+<arg>${parameters}[${i}]</arg>
+<msg timestamp="20240816 08:35:50.515" level="INFO">Search text ssl/client_sni_enabled not found</msg>
+<msg timestamp="20240816 08:35:50.515" level="INFO">${result} = Search text ssl/client_sni_enabled not found</msg>
+<status status="PASS" starttime="20240816 08:35:50.181" endtime="20240816 08:35:50.515"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${result}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20240816 08:35:50.515" endtime="20240816 08:35:50.515"/>
+</kw>
+<if>
+<branch type="IF" condition="'${result}' == '${parameters}[${i}]'">
+<kw name="Get Parameter Value" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr</arg>
+<arg>${parameters}[${i}]</arg>
+<status status="NOT RUN" starttime="20240816 08:35:50.515" endtime="20240816 08:35:50.515"/>
+</kw>
+<kw name="Get Value" library="SAP_Tcode_Library">
+<var>${param_value}</var>
+<arg>wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]</arg>
+<doc>Gets the value of the given element. The possible return values depend on the type of element (see Return values).</doc>
+<status status="NOT RUN" starttime="20240816 08:35:50.515" endtime="20240816 08:35:50.515"/>
+</kw>
+<if>
+<branch type="IF" condition="'${param_value}' == '${values}[${i}]'">
+<kw name="Log To Console" library="BuiltIn">
+<arg>${parameters}[${i}] value is ${values}[${i}]</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:50.515" endtime="20240816 08:35:50.515"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[0]/btn[3]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:50.515" endtime="20240816 08:35:50.515"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:50.515" endtime="20240816 08:35:50.515"/>
+</kw>
+<status status="NOT RUN" starttime="20240816 08:35:50.515" endtime="20240816 08:35:50.515"/>
+</branch>
+<branch type="ELSE">
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:50.515" endtime="20240816 08:35:50.515"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]</arg>
+<arg>${EMPTY}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:50.515" endtime="20240816 08:35:50.515"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:50.515" endtime="20240816 08:35:50.515"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]</arg>
+<arg>${values}[${i}]</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:50.515" endtime="20240816 08:35:50.515"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[16]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:50.515" endtime="20240816 08:35:50.515"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:50.515" endtime="20240816 08:35:50.515"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[5]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:50.515" endtime="20240816 08:35:50.515"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:50.515" endtime="20240816 08:35:50.515"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[0]/btn[3]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:50.515" endtime="20240816 08:35:50.515"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[16]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:35:50.515" endtime="20240816 08:35:50.515"/>
+</kw>
+<status status="NOT RUN" starttime="20240816 08:35:50.515" endtime="20240816 08:35:50.515"/>
+</branch>
+<status status="NOT RUN" starttime="20240816 08:35:50.515" endtime="20240816 08:35:50.515"/>
+</if>
+<status status="NOT RUN" starttime="20240816 08:35:50.515" endtime="20240816 08:35:50.515"/>
+</branch>
+<branch type="ELSE">
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:35:52.515" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:35:50.515" endtime="20240816 08:35:52.515"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[5]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:35:52.515" endtime="20240816 08:35:52.764"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:35:54.764" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:35:52.764" endtime="20240816 08:35:54.764"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtPARAMETER_INTERNAL-PARNAME</arg>
+<arg>${parameters}[${i}]</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240816 08:35:54.766" level="INFO">Typing text 'ssl/client_sni_enabled' into text field 'wnd[0]/usr/ctxtPARAMETER_INTERNAL-PARNAME'.</msg>
+<status status="PASS" starttime="20240816 08:35:54.764" endtime="20240816 08:35:54.766"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:35:56.767" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:35:54.766" endtime="20240816 08:35:56.767"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]</arg>
+<arg>${values}[${i}]</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240816 08:35:56.767" level="INFO">Typing text 'TRUE' into text field 'wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]'.</msg>
+<status status="PASS" starttime="20240816 08:35:56.767" endtime="20240816 08:35:56.767"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:35:58.767" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:35:56.767" endtime="20240816 08:35:58.767"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[16]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:35:58.767" endtime="20240816 08:35:59.015"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:36:01.015" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:35:59.015" endtime="20240816 08:36:01.015"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[5]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:36:01.015" endtime="20240816 08:36:01.261"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:36:03.262" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:36:01.261" endtime="20240816 08:36:03.262"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[0]/btn[3]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:36:03.262" endtime="20240816 08:36:03.514"/>
+</kw>
+<kw name="Manage Window" library="SAP_Tcode_Library">
+<arg>wnd[1]</arg>
+<arg>Maintain Profile 'DEFAULT' Version</arg>
+<arg>wnd[1]/usr/btnKNOPF1</arg>
+<status status="PASS" starttime="20240816 08:36:03.514" endtime="20240816 08:36:03.803"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[16]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:36:03.803" endtime="20240816 08:36:04.056"/>
+</kw>
+<status status="PASS" starttime="20240816 08:35:50.515" endtime="20240816 08:36:04.056"/>
+</branch>
+<status status="PASS" starttime="20240816 08:35:50.515" endtime="20240816 08:36:04.056"/>
+</if>
+<status status="PASS" starttime="20240816 08:35:50.181" endtime="20240816 08:36:04.056"/>
+</iter>
+<iter>
+<var name="${i}">4</var>
+<kw name="Check Parameter Found" library="SAP_Tcode_Library">
+<var>${result}</var>
+<arg>wnd[0]/usr</arg>
+<arg>${parameters}[${i}]</arg>
+<msg timestamp="20240816 08:36:04.389" level="INFO">Search text SETENV_26 not found</msg>
+<msg timestamp="20240816 08:36:04.389" level="INFO">${result} = Search text SETENV_26 not found</msg>
+<status status="PASS" starttime="20240816 08:36:04.056" endtime="20240816 08:36:04.389"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${result}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20240816 08:36:04.389" endtime="20240816 08:36:04.389"/>
+</kw>
+<if>
+<branch type="IF" condition="'${result}' == '${parameters}[${i}]'">
+<kw name="Get Parameter Value" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr</arg>
+<arg>${parameters}[${i}]</arg>
+<status status="NOT RUN" starttime="20240816 08:36:04.389" endtime="20240816 08:36:04.389"/>
+</kw>
+<kw name="Get Value" library="SAP_Tcode_Library">
+<var>${param_value}</var>
+<arg>wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]</arg>
+<doc>Gets the value of the given element. The possible return values depend on the type of element (see Return values).</doc>
+<status status="NOT RUN" starttime="20240816 08:36:04.389" endtime="20240816 08:36:04.389"/>
+</kw>
+<if>
+<branch type="IF" condition="'${param_value}' == '${values}[${i}]'">
+<kw name="Log To Console" library="BuiltIn">
+<arg>${parameters}[${i}] value is ${values}[${i}]</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:04.389" endtime="20240816 08:36:04.389"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[0]/btn[3]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:04.389" endtime="20240816 08:36:04.389"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:04.389" endtime="20240816 08:36:04.389"/>
+</kw>
+<status status="NOT RUN" starttime="20240816 08:36:04.389" endtime="20240816 08:36:04.389"/>
+</branch>
+<branch type="ELSE">
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:04.389" endtime="20240816 08:36:04.389"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]</arg>
+<arg>${EMPTY}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:04.389" endtime="20240816 08:36:04.389"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:04.389" endtime="20240816 08:36:04.389"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]</arg>
+<arg>${values}[${i}]</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:04.389" endtime="20240816 08:36:04.389"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[16]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:04.389" endtime="20240816 08:36:04.389"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:04.389" endtime="20240816 08:36:04.389"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[5]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:04.389" endtime="20240816 08:36:04.389"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:04.389" endtime="20240816 08:36:04.389"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[0]/btn[3]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:04.389" endtime="20240816 08:36:04.389"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[16]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:04.389" endtime="20240816 08:36:04.389"/>
+</kw>
+<status status="NOT RUN" starttime="20240816 08:36:04.389" endtime="20240816 08:36:04.389"/>
+</branch>
+<status status="NOT RUN" starttime="20240816 08:36:04.389" endtime="20240816 08:36:04.389"/>
+</if>
+<status status="NOT RUN" starttime="20240816 08:36:04.389" endtime="20240816 08:36:04.389"/>
+</branch>
+<branch type="ELSE">
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:36:06.389" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:36:04.389" endtime="20240816 08:36:06.389"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[5]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:36:06.389" endtime="20240816 08:36:06.634"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:36:08.643" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:36:06.634" endtime="20240816 08:36:08.643"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtPARAMETER_INTERNAL-PARNAME</arg>
+<arg>${parameters}[${i}]</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240816 08:36:08.643" level="INFO">Typing text 'SETENV_26' into text field 'wnd[0]/usr/ctxtPARAMETER_INTERNAL-PARNAME'.</msg>
+<status status="PASS" starttime="20240816 08:36:08.643" endtime="20240816 08:36:08.643"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:36:10.643" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:36:08.643" endtime="20240816 08:36:10.643"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]</arg>
+<arg>${values}[${i}]</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240816 08:36:10.643" level="INFO">Typing text 'SECUDIR=$(DIR_INSTANCE)$(DIR_SEP)sec' into text field 'wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]'.</msg>
+<status status="PASS" starttime="20240816 08:36:10.643" endtime="20240816 08:36:10.643"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:36:12.643" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:36:10.643" endtime="20240816 08:36:12.643"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[16]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:36:12.643" endtime="20240816 08:36:12.887"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:36:14.887" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:36:12.887" endtime="20240816 08:36:14.887"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[5]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:36:14.887" endtime="20240816 08:36:15.137"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:36:17.137" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:36:15.137" endtime="20240816 08:36:17.137"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[0]/btn[3]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:36:17.137" endtime="20240816 08:36:17.369"/>
+</kw>
+<kw name="Manage Window" library="SAP_Tcode_Library">
+<arg>wnd[1]</arg>
+<arg>Maintain Profile 'DEFAULT' Version</arg>
+<arg>wnd[1]/usr/btnKNOPF1</arg>
+<status status="PASS" starttime="20240816 08:36:17.369" endtime="20240816 08:36:17.687"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[16]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:36:17.687" endtime="20240816 08:36:17.943"/>
+</kw>
+<status status="PASS" starttime="20240816 08:36:04.389" endtime="20240816 08:36:17.943"/>
+</branch>
+<status status="PASS" starttime="20240816 08:36:04.389" endtime="20240816 08:36:17.943"/>
+</if>
+<status status="PASS" starttime="20240816 08:36:04.056" endtime="20240816 08:36:17.943"/>
+</iter>
+<iter>
+<var name="${i}">5</var>
+<kw name="Check Parameter Found" library="SAP_Tcode_Library">
+<var>${result}</var>
+<arg>wnd[0]/usr</arg>
+<arg>${parameters}[${i}]</arg>
+<msg timestamp="20240816 08:36:18.275" level="INFO">Search text SETENV_27 not found</msg>
+<msg timestamp="20240816 08:36:18.275" level="INFO">${result} = Search text SETENV_27 not found</msg>
+<status status="PASS" starttime="20240816 08:36:17.943" endtime="20240816 08:36:18.275"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${result}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20240816 08:36:18.275" endtime="20240816 08:36:18.275"/>
+</kw>
+<if>
+<branch type="IF" condition="'${result}' == '${parameters}[${i}]'">
+<kw name="Get Parameter Value" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr</arg>
+<arg>${parameters}[${i}]</arg>
+<status status="NOT RUN" starttime="20240816 08:36:18.275" endtime="20240816 08:36:18.275"/>
+</kw>
+<kw name="Get Value" library="SAP_Tcode_Library">
+<var>${param_value}</var>
+<arg>wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]</arg>
+<doc>Gets the value of the given element. The possible return values depend on the type of element (see Return values).</doc>
+<status status="NOT RUN" starttime="20240816 08:36:18.275" endtime="20240816 08:36:18.275"/>
+</kw>
+<if>
+<branch type="IF" condition="'${param_value}' == '${values}[${i}]'">
+<kw name="Log To Console" library="BuiltIn">
+<arg>${parameters}[${i}] value is ${values}[${i}]</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:18.275" endtime="20240816 08:36:18.275"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[0]/btn[3]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:18.275" endtime="20240816 08:36:18.275"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:18.275" endtime="20240816 08:36:18.275"/>
+</kw>
+<status status="NOT RUN" starttime="20240816 08:36:18.275" endtime="20240816 08:36:18.275"/>
+</branch>
+<branch type="ELSE">
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:18.275" endtime="20240816 08:36:18.275"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]</arg>
+<arg>${EMPTY}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:18.275" endtime="20240816 08:36:18.275"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:18.275" endtime="20240816 08:36:18.275"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]</arg>
+<arg>${values}[${i}]</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:18.275" endtime="20240816 08:36:18.275"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[16]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:18.275" endtime="20240816 08:36:18.275"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:18.275" endtime="20240816 08:36:18.275"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[5]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:18.275" endtime="20240816 08:36:18.275"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:18.275" endtime="20240816 08:36:18.275"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[0]/btn[3]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:18.275" endtime="20240816 08:36:18.275"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[16]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:18.275" endtime="20240816 08:36:18.275"/>
+</kw>
+<status status="NOT RUN" starttime="20240816 08:36:18.275" endtime="20240816 08:36:18.275"/>
+</branch>
+<status status="NOT RUN" starttime="20240816 08:36:18.275" endtime="20240816 08:36:18.275"/>
+</if>
+<status status="NOT RUN" starttime="20240816 08:36:18.275" endtime="20240816 08:36:18.275"/>
+</branch>
+<branch type="ELSE">
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:36:20.275" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:36:18.275" endtime="20240816 08:36:20.275"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[5]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:36:20.275" endtime="20240816 08:36:20.530"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:36:22.530" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:36:20.530" endtime="20240816 08:36:22.530"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtPARAMETER_INTERNAL-PARNAME</arg>
+<arg>${parameters}[${i}]</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240816 08:36:22.540" level="INFO">Typing text 'SETENV_27' into text field 'wnd[0]/usr/ctxtPARAMETER_INTERNAL-PARNAME'.</msg>
+<status status="PASS" starttime="20240816 08:36:22.530" endtime="20240816 08:36:22.540"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:36:24.541" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:36:22.540" endtime="20240816 08:36:24.541"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]</arg>
+<arg>${values}[${i}]</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240816 08:36:24.541" level="INFO">Typing text 'SAPSSL_CLIENT_CIPHERSUITES=150:PFS:HIGH::EC_X25519:EC_P256:EC_HIGH' into text field 'wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]'.</msg>
+<status status="PASS" starttime="20240816 08:36:24.541" endtime="20240816 08:36:24.541"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:36:26.541" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:36:24.541" endtime="20240816 08:36:26.541"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[16]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:36:26.541" endtime="20240816 08:36:26.772"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:36:28.772" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:36:26.772" endtime="20240816 08:36:28.772"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[5]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:36:28.772" endtime="20240816 08:36:29.016"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:36:31.016" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:36:29.016" endtime="20240816 08:36:31.016"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[0]/btn[3]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:36:31.016" endtime="20240816 08:36:31.262"/>
+</kw>
+<kw name="Manage Window" library="SAP_Tcode_Library">
+<arg>wnd[1]</arg>
+<arg>Maintain Profile 'DEFAULT' Version</arg>
+<arg>wnd[1]/usr/btnKNOPF1</arg>
+<status status="PASS" starttime="20240816 08:36:31.262" endtime="20240816 08:36:31.580"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[16]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:36:31.580" endtime="20240816 08:36:31.835"/>
+</kw>
+<status status="PASS" starttime="20240816 08:36:18.275" endtime="20240816 08:36:31.835"/>
+</branch>
+<status status="PASS" starttime="20240816 08:36:18.275" endtime="20240816 08:36:31.835"/>
+</if>
+<status status="PASS" starttime="20240816 08:36:17.943" endtime="20240816 08:36:31.835"/>
+</iter>
+<iter>
+<var name="${i}">6</var>
+<kw name="Check Parameter Found" library="SAP_Tcode_Library">
+<var>${result}</var>
+<arg>wnd[0]/usr</arg>
+<arg>${parameters}[${i}]</arg>
+<msg timestamp="20240816 08:36:32.166" level="INFO">Search text SETENV_28 not found</msg>
+<msg timestamp="20240816 08:36:32.166" level="INFO">${result} = Search text SETENV_28 not found</msg>
+<status status="PASS" starttime="20240816 08:36:31.835" endtime="20240816 08:36:32.166"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${result}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20240816 08:36:32.166" endtime="20240816 08:36:32.166"/>
+</kw>
+<if>
+<branch type="IF" condition="'${result}' == '${parameters}[${i}]'">
+<kw name="Get Parameter Value" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr</arg>
+<arg>${parameters}[${i}]</arg>
+<status status="NOT RUN" starttime="20240816 08:36:32.166" endtime="20240816 08:36:32.166"/>
+</kw>
+<kw name="Get Value" library="SAP_Tcode_Library">
+<var>${param_value}</var>
+<arg>wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]</arg>
+<doc>Gets the value of the given element. The possible return values depend on the type of element (see Return values).</doc>
+<status status="NOT RUN" starttime="20240816 08:36:32.166" endtime="20240816 08:36:32.166"/>
+</kw>
+<if>
+<branch type="IF" condition="'${param_value}' == '${values}[${i}]'">
+<kw name="Log To Console" library="BuiltIn">
+<arg>${parameters}[${i}] value is ${values}[${i}]</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:32.169" endtime="20240816 08:36:32.169"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[0]/btn[3]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:32.169" endtime="20240816 08:36:32.169"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:32.169" endtime="20240816 08:36:32.169"/>
+</kw>
+<status status="NOT RUN" starttime="20240816 08:36:32.166" endtime="20240816 08:36:32.169"/>
+</branch>
+<branch type="ELSE">
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:32.169" endtime="20240816 08:36:32.169"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]</arg>
+<arg>${EMPTY}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:32.169" endtime="20240816 08:36:32.169"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:32.169" endtime="20240816 08:36:32.169"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]</arg>
+<arg>${values}[${i}]</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:32.169" endtime="20240816 08:36:32.169"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[16]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:32.169" endtime="20240816 08:36:32.169"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:32.169" endtime="20240816 08:36:32.169"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[5]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:32.169" endtime="20240816 08:36:32.169"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:32.169" endtime="20240816 08:36:32.169"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[0]/btn[3]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:32.169" endtime="20240816 08:36:32.169"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[16]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240816 08:36:32.169" endtime="20240816 08:36:32.169"/>
+</kw>
+<status status="NOT RUN" starttime="20240816 08:36:32.169" endtime="20240816 08:36:32.169"/>
+</branch>
+<status status="NOT RUN" starttime="20240816 08:36:32.166" endtime="20240816 08:36:32.169"/>
+</if>
+<status status="NOT RUN" starttime="20240816 08:36:32.166" endtime="20240816 08:36:32.169"/>
+</branch>
+<branch type="ELSE">
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:36:34.169" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:36:32.169" endtime="20240816 08:36:34.169"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[5]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:36:34.169" endtime="20240816 08:36:34.419"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:36:36.419" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:36:34.419" endtime="20240816 08:36:36.419"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtPARAMETER_INTERNAL-PARNAME</arg>
+<arg>${parameters}[${i}]</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240816 08:36:36.419" level="INFO">Typing text 'SETENV_28' into text field 'wnd[0]/usr/ctxtPARAMETER_INTERNAL-PARNAME'.</msg>
+<status status="PASS" starttime="20240816 08:36:36.419" endtime="20240816 08:36:36.419"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:36:38.419" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:36:36.419" endtime="20240816 08:36:38.419"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]</arg>
+<arg>${values}[${i}]</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240816 08:36:38.419" level="INFO">Typing text 'SAPSSL_CLIENT_SNI_ENABLED=TRUE' into text field 'wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]'.</msg>
+<status status="PASS" starttime="20240816 08:36:38.419" endtime="20240816 08:36:38.419"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:36:40.420" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:36:38.419" endtime="20240816 08:36:40.420"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[16]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:36:40.420" endtime="20240816 08:36:40.656"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:36:42.657" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:36:40.656" endtime="20240816 08:36:42.657"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[5]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:36:42.657" endtime="20240816 08:36:42.895"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240816 08:36:44.896" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240816 08:36:42.895" endtime="20240816 08:36:44.896"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[0]/btn[3]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:36:44.896" endtime="20240816 08:36:45.144"/>
+</kw>
+<kw name="Manage Window" library="SAP_Tcode_Library">
+<arg>wnd[1]</arg>
+<arg>Maintain Profile 'DEFAULT' Version</arg>
+<arg>wnd[1]/usr/btnKNOPF1</arg>
+<status status="PASS" starttime="20240816 08:36:45.144" endtime="20240816 08:36:45.447"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[16]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:36:45.447" endtime="20240816 08:36:45.699"/>
+</kw>
+<status status="PASS" starttime="20240816 08:36:32.169" endtime="20240816 08:36:45.699"/>
+</branch>
+<status status="PASS" starttime="20240816 08:36:32.166" endtime="20240816 08:36:45.699"/>
+</if>
+<status status="PASS" starttime="20240816 08:36:31.835" endtime="20240816 08:36:45.699"/>
+</iter>
+<status status="PASS" starttime="20240816 08:35:24.326" endtime="20240816 08:36:45.699"/>
+</for>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[0]/btn[3]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:36:45.699" endtime="20240816 08:36:45.985"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[0]/btn[11]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:36:45.985" endtime="20240816 08:36:46.259"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[1]/usr/btnSPOP-OPTION1</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240816 08:36:46.259" endtime="20240816 08:36:46.653"/>
+</kw>
+<kw name="Window Handling" library="SAP_Tcode_Library">
+<arg>wnd[1]</arg>
+<arg>Information</arg>
+<arg>wnd[1]/tbar[0]/btn[0]</arg>
+<status status="PASS" starttime="20240816 08:36:46.653" endtime="20240816 08:36:46.925"/>
+</kw>
+<kw name="Window Handling" library="SAP_Tcode_Library">
+<arg>wnd[1]</arg>
+<arg>Note</arg>
+<arg>wnd[1]/tbar[0]/btn[0]</arg>
+<status status="PASS" starttime="20240816 08:36:46.925" endtime="20240816 08:36:47.228"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>**gbStart**copilot_status**splitKeyValue**Parameter values are updated successfully**gbEnd**</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20240816 08:36:47.228" endtime="20240816 08:36:47.228"/>
+</kw>
+<status status="PASS" starttime="20240816 08:35:18.455" endtime="20240816 08:36:47.231"/>
+</kw>
+<tag>verifyparam</tag>
+<status status="PASS" starttime="20240816 08:35:18.455" endtime="20240816 08:36:47.231"/>
 </test>
-<kw name="System Logout" library="Job_Status" type="TEARDOWN">
+<kw name="System Logout" library="Verify_parameter_values" type="TEARDOWN">
 <kw name="Run Transaction" library="SAP_Tcode_Library">
 <arg>/nex</arg>
 <doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
-<status status="PASS" starttime="20240812 12:41:09.087" endtime="20240812 12:41:09.467"/>
+<status status="PASS" starttime="20240816 08:36:47.231" endtime="20240816 08:36:47.447"/>
 </kw>
-<status status="PASS" starttime="20240812 12:41:09.087" endtime="20240812 12:41:09.468"/>
+<status status="PASS" starttime="20240816 08:36:47.231" endtime="20240816 08:36:47.447"/>
 </kw>
-<status status="PASS" starttime="20240812 12:40:49.660" endtime="20240812 12:41:09.468"/>
+<status status="PASS" starttime="20240816 08:35:15.429" endtime="20240816 08:36:47.447"/>
 </suite>
 <doc>Testing functionality through Robot Framework</doc>
 <meta name="environment">Dev</meta>
 <meta name="test_browser_name">chrome</meta>
-<meta name="test_browser_version">127.0.6533.100</meta>
+<meta name="test_browser_version">127.0.6533.120</meta>
 <meta name="test_driver_version">126.0.6478.182 </meta>
 <meta name="test_environment">Dev</meta>
 <meta name="test_freeze_dependencies">astroid==3.2.3,attrs==23.2.0,beautifulsoup4==4.12.3,bs4==0.0.2,certifi==2024.7.4,cffi==1.16.0,chardet==5.2.0,charset-normalizer==3.3.2,click==8.1.7,colorama==0.4.6,cryptography==42.0.8,defusedxml==0.7.1,dill==0.3.8,docutils==0.21.2,et-xmlfile==1.1.0,ExcelLib==0.0.1b2,exceptiongroup==1.2.2,gitdb==4.0.11,GitPython==3.1.43,h11==0.14.0,idna==3.7,isort==5.13.2,Jinja2==3.1.4,jira==3.8.0,jsonpath-ng==1.6.1,jsonschema==4.23.0,jsonschema-specifications==2023.12.1,lazy-object-proxy==1.10.0,lxml==5.2.2,markdown-it-py==3.0.0,MarkupSafe==2.1.5,mccabe==0.7.0,mdurl==0.1.2,natsort==8.4.0,numpy==2.0.0,oauthlib==3.2.2,openpyxl==3.1.5,outcome==1.3.0.post0,packaging==24.1,pandas==2.2.2,pathspec==0.11.2,pillow==10.4.0,pip==24.1.2,platformdirs==4.2.2,ply==3.11,pycparser==2.22,Pygments==2.18.0,pylint==3.2.5,PySocks==1.7.1,python-dateutil==2.9.0.post0,pytz==2024.1,pywin32==306,PyYAML==6.0.1,referencing==0.35.1,requests==2.32.3,requests-oauthlib==2.0.0,requests-toolbelt==1.0.0,rich==13.7.1,rich-click==1.6.1,robotframework==6.0.2,robotframework-datadriver==1.9.0,robotframework-excellib==2.0.1,robotframework-jsonlibrary==0.5,robotframework-pabot==2.16.0,robotframework-pythonlibcore==4.2.0,robotframework-requests==0.9.2,robotframework-sapguilibrary==1.1,robotframework-seleniumlibrary==5.1.3,robotframework-stacktrace==0.4.1,robotframework-tidy==4.5.0,rpds-py==0.19.0,selenium==4.9.1,setuptools==71.0.2,six==1.16.0,smmap==5.0.1,sniffio==1.3.1,sortedcontainers==2.4.0,soupsieve==2.5,tomli==2.0.1,tomlkit==0.13.0,trio==0.26.0,trio-websocket==0.11.1,typing_extensions==4.12.2,tzdata==2024.1,urllib3==2.2.2,wheel==0.43.0,wrapt==1.16.0,wsproto==1.2.0,xlrd==2.0.1,XlsxWriter==3.2.0</meta>
-<status status="PASS" starttime="20240812 12:40:45.991" endtime="20240812 12:41:09.591"/>
+<status status="PASS" starttime="20240816 08:35:11.892" endtime="20240816 08:36:47.501"/>
 </suite>
 <statistics>
 <total>
 <stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
-<stat pass="1" fail="0" skip="0">jobstatus</stat>
+<stat pass="1" fail="0" skip="0">verifyparam</stat>
 </tag>
 <suite>
 <stat pass="1" fail="0" skip="0" id="s1" name="Tests">Tests</stat>
-<stat pass="1" fail="0" skip="0" id="s1-s1" name="Test Job Status">Tests.Test Job Status</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="Test Verify parameter values">Tests.Test Verify parameter values</stat>
 </suite>
 </statistics>
 <errors>
