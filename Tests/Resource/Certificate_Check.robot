@@ -20,7 +20,7 @@ Get File Name From URL
     [Return]    ${file_name}
 System Logon
     Start Process     ${symvar('SAP_SERVER')}     
-    Sleep    5
+    Sleep    2
     Connect To Session
     Open Connection    ${symvar('RBT_SAP_CONNECTION')}    
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('RBT_CLIENT_ID')}
@@ -28,14 +28,10 @@ System Logon
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('RBT_USER_PASSWORD')}
     Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{RBT_USER_PASSWORD}
     Send Vkey    0
-    Take Screenshot    00a_loginpage.jpg
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
-    Sleep   1
-    Take Screenshot    00_multi_logon_handling.jpg
+
 System Logout
     Run Transaction   /nex
-    Sleep    3
-    Take Screenshot    logoutpage.jpg
 STRUST
     Run Transaction    /nSTRUST
     Sleep    2
