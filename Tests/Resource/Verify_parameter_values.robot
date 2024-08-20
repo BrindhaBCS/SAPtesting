@@ -31,7 +31,7 @@ Verify parameter in RZ10
     Click Element   wnd[1]/tbar[0]/btn[0]
     Select Radio Button    wnd[0]/usr/radSPFL1010-EXPERT
     Click Element    wnd[0]/usr/btnEDIT_PUSH
-    Sleep    4
+    # Sleep    4
     ${length}    Get Length    ${parameters}
     FOR    ${i}    IN RANGE    0    ${length}
         # Log To Console    list param is: ${parameters}[${i}]
@@ -44,31 +44,31 @@ Verify parameter in RZ10
             IF    '${param_value}' == '${values}[${i}]'
                 Log To Console    ${parameters}[${i}] value is ${values}[${i}]
                 Click Element    wnd[0]/tbar[0]/btn[3]
-                Sleep    2
+                # Sleep    2
             ELSE
-                Sleep    2
+                # Sleep    2
                 Input Text    wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]    ${EMPTY}
-                Sleep    2
+                # Sleep    2
                 Input Text    wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]    ${values}[${i}]
                 Click Element    wnd[0]/tbar[1]/btn[16]
-                Sleep    2
+                # Sleep    2
                 Click Element    wnd[0]/tbar[1]/btn[5]
-                Sleep    2
+                # Sleep    2
                 Click Element    wnd[0]/tbar[0]/btn[3]
                 Click Element    wnd[0]/tbar[1]/btn[16]
             END
         ELSE
-            Sleep    2
+            # Sleep    2
             Click Element    wnd[0]/tbar[1]/btn[5]
-            Sleep    2
+            # Sleep    2
             Input Text    wnd[0]/usr/ctxtPARAMETER_INTERNAL-PARNAME    ${parameters}[${i}]
-            Sleep    2
+            # Sleep    2
             Input Text    wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]    ${values}[${i}]
-            Sleep    2
+            # Sleep    2
             Click Element    wnd[0]/tbar[1]/btn[16]
-            Sleep    2
+            # Sleep    2
             Click Element    wnd[0]/tbar[1]/btn[5]
-            Sleep    2
+            # Sleep    2
             Click Element    wnd[0]/tbar[0]/btn[3]
             Manage Window    wnd[1]    Maintain Profile 'DEFAULT' Version    wnd[1]/usr/btnKNOPF1
             Click Element    wnd[0]/tbar[1]/btn[16]
