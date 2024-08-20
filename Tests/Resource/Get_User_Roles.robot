@@ -11,9 +11,9 @@ System Logon
     Start Process     ${symvar('SAP_SERVER')}     
     Sleep    10s
     Connect To Session
-    Open Connection    ${symvar('sap_connection')}    
-    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('Client_Id')}
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('user_name')} 
+    Open Connection    ${symvar('Roles_connectionname')}    
+    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('Roles_clientid')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('Roles_username')} 
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('password')}       
     Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{password}
     Send Vkey    0
@@ -36,7 +36,7 @@ Getting User Role
     Run Transaction     /nsu01
     Sleep   2
     Take Screenshot     01_get_Role.jpg
-    ${user_count}    Count Excel Rows     ${symvar('excel_path')}       ${symvar('GetRoles_sheetname')}
+    ${user_count}    Count Excel Rows     ${symvar('Roles_excel_path')}       ${symvar('GetRoles_sheetname')}
     ${rows}=    Evaluate    ${user_count} + 1
     Set Global Variable     ${rows}
     # Log To Console      Total row for sheet3 is: ${rows}
@@ -44,7 +44,7 @@ Getting User Role
     FOR    ${i}    IN RANGE    2    ${rows}
         Set Global Variable     ${i}
         ${j}    Evaluate    ${i} - 2
-        ${user_names}    Read Excel Cell Value    ${symvar('excel_path')}      ${symvar('GetRoles_sheetname')}     ${i}    2
+        ${user_names}    Read Excel Cell Value    ${symvar('Roles_excel_path')}      ${symvar('GetRoles_sheetname')}     ${i}    2
         Input Text  wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME      ${user_names}
         Sleep   1
         Click Element   wnd[0]/tbar[1]/btn[7]
@@ -62,7 +62,7 @@ Getting User Role
             # Log To Console      ${role}
             IF      '${role}' != 'None'
                 ${h}    Evaluate    ${k} + 4
-                Write Excel    ${symvar('excel_path')}      ${symvar('GetRoles_sheetname')}     ${i}    ${h}      ${role}
+                Write Excel    ${symvar('Roles_excel_path')}      ${symvar('GetRoles_sheetname')}     ${i}    ${h}      ${role}
             END
         END
         Click Element   wnd[0]/tbar[0]/btn[3]
