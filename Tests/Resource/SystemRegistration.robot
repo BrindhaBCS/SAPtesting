@@ -32,7 +32,7 @@ System Registration
         Log To Console    System is already registered with ALM with : ${already exist}
         Log    System is already registered with ALM with : ${already exist}
         Set Global Variable     ${already exist}
-        Log To Console    **gbStart**LMS_ID**splitKeyValue**System is already registered with ALM with : ${already exist}**gbEnd**
+        Log To Console    **gbStart**Copilot_Status**splitKeyValue**System is already registered with ALM :${already exist}**gbEnd**
     ELSE     
         Input Text    wnd[0]/usr/ctxtDEST    BCS_ALM
         Sleep    2
@@ -89,7 +89,7 @@ System Registration
         Log To Console    system successfully configured with : ${LMS_Configured}
         Log    system successfully configured with : ${LMS_Configured}
         Set Global Variable     ${LMS_Configured}
-        Log To Console    **gbStart**LMS_ID**splitKeyValue**system successfully configured with : ${LMS_Configured}**gbEnd**
+        Log To Console    **gbStart**Copilot_Status**splitKeyValue**system successfully configured :${LMS_Configured}**gbEnd**
     END
     
 Click Task
