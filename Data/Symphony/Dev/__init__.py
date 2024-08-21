@@ -9,11 +9,17 @@ from .xpaths import *
 <<<<<<< HEAD
 from .Variable import *
 # from .invoice import *
-from .SM02 import *
-from .Certificate import *
+# from .SM02 import *
+# from .Certificate import *
 # from .payments import *
 # from .Tag import *
-=======
->>>>>>> 691564846dd32c5417aa4fd18f1b8fc46132a74c
+# from .closing_payment import *
+# from .Vendor_invoice import *
+# from .slicense import *
+# from .SM12 import *
+# from .SM37 import *
+# from .TS4 import *
+from .ABAP import *
+from .SystemRegistration import *
 
 
