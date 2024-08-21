@@ -1491,3 +1491,17 @@ class SAP_Tcode_Library:
             element.doubleClickCurrentCell()
         except Exception as e:
             print(f"Error: {e}")
+
+    def get_file_content(Self, file_path, ):
+        """
+        Reads the content of a file and returns it as a string.
+
+        Arguments:
+        - file_path: The path to the file to be read.
+
+        Returns:
+        - The content of the file as a string.
+        """
+        with open(file_path, 'r') as file:
+            content = file.read()
+        return content

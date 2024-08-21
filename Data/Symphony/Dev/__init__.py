@@ -19,5 +19,6 @@ from .xpaths import *
 # from .SM37 import *
 # from .TS4 import *
 from .ABAP import *
+from .SystemRegistration import *
 
 
