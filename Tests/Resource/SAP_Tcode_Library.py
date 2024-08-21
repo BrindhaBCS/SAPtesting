@@ -8,6 +8,7 @@ from robot.api import logger
 import sys
 import ast
 import re
+import pandas as pd
 
 
 class SAP_Tcode_Library:
@@ -1336,6 +1337,171 @@ class SAP_Tcode_Library:
                 return None
         except Exception as e:
             return f"Error: {str(e)}"
-    
-              
+        
+    def set_key_value(self, element_id, key_value):
+        self.session.FindById(element_id).key = key_value
 
+    def double_click_table(self, table_id, row, column):
+        self.session.FindById(table_id).doubleClickCurrentCell(row, column)
+
+    def search_and_select_lock(self, table_id, lock):
+        try:
+            table = self.session.FindById(table_id)
+            row_count = table.RowCount  # Assuming the control has a RowCount property
+            print(row_count)
+            for row in range(row_count):
+                print(row)
+                cell_value=table
+                cell_value = table.GetCellValue(row,"GNAME")
+                print(cell_value)
+                if lock in cell_value:
+                    result = row
+                    self.session.findById(table_id).selectedRows = row
+                    print("Text Found in ${row}")
+                    return row
+                else:
+                    print("not found")
+        except Exception as e:
+            return f"Error: {e}"
+    def window_handling(self, element_id, text, button_id):
+        window = self.session.findById(element_id).Text
+        if window == text :
+            self.session.findById(button_id).press()
+            
+    def clear_field_text(self, field_id):
+        try:
+            field = self.session.findById(field_id)
+            field.Text = ""
+            print(f"Text cleared in field with ID: {field_id}")
+        except Exception as e:
+            print(f"Error: {e}")
+    
+    def Excel_Arrange(self, file_location, sheet_name, filename):
+        try:
+            file_path = f"{file_location}\\{filename}"
+            df = pd.read_excel(file_path, sheet_name=sheet_name, header=None)
+            df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
+            df = df.iloc[4:].reset_index(drop=True)
+            df.columns = df.iloc[0]
+            df = df[1:].reset_index(drop=True)
+            df.dropna(how='all', inplace=True)
+            df.dropna(axis=1, how='all', inplace=True)
+            with pd.ExcelWriter(file_path, engine='openpyxl', mode='a', if_sheet_exists='replace') as writer:
+                df.to_excel(writer, sheet_name=sheet_name, index=False)
+        except Exception as e:
+            pass
+
+    def software_component_version(self, comp_id, search_comp):      
+        comp_area = self.session.FindById(comp_id)
+        row_count = comp_area.RowCount
+        try:
+            for x in range(row_count):
+                print (x)   
+                cell_value = comp_area.GetCellValue(x, "COMPONENT")
+                print (cell_value)
+                if cell_value == search_comp:
+                    version = comp_area.GetCellValue(x, "RELEASE")
+                    print(f"Found version for {search_comp}: {version}")
+                    return version
+                    break  
+                else:
+                    print(f"Component {search_comp} not found.")
+        except Exception as e:
+            print(f"Error while searching for {search_comp}: {e}")
+
+    def software_support_package_version(self, comp_id, search_comp):      
+        comp_area = self.session.FindById(comp_id)
+        row_count = comp_area.RowCount
+        try:
+            for x in range(row_count):
+                print (x)   
+                cell_value = comp_area.GetCellValue(x, "COMPONENT")
+                print (cell_value)
+                if cell_value == search_comp:
+                    patch = comp_area.GetCellValue(x, "HIGH_PATCH")
+                    print(f"Found version for {search_comp}: {patch}")
+                    return patch
+                    break  
+                else:
+                    print(f"Component {search_comp} not found.")
+        except Exception as e:
+            print(f"Error while searching for {search_comp}: {e}")
+
+    def select_profile_label(self, user_area_id, search_text, max_scrolls=5):
+        try:
+            user_area = self.session.findById(user_area_id)
+            scroll_count = 0
+            found = False
+ 
+            while scroll_count < max_scrolls and not found:
+                for child in user_area.Children:
+                    if child.Text == search_text:
+                        print(f"Text Found: {child.Text}")
+                        child.SetFocus()
+                        # self.session.findById("wnd[1]").sendVKey(2)  # Simulate Enter key press
+                        found = True
+                        break
+ 
+                if not found:
+                    # Scroll down and wait for the content to update
+                    print(scroll_count)
+                    self.session.findById("wnd[1]").sendVKey(82)  # 86 is the code for Page Down
+                    time.sleep(1)  # Adjust as necessary for GUI response time
+                    scroll_count += 1
+ 
+            if not found:
+                print("Text not found after scrolling through all pages.")
+ 
+        except Exception as e:
+            print(f"Error: {e}")
+
+    def check_parameter_found(self, lable_id, parameter):
+        user_area = self.session.findById(lable_id)
+        item_count = user_area.Children.Count
+        for i in range(item_count):
+            element = user_area.Children.ElementAt(i)
+            if element.Text.strip() == parameter.strip():
+                print(element.Text)
+                return(element.Text)
+        not_found_message = f"Search text {parameter} not found"
+        print(f"Search text {parameter} not found")
+        return not_found_message
+    
+    def get_parameter_value(self, lable_id, parameter):
+        user_area = self.session.findById(lable_id)
+        item_count = user_area.Children.Count
+        for i in range(item_count):
+            element = user_area.Children.ElementAt(i)
+            if element.Text.strip() == parameter.strip():
+                element.setFocus()
+                self.session.findById("wnd[0]").sendVKey(2)
+                return
+    
+    def manage_window(self, element_id, text, button_id):
+        window_title = self.session.findById(element_id).Text
+        window_title_split = window_title.split()
+        window = " ".join(window_title_split[:-1])
+        if window == text :
+            self.session.findById(button_id).press()
+
+    def double_click_current_cell_value(self, element_id, cell_value):
+        try:
+            element = self.session.findById(element_id)
+            element.currentCellColumn = cell_value
+            element.doubleClickCurrentCell()
+        except Exception as e:
+            print(f"Error: {e}")
+
+    def get_file_content(Self, file_path, ):
+        """
+        Reads the content of a file and returns it as a string.
+
+        Arguments:
+        - file_path: The path to the file to be read.
+
+        Returns:
+        - The content of the file as a string.
+        """
+        with open(file_path, 'r') as file:
+            content = file.read()
+        return content
