@@ -26,9 +26,9 @@ SAP logon
     Start Process     ${symvar('SAP_SERVER')}
     Sleep    10s
     Connect To Session
-    Open Connection    ${symvar('connection')}
-    Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('sap_client')}
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('sap_user')}
+    Open Connection    ${symvar('invoice_connection')}
+    Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('login_client')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('login_user')}
     Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
     Send Vkey    0
     Sleep    3s
@@ -47,8 +47,8 @@ Transaction FB70
     Sleep   2
     Input Text  wnd[0]/usr/subITEMS:SAPLFSKB:0100/tblSAPLFSKBTABLE/txtACGL_ITEM-WRBTR[4,0]      ${amount_cur_doc}
     Sleep   2
-    # Input Text  wnd[0]/usr/subITEMS:SAPLFSKB:0100/tblSAPLFSKBTABLE/ctxtACGL_ITEM-KOSTL[17,0]    ${cost_center}
-    # Sleep   2
+    Input Text  wnd[0]/usr/subITEMS:SAPLFSKB:0100/tblSAPLFSKBTABLE/ctxtACGL_ITEM-KOSTL[17,0]    ${cost_center}
+    Sleep   2
     Click Element   wnd[0]/tbar[0]/btn[11]
     Sleep   2
     ${output}   Get Value    wnd[0]/sbar/pane[0]
@@ -108,8 +108,3 @@ FB70 Invoice entry
 SAP Logout
     Run Transaction     /nex
     Sleep   5
-    
-    
-    
-
-

@@ -1188,20 +1188,20 @@ class CustomSapGuiLibrary:
     def get_document_number(self, status_id):
         try:
             status = self.session.findById(status_id).Text
-            print(f"Status Message: '{status}'")
+            # print(f"Status Message: '{status}'")
             
             pattern = r"Document (\d+) was posted in company code (\w+)"
             match = re.search(pattern, status)
             
             if match:
                 document_no = match.group(1)
-                print(f"Extracted Document Number: '{document_no}'")
+                # print(f"Extracted Document Number: '{document_no}'")
                 return document_no
             else:
                 print("No match found")
                 return None
         except Exception as e:
-            print(f"Error: {str(e)}")
+            # print(f"Error: {str(e)}")
             return f"Error: {str(e)}"
 
     def get_company_code(self, status):
@@ -1256,3 +1256,17 @@ class CustomSapGuiLibrary:
                 return cell_value
         except Exception as e:
             return f"Error: {e}"
+        
+    def get_open_items(self, status_id):
+        try:
+            status = self.session.findById(status_id).Text
+            pattern = r"(\d+) items displayed (\w+)"
+            match = re.search(pattern, status)
+            if match:
+                open_items = match.group(1)
+                return open_items
+            else:
+                print("No match found")
+                return None
+        except Exception as e:
+            return f"Error: {str(e)}"

@@ -2,15 +2,25 @@
 # sap_user = "BCSADMIN"
 # sap_client = "800"
 # connection = "BPM"
+# company_code = "BCS1"
 # filepath = "C:\\tmp"
 # filename = "payments.xlsx"
-# excel_path = "C:\\RobotFramework\\sap_testing\\Tests\\Resource\\invoice.xlsx"
-# sheet_name = "INPUT" 
-
 
 SAP_SERVER = "$SAP_SERVER"
-sap_user = "$user"
-sap_client = "$client"
+sap_user = "$sap_user"
+sap_client = "$sap_client"
 connection = "$connection"
-filepath = "$filepath"
-filename = "$filename"
+# filepath = "$filepath"
+# filename = "$filename"
+customer_no = "$customer_no"
+company_code = "$company_code"
+
+
+text = "$text"
+account = "$account"
+invoice_date = "$invoice_date"
+amount = "$amount"
+
+document_no = "$document_no"
+
+currency_key = "$currency_key"
