@@ -6,7 +6,6 @@
 from .Data import *
 from .urls import *
 from .xpaths import *
-<<<<<<< HEAD
 from .Variable import *
 # from .invoice import *
 # from .SM02 import *
@@ -19,6 +18,7 @@ from .Variable import *
 # from .SM12 import *
 # from .SM37 import *
 # from .TS4 import *
+from .sales_order import*
 from .ABAP import *
 from .SystemRegistration import *
 
