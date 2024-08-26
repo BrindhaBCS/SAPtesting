@@ -98,4 +98,5 @@ Confirm Queue
     No Queue Pending    ${no_Queue_id}
     Click Element   wnd[1]/tbar[0]/btn[27]
     Take Screenshot    13_spam.jpg
+    Log To Console    **gbStart**$copilot_status**splitKeyValue**ST-PI support package version is updated to the latest**gbEnd**
 
