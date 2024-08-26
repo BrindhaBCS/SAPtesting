@@ -61,4 +61,4 @@ Software Download
         Run Keyword If    '${element_text}' == '${symvar('supportpackage')}'    Exit For Loop
     END
     Set Global Variable     ${Current_Version}
-    Log To Console    **gbStart**Copilot_Status**splitKeyValue**Current Version: ${Current_Version}**gbEnd**
+    Log To Console    **gbStart**Current_Version**splitKeyValue**${Current_Version}**gbEnd**
