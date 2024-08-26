@@ -60,5 +60,5 @@ Component ST-PI Version
     ELSE
         Log To Console    **gbStart**copilot_status**splitKeyValue**Technical Prerequisties not met . ST-PI version too low.**gbEnd**
     END
-    Log To Console    **gbStart**$ST_PI_version**splitKeyValue**ST-PI ${version}**gbEnd**
-    Log To Console    **gbStart**$supportpackage**splitKeyValue**${support_package}**gbEnd**
+    Log To Console    **gbStart**ST_PI_version**splitKeyValue**ST-PI ${version}**gbEnd**
+    Log To Console    **gbStart**supportpackage**splitKeyValue**${support_package}**gbEnd**
