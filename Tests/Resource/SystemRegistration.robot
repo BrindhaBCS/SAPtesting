@@ -13,10 +13,13 @@ System Logon
     Connect To Session
     Open Connection    ${symvar('ABAP_Connection')}
     Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('ABAP_CLIENT')}
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('ABAP_USER')}
-    # Input Password   wnd[0]/usr/pwdRSYST-BCODE      ${symvar('BPM_User_Password')}  
-    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{ABAP_Password}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('ALM_User')}
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE      ${symvar('ALM_pass')}  
     Send Vkey    0
+    Input Password    wnd[1]/usr/pwdRSYST-NCODE    %{ABAP_Password}
+    Input Password    wnd[1]/usr/pwdRSYST-NCOD2    %{ABAP_Password}
+    Click Element    wnd[1]/tbar[0]/btn[0]
+    Window Handling    wnd[1]    Copyright    wnd[1]/tbar[0]/btn[0]
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
 System Logout
     Run Transaction     /nex
