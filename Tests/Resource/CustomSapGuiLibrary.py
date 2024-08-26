@@ -1104,7 +1104,7 @@ class CustomSapGuiLibrary:
                     if cell_value == comp:
                         comp_area.modifyCell(x,"PATCH_REQ",patch)
             except Exception as e:
-                 print(e)
+                print(e)
 
     def multiple_logon_handling(self, logon_window_id, logon_id, continue_id):  
         try:
