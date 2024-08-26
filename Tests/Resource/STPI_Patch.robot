@@ -66,7 +66,7 @@ Spam Component selection
     Sleep   2
     Take Screenshot    09_Spam_component2.jpg
 Spam Patch selection
-    ${patch_value}  Spam Search and Select Label    wnd[1]/usr  ${symvar('patch_vers')}
+    ${patch_value}  Spam Search and Select Label    wnd[1]/usr  ${symvar('Current_Version')}
     Log    ${patch_value}   
     Sleep    2
     Click Element    wnd[1]/tbar[0]/btn[0]
