@@ -7,6 +7,7 @@ import os
 from robot.api import logger
 import sys
 import ast
+import openpyxl
 
 
 class SAP_Tcode_Library:
@@ -1275,3 +1276,76 @@ class SAP_Tcode_Library:
    
 
 
+    def count_excel_rows(self, abs_filename, sheet_name):
+        try:
+            wb = openpyxl.load_workbook(abs_filename)
+            ws = wb[sheet_name]
+            count = 0
+            for row in ws:
+                if not all([cell.value == None for cell in row]):
+                    count += 1
+            print(count)
+            return(count)
+   
+        except Exception as e:
+            print(e)
+
+ 
+    def count_excel_columns(self, abs_filename, sheet_name):
+        try:
+            wb = openpyxl.load_workbook(abs_filename)
+            ws = wb[sheet_name]
+            columns = [cell.value for cell in ws[1]]  # Assuming the first row contains headers
+            column_count = len(columns)
+            print(column_count)
+            return column_count
+        except Exception as e:
+            print(f"Error: {e}")
+
+    def read_excel_cell_value(self, file_path, sheet_name, row, column):
+        row = int(row)
+        column = int(column)  
+        wb = openpyxl.load_workbook(file_path, data_only=True)
+        if sheet_name not in wb.sheetnames:
+            raise ValueError(f"Sheet {sheet_name} does not exist in the workbook")
+        sheet = wb[sheet_name]
+        cell_value = sheet.cell(row=row, column=column).value
+        return cell_value
+ 
+    def check_text_start_with_z(self, text):
+        if text.lower().startswith('z'):
+            return  text
+ 
+    def check_text_start_with_y(self, text):
+        if text.lower().startswith('y'):
+            return  text
+        
+    def window_handling(self, element_id, text, button_id):
+        try:
+            window = self.session.findById(element_id).Text
+            if window == text :
+                self.session.findById(button_id).press()
+            else:
+                print(f"Text '{window_text}' did not match expected text '{expected_text}'.")
+       
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
+    def caret_Position(self, element_id, position):
+        """clicks at the caret position within a label is possible even though it is not visualized as a caret by SAP GUI.
+        The position of the caret within a text field may be checked by the ABAP application to determine which word the caret is in.
+        """
+        try:
+            self.session.findById(element_id).caretPosition = position
+        except AttributeError:
+            print(f"Failed to set caret position: element with id '{element_id}' not found.")
+        except Exception as e:
+            print(f"An error occurred: {e}")  
+
+    def clear_field_text(self, field_id):
+        try:
+            field = self.session.findById(field_id)
+            field.Text = ""
+            print(f"Text cleared in field with ID: {field_id}")
+        except Exception as e:
+            print(f"Error: {e}")              

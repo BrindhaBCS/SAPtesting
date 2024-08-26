@@ -1,0 +1,90 @@
+==============================================================================
+Tests :: Testing functionality through Robot Framework                        
+==============================================================================
+Tests.Test testtags                                                           
+==============================================================================
+Verifying Certificate                                                 search text is not found
+| PASS |
+------------------------------------------------------------------------------
+Read excel and create invoice                                         5
+CMS0000043
+25.07.2024
+1000
+Robo Test
+40001
+1000
+329
+Net due date on 25.07.2024 is in the past
+None
+past
+CMS0000043
+25.07.2024
+1500
+Robo Test1
+40001
+1500
+329
+  
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Test_testtags.robot:13
+    T:  Read excel and create invoice    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Test_testtags.robot:16
+      FB70 Invoice entry    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Resource\testtags.robot:134
+      ${row_count} IN RANGE [ 2 | ${rows} ]    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Resource\testtags.robot:134
+      ${row_count} = 3    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Resource\testtags.robot:165
+      Transaction FB70    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Resource\testtags.robot:98
+      Input Text    wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-ACCNT    ${customer}
+      |  ${customer} = CMS0000043 (str)
+______________________________________________________________________________
+| FAIL |
+AttributeError: Property '<unknown>.text' can not be set.
+------------------------------------------------------------------------------
+Read excel and view invoice                                           5
+1800000904
+past
+2024
+1800000905
+3000
+2024
+  
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Test_testtags.robot:18
+    T:  Read excel and view invoice    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Test_testtags.robot:21
+      FB03 display the invoice document    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Resource\testtags.robot:64
+      ${row_count} IN RANGE [ 2 | ${rows} ]    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Resource\testtags.robot:64
+      ${row_count} = 3    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Resource\testtags.robot:77
+      Transaction code FB03    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Resource\testtags.robot:47
+      Input Text    wnd[0]/usr/txtRF05L-BELNR    ${document}
+      |  ${document} = 1800000905 (str)
+______________________________________________________________________________
+| FAIL |
+ValueError: Cannot find element with id 'wnd[0]/usr/txtRF05L-BELNR'
+------------------------------------------------------------------------------
+Tests.Test testtags                                                   | FAIL |
+3 tests, 1 passed, 2 failed
+==============================================================================
+Tests :: Testing functionality through Robot Framework                | FAIL |
+3 tests, 1 passed, 2 failed
+==============================================================================
+Output:  C:\RobotFramework\sap_testing\Output\8f079a5d-af37-475f-bbf5-6578dd783988\pabot_results\0\Output.xml

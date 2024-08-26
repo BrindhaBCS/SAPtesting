@@ -7,6 +7,8 @@ import os
 from robot.api import logger
 import sys
 import ast
+import openpyxl
+import re
 
 
 
@@ -1102,7 +1104,7 @@ class CustomSapGuiLibrary:
                     if cell_value == comp:
                         comp_area.modifyCell(x,"PATCH_REQ",patch)
             except Exception as e:
-                print(e)
+                 print(e)
 
     def multiple_logon_handling(self, logon_window_id, logon_id, continue_id):  
         try:
@@ -1137,17 +1139,134 @@ class CustomSapGuiLibrary:
                 print(e)
         return(found_rows)
     
-    def saint_patch_select(session, search_comp, search_patch):
+    def saint_patch_select(self, search_comp, search_patch):
         comp_txt = "wnd[0]/usr/subLIST_AREA:SAPLSAINT_UI:0300/tabsQUEUE_COMP/tabpQUEUE_COMP_FC2/ssubQUEUE_COMP_SCA:SAPLSAINT_UI:0303/txtGV_"
         patch_txt = "wnd[0]/usr/subLIST_AREA:SAPLSAINT_UI:0300/tabsQUEUE_COMP/tabpQUEUE_COMP_FC2/ssubQUEUE_COMP_SCA:SAPLSAINT_UI:0303/cmbGV_"
         try:
+            p = len(search_comp) + 1
             for i in range(1,100):
                 comp_id = f"{comp_txt}{i:02}_COMPONENT"
                 patch_id = f"{patch_txt}{i:02}_PATCH_REQ"
-                patch = session.FindById(comp_id).Text
-                for j in range(0,len(search_comp)):
+                patch = self.session.FindById(comp_id).Text
+                for j in range(0,p-1):
                     if patch == search_comp[j]:
-                        session.FindById(patch_id).key = search_patch[j]
+                        self.session.FindById(patch_id).key = search_patch[j]
+                        
         except Exception as e:
              print(e)
+
+    # def saint_patch_select(self, search_comp, search_patch):
+    #     comp_txt = "wnd[0]/usr/subLIST_AREA:SAPLSAINT_UI:0300/tabsQUEUE_COMP/tabpQUEUE_COMP_FC2/ssubQUEUE_COMP_SCA:SAPLSAINT_UI:0303/txtGV_"
+    #     patch_txt = "wnd[0]/usr/subLIST_AREA:SAPLSAINT_UI:0300/tabsQUEUE_COMP/tabpQUEUE_COMP_FC2/ssubQUEUE_COMP_SCA:SAPLSAINT_UI:0303/cmbGV_"
+    #     try:
+    #         for i in range(1,100):
+    #             comp_id = f"{comp_txt}{i:02}_COMPONENT"
+    #             patch_id = f"{patch_txt}{i:02}_PATCH_REQ"
+    #             patch = self.session.FindById(comp_id).Text
+    #             for j in range(0,len(search_comp)):
+    #                 if patch == search_comp[j]:
+    #                     self.session.FindById(patch_id).key = search_patch[j]
+    #     except Exception as e:
+    #          print(e)
+
     
+    # def get_document_number(self, status_id):
+    #     try:
+    #         status = self.session.findById(status_id).Text
+    #         print(status)
+    #         pattern = r"Document (\d+) was posted in company code (\d+)"
+    #         match = re.search(pattern, status)
+    #         if match:
+    #             # status_split = status.split()
+    #             document_no = match.group(1)
+    #             print(document_no)
+    #             return document_no
+    #         else:
+    #             return None
+    #     except Exception as e:
+    #         return f"Error: {str(e)}"
+    def get_document_number(self, status_id):
+        try:
+            status = self.session.findById(status_id).Text
+            # print(f"Status Message: '{status}'")
+            
+            pattern = r"Document (\d+) was posted in company code (\w+)"
+            match = re.search(pattern, status)
+            
+            if match:
+                document_no = match.group(1)
+                # print(f"Extracted Document Number: '{document_no}'")
+                return document_no
+            else:
+                print("No match found")
+                return None
+        except Exception as e:
+            # print(f"Error: {str(e)}")
+            return f"Error: {str(e)}"
+
+    def get_company_code(self, status):
+        try:
+            status_split = status.split()
+            company_code = status_split[-1]
+
+            return company_code
+        except Exception as e:
+            return f"Error: {str(e)}"
+
+    def count_excel_rows(self, abs_filename):
+        try:
+            wb = openpyxl.load_workbook(abs_filename)
+            ws = wb.active
+            count = 0
+            for row in ws:
+                if not all([cell.value == None for cell in row]):
+                    count += 1
+            print(count)
+            return(count)
+    
+        except Exception as e:
+            print(e)
+
+    def get_lable_value(self, lable_id, search_texts):
+        user_area = self.session.findById(lable_id)
+        item_count = user_area.Children.Count
+        found_elements = []
+        for search_text in search_texts:
+            for i in range(item_count):
+                element = user_area.Children.ElementAt(i)
+                if element.Text.strip() == search_text.strip():
+                    found_elements.append(element.Text)
+                    print(element.Text)
+                    break
+            else:
+                print("search text is not found")
+                return("search text is not found")
+        return found_elements
+    
+    def get_cell_value_from_gridtable(self, table_id):
+        try:
+            control = self.session.findById(table_id)
+            row_count = control.RowCount  # Assuming the control has a RowCount property
+            col_count = control.ColumnCount
+            print(row_count, col_count)
+            for row in range(row_count):
+                print(row)
+                cell_value = control.GetCellValue(row, "DEST")
+                print(cell_value)
+                return cell_value
+        except Exception as e:
+            return f"Error: {e}"
+        
+    def get_open_items(self, status_id):
+        try:
+            status = self.session.findById(status_id).Text
+            pattern = r"(\d+) items displayed (\w+)"
+            match = re.search(pattern, status)
+            if match:
+                open_items = match.group(1)
+                return open_items
+            else:
+                print("No match found")
+                return None
+        except Exception as e:
+            return f"Error: {str(e)}"
