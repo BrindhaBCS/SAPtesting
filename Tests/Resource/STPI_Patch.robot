@@ -34,7 +34,7 @@ Spam Certificate Verification
     Sleep    2
     Take Screenshot    01_spam.jpg
 Loading package
-    @{packages}    Generate Package Sequence    ${symvar('start_package')}    ${symvar('End_package')}
+    @{packages}    Generate Package Sequence    ${symvar('supportpackage')}    ${symvar('Current_Version')}
     # Log To Console    @{packages}
     FOR    ${package}    IN    @{packages}
         Click Element    wnd[0]/mbar/menu[0]/menu[0]/menu[0]
