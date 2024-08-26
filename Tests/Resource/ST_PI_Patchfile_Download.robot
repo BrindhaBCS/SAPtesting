@@ -22,7 +22,7 @@ login page
     Sleep    5
     Switch Window    NEW
     Sleep    2
-    Input Text    id:j_username   %{S_Username}
+    Input Text    id:j_username   ${symvar('S_Username')}
     Sleep    2
     Click Element    xpath://div[text()='Continue']
     Sleep    10
