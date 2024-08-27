@@ -4,9 +4,8 @@
 #          values as they are imported through each file.
 
 from .Data import *
-from .urls import *
-from .xpaths import *
-<<<<<<< HEAD
+# from .urls import *
+# from .xpaths import *
 from .Variable import *
 # from .invoice import *
 # from .SM02 import *
@@ -21,5 +20,6 @@ from .Variable import *
 # from .TS4 import *
 from .ABAP import *
 from .SystemRegistration import *
+from .Sales import*
 
 
