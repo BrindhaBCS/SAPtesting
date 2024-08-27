@@ -17,7 +17,7 @@ login page
     Input Text    id:j_username   ${symvar('S_Username')}
     Sleep    2
     Click Element    xpath://div[text()='Continue']
-    Sleep    10
+    Sleep    15
     Input Text    id:password    %{S_Password}
     Sleep    5
     Click Element    xpath://button[text()='Sign in']
