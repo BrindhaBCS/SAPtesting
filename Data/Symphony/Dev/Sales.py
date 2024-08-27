@@ -1,13 +1,27 @@
-SAP_SERVER = "C:\\Program Files\\sap\\FrontEnd\\SAPGUI\\saplogon.exe"
-Client_Id = "100"
-User_Name = "SO_TEST1"
-SAP_connection = "SEC-FMO"      
-org_label = " 02"
-material = ["N5731600",    "N5731500",     "N5731700"]
-quantity    = [1, 1, 1]
-# data='[{"material":"N5731900","quantity":"73"},{"material":"N5731800","quantity":"30"}]'
-Sales_URL =   "https://globalscientificsolutions--gssc100.sandbox.lightning.force.com/lightning/o/UserAppMenuItem/home"
-login_name = "sap_test1@evidentscientific.com"
-sold_party = "2000018360"
-ship_party = "2000018360" 
+# SALES_SERVER = "C:\\Program Files\\SAP\\FrontEnd\\SAPGUI\\saplogon.exe"
+# SALES_Client_Id = "001"
+# SALES_User_Name = "maestro"
+# SALES_connection = "TS4"      
+# material = ["2000000160"]
+# location = ["FERT"]
+# quantity    = ["1"]
+# amount =["1000"]
+# outbound_delivery = ["80000110"]
+# sold_party = "HCL"
+# ship_party = "HCL" 
+# order_no = "173"
+
+SALES_SERVER = "$SALES_SERVER"
+SALES_Client_Id = "$SALES_Client_Id"
+SALES_User_Name = "$SALES_User_Name"
+SALES_connection = "$SALES_connection"      
+material = "$material"
+location = "$location"
+quantity    = "$quantity"
+amount = "$amount"
+outbound_delivery = "$outbound_delivery"
+sold_party = "$sold_party"
+ship_party = "$ship_party" 
 order_no = "$order_no"
+
+
