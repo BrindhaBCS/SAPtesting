@@ -5,5 +5,5 @@ Suite Setup    ST_PI_Patchfile_Download.login page
 # Suite Teardown    ST_PI_Patchfile_Download.System Logout
  
 *** Test Cases ***
-Download the support package files from SAP idProductDownloadList
+Download the support package files from SAP portal for ST-PI
     Software Download
