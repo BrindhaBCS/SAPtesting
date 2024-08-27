@@ -17,7 +17,7 @@ login page
     # ${chrome_options}=    Get Chrome Options    ${DOWNLOAD_DIR}
     Open Browser    ${url}    ${browser}    #options=${chrome_options}
     Maximize Browser Window
-    Sleep    5
+    Sleep    15
     Click Element    xpath://span[normalize-space(text())='Software Downloads']
     Sleep    5
     Switch Window    NEW
@@ -47,7 +47,7 @@ Software Download
     Sleep    2
     Click Element    id:__xmlview3--idProductHierarchyList
     Sleep    5
-    ${Current_Version}    Get Text    id:__identifier1-__xmlview3--idProductDownloadList-0-link
+    # ${Current_Version}    Get Text    id:__identifier1-__xmlview3--idProductDownloadList-0-link
     # Log To Console    Current Version:${Current Version}
     ${index}=    Set Variable    0
     FOR    ${counter}    IN RANGE    ${MAX_TRIES}
@@ -60,5 +60,4 @@ Software Download
         # Log To Console    The text of element ${locator} is: ${element_text}
         Run Keyword If    '${element_text}' == '${symvar('supportpackage')}'    Exit For Loop
     END
-    Set Global Variable     ${Current_Version}
-    Log To Console    **gbStart**Current_Version**splitKeyValue**${Current_Version}**gbEnd**
+    Log To Console    **gbStart**copilot_status**splitKeyValue**Support packages downloaded from SAP Portal into local server**gbEnd**

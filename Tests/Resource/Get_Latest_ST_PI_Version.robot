@@ -9,7 +9,7 @@ ${browser}    chrome
 login page
     Open Browser    ${url}    ${browser}    
     Maximize Browser Window
-    Sleep    5
+    Sleep    15
     Click Element    xpath://span[normalize-space(text())='Software Downloads']
     Sleep    5
     Switch Window    NEW
@@ -18,7 +18,8 @@ login page
     Sleep    2
     Click Element    xpath://div[text()='Continue']
     Sleep    10
-    Input Text    id:password    %{S_Password}
+    Input Text    id:password    Whitetiger@2024
+    # Input Text    id:password    %{S_Password}
     Sleep    5
     Click Element    xpath://button[text()='Sign in']
     Sleep    30
@@ -31,7 +32,7 @@ Software Download
     Wait Until Element Is Visible    id:__filter1-text   120s
     Click Element    id:__filter1-text
     Sleep    5
-    Input Text    id:__field0-I   "ST-PI 740"
+    Input Text    id:__field0-I   ST-PI 740
     Sleep    4
     Click Element    id:__field0-search
     Sleep    10
