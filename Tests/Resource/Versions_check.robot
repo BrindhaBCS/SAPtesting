@@ -24,9 +24,9 @@ SAP BASIS Release
     Click Element    wnd[1]/usr/btnPRELINFO
     ${version}    Software Component Version    wnd[2]/usr/tabsVERSDETAILS/tabpCOMP_VERS/ssubDETAIL_SUBSCREEN:SAPLOCS_UI_CONTROLS:0301/cntlSCV_CU_CONTROL/shellcont/shell    SAP_BASIS
     IF    '${version}' >= '750'
-        Log To Console    Version of SAP_BASIS is ${version}
+        Log To Console    **gbStart**copilot_status**splitKeyValue**Version of SAP_BASIS is ${version}**gbEnd**
     ELSE
-        Log To Console    Technical Prerequisties not met . SAP BASIS version too low.
+        Log To Console    **gbStart**copilot_status**splitKeyValue**Technical Prerequisties not met . SAP BASIS version too low.**gbEnd**
     END
 
 SAP UI Release
@@ -34,29 +34,31 @@ SAP UI Release
     IF    '${version}' == '740'
         ${support_package}    software support package version    wnd[2]/usr/tabsVERSDETAILS/tabpCOMP_VERS/ssubDETAIL_SUBSCREEN:SAPLOCS_UI_CONTROLS:0301/cntlSCV_CU_CONTROL/shellcont/shell    SAP_UI
         IF    '${support_package}' >= 'SAPK-74014INSAPUI'
-            Log To Console    Version of SAP_UI is ${version} and support package is ${support_package}
+            Log To Console    **gbStart**copilot_status**splitKeyValue**Version of SAP_UI is ${version} and support package is ${support_package}**gbEnd**
         ELSE
-            Log To Console    Technical Prerequisties not met . SAP UI version too low.           
+            Log To Console    **gbStart**copilot_status**splitKeyValue**Technical Prerequisties not met . SAP UI version too low.**gbEnd**           
         END
     ELSE IF    '${version}' >= '740'
-        Log To Console    Version of SAP_UI is ${version}
+        Log To Console    **gbStart**copilot_status**splitKeyValue**Version of SAP_UI is ${version}**gbEnd**
     ELSE
-        Log To Console    Technical Prerequisties not met . SAP UI version too low.
+        Log To Console    **gbStart**copilot_status**splitKeyValue**Technical Prerequisties not met . SAP UI version too low.**gbEnd**
     END
 
 Component ST-PI Version
     Click Element    wnd[0]/mbar/menu[4]/menu[11]
     Click Element    wnd[1]/usr/btnPRELINFO
     ${version}    Software Component Version    wnd[2]/usr/tabsVERSDETAILS/tabpCOMP_VERS/ssubDETAIL_SUBSCREEN:SAPLOCS_UI_CONTROLS:0301/cntlSCV_CU_CONTROL/shellcont/shell    ST-PI
+    ${support_package}    software support package version    wnd[2]/usr/tabsVERSDETAILS/tabpCOMP_VERS/ssubDETAIL_SUBSCREEN:SAPLOCS_UI_CONTROLS:0301/cntlSCV_CU_CONTROL/shellcont/shell    ST-PI
     IF    '${version}' == '740'
-        ${support_package}    software support package version    wnd[2]/usr/tabsVERSDETAILS/tabpCOMP_VERS/ssubDETAIL_SUBSCREEN:SAPLOCS_UI_CONTROLS:0301/cntlSCV_CU_CONTROL/shellcont/shell    ST-PI
         IF    '${support_package}' >= '${symvar('ST_PI_support_package')}'
-            Log To Console    Version of ST-PI is ${version} and support package is ${support_package}
+            Log To Console    **gbStart**copilot_status**splitKeyValue**Version of ST-PI is ${version} and support package is ${support_package}**gbEnd**
         ELSE
-            Log To Console    Technical Prerequisties not met . ST-PI version too low.            
+            Log To Console    **gbStart**copilot_status**splitKeyValue**Technical Prerequisties not met . ST-PI version too low.**gbEnd**            
         END
     ELSE IF    '${version}' >= '740'
-        Log To Console    Version of ST-PI is ${version}
+        Log To Console    **gbStart**copilot_status**splitKeyValue**Version of ST-PI is ${version}**gbEnd**
     ELSE
-        Log To Console    Technical Prerequisties not met . ST-PI version too low.
+        Log To Console    **gbStart**copilot_status**splitKeyValue**Technical Prerequisties not met . ST-PI version too low.**gbEnd**
     END
+    Log To Console    **gbStart**ST_PI_version**splitKeyValue**ST-PI ${version}**gbEnd**
+    Log To Console    **gbStart**supportpackage**splitKeyValue**${support_package}**gbEnd**

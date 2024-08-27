@@ -1288,3 +1288,10 @@ class CustomSapGuiLibrary:
                     print(f"Component {search_comp} not found.")
         except Exception as e:
             print(f"Error while searching for {search_comp}: {e}")
+
+    def generate_package_sequence(self, start_str, end_str):
+        start_num = int(start_str.split('-')[1].split('INSTPI')[0])
+        end_num = int(end_str.split('-')[1].split('INSTPI')[0])
+        sequence = [f'K-{i:05d}INSTPI.SAR' for i in range(start_num + 1, end_num + 1)]
+        print(sequence)
+        return sequence

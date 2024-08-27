@@ -1414,12 +1414,12 @@ class SAP_Tcode_Library:
         row_count = comp_area.RowCount
         try:
             for x in range(row_count):
-                print (x)   
+                # print (x)   
                 cell_value = comp_area.GetCellValue(x, "COMPONENT")
-                print (cell_value)
+                # print (cell_value)
                 if cell_value == search_comp:
                     patch = comp_area.GetCellValue(x, "HIGH_PATCH")
-                    print(f"Found version for {search_comp}: {patch}")
+                    # print(f"Found version for {search_comp}: {patch}")
                     return patch
                     break  
                 else:

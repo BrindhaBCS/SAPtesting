@@ -8,31 +8,30 @@ ${File_path}    ${CURDIR}\\keyfile.txt
 
 *** Keywords ***
 System Logon
-    Start Process     ${symvar('SAP_SERVER')}
+    Start Process     ${symvar('ABAP_SAP_SERVER')}
     Sleep    3s
     Connect To Session
-    Open Connection    ${symvar('BPM_connection')}
-    Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('BPM_Client_Id')}
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('BPM_User_Name')}
-    # Input Password   wnd[0]/usr/pwdRSYST-BCODE      ${symvar('BPM_User_Password')}  
-    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{BPM_User_Password}
+    Open Connection    ${symvar('ABAP_Connection')}
+    Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('ABAP_CLIENT')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('ALM_User')}
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE      ${symvar('ALM_pass')}  
     Send Vkey    0
-    Sleep    1
+    Input Password    wnd[1]/usr/pwdRSYST-NCODE    %{ABAP_Password}
+    Input Password    wnd[1]/usr/pwdRSYST-NCOD2    %{ABAP_Password}
+    Click Element    wnd[1]/tbar[0]/btn[0]
+    Window Handling    wnd[1]    Copyright    wnd[1]/tbar[0]/btn[0]
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
-    Sleep   2
-    Run Keyword And Ignore Error    Click Element    wnd[1]/tbar[0]/btn[0]
 System Logout
     Run Transaction     /nex
 
 System Registration
     Run Transaction     /n/SDF/ALM_SETUP
-    Sleep    2
     ${already exist}    Get Value    wnd[0]/usr/txtLMSIDCOM
     IF  '${already exist}' != ''
-        Log To Console    System is already registered with ALM with : ${already exist}
-        Log    System is already registered with ALM with : ${already exist}
+        # Log To Console    System is already registered with ALM with : ${already exist}
+        # Log    System is already registered with ALM with : ${already exist}
         Set Global Variable     ${already exist}
-        Log To Console    **gbStart**LMS_ID**splitKeyValue**System is already registered with ALM with : ${already exist}**gbEnd**
+        Log To Console    **gbStart**Copilot_Status**splitKeyValue**System is already registered with ALM :${already exist}**gbEnd**
     ELSE     
         Input Text    wnd[0]/usr/ctxtDEST    BCS_ALM
         Sleep    2
@@ -86,10 +85,10 @@ System Registration
         Sleep    2
         Click Element    wnd[1]/tbar[0]/btn[0]
         ${LMS_Configured}    Get Value    wnd[0]/usr/txtLMSIDCOM
-        Log To Console    system successfully configured with : ${LMS_Configured}
-        Log    system successfully configured with : ${LMS_Configured}
+        # Log To Console    system successfully configured with : ${LMS_Configured}
+        # Log    system successfully configured with : ${LMS_Configured}
         Set Global Variable     ${LMS_Configured}
-        Log To Console    **gbStart**LMS_ID**splitKeyValue**system successfully configured with : ${LMS_Configured}**gbEnd**
+        Log To Console    **gbStart**Copilot_Status**splitKeyValue**system successfully configured :${LMS_Configured}**gbEnd**
     END
     
 Click Task
