@@ -21,9 +21,9 @@ Create User
     Run Transaction    /nSU01
     Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('ALM_User')}
     Click Element    wnd[0]/tbar[1]/btn[8]
-    Sleep    5
+    # Sleep    5
     Window Handling    wnd[1]    Address Maintenance      wnd[1]/usr/btnBUTTON_2
-    Sleep    5
+    # Sleep    5
     Input Text    wnd[0]/usr/tabsTABSTRIP1/tabpADDR/ssubMAINAREA:SAPLSUID_MAINTENANCE:1900/txtSUID_ST_NODE_PERSON_NAME-NAME_LAST    ${symvar('ALM_User')}
     Click Element     wnd[0]/usr/tabsTABSTRIP1/tabpLOGO
     # Sleep    2
