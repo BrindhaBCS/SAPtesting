@@ -34,5 +34,6 @@ Create User
     Set Cell Value    wnd[0]/usr/tabsTABSTRIP1/tabpPROF/ssubMAINAREA:SAPLSUID_MAINTENANCE:1103/cntlG_PROFILES_CONTAINER/shellcont/shell    1    PROFILE    SAP_NEW
     # Sleep    2
     Click Element    wnd[0]/tbar[0]/btn[11]
-    # Sleep    5
+    ${output}   Get Value    wnd[0]/sbar/pane[0]
+    Log To Console    **gbStart**copilot_status**splitKeyValue**${output}**gbEnd**
 
