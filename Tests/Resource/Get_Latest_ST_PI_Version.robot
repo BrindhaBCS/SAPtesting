@@ -18,8 +18,7 @@ login page
     Sleep    2
     Click Element    xpath://div[text()='Continue']
     Sleep    10
-    Input Text    id:password    Whitetiger@2024
-    # Input Text    id:password    %{S_Password}
+    Input Text    id:password    %{S_Password}
     Sleep    5
     Click Element    xpath://button[text()='Sign in']
     Sleep    30
