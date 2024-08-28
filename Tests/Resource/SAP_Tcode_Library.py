@@ -1505,3 +1505,88 @@ class SAP_Tcode_Library:
         with open(file_path, 'r') as file:
             content = file.read()
         return content
+    
+    def extract_order_number(self,sentence):
+        """
+        Extracts the integer value from the given sentence.
+
+        Args:
+            sentence (str): The sentence containing the order number.
+
+        Returns:
+            int: The extracted order number.
+        """
+        # Use regular expression to extract the integer value
+        import re
+        pattern = r'\b(\d+)\b'
+        match = re.search(pattern, sentence)
+        if match:
+            return int(match.group(1))
+        else:
+            raise ValueError("No order number found in the sentence")  
+
+
+    def extract_integer_values(self,sentence):
+        integer_values = re.findall(r'\b(\d+)\b', sentence)
+        if len(integer_values) == 1:
+            order_number = int(integer_values[0])
+            return {"order_number": order_number}
+        elif len(integer_values) > 1:
+            order_number = int(integer_values[0])
+            material_number = int(integer_values[1])
+            return {"order_number": order_number, "material_number": material_number}
+        else:
+            return None
+        
+    def print_table_row(self, material_numbers, order_quantities, amounts):
+        """
+        Prints table rows for the given material numbers, order quantities, and amounts.
+
+        Args:
+            material_numbers (list): List of material numbers.
+            order_quantities (list): List of order quantities corresponding to the material numbers.
+            amounts (list): List of amounts corresponding to the material numbers.
+
+        Raises:
+            ValueError: If the lengths of material_numbers, order_quantities, and amounts do not match.
+        """
+        if len(material_numbers) != len(order_quantities) or len(material_numbers) != len(amounts):
+            raise ValueError("Material numbers, order quantities, and amounts must have the same length")
+
+        base_material_number_path = "wnd[0]/usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\\01/ssubSUBSCREEN_BODY:SAPMV45A:4400/subSUBSCREEN_TC:SAPMV45A:4900/tblSAPMV45ATCTRL_U_ERF_AUFTRAG/ctxtRV45A-MABNR"
+        base_order_quantity_path = "wnd[0]/usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\\01/ssubSUBSCREEN_BODY:SAPMV45A:4400/subSUBSCREEN_TC:SAPMV45A:4900/tblSAPMV45ATCTRL_U_ERF_AUFTRAG/txtRV45A-KWMENG"
+        base_amount_path = "wnd[0]/usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\\01/ssubSUBSCREEN_BODY:SAPMV45A:4400/subSUBSCREEN_TC:SAPMV45A:4900/tblSAPMV45ATCTRL_U_ERF_AUFTRAG/txtKOMV-KBETR"
+
+        try:
+            for i, (material_number, order_quantity, amount) in enumerate(zip(material_numbers, order_quantities, amounts)):
+                material_number_path = f"{base_material_number_path}[1,{i}]"
+                order_quantity_path = f"{base_order_quantity_path}[3,{i}]"
+                amount_path = f"{base_amount_path}[15,{i}]"
+                self.session.findById(material_number_path).text = material_number
+            
+                self.session.findById(order_quantity_path).text = order_quantity
+                self.session.findById(amount_path).text = amount
+                self.session.findById("wnd[0]").sendVKey(0)
+                time.sleep(1)
+
+        except Exception as e:
+            print(e)
+
+    def picked_qty_loc_select(self, picked_qty, location):
+        picked_txt = "wnd[0]/usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\\02/ssubSUBSCREEN_BODY:SAPMV50A:1104/tblSAPMV50ATC_LIPS_PICK/txtLIPSD-PIKMG"
+        location_txt ="wnd[0]/usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\\02/ssubSUBSCREEN_BODY:SAPMV50A:1104/tblSAPMV50ATC_LIPS_PICK/ctxtLIPS-LGORT"
+        try:
+            for i in range(len(picked_qty)):
+                picked_id = f"{picked_txt}[7,{i}]"
+                location_id =f"{location_txt}[3,{i}]"
+                print(picked_id)
+                print(location_id)
+                print(picked_qty[i])
+                print(location[i])
+                self.session.findById(picked_id).text = picked_qty[i]
+                self.session.findById(location_id).text = location[i]
+                self.session.findById("wnd[0]").sendVKey(0) 
+                time.sleep(1)                       
+ 
+        except Exception as e:
+            print(e)    
