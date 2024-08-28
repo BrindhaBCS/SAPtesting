@@ -58,7 +58,7 @@ SLAES_ORDER_CREATION
     Log To Console    ${order_meaasage}
     ${order_number}=    Extract Order Number    ${order_meaasage}
     Set Global Variable    ${order_number}
-    Log To Console    **gbStart**Copilot_Status**splitKeyValue**${order_number}**gbEnd**
+    Log To Console    **gbStart**Copilot_Status_ordernumber**splitKeyValue**${order_number}**gbEnd**
 
 System Logout
     Run Transaction   /nex

@@ -47,7 +47,7 @@ VL01N
     Log    outbound_delivery_number: ${outbound_delivery_number["order_number"]}
     Log    Material_number: ${outbound_delivery_number["material_number"]}
     Set Global Variable    ${outbound_delivery_number}
-    Log To Console    **gbStart**Copilot_Status**splitKeyValue**Order Number:${outbound_delivery_number}**gbEnd**
+    Log To Console    **gbStart**Copilot_Status_outbounddelivery**splitKeyValue**Order Number:${outbound_delivery_number}**gbEnd**
     
 System Logout
     Run Transaction   /nex
