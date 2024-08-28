@@ -28,7 +28,7 @@ VL01N
 	
     Input Text    wnd[0]/usr/ctxtLIKP-VSTEL   ${symvar('shipping_point')} 
 	Sleep	2
-    Input Text	wnd[0]/usr/ctxtLV50C-VBELN	${order_number}
+    Input Text	wnd[0]/usr/ctxtLV50C-VBELN	${symvar('order_number')}
 	Send Vkey	0
 	Sleep	2
 
