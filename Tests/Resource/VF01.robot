@@ -29,6 +29,9 @@ VF01
 	Sleep	2
     Set Focus	wnd[0]/usr/tblSAPMV60ATCTRL_UEB_FAKT/ctxtVBRP-MATNR[1,0]
 	Sleep	2
+    Input Text	wnd[0]/usr/tblSAPMV60ATCTRL_ERF_FAKT/ctxtKOMFK-VBELN[0,0]	${symvar('outbound_delivery_number')}
+	Sleep	2
+
 	Send Vkey	2
 	Sleep	2
 	Click Element	wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpPFKO
