@@ -22,6 +22,7 @@ SM02
     Sleep   3s
     ${log_value}        Get Lable Value     wnd[0]/usr      ${symvar('search_texts')}
     Log To Console      ${log_value}
+
     IF    '${log_value}' == 'search text is not found'
         Log To Console    **gbStart**status**splitKeyValue**FALSE**gbEnd**
     ELSE
