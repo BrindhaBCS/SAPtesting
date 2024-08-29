@@ -4,16 +4,10 @@
 #          values as they are imported through each file.
 
 from .Data import *
-from .urls import *
-from .xpaths import *
-<<<<<<< HEAD
 from .Variable import *
 # from .invoice import *
 from .SM02 import *
 from .Certificate import *
 # from .payments import *
 # from .Tag import *
-=======
->>>>>>> 691564846dd32c5417aa4fd18f1b8fc46132a74c
-
 

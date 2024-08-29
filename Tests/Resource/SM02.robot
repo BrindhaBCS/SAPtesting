@@ -11,7 +11,8 @@ System Logon
     Open Connection    ${symvar('SAP_connection')}
     Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('Client_Id')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('User_Name')}
-    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
+    Input Password    wnd[0]/usr/pwdRSYST-BCODE    Ramya@95
+    # Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
     Send Vkey    0
     Sleep    3s
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
@@ -22,6 +23,11 @@ SM02
     Sleep   3s
     ${log_value}        Get Lable Value     wnd[0]/usr      ${symvar('search_texts')}
     Log To Console      ${log_value}
+    IF    '${log_value}' == 'Certificate got expired'
+        Log To Console    **gbStart**status**splitKeyValue**TRUE**gbEnd**
+    ELSE
+        Log To Console    **gbStart**status**splitKeyValue**FALSE**gbEnd**
+    END
 
         
 
