@@ -42,8 +42,9 @@ VF01
     ${document_status}    Get Value    wnd[0]/sbar/pane[0]
     Log To Console    ${document_status}
     ${document_number}=    Extract Order Number    ${document_status}
-    Set Global Variable    ${document_number}
-    Log To Console    **gbStart**Copilot_Status**splitKeyValue**${document_number}**gbEnd**
+    Log    ${document_number}
+    # Set Global Variable    ${document_number}
+    # Log To Console    **gbStart**Copilot_Status**splitKeyValue**${document_number}**gbEnd**
 
 
 System Logout
