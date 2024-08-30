@@ -49,10 +49,10 @@ Get roles from Table
     Sleep    2
     Input Text    wnd[0]/usr/ctxtDATABROWSE-TABLENAME    AGR_DEFINE
     Send Vkey    0
-    Input Text    wnd[0]/usr/ctxtI4-LOW    01.08.2024
+    Input Text    wnd[0]/usr/ctxtI4-LOW    ${symvar('Create_From_Date')}
     Sleep    2
     ${Get Current Date}    Get Current Date    result_format=%d.%m.%Y
-    Input Text    wnd[0]/usr/ctxtI4-HIGH    ${Get Current Date}
+    Input Text    wnd[0]/usr/ctxtI4-HIGH    ${symvar('Create_To_Date')}
     Sleep    2
     Click Element    ${symvar('Execute')}
     Sleep    2
@@ -66,7 +66,7 @@ Get roles from Table
     Sleep    2
     clear field text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME
     Sleep    2
-    Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Role
+    Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Create_Role_extract
     Sleep    2
     Click Element    wnd[1]/tbar[0]/btn[20]
     Sleep    2
@@ -76,7 +76,7 @@ Get roles from Table
     Sleep    2
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    2
-    ${role_length}    Roles extract    C:\\tmp\\Role.xlsx    Sheet1    C:\\tmp\\Roles3.txt
+    ${role_length}    Roles extract    C:\\tmp\\Create_Role_extract.xlsx    Sheet1    C:\\tmp\\Create_Role_extract.txt
     Set Global Variable    ${GLOBAL_ROLE_LENGTH}    ${role_length}  # Set it as a global variable
     Log    ${GLOBAL_ROLE_LENGTH}
     Sleep    2
@@ -92,7 +92,7 @@ Get roles from Table
     Sleep    2
     Input Text    wnd[2]/usr/ctxtDY_PATH    C:\\tmp\\
     Sleep    2
-    Input Text    wnd[2]/usr/ctxtDY_FILENAME    Roles3.txt
+    Input Text    wnd[2]/usr/ctxtDY_FILENAME    Create_Role_extract.txt
     Sleep    2
     Click Element    wnd[2]/tbar[0]/btn[0]
     Sleep    2
@@ -110,7 +110,7 @@ Get roles from Table
     Sleep    2
     clear field text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME
     Sleep    2
-    Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Roles3
+    Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Create_Tcode_extract
     Sleep    2
     Click Element    wnd[1]/tbar[0]/btn[20]
     Sleep    2
@@ -120,7 +120,7 @@ Get roles from Table
     Sleep    2
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    5
-    ${tcode_length}    Tcode Extract    C:\\tmp\\Roles3.xlsx    Sheet1
+    ${tcode_length}    Tcode Extract    C:\\tmp\\Create_Tcode_extract.xlsx    Sheet1
     Set Global Variable    ${GLOBAL_TCODE_LENGTH}    ${tcode_length}  # Set it as a global variable
     Log    ${GLOBAL_TCODE_LENGTH}
     Sleep    5
@@ -220,6 +220,7 @@ Test_User
         Run Transaction    /n${input}
         Sleep    1
         Take Screenshot    tcode_${j}.jpg
+        Sleep    1
     END
 Own_User
     Run Transaction    /nstauthtrace
@@ -236,7 +237,7 @@ Own_User
     Sleep    2
     clear field text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME
     Sleep    2
-    Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Create_date_report
+    Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Create_Date_Overall_Report
     Sleep    2
     Click Element    wnd[1]/tbar[0]/btn[20]
     Sleep    2
@@ -247,3 +248,11 @@ Own_User
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    2
     # Send Mail    from_email=suryaprakash.r@basiscloudsolutions.com    password=********    to_mail=@{mail}    subject="Status of stauthtrace"     content=Today_Create_date_file_report   file_path=C:\\tmp\\Create_date_report.xlsx
+
+Deletefile
+    Delete Files    directory=C:\\tmp    file_name=Create_Role_extract.xlsx
+    Sleep    1
+    Delete Files    directory=C:\\tmp    file_name=Create_Role_extract.txt
+    Sleep    1
+    Delete Files    directory=C:\\tmp    file_name=Create_Tcode_extract.xlsx
+    Sleep    1

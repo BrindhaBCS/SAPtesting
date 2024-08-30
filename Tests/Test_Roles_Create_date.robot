@@ -13,3 +13,4 @@ Get roles from Table
     System Logout
     System Logon
     Own_User
+    Deletefile

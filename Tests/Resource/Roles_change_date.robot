@@ -55,10 +55,10 @@ Change Date
     Sleep    2
     Input Text    wnd[0]/usr/ctxtDATABROWSE-TABLENAME    AGR_DEFINE
     Send Vkey    0
-    Input Text    wnd[0]/usr/ctxtI8-LOW    14.08.2024
+    Input Text    wnd[0]/usr/ctxtI8-LOW    ${symvar('Change_From_Date')}
     Sleep    2
     ${Get Current Date}    Get Current Date    result_format=%d.%m.%Y
-    Input Text    wnd[0]/usr/ctxtI8-HIGH    ${Get Current Date}
+    Input Text    wnd[0]/usr/ctxtI8-HIGH    ${symvar('Change_To_Date')}
     Sleep    2
     Click Element    ${symvar('Execute')}
     Sleep    2
@@ -72,7 +72,7 @@ Change Date
     Sleep    2
     clear field text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME
     Sleep    2
-    Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Roles_change_date
+    Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Change_Role_extract
     Sleep    2
     Click Element    wnd[1]/tbar[0]/btn[20]
     Sleep    2
@@ -82,7 +82,7 @@ Change Date
     Sleep    2
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    2
-    ${role_length}    Roles extract    C:\\tmp\\Roles_change_date.xlsx    Sheet1    C:\\tmp\\Roles_change_date.txt
+    ${role_length}    Roles extract    C:\\tmp\\Change_Role_extract.xlsx    Sheet1    C:\\tmp\\Change_Role_extract.txt
     Set Global Variable    ${GLOBAL_ROLE_LENGTH}    ${role_length}  # Set it as a global variable
     Log    ${GLOBAL_ROLE_LENGTH}
     Sleep    2
@@ -98,7 +98,7 @@ Change Date
     Sleep    2
     Input Text    wnd[2]/usr/ctxtDY_PATH    C:\\tmp\\
     Sleep    2
-    Input Text    wnd[2]/usr/ctxtDY_FILENAME    Roles_change_date.txt
+    Input Text    wnd[2]/usr/ctxtDY_FILENAME    Change_Role_extract.txt
     Sleep    2
     Click Element    wnd[2]/tbar[0]/btn[0]
     Sleep    2
@@ -116,7 +116,7 @@ Change Date
     Sleep    2
     clear field text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME
     Sleep    2
-    Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Roles_change_date_Tcode
+    Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Change_Tcode_extract
     Sleep    2
     Click Element    wnd[1]/tbar[0]/btn[20]
     Sleep    2
@@ -126,7 +126,7 @@ Change Date
     Sleep    2
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    5
-    ${tcode_length}    Tcode Extract    C:\\tmp\\Roles_change_date_Tcode.xlsx    Sheet1
+    ${tcode_length}    Tcode Extract    C:\\tmp\\Change_Tcode_extract.xlsx    Sheet1
     Set Global Variable    ${GLOBAL_TCODE_LENGTH}    ${tcode_length}  # Set it as a global variable
     Log    ${GLOBAL_TCODE_LENGTH}
     Sleep    5
@@ -198,6 +198,7 @@ Test_User
         Run Transaction    /n${input}
         Sleep    1
         Take Screenshot    tcode_${j}.jpg
+        Sleep    1
     END
 Own_User
     Run Transaction    /nstauthtrace
@@ -214,7 +215,7 @@ Own_User
     Sleep    2
     clear field text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME
     Sleep    2
-    Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Change_date_report
+    Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Change_Date_Overall_Report
     Sleep    2
     Click Element    wnd[1]/tbar[0]/btn[20]
     Sleep    2
@@ -225,3 +226,11 @@ Own_User
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    2
     # Send Mail    from_email=suryaprakash.r@basiscloudsolutions.com    password=********    to_mail=@{mail}    subject="Status of stauthtrace"     content=Today_Create_date_file_report   file_path=C:\\tmp\\Create_date_report.xlsx
+
+Deletefile
+    Delete Files    directory=C:\\tmp    file_name=Change_Role_extract.xlsx
+    Sleep    1
+    Delete Files    directory=C:\\tmp    file_name=Change_Role_extract.txt
+    Sleep    1
+    Delete Files    directory=C:\\tmp    file_name=Change_Tcode_extract.xlsx
+    Sleep    1

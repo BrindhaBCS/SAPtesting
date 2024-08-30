@@ -33,9 +33,13 @@ SA_Role_Client_Id = "$SA_Role_Client_Id"
 SA_Role_User_Name = "$SA_Role_User_Name"
 SA_Role_User_Password = "$SA_Role_User_Password"
 #test_user_crentials
+Create_From_Date = "$Create_From_Date"
+Create_To_Date ="$Create_To_Date"
 Create_Date_User_Name = "$Create_Date_User_Name"
 Create_Date_User_Password = "$Create_Date_User_Password"
 #su01_new_user create
+Change_From_Date = "$Change_From_Date"
+Change_To_Date = "$Change_To_Date"
 Change_Date_User_Name = "$Change_Date_User_Name"
 New_User_Password = "$New_User_Password"
 New_User_Last_Name = "$New_User_Last_Name"

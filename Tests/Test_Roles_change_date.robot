@@ -13,3 +13,4 @@ Change Date
     System Logout
     System Logon
     Own_User
+    Deletefile
