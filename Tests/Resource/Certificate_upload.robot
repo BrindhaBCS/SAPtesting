@@ -12,9 +12,9 @@ ${file_path}    ${CURDIR}\\${symvar('filename')}
 Browser Login
     Open Browser    ${symvar('CPI_URL')}    ${symvar('browsertype')}    options=add_argument("--ignore-certificate-errors")
     Maximize Browser Window
-    Sleep    5
+    Sleep    20
     Input Text    id:j_username    ${symvar('username')}    
-    Sleep    2
+    Sleep    5
     Click Element    xpath://*[@id="logOnFormSubmit"]
     Sleep    20
     Scroll Element Into View    xpath://*[@id="password"]
