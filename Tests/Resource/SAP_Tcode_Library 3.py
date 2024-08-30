@@ -7,9 +7,15 @@ import os
 from robot.api import logger
 import sys
 import ast
-import re
+import pyautogui
 import pandas as pd
-
+import pyperclip
+import glob
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
 
 class SAP_Tcode_Library:
     """The SapGuiLibrary is a library that enables users to create tests for the Sap Gui application
@@ -490,11 +496,12 @@ class SAP_Tcode_Library:
         # run explicit wait last
         time.sleep(self.explicit_wait)
 
-    def run_transaction(self, transaction):
+    def run_transaction(self, transaction,delay=1):
         """Runs a Sap transaction. An error is given when an unknown transaction is specified.
         """
         self.session.findById("wnd[0]/tbar[0]/okcd").text = transaction
-        time.sleep(self.explicit_wait)
+        # time.sleep(self.explicit_wait)
+        time.sleep(delay)
         self.send_vkey(0)
 
         if transaction == '/nex':
@@ -1114,19 +1121,11 @@ class SAP_Tcode_Library:
     def double_click_on_tree_item(self, tree_id, id):
         try:
             tree = self.session.findById(tree_id)
-            tree.selectedNode = id
-            tree.doubleClickNode(id)
+            tree.DoubleClickNode(id)
+    
         except Exception as e:
             print("Error: {e}")
 
-    def set_caret_position(self, element_id, position):
-        try:
-            element = self.session.findById(element_id)
-            element.caretposition = position
-
-        except Exception as e:
-            print("Error: {e}")
-            
     def scot_tree(self, tree_id):
         try:
             tree = self.session.findById(tree_id)
@@ -1280,94 +1279,129 @@ class SAP_Tcode_Library:
             self.session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").firstVisibleRow = 6
             self.session.findById("wnd[0]/usr/cntlGRID1/shellcont/shell").selectedRows = "29"
         except Exception as e:
-            print(f"Error: {e}")
+            print(f"Error: {e}")    
 
-    def double_click_on_inside_table(self, tree_id, row_number):
+    # ************PVH Tcodes***************************
+    def select_item_from_GUI(self, user_id, search_text):
+        user_area = self.session.findById(user_id)
+        labels = [child.Text for child in user_area.Children]
+        item_count = user_area.Children.Count
+        # print("User Area Labels:", labels, item_count)
+        for i in range(item_count):
+            element = user_area.Children.ElementAt(i)
+            if element.Text.strip() == search_text.strip():
+                print(f"Element found: {element.Text}")
+                element.SetFocus()
+                self.session.findById("wnd[0]").sendVKey(2)
+                return
+ 
+    def select_tree_items(self, tree_id, link_id1, link_id2):
         try:
             tree = self.session.findById(tree_id)
-            node = tree.GetNode(row_number)
-            node.DoubleClick()
-        except Exception as e:
-            print(f"Error: {e}")
+            # link_ids = tree.GetAllNodeKeys()
+            # print(link_ids)
+            tree.selectItem(link_id1, link_id2)
+            #session.findById(tree_id).ensureVisibleHorizontalItem(link_id1, link_id2)
+            self.session.findById(tree_id).doubleClickItem(link_id1, link_id2)
  
-    def double_click_on_current_cell(self, table_id):
-        try:
-            table = self.session.findById(table_id)
-            table.DoubleClickCurrentCell()  # Perform a double-click action on the current cell
- 
-        except Exception as e:
-            print(f"Error: {e}")
+        except win32com.client.dynamic.pythoncom.com_error as e:
+            print(f"Error during SelectNodeLink: {e}")
 
-    def expand_Element(self, tree_id, node_id):
+    def click_on_tree_item(self, tree_id, id):
         try:
-            element = self.session.findById(tree_id)
-            element.expandNode(f"{node_id}")
+            tree = self.session.findById(tree_id)
+            tree.selectedNode(id)
+    
         except Exception as e:
-            print(f"An error occurred while expanding node: {e}")  
+            print("Error: {e}")
 
-    def select_top_node(self,tree_id, node_id,expand=False):
+    def select_CPU(self, tree_id, node_id):
+        # tree=self.session.findById(tree_id)        
+        # tree.SelectNode(node_id)
+        try:
+            tree = self.session.findById(tree_id)
+            tree.SelectNode(tree.GetAllNodeKeys().Item(node_id))
+        except win32com.client.dynamic.pythoncom.com_error as e:
+            print(f"Error {tree_id}during SelectNode {node_id} : {e}")
+
+# *************EVIDENT REFRESH**********************
+    def select_only(self, tree_id, id):      
         self.element_should_be_present(tree_id)
-        self.session.findById(tree_id).selectedNode = node_id
-        if expand:
-            #TODO: elegantere manier vinden om dit af te vangen
-            try:
-                self.session.findById(tree_id).topNode(node_id)
-            except com_error:
-                pass
-        time.sleep(self.explicit_wait) 
+        if(id<10):
+            self.session.findById(tree_id).selectNode(f"          {id}")
+        elif(id<100):
+           self.session.findById(tree_id).selectNode(f"         {id}")
+        else:
+            self.session.findById(tree_id).selectNode(f"        {id}")
+
+        time.sleep(self.explicit_wait)
+    
+    def unselect(self, tree_id, id):      
+        self.element_should_be_present(tree_id)
+        if(id<10):
+            self.session.findById(tree_id).unselectNode(f"          {id}")
+        elif(id<100):
+            self.session.findById(tree_id).unselectNode(f"         {id}")
+        else:
+            self.session.findById(tree_id).unselectNode(f"        {id}")
+        time.sleep(self.explicit_wait)
+    
+
+    def get_lable_value(self, lable_id, search_texts):
+        user_area = self.session.findById(lable_id)
+        item_count = user_area.Children.Count
+        found_elements = []
+        for search_text in search_texts:
+            for i in range(item_count):
+                element = user_area.Children.ElementAt(i)
+                if element.Text.strip() == search_text.strip():
+                    found_elements.append(element.Text)
+                    print(element.Text)
+                    break
+            else:
+                print("search text is not found")
+                return("search text is not found")
+        return found_elements
+
+    def rows_from_stms(self, table_id): 
+        print(table_id)
+        row_count = self.session.findById(table_id).rowcount
+        print(row_count)
+        column_count = self.session.findbyId(table_id).columncount
+        print(column_count)
+        try:
+            for row in range(row_count):
+                print(row)
+                cell_value_1= self.session.findById(table_id).GetCellValue(row, "SYSNAM")
+                self.session.findById(table_id).DoubleClick(row, "SYSNAM")
+                print(cell_value_1)
+                return cell_value_1
+        except Exception as e:
+            return f"Error: {e}"
+        
+    def click_toolbar_button(self, table_id, button_id):
+        """Clicks a button of a toolbar within a GridView 'table_id' which is contained within a shell object.
+        Use the Scripting tracker recorder to find the 'button_id' of the button to click
+        """
+        self.element_should_be_present(table_id)
+
+        try:
+            self.session.findById(table_id).pressToolbarButton(button_id)
+        except AttributeError:
+            self.take_screenshot()
+            self.session.findById(table_id).pressButton(button_id)
+        except com_error:
+            self.take_screenshot()
+            message = "Cannot find Button_id '%s'." % button_id
+            raise ValueError(message)
+        time.sleep(self.explicit_wait)
 
     def expand_node(self, tree_id, node_id):
+        """Selects a node of a TableTreeControl 'tree_id' which is contained within a shell object. Use the Scripting tracker recorder to find the 'node_id' of the node.
+     Expand can be set to True to expand the node. If the node cannot be expanded, no error is given."""
         element = self.session.findById(tree_id)
         element.expandNode(f"{node_id}")
 
-    def select_item(self, tree_id, nodeid1, nodeid2):
-        element=self.session.findById(tree_id)
-        element.selectItem(f"{nodeid1}",nodeid2)
-
-    def get_open_items(self, status_id):
-        try:
-            status = self.session.findById(status_id).Text
-            pattern = r"(\d+)\s+items\s+displayed"
-            match = re.search(pattern, status)
-            if match:
-                open_items = match.group(1)
-                return open_items
-            else:
-                print("No match found")
-                return None
-        except Exception as e:
-            return f"Error: {str(e)}"
-        
-    def set_key_value(self, element_id, key_value):
-        self.session.FindById(element_id).key = key_value
-
-    def double_click_table(self, table_id, row, column):
-        self.session.FindById(table_id).doubleClickCurrentCell(row, column)
-
-    def search_and_select_lock(self, table_id, lock):
-        try:
-            table = self.session.FindById(table_id)
-            row_count = table.RowCount  # Assuming the control has a RowCount property
-            print(row_count)
-            for row in range(row_count):
-                print(row)
-                cell_value=table
-                cell_value = table.GetCellValue(row,"GNAME")
-                print(cell_value)
-                if lock in cell_value:
-                    result = row
-                    self.session.findById(table_id).selectedRows = row
-                    print("Text Found in ${row}")
-                    return row
-                else:
-                    print("not found")
-        except Exception as e:
-            return f"Error: {e}"
-    def window_handling(self, element_id, text, button_id):
-        window = self.session.findById(element_id).Text
-        if window == text :
-            self.session.findById(button_id).press()
-            
     def clear_field_text(self, field_id):
         try:
             field = self.session.findById(field_id)
@@ -1375,57 +1409,154 @@ class SAP_Tcode_Library:
             print(f"Text cleared in field with ID: {field_id}")
         except Exception as e:
             print(f"Error: {e}")
+
+    def scroll_to_item(self, num_scrolls):
+        # Simulate mouse scroll to ensure selected item is visible
+        for _ in range(int(num_scrolls)):
+            pyautogui.scroll(-5)  # Adjust scroll amount as needed
+            time.sleep(0.1) 
+
+    # def scroll_to_item(self, num_scrolls):
+    #     """
+    #     Simulates mouse scrolling to ensure a specific item is visible.
+
+    #     :param num_scrolls: Number of scroll actions to perform.
+    #     """
+    #     try:
+    #         for i in range(int(num_scrolls)):
+    #             pyautogui.scroll(39)  # Adjust scroll amount as needed
+    #             time.sleep(1)  # Wait to allow GUI to update
+    #     except Exception as e:
+    #         print(f"An error occurred during scrolling: {e}")
+
+    def expand_element(self, tree_id, node_id):
+        try:
+            element = self.session.findById(tree_id)
+            element.expandNode(f"{node_id}")
+        except Exception as e:
+            print(f"An error occurred while expanding node: {e}")
+
+    def get_cell_value_container(self, table_id, row_number, column_number):
+        try:
+            # Ensure row_number and column_number are integers
+            row_number = int(row_number)
+            column_number = int(column_number)
+            
+            control = self.session.findById(table_id)
+            row_count = control.RowCount
+            col_count = control.ColumnCount
+            print(f"Row count: {row_count}, Column count: {col_count}")
+            if row_number < 0 or row_number >= row_count:
+                return f"Error: Invalid row number {row_number}. Must be between 0 and {row_count-1}."
+            if column_number < 0 or column_number >= col_count:
+                return f"Error: Invalid column number {column_number}. Must be between 0 and {col_count-1}."
+            cell_value = control.GetCellValue(row_number, column_number)
+            print(f"Cell ({row_number}, {column_number}): {cell_value}")
+            return cell_value
+        except ValueError as ve:
+            return f"Error: Invalid input. Row and column numbers must be integers. {ve}"
+        except Exception as e:
+            return f"Error: {e}"
+        
+    def status_split(self, element_id):
+        text = self.session.findById(element_id).Text
+        if text is not None:
+            text_split = text.split() 
+            result = ' '.join(text_split[:-1])
+            return result
+        return None  
     
-    def Excel_Arrange(self, file_location, sheet_name, filename):
-        try:
-            file_path = f"{file_location}\\{filename}"
-            df = pd.read_excel(file_path, sheet_name=sheet_name, header=None)
-            df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
-            df = df.iloc[4:].reset_index(drop=True)
-            df.columns = df.iloc[0]
-            df = df[1:].reset_index(drop=True)
-            df.dropna(how='all', inplace=True)
-            df.dropna(axis=1, how='all', inplace=True)
-            with pd.ExcelWriter(file_path, engine='openpyxl', mode='a', if_sheet_exists='replace') as writer:
-                df.to_excel(writer, sheet_name=sheet_name, index=False)
-        except Exception as e:
-            pass
+    def select_item_and_validate_text(self, element_id, item_text,expectedtext):
+        element = self.session.findById(element_id)
+        if not element:
+            raise ValueError(f"Element with ID '{element_id}' not found.")
+        
+        element.selectItem(item_text, "Node")
+        
+        # Get text of the selected node
+        selected_node_text = self.get_node_text_by_key(element, item_text)
+        
+        if expectedtext not in selected_node_text:
+            raise ValueError(f"Expected item text '{item_text}' does not contain '{expectedtext}',the text in selected_item is '{selected_node_text}'")
+        return f"Item with text '{item_text}' is selected and '{expectedtext}' text found"
 
-    def software_component_version(self, comp_id, search_comp):      
-        comp_area = self.session.FindById(comp_id)
-        row_count = comp_area.RowCount
+    def get_node_text_by_key(self, element, node_key):
         try:
-            for x in range(row_count):
-                print (x)   
-                cell_value = comp_area.GetCellValue(x, "COMPONENT")
-                print (cell_value)
-                if cell_value == search_comp:
-                    version = comp_area.GetCellValue(x, "RELEASE")
-                    print(f"Found version for {search_comp}: {version}")
-                    return version
-                    break  
-                else:
-                    print(f"Component {search_comp} not found.")
+            return element.GetNodeTextByKey(node_key)
         except Exception as e:
-            print(f"Error while searching for {search_comp}: {e}")
+            raise ValueError(f"Failed to get node text by key '{node_key}': {str(e)}")
+        
+    # def search_config_parameter_Value(self, parameter):
+    #     com_text = "wnd[1]/usr/lbl[1,"
+    #     table_id = "wnd[0]/usr/tblSAPLSWN_CONFIG_GENTCTRL_SWN_SETTINGS"
+    #     row_count = self.session.findById(table_id).RowCount
+    #     try:
+    #         for i in range(0, row_count):
+    #             com_id = f"{com_text}{i}]"  # Construct the complete component ID
+    #             param_value = self.session.findById(com_id).Text
+    #             if param_value == parameter:
+    #                 url = "wnd[0]/usr/tblSAPLSWN_CONFIG_GENTCTRL_SWN_SETTINGS/ctxtSWN_SETTINGS-VALUE[2,"
+    #                 url_id = f"{url}{i}]"
+    #                 url_value = self.session.findById(url_id).Text
+    #                 return url_value
+    #     except Exception as e:
+    #         print(f"An error occurred while expanding node: {e}")
 
-    def software_support_package_version(self, comp_id, search_comp):      
-        comp_area = self.session.FindById(comp_id)
-        row_count = comp_area.RowCount
+    def count_items_in_list(self, list_variable):
+        return len(list_variable)
+    
+    def clear_field_text(self, field_id):
         try:
-            for x in range(row_count):
-                print (x)   
-                cell_value = comp_area.GetCellValue(x, "COMPONENT")
-                print (cell_value)
-                if cell_value == search_comp:
-                    patch = comp_area.GetCellValue(x, "HIGH_PATCH")
-                    print(f"Found version for {search_comp}: {patch}")
-                    return patch
-                    break  
-                else:
-                    print(f"Component {search_comp} not found.")
+            field = self.session.findById(field_id)
+            field.Text = ""
+            print(f"Text cleared in field with ID: {field_id}")
         except Exception as e:
-            print(f"Error while searching for {search_comp}: {e}")
+            print(f"Error: {e}")
+
+    def Roles_extract(self, file_location, sheet_name, output_file):
+        try:
+            df = pd.read_excel(file_location, sheet_name=sheet_name, usecols=[2], header=None)
+            df.columns = ['AGR_NAME']
+            df['AGR_NAME'] = df['AGR_NAME'].str.strip()
+            filtered_data = df[~df['AGR_NAME'].str.casefold().eq('agr_name')]         
+            filtered_data_str = "\n".join(filtered_data['AGR_NAME'].dropna().astype(str).tolist())
+            
+            with open(output_file, 'w') as file:
+                file.write(filtered_data_str)
+            
+            print(f"Data has been written to {output_file}")
+        except FileNotFoundError:
+            print(f"Error: The file at location '{file_location}' was not found.")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
+    def paste_from_clipboard(self, text):
+        pyperclip.paste(text)
+        return(text)
+    
+    def select_table_column(self, table_id, column_id):
+        """Selects an entire column of a GridView 'table_id' which is contained within a shell object.
+
+        Use the Scripting tracker recorder to find the 'column_id' of the column to select.
+        """
+        self.element_should_be_present(table_id)
+        try:
+            self.session.findById(table_id).selectColumn(column_id)
+        except com_error:
+            self.take_screenshot()
+            message = "Cannot find Column_id '%s'." % column_id
+            raise ValueError(message)
+        time.sleep(self.explicit_wait)
+
+    def window_handling(self, element_id, text, button_id):
+        try:
+            window = self.session.findById(element_id).Text
+            if window == text :
+                self.session.findById(button_id).press()
+            else:
+                print(f"Text '{window_text}' did not match expected text '{expected_text}'.")
+        except Exception as e:
+            print(f"An error occurred: {e}")
 
     def select_profile_label(self, user_area_id, search_text, max_scrolls=5):
         try:
@@ -1455,53 +1586,206 @@ class SAP_Tcode_Library:
         except Exception as e:
             print(f"Error: {e}")
 
-    def check_parameter_found(self, lable_id, parameter):
-        user_area = self.session.findById(lable_id)
-        item_count = user_area.Children.Count
-        for i in range(item_count):
-            element = user_area.Children.ElementAt(i)
-            if element.Text.strip() == parameter.strip():
-                print(element.Text)
-                return(element.Text)
-        not_found_message = f"Search text {parameter} not found"
-        print(f"Search text {parameter} not found")
-        return not_found_message
-    
-    def get_parameter_value(self, lable_id, parameter):
-        user_area = self.session.findById(lable_id)
-        item_count = user_area.Children.Count
-        for i in range(item_count):
-            element = user_area.Children.ElementAt(i)
-            if element.Text.strip() == parameter.strip():
-                element.setFocus()
-                self.session.findById("wnd[0]").sendVKey(2)
-                return
-    
-    def manage_window(self, element_id, text, button_id):
-        window_title = self.session.findById(element_id).Text
-        window_title_split = window_title.split()
-        window = " ".join(window_title_split[:-1])
-        if window == text :
-            self.session.findById(button_id).press()
-
-    def double_click_current_cell_value(self, element_id, cell_value):
+    def txt_to_excel(self, txt_file, excel_file, delimiter='\t'):
         try:
-            element = self.session.findById(element_id)
-            element.currentCellColumn = cell_value
-            element.doubleClickCurrentCell()
+            df = pd.read_csv(txt_file, delimiter=delimiter)
+            with pd.ExcelWriter(excel_file, engine='xlsxwriter') as writer:
+                df.to_excel(writer, index=False, sheet_name='Sheet1')
+                workbook  = writer.book
+                worksheet = writer.sheets['Sheet1']
+                format_header = workbook.add_format({'bold': True, 'bg_color': '#DCE6F1', 'border': 1})
+                worksheet.set_row(0, None, format_header)
+                for i, col in enumerate(df.columns):
+                    max_len = df[col].astype(str).map(len).max()
+                    max_len = max(max_len, len(col))
+                    worksheet.set_column(i, i, max_len + 2)
+                os.remove(txt_file)
         except Exception as e:
-            print(f"Error: {e}")
+            print(f"An error occurred: {e}")
+
+    def check_remove_found_data(self, txt_data, excel_file):
+        try:
+            df_excel = pd.read_excel(excel_file, sheet_name='Sheet1')
+            col_a = df_excel.iloc[:, 0].astype(str).str.strip()  # Column A
+            col_c = df_excel.iloc[:, 2].astype(str).str.strip()  # Column C
+            not_found_data = []
+            for line in txt_data:
+                split_data = line.split('=', 1)  # Split based on the first '=' sign
+                param_name = split_data[0].strip()  # First part (Column A)
+                param_value = split_data[-1].strip()  # Last part (Column C)
+                if not (param_name in col_a.values and param_value in col_c.values):
+                    not_found_data.append(param_name)  # Append only the parameter name
+            for item in not_found_data:
+                print(f"{item}")
+            return not_found_data
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            return []
+        
+    def delete_files(self, directory, file_name):
+        try:
+            patterns = [f'{file_name}.xlsx', f'{file_name}.txt']
+            
+            for pattern in patterns:
+                files = glob.glob(os.path.join(directory, pattern))
+                for file in files:
+                    os.remove(file)
+        except Exception as e:
+            print(f"An error occurred: {e}")
 
     def get_file_content(Self, file_path, ):
         """
         Reads the content of a file and returns it as a string.
-
+ 
         Arguments:
         - file_path: The path to the file to be read.
-
+ 
         Returns:
         - The content of the file as a string.
         """
         with open(file_path, 'r') as file:
             content = file.read()
         return content
+    
+    def double_get(self, element_id, cell_value):
+        try:
+            element = self.session.findById(element_id)
+            cells = element.getCells() 
+            
+            for cell in cells:
+                if cell.getValue() == cell_value:  
+                    cell.doubleClick()  
+                    current_cell_value = cell.getValue()  
+                    return current_cell_value
+            
+            print("Cell with the specified value not found.")
+            return None
+        except Exception as e:
+            print(f"Error: {e}")
+            return None
+        
+    def Modify_sap_cell(self, cell_path, row_index, agr_name_value):
+        try:
+            # Obtain the SAP GUI session
+            sap_gui = win32com.client.GetObject("SAPGUI")
+            application = sap_gui.GetScriptingEngine
+            session = application.Children(0).Children(0)
+            # Modify the specified cell
+            session.findById(cell_path).modifyCell(int(row_index), "AGR_NAME", agr_name_value)
+            return f"Cell at row {row_index} modified successfully with AGR_NAME: {agr_name_value}"
+        except Exception as e:
+            return f"An error occurred: {e}"
+
+    def Get_sap_cell_value_AGR_NAME(self, cell_path, row_index):
+        try:
+            # Obtain the SAP GUI session
+            sap_gui = win32com.client.GetObject("SAPGUI")
+            application = sap_gui.GetScriptingEngine
+            session = application.Children(0).Children(0)
+            
+            # Access the table
+            table = session.findById(cell_path)
+            
+            # Retrieve the specified cell value
+            cell_value = table.getCellValue(int(row_index), "AGR_NAME")
+            return cell_value
+        except Exception as e:
+            return f"An error occurred: {e}"
+
+
+    def Roles_extract(self, file_location, sheet_name, output_file):
+        try:
+            # Read the Excel file and select the specified column
+            df = pd.read_excel(file_location, sheet_name=sheet_name, usecols=[2], header=None)
+            df.columns = ['AGR_NAME']
+            
+            # Strip whitespace and filter out any rows that match the column header name (case-insensitive)
+            df['AGR_NAME'] = df['AGR_NAME'].str.strip()
+            filtered_data = df[~df['AGR_NAME'].str.casefold().eq('agr_name')]
+            
+            # Convert the filtered data to a list of strings, removing any empty strings
+            roles_list = filtered_data['AGR_NAME'].dropna().astype(str).tolist()
+            roles_list = [role for role in roles_list if role]  # Remove empty strings
+            
+            # Write the filtered data to the specified output file
+            filtered_data_str = "\n".join(roles_list)
+            with open(output_file, 'w') as file:
+                file.write(filtered_data_str)
+            
+            # Print the result for verification
+            print(f"Data has been written to {output_file}")
+            
+            # Return the list of roles without empty strings
+            return roles_list
+        
+        except FileNotFoundError:
+            print(f"Error: The file at location '{file_location}' was not found.")
+            return []
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            return []
+        
+
+    def Tcode_extract(self, file_location, sheet_name):
+        try:
+            # Read the Excel file and select only the T_CODE column (column 9)
+            df = pd.read_excel(file_location, sheet_name=sheet_name, usecols=[9], header=None)
+            df.columns = ['T_CODE']
+            
+            # Strip whitespace and filter out any rows with empty T_CODEs
+            df['T_CODE'] = df['T_CODE'].str.strip()
+            tcodes_list = df['T_CODE'].dropna().astype(str).tolist()
+            tcodes_list = [tcode for tcode in tcodes_list if tcode]  # Remove empty strings
+            
+            # Exclude the first TCODE entry, assuming it is the header 'TCODE'
+            if tcodes_list and tcodes_list[0].casefold() == 'tcode':
+                tcodes_list = tcodes_list[1:]
+            
+            # Return the list of T_CODES without empty strings and excluding the header
+            return tcodes_list
+            
+        except FileNotFoundError:
+            print(f"Error: The file at location '{file_location}' was not found.")
+            return []
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            return []
+        
+    def Delete_allrole_save(self):
+        try:
+            self.session.findById("wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell").setCurrentCell(-1, "")
+            self.session.findById("wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell").selectAll()
+            self.session.findById("wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell").pressToolbarButton("DEL_LINE")
+            self.session.findById("wnd[0]/tbar[0]/btn[11]").press()
+        except:
+            return  []
+        
+    def send_mail(self, from_email, password, to_mail, subject, content, file_path=None):
+        HOST = "smtp-mail.outlook.com"
+        PORT = 587
+        message = MIMEMultipart()
+        message['From'] = from_email
+        message['To'] = ", ".join(to_mail)
+        message['Subject'] = subject
+        message.attach(MIMEText(content, 'plain'))
+        if file_path and os.path.isfile(file_path):
+            with open(file_path, "rb") as attachment:
+                part = MIMEBase("application", "octet-stream")
+                part.set_payload(attachment.read())
+                encoders.encode_base64(part)
+                part.add_header(
+                    "Content-Disposition",
+                    f"attachment; filename= {os.path.basename(file_path)}",
+                )
+                message.attach(part)
+        try:
+            smtp = smtplib.SMTP(HOST, PORT)
+            smtp.ehlo()
+            smtp.starttls()
+            smtp.login(from_email, password)
+            smtp.sendmail(from_email, to_mail, message.as_string())
+            print("[*] Email sent successfully!")
+        except Exception as e:
+            print(f"[!] An error occurred: {e}")
+        finally:
+            smtp.quit()

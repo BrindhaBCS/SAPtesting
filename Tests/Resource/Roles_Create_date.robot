@@ -1,0 +1,243 @@
+*** Settings ***
+Library    Process
+Library    SAP_Tcode_Library.py
+Library    OperatingSystem
+Library    String
+Library    DateTime
+*** Variables ***
+${GLOBAL_TCODE_LENGTH}
+${GLOBAL_ROLE_LENGTH}
+*** Keywords ***
+System Logon
+    Start Process     ${symvar('SAP_SERVER')}
+    Sleep    5
+    Connect To Session
+    Open Connection    ${symvar('SA_Role_Connection')}
+    Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('SA_Role_Client_Id')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('SA_Role_User_Name')}
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('SA_Role_User_Password')}  
+    # Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{SA_Role_User_Password}
+    Send Vkey    0
+    Sleep    3
+    Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
+    Sleep   1
+TEST_System_Logon
+    Start Process     ${symvar('SAP_SERVER')}
+    Sleep    5
+    Connect To Session
+    Open Connection    ${symvar('SA_Role_Connection')}
+    Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('SA_Role_Client_Id')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('Create_Date_User_Name')}
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('Create_Date_User_Password')}  
+    # Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{Create_Date_User_Password}
+    Send Vkey    0
+    Sleep    3
+    Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
+    Sleep   1
+System Logout
+    Run Transaction     /nex
+    Sleep   2
+
+Get roles from Table
+    Run Transaction     /nse16
+    Sleep    2
+    Input Text    wnd[0]/usr/ctxtDATABROWSE-TABLENAME    AGR_DEFINE
+    Send Vkey    0
+    Input Text    wnd[0]/usr/ctxtI4-LOW    01.08.2024
+    Sleep    2
+    ${Get Current Date}    Get Current Date    result_format=%d.%m.%Y
+    Input Text    wnd[0]/usr/ctxtI4-HIGH    ${Get Current Date}
+    Sleep    2
+    Click Element    ${symvar('Execute')}
+    Sleep    2
+    #Clicking edit and giving download
+    Click Element    wnd[0]/mbar/menu[1]/menu[5]
+    Sleep    2
+    #selecting xlsx format
+    Select Radio Button    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[2,0]
+    Sleep    2
+    Click Element    wnd[1]/tbar[0]/btn[0]
+    Sleep    2
+    clear field text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME
+    Sleep    2
+    Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Role
+    Sleep    2
+    Click Element    wnd[1]/tbar[0]/btn[20]
+    Sleep    2
+    clear field text    wnd[1]/usr/ctxtDY_PATH
+    Sleep    2
+    Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp
+    Sleep    2
+    Click Element    wnd[1]/tbar[0]/btn[11]
+    Sleep    2
+    ${role_length}    Roles extract    C:\\tmp\\Role.xlsx    Sheet1    C:\\tmp\\Roles3.txt
+    Set Global Variable    ${GLOBAL_ROLE_LENGTH}    ${role_length}  # Set it as a global variable
+    Log    ${GLOBAL_ROLE_LENGTH}
+    Sleep    2
+    Run Transaction     /nse16
+    Sleep    2
+    clear field text    wnd[0]/usr/ctxtDATABROWSE-TABLENAME
+    Input Text    wnd[0]/usr/ctxtDATABROWSE-TABLENAME    AGR_TCODES
+    Send Vkey    0
+    Sleep    2
+    Click Element    wnd[0]/usr/btn%_I1_%_APP_%-VALU_PUSH
+    Sleep    2
+    Click Element    wnd[1]/tbar[0]/btn[23]
+    Sleep    2
+    Input Text    wnd[2]/usr/ctxtDY_PATH    C:\\tmp\\
+    Sleep    2
+    Input Text    wnd[2]/usr/ctxtDY_FILENAME    Roles3.txt
+    Sleep    2
+    Click Element    wnd[2]/tbar[0]/btn[0]
+    Sleep    2
+    Click Element    wnd[1]/tbar[0]/btn[8]
+    Sleep    2
+    Click Element    wnd[0]/tbar[1]/btn[8]
+    Sleep    2
+    #Clicking edit and giving download
+    Click Element    wnd[0]/mbar/menu[1]/menu[5]
+    Sleep    2
+    #selecting xlsx format
+    Select Radio Button    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[2,0]
+    Sleep    2
+    Click Element    wnd[1]/tbar[0]/btn[0]
+    Sleep    2
+    clear field text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME
+    Sleep    2
+    Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Roles3
+    Sleep    2
+    Click Element    wnd[1]/tbar[0]/btn[20]
+    Sleep    2
+    clear field text    wnd[1]/usr/ctxtDY_PATH
+    Sleep    2
+    Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp
+    Sleep    2
+    Click Element    wnd[1]/tbar[0]/btn[11]
+    Sleep    5
+    ${tcode_length}    Tcode Extract    C:\\tmp\\Roles3.xlsx    Sheet1
+    Set Global Variable    ${GLOBAL_TCODE_LENGTH}    ${tcode_length}  # Set it as a global variable
+    Log    ${GLOBAL_TCODE_LENGTH}
+    Sleep    5
+    Run Transaction    /nsu01
+    Sleep    1
+    Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('Create_Date_User_Name')}           #userfiled
+    Sleep    1
+    Click Element    wnd[0]/tbar[1]/btn[7]                                #displayicon
+    Sleep    1
+    Click Element    wnd[0]/tbar[1]/btn[19]                                #change&displayicon
+    Sleep    1
+    ${last_name}    Get Value    wnd[0]/usr/tabsTABSTRIP1/tabpADDR/ssubMAINAREA:SAPLSUID_MAINTENANCE:1900/txtSUID_ST_NODE_PERSON_NAME-NAME_LAST
+    IF  '${last_name}' == ''
+        Input Text    wnd[0]/usr/tabsTABSTRIP1/tabpADDR/ssubMAINAREA:SAPLSUID_MAINTENANCE:1900/txtSUID_ST_NODE_PERSON_NAME-NAME_LAST    Check Role
+        Sleep    2
+        Click Element    wnd[0]/usr/tabsTABSTRIP1/tabpACTG
+        Sleep    1
+        ${tech}    Get Sap Cell Value AGR NAME    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    0
+        IF  '${tech}' != ''
+            Delete Allrole Save
+            Sleep    1
+            Clear Field Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME
+            Sleep    2
+            Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('Create_Date_User_Name')}           #userfiled
+            Sleep    1
+            Click Element    wnd[0]/tbar[1]/btn[7]                                #displayicon
+            Sleep    1
+            Click Element    wnd[0]/tbar[1]/btn[19]                                #change&displayicon
+            Sleep    1
+            Click Element    wnd[0]/usr/tabsTABSTRIP1/tabpACTG                    #role bar button
+            Sleep    2
+            ${desc}    Get Length    ${GLOBAL_ROLE_LENGTH}
+            FOR    ${loop}    IN RANGE    0    ${desc}
+                ${value} =    Set Variable    ${GLOBAL_ROLE_LENGTH[${loop}]}
+                Modify Sap Cell    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    ${loop}    ${value}
+                Sleep    1
+            END
+        ELSE    
+            ${desc}    Get Length    ${GLOBAL_ROLE_LENGTH}
+            FOR    ${loop}    IN RANGE    0    ${desc}
+                ${value} =    Set Variable    ${GLOBAL_ROLE_LENGTH[${loop}]}
+                Modify Sap Cell    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    ${loop}    ${value}
+                Sleep    1
+            END
+        END
+    ELSE    
+        Click Element    wnd[0]/usr/tabsTABSTRIP1/tabpACTG
+        Sleep    1
+        ${tech}    Get Sap Cell Value AGR NAME    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    0
+        IF  '${tech}' != ''
+            Delete Allrole Save
+            Sleep    1
+            Clear Field Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME
+            Sleep    2
+            Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('Create_Date_User_Name')}           #userfiled
+            Sleep    1
+            Click Element    wnd[0]/tbar[1]/btn[7]                                #displayicon
+            Sleep    1
+            Click Element    wnd[0]/tbar[1]/btn[19]                                #change&displayicon
+            Sleep    1
+            Click Element    wnd[0]/usr/tabsTABSTRIP1/tabpACTG                    #role bar button
+            Sleep    2
+            ${desc}    Get Length    ${GLOBAL_ROLE_LENGTH}
+            FOR    ${loop}    IN RANGE    0    ${desc}
+                ${value} =    Set Variable    ${GLOBAL_ROLE_LENGTH[${loop}]}
+                Modify Sap Cell    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    ${loop}    ${value}
+                Sleep    1
+            END
+        ELSE    
+            ${desc}    Get Length    ${GLOBAL_ROLE_LENGTH}
+            FOR    ${loop}    IN RANGE    0    ${desc}
+                ${value} =    Set Variable    ${GLOBAL_ROLE_LENGTH[${loop}]}
+                Modify Sap Cell    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    ${loop}    ${value}
+                Sleep    1
+            END
+        END
+    END
+    Click Element    wnd[0]/tbar[0]/btn[11]
+    Sleep    1
+    Run Transaction    /nstauthtrace
+    Sleep    3
+    Click Element    wnd[0]/tbar[1]/btn[7]
+    Sleep    2
+    Set Focus    wnd[0]/usr/ctxtSC_100_TRACE_USER
+    Sleep    1
+    Clear Field Text    wnd[0]/usr/ctxtSC_100_TRACE_USER
+    Sleep    1
+    Input Text    wnd[0]/usr/ctxtSC_100_TRACE_USER    ${symvar('Create_Date_User_Name')}
+    Sleep    2
+    Click Element    wnd[0]/tbar[1]/btn[6]
+    Sleep    3 
+Test_User
+    ${aesc}    Get Length    ${GLOBAL_TCODE_LENGTH}
+    FOR    ${j}    IN RANGE    0    ${aesc}
+        ${input} =    Set Variable    ${GLOBAL_TCODE_LENGTH[${j}]}
+        Sleep    1
+        Run Transaction    /n${input}
+        Sleep    1
+        Take Screenshot    tcode_${j}.jpg
+    END
+Own_User
+    Run Transaction    /nstauthtrace
+    Sleep    1
+    Click Element    wnd[0]/tbar[1]/btn[8]
+    Sleep    1
+    # Click Element    wnd[0]/mbar/menu[0]/menu[1]/menu[2]                #excel_extract
+    # Sleep    1
+    Send Vkey    vkey_id=45
+    Sleep    1 
+    Select Radio Button    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[2,0]
+    Sleep    2
+    Click Element    wnd[1]/tbar[0]/btn[0]
+    Sleep    2
+    clear field text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME
+    Sleep    2
+    Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Create_date_report
+    Sleep    2
+    Click Element    wnd[1]/tbar[0]/btn[20]
+    Sleep    2
+    clear field text    wnd[1]/usr/ctxtDY_PATH
+    Sleep    2
+    Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp
+    Sleep    2
+    Click Element    wnd[1]/tbar[0]/btn[11]
+    Sleep    2
+    # Send Mail    from_email=suryaprakash.r@basiscloudsolutions.com    password=********    to_mail=@{mail}    subject="Status of stauthtrace"     content=Today_Create_date_file_report   file_path=C:\\tmp\\Create_date_report.xlsx
