@@ -12,7 +12,7 @@ ${BASE_LOCATOR}       __identifier1-__xmlview3--idProductDownloadList
 ${MAX_TRIES}          100  # Maximum number of locators to try
 *** Keywords ***
 Verify Package
-    ${Package}    Verify The Support Packages    ${symvar('supportpackage')}    ${symvar('Current_Version')}    ${symvar('Download_Dir')}
+    ${Package}    Verify The Support Packages    ${symvar('supportpackage')}    ${symvar('Current_Version')}    ${symvar('supportpackage_path')}
     Log    ${Package}  
     Log To Console    ${Package}
     Set Global Variable    ${Package}
@@ -25,12 +25,12 @@ Verify Package
 login page
     # # Open Browser    ${url}    ${browser}
     Create Directory    ${symvar('Download_Dir')}
-    ${chrome_options}=    Get Chrome Options    ${symvar('Download_Dir')}
+    ${chrome_options}=    Get Chrome Options    ${symvar('supportpackage_path')}
     Open Browser    ${url}    ${browser}    options=${chrome_options}
     Maximize Browser Window
     Sleep    15
     Click Element    xpath://span[normalize-space(text())='Software Downloads']
-    Sleep    5
+    Sleep    10
     Switch Window    NEW
     Sleep    2
     Input Text    id:j_username   ${symvar('S_Username')}
@@ -38,7 +38,7 @@ login page
     Click Element    xpath://div[text()='Continue']
     Sleep    15
     Input Text    id:password    %{S_Password}
-    Sleep    5
+    Sleep    10
     Click Element    xpath://button[text()='Sign in']
     Sleep    30
 
