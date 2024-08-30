@@ -9,7 +9,8 @@ ${browser}    chrome
 login page
     Open Browser    ${url}    ${browser}    
     Maximize Browser Window
-    Sleep    15
+    Sleep    20
+    Wait Until Element Is Visible    xpath://span[normalize-space(text())='Software Downloads']    120s
     Click Element    xpath://span[normalize-space(text())='Software Downloads']
     Sleep    5
     Switch Window    NEW
