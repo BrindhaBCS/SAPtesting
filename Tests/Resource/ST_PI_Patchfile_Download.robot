@@ -24,7 +24,7 @@ Verify Package
     END
 login page
     # # Open Browser    ${url}    ${browser}
-    Create Directory    ${symvar('Download_Dir')}
+    Create Directory    ${symvar('supportpackage_path')}
     ${chrome_options}=    Get Chrome Options    ${symvar('supportpackage_path')}
     Open Browser    ${url}    ${browser}    options=${chrome_options}
     Maximize Browser Window
