@@ -80,5 +80,5 @@ Software Download
         Run Keyword If    '${file_exists}' == 'False'    Log   The file ${element_text} already exists, skipping download.
         
         Run Keyword If    '${element_text}' == '${symvar('supportpackage')}'    Exit For Loop
+        Log To Console    **gbStart**copilot_status**splitKeyValue**Support packages downloaded from SAP Portal into local server**gbEnd**
     END
-    Log To Console    **gbStart**copilot_status**splitKeyValue**Support packages downloaded from SAP Portal into local server**gbEnd**
