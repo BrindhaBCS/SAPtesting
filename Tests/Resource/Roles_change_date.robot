@@ -13,10 +13,13 @@ System Logon
     Sleep    5
     Connect To Session
     Open Connection    ${symvar('SA_Role_Connection')}
+    Sleep   1
     Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('SA_Role_Client_Id')}
+    Sleep   1
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('SA_Role_User_Name')}
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('SA_Role_User_Password')}  
-    # Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{SA_Role_User_Password}
+    Sleep   1
+    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('SA_Role_User_Password')}
+    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{SA_Role_User_Password}
     Send Vkey    0
     Sleep    3
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
@@ -26,14 +29,17 @@ TEST_System_Logon
     Sleep    5
     Connect To Session
     Open Connection    ${symvar('SA_Role_Connection')}
+    Sleep   1
     Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('SA_Role_Client_Id')}
+    Sleep   1
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('Change_Date_User_Name')}
+    Sleep   1
     Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('New_User_Password')}
     Send Vkey    0
     Sleep    3
-    Input Password    wnd[1]/usr/pwdRSYST-NCODE    Welcome@@123    #%{Change_Date_User_Password}
+    Input Password    wnd[1]/usr/pwdRSYST-NCODE    ${symvar('User_Reset_Password')}       #%{Change_Date_User_Password}
     Sleep    2
-    Input Password    wnd[1]/usr/pwdRSYST-NCOD2    Welcome@@123    #%{Change_Date_User_Password}
+    Input Password    wnd[1]/usr/pwdRSYST-NCOD2    ${symvar('User_Reset_Password')}    #%{Change_Date_User_Password}
     Sleep    2
     Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    2
@@ -126,7 +132,9 @@ Change Date
     Sleep    5
 Create new user
     Run Transaction    /nSU01
+    Sleep   1
     Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('Change_Date_User_Name')}
+    Sleep   1
     Click Element    wnd[0]/tbar[1]/btn[8]
     Sleep    5
     Window Handling    wnd[1]    Address Maintenance      wnd[1]/usr/btnBUTTON_2
