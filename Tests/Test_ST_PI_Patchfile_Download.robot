@@ -6,4 +6,4 @@ Suite Setup    ST_PI_Patchfile_Download.login page
  
 *** Test Cases ***
 Download the support package files from SAP portal for ST-PI
-    Software Download
+    Verify Package
