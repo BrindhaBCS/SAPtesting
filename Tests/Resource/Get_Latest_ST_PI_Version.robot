@@ -35,7 +35,7 @@ Software Download
     Sleep    4
     Click Element    id:__field0-search
     Sleep    10
-    Click Element    id:__item29-__clone71
+    Click Element    id:__item29-__clone73
     Sleep    2
     Click Element    id:__xmlview3--idProductHierarchyList
     Sleep    5
