@@ -29,10 +29,12 @@ login page
     Open Browser    ${url}    ${browser}    options=${chrome_options}
     Maximize Browser Window
     Sleep    15
+    Wait Until Element Is Visible    xpath://span[normalize-space(text())='Software Downloads']    120s
     Click Element    xpath://span[normalize-space(text())='Software Downloads']
     Sleep    10
     Switch Window    NEW
     Sleep    2
+    Wait Until Element Is Visible    id:j_username    120s
     Input Text    id:j_username   ${symvar('S_Username')}
     Sleep    2
     Click Element    xpath://div[text()='Continue']
