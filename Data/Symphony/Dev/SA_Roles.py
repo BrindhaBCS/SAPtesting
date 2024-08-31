@@ -35,7 +35,6 @@ SAP_SERVER = "$SAP_SERVER"
 SA_Role_Connection = "$SA_Role_Connection"
 SA_Role_Client_Id = "$SA_Role_Client_Id"
 SA_Role_User_Name = "$SA_Role_User_Name"
-SA_Role_User_Password = "$SA_Role_User_Password"
 #test_user_crentials
 Create_From_Date = "$Create_From_Date"
 Create_To_Date ="$Create_To_Date"
