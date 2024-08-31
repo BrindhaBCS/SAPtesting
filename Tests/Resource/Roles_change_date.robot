@@ -60,7 +60,7 @@ Change Date
     ${Get Current Date}    Get Current Date    result_format=%d.%m.%Y
     Input Text    wnd[0]/usr/ctxtI8-HIGH    ${symvar('Change_To_Date')}
     Sleep    2
-    Click Element    ${symvar('Execute')}
+    Click Element    wnd[0]/tbar[1]/btn[8]
     Sleep    2
     #Clicking edit and giving download
     Click Element    wnd[0]/mbar/menu[1]/menu[5]
