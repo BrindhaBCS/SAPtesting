@@ -12,7 +12,7 @@ ${file_path}    ${CURDIR}\\${symvar('filename')}
 Browser Login
     Open Browser    ${symvar('CPI_URL')}    ${symvar('browsertype')}    options=add_argument("--ignore-certificate-errors")
     Maximize Browser Window
-    Sleep    20
+    Sleep    10
     Input Text    id:j_username    ${symvar('username')}    
     Sleep    5
     Click Element    xpath://*[@id="logOnFormSubmit"]
@@ -24,7 +24,7 @@ Browser Login
     Scroll Element Into View    xpath://button[@class='uid-login-as__submit-button test-button ds-button ds-button--primary' and text()='Sign in']
     Sleep     2    
     Click Element    xpath://button[@class='uid-login-as__submit-button test-button ds-button ds-button--primary' and text()='Sign in']
-    Sleep    20
+    Sleep    30
     ${Title}    Get Location
     Set Global Variable    ${Title}
     Log To Console    ${Title}    
