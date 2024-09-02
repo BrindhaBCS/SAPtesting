@@ -16,8 +16,8 @@ System Logon
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('ALM_User')}
     Input Password   wnd[0]/usr/pwdRSYST-BCODE      ${symvar('ALM_pass')}  
     Send Vkey    0
-    Input Password    wnd[1]/usr/pwdRSYST-NCODE    %{ABAP_Password}
-    Input Password    wnd[1]/usr/pwdRSYST-NCOD2    %{ABAP_Password}
+    Input Password    wnd[1]/usr/pwdRSYST-NCODE    ${symvar('ALMChangePass')}
+    Input Password    wnd[1]/usr/pwdRSYST-NCOD2    ${symvar('ALMChangePass')}
     Click Element    wnd[1]/tbar[0]/btn[0]
     Window Handling    wnd[1]    Copyright    wnd[1]/tbar[0]/btn[0]
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
