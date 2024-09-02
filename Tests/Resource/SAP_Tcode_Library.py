@@ -1119,13 +1119,6 @@ class SAP_Tcode_Library:
         except Exception as e:
             print("Error: {e}")
 
-    def set_caret_position(self, element_id, position):
-        try:
-            element = self.session.findById(element_id)
-            element.caretposition = position
-
-        except Exception as e:
-            print("Error: {e}")
             
     def scot_tree(self, tree_id):
         try:
@@ -1505,3 +1498,10 @@ class SAP_Tcode_Library:
         with open(file_path, 'r') as file:
             content = file.read()
         return content
+    def set_caret_position(self, element_id, position):
+        try:
+            element = self.session.findById(element_id)
+            element.caretposition = position
+
+        except Exception as e:
+            print("Error: {e}")
