@@ -230,7 +230,7 @@ Own_User
 Deletefile
     Delete Specific File    file_path=C:\\tmp\\Change_Role_extract.xlsx
     Sleep    1
-    Delete Specific File    file_path=C:\\tmp\\file_name=Change_Role_extract.txt
+    Delete Specific File    file_path=C:\\tmp\\Change_Role_extract.txt
     Sleep    1
-    Delete Specific File    file_path=C:\\tmp\\file_name=Change_Tcode_extract.xlsx
+    Delete Specific File    file_path=C:\\tmp\\Change_Tcode_extract.xlsx
     Sleep    1
