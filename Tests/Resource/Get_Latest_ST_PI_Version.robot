@@ -9,7 +9,12 @@ ${browser}    chrome
 login page
     Open Browser    ${url}    ${browser}    
     Maximize Browser Window
-    Sleep    15
+    Sleep    20
+    ${element_present}=    Run Keyword And Return Status    element should be visible    xpath://span[normalize-space(text())='Software Downloads']
+    Sleep    5
+    Run Keyword If    '${element_present}' == 'False'    Reload Page
+    Sleep    5
+    # Wait Until Element Is Visible    xpath://span[normalize-space(text())='Software Downloads']    120s
     Click Element    xpath://span[normalize-space(text())='Software Downloads']
     Sleep    5
     Switch Window    NEW
