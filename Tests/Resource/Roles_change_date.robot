@@ -228,9 +228,9 @@ Own_User
     # Send Mail    from_email=suryaprakash.r@basiscloudsolutions.com    password=********    to_mail=@{mail}    subject="Status of stauthtrace"     content=Today_Create_date_file_report   file_path=C:\\tmp\\Create_date_report.xlsx
 
 Deletefile
-    Delete Files    directory=C:\\tmp\\    file_name=Change_Role_extract.xlsx
+    Delete Specific File    file_path=C:\\tmp\\Change_Role_extract.xlsx
     Sleep    1
-    Delete Files    directory=C:\\tmp\\    file_name=Change_Role_extract.txt
+    Delete Specific File    file_path=C:\\tmp\\file_name=Change_Role_extract.txt
     Sleep    1
-    Delete Files    directory=C:\\tmp\\    file_name=Change_Tcode_extract.xlsx
+    Delete Specific File    file_path=C:\\tmp\\file_name=Change_Tcode_extract.xlsx
     Sleep    1

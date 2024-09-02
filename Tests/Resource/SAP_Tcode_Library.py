@@ -1622,17 +1622,6 @@ class SAP_Tcode_Library:
             print(f"An error occurred: {e}")
             return []
         
-    def delete_files(self, directory, file_name):
-        try:
-            patterns = [f'{file_name}.xlsx', f'{file_name}.txt']
-            
-            for pattern in patterns:
-                files = glob.glob(os.path.join(directory, pattern))
-                for file in files:
-                    os.remove(file)
-        except Exception as e:
-            print(f"An error occurred: {e}")
-
     def get_file_content(Self, file_path, ):
         """
         Reads the content of a file and returns it as a string.
@@ -1789,3 +1778,11 @@ class SAP_Tcode_Library:
             print(f"[!] An error occurred: {e}")
         finally:
             smtp.quit()
+    def delete_specific_file(self, file_path):
+        try:
+            if os.path.exists(file_path):
+                os.remove(file_path)
+            else:
+                print(f"The file '{file_path}' does not exist.")
+        except Exception as e:
+            print(f"An error occurred: {e}")
