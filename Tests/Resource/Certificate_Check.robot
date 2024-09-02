@@ -19,14 +19,14 @@ Get File Name From URL
     ${file_name}=    Get Substring    ${path}    ${path.rfind('/') + 1}
     [Return]    ${file_name}
 System Logon
-    Start Process     ${symvar('SAP_SERVER')}     
+    Start Process     ${symvar('ABAP_SAP_SERVER')}     
     Sleep    2
     Connect To Session
-    Open Connection    ${symvar('RBT_SAP_CONNECTION')}    
-    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('RBT_CLIENT_ID')}
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('RBT_USER_NAME')}
+    Open Connection    ${symvar('ABAP_Connection')}    
+    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('ABAP_CLIENT')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('ABAP_USER')}
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('RBT_USER_PASSWORD')}
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{RBT_USER_PASSWORD}
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{ABAP_PASSWORD}
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
 
