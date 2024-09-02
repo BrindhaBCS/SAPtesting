@@ -8,9 +8,9 @@ System Logon
     Start Process     ${symvar('SAP_SERVER')}
     Sleep    10s
     Connect To Session
-    Open Connection    ${symvar('SAP_connection')}
-    Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('Client_Id')}
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('User_Name')}
+    Open Connection    ${symvar('Connection_Name')}
+    Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('client')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('User')}
     Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
     Send Vkey    0
     Sleep    3s
