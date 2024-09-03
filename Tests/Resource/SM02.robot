@@ -20,7 +20,7 @@ System Logon
 SM02
     Run Transaction     /nSM02
     Sleep   3s
-    ${window}    Get Value    wnd[0]
+    ${window}    Get Window Title    wnd[0]
     IF    '${window}' == 'System Messages'
         ${log_value}        Get Lable Value     wnd[0]/usr      ${symvar('search_texts')}
         Log To Console      ${log_value}
