@@ -1590,4 +1590,42 @@ class SAP_Tcode_Library:
                 time.sleep(1)                       
  
         except Exception as e:
-            print(e)    
+            print(e)
+
+    def get_certificate_value(self, lable_id, search_texts):
+        user_area = self.session.findById(lable_id)
+        item_count = user_area.Children.Count
+        found_certificate = []
+        for search_text in search_texts:
+            for i in range(item_count):
+                element = user_area.Children.ElementAt(i)
+                if element.Text.strip() == search_text.strip():
+                    found_certificate.append(element.Text)
+                    print(element.Text)
+                    break
+            else:
+                print("['Certificate is not found']")
+                return("['Certificate is not found']")
+        return found_certificate   
+
+    def system_messages(self, Text_box_ids, messages):
+        """
+        Sets the text of specified SAP GUI labels and returns the resulting values.
+
+        Args:
+            label_ids (list): A list of SAP GUI label IDs to set the text for.
+            messages (list): A list of strings to search for in the SAP GUI window.
+
+        Returns:
+            list: A list of the resulting values of the specified labels.
+        """
+        for Text_box_id, messages in zip(Text_box_ids, messages):
+            self.session.findById("wnd[1]/usr/" + Text_box_id).text = messages
+
+        # Wait for the SAP GUI window to update with the new label values
+        time.sleep(1)
+        label_values = [self.session.findById("wnd[1]/usr/" + Text_box_id).text for Text_box_id in Text_box_ids]
+
+        print(label_values)
+
+        return label_values                

@@ -28,24 +28,12 @@ SLAES_ORDER_CREATION
 	Sleep	2
 	Send Vkey	0
 	Sleep	2
-	Send Vkey	4
+	
+    Input Text	wnd[0]/usr/subSUBSCREEN_HEADER:SAPMV45A:4021/subPART-SUB:SAPMV45A:4701/ctxtKUAGV-KUNNR	${symvar('sold_to_party')}
 	Sleep	2
-	Click Element	wnd[1]/tbar[0]/btn[0]
+	Input Text	wnd[0]/usr/subSUBSCREEN_HEADER:SAPMV45A:4021/subPART-SUB:SAPMV45A:4701/ctxtKUWEV-KUNNR	${symvar('ship_to_party')}
 	Sleep	2
-	Set Focus	wnd[1]/usr/lbl[7,15]
-	Sleep	2
-	Send Vkey	2
-	Sleep	2
-	Set Focus	wnd[0]/usr/subSUBSCREEN_HEADER:SAPMV45A:4021/subPART-SUB:SAPMV45A:4701/ctxtKUWEV-KUNNR
-	Sleep	2
-	Send Vkey	4
-	Sleep	2
-	Click Element	wnd[1]/tbar[0]/btn[0]
-	Sleep	2
-	Set Focus	wnd[1]/usr/lbl[7,15]
-	Sleep	2
-	Send Vkey	2
-	Sleep	2
+
 	Input Text	wnd[0]/usr/subSUBSCREEN_HEADER:SAPMV45A:4021/txtVBKD-BSTKD	BCS - Aug - 021
 	Sleep	2
 	
@@ -55,10 +43,11 @@ SLAES_ORDER_CREATION
     Click Element	wnd[0]/tbar[0]/btn[11]
 	Sleep	2
     ${order_meaasage}    Get Value    wnd[0]/sbar
-    Log To Console    ${order_meaasage}
+    Log    ${order_meaasage}
     ${order_number}=    Extract Order Number    ${order_meaasage}
-    Set Global Variable    ${order_number}
-    Log To Console    **gbStart**Copilot_Status**splitKeyValue**${order_number}**gbEnd**
+	Log    ${order_number}
+    # Set Global Variable    ${order_number}
+    # Log To Console    **gbStart**Copilot_Status**splitKeyValue**order_number:**gbEnd**
 
 System Logout
     Run Transaction   /nex

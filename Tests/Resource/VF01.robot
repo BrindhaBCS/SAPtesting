@@ -25,6 +25,8 @@ VF01
 	Sleep	2
     Set Focus    wnd[0]/usr/tblSAPMV60ATCTRL_ERF_FAKT/ctxtKOMFK-VBELN[0,0]
 	Sleep	2
+    Input Text	wnd[0]/usr/tblSAPMV60ATCTRL_ERF_FAKT/ctxtKOMFK-VBELN[0,0]	${symvar('outbound_delivery_number')}
+	Sleep	2
 	Send Vkey	0
 	Sleep	2
     Set Focus	wnd[0]/usr/tblSAPMV60ATCTRL_UEB_FAKT/ctxtVBRP-MATNR[1,0]
@@ -40,8 +42,9 @@ VF01
     ${document_status}    Get Value    wnd[0]/sbar/pane[0]
     Log To Console    ${document_status}
     ${document_number}=    Extract Order Number    ${document_status}
-    Set Global Variable    ${document_number}
-    Log To Console    **gbStart**Copilot_Status**splitKeyValue**${document_number}**gbEnd**
+    Log    ${document_number}
+    # Set Global Variable    ${document_number}
+    # Log To Console    **gbStart**Copilot_Status**splitKeyValue**${document_number}**gbEnd**
 
 
 System Logout

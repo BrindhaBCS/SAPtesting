@@ -28,7 +28,7 @@ VL01N
 	
     Input Text    wnd[0]/usr/ctxtLIKP-VSTEL   ${symvar('shipping_point')} 
 	Sleep	2
-    Input Text	wnd[0]/usr/ctxtLV50C-VBELN	${order_number}
+    Input Text	wnd[0]/usr/ctxtLV50C-VBELN	${symvar('order_number')}
 	Send Vkey	0
 	Sleep	2
 
@@ -46,8 +46,8 @@ VL01N
     
     Log    outbound_delivery_number: ${outbound_delivery_number["order_number"]}
     Log    Material_number: ${outbound_delivery_number["material_number"]}
-    Set Global Variable    ${outbound_delivery_number}
-    Log To Console    **gbStart**Copilot_Status**splitKeyValue**Order Number:${outbound_delivery_number}**gbEnd**
+    # Set Global Variable    ${outbound_delivery_number}
+    # Log To Console    **gbStart**Copilot_Status_outbounddelivery**splitKeyValue**${outbound_delivery_number["order_number"]}**gbEnd**
     
 System Logout
     Run Transaction   /nex
