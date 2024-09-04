@@ -16,8 +16,8 @@ System Logon
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('ALM_User')}
     Input Password   wnd[0]/usr/pwdRSYST-BCODE      ${symvar('ALM_pass')}  
     Send Vkey    0
-    Input Password    wnd[1]/usr/pwdRSYST-NCODE    ${symvar('ALMChangePass')}
-    Input Password    wnd[1]/usr/pwdRSYST-NCOD2    ${symvar('ALMChangePass')}
+    Input Password    wnd[1]/usr/pwdRSYST-NCODE    %{ALMChangePass}
+    Input Password    wnd[1]/usr/pwdRSYST-NCOD2    %{ALMChangePass}
     Click Element    wnd[1]/tbar[0]/btn[0]
     Window Handling    wnd[1]    Copyright    wnd[1]/tbar[0]/btn[0]
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
@@ -26,6 +26,7 @@ System Logout
 
 System Registration
     Run Transaction     /n/SDF/ALM_SETUP
+    Sleep    5
     ${already exist}    Get Value    wnd[0]/usr/txtLMSIDCOM
     IF  '${already exist}' != ''
         # Log To Console    System is already registered with ALM with : ${already exist}
@@ -36,7 +37,7 @@ System Registration
         Input Text    wnd[0]/usr/ctxtDEST    BCS_ALM
         Sleep    2
         Send Vkey    0
-        Sleep    2
+        Sleep    3
         Click Element    wnd[0]/usr/btnUPD
         Sleep    2
         Click Element    wnd[1]/usr/btnPASTE
@@ -95,19 +96,3 @@ Click Task
     [Arguments]    ${row}
     Select Checkbox    wnd[1]/usr/tbl/SDF/ALM_SETUPTASKS_CONTROL/chkWA_CURRENT_TASK-ACTIVE[0,${row}]
     
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
