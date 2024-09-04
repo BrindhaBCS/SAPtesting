@@ -1,14 +1,10 @@
 *** Settings ***
-Resource    Resource/STMS.robot
-Force Tags    STMS
+Resource    ../Tests/Resource/STMS.robot
 Suite Setup    STMS.System Logon
-Suite Teardown    STMS.System Logout
-  
-*** Test Cases ***
+Suite Teardown    STMS.System Logout 
+Test Tags    STMS_ST
 
-     
-Executing STMS
-    Transaction STMS   
-    Import Overview    
-    Transport Routes     
-    Transport Layers
+*** Test Cases ***
+STMS
+    STMS
+
