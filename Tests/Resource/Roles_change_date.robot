@@ -10,7 +10,7 @@ ${GLOBAL_ROLE_LENGTH}
 *** Keywords ***
 System Logon
     Start Process     ${symvar('SAP_SERVER')}
-    Sleep    5
+    Sleep    2
     Connect To Session
     Open Connection    ${symvar('SA_Role_Connection')}
     Sleep   1
@@ -21,12 +21,12 @@ System Logon
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('SA_Role_User_Password')}
     Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{SA_Role_User_Password}
     Send Vkey    0
-    Sleep    3
+    Sleep    1
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
     Sleep   1
 TEST_System_Logon
     Start Process     ${symvar('SAP_SERVER')}
-    Sleep    5
+    Sleep    2
     Connect To Session
     Open Connection    ${symvar('SA_Role_Connection')}
     Sleep   1
@@ -37,7 +37,7 @@ TEST_System_Logon
     Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('User_Reset_Current_Password ')}
     # Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{User_Reset_Current_Password}
     Send Vkey    0
-    Sleep    3
+    Sleep    1
 
 System Logout
     Run Transaction     /nex
@@ -49,74 +49,74 @@ Change_Date
     Input Text    wnd[0]/usr/ctxtDATABROWSE-TABLENAME    AGR_DEFINE
     Send Vkey    0
     Input Text    wnd[0]/usr/ctxtI8-LOW    ${symvar('Change_From_Date')}
-    Sleep    2
+    Sleep    1
     ${Get Current Date}    Get Current Date    result_format=%d.%m.%Y
     Input Text    wnd[0]/usr/ctxtI8-HIGH    ${symvar('Change_To_Date')}
-    Sleep    2
+    Sleep    1
     Click Element    wnd[0]/tbar[1]/btn[8]
-    Sleep    2
+    Sleep    1
     #Clicking edit and giving download
     Click Element    wnd[0]/mbar/menu[1]/menu[5]
-    Sleep    2
+    Sleep    1
     #selecting xlsx format
     Select Radio Button    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[2,0]
-    Sleep    2
+    Sleep    1
     Click Element    wnd[1]/tbar[0]/btn[0]
-    Sleep    2
+    Sleep    1
     clear field text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME
-    Sleep    2
+    Sleep    1
     Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Change_Role_extract
-    Sleep    2
+    Sleep    1
     Click Element    wnd[1]/tbar[0]/btn[20]
-    Sleep    2
+    Sleep    1
     clear field text    wnd[1]/usr/ctxtDY_PATH
-    Sleep    2
+    Sleep    1
     Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp
-    Sleep    2
+    Sleep    1
     Click Element    wnd[1]/tbar[0]/btn[11]
-    Sleep    2
+    Sleep    1
     ${role_length}    Roles extract    C:\\tmp\\Change_Role_extract.xlsx    Sheet1    C:\\tmp\\Change_Role_extract.txt
     Set Global Variable    ${GLOBAL_ROLE_LENGTH}    ${role_length}  # Set it as a global variable
     Log    ${GLOBAL_ROLE_LENGTH}
-    Sleep    2
+    Sleep    1
     Run Transaction     /nse16
     Sleep    2
     clear field text    wnd[0]/usr/ctxtDATABROWSE-TABLENAME
     Input Text    wnd[0]/usr/ctxtDATABROWSE-TABLENAME    AGR_TCODES
     Send Vkey    0
-    Sleep    2
+    Sleep    1
     Click Element    wnd[0]/usr/btn%_I1_%_APP_%-VALU_PUSH
-    Sleep    2
+    Sleep    1
     Click Element    wnd[1]/tbar[0]/btn[23]
-    Sleep    2
+    Sleep    1
     Input Text    wnd[2]/usr/ctxtDY_PATH    C:\\tmp\\
-    Sleep    2
+    Sleep    1
     Input Text    wnd[2]/usr/ctxtDY_FILENAME    Change_Role_extract.txt
-    Sleep    2
+    Sleep    1
     Click Element    wnd[2]/tbar[0]/btn[0]
-    Sleep    2
+    Sleep    1
     Click Element    wnd[1]/tbar[0]/btn[8]
-    Sleep    2
+    Sleep    1
     Click Element    wnd[0]/tbar[1]/btn[8]
-    Sleep    2
+    Sleep    1
     #Clicking edit and giving download
     Click Element    wnd[0]/mbar/menu[1]/menu[5]
-    Sleep    2
+    Sleep    1
     #selecting xlsx format
     Select Radio Button    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[2,0]
-    Sleep    2
+    Sleep    1
     Click Element    wnd[1]/tbar[0]/btn[0]
-    Sleep    2
+    Sleep    1
     clear field text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME
-    Sleep    2
+    Sleep    1
     Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Change_Tcode_extract
-    Sleep    2
+    Sleep    1
     Click Element    wnd[1]/tbar[0]/btn[20]
-    Sleep    2
+    Sleep    1
     clear field text    wnd[1]/usr/ctxtDY_PATH
-    Sleep    2
+    Sleep    1
     Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp
-    Sleep    2
+    Sleep    1
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    1
     ${role_length}    Roles Extract    file_location=C:\\tmp\\Change_Tcode_extract.xlsx    sheet_name=Sheet1

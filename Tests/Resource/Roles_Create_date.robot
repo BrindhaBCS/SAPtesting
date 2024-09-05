@@ -10,7 +10,7 @@ ${GLOBAL_ROLE_LENGTH}
 *** Keywords ***
 System Logon
     Start Process     ${symvar('SAP_SERVER')}
-    Sleep    5
+    Sleep    2
     Connect To Session
     Open Connection    ${symvar('SA_Role_Connection')}
     Sleep   1
@@ -21,12 +21,12 @@ System Logon
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('SA_Role_User_Password')}
     Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{SA_Role_User_Password}
     Send Vkey    0
-    Sleep    3
+    Sleep    1
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
     Sleep   1
 TEST_System_Logon
     Start Process     ${symvar('SAP_SERVER')}
-    Sleep    5
+    Sleep    2
     Connect To Session
     Open Connection    ${symvar('SA_Role_Connection')}
     Sleep   1
@@ -37,10 +37,10 @@ TEST_System_Logon
     Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('User_Reset_Current_Password ')}
     # Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{User_Reset_Current_Password}
     Send Vkey    0
-    Sleep    3
+    Sleep    1
 System Logout
     Run Transaction     /nex
-    Sleep   2
+    Sleep   1
 
 Get roles from Table
     Run Transaction     /nse16
@@ -177,7 +177,7 @@ Get roles from Table
                 ${input} =    Set Variable    ${GLOBAL_TCODE_LENGTH[${j}]}
                 Sleep    1
                 Run Transaction    /n${input}
-                Sleep    4
+                Sleep    2
                 Take Screenshot    tcode_${j}.jpg
                 Sleep    2
                 ${think}    Get Value    wnd[0]/sbar/pane[0]
@@ -293,7 +293,7 @@ Get roles from Table
                 ${input} =    Set Variable    ${GLOBAL_TCODE_LENGTH[${j}]}
                 Sleep    1
                 Run Transaction    /n${input}
-                Sleep    4
+                Sleep    2
                 Take Screenshot    tcode_${j}.jpg
                 Sleep    2
                 ${think}    Get Value    wnd[0]/sbar/pane[0]
