@@ -1655,11 +1655,9 @@ class SAP_Tcode_Library:
         
     def Modify_sap_cell(self, cell_path, row_index, agr_name_value):
         try:
-            # Obtain the SAP GUI session
             sap_gui = win32com.client.GetObject("SAPGUI")
             application = sap_gui.GetScriptingEngine
             session = application.Children(0).Children(0)
-            # Modify the specified cell
             session.findById(cell_path).modifyCell(int(row_index), "AGR_NAME", agr_name_value)
             return f"Cell at row {row_index} modified successfully with AGR_NAME: {agr_name_value}"
         except Exception as e:
@@ -1667,46 +1665,30 @@ class SAP_Tcode_Library:
 
     def Get_sap_cell_value_AGR_NAME(self, cell_path, row_index):
         try:
-            # Obtain the SAP GUI session
             sap_gui = win32com.client.GetObject("SAPGUI")
             application = sap_gui.GetScriptingEngine
             session = application.Children(0).Children(0)
-            
-            # Access the table
             table = session.findById(cell_path)
-            
-            # Retrieve the specified cell value
             cell_value = table.getCellValue(int(row_index), "AGR_NAME")
             return cell_value
         except Exception as e:
             return f"An error occurred: {e}"
 
 
-    def Roles_extract(self, file_location, sheet_name, output_file):
+    def Roles_extract(self, file_location, sheet_name, output_file=None):
         try:
-            # Read the Excel file and select the specified column
             df = pd.read_excel(file_location, sheet_name=sheet_name, usecols=[2], header=None)
             df.columns = ['AGR_NAME']
-            
-            # Strip whitespace and filter out any rows that match the column header name (case-insensitive)
             df['AGR_NAME'] = df['AGR_NAME'].str.strip()
             filtered_data = df[~df['AGR_NAME'].str.casefold().eq('agr_name')]
-            
-            # Convert the filtered data to a list of strings, removing any empty strings
             roles_list = filtered_data['AGR_NAME'].dropna().astype(str).tolist()
-            roles_list = [role for role in roles_list if role]  # Remove empty strings
-            
-            # Write the filtered data to the specified output file
-            filtered_data_str = "\n".join(roles_list)
-            with open(output_file, 'w') as file:
-                file.write(filtered_data_str)
-            
-            # Print the result for verification
-            print(f"Data has been written to {output_file}")
-            
-            # Return the list of roles without empty strings
+            roles_list = [role for role in roles_list if role]
+            if output_file:
+                filtered_data_str = "\n".join(roles_list)
+                with open(output_file, 'w') as file:
+                    file.write(filtered_data_str)
+            print(f"AGR_NAME list: {roles_list}")
             return roles_list
-        
         except FileNotFoundError:
             print(f"Error: The file at location '{file_location}' was not found.")
             return []
@@ -1717,22 +1699,14 @@ class SAP_Tcode_Library:
 
     def Tcode_extract(self, file_location, sheet_name):
         try:
-            # Read the Excel file and select only the T_CODE column (column 9)
             df = pd.read_excel(file_location, sheet_name=sheet_name, usecols=[9], header=None)
             df.columns = ['T_CODE']
-            
-            # Strip whitespace and filter out any rows with empty T_CODEs
             df['T_CODE'] = df['T_CODE'].str.strip()
             tcodes_list = df['T_CODE'].dropna().astype(str).tolist()
-            tcodes_list = [tcode for tcode in tcodes_list if tcode]  # Remove empty strings
-            
-            # Exclude the first TCODE entry, assuming it is the header 'TCODE'
+            tcodes_list = [tcode for tcode in tcodes_list if tcode] 
             if tcodes_list and tcodes_list[0].casefold() == 'tcode':
                 tcodes_list = tcodes_list[1:]
-            
-            # Return the list of T_CODES without empty strings and excluding the header
             return tcodes_list
-            
         except FileNotFoundError:
             print(f"Error: The file at location '{file_location}' was not found.")
             return []
