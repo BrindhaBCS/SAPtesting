@@ -8,5 +8,4 @@ Test Tags    Roles_User_Create
 Create_new_user
     Create_new_user
     System Logout
-    System Logon
     Login_New_User

@@ -1513,23 +1513,6 @@ class SAP_Tcode_Library:
         except Exception as e:
             print(f"Error: {e}")
 
-    def Roles_extract(self, file_location, sheet_name, output_file):
-        try:
-            df = pd.read_excel(file_location, sheet_name=sheet_name, usecols=[2], header=None)
-            df.columns = ['AGR_NAME']
-            df['AGR_NAME'] = df['AGR_NAME'].str.strip()
-            filtered_data = df[~df['AGR_NAME'].str.casefold().eq('agr_name')]         
-            filtered_data_str = "\n".join(filtered_data['AGR_NAME'].dropna().astype(str).tolist())
-            
-            with open(output_file, 'w') as file:
-                file.write(filtered_data_str)
-            
-            print(f"Data has been written to {output_file}")
-        except FileNotFoundError:
-            print(f"Error: The file at location '{file_location}' was not found.")
-        except Exception as e:
-            print(f"An error occurred: {e}")
-
     def paste_from_clipboard(self, text):
         pyperclip.paste(text)
         return(text)
