@@ -127,7 +127,7 @@ Get roles from Table
     #Tcode_SU01
     Run Transaction    /nsu01
     Sleep    1
-    Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('Create_Date_User_Name')}           #userfiled
+    Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('New_User_Name')}           #userfiled
     Sleep    1
     Click Element    wnd[0]/tbar[1]/btn[7]                                #displayicon
     Sleep    1
@@ -142,7 +142,7 @@ Get roles from Table
         Sleep    1
         Clear Field Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME
         Sleep    1
-        Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('Create_Date_User_Name')}         #userfiled
+        Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('New_User_Name')}         #userfiled
         Sleep    1
         Click Element    wnd[0]/tbar[1]/btn[7]                                #displayicon
         Sleep    1
@@ -163,7 +163,7 @@ Get roles from Table
             Sleep    1
             Clear Field Text    wnd[0]/usr/ctxtSC_100_TRACE_USER
             Sleep    1
-            Input Text    wnd[0]/usr/ctxtSC_100_TRACE_USER    ${symvar('Create_Date_User_Name')}
+            Input Text    wnd[0]/usr/ctxtSC_100_TRACE_USER    ${symvar('New_User_Name')}
             Sleep    1
             Click Element    wnd[0]/tbar[1]/btn[6]
             Sleep    1
@@ -212,7 +212,7 @@ Get roles from Table
                     Sleep    1
                     Clear Field Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME
                     Sleep    1
-                    Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('Create_Date_User_Name')}        #userfiled
+                    Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('New_User_Name')}        #userfiled
                     Sleep    1
                     Click Element    wnd[0]/tbar[1]/btn[7]
                     Sleep    1
@@ -224,7 +224,7 @@ Get roles from Table
                     Sleep    1
                     Clear Field Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME
                     Sleep    1
-                    Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('Create_Date_User_Name')}
+                    Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('New_User_Name')}
                     Sleep    1
                     Click Element    wnd[0]/tbar[1]/btn[7]            #displayicon
                     Sleep    1
@@ -242,7 +242,7 @@ Get roles from Table
                     Sleep    1
                     Clear Field Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME
                     Sleep    1
-                    Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('Create_Date_User_Name')}
+                    Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('New_User_Name')}
                     Sleep    1
                     Click Element    wnd[0]/tbar[1]/btn[7]
                     Sleep    1
@@ -254,7 +254,7 @@ Get roles from Table
                     Sleep    1
                     Clear Field Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME
                     Sleep    1
-                    Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('Create_Date_User_Name')}         #userfiled
+                    Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('New_User_Name')}         #userfiled
                     Sleep    1
                     Click Element    wnd[0]/tbar[1]/btn[7]                                #displayicon
                     Sleep    1
@@ -280,7 +280,7 @@ Get roles from Table
             Sleep    1
             Clear Field Text    wnd[0]/usr/ctxtSC_100_TRACE_USER
             Sleep    1
-            Input Text    wnd[0]/usr/ctxtSC_100_TRACE_USER    ${symvar('Create_Date_User_Name')}
+            Input Text    wnd[0]/usr/ctxtSC_100_TRACE_USER    ${symvar('New_User_Name')}
             Sleep    1
             Click Element    wnd[0]/tbar[1]/btn[6]
             Sleep    1
@@ -328,7 +328,7 @@ Get roles from Table
                     Sleep    1
                     Clear Field Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME
                     Sleep    1
-                    Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('Create_Date_User_Name')}
+                    Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('New_User_Name')}
                     Sleep    1
                     Click Element    wnd[0]/tbar[1]/btn[7]
                     Sleep    1
@@ -340,7 +340,7 @@ Get roles from Table
                     Sleep    1
                     Clear Field Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME
                     Sleep    1
-                    Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('Create_Date_User_Name')}
+                    Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('New_User_Name')}
                     Sleep    1
                     Click Element    wnd[0]/tbar[1]/btn[7]
                     Sleep    1
@@ -358,7 +358,7 @@ Get roles from Table
                     Sleep    1
                     Clear Field Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME
                     Sleep    1
-                    Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('Create_Date_User_Name')}
+                    Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('New_User_Name')}
                     Sleep    1
                     Click Element    wnd[0]/tbar[1]/btn[7]
                     Sleep    1
@@ -370,7 +370,7 @@ Get roles from Table
                     Sleep    1
                     Clear Field Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME
                     Sleep    1
-                    Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('Create_Date_User_Name')}         #userfiled
+                    Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('New_User_Name')}         #userfiled
                     Sleep    1
                     Click Element    wnd[0]/tbar[1]/btn[7]                                #displayicon
                     Sleep    1
