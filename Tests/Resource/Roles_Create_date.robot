@@ -32,14 +32,12 @@ TEST_System_Logon
     Sleep   1
     Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('SA_Role_Client_Id')}
     Sleep   1
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('Create_Date_User_Name')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('New_User_Name')}
     Sleep   1
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('Create_Date_User_Password')}
-    # Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{Create_Date_User_Password}
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('User_Reset_Current_Password ')}
+    # Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{User_Reset_Current_Password}
     Send Vkey    0
     Sleep    3
-    Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
-    Sleep   1
 System Logout
     Run Transaction     /nex
     Sleep   2

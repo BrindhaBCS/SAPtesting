@@ -34,18 +34,11 @@ TEST_System_Logon
     Sleep   1
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('New_User_Name')}
     Sleep   1
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('New_User_Password')}
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('User_Reset_Current_Password ')}
+    # Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{User_Reset_Current_Password}
     Send Vkey    0
     Sleep    3
-    Input Password    wnd[1]/usr/pwdRSYST-NCODE    ${symvar('User_Reset_Current_Password')}       #%{Change_Date_User_Password}
-    Sleep    2
-    Input Password    wnd[1]/usr/pwdRSYST-NCOD2    ${symvar('User_Reset_Current_Password')}    #%{Change_Date_User_Password}
-    Sleep    2
-    Click Element    wnd[1]/tbar[0]/btn[0]
-    Sleep    2
-    Window Handling    wnd[1]    Copyright    wnd[1]/tbar[0]/btn[0]
-    Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
-    Sleep   1
+
 System Logout
     Run Transaction     /nex
     Sleep   2
