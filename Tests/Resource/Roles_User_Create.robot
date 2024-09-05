@@ -38,7 +38,7 @@ Create_new_user
     Input Text    wnd[0]/usr/tabsTABSTRIP1/tabpLOGO/ssubMAINAREA:SAPLSUID_MAINTENANCE:1101/pwdSUID_ST_NODE_PASSWORD_EXT-PASSWORD    ${symvar('New_User_Password')}
     Input Text    wnd[0]/usr/tabsTABSTRIP1/tabpLOGO/ssubMAINAREA:SAPLSUID_MAINTENANCE:1101/pwdSUID_ST_NODE_PASSWORD_EXT-PASSWORD2    ${symvar('New_User_Password')}
     Sleep    2   
-    Click Element    wnd[1]/tbar[0]/btn[0]
+    Click Element    wnd[0]/tbar[0]/btn[11]
     Sleep    2
     
 
