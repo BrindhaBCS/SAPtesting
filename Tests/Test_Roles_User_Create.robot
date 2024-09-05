@@ -7,4 +7,5 @@ Test Tags    Roles_User_Create
 *** Test Cases ***
 Create_new_user
     Create_new_user
+    System Logout
     Login_New_User
