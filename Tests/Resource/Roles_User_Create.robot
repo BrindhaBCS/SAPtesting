@@ -32,11 +32,14 @@ Create_new_user
     Window Handling    wnd[1]    Address Maintenance      wnd[1]/usr/btnBUTTON_2
     Sleep    3
     Input Text    wnd[0]/usr/tabsTABSTRIP1/tabpADDR/ssubMAINAREA:SAPLSUID_MAINTENANCE:1900/txtSUID_ST_NODE_PERSON_NAME-NAME_LAST    ${symvar('New_User_Last_Name')}
+    Sleep    2
     Click Element     wnd[0]/usr/tabsTABSTRIP1/tabpLOGO
     Sleep    2
     Input Text    wnd[0]/usr/tabsTABSTRIP1/tabpLOGO/ssubMAINAREA:SAPLSUID_MAINTENANCE:1101/pwdSUID_ST_NODE_PASSWORD_EXT-PASSWORD    ${symvar('New_User_Password')}
     Input Text    wnd[0]/usr/tabsTABSTRIP1/tabpLOGO/ssubMAINAREA:SAPLSUID_MAINTENANCE:1101/pwdSUID_ST_NODE_PASSWORD_EXT-PASSWORD2    ${symvar('New_User_Password')}
     Sleep    2   
+    Click Element    wnd[1]/tbar[0]/btn[0]
+    Sleep    2
     
 
 Login_New_User
@@ -50,6 +53,7 @@ Login_New_User
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('New_User_Name')}
     Sleep   1
     Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('New_User_Password')}
+    Sleep    2
     Send Vkey    0
     Sleep    3
     Input Password    wnd[1]/usr/pwdRSYST-NCODE    ${symvar('User_Reset_Current_Password')}       #%{Change_Date_User_Password}
