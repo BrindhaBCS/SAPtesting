@@ -1,0 +1,5 @@
+SAP_LOGON_PATH = "C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPGUI\\saplogon.exe"
+GRC_Connection = "GRC"
+GRC_Client = "001"
+GRC_User = "brindha"
+GRC_PASSWORD = "Test@12345"

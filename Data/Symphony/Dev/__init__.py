@@ -18,6 +18,7 @@ from .SM37 import *
 from .TS4 import *
 from .sales_order import*
 from .ABAP import *
-from .Sales import*
+from .Sales import *
+from .Risk import *
 
 
