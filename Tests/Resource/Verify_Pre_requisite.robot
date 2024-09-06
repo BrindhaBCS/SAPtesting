@@ -156,7 +156,7 @@ STRUSTS_SSL_Client_Standard
 
 SNOTE
     Run Transaction    /nsnote
-    Sleep    2
+    Sleep    20
     Set Focus    wnd[0]/usr/lbl[5,3]
     Sleep    2
     Send Vkey    2

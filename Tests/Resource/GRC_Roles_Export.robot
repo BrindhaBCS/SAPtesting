@@ -5,7 +5,7 @@ Library    OperatingSystem
 Library    String
 *** Variables ***
 ${path_to_download}    C:\\tmp
-${Filename}    roles.XLSX
+${Filename}    Roles.xlsx
 *** Keywords ***
 System Logon
     Start Process    ${symvar('SAP_LOGON_PATH')}
