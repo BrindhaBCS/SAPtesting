@@ -403,6 +403,7 @@ Change_Date
             END
         END
     END
+    System Logout
     System Logon
     Run Transaction    /nstauthtrace
     Sleep    1
@@ -416,7 +417,7 @@ Change_Date
     Sleep    1
     Clear Field Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME
     Sleep    1
-    Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Create_Date_${input}_${value}
+    Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Change_Date_Overall_Report
     Sleep    1
     Click Element    wnd[1]/tbar[0]/btn[20]
     Sleep    1
@@ -426,7 +427,6 @@ Change_Date
     Sleep    1
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    2
-    System Logout
 Delete_file
     Delete Specific File    file_path=C:\\tmp\\Change_Role_extract.xlsx
     Sleep    1
