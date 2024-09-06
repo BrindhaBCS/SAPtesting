@@ -75,9 +75,8 @@ Change_Date
     Sleep    1
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    1
-    ${role_length}    Roles extract    C:\\tmp\\Change_Role_extract.xlsx    Sheet1    C:\\tmp\\Change_Role_extract.txt
-    Set Global Variable    ${GLOBAL_ROLE_LENGTH}    ${role_length}  # Set it as a global variable
-    Log    ${GLOBAL_ROLE_LENGTH}
+    Roles extract    C:\\tmp\\Change_Role_extract.xlsx    Sheet1    C:\\tmp\\Change_Role_extract.txt
+    # Set it as a global variable
     Sleep    1
     Run Transaction     /nse16
     Sleep    2
