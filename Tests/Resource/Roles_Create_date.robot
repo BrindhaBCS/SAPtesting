@@ -190,8 +190,8 @@ Get roles from Table
                 ${think}    Get Value    wnd[0]/sbar/pane[0]
                 Sleep    1
                 IF    '${think}' == 'You are not authorized to use transaction ${input}'
-                    Log    ❗${input} You are not authorized to use transaction.
-                    Log To Console    ❗${input} You are not authorized to use transaction.
+                    Log    ❗! ${input} You are not authorized to use transaction.
+                    Log To Console    ❗! ${input} You are not authorized to use transaction.
                     Sleep    1
                     System Logout
                     System Logon
@@ -243,8 +243,8 @@ Get roles from Table
                     Sleep    1
                     Exit For Loop
                 ELSE    
-                    Log    ❗${input} You are transaction will be authorized.
-                    Log To Console    ❗${input} You are transaction will be authorized.
+                    Log    ${input} You are transaction will be authorized.
+                    Log To Console    ${input} You are transaction will be authorized.
                     System Logout
                     System Logon
                     Run Transaction    /nsu01
@@ -316,8 +316,8 @@ Get roles from Table
                 Sleep    1
                 IF    '${think}' == 'You are not authorized to use transaction ${input}'
                     Sleep    1
-                    Log    ❗${input} You are not authorized to use transaction.
-                    Log To Console    ❗${input} You are not authorized to use transaction.
+                    Log    ❗! ${input} You are not authorized to use transaction.
+                    Log To Console    ❗! ${input} You are not authorized to use transaction.
                     System Logout
                     System Logon
                     # Run Transaction    /nstauthtrace

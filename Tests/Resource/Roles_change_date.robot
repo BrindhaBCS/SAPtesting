@@ -193,8 +193,8 @@ Change_Date
                 Sleep    1
                 IF    '${think}' == 'You are not authorized to use transaction ${input}'
                     Sleep    1
-                    Log    ❗${input} You are not authorized to use transaction.
-                    Log To Console    ❗${input} You are not authorized to use transaction.
+                    Log    ❗! ${input} You are not authorized to use transaction.
+                    Log To Console    ❗! ${input} You are not authorized to use transaction.
                     System Logout
                     System Logon
                     # Run Transaction    /nstauthtrace
@@ -317,8 +317,8 @@ Change_Date
                 ${think}    Get Value    wnd[0]/sbar/pane[0]
                 Sleep    1
                 IF    '${think}' == 'You are not authorized to use transaction ${input}'
-                    Log    ❗${input} You are not authorized to use transaction.
-                    Log To Console    ❗${input} You are not authorized to use transaction.
+                    Log    ❗! ${input} You are not authorized to use transaction.
+                    Log To Console    ❗! ${input} You are not authorized to use transaction.
                     Sleep    1
                     System Logout
                     System Logon
