@@ -243,8 +243,8 @@ Get roles from Table
                     Sleep    1
                     Exit For Loop
                 ELSE    
-                    Log    🟢 ${input} You are transaction will be authorized.
-                    Log To Console    🟢 ${input} You are transaction will be authorized.
+                    Log    ❗${input} You are transaction will be authorized.
+                    Log To Console    ❗${input} You are transaction will be authorized.
                     System Logout
                     System Logon
                     Run Transaction    /nsu01
@@ -368,8 +368,8 @@ Get roles from Table
                     Sleep    1
                     Exit For Loop
                 ELSE    
-                    Log   🟢  ${input} You are transaction will be authorized.
-                    Log To Console   🟢 ${input} You are transaction will be authorized.
+                    Log    ${input} You are transaction will be authorized.
+                    Log To Console    ${input} You are transaction will be authorized.
                     System Logout
                     System Logon
                     Run Transaction    /nsu01
