@@ -138,7 +138,7 @@ Change_Date
     Click Element    wnd[0]/usr/tabsTABSTRIP1/tabpACTG
     Sleep    1
     ${tech}    Get Sap Cell Value AGR NAME    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    0
-    IF  '${tech}' != ''
+    IF    '${tech}' != ''
         Delete Allrole Save
         Sleep    1
         Clear Field Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME
