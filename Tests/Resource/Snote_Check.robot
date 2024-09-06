@@ -22,10 +22,10 @@ System Logout
 SNOTE
     Run Transaction    /nsnote
     Sleep    2
-    Set Focus    wnd[0]/usr/lbl[5,3]
-    Sleep    2
-    Send Vkey    2
-    Sleep    2
+    # Set Focus    wnd[0]/usr/lbl[5,3]
+    # Sleep    2
+    # Send Vkey    2
+    # Sleep    2
     Take Screenshot    snote_1.jpg
     Sleep    1
     Click Element    wnd[0]/tbar[1]/btn[33]
