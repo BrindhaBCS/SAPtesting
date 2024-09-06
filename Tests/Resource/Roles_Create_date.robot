@@ -7,10 +7,6 @@ Library    DateTime
 *** Variables ***
 ${GLOBAL_TCODE_LENGTH}
 ${GLOBAL_ROLE_LENGTH}
-${RED}    \033[91m
-${RESET}    \033[0m
-${GREEN}    \033[92m
-${RESET}    \033[0m
 *** Keywords ***
 System Logon
     Start Process     ${symvar('SAP_SERVER')}
@@ -194,8 +190,8 @@ Get roles from Table
                 ${think}    Get Value    wnd[0]/sbar/pane[0]
                 Sleep    1
                 IF    '${think}' == 'You are not authorized to use transaction ${input}'
-                    Log    ${RED}!${input} You are not authorized to use transaction.${RESET}
-                    Log To Console    ${RED}!${input} You are not authorized to use transaction.${RESET}
+                    Log    ❗${input} You are not authorized to use transaction.
+                    Log To Console    ❗${input} You are not authorized to use transaction.
                     Sleep    1
                     System Logout
                     System Logon
@@ -247,8 +243,8 @@ Get roles from Table
                     Sleep    1
                     Exit For Loop
                 ELSE    
-                    Log    ${GREEN}${input} You are transaction will be authorized.${RESET}
-                    Log To Console    ${GREEN}${input} You are transaction will be authorized.${RESET}
+                    Log    🟢 ${input} You are transaction will be authorized.
+                    Log To Console    🟢 ${input} You are transaction will be authorized.
                     System Logout
                     System Logon
                     Run Transaction    /nsu01
@@ -320,8 +316,8 @@ Get roles from Table
                 Sleep    1
                 IF    '${think}' == 'You are not authorized to use transaction ${input}'
                     Sleep    1
-                    Log    ${RED}!${input} You are not authorized to use transaction.${RESET}
-                    Log To Console    ${RED}!${input} You are not authorized to use transaction.${RESET}
+                    Log    ❗${input} You are not authorized to use transaction.
+                    Log To Console    ❗${input} You are not authorized to use transaction.
                     System Logout
                     System Logon
                     # Run Transaction    /nstauthtrace
@@ -372,8 +368,8 @@ Get roles from Table
                     Sleep    1
                     Exit For Loop
                 ELSE    
-                    Log    ${GREEN}${input} You are transaction will be authorized.${RESET}
-                    Log To Console    ${GREEN}${input} You are transaction will be authorized.${RESET}
+                    Log   🟢  ${input} You are transaction will be authorized.
+                    Log To Console   🟢 ${input} You are transaction will be authorized.
                     System Logout
                     System Logon
                     Run Transaction    /nsu01
@@ -405,6 +401,7 @@ Get roles from Table
             END
         END
     END
+    System Logon
     Run Transaction    /nstauthtrace
     Sleep    1
     Click Element    wnd[0]/tbar[1]/btn[8]
@@ -426,7 +423,8 @@ Get roles from Table
     Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp
     Sleep    1
     Click Element    wnd[1]/tbar[0]/btn[11]
-    Sleep    1
+    Sleep    2
+    System Logout
 
 Deletefile
     Delete Specific File    file_path=C:\\tmp\\Create_Role_extract.xlsx
