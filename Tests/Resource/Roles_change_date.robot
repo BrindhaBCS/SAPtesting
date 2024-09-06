@@ -185,7 +185,7 @@ Change_Date
                 ${input} =    Set Variable    ${GLOBAL_TCODE_LENGTH[${j}]}
                 Sleep    1
                 Run Transaction    /n${input}
-                Sleep    4
+                Sleep    2
                 Take Screenshot    tcode_${j}.jpg
                 Sleep    2
                 ${think}    Get Value    wnd[0]/sbar/pane[0]
@@ -310,7 +310,7 @@ Change_Date
                 ${input} =    Set Variable    ${GLOBAL_TCODE_LENGTH[${j}]}
                 Sleep    1
                 Run Transaction    /n${input}
-                Sleep    4
+                Sleep    2
                 Take Screenshot    tcode_${j}.jpg
                 Sleep    2
                 ${think}    Get Value    wnd[0]/sbar/pane[0]
