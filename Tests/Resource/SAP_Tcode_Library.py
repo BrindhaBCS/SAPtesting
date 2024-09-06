@@ -1836,3 +1836,6 @@ class SAP_Tcode_Library:
                 print("No order number found.")
         except Exception as e:
             print(f"Error: {e}")
+
+    def close_window(self, window_id):
+        self.session.findById(window_id).close()
