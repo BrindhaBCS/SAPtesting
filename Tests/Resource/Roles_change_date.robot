@@ -159,20 +159,27 @@ Change_Date
             Sleep    1
             Click Element    wnd[0]/tbar[0]/btn[11]
             Sleep    1
-            Run Transaction    /nstauthtrace
-            Sleep    1
-            Click Element    wnd[0]/tbar[1]/btn[7]
-            Sleep    1
-            Clear Field Text    wnd[0]/usr/ctxtSC_100_TRACE_USER
-            Sleep    1
-            Input Text    wnd[0]/usr/ctxtSC_100_TRACE_USER    ${symvar('New_User_Name')}
-            Sleep    1
-            Click Element    wnd[0]/tbar[1]/btn[6]
-            Sleep    1
-            System Logout
-            Sleep    1
-            TEST_System_Logon
-            Sleep    1
+            IF    ${loop} == 0
+                Run Transaction    /nstauthtrace
+                Sleep    1
+                Click Element    wnd[0]/tbar[1]/btn[7]
+                Sleep    1
+                Clear Field Text    wnd[0]/usr/ctxtSC_100_TRACE_USER
+                Sleep    1
+                Input Text    wnd[0]/usr/ctxtSC_100_TRACE_USER    ${symvar('New_User_Name')}
+                Sleep    1
+                Click Element    wnd[0]/tbar[1]/btn[6]
+                Sleep    1
+                System Logout
+                Sleep    1
+                TEST_System_Logon
+                Sleep    1
+            ELSE
+                System Logout
+                Sleep    1
+                TEST_System_Logon
+                Sleep    1
+            END
             # second loop based current value
             ${aesc}    Set Variable    1
             FOR    ${j}    IN RANGE    ${loop}    ${loop + ${aesc}}
@@ -276,20 +283,27 @@ Change_Date
             Sleep    1
             Click Element    wnd[0]/tbar[0]/btn[11]
             Sleep    1
-            Run Transaction    /nstauthtrace
-            Sleep    1
-            Click Element    wnd[0]/tbar[1]/btn[7]
-            Sleep    1
-            Clear Field Text    wnd[0]/usr/ctxtSC_100_TRACE_USER
-            Sleep    1
-            Input Text    wnd[0]/usr/ctxtSC_100_TRACE_USER    ${symvar('New_User_Name')}
-            Sleep    1
-            Click Element    wnd[0]/tbar[1]/btn[6]
-            Sleep    1
-            System Logout
-            Sleep    1
-            TEST_System_Logon
-            Sleep    1
+            IF    ${loop} == 0
+                Run Transaction    /nstauthtrace
+                Sleep    1
+                Click Element    wnd[0]/tbar[1]/btn[7]
+                Sleep    1
+                Clear Field Text    wnd[0]/usr/ctxtSC_100_TRACE_USER
+                Sleep    1
+                Input Text    wnd[0]/usr/ctxtSC_100_TRACE_USER    ${symvar('New_User_Name')}
+                Sleep    1
+                Click Element    wnd[0]/tbar[1]/btn[6]
+                Sleep    1
+                System Logout
+                Sleep    1
+                TEST_System_Logon
+                Sleep    1
+            ELSE
+                System Logout
+                Sleep    1
+                TEST_System_Logon
+                Sleep    1
+            END
             ${aesc}    Set Variable    1
             FOR    ${j}    IN RANGE    ${loop}    ${loop + ${aesc}}
                 ${input} =    Set Variable    ${GLOBAL_TCODE_LENGTH[${j}]}
