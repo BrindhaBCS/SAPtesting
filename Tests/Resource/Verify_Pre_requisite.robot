@@ -3,11 +3,27 @@ Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    String
+Library    ExcelLibrary
+Library    openpyxl
 
 *** Variables ***
 @{parameters}    ssl/ciphersuites    ssl/client_ciphersuites    icm/HTTPS/client_sni_enabled    ssl/client_sni_enabled    SETENV_26    SETENV_27    SETENV_28
 @{values}   135:PFS:HIGH::EC_X25519:EC_P256:EC_HIGH    150:PFS:HIGH::EC_X25519:EC_P256:EC_HIGH    TRUE    TRUE    SECUDIR=$(DIR_INSTANCE)$(DIR_SEP)sec    SAPSSL_CLIENT_CIPHERSUITES=150:PFS:HIGH::EC_X25519:EC_P256:EC_HIGH    SAPSSL_CLIENT_SNI_ENABLED=TRUE 
 @{SAP_Note}    3421256    3374186    3312428    3281776
+${filepath}
+${sheetname}    Sheet1
+${Basis_success}    SAP BASIS version patch level met the criteria
+${Basis_fail}    SAP BASIS version patch level too low. Need to Patch SAP BASIS Either 7.40 SP16 or higher
+${SAP_UI_success}    SAP UI version patch level met the criteria
+${SAP_UI_fail}    SAP BASIS and SAP UI version patch level too low. Need to Patch SAP_UI Either 740 SP15 or higher
+${ST_PI_Success}    ST-PI patch version met the criteria
+${ST_PI_Fail}    Latest patch of ST-PI needs to be applied
+${parameter_Pass}    Profile Parameters are set
+${parameter_Fail}    Profile parameter are not in place. Need to add them
+${certificate_Pass}    SSL Certificates are available in the System
+${certificate_Fail}    SSL Certificate need to be added to the System
+${Snote_Pass}
+${Snote_Fail}
 
 *** Keywords ***
 System Logon
@@ -23,15 +39,23 @@ System Logon
 
 System Logout
     Run Transaction   /nex
-
+Write Excel
+    [Arguments]    ${filepath}    ${sheetname}    ${rownum}    ${colnum}    ${cell_value}
+    Open Excel Document    ${filepath}    1
+    Get Sheet    ${sheetname}  
+    Write Excel Cell      ${rownum}       ${colnum}     ${cell_value}       ${sheetname}
+    Save Excel Document     ${filepath}
+    Close Current Excel Document
 SAP BASIS Release
     Click Element    wnd[0]/mbar/menu[4]/menu[11]
     Click Element    wnd[1]/usr/btnPRELINFO
     ${version}    Software Component Version    wnd[2]/usr/tabsVERSDETAILS/tabpCOMP_VERS/ssubDETAIL_SUBSCREEN:SAPLOCS_UI_CONTROLS:0301/cntlSCV_CU_CONTROL/shellcont/shell    SAP_BASIS
     IF    '${version}' >= '750'
-        Log To Console    **gbStart**copilot_status**splitKeyValue**Version of SAP_BASIS is ${version}**gbEnd**
+        Write Excel    ${filepath}    ${sheetname}    2    2    ${Basis_success}
+        Write Excel    ${filepath}    ${sheetname}    2    3    Passed
     ELSE
-        Log To Console    **gbStart**copilot_status**splitKeyValue**Technical Prerequisties not met . SAP BASIS version too low.**gbEnd**
+        Write Excel    ${filepath}    ${sheetname}    2    2    ${Basis_fail}
+        Write Excel    ${filepath}    ${sheetname}    2    3    Failed
     END
 
 SAP UI Release
@@ -39,31 +63,34 @@ SAP UI Release
     ${support_package}    software support package version    wnd[2]/usr/tabsVERSDETAILS/tabpCOMP_VERS/ssubDETAIL_SUBSCREEN:SAPLOCS_UI_CONTROLS:0301/cntlSCV_CU_CONTROL/shellcont/shell    SAP_UI
     IF    '${version}' == '740'
         IF    '${support_package}' >= 'SAPK-74014INSAPUI'
-            Log To Console    **gbStart**copilot_status**splitKeyValue**Version of SAP_UI is ${version} and support package is ${support_package}**gbEnd**
+            Write Excel    ${filepath}    ${sheetname}    3    2    ${SAP_UI_success}
+            Write Excel    ${filepath}    ${sheetname}    3    3    Passed
         ELSE
-            Log To Console    **gbStart**copilot_status**splitKeyValue**Technical Prerequisties not met . SAP UI version too low.**gbEnd**           
+            Write Excel    ${filepath}    ${sheetname}    3    2    ${SAP_UI_fail}
+            Write Excel    ${filepath}    ${sheetname}    3    3    Failed           
         END
     ELSE IF    '${version}' >= '740'
-        Log To Console    **gbStart**copilot_status**splitKeyValue**Version of SAP_UI is ${version}**gbEnd**
+        Write Excel    ${filepath}    ${sheetname}    3    2    ${SAP_UI_success}
+        Write Excel    ${filepath}    ${sheetname}    3    3    Passed
     ELSE
-        Log To Console    **gbStart**copilot_status**splitKeyValue**Technical Prerequisties not met . SAP UI version too low.**gbEnd**
+        Write Excel    ${filepath}    ${sheetname}    3    2    ${SAP_UI_fail}
+        Write Excel    ${filepath}    ${sheetname}    3    3    Failed
     END
 Component ST-PI Version
     ${version}    Software Component Version    wnd[2]/usr/tabsVERSDETAILS/tabpCOMP_VERS/ssubDETAIL_SUBSCREEN:SAPLOCS_UI_CONTROLS:0301/cntlSCV_CU_CONTROL/shellcont/shell    ST-PI
     ${support_package}    software support package version    wnd[2]/usr/tabsVERSDETAILS/tabpCOMP_VERS/ssubDETAIL_SUBSCREEN:SAPLOCS_UI_CONTROLS:0301/cntlSCV_CU_CONTROL/shellcont/shell    ST-PI
     IF    '${version}' == '740'
-        IF    '${support_package}' >= '${symvar('Current_Version')}'
-            Log To Console    **gbStart**copilot_status**splitKeyValue**Version of ST-PI is ${version} and support package is ${support_package}**gbEnd**
+        IF    '${support_package}' == '${symvar('Current_Version')}'
+            Write Excel    ${filepath}    ${sheetname}    4    2    ${ST_PI_Success}
+            Write Excel    ${filepath}    ${sheetname}    4    3    Passed
         ELSE
-            Log To Console    **gbStart**copilot_status**splitKeyValue**Technical Prerequisties not met . ST-PI version too low.**gbEnd**            
+            Write Excel    ${filepath}    ${sheetname}    4    2    ${ST_PI_Fail}
+            Write Excel    ${filepath}    ${sheetname}    4    3    Failed            
         END
-    ELSE IF    '${version}' >= '740'
-        Log To Console    **gbStart**copilot_status**splitKeyValue**Version of ST-PI is ${version}**gbEnd**
     ELSE
-        Log To Console    **gbStart**copilot_status**splitKeyValue**Technical Prerequisties not met . ST-PI version too low.**gbEnd**
+        Write Excel    ${filepath}    ${sheetname}    4    2    ${ST_PI_Fail}
+        Write Excel    ${filepath}    ${sheetname}    4    3    Failed
     END
-    Log To Console    **gbStart**ST_PI_version**splitKeyValue**ST-PI ${version}**gbEnd**
-    Log To Console    **gbStart**supportpackage**splitKeyValue**${support_package}**gbEnd**
     Close Window    wnd[2]
     Close Window    wnd[1]
 
@@ -74,25 +101,23 @@ Verify parameter in RZ10
     Click Element   wnd[1]/tbar[0]/btn[0]
     Select Radio Button    wnd[0]/usr/radSPFL1010-EXPERT
     Click Element    wnd[0]/usr/btnEDIT_PUSH
-    # Sleep    4
     ${length}    Get Length    ${parameters}
     FOR    ${i}    IN RANGE    0    ${length}
-        # Log To Console    list param is: ${parameters}[${i}]
-        # Log To Console    Param value is: ${values}[${i}]
         ${result}    Check Parameter Found    wnd[0]/usr    ${parameters}[${i}]
-        Log To Console    ${result}
         IF    '${result}' == '${parameters}[${i}]'
             Get Parameter Value    wnd[0]/usr    ${parameters}[${i}]
             ${param_value}    Get Value    wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]
             IF    '${param_value}' == '${values}[${i}]'
-                Log To Console    ${parameters}[${i}] value is ${values}[${i}]
+                Write Excel    ${filepath}    ${sheetname}    5    2    ${parameter_Pass}
+                Write Excel    ${filepath}    ${sheetname}    5    3    Passed
                 Click Element    wnd[0]/tbar[0]/btn[3]
-                # Sleep    2
             ELSE
-                Log To Console    ${parameters}[${i}] value is ${values}[${i}]
+                Write Excel    ${filepath}    ${sheetname}    5    2    ${parameter_Fail}
+                Write Excel    ${filepath}    ${sheetname}    5    3    Failed
             END
         ELSE
-            Log To Console    parameter ${parameters}[${i}] is not available
+            Write Excel    ${filepath}    ${sheetname}    5    2    ${parameter_Fail}
+            Write Excel    ${filepath}    ${sheetname}    5    3    Failed
         END        
     END
     
@@ -101,14 +126,16 @@ STRUST
     Sleep    2
     Take Screenshot    ssl.jpg
     Click Element    wnd[0]/tbar[1]/btn[25]
-    Sleep    2
+    # Sleep    2
+    ${cert_count}    Set Variable    0
+    Set Global Variable    ${cert_count}
     STRUS_SSL_Client_Anonymous
-    STRUSTS_SSL_Client_Standard
+    
 STRUS_SSL_Client_Anonymous
     Double Click On Tree Item    wnd[0]/shellcont/shell    SSLCANONYM    
     Sleep    2
-    Take Screenshot    SSL_client_Anonymous_1.jpg
-    Sleep    2
+    # Take Screenshot    SSL_client_Anonymous_1.jpg
+    # Sleep    2
     ${space}    Get Value    wnd[0]/usr/tblS_TRUSTMANAGERPK_CTRL/txtPSECERTLIST-SUBJECT[0,0]
     Sleep    1
     IF    '${space}' != ''
@@ -116,47 +143,49 @@ STRUS_SSL_Client_Anonymous
             ${value}    Get Value    wnd[0]/usr/tblS_TRUSTMANAGERPK_CTRL/txtPSECERTLIST-SUBJECT[0,${index}]
             Sleep    1
             IF    '${value}' == 'CN=DigiCert Global Root G2, OU=www.digicert.com, O=DigiCert Inc, C=US'
-                Log To Console    Certificate already exists: DigiCert Global Root G2
+                ${cert_count}    Evaluate    ${cert_count} + 1
             ELSE IF    '${value}' == 'CN=DigiCert Global Root CA, OU=www.digicert.com, O=DigiCert Inc, C=US'
-                Log To Console    Certificate already exists: DigiCert Global Root CA
+                ${cert_count}    Evaluate    ${cert_count} + 1
             ELSE IF    '${value}' == 'CN=DigiCert RSA4096 Root G5, O="DigiCert, Inc.", C=US'
-                Log To Console    Certificate already exists: DigiCert RSA4096 Root G5
-            ELSE
-            Log To Console    Certificate need to be uploaded
-            END
-        END
-    ELSE
-        Log To Console    Certificate need to be uploaded
-    END
-
-STRUSTS_SSL_Client_Standard
-    Double Click On Tree Item    wnd[0]/shellcont/shell    SSLCDFAULT    
-    Sleep    2
-    Take Screenshot    SSL_client_Standard_1.jpg
-    Sleep    2
-    ${space}    Get Value    wnd[0]/usr/tblS_TRUSTMANAGERPK_CTRL/txtPSECERTLIST-SUBJECT[0,0]
-    Sleep    1
-    IF    '${space}' != ''
-        FOR    ${index}    IN RANGE    0    3
-        ${value}    Get Value    wnd[0]/usr/tblS_TRUSTMANAGERPK_CTRL/txtPSECERTLIST-SUBJECT[0,${index}]
-        Sleep    1
-            IF    '${value}' == 'CN=DigiCert Global Root G2, OU=www.digicert.com, O=DigiCert Inc, C=US'
-                Log To Console    Certificate already exists: DigiCert Global Root G2
-            ELSE IF    '${value}' == 'CN=DigiCert Global Root CA, OU=www.digicert.com, O=DigiCert Inc, C=US'
-                Log To Console    Certificate already exists: DigiCert Global Root CA
-            ELSE IF    '${value}' == 'CN=DigiCert RSA4096 Root G5, O="DigiCert, Inc.", C=US'
-                Log To Console    Certificate already exists: DigiCert RSA4096 Root G5
+                ${cert_count}    Evaluate    ${cert_count} + 1
             ELSE
                 Log To Console    Certificate need to be uploaded
             END
         END
-    ELSE
-        Log To Console    Certificate need to be uploaded
     END
+    Double Click On Tree Item    wnd[0]/shellcont/shell    SSLCDFAULT    
+    Sleep    2
+    # Take Screenshot    SSL_client_Standard_1.jpg
+    # Sleep    2
+    ${space}    Get Value    wnd[0]/usr/tblS_TRUSTMANAGERPK_CTRL/txtPSECERTLIST-SUBJECT[0,0]
+    Sleep    1
+    IF    '${space}' != ''
+        FOR    ${index}    IN RANGE    0    3
+            ${value}    Get Value    wnd[0]/usr/tblS_TRUSTMANAGERPK_CTRL/txtPSECERTLIST-SUBJECT[0,${index}]
+            Sleep    1
+            IF    '${value}' == 'CN=DigiCert Global Root G2, OU=www.digicert.com, O=DigiCert Inc, C=US'
+                ${cert_count}    Evaluate    ${cert_count} + 1
+            ELSE IF    '${value}' == 'CN=DigiCert Global Root CA, OU=www.digicert.com, O=DigiCert Inc, C=US'
+                ${cert_count}    Evaluate    ${cert_count} + 1
+            ELSE IF    '${value}' == 'CN=DigiCert RSA4096 Root G5, O="DigiCert, Inc.", C=US'
+                ${cert_count}    Evaluate    ${cert_count} + 1
+            ELSE
+                Log To Console    Certificate need to be uploaded
+            END
+        END
+    END
+    IF    '${cert_count}' == '6'
+        Write Excel    ${filepath}    ${sheetname}    6    2    ${certificate_Pass}
+        Write Excel    ${filepath}    ${sheetname}    6    3    Failed
+    ELSE
+        Write Excel    ${filepath}    ${sheetname}    6    2    ${certificate_Fail}
+        Write Excel    ${filepath}    ${sheetname}    6    3    Failed
+    END 
+  
 
 SNOTE
     Run Transaction    /nsnote
-    Sleep    20
+    Sleep    2
     Set Focus    wnd[0]/usr/lbl[5,3]
     Sleep    2
     Send Vkey    2

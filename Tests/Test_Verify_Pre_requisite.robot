@@ -10,5 +10,5 @@ Verify the system is ready for ALM configuration
     # SAP UI Release
     # Component ST-PI Version
     # Verify parameter in RZ10
-    # STRUST
-    SNOTE
+    STRUST
+    # SNOTE
