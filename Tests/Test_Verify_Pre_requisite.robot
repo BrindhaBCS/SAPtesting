@@ -6,9 +6,9 @@ Suite Teardown    Verify_Pre_requisite.System Logout
 
 *** Test Cases ***
 Verify the system is ready for ALM configuration
-    # SAP BASIS Release
-    # SAP UI Release
-    # Component ST-PI Version
-    # Verify parameter in RZ10
+    SAP BASIS Release
+    SAP UI Release
+    Component ST-PI Version
+    Verify parameter in RZ10
     STRUST
-    # SNOTE
+    SNOTE

@@ -10,7 +10,7 @@ Library    openpyxl
 @{parameters}    ssl/ciphersuites    ssl/client_ciphersuites    icm/HTTPS/client_sni_enabled    ssl/client_sni_enabled    SETENV_26    SETENV_27    SETENV_28
 @{values}   135:PFS:HIGH::EC_X25519:EC_P256:EC_HIGH    150:PFS:HIGH::EC_X25519:EC_P256:EC_HIGH    TRUE    TRUE    SECUDIR=$(DIR_INSTANCE)$(DIR_SEP)sec    SAPSSL_CLIENT_CIPHERSUITES=150:PFS:HIGH::EC_X25519:EC_P256:EC_HIGH    SAPSSL_CLIENT_SNI_ENABLED=TRUE 
 @{SAP_Note}    3421256    3374186    3312428    3281776
-${filepath}
+${filepath}    C:\\RobotFramework\\sap_testing\\Tests\\Resource\\Prerequisite_Status.xlsx
 ${sheetname}    Sheet1
 ${Basis_success}    SAP BASIS version patch level met the criteria
 ${Basis_fail}    SAP BASIS version patch level too low. Need to Patch SAP BASIS Either 7.40 SP16 or higher
@@ -22,8 +22,8 @@ ${parameter_Pass}    Profile Parameters are set
 ${parameter_Fail}    Profile parameter are not in place. Need to add them
 ${certificate_Pass}    SSL Certificates are available in the System
 ${certificate_Fail}    SSL Certificate need to be added to the System
-${Snote_Pass}
-${Snote_Fail}
+${Snote_Pass}    Snotes are available in the System
+${Snote_Fail}    Snotes need to be added to the System
 
 *** Keywords ***
 System Logon
@@ -176,7 +176,7 @@ STRUS_SSL_Client_Anonymous
     END
     IF    '${cert_count}' == '6'
         Write Excel    ${filepath}    ${sheetname}    6    2    ${certificate_Pass}
-        Write Excel    ${filepath}    ${sheetname}    6    3    Failed
+        Write Excel    ${filepath}    ${sheetname}    6    3    Passed
     ELSE
         Write Excel    ${filepath}    ${sheetname}    6    2    ${certificate_Fail}
         Write Excel    ${filepath}    ${sheetname}    6    3    Failed
@@ -209,7 +209,8 @@ SNOTE
             # Log    ${number}=${value}
             IF    '${value}' == 'Cannot be implemented'
                 # Log    ${number}=${value}
-                Log To Console    Snote ${number} is uploaded already
+                Write Excel    ${filepath}    ${sheetname}    7    2    ${Snote_Pass}
+                Write Excel    ${filepath}    ${sheetname}    7    3    Passed
                 Click Element    wnd[0]/tbar[0]/btn[3]
                 Sleep    1
                 Click Element    wnd[0]/tbar[0]/btn[3]
@@ -219,7 +220,8 @@ SNOTE
                 # Sleep    2
                 # Click Element    wnd[0]/tbar[1]/btn[25]
                 # Sleep    10
-                Log To Console    Snote ${number} should be uploaded
+                Write Excel    ${filepath}    ${sheetname}    7    2    ${Snote_Fail}
+                Write Excel    ${filepath}    ${sheetname}    7    3    Failed
             END
         END
     END
