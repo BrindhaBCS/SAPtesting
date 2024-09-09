@@ -55,6 +55,7 @@ SNOTE
                 Click Element    wnd[0]/tbar[1]/btn[25]
                 Window Handling    wnd[1]    Information    wnd[1]/tbar[0]/btn[0]
                 Window Handling    wnd[1]    Queue of correction instructions to be installed    wnd[1]/tbar[0]/btn[13]
+                Window Handling    wnd[1]    Confirmation: SAP Note read    wnd[1]/tbar[0]/btn[13]
                 Log    ${number}=${value}
                 Log To Console    ${number}=${value}
             END
