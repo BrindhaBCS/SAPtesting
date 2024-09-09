@@ -84,10 +84,12 @@ Export Risk
     Sleep    5
     Check If Page Contains Text    ${TEXT_TO CHECK_RESULTS}
     Repeat Keyword    14 times    Press Keys    NONE    TAB
+    Sleep    5
     # Press Enter
     Repeat Keyword    2 times    Press Keys    NONE    ENTER
     Sleep    5
     Repeat Keyword    19 times    Press Keys    NONE    TAB
+    Sleep    5
     # Press Enter
     Press Keys    NONE    ENTER
     Sleep    5
