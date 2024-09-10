@@ -21,13 +21,12 @@ ${Submit}    wnd[0]/tbar[0]/btn[0]
 #     Input Password    ${password}    Welcome@123
 #     Sleep    2
 #     Send Vkey    0
-#     Multiple Logon Handling    wnd[1]    wnd[1]/usr/radMULTI_LOGON_OPT2    wnd[1]/tbar[0]/btn[0]
+      Multiple Logon Handling    wnd[1]    wnd[1]/usr/radMULTI_LOGON_OPT2    wnd[1]/tbar[0]/btn[0]
 #     Sleep    3
 
 
 nSGHT_transaction
 
-    Multiple Logon Handling    wnd[1]    wnd[1]/usr/radMULTI_LOGON_OPT2    wnd[1]/tbar[0]/btn[0]
     FOR    ${tcode}    IN    @{t-codes}    @{t-codees}
 
         Run Transaction    ${tcode}
