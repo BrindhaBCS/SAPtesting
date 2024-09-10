@@ -86,7 +86,7 @@ System Registration
         # Log To Console    system successfully configured with : ${LMS_Configured}
         # Log    system successfully configured with : ${LMS_Configured}
         Set Global Variable     ${LMS_Configured}
-        Log To Console    **gbStart**Copilot_Status**splitKeyValue**system successfully configured :${LMS_Configured}**gbEnd**
+        Log To Console    **gbStart**Copilot_Status**splitKeyValue**System ${symvar('ABAP_Connection')} Client ${symvar('ABAP_CLIENT')} Successfully Configured in SAP Cloud ALM. LMS ID : ${LMS_Configured}**gbEnd**
     END
     
 Click Task
