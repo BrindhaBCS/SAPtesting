@@ -69,3 +69,4 @@ SNOTE
             END
         END
     END
+    Log To Console    **gbStart**copilot_status6**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- Madatory Snotes Implemented Successfully**gbEnd**

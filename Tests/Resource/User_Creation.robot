@@ -36,5 +36,5 @@ Create User
     # Sleep    2
     Click Element    wnd[0]/tbar[0]/btn[11]
     ${output}   Get Value    wnd[0]/sbar/pane[0]
-    Log To Console    **gbStart**copilot_status**splitKeyValue**${output}**gbEnd**
+    Log To Console    **gbStart**copilot_status**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- ${output}**gbEnd**
 

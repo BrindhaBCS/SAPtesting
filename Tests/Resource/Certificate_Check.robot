@@ -60,12 +60,13 @@ STRUS_SSL_Client_Anonymous
                 Log To Console    Certificate already exists: DigiCert RSA4096 Root G5
             ELSE
             upload_certificate_SSL_Client_Anonymous
-            Log To Console    Certificate Uploaded
+            Log To Console    **gbStart**copilot_status5**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- STRUS_SSL_Client_Anonymous SAP Cloud ALM Connection Certificate Added Successfully**gbEnd**
+
             END
         END
     ELSE
         upload_certificate_SSL_Client_Anonymous
-        Log To Console    Certificate Uploaded
+        Log To Console    **gbStart**copilot_status5**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- STRUS_SSL_Client_Anonymous SAP Cloud ALM Connection Certificate Added Successfully**gbEnd**
     END
 
 upload_certificate_SSL_Client_Anonymous
@@ -112,12 +113,12 @@ STRUSTS_SSL_Client_Standard
                 Log To Console    Certificate already exists: DigiCert RSA4096 Root G5
             ELSE
                 upload_certificate_SSL_Client_Anonymous
-                Log To Console    Certificate Uploaded
+                Log To Console    **gbStart**copilot_status6**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- STRUSTS_SSL_Client_Standard SAP Cloud ALM Connection Certificate Uploaded successfully**gbEnd**
             END
         END
     ELSE
         upload_certificate_SSL_Client_Standard
-        Log To Console    Certificate Uploaded
+        Log To Console    **gbStart**copilot_status6**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- STRUSTS_SSL_Client_Standard SAP Cloud ALM Connection Certificate Uploaded successfully**gbEnd**
     END
 upload_certificate_SSL_Client_Standard
     Set Caret Position    wnd[0]/usr/txtPSE-OWNCERT-SUBJECT    21
