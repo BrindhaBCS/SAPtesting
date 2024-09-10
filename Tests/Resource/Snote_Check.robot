@@ -39,7 +39,7 @@ SNOTE
             Log To Console    ${number}=${SAP_note_error}
         ELSE
             Double Click Current Cell Value    wnd[0]/usr/cntlGRID1/shellcont/shell    PRSTATUS
-            # Sleep    2
+            Sleep    2
             ${value}=    Get Value    wnd[0]/usr/subSUB_101:SAPLSCW_NA_SCREEN:0101/txtSCWB_S_SCREEN_NOTE-PRSTATUS_TEXT
             Log    ${number}=${value}
             IF    '${value}' == 'Cannot be implemented'
