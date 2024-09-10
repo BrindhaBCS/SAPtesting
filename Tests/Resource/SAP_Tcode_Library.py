@@ -1679,23 +1679,24 @@ class SAP_Tcode_Library:
             print(f"An error occurred: {e}")
             return []
         
-
-    def Tcode_extract(self, file_location, sheet_name):
+    def Input_Role_Extract(self, file_location, sheet_name):
         try:
-            df = pd.read_excel(file_location, sheet_name=sheet_name, usecols=[9], header=None)
-            df.columns = ['T_CODE']
-            df['T_CODE'] = df['T_CODE'].str.strip()
-            tcodes_list = df['T_CODE'].dropna().astype(str).tolist()
-            tcodes_list = [tcode for tcode in tcodes_list if tcode] 
-            if tcodes_list and tcodes_list[0].casefold() == 'tcode':
-                tcodes_list = tcodes_list[1:]
-            return tcodes_list
+            df = pd.read_excel(file_location, sheet_name=sheet_name, usecols=[2, 9], header=None)
+            df.columns = ['AGR_NAME', 'TCODE']
+            df['AGR_NAME'] = df['AGR_NAME'].str.strip()
+            df['TCODE'] = df['TCODE'].str.strip()
+            df = df.dropna()
+            df = df[(df['AGR_NAME'] != '') & (df['AGR_NAME'] != 'AGR_NAME') & (df['TCODE'] != '') & (df['TCODE'] != 'TCODE')]
+            df = df.drop_duplicates()
+            grouped = df.groupby('AGR_NAME')['TCODE'].apply(list).to_dict()
+            return grouped
         except FileNotFoundError:
             print(f"Error: The file at location '{file_location}' was not found.")
-            return []
+            return {}
         except Exception as e:
             print(f"An error occurred: {e}")
-            return []
+            return {}
+
         
     def Delete_allrole_save(self):
         try:
