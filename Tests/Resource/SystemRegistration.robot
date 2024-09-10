@@ -49,7 +49,7 @@ System Registration
         Sleep    2
         Click Element    wnd[2]/tbar[0]/btn[0]
         Sleep    2
-        Input Text    wnd[0]/usr/txtAUTHUSER    ALM_USER
+        Input Text    wnd[0]/usr/txtAUTHUSER    ${symvar('ALM_User')}
         Sleep    2
         Click Element    wnd[0]/usr/btnREG
         Sleep    2
