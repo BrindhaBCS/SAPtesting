@@ -29,4 +29,11 @@ VF01
     Sleep    2
     Click Element    wnd[0]/tbar[0]/btn[11]
     Sleep    2
+    ${Document Value}    Get Value    wnd[0]/sbar/pane[0]
+    Sleep    2
+    Log    ${Document Value}
+    ${Invoice No}    Extract Number    wnd[0]/sbar/pane[0]
+    Log    ${Invoice No}
+    Set Global Variable     ${Invoice No}
+    Log To Console    **gbStart**Copilot_Status**splitKeyValue**${Invoice No}**gbEnd**
     
