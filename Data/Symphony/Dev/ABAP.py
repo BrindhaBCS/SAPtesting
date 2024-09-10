@@ -1,6 +1,6 @@
 ABAP_SAP_SERVER = "C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPGUI\\saplogon.exe"
 ABAP_USER = "DDIC"
-ABAP_CLIENT = "000"
+ABAP_CLIENT = "001"
 ABAP_Connection = "RBT"
 supportpackage_path = "C:\\Users\\Administrator\\Downloads\\"
 supportpackage = "SAPK-74003INSTPI"
@@ -9,7 +9,7 @@ Give_Task_Descriptions = ["$Task1","$Task2","$Task3",]
 patch_comp = "ST-PI"
 patch_vers = "SAPK-74005INSTPI"
 S_Username = "S0023459113"
-ALM_User = "TestALM1"
+ALM_User = "ALMUSER31"
 ALM_pass = "Welcome@123"
 
 # ABAP_SAP_SERVER = "$ABAP_SAP_SERVER"
