@@ -54,7 +54,6 @@ nSGHT_transaction
     
     END
     
-    
 stop
     Run Transaction    /nex
     Sleep    2
