@@ -3,30 +3,31 @@ Library    SAP_Tcode_Library.py
 Library    Process
 
 *** Variables ***
-${SAP_SERVER}     C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPgui\\saplogon.exe  
-${inputuser}    wnd[0]/usr/txtRSYST-BNAME
-${password}    wnd[0]/usr/pwdRSYST-BCODE
+# ${SAP_SERVER}     C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPgui\\saplogon.exe  
+# ${inputuser}    wnd[0]/usr/txtRSYST-BNAME
+# ${password}    wnd[0]/usr/pwdRSYST-BCODE
 ${Submit}    wnd[0]/tbar[0]/btn[0]
 @{t-codes}    /nSGHT    /nSM14   
 @{t-codees}    /nAGHT    /nSTMS 
 
 *** Keywords ***
-start
-    Start Process    ${sapserver}
-    Sleep    2
-    Connect To Session
-    Open Connection    IDES
-    Input Text    ${inputuser}    sandeep
-    Sleep    2
-    Input Password    ${password}    Welcome@123
-    Sleep    2
-    Send Vkey    0
-    Multiple Logon Handling    wnd[1]    wnd[1]/usr/radMULTI_LOGON_OPT2    wnd[1]/tbar[0]/btn[0]
-    Sleep    3
+# start
+#     Start Process    ${sapserver}
+#     Sleep    2
+#     Connect To Session
+#     Open Connection    IDES
+#     Input Text    ${inputuser}    sandeep
+#     Sleep    2
+#     Input Password    ${password}    Welcome@123
+#     Sleep    2
+#     Send Vkey    0
+#     Multiple Logon Handling    wnd[1]    wnd[1]/usr/radMULTI_LOGON_OPT2    wnd[1]/tbar[0]/btn[0]
+#     Sleep    3
 
 
 nSGHT_transaction
 
+    Multiple Logon Handling    wnd[1]    wnd[1]/usr/radMULTI_LOGON_OPT2    wnd[1]/tbar[0]/btn[0]
     FOR    ${tcode}    IN    @{t-codes}    @{t-codees}
 
         Run Transaction    ${tcode}

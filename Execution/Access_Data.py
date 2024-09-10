@@ -13,6 +13,7 @@ if PARENT_PATH not in sys.path:
 import Data.Web as Web
 import Data.Api as Api
 import Data.Symphony as Sym
+import Data.Symphony as sap
 
 
 class DataAccess(object):
@@ -88,6 +89,14 @@ class DataAccess(object):
     def get_Sym_data_secured(self, fieldname, secured=True):
         "Gets data for the Web field name securely"
         return self.get_data("Sym", fieldname, secured)
+    def get_sap_data(self, fieldname, secured=False):
+        "Gets data for the Web field name"
+        return self.get_data("sap", fieldname, secured)
+
+    def get_sap_data_secured(self, fieldname, secured=True):
+        "Gets data for the Web field name securely"
+        return self.get_data("sap", fieldname, secured)
+
 
 
 class Counter(object):
@@ -117,6 +126,8 @@ avar = d.get_Api_data                    # Access any Api data variable
 avar_secured = d.get_Api_data_secured      # Access Api data variable without logging
 symvar = d.get_Sym_data
 symvar_secured = d.get_Sym_data_secured
+sapvar = d.get_sap_data
+sapvar_secured = d.get_sap_data_secured
 
 
 if __name__ == "__main__":
