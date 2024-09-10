@@ -46,9 +46,16 @@ SNOTE
                 Log    ${number}=${value}
                 Log To Console    ${number}=${value}
                 Click Element    wnd[0]/tbar[0]/btn[3]
-                Sleep    4
+                Sleep    1
                 Click Element    wnd[0]/tbar[0]/btn[3]
-                Sleep    4
+                Sleep    1
+            ELSE IF    '${value}' == 'Completely implemented'
+                Log    ${number}=${value}
+                Log To Console    ${number}=${value}
+                Click Element    wnd[0]/tbar[0]/btn[3]
+                Sleep    1
+                Click Element    wnd[0]/tbar[0]/btn[3]
+                Sleep    1
             ELSE IF    '${value}' == 'Can be implemented'
                 Click Element    wnd[0]/tbar[0]/btn[3]
                 # Sleep    2
