@@ -1,0 +1,14 @@
+SALES_SAP_SERVER = "C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPgui\\saplogon.exe"
+SALES_SAP_connection = "TS4"
+SALES_Client_Id = "001"
+SALES_User_Name = "maestro"
+Material_number=    ["2000000160"]   
+order_quantity=   ["1"]            
+amount=    ["1000"]    
+quantities= ["1"]
+shipping_point= "CH01"
+sloc= ["FERT"]
+order_number= ""
+outbound_delivery_number= "80000133"
+sold_to_party=  "HCL"
+ship_to_party=  "$ship_to_party"

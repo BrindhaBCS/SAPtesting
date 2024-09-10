@@ -1,0 +1,9 @@
+SAP_SERVER = "C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPgui\\saplogon.exe"
+SAP_connection ="ABB"
+Client_Id = "000"
+User_Name = "DDIC"
+User_Password = "H3r3andth3r3"
+addOn = ["BNWVS",    "ST-A/PI"]     
+Patch = ["SAPK-70001INBNWVS",    "SAPKITABC5"]
+patch_comp = "ST-PI"
+patch_vers = "SAPK-74022INSTPI"
