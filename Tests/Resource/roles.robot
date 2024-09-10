@@ -4,11 +4,11 @@ Library    roleprocess.py
 
 *** Keywords ***
 START
-    Start Process    ${sapvar('role_sapserver')}
+    Start Process    ${symvar('role_sapserver')}
     Sleep    2
     Connect To Session
-    Open Connection    ${sapvar('role_server')}
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${sapvar('role_name')}
+    Open Connection    ${symvar('role_server')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('role_name')}
     # Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${sapvar('role_password')}
 	Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{role_password}
     Send Vkey    wnd[0]    0

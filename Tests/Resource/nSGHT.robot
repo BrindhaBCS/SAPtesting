@@ -18,7 +18,7 @@ START
     Sleep    2
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('user_name')}
     Sleep    2
-    Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('password')}
+    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{password}
     Sleep    2
     Click Element    wnd[0]/tbar[0]/btn[0]
     Sleep    2

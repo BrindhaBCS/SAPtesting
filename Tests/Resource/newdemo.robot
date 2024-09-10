@@ -9,15 +9,15 @@ Library    Process
 
 *** Keywords ***
 SAP Logon
-    Start Process    ${sapvar('sap_server')}
+    Start Process    ${symvar('sap_server')}
     Sleep    2
     Connect To Session
     Sleep    2
-    Open Connection    ${sapvar('server')}
+    Open Connection    ${symvar('server')}
     Sleep    2
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${sapvar('user_name')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('user_name')}
     Sleep    2
-    Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${sapvar('password')}
+    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{password}
     Sleep    2
     Send Vkey    0
     
@@ -26,7 +26,7 @@ Transaction Validation
         Run Transaction    ${tcode}
         Sleep    2
         
-        ${text}    Tcode Status    wnd[0]/sbar/pane[0]
+        ${text}    Log To Console    wnd[0]/sbar/pane[0]
         # Log To Console    ${text}
 
         IF  '${text}' == 'Transaction does not exist'
