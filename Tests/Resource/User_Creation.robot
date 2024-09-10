@@ -21,20 +21,23 @@ Create User
     Run Transaction    /nSU01
     Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('ALM_User')}
     Click Element    wnd[0]/tbar[1]/btn[8]
-    # Sleep    5
     Window Handling    wnd[1]    Address Maintenance      wnd[1]/usr/btnBUTTON_2
-    # Sleep    5
-    Input Text    wnd[0]/usr/tabsTABSTRIP1/tabpADDR/ssubMAINAREA:SAPLSUID_MAINTENANCE:1900/txtSUID_ST_NODE_PERSON_NAME-NAME_LAST    ${symvar('ALM_User')}
-    Click Element     wnd[0]/usr/tabsTABSTRIP1/tabpLOGO
-    # Sleep    2
-    Input Text    wnd[0]/usr/tabsTABSTRIP1/tabpLOGO/ssubMAINAREA:SAPLSUID_MAINTENANCE:1101/pwdSUID_ST_NODE_PASSWORD_EXT-PASSWORD    ${symvar('ALM_pass')}
-    Input Text    wnd[0]/usr/tabsTABSTRIP1/tabpLOGO/ssubMAINAREA:SAPLSUID_MAINTENANCE:1101/pwdSUID_ST_NODE_PASSWORD_EXT-PASSWORD2    ${symvar('ALM_pass')}
-    # Sleep    2
-    Click Element    wnd[0]/usr/tabsTABSTRIP1/tabpPROF
-    Set Cell Value    wnd[0]/usr/tabsTABSTRIP1/tabpPROF/ssubMAINAREA:SAPLSUID_MAINTENANCE:1103/cntlG_PROFILES_CONTAINER/shellcont/shell    0    PROFILE    SAP_ALL
-    Set Cell Value    wnd[0]/usr/tabsTABSTRIP1/tabpPROF/ssubMAINAREA:SAPLSUID_MAINTENANCE:1103/cntlG_PROFILES_CONTAINER/shellcont/shell    1    PROFILE    SAP_NEW
-    # Sleep    2
-    Click Element    wnd[0]/tbar[0]/btn[11]
-    ${output}   Get Value    wnd[0]/sbar/pane[0]
-    Log To Console    **gbStart**copilot_status**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- ${output}**gbEnd**
+    ${user}    To Upper    ${symvar('ALM_User')}
+    ${status}    Get Value    wnd[0]/sbar/pane[0]
+    IF    '${status}' == 'User ${user} already exists'
+        Log To Console    **gbStart**copilot_status**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- ${status}**gbEnd**
+    ELSE
+        Input Text    wnd[0]/usr/tabsTABSTRIP1/tabpADDR/ssubMAINAREA:SAPLSUID_MAINTENANCE:1900/txtSUID_ST_NODE_PERSON_NAME-NAME_LAST    ${symvar('ALM_User')}
+        Click Element     wnd[0]/usr/tabsTABSTRIP1/tabpLOGO
 
+        Input Text    wnd[0]/usr/tabsTABSTRIP1/tabpLOGO/ssubMAINAREA:SAPLSUID_MAINTENANCE:1101/pwdSUID_ST_NODE_PASSWORD_EXT-PASSWORD    ${symvar('ALM_pass')}
+        Input Text    wnd[0]/usr/tabsTABSTRIP1/tabpLOGO/ssubMAINAREA:SAPLSUID_MAINTENANCE:1101/pwdSUID_ST_NODE_PASSWORD_EXT-PASSWORD2    ${symvar('ALM_pass')}
+        
+        Click Element    wnd[0]/usr/tabsTABSTRIP1/tabpPROF
+        Set Cell Value    wnd[0]/usr/tabsTABSTRIP1/tabpPROF/ssubMAINAREA:SAPLSUID_MAINTENANCE:1103/cntlG_PROFILES_CONTAINER/shellcont/shell    0    PROFILE    SAP_ALL
+        Set Cell Value    wnd[0]/usr/tabsTABSTRIP1/tabpPROF/ssubMAINAREA:SAPLSUID_MAINTENANCE:1103/cntlG_PROFILES_CONTAINER/shellcont/shell    1    PROFILE    SAP_NEW
+        
+        Click Element    wnd[0]/tbar[0]/btn[11]
+        ${output}   Get Value    wnd[0]/sbar/pane[0]
+        Log To Console    **gbStart**copilot_status**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- ${output}**gbEnd**
+    END
