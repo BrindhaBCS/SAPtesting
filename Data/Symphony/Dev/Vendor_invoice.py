@@ -1,0 +1,6 @@
+SAP_SERVER = "C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPGUI\\saplogon.exe"
+sap_user = "naren"
+sap_client = "001"
+connection = "TS4"
+vendor_excel_path = "C:\\RobotFramework\\sap_testing\\Tests\\Resource\\Vendar_Invoice.xlsx"
+sheet_name = "INPUT"

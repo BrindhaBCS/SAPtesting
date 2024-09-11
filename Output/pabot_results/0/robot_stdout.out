@@ -1,26 +1,24 @@
 ==============================================================================
 Tests :: Testing functionality through Robot Framework                        
 ==============================================================================
-Tests.Test ST06                                                               
+Tests.Test SystemRegistration                                                 
 ==============================================================================
-  
+System Registration                                                     
   Traceback (most recent call last):
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    File  C:\RobotFramework\sap_testing\Tests\Test_ST06.robot:5
-      System Logon    
+    File  C:\RobotFramework\sap_testing\Tests\Test_SystemRegistration.robot:8
+    T:  System Registration    
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    File  C:\RobotFramework\sap_testing\Tests\Resource\ST06.robot:15
-      Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
-      |  %{SAP_PASSWORD} = <Unable to define variable value>
+    File  C:\RobotFramework\sap_testing\Tests\Test_SystemRegistration.robot:9
+      System Registration    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Resource\SystemRegistration.robot:30
+      Get Value    wnd[0]/usr/txtLMSIDCOM
 ______________________________________________________________________________
-Executing ST06                                                        | FAIL |
-Parent suite setup failed:
-Environment variable '%{SAP_PASSWORD}' not found.
+| FAIL |
+ValueError: Cannot find element with id 'wnd[0]/usr/txtLMSIDCOM'
 ------------------------------------------------------------------------------
-Tests.Test ST06                                                       | FAIL |
-Suite setup failed:
-Environment variable '%{SAP_PASSWORD}' not found.
-
+Tests.Test SystemRegistration                                         | FAIL |
 1 test, 0 passed, 1 failed
 ==============================================================================
 Tests :: Testing functionality through Robot Framework                | FAIL |

@@ -1,6 +1,6 @@
-SAP_SERVER = "C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPgui\\saplogon.exe"
+SAP_SERVER = "C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPGUI\\saplogon.exe"
 login_user = "lokeshk"
 excel_path = "C:\\RobotFramework\\sap_testing\\Tests\\Resource\\invoice.xlsx"
 sheet_name = "INPUT" 
 login_client = "800"
-connection = "BIS"
+invoice_connection = "BIS"

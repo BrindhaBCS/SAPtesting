@@ -1,0 +1,1644 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot generated="20240911 05:29:16.969" generator="Rebot 6.0.2 (Python 3.12.4 on win32)" rpa="false" schemaversion="3">
+ <suite id="s1" name="Tests" source="C:\RobotFramework\sap_testing\Tests">
+  <kw name="Setup highest level suite" type="SETUP">
+   <kw library="BuiltIn" name="Set Variable">
+    <var>
+     ${d.test_server}
+    </var>
+    <arg>
+     ${test_server}
+    </arg>
+    <doc>
+     Returns the given values which can then be assigned to a variables.
+    </doc>
+    <msg level="INFO" timestamp="20240911 05:29:08.922">
+     ${d.test_server} = Dev
+    </msg>
+    <status endtime="20240911 05:29:08.922" starttime="20240911 05:29:08.922" status="PASS"/>
+   </kw>
+   <kw library="Support" name="Reset screenshot count variable">
+    <kw library="BuiltIn" name="Set Variable">
+     <var>
+      ${screenshotCount}
+     </var>
+     <arg>
+      ${PABOTQUEUEINDEX}_1
+     </arg>
+     <doc>
+      Returns the given values which can then be assigned to a variables.
+     </doc>
+     <msg level="INFO" timestamp="20240911 05:29:08.922">
+      ${screenshotCount} = 0_1
+     </msg>
+     <status endtime="20240911 05:29:08.922" starttime="20240911 05:29:08.922" status="PASS"/>
+    </kw>
+    <kw library="BuiltIn" name="Set Global Variable">
+     <arg>
+      ${screenshotCount}
+     </arg>
+     <doc>
+      Makes a variable available globally in all tests and suites.
+     </doc>
+     <msg level="INFO" timestamp="20240911 05:29:08.926">
+      ${screenshotCount} = 0_1
+     </msg>
+     <status endtime="20240911 05:29:08.926" starttime="20240911 05:29:08.922" status="PASS"/>
+    </kw>
+    <kw library="Support" name="Set up screenshot directory">
+     <kw library="OperatingSystem" name="Create Directory">
+      <arg>
+       ${OUTPUTDIR}${/}${wvar('screenshot_dir')}
+      </arg>
+      <doc>
+       Creates the specified directory.
+      </doc>
+      <msg level="INFO" timestamp="20240911 05:29:08.926">
+       Web.Dev.screenshot_dir: Screenshot
+      </msg>
+      <msg html="true" level="INFO" timestamp="20240911 05:29:08.926">
+       Created directory '&lt;a href="file://C:\RobotFramework\sap_testing\Output\062bd565-cee5-4a57-9806-a398f72e0cff\pabot_results\0\Screenshot"&gt;C:\RobotFramework\sap_testing\Output\062bd565-cee5-4a57-9806-a398f72e0cff\pabot_results\0\Screenshot&lt;/a&gt;'.
+      </msg>
+      <status endtime="20240911 05:29:08.926" starttime="20240911 05:29:08.926" status="PASS"/>
+     </kw>
+     <status endtime="20240911 05:29:08.926" starttime="20240911 05:29:08.926" status="PASS"/>
+    </kw>
+    <status endtime="20240911 05:29:08.926" starttime="20240911 05:29:08.922" status="PASS"/>
+   </kw>
+   <kw library="BuiltIn" name="Set Global Variable">
+    <arg>
+     ${screenshot_taking}
+    </arg>
+    <arg>
+     ${True}
+    </arg>
+    <doc>
+     Makes a variable available globally in all tests and suites.
+    </doc>
+    <msg level="INFO" timestamp="20240911 05:29:08.926">
+     ${screenshot_taking} = True
+    </msg>
+    <status endtime="20240911 05:29:08.926" starttime="20240911 05:29:08.926" status="PASS"/>
+   </kw>
+   <kw library="Support" name="Setup linux execution">
+    <kw library="BuiltIn" name="Run Keyword And Return Status">
+     <var>
+      ${web_test_check}
+     </var>
+     <arg>
+      Variable Should Exist
+     </arg>
+     <arg>
+      ${web_test}
+     </arg>
+     <doc>
+      Runs the given keyword with given arguments and returns the status as a Boolean value.
+     </doc>
+     <kw library="BuiltIn" name="Variable Should Exist">
+      <arg>
+       ${web_test}
+      </arg>
+      <doc>
+       Fails unless the given variable exists within the current scope.
+      </doc>
+      <status endtime="20240911 05:29:08.926" starttime="20240911 05:29:08.926" status="PASS"/>
+     </kw>
+     <msg level="INFO" timestamp="20240911 05:29:08.926">
+      ${web_test_check} = True
+     </msg>
+     <status endtime="20240911 05:29:08.926" starttime="20240911 05:29:08.926" status="PASS"/>
+    </kw>
+    <kw library="BuiltIn" name="Run Keyword If">
+     <arg>
+      ${web_test_check}
+     </arg>
+     <arg>
+      Setup Docker Execution Options
+     </arg>
+     <doc>
+      Runs the given keyword with the given arguments, if ``condition`` is true.
+     </doc>
+     <kw library="Support_Web" name="Setup Docker Execution Options">
+      <kw library="Support_Web" name="Setup Suite Metadata">
+       <arg>
+        ${browser}
+       </arg>
+       <kw library="BrowserSupport" name="Get Browser Metadata">
+        <var>
+         &amp;{browser_information}
+        </var>
+        <arg>
+         browser=${browser}
+        </arg>
+        <doc>
+         Fetches browser metadata information
+:param browser: Name of the browser for which information is fetched
+:param reload: Re-read the metadata based on the browser
+:return: Browser metadata information, dict of format
+            {"browser_version": browser version value,
+             "driver_version": driver version value}
+        </doc>
+        <msg level="INFO" timestamp="20240911 05:29:12.275">
+         &amp;{browser_information} = { browser_version=128.0.6613.121 | driver_version=128.0.6613.84  }
+        </msg>
+        <status endtime="20240911 05:29:12.275" starttime="20240911 05:29:08.931" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Suite Metadata">
+        <arg>
+         test_browser_name
+        </arg>
+        <arg>
+         ${browser}
+        </arg>
+        <doc>
+         Sets metadata for the current test suite.
+        </doc>
+        <msg level="INFO" timestamp="20240911 05:29:12.276">
+         Set suite metadata 'test_browser_name' to value 'chrome'.
+        </msg>
+        <status endtime="20240911 05:29:12.276" starttime="20240911 05:29:12.276" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Suite Metadata">
+        <arg>
+         test_browser_version
+        </arg>
+        <arg>
+         ${browser_information.browser_version}
+        </arg>
+        <doc>
+         Sets metadata for the current test suite.
+        </doc>
+        <msg level="INFO" timestamp="20240911 05:29:12.278">
+         Set suite metadata 'test_browser_version' to value '128.0.6613.121'.
+        </msg>
+        <status endtime="20240911 05:29:12.278" starttime="20240911 05:29:12.276" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Suite Metadata">
+        <arg>
+         test_driver_version
+        </arg>
+        <arg>
+         ${browser_information.driver_version}
+        </arg>
+        <doc>
+         Sets metadata for the current test suite.
+        </doc>
+        <msg level="INFO" timestamp="20240911 05:29:12.279">
+         Set suite metadata 'test_driver_version' to value '128.0.6613.84 '.
+        </msg>
+        <status endtime="20240911 05:29:12.279" starttime="20240911 05:29:12.278" status="PASS"/>
+       </kw>
+       <status endtime="20240911 05:29:12.279" starttime="20240911 05:29:08.931" status="PASS"/>
+      </kw>
+      <kw library="Support_Web" name="Setup Global Docker Execution Options">
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${global_browser_options}
+        </arg>
+        <arg>
+         None
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240911 05:29:12.282">
+         ${global_browser_options} = None
+        </msg>
+        <status endtime="20240911 05:29:12.282" starttime="20240911 05:29:12.280" status="PASS"/>
+       </kw>
+       <kw library="OperatingSystem" name="Get Environment Variable">
+        <var>
+         ${docker_check}
+        </var>
+        <arg>
+         EXECUTION_ENVIRONMENT
+        </arg>
+        <arg>
+         not_found
+        </arg>
+        <doc>
+         Returns the value of an environment variable with the given name.
+        </doc>
+        <msg level="INFO" timestamp="20240911 05:29:12.283">
+         ${docker_check} = not_found
+        </msg>
+        <status endtime="20240911 05:29:12.283" starttime="20240911 05:29:12.282" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Run Keyword And Return If">
+        <arg>
+         "${docker_check}"!="docker"
+        </arg>
+        <arg>
+         Log
+        </arg>
+        <arg>
+         Not executing on Docker
+        </arg>
+        <doc>
+         Runs the specified keyword and returns from the enclosing user keyword.
+        </doc>
+        <kw library="BuiltIn" name="Log">
+         <arg>
+          Not executing on Docker
+         </arg>
+         <doc>
+          Logs the given message with the given level.
+         </doc>
+         <msg level="INFO" timestamp="20240911 05:29:12.284">
+          Not executing on Docker
+         </msg>
+         <status endtime="20240911 05:29:12.284" starttime="20240911 05:29:12.283" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240911 05:29:12.284">
+         Returning from the enclosing user keyword.
+        </msg>
+        <status endtime="20240911 05:29:12.284" starttime="20240911 05:29:12.283" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Create List">
+        <var>
+         @{options}
+        </var>
+        <arg>
+         --headless
+        </arg>
+        <arg>
+         --no-sandbox
+        </arg>
+        <arg>
+         --disable-dev-shm-usage
+        </arg>
+        <doc>
+         Returns a list containing given items.
+        </doc>
+        <status endtime="20240911 05:29:12.284" starttime="20240911 05:29:12.284" status="NOT RUN"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         @{docker_options}
+        </arg>
+        <arg>
+         @{options}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <status endtime="20240911 05:29:12.285" starttime="20240911 05:29:12.285" status="NOT RUN"/>
+       </kw>
+       <status endtime="20240911 05:29:12.285" starttime="20240911 05:29:12.280" status="PASS"/>
+      </kw>
+      <kw library="Support_Web" name="Create Webdriver for chrome preferences">
+       <kw library="Support_Web" name="Update Docker Execution Options">
+        <var>
+         ${list_prefs}
+        </var>
+        <arg>
+         ${list_prefs}
+        </arg>
+        <kw library="BuiltIn" name="Run Keyword And Return Status">
+         <var>
+          ${docker_check}
+         </var>
+         <arg>
+          Variable Should Exist
+         </arg>
+         <arg>
+          ${docker_options}
+         </arg>
+         <doc>
+          Runs the given keyword with given arguments and returns the status as a Boolean value.
+         </doc>
+         <kw library="BuiltIn" name="Variable Should Exist">
+          <arg>
+           ${docker_options}
+          </arg>
+          <doc>
+           Fails unless the given variable exists within the current scope.
+          </doc>
+          <msg level="FAIL" timestamp="20240911 05:29:12.290">
+           Variable '${docker_options}' does not exist.
+          </msg>
+          <status endtime="20240911 05:29:12.290" starttime="20240911 05:29:12.287" status="FAIL"/>
+         </kw>
+         <msg level="INFO" timestamp="20240911 05:29:12.290">
+          ${docker_check} = False
+         </msg>
+         <status endtime="20240911 05:29:12.290" starttime="20240911 05:29:12.286" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Get Length">
+         <var>
+          ${list_prefs_length}
+         </var>
+         <arg>
+          ${list_prefs}
+         </arg>
+         <doc>
+          Returns and logs the length of the given item as an integer.
+         </doc>
+         <msg level="INFO" timestamp="20240911 05:29:12.291">
+          Length is 1
+         </msg>
+         <msg level="INFO" timestamp="20240911 05:29:12.291">
+          ${list_prefs_length} = 1
+         </msg>
+         <status endtime="20240911 05:29:12.291" starttime="20240911 05:29:12.290" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Run Keyword If">
+         <var>
+          ${list_prefs}
+         </var>
+         <arg>
+          ${docker_check} and ${list_prefs_length}&gt;0 and ${list_prefs}[0] != []
+         </arg>
+         <arg>
+          Combine Lists
+         </arg>
+         <arg>
+          ${list_prefs}
+         </arg>
+         <arg>
+          ${docker_options}
+         </arg>
+         <arg>
+          ELSE IF
+         </arg>
+         <arg>
+          ${docker_check}
+         </arg>
+         <arg>
+          Set Variable
+         </arg>
+         <arg>
+          ${docker_options}
+         </arg>
+         <arg>
+          ELSE
+         </arg>
+         <arg>
+          Set Variable
+         </arg>
+         <arg>
+          ${list_prefs}
+         </arg>
+         <doc>
+          Runs the given keyword with the given arguments, if ``condition`` is true.
+         </doc>
+         <kw library="BuiltIn" name="Set Variable">
+          <arg>
+           ${list_prefs}
+          </arg>
+          <doc>
+           Returns the given values which can then be assigned to a variables.
+          </doc>
+          <status endtime="20240911 05:29:12.292" starttime="20240911 05:29:12.292" status="PASS"/>
+         </kw>
+         <msg level="INFO" timestamp="20240911 05:29:12.292">
+          ${list_prefs} = [[]]
+         </msg>
+         <status endtime="20240911 05:29:12.292" starttime="20240911 05:29:12.291" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240911 05:29:12.293">
+         ${list_prefs} = [[]]
+        </msg>
+        <status endtime="20240911 05:29:12.293" starttime="20240911 05:29:12.286" status="PASS"/>
+       </kw>
+       <kw library="Support_Web" name="Create Chrome Options for download preferences">
+        <var>
+         ${chrome_options}
+        </var>
+        <kw library="BuiltIn" name="Evaluate">
+         <var>
+          ${chrome_options}
+         </var>
+         <arg>
+          sys.modules['selenium.webdriver'].ChromeOptions()
+         </arg>
+         <arg>
+          sys
+         </arg>
+         <doc>
+          Evaluates the given expression in Python and returns the result.
+         </doc>
+         <msg level="INFO" timestamp="20240911 05:29:12.294">
+          ${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000028D5FBBAD20&gt;
+         </msg>
+         <status endtime="20240911 05:29:12.294" starttime="20240911 05:29:12.293" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240911 05:29:12.294">
+         ${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000028D5FBBAD20&gt;
+        </msg>
+        <status endtime="20240911 05:29:12.294" starttime="20240911 05:29:12.293" status="PASS"/>
+       </kw>
+       <kw library="Support_Web" name="Update Preferences List">
+        <arg>
+         ${chrome_options}
+        </arg>
+        <arg>
+         @{list_prefs}
+        </arg>
+        <kw library="BuiltIn" name="Convert To String">
+         <var>
+          ${string_prefs}
+         </var>
+         <arg>
+          ${list_prefs}
+         </arg>
+         <doc>
+          Converts the given item to a Unicode string.
+         </doc>
+         <msg level="INFO" timestamp="20240911 05:29:12.295">
+          ${string_prefs} = [[]]
+         </msg>
+         <status endtime="20240911 05:29:12.295" starttime="20240911 05:29:12.295" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Return From Keyword If">
+         <arg>
+          ${string_prefs} == [[]]
+         </arg>
+         <doc>
+          Returns from the enclosing user keyword if ``condition`` is true.
+         </doc>
+         <msg level="INFO" timestamp="20240911 05:29:12.296">
+          Returning from the enclosing user keyword.
+         </msg>
+         <status endtime="20240911 05:29:12.296" starttime="20240911 05:29:12.295" status="PASS"/>
+        </kw>
+        <for flavor="IN">
+         <var>
+          ${preference}
+         </var>
+         <value>
+          @{list_prefs}
+         </value>
+         <iter>
+          <var name="${preference}"/>
+          <kw library="BuiltIn" name="Call Method">
+           <arg>
+            ${chrome_options}
+           </arg>
+           <arg>
+            add_argument
+           </arg>
+           <arg>
+            ${preference}
+           </arg>
+           <doc>
+            Calls the named method of the given object with the provided arguments.
+           </doc>
+           <status endtime="20240911 05:29:12.297" starttime="20240911 05:29:12.297" status="NOT RUN"/>
+          </kw>
+          <status endtime="20240911 05:29:12.297" starttime="20240911 05:29:12.296" status="NOT RUN"/>
+         </iter>
+         <status endtime="20240911 05:29:12.297" starttime="20240911 05:29:12.296" status="NOT RUN"/>
+        </for>
+        <status endtime="20240911 05:29:12.297" starttime="20240911 05:29:12.294" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Call Method">
+        <arg>
+         ${chrome_options}
+        </arg>
+        <arg>
+         add_experimental_option
+        </arg>
+        <arg>
+         prefs
+        </arg>
+        <arg>
+         ${kw_prefs}
+        </arg>
+        <doc>
+         Calls the named method of the given object with the provided arguments.
+        </doc>
+        <status endtime="20240911 05:29:12.298" starttime="20240911 05:29:12.297" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${global_browser_options}
+        </arg>
+        <arg>
+         ${chrome options}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240911 05:29:12.299">
+         ${global_browser_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000028D5FBBAD20&gt;
+        </msg>
+        <status endtime="20240911 05:29:12.299" starttime="20240911 05:29:12.298" status="PASS"/>
+       </kw>
+       <status endtime="20240911 05:29:12.299" starttime="20240911 05:29:12.285" status="PASS"/>
+      </kw>
+      <status endtime="20240911 05:29:12.299" starttime="20240911 05:29:08.931" status="PASS"/>
+     </kw>
+     <status endtime="20240911 05:29:12.299" starttime="20240911 05:29:08.926" status="PASS"/>
+    </kw>
+    <status endtime="20240911 05:29:12.299" starttime="20240911 05:29:08.926" status="PASS"/>
+   </kw>
+   <kw library="BuiltIn" name="Set Suite Metadata">
+    <arg>
+     environment
+    </arg>
+    <arg>
+     ${test_server}
+    </arg>
+    <doc>
+     Sets metadata for the current test suite.
+    </doc>
+    <msg level="INFO" timestamp="20240911 05:29:12.300">
+     Set suite metadata 'environment' to value 'Dev'.
+    </msg>
+    <status endtime="20240911 05:29:12.300" starttime="20240911 05:29:12.300" status="PASS"/>
+   </kw>
+   <status endtime="20240911 05:29:12.300" starttime="20240911 05:29:08.922" status="PASS"/>
+  </kw>
+  <suite id="s1-s1" name="Test Certificate Check" source="C:\RobotFramework\sap_testing\Tests\Test_Certificate_Check.robot">
+   <kw library="Certificate_Check" name="System Logon" type="SETUP">
+    <kw library="Process" name="Start Process">
+     <arg>
+      ${symvar('ABAP_SAP_SERVER')}
+     </arg>
+     <doc>
+      Starts a new process on background.
+     </doc>
+     <msg level="INFO" timestamp="20240911 05:29:13.342">
+      Sym.Dev.ABAP_SAP_SERVER: C:\Program Files (x86)\SAP\FrontEnd\SAPGUI\saplogon.exe
+     </msg>
+     <msg level="INFO" timestamp="20240911 05:29:13.342">
+      Starting process:
+"C:\Program Files (x86)\SAP\FrontEnd\SAPGUI\saplogon.exe"
+     </msg>
+     <status endtime="20240911 05:29:13.352" starttime="20240911 05:29:13.342" status="PASS"/>
+    </kw>
+    <kw library="SAP_Tcode_Library" name="Connect To Session">
+     <doc>
+      Connects to an open session SAP.
+     </doc>
+     <status endtime="20240911 05:29:13.414" starttime="20240911 05:29:13.352" status="PASS"/>
+    </kw>
+    <kw library="SAP_Tcode_Library" name="Open Connection">
+     <arg>
+      ${symvar('ABAP_Connection')}
+     </arg>
+     <doc>
+      Opens a connection to the given connection name. Be sure to provide the full connection name, including the bracket part.
+     </doc>
+     <msg level="INFO" timestamp="20240911 05:29:13.414">
+      Sym.Dev.ABAP_Connection: RBT
+     </msg>
+     <status endtime="20240911 05:29:15.011" starttime="20240911 05:29:13.414" status="PASS"/>
+    </kw>
+    <kw library="SAP_Tcode_Library" name="Input Text">
+     <arg>
+      wnd[0]/usr/txtRSYST-MANDT
+     </arg>
+     <arg>
+      ${symvar('ABAP_CLIENT')}
+     </arg>
+     <doc>
+      Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+     </doc>
+     <msg level="INFO" timestamp="20240911 05:29:15.011">
+      Sym.Dev.ABAP_CLIENT: 100
+     </msg>
+     <msg level="INFO" timestamp="20240911 05:29:15.015">
+      Typing text '100' into text field 'wnd[0]/usr/txtRSYST-MANDT'.
+     </msg>
+     <status endtime="20240911 05:29:15.015" starttime="20240911 05:29:15.011" status="PASS"/>
+    </kw>
+    <kw library="SAP_Tcode_Library" name="Input Text">
+     <arg>
+      wnd[0]/usr/txtRSYST-BNAME
+     </arg>
+     <arg>
+      ${symvar('ABAP_USER')}
+     </arg>
+     <doc>
+      Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.
+     </doc>
+     <msg level="INFO" timestamp="20240911 05:29:15.015">
+      Sym.Dev.ABAP_USER: BCSADMIN
+     </msg>
+     <msg level="INFO" timestamp="20240911 05:29:15.031">
+      Typing text 'BCSADMIN' into text field 'wnd[0]/usr/txtRSYST-BNAME'.
+     </msg>
+     <status endtime="20240911 05:29:15.031" starttime="20240911 05:29:15.015" status="PASS"/>
+    </kw>
+    <kw library="SAP_Tcode_Library" name="Input Password">
+     <arg>
+      wnd[0]/usr/pwdRSYST-BCODE
+     </arg>
+     <arg>
+      %{ABAP_PASSWORD}
+     </arg>
+     <doc>
+      Inserts the given password into the text field identified by locator.
+The password is not recorded in the log.
+     </doc>
+     <msg level="INFO" timestamp="20240911 05:29:15.031">
+      Typing password into text field 'wnd[0]/usr/pwdRSYST-BCODE'.
+     </msg>
+     <status endtime="20240911 05:29:15.031" starttime="20240911 05:29:15.031" status="PASS"/>
+    </kw>
+    <kw library="SAP_Tcode_Library" name="Send Vkey">
+     <arg>
+      0
+     </arg>
+     <doc>
+      Sends a SAP virtual key combination to the window, not into an element.
+If you want to send a value to a text field, use `input text` instead.
+     </doc>
+     <status endtime="20240911 05:29:15.491" starttime="20240911 05:29:15.031" status="PASS"/>
+    </kw>
+    <kw library="SAP_Tcode_Library" name="Multiple Logon Handling">
+     <arg>
+      wnd[1]
+     </arg>
+     <arg>
+      wnd[1]/usr/radMULTI_LOGON_OPT2
+     </arg>
+     <arg>
+      wnd[1]/tbar[0]/btn[0]
+     </arg>
+     <status endtime="20240911 05:29:15.512" starttime="20240911 05:29:15.491" status="PASS"/>
+    </kw>
+    <status endtime="20240911 05:29:15.512" starttime="20240911 05:29:13.342" status="PASS"/>
+   </kw>
+   <test id="s1-s1-t1" line="7" name="Download Certificates">
+    <kw library="Certificate_Check" name="Download Certificates">
+     <for flavor="IN">
+      <var>
+       ${url}
+      </var>
+      <value>
+       @{URLS}
+      </value>
+      <iter>
+       <var name="${url}">
+        https://dl.cacerts.digicert.com/DigiCertGlobalRootCA.crt
+       </var>
+       <kw library="Certificate_Check" name="Get File Name From URL">
+        <var>
+         ${file_name}
+        </var>
+        <arg>
+         ${url}
+        </arg>
+        <kw library="String" name="Get Substring">
+         <var>
+          ${path}
+         </var>
+         <arg>
+          ${url}
+         </arg>
+         <arg>
+          ${url.find('/') + 1}
+         </arg>
+         <doc>
+          Returns a substring from ``start`` index to ``end`` index.
+         </doc>
+         <msg level="INFO" timestamp="20240911 05:29:15.512">
+          ${path} = /dl.cacerts.digicert.com/DigiCertGlobalRootCA.crt
+         </msg>
+         <status endtime="20240911 05:29:15.512" starttime="20240911 05:29:15.512" status="PASS"/>
+        </kw>
+        <kw library="String" name="Get Substring">
+         <var>
+          ${file_name}
+         </var>
+         <arg>
+          ${path}
+         </arg>
+         <arg>
+          ${path.rfind('/') + 1}
+         </arg>
+         <doc>
+          Returns a substring from ``start`` index to ``end`` index.
+         </doc>
+         <msg level="INFO" timestamp="20240911 05:29:15.517">
+          ${file_name} = DigiCertGlobalRootCA.crt
+         </msg>
+         <status endtime="20240911 05:29:15.518" starttime="20240911 05:29:15.512" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240911 05:29:15.518">
+         ${file_name} = DigiCertGlobalRootCA.crt
+        </msg>
+        <status endtime="20240911 05:29:15.518" starttime="20240911 05:29:15.512" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Variable">
+        <var>
+         ${destination}
+        </var>
+        <arg>
+         ${DESTINATION_BASE}${file_name}
+        </arg>
+        <doc>
+         Returns the given values which can then be assigned to a variables.
+        </doc>
+        <msg level="INFO" timestamp="20240911 05:29:15.520">
+         ${destination} = C:\tmp\DigiCertGlobalRootCA.crt
+        </msg>
+        <status endtime="20240911 05:29:15.520" starttime="20240911 05:29:15.518" status="PASS"/>
+       </kw>
+       <kw library="Process" name="Start Process">
+        <arg>
+         curl
+        </arg>
+        <arg>
+         ${url}
+        </arg>
+        <arg>
+         -o
+        </arg>
+        <arg>
+         ${destination}
+        </arg>
+        <doc>
+         Starts a new process on background.
+        </doc>
+        <msg level="INFO" timestamp="20240911 05:29:15.520">
+         Starting process:
+curl https://dl.cacerts.digicert.com/DigiCertGlobalRootCA.crt -o C:\tmp\DigiCertGlobalRootCA.crt
+        </msg>
+        <status endtime="20240911 05:29:15.565" starttime="20240911 05:29:15.520" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Log">
+        <arg>
+         Downloaded ${file_name} to ${destination}
+        </arg>
+        <doc>
+         Logs the given message with the given level.
+        </doc>
+        <msg level="INFO" timestamp="20240911 05:29:15.572">
+         Downloaded DigiCertGlobalRootCA.crt to C:\tmp\DigiCertGlobalRootCA.crt
+        </msg>
+        <status endtime="20240911 05:29:15.572" starttime="20240911 05:29:15.565" status="PASS"/>
+       </kw>
+       <status endtime="20240911 05:29:15.572" starttime="20240911 05:29:15.512" status="PASS"/>
+      </iter>
+      <iter>
+       <var name="${url}">
+        https://cacerts.digicert.com/DigiCertGlobalRootG2.crt
+       </var>
+       <kw library="Certificate_Check" name="Get File Name From URL">
+        <var>
+         ${file_name}
+        </var>
+        <arg>
+         ${url}
+        </arg>
+        <kw library="String" name="Get Substring">
+         <var>
+          ${path}
+         </var>
+         <arg>
+          ${url}
+         </arg>
+         <arg>
+          ${url.find('/') + 1}
+         </arg>
+         <doc>
+          Returns a substring from ``start`` index to ``end`` index.
+         </doc>
+         <msg level="INFO" timestamp="20240911 05:29:15.572">
+          ${path} = /cacerts.digicert.com/DigiCertGlobalRootG2.crt
+         </msg>
+         <status endtime="20240911 05:29:15.572" starttime="20240911 05:29:15.572" status="PASS"/>
+        </kw>
+        <kw library="String" name="Get Substring">
+         <var>
+          ${file_name}
+         </var>
+         <arg>
+          ${path}
+         </arg>
+         <arg>
+          ${path.rfind('/') + 1}
+         </arg>
+         <doc>
+          Returns a substring from ``start`` index to ``end`` index.
+         </doc>
+         <msg level="INFO" timestamp="20240911 05:29:15.572">
+          ${file_name} = DigiCertGlobalRootG2.crt
+         </msg>
+         <status endtime="20240911 05:29:15.572" starttime="20240911 05:29:15.572" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240911 05:29:15.572">
+         ${file_name} = DigiCertGlobalRootG2.crt
+        </msg>
+        <status endtime="20240911 05:29:15.572" starttime="20240911 05:29:15.572" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Variable">
+        <var>
+         ${destination}
+        </var>
+        <arg>
+         ${DESTINATION_BASE}${file_name}
+        </arg>
+        <doc>
+         Returns the given values which can then be assigned to a variables.
+        </doc>
+        <msg level="INFO" timestamp="20240911 05:29:15.572">
+         ${destination} = C:\tmp\DigiCertGlobalRootG2.crt
+        </msg>
+        <status endtime="20240911 05:29:15.572" starttime="20240911 05:29:15.572" status="PASS"/>
+       </kw>
+       <kw library="Process" name="Start Process">
+        <arg>
+         curl
+        </arg>
+        <arg>
+         ${url}
+        </arg>
+        <arg>
+         -o
+        </arg>
+        <arg>
+         ${destination}
+        </arg>
+        <doc>
+         Starts a new process on background.
+        </doc>
+        <msg level="INFO" timestamp="20240911 05:29:15.572">
+         Starting process:
+curl https://cacerts.digicert.com/DigiCertGlobalRootG2.crt -o C:\tmp\DigiCertGlobalRootG2.crt
+        </msg>
+        <status endtime="20240911 05:29:15.582" starttime="20240911 05:29:15.572" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Log">
+        <arg>
+         Downloaded ${file_name} to ${destination}
+        </arg>
+        <doc>
+         Logs the given message with the given level.
+        </doc>
+        <msg level="INFO" timestamp="20240911 05:29:15.585">
+         Downloaded DigiCertGlobalRootG2.crt to C:\tmp\DigiCertGlobalRootG2.crt
+        </msg>
+        <status endtime="20240911 05:29:15.585" starttime="20240911 05:29:15.582" status="PASS"/>
+       </kw>
+       <status endtime="20240911 05:29:15.585" starttime="20240911 05:29:15.572" status="PASS"/>
+      </iter>
+      <iter>
+       <var name="${url}">
+        https://cacerts.digicert.com/DigiCertRSA4096RootG5.crt
+       </var>
+       <kw library="Certificate_Check" name="Get File Name From URL">
+        <var>
+         ${file_name}
+        </var>
+        <arg>
+         ${url}
+        </arg>
+        <kw library="String" name="Get Substring">
+         <var>
+          ${path}
+         </var>
+         <arg>
+          ${url}
+         </arg>
+         <arg>
+          ${url.find('/') + 1}
+         </arg>
+         <doc>
+          Returns a substring from ``start`` index to ``end`` index.
+         </doc>
+         <msg level="INFO" timestamp="20240911 05:29:15.585">
+          ${path} = /cacerts.digicert.com/DigiCertRSA4096RootG5.crt
+         </msg>
+         <status endtime="20240911 05:29:15.585" starttime="20240911 05:29:15.585" status="PASS"/>
+        </kw>
+        <kw library="String" name="Get Substring">
+         <var>
+          ${file_name}
+         </var>
+         <arg>
+          ${path}
+         </arg>
+         <arg>
+          ${path.rfind('/') + 1}
+         </arg>
+         <doc>
+          Returns a substring from ``start`` index to ``end`` index.
+         </doc>
+         <msg level="INFO" timestamp="20240911 05:29:15.585">
+          ${file_name} = DigiCertRSA4096RootG5.crt
+         </msg>
+         <status endtime="20240911 05:29:15.585" starttime="20240911 05:29:15.585" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240911 05:29:15.585">
+         ${file_name} = DigiCertRSA4096RootG5.crt
+        </msg>
+        <status endtime="20240911 05:29:15.585" starttime="20240911 05:29:15.585" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Variable">
+        <var>
+         ${destination}
+        </var>
+        <arg>
+         ${DESTINATION_BASE}${file_name}
+        </arg>
+        <doc>
+         Returns the given values which can then be assigned to a variables.
+        </doc>
+        <msg level="INFO" timestamp="20240911 05:29:15.585">
+         ${destination} = C:\tmp\DigiCertRSA4096RootG5.crt
+        </msg>
+        <status endtime="20240911 05:29:15.585" starttime="20240911 05:29:15.585" status="PASS"/>
+       </kw>
+       <kw library="Process" name="Start Process">
+        <arg>
+         curl
+        </arg>
+        <arg>
+         ${url}
+        </arg>
+        <arg>
+         -o
+        </arg>
+        <arg>
+         ${destination}
+        </arg>
+        <doc>
+         Starts a new process on background.
+        </doc>
+        <msg level="INFO" timestamp="20240911 05:29:15.585">
+         Starting process:
+curl https://cacerts.digicert.com/DigiCertRSA4096RootG5.crt -o C:\tmp\DigiCertRSA4096RootG5.crt
+        </msg>
+        <status endtime="20240911 05:29:15.597" starttime="20240911 05:29:15.585" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Log">
+        <arg>
+         Downloaded ${file_name} to ${destination}
+        </arg>
+        <doc>
+         Logs the given message with the given level.
+        </doc>
+        <msg level="INFO" timestamp="20240911 05:29:15.597">
+         Downloaded DigiCertRSA4096RootG5.crt to C:\tmp\DigiCertRSA4096RootG5.crt
+        </msg>
+        <status endtime="20240911 05:29:15.597" starttime="20240911 05:29:15.597" status="PASS"/>
+       </kw>
+       <status endtime="20240911 05:29:15.597" starttime="20240911 05:29:15.585" status="PASS"/>
+      </iter>
+      <status endtime="20240911 05:29:15.597" starttime="20240911 05:29:15.512" status="PASS"/>
+     </for>
+     <status endtime="20240911 05:29:15.597" starttime="20240911 05:29:15.512" status="PASS"/>
+    </kw>
+    <kw library="Certificate_Check" name="STRUST">
+     <kw library="SAP_Tcode_Library" name="Run Transaction">
+      <arg>
+       /nSTRUST
+      </arg>
+      <doc>
+       Runs a Sap transaction. An error is given when an unknown transaction is specified.
+      </doc>
+      <status endtime="20240911 05:29:15.850" starttime="20240911 05:29:15.597" status="PASS"/>
+     </kw>
+     <kw library="SAP_Tcode_Library" name="Click Element">
+      <arg>
+       wnd[0]/tbar[1]/btn[25]
+      </arg>
+      <doc>
+       Performs a single click on a given element. Used only for buttons, tabs and menu items.
+      </doc>
+      <status endtime="20240911 05:29:15.919" starttime="20240911 05:29:15.850" status="PASS"/>
+     </kw>
+     <status endtime="20240911 05:29:15.919" starttime="20240911 05:29:15.597" status="PASS"/>
+    </kw>
+    <kw library="Certificate_Check" name="STRUS_SSL_Client_Anonymous">
+     <kw library="SAP_Tcode_Library" name="Double Click On Tree Item">
+      <arg>
+       wnd[0]/shellcont/shell
+      </arg>
+      <arg>
+       SSLCANONYM
+      </arg>
+      <status endtime="20240911 05:29:16.062" starttime="20240911 05:29:15.919" status="PASS"/>
+     </kw>
+     <kw library="SAP_Tcode_Library" name="Get Value">
+      <var>
+       ${space}
+      </var>
+      <arg>
+       wnd[0]/usr/tblS_TRUSTMANAGERPK_CTRL/txtPSECERTLIST-SUBJECT[0,0]
+      </arg>
+      <doc>
+       Gets the value of the given element. The possible return values depend on the type of element (see Return values).
+      </doc>
+      <msg level="INFO" timestamp="20240911 05:29:16.154">
+       ${space} = CN=DigiCert Global Root G2, OU=www.digicert.com, O=DigiCert Inc, C=US
+      </msg>
+      <status endtime="20240911 05:29:16.154" starttime="20240911 05:29:16.062" status="PASS"/>
+     </kw>
+     <if>
+      <branch condition="'${space}' != ''" type="IF">
+       <for flavor="IN RANGE">
+        <var>
+         ${index}
+        </var>
+        <value>
+         0
+        </value>
+        <value>
+         3
+        </value>
+        <iter>
+         <var name="${index}">
+          0
+         </var>
+         <kw library="SAP_Tcode_Library" name="Get Value">
+          <var>
+           ${value}
+          </var>
+          <arg>
+           wnd[0]/usr/tblS_TRUSTMANAGERPK_CTRL/txtPSECERTLIST-SUBJECT[0,${index}]
+          </arg>
+          <doc>
+           Gets the value of the given element. The possible return values depend on the type of element (see Return values).
+          </doc>
+          <msg level="INFO" timestamp="20240911 05:29:16.164">
+           ${value} = CN=DigiCert Global Root G2, OU=www.digicert.com, O=DigiCert Inc, C=US
+          </msg>
+          <status endtime="20240911 05:29:16.164" starttime="20240911 05:29:16.154" status="PASS"/>
+         </kw>
+         <if>
+          <branch condition="'${value}' == 'CN=DigiCert Global Root G2, OU=www.digicert.com, O=DigiCert Inc, C=US'" type="IF">
+           <kw library="BuiltIn" name="Log To Console">
+            <arg>
+             Certificate already exists: DigiCert Global Root G2
+            </arg>
+            <doc>
+             Logs the given message to the console.
+            </doc>
+            <status endtime="20240911 05:29:16.164" starttime="20240911 05:29:16.164" status="PASS"/>
+           </kw>
+           <status endtime="20240911 05:29:16.164" starttime="20240911 05:29:16.164" status="PASS"/>
+          </branch>
+          <branch condition="'${value}' == 'CN=DigiCert Global Root CA, OU=www.digicert.com, O=DigiCert Inc, C=US'" type="ELSE IF">
+           <kw library="BuiltIn" name="Log To Console">
+            <arg>
+             Certificate already exists: DigiCert Global Root CA
+            </arg>
+            <doc>
+             Logs the given message to the console.
+            </doc>
+            <status endtime="20240911 05:29:16.164" starttime="20240911 05:29:16.164" status="NOT RUN"/>
+           </kw>
+           <status endtime="20240911 05:29:16.164" starttime="20240911 05:29:16.164" status="NOT RUN"/>
+          </branch>
+          <branch condition="'${value}' == 'CN=DigiCert RSA4096 Root G5, O=&quot;DigiCert, Inc.&quot;, C=US'" type="ELSE IF">
+           <kw library="BuiltIn" name="Log To Console">
+            <arg>
+             Certificate already exists: DigiCert RSA4096 Root G5
+            </arg>
+            <doc>
+             Logs the given message to the console.
+            </doc>
+            <status endtime="20240911 05:29:16.164" starttime="20240911 05:29:16.164" status="NOT RUN"/>
+           </kw>
+           <status endtime="20240911 05:29:16.164" starttime="20240911 05:29:16.164" status="NOT RUN"/>
+          </branch>
+          <branch type="ELSE">
+           <kw library="Certificate_Check" name="upload_certificate_SSL_Client_Anonymous">
+            <status endtime="20240911 05:29:16.164" starttime="20240911 05:29:16.164" status="NOT RUN"/>
+           </kw>
+           <kw library="BuiltIn" name="Log To Console">
+            <arg>
+             **gbStart**copilot_status5**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- STRUS_SSL_Client_Anonymous SAP Cloud ALM Connection Certificate Added Successfully**gbEnd**
+            </arg>
+            <doc>
+             Logs the given message to the console.
+            </doc>
+            <status endtime="20240911 05:29:16.164" starttime="20240911 05:29:16.164" status="NOT RUN"/>
+           </kw>
+           <status endtime="20240911 05:29:16.164" starttime="20240911 05:29:16.164" status="NOT RUN"/>
+          </branch>
+          <status endtime="20240911 05:29:16.164" starttime="20240911 05:29:16.164" status="PASS"/>
+         </if>
+         <status endtime="20240911 05:29:16.164" starttime="20240911 05:29:16.154" status="PASS"/>
+        </iter>
+        <iter>
+         <var name="${index}">
+          1
+         </var>
+         <kw library="SAP_Tcode_Library" name="Get Value">
+          <var>
+           ${value}
+          </var>
+          <arg>
+           wnd[0]/usr/tblS_TRUSTMANAGERPK_CTRL/txtPSECERTLIST-SUBJECT[0,${index}]
+          </arg>
+          <doc>
+           Gets the value of the given element. The possible return values depend on the type of element (see Return values).
+          </doc>
+          <msg level="INFO" timestamp="20240911 05:29:16.195">
+           ${value} = CN=DigiCert Global Root CA, OU=www.digicert.com, O=DigiCert Inc, C=US
+          </msg>
+          <status endtime="20240911 05:29:16.195" starttime="20240911 05:29:16.164" status="PASS"/>
+         </kw>
+         <if>
+          <branch condition="'${value}' == 'CN=DigiCert Global Root G2, OU=www.digicert.com, O=DigiCert Inc, C=US'" type="IF">
+           <kw library="BuiltIn" name="Log To Console">
+            <arg>
+             Certificate already exists: DigiCert Global Root G2
+            </arg>
+            <doc>
+             Logs the given message to the console.
+            </doc>
+            <status endtime="20240911 05:29:16.195" starttime="20240911 05:29:16.195" status="NOT RUN"/>
+           </kw>
+           <status endtime="20240911 05:29:16.195" starttime="20240911 05:29:16.195" status="NOT RUN"/>
+          </branch>
+          <branch condition="'${value}' == 'CN=DigiCert Global Root CA, OU=www.digicert.com, O=DigiCert Inc, C=US'" type="ELSE IF">
+           <kw library="BuiltIn" name="Log To Console">
+            <arg>
+             Certificate already exists: DigiCert Global Root CA
+            </arg>
+            <doc>
+             Logs the given message to the console.
+            </doc>
+            <status endtime="20240911 05:29:16.195" starttime="20240911 05:29:16.195" status="PASS"/>
+           </kw>
+           <status endtime="20240911 05:29:16.195" starttime="20240911 05:29:16.195" status="PASS"/>
+          </branch>
+          <branch condition="'${value}' == 'CN=DigiCert RSA4096 Root G5, O=&quot;DigiCert, Inc.&quot;, C=US'" type="ELSE IF">
+           <kw library="BuiltIn" name="Log To Console">
+            <arg>
+             Certificate already exists: DigiCert RSA4096 Root G5
+            </arg>
+            <doc>
+             Logs the given message to the console.
+            </doc>
+            <status endtime="20240911 05:29:16.195" starttime="20240911 05:29:16.195" status="NOT RUN"/>
+           </kw>
+           <status endtime="20240911 05:29:16.195" starttime="20240911 05:29:16.195" status="NOT RUN"/>
+          </branch>
+          <branch type="ELSE">
+           <kw library="Certificate_Check" name="upload_certificate_SSL_Client_Anonymous">
+            <status endtime="20240911 05:29:16.195" starttime="20240911 05:29:16.195" status="NOT RUN"/>
+           </kw>
+           <kw library="BuiltIn" name="Log To Console">
+            <arg>
+             **gbStart**copilot_status5**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- STRUS_SSL_Client_Anonymous SAP Cloud ALM Connection Certificate Added Successfully**gbEnd**
+            </arg>
+            <doc>
+             Logs the given message to the console.
+            </doc>
+            <status endtime="20240911 05:29:16.195" starttime="20240911 05:29:16.195" status="NOT RUN"/>
+           </kw>
+           <status endtime="20240911 05:29:16.195" starttime="20240911 05:29:16.195" status="NOT RUN"/>
+          </branch>
+          <status endtime="20240911 05:29:16.195" starttime="20240911 05:29:16.195" status="PASS"/>
+         </if>
+         <status endtime="20240911 05:29:16.195" starttime="20240911 05:29:16.164" status="PASS"/>
+        </iter>
+        <iter>
+         <var name="${index}">
+          2
+         </var>
+         <kw library="SAP_Tcode_Library" name="Get Value">
+          <var>
+           ${value}
+          </var>
+          <arg>
+           wnd[0]/usr/tblS_TRUSTMANAGERPK_CTRL/txtPSECERTLIST-SUBJECT[0,${index}]
+          </arg>
+          <doc>
+           Gets the value of the given element. The possible return values depend on the type of element (see Return values).
+          </doc>
+          <msg level="INFO" timestamp="20240911 05:29:16.215">
+           ${value} = CN=DigiCert RSA4096 Root G5, O="DigiCert, Inc.", C=US
+          </msg>
+          <status endtime="20240911 05:29:16.215" starttime="20240911 05:29:16.195" status="PASS"/>
+         </kw>
+         <if>
+          <branch condition="'${value}' == 'CN=DigiCert Global Root G2, OU=www.digicert.com, O=DigiCert Inc, C=US'" type="IF">
+           <kw library="BuiltIn" name="Log To Console">
+            <arg>
+             Certificate already exists: DigiCert Global Root G2
+            </arg>
+            <doc>
+             Logs the given message to the console.
+            </doc>
+            <status endtime="20240911 05:29:16.215" starttime="20240911 05:29:16.215" status="NOT RUN"/>
+           </kw>
+           <status endtime="20240911 05:29:16.215" starttime="20240911 05:29:16.215" status="NOT RUN"/>
+          </branch>
+          <branch condition="'${value}' == 'CN=DigiCert Global Root CA, OU=www.digicert.com, O=DigiCert Inc, C=US'" type="ELSE IF">
+           <kw library="BuiltIn" name="Log To Console">
+            <arg>
+             Certificate already exists: DigiCert Global Root CA
+            </arg>
+            <doc>
+             Logs the given message to the console.
+            </doc>
+            <status endtime="20240911 05:29:16.215" starttime="20240911 05:29:16.215" status="NOT RUN"/>
+           </kw>
+           <status endtime="20240911 05:29:16.215" starttime="20240911 05:29:16.215" status="NOT RUN"/>
+          </branch>
+          <branch condition="'${value}' == 'CN=DigiCert RSA4096 Root G5, O=&quot;DigiCert, Inc.&quot;, C=US'" type="ELSE IF">
+           <kw library="BuiltIn" name="Log To Console">
+            <arg>
+             Certificate already exists: DigiCert RSA4096 Root G5
+            </arg>
+            <doc>
+             Logs the given message to the console.
+            </doc>
+            <status endtime="20240911 05:29:16.225" starttime="20240911 05:29:16.215" status="PASS"/>
+           </kw>
+           <status endtime="20240911 05:29:16.225" starttime="20240911 05:29:16.215" status="PASS"/>
+          </branch>
+          <branch type="ELSE">
+           <kw library="Certificate_Check" name="upload_certificate_SSL_Client_Anonymous">
+            <status endtime="20240911 05:29:16.225" starttime="20240911 05:29:16.225" status="NOT RUN"/>
+           </kw>
+           <kw library="BuiltIn" name="Log To Console">
+            <arg>
+             **gbStart**copilot_status5**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- STRUS_SSL_Client_Anonymous SAP Cloud ALM Connection Certificate Added Successfully**gbEnd**
+            </arg>
+            <doc>
+             Logs the given message to the console.
+            </doc>
+            <status endtime="20240911 05:29:16.225" starttime="20240911 05:29:16.225" status="NOT RUN"/>
+           </kw>
+           <status endtime="20240911 05:29:16.225" starttime="20240911 05:29:16.225" status="NOT RUN"/>
+          </branch>
+          <status endtime="20240911 05:29:16.225" starttime="20240911 05:29:16.215" status="PASS"/>
+         </if>
+         <status endtime="20240911 05:29:16.225" starttime="20240911 05:29:16.195" status="PASS"/>
+        </iter>
+        <status endtime="20240911 05:29:16.225" starttime="20240911 05:29:16.154" status="PASS"/>
+       </for>
+       <status endtime="20240911 05:29:16.225" starttime="20240911 05:29:16.154" status="PASS"/>
+      </branch>
+      <branch type="ELSE">
+       <kw library="Certificate_Check" name="upload_certificate_SSL_Client_Anonymous">
+        <status endtime="20240911 05:29:16.225" starttime="20240911 05:29:16.225" status="NOT RUN"/>
+       </kw>
+       <kw library="BuiltIn" name="Log To Console">
+        <arg>
+         **gbStart**copilot_status5**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- STRUS_SSL_Client_Anonymous SAP Cloud ALM Connection Certificate Added Successfully**gbEnd**
+        </arg>
+        <doc>
+         Logs the given message to the console.
+        </doc>
+        <status endtime="20240911 05:29:16.225" starttime="20240911 05:29:16.225" status="NOT RUN"/>
+       </kw>
+       <status endtime="20240911 05:29:16.225" starttime="20240911 05:29:16.225" status="NOT RUN"/>
+      </branch>
+      <status endtime="20240911 05:29:16.225" starttime="20240911 05:29:16.154" status="PASS"/>
+     </if>
+     <status endtime="20240911 05:29:16.225" starttime="20240911 05:29:15.919" status="PASS"/>
+    </kw>
+    <kw library="Certificate_Check" name="STRUSTS_SSL_Client_Standard">
+     <kw library="SAP_Tcode_Library" name="Double Click On Tree Item">
+      <arg>
+       wnd[0]/shellcont/shell
+      </arg>
+      <arg>
+       SSLCDFAULT
+      </arg>
+      <status endtime="20240911 05:29:16.297" starttime="20240911 05:29:16.225" status="PASS"/>
+     </kw>
+     <kw library="SAP_Tcode_Library" name="Get Value">
+      <var>
+       ${space}
+      </var>
+      <arg>
+       wnd[0]/usr/tblS_TRUSTMANAGERPK_CTRL/txtPSECERTLIST-SUBJECT[0,0]
+      </arg>
+      <doc>
+       Gets the value of the given element. The possible return values depend on the type of element (see Return values).
+      </doc>
+      <msg level="INFO" timestamp="20240911 05:29:16.382">
+       ${space} = CN=DigiCert Global Root G2, OU=www.digicert.com, O=DigiCert Inc, C=US
+      </msg>
+      <status endtime="20240911 05:29:16.382" starttime="20240911 05:29:16.297" status="PASS"/>
+     </kw>
+     <if>
+      <branch condition="'${space}' != ''" type="IF">
+       <for flavor="IN RANGE">
+        <var>
+         ${index}
+        </var>
+        <value>
+         0
+        </value>
+        <value>
+         3
+        </value>
+        <iter>
+         <var name="${index}">
+          0
+         </var>
+         <kw library="SAP_Tcode_Library" name="Get Value">
+          <var>
+           ${value}
+          </var>
+          <arg>
+           wnd[0]/usr/tblS_TRUSTMANAGERPK_CTRL/txtPSECERTLIST-SUBJECT[0,${index}]
+          </arg>
+          <doc>
+           Gets the value of the given element. The possible return values depend on the type of element (see Return values).
+          </doc>
+          <msg level="INFO" timestamp="20240911 05:29:16.401">
+           ${value} = CN=DigiCert Global Root G2, OU=www.digicert.com, O=DigiCert Inc, C=US
+          </msg>
+          <status endtime="20240911 05:29:16.401" starttime="20240911 05:29:16.388" status="PASS"/>
+         </kw>
+         <if>
+          <branch condition="'${value}' == 'CN=DigiCert Global Root G2, OU=www.digicert.com, O=DigiCert Inc, C=US'" type="IF">
+           <kw library="BuiltIn" name="Log To Console">
+            <arg>
+             Certificate already exists: DigiCert Global Root G2
+            </arg>
+            <doc>
+             Logs the given message to the console.
+            </doc>
+            <status endtime="20240911 05:29:16.401" starttime="20240911 05:29:16.401" status="PASS"/>
+           </kw>
+           <status endtime="20240911 05:29:16.401" starttime="20240911 05:29:16.401" status="PASS"/>
+          </branch>
+          <branch condition="'${value}' == 'CN=DigiCert Global Root CA, OU=www.digicert.com, O=DigiCert Inc, C=US'" type="ELSE IF">
+           <kw library="BuiltIn" name="Log To Console">
+            <arg>
+             Certificate already exists: DigiCert Global Root CA
+            </arg>
+            <doc>
+             Logs the given message to the console.
+            </doc>
+            <status endtime="20240911 05:29:16.401" starttime="20240911 05:29:16.401" status="NOT RUN"/>
+           </kw>
+           <status endtime="20240911 05:29:16.401" starttime="20240911 05:29:16.401" status="NOT RUN"/>
+          </branch>
+          <branch condition="'${value}' == 'CN=DigiCert RSA4096 Root G5, O=&quot;DigiCert, Inc.&quot;, C=US'" type="ELSE IF">
+           <kw library="BuiltIn" name="Log To Console">
+            <arg>
+             Certificate already exists: DigiCert RSA4096 Root G5
+            </arg>
+            <doc>
+             Logs the given message to the console.
+            </doc>
+            <status endtime="20240911 05:29:16.401" starttime="20240911 05:29:16.401" status="NOT RUN"/>
+           </kw>
+           <status endtime="20240911 05:29:16.401" starttime="20240911 05:29:16.401" status="NOT RUN"/>
+          </branch>
+          <branch type="ELSE">
+           <kw library="Certificate_Check" name="upload_certificate_SSL_Client_Anonymous">
+            <status endtime="20240911 05:29:16.401" starttime="20240911 05:29:16.401" status="NOT RUN"/>
+           </kw>
+           <kw library="BuiltIn" name="Log To Console">
+            <arg>
+             **gbStart**copilot_status6**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- STRUSTS_SSL_Client_Standard SAP Cloud ALM Connection Certificate Uploaded successfully**gbEnd**
+            </arg>
+            <doc>
+             Logs the given message to the console.
+            </doc>
+            <status endtime="20240911 05:29:16.401" starttime="20240911 05:29:16.401" status="NOT RUN"/>
+           </kw>
+           <status endtime="20240911 05:29:16.401" starttime="20240911 05:29:16.401" status="NOT RUN"/>
+          </branch>
+          <status endtime="20240911 05:29:16.401" starttime="20240911 05:29:16.401" status="PASS"/>
+         </if>
+         <status endtime="20240911 05:29:16.401" starttime="20240911 05:29:16.388" status="PASS"/>
+        </iter>
+        <iter>
+         <var name="${index}">
+          1
+         </var>
+         <kw library="SAP_Tcode_Library" name="Get Value">
+          <var>
+           ${value}
+          </var>
+          <arg>
+           wnd[0]/usr/tblS_TRUSTMANAGERPK_CTRL/txtPSECERTLIST-SUBJECT[0,${index}]
+          </arg>
+          <doc>
+           Gets the value of the given element. The possible return values depend on the type of element (see Return values).
+          </doc>
+          <msg level="INFO" timestamp="20240911 05:29:16.419">
+           ${value} = CN=DigiCert Global Root CA, OU=www.digicert.com, O=DigiCert Inc, C=US
+          </msg>
+          <status endtime="20240911 05:29:16.419" starttime="20240911 05:29:16.401" status="PASS"/>
+         </kw>
+         <if>
+          <branch condition="'${value}' == 'CN=DigiCert Global Root G2, OU=www.digicert.com, O=DigiCert Inc, C=US'" type="IF">
+           <kw library="BuiltIn" name="Log To Console">
+            <arg>
+             Certificate already exists: DigiCert Global Root G2
+            </arg>
+            <doc>
+             Logs the given message to the console.
+            </doc>
+            <status endtime="20240911 05:29:16.419" starttime="20240911 05:29:16.419" status="NOT RUN"/>
+           </kw>
+           <status endtime="20240911 05:29:16.419" starttime="20240911 05:29:16.419" status="NOT RUN"/>
+          </branch>
+          <branch condition="'${value}' == 'CN=DigiCert Global Root CA, OU=www.digicert.com, O=DigiCert Inc, C=US'" type="ELSE IF">
+           <kw library="BuiltIn" name="Log To Console">
+            <arg>
+             Certificate already exists: DigiCert Global Root CA
+            </arg>
+            <doc>
+             Logs the given message to the console.
+            </doc>
+            <status endtime="20240911 05:29:16.419" starttime="20240911 05:29:16.419" status="PASS"/>
+           </kw>
+           <status endtime="20240911 05:29:16.419" starttime="20240911 05:29:16.419" status="PASS"/>
+          </branch>
+          <branch condition="'${value}' == 'CN=DigiCert RSA4096 Root G5, O=&quot;DigiCert, Inc.&quot;, C=US'" type="ELSE IF">
+           <kw library="BuiltIn" name="Log To Console">
+            <arg>
+             Certificate already exists: DigiCert RSA4096 Root G5
+            </arg>
+            <doc>
+             Logs the given message to the console.
+            </doc>
+            <status endtime="20240911 05:29:16.419" starttime="20240911 05:29:16.419" status="NOT RUN"/>
+           </kw>
+           <status endtime="20240911 05:29:16.419" starttime="20240911 05:29:16.419" status="NOT RUN"/>
+          </branch>
+          <branch type="ELSE">
+           <kw library="Certificate_Check" name="upload_certificate_SSL_Client_Anonymous">
+            <status endtime="20240911 05:29:16.419" starttime="20240911 05:29:16.419" status="NOT RUN"/>
+           </kw>
+           <kw library="BuiltIn" name="Log To Console">
+            <arg>
+             **gbStart**copilot_status6**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- STRUSTS_SSL_Client_Standard SAP Cloud ALM Connection Certificate Uploaded successfully**gbEnd**
+            </arg>
+            <doc>
+             Logs the given message to the console.
+            </doc>
+            <status endtime="20240911 05:29:16.419" starttime="20240911 05:29:16.419" status="NOT RUN"/>
+           </kw>
+           <status endtime="20240911 05:29:16.419" starttime="20240911 05:29:16.419" status="NOT RUN"/>
+          </branch>
+          <status endtime="20240911 05:29:16.419" starttime="20240911 05:29:16.419" status="PASS"/>
+         </if>
+         <status endtime="20240911 05:29:16.419" starttime="20240911 05:29:16.401" status="PASS"/>
+        </iter>
+        <iter>
+         <var name="${index}">
+          2
+         </var>
+         <kw library="SAP_Tcode_Library" name="Get Value">
+          <var>
+           ${value}
+          </var>
+          <arg>
+           wnd[0]/usr/tblS_TRUSTMANAGERPK_CTRL/txtPSECERTLIST-SUBJECT[0,${index}]
+          </arg>
+          <doc>
+           Gets the value of the given element. The possible return values depend on the type of element (see Return values).
+          </doc>
+          <msg level="INFO" timestamp="20240911 05:29:16.445">
+           ${value} = CN=DigiCert RSA4096 Root G5, O="DigiCert, Inc.", C=US
+          </msg>
+          <status endtime="20240911 05:29:16.445" starttime="20240911 05:29:16.419" status="PASS"/>
+         </kw>
+         <if>
+          <branch condition="'${value}' == 'CN=DigiCert Global Root G2, OU=www.digicert.com, O=DigiCert Inc, C=US'" type="IF">
+           <kw library="BuiltIn" name="Log To Console">
+            <arg>
+             Certificate already exists: DigiCert Global Root G2
+            </arg>
+            <doc>
+             Logs the given message to the console.
+            </doc>
+            <status endtime="20240911 05:29:16.445" starttime="20240911 05:29:16.445" status="NOT RUN"/>
+           </kw>
+           <status endtime="20240911 05:29:16.445" starttime="20240911 05:29:16.445" status="NOT RUN"/>
+          </branch>
+          <branch condition="'${value}' == 'CN=DigiCert Global Root CA, OU=www.digicert.com, O=DigiCert Inc, C=US'" type="ELSE IF">
+           <kw library="BuiltIn" name="Log To Console">
+            <arg>
+             Certificate already exists: DigiCert Global Root CA
+            </arg>
+            <doc>
+             Logs the given message to the console.
+            </doc>
+            <status endtime="20240911 05:29:16.445" starttime="20240911 05:29:16.445" status="NOT RUN"/>
+           </kw>
+           <status endtime="20240911 05:29:16.445" starttime="20240911 05:29:16.445" status="NOT RUN"/>
+          </branch>
+          <branch condition="'${value}' == 'CN=DigiCert RSA4096 Root G5, O=&quot;DigiCert, Inc.&quot;, C=US'" type="ELSE IF">
+           <kw library="BuiltIn" name="Log To Console">
+            <arg>
+             Certificate already exists: DigiCert RSA4096 Root G5
+            </arg>
+            <doc>
+             Logs the given message to the console.
+            </doc>
+            <status endtime="20240911 05:29:16.445" starttime="20240911 05:29:16.445" status="PASS"/>
+           </kw>
+           <status endtime="20240911 05:29:16.445" starttime="20240911 05:29:16.445" status="PASS"/>
+          </branch>
+          <branch type="ELSE">
+           <kw library="Certificate_Check" name="upload_certificate_SSL_Client_Anonymous">
+            <status endtime="20240911 05:29:16.445" starttime="20240911 05:29:16.445" status="NOT RUN"/>
+           </kw>
+           <kw library="BuiltIn" name="Log To Console">
+            <arg>
+             **gbStart**copilot_status6**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- STRUSTS_SSL_Client_Standard SAP Cloud ALM Connection Certificate Uploaded successfully**gbEnd**
+            </arg>
+            <doc>
+             Logs the given message to the console.
+            </doc>
+            <status endtime="20240911 05:29:16.445" starttime="20240911 05:29:16.445" status="NOT RUN"/>
+           </kw>
+           <status endtime="20240911 05:29:16.445" starttime="20240911 05:29:16.445" status="NOT RUN"/>
+          </branch>
+          <status endtime="20240911 05:29:16.445" starttime="20240911 05:29:16.445" status="PASS"/>
+         </if>
+         <status endtime="20240911 05:29:16.445" starttime="20240911 05:29:16.419" status="PASS"/>
+        </iter>
+        <status endtime="20240911 05:29:16.445" starttime="20240911 05:29:16.388" status="PASS"/>
+       </for>
+       <status endtime="20240911 05:29:16.445" starttime="20240911 05:29:16.382" status="PASS"/>
+      </branch>
+      <branch type="ELSE">
+       <kw library="Certificate_Check" name="upload_certificate_SSL_Client_Standard">
+        <status endtime="20240911 05:29:16.445" starttime="20240911 05:29:16.445" status="NOT RUN"/>
+       </kw>
+       <kw library="BuiltIn" name="Log To Console">
+        <arg>
+         **gbStart**copilot_status6**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- STRUSTS_SSL_Client_Standard SAP Cloud ALM Connection Certificate Uploaded successfully**gbEnd**
+        </arg>
+        <doc>
+         Logs the given message to the console.
+        </doc>
+        <status endtime="20240911 05:29:16.450" starttime="20240911 05:29:16.445" status="NOT RUN"/>
+       </kw>
+       <status endtime="20240911 05:29:16.450" starttime="20240911 05:29:16.445" status="NOT RUN"/>
+      </branch>
+      <status endtime="20240911 05:29:16.450" starttime="20240911 05:29:16.382" status="PASS"/>
+     </if>
+     <status endtime="20240911 05:29:16.450" starttime="20240911 05:29:16.225" status="PASS"/>
+    </kw>
+    <tag>
+     Certificate_Check_
+    </tag>
+    <status endtime="20240911 05:29:16.450" starttime="20240911 05:29:15.512" status="PASS"/>
+   </test>
+   <kw library="Certificate_Check" name="System Logout" type="TEARDOWN">
+    <kw library="SAP_Tcode_Library" name="Run Transaction">
+     <arg>
+      /nex
+     </arg>
+     <doc>
+      Runs a Sap transaction. An error is given when an unknown transaction is specified.
+     </doc>
+     <status endtime="20240911 05:29:16.475" starttime="20240911 05:29:16.450" status="PASS"/>
+    </kw>
+    <status endtime="20240911 05:29:16.475" starttime="20240911 05:29:16.450" status="PASS"/>
+   </kw>
+   <status endtime="20240911 05:29:16.475" starttime="20240911 05:29:12.301" status="PASS"/>
+  </suite>
+  <doc>
+   Testing functionality through Robot Framework
+  </doc>
+  <meta name="environment">
+   Dev
+  </meta>
+  <meta name="test_browser_name">
+   chrome
+  </meta>
+  <meta name="test_browser_version">
+   128.0.6613.121
+  </meta>
+  <meta name="test_driver_version">
+   128.0.6613.84
+  </meta>
+  <meta name="test_environment">
+   Dev
+  </meta>
+  <meta name="test_freeze_dependencies">
+   astroid==3.2.3,attrs==23.2.0,beautifulsoup4==4.12.3,bs4==0.0.2,certifi==2024.7.4,cffi==1.16.0,chardet==5.2.0,charset-normalizer==3.3.2,click==8.1.7,colorama==0.4.6,cryptography==42.0.8,defusedxml==0.7.1,dill==0.3.8,docutils==0.21.2,et-xmlfile==1.1.0,exceptiongroup==1.2.2,gitdb==4.0.11,GitPython==3.1.43,h11==0.14.0,idna==3.7,isort==5.13.2,Jinja2==3.1.4,jira==3.8.0,jsonpath-ng==1.6.1,jsonschema==4.23.0,jsonschema-specifications==2023.12.1,lazy-object-proxy==1.10.0,lxml==5.2.2,markdown-it-py==3.0.0,MarkupSafe==2.1.5,mccabe==0.7.0,mdurl==0.1.2,natsort==8.4.0,numpy==2.0.0,oauthlib==3.2.2,openpyxl==3.1.5,outcome==1.3.0.post0,packaging==24.1,pandas==2.2.2,pathspec==0.11.2,pillow==10.4.0,pip==24.2,platformdirs==4.2.2,ply==3.11,pycparser==2.22,Pygments==2.18.0,pylint==3.2.5,PyPDF2==3.0.1,PySocks==1.7.1,python-dateutil==2.9.0.post0,pytz==2024.1,pywin32==306,PyYAML==6.0.1,referencing==0.35.1,reportlab==4.2.2,requests==2.32.3,requests-oauthlib==2.0.0,requests-toolbelt==1.0.0,rich==13.7.1,rich-click==1.6.1,robotframework==6.0.2,robotframework-datadriver==1.9.0,robotframework-excellib==2.0.1,robotframework-jsonlibrary==0.5,robotframework-pabot==2.16.0,robotframework-pythonlibcore==4.2.0,robotframework-requests==0.9.2,robotframework-sapguilibrary==1.1,robotframework-seleniumlibrary==5.1.3,robotframework-stacktrace==0.4.1,robotframework-tidy==4.5.0,rpds-py==0.19.0,selenium==4.9.1,setuptools==71.0.1,six==1.16.0,smmap==5.0.1,sniffio==1.3.1,sortedcontainers==2.4.0,soupsieve==2.5,tomli==2.0.1,tomlkit==0.13.0,trio==0.26.0,trio-websocket==0.11.1,typing_extensions==4.12.2,tzdata==2024.1,urllib3==2.2.2,wheel==0.43.0,wrapt==1.16.0,wsproto==1.2.0
+  </meta>
+  <status endtime="20240911 05:29:16.522" starttime="20240911 05:29:08.555" status="PASS"/>
+ </suite>
+ <statistics>
+  <total>
+   <stat fail="0" pass="1" skip="0">
+    All Tests
+   </stat>
+  </total>
+  <tag>
+   <stat fail="0" pass="1" skip="0">
+    Certificate_Check_
+   </stat>
+  </tag>
+  <suite>
+   <stat fail="0" id="s1" name="Tests" pass="1" skip="0">
+    Tests
+   </stat>
+   <stat fail="0" id="s1-s1" name="Test Certificate Check" pass="1" skip="0">
+    Tests.Test Certificate Check
+   </stat>
+  </suite>
+ </statistics>
+ <errors>
+ </errors>
+</robot>

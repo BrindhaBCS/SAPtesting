@@ -1,0 +1,5 @@
+SAP_SERVER = "C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPgui\\saplogon.exe"
+TS4_connection = "TS4"
+TS4_Client_Id = "001"
+TS4_User_Name = "maestro"
+Document_num = ""

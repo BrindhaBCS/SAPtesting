@@ -1,0 +1,3565 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot generated="20240911 07:10:17.651" generator="Rebot 6.0.2 (Python 3.12.4 on win32)" rpa="false" schemaversion="3">
+ <suite id="s1" name="Tests" source="C:\RobotFramework\sap_testing\Tests">
+  <kw name="Setup highest level suite" type="SETUP">
+   <kw library="BuiltIn" name="Set Variable">
+    <var>
+     ${d.test_server}
+    </var>
+    <arg>
+     ${test_server}
+    </arg>
+    <doc>
+     Returns the given values which can then be assigned to a variables.
+    </doc>
+    <msg level="INFO" timestamp="20240911 07:08:21.616">
+     ${d.test_server} = Dev
+    </msg>
+    <status endtime="20240911 07:08:21.616" starttime="20240911 07:08:21.616" status="PASS"/>
+   </kw>
+   <kw library="Support" name="Reset screenshot count variable">
+    <kw library="BuiltIn" name="Set Variable">
+     <var>
+      ${screenshotCount}
+     </var>
+     <arg>
+      ${PABOTQUEUEINDEX}_1
+     </arg>
+     <doc>
+      Returns the given values which can then be assigned to a variables.
+     </doc>
+     <msg level="INFO" timestamp="20240911 07:08:21.616">
+      ${screenshotCount} = 0_1
+     </msg>
+     <status endtime="20240911 07:08:21.616" starttime="20240911 07:08:21.616" status="PASS"/>
+    </kw>
+    <kw library="BuiltIn" name="Set Global Variable">
+     <arg>
+      ${screenshotCount}
+     </arg>
+     <doc>
+      Makes a variable available globally in all tests and suites.
+     </doc>
+     <msg level="INFO" timestamp="20240911 07:08:21.616">
+      ${screenshotCount} = 0_1
+     </msg>
+     <status endtime="20240911 07:08:21.616" starttime="20240911 07:08:21.616" status="PASS"/>
+    </kw>
+    <kw library="Support" name="Set up screenshot directory">
+     <kw library="OperatingSystem" name="Create Directory">
+      <arg>
+       ${OUTPUTDIR}${/}${wvar('screenshot_dir')}
+      </arg>
+      <doc>
+       Creates the specified directory.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:08:21.616">
+       Web.Dev.screenshot_dir: Screenshot
+      </msg>
+      <msg html="true" level="INFO" timestamp="20240911 07:08:21.632">
+       Created directory '&lt;a href="file://C:\RobotFramework\sap_testing\Output\369b6ae9-6f05-4099-b6f4-78a4a9a149a0\pabot_results\0\Screenshot"&gt;C:\RobotFramework\sap_testing\Output\369b6ae9-6f05-4099-b6f4-78a4a9a149a0\pabot_results\0\Screenshot&lt;/a&gt;'.
+      </msg>
+      <status endtime="20240911 07:08:21.632" starttime="20240911 07:08:21.616" status="PASS"/>
+     </kw>
+     <status endtime="20240911 07:08:21.632" starttime="20240911 07:08:21.616" status="PASS"/>
+    </kw>
+    <status endtime="20240911 07:08:21.632" starttime="20240911 07:08:21.616" status="PASS"/>
+   </kw>
+   <kw library="BuiltIn" name="Set Global Variable">
+    <arg>
+     ${screenshot_taking}
+    </arg>
+    <arg>
+     ${True}
+    </arg>
+    <doc>
+     Makes a variable available globally in all tests and suites.
+    </doc>
+    <msg level="INFO" timestamp="20240911 07:08:21.632">
+     ${screenshot_taking} = True
+    </msg>
+    <status endtime="20240911 07:08:21.632" starttime="20240911 07:08:21.632" status="PASS"/>
+   </kw>
+   <kw library="Support" name="Setup linux execution">
+    <kw library="BuiltIn" name="Run Keyword And Return Status">
+     <var>
+      ${web_test_check}
+     </var>
+     <arg>
+      Variable Should Exist
+     </arg>
+     <arg>
+      ${web_test}
+     </arg>
+     <doc>
+      Runs the given keyword with given arguments and returns the status as a Boolean value.
+     </doc>
+     <kw library="BuiltIn" name="Variable Should Exist">
+      <arg>
+       ${web_test}
+      </arg>
+      <doc>
+       Fails unless the given variable exists within the current scope.
+      </doc>
+      <status endtime="20240911 07:08:21.632" starttime="20240911 07:08:21.632" status="PASS"/>
+     </kw>
+     <msg level="INFO" timestamp="20240911 07:08:21.632">
+      ${web_test_check} = True
+     </msg>
+     <status endtime="20240911 07:08:21.632" starttime="20240911 07:08:21.632" status="PASS"/>
+    </kw>
+    <kw library="BuiltIn" name="Run Keyword If">
+     <arg>
+      ${web_test_check}
+     </arg>
+     <arg>
+      Setup Docker Execution Options
+     </arg>
+     <doc>
+      Runs the given keyword with the given arguments, if ``condition`` is true.
+     </doc>
+     <kw library="Support_Web" name="Setup Docker Execution Options">
+      <kw library="Support_Web" name="Setup Suite Metadata">
+       <arg>
+        ${browser}
+       </arg>
+       <kw library="BrowserSupport" name="Get Browser Metadata">
+        <var>
+         &amp;{browser_information}
+        </var>
+        <arg>
+         browser=${browser}
+        </arg>
+        <doc>
+         Fetches browser metadata information
+:param browser: Name of the browser for which information is fetched
+:param reload: Re-read the metadata based on the browser
+:return: Browser metadata information, dict of format
+            {"browser_version": browser version value,
+             "driver_version": driver version value}
+        </doc>
+        <msg level="INFO" timestamp="20240911 07:08:24.961">
+         &amp;{browser_information} = { browser_version=128.0.6613.121 | driver_version=128.0.6613.84  }
+        </msg>
+        <status endtime="20240911 07:08:24.961" starttime="20240911 07:08:21.632" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Suite Metadata">
+        <arg>
+         test_browser_name
+        </arg>
+        <arg>
+         ${browser}
+        </arg>
+        <doc>
+         Sets metadata for the current test suite.
+        </doc>
+        <msg level="INFO" timestamp="20240911 07:08:24.961">
+         Set suite metadata 'test_browser_name' to value 'chrome'.
+        </msg>
+        <status endtime="20240911 07:08:24.961" starttime="20240911 07:08:24.961" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Suite Metadata">
+        <arg>
+         test_browser_version
+        </arg>
+        <arg>
+         ${browser_information.browser_version}
+        </arg>
+        <doc>
+         Sets metadata for the current test suite.
+        </doc>
+        <msg level="INFO" timestamp="20240911 07:08:24.961">
+         Set suite metadata 'test_browser_version' to value '128.0.6613.121'.
+        </msg>
+        <status endtime="20240911 07:08:24.961" starttime="20240911 07:08:24.961" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Suite Metadata">
+        <arg>
+         test_driver_version
+        </arg>
+        <arg>
+         ${browser_information.driver_version}
+        </arg>
+        <doc>
+         Sets metadata for the current test suite.
+        </doc>
+        <msg level="INFO" timestamp="20240911 07:08:24.961">
+         Set suite metadata 'test_driver_version' to value '128.0.6613.84 '.
+        </msg>
+        <status endtime="20240911 07:08:24.961" starttime="20240911 07:08:24.961" status="PASS"/>
+       </kw>
+       <status endtime="20240911 07:08:24.961" starttime="20240911 07:08:21.632" status="PASS"/>
+      </kw>
+      <kw library="Support_Web" name="Setup Global Docker Execution Options">
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${global_browser_options}
+        </arg>
+        <arg>
+         None
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240911 07:08:24.968">
+         ${global_browser_options} = None
+        </msg>
+        <status endtime="20240911 07:08:24.968" starttime="20240911 07:08:24.961" status="PASS"/>
+       </kw>
+       <kw library="OperatingSystem" name="Get Environment Variable">
+        <var>
+         ${docker_check}
+        </var>
+        <arg>
+         EXECUTION_ENVIRONMENT
+        </arg>
+        <arg>
+         not_found
+        </arg>
+        <doc>
+         Returns the value of an environment variable with the given name.
+        </doc>
+        <msg level="INFO" timestamp="20240911 07:08:24.968">
+         ${docker_check} = not_found
+        </msg>
+        <status endtime="20240911 07:08:24.968" starttime="20240911 07:08:24.968" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Run Keyword And Return If">
+        <arg>
+         "${docker_check}"!="docker"
+        </arg>
+        <arg>
+         Log
+        </arg>
+        <arg>
+         Not executing on Docker
+        </arg>
+        <doc>
+         Runs the specified keyword and returns from the enclosing user keyword.
+        </doc>
+        <kw library="BuiltIn" name="Log">
+         <arg>
+          Not executing on Docker
+         </arg>
+         <doc>
+          Logs the given message with the given level.
+         </doc>
+         <msg level="INFO" timestamp="20240911 07:08:24.968">
+          Not executing on Docker
+         </msg>
+         <status endtime="20240911 07:08:24.968" starttime="20240911 07:08:24.968" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240911 07:08:24.968">
+         Returning from the enclosing user keyword.
+        </msg>
+        <status endtime="20240911 07:08:24.968" starttime="20240911 07:08:24.968" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Create List">
+        <var>
+         @{options}
+        </var>
+        <arg>
+         --headless
+        </arg>
+        <arg>
+         --no-sandbox
+        </arg>
+        <arg>
+         --disable-dev-shm-usage
+        </arg>
+        <doc>
+         Returns a list containing given items.
+        </doc>
+        <status endtime="20240911 07:08:24.968" starttime="20240911 07:08:24.968" status="NOT RUN"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         @{docker_options}
+        </arg>
+        <arg>
+         @{options}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <status endtime="20240911 07:08:24.968" starttime="20240911 07:08:24.968" status="NOT RUN"/>
+       </kw>
+       <status endtime="20240911 07:08:24.968" starttime="20240911 07:08:24.961" status="PASS"/>
+      </kw>
+      <kw library="Support_Web" name="Create Webdriver for chrome preferences">
+       <kw library="Support_Web" name="Update Docker Execution Options">
+        <var>
+         ${list_prefs}
+        </var>
+        <arg>
+         ${list_prefs}
+        </arg>
+        <kw library="BuiltIn" name="Run Keyword And Return Status">
+         <var>
+          ${docker_check}
+         </var>
+         <arg>
+          Variable Should Exist
+         </arg>
+         <arg>
+          ${docker_options}
+         </arg>
+         <doc>
+          Runs the given keyword with given arguments and returns the status as a Boolean value.
+         </doc>
+         <kw library="BuiltIn" name="Variable Should Exist">
+          <arg>
+           ${docker_options}
+          </arg>
+          <doc>
+           Fails unless the given variable exists within the current scope.
+          </doc>
+          <msg level="FAIL" timestamp="20240911 07:08:24.968">
+           Variable '${docker_options}' does not exist.
+          </msg>
+          <status endtime="20240911 07:08:24.968" starttime="20240911 07:08:24.968" status="FAIL"/>
+         </kw>
+         <msg level="INFO" timestamp="20240911 07:08:24.968">
+          ${docker_check} = False
+         </msg>
+         <status endtime="20240911 07:08:24.968" starttime="20240911 07:08:24.968" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Get Length">
+         <var>
+          ${list_prefs_length}
+         </var>
+         <arg>
+          ${list_prefs}
+         </arg>
+         <doc>
+          Returns and logs the length of the given item as an integer.
+         </doc>
+         <msg level="INFO" timestamp="20240911 07:08:24.968">
+          Length is 1
+         </msg>
+         <msg level="INFO" timestamp="20240911 07:08:24.968">
+          ${list_prefs_length} = 1
+         </msg>
+         <status endtime="20240911 07:08:24.968" starttime="20240911 07:08:24.968" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Run Keyword If">
+         <var>
+          ${list_prefs}
+         </var>
+         <arg>
+          ${docker_check} and ${list_prefs_length}&gt;0 and ${list_prefs}[0] != []
+         </arg>
+         <arg>
+          Combine Lists
+         </arg>
+         <arg>
+          ${list_prefs}
+         </arg>
+         <arg>
+          ${docker_options}
+         </arg>
+         <arg>
+          ELSE IF
+         </arg>
+         <arg>
+          ${docker_check}
+         </arg>
+         <arg>
+          Set Variable
+         </arg>
+         <arg>
+          ${docker_options}
+         </arg>
+         <arg>
+          ELSE
+         </arg>
+         <arg>
+          Set Variable
+         </arg>
+         <arg>
+          ${list_prefs}
+         </arg>
+         <doc>
+          Runs the given keyword with the given arguments, if ``condition`` is true.
+         </doc>
+         <kw library="BuiltIn" name="Set Variable">
+          <arg>
+           ${list_prefs}
+          </arg>
+          <doc>
+           Returns the given values which can then be assigned to a variables.
+          </doc>
+          <status endtime="20240911 07:08:24.968" starttime="20240911 07:08:24.968" status="PASS"/>
+         </kw>
+         <msg level="INFO" timestamp="20240911 07:08:24.968">
+          ${list_prefs} = [[]]
+         </msg>
+         <status endtime="20240911 07:08:24.968" starttime="20240911 07:08:24.968" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240911 07:08:24.968">
+         ${list_prefs} = [[]]
+        </msg>
+        <status endtime="20240911 07:08:24.968" starttime="20240911 07:08:24.968" status="PASS"/>
+       </kw>
+       <kw library="Support_Web" name="Create Chrome Options for download preferences">
+        <var>
+         ${chrome_options}
+        </var>
+        <kw library="BuiltIn" name="Evaluate">
+         <var>
+          ${chrome_options}
+         </var>
+         <arg>
+          sys.modules['selenium.webdriver'].ChromeOptions()
+         </arg>
+         <arg>
+          sys
+         </arg>
+         <doc>
+          Evaluates the given expression in Python and returns the result.
+         </doc>
+         <msg level="INFO" timestamp="20240911 07:08:24.968">
+          ${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000028CCC06E7B0&gt;
+         </msg>
+         <status endtime="20240911 07:08:24.968" starttime="20240911 07:08:24.968" status="PASS"/>
+        </kw>
+        <msg level="INFO" timestamp="20240911 07:08:24.968">
+         ${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000028CCC06E7B0&gt;
+        </msg>
+        <status endtime="20240911 07:08:24.968" starttime="20240911 07:08:24.968" status="PASS"/>
+       </kw>
+       <kw library="Support_Web" name="Update Preferences List">
+        <arg>
+         ${chrome_options}
+        </arg>
+        <arg>
+         @{list_prefs}
+        </arg>
+        <kw library="BuiltIn" name="Convert To String">
+         <var>
+          ${string_prefs}
+         </var>
+         <arg>
+          ${list_prefs}
+         </arg>
+         <doc>
+          Converts the given item to a Unicode string.
+         </doc>
+         <msg level="INFO" timestamp="20240911 07:08:24.968">
+          ${string_prefs} = [[]]
+         </msg>
+         <status endtime="20240911 07:08:24.968" starttime="20240911 07:08:24.968" status="PASS"/>
+        </kw>
+        <kw library="BuiltIn" name="Return From Keyword If">
+         <arg>
+          ${string_prefs} == [[]]
+         </arg>
+         <doc>
+          Returns from the enclosing user keyword if ``condition`` is true.
+         </doc>
+         <msg level="INFO" timestamp="20240911 07:08:24.968">
+          Returning from the enclosing user keyword.
+         </msg>
+         <status endtime="20240911 07:08:24.968" starttime="20240911 07:08:24.968" status="PASS"/>
+        </kw>
+        <for flavor="IN">
+         <var>
+          ${preference}
+         </var>
+         <value>
+          @{list_prefs}
+         </value>
+         <iter>
+          <var name="${preference}"/>
+          <kw library="BuiltIn" name="Call Method">
+           <arg>
+            ${chrome_options}
+           </arg>
+           <arg>
+            add_argument
+           </arg>
+           <arg>
+            ${preference}
+           </arg>
+           <doc>
+            Calls the named method of the given object with the provided arguments.
+           </doc>
+           <status endtime="20240911 07:08:24.968" starttime="20240911 07:08:24.968" status="NOT RUN"/>
+          </kw>
+          <status endtime="20240911 07:08:24.968" starttime="20240911 07:08:24.968" status="NOT RUN"/>
+         </iter>
+         <status endtime="20240911 07:08:24.968" starttime="20240911 07:08:24.968" status="NOT RUN"/>
+        </for>
+        <status endtime="20240911 07:08:24.983" starttime="20240911 07:08:24.968" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Call Method">
+        <arg>
+         ${chrome_options}
+        </arg>
+        <arg>
+         add_experimental_option
+        </arg>
+        <arg>
+         prefs
+        </arg>
+        <arg>
+         ${kw_prefs}
+        </arg>
+        <doc>
+         Calls the named method of the given object with the provided arguments.
+        </doc>
+        <status endtime="20240911 07:08:24.983" starttime="20240911 07:08:24.983" status="PASS"/>
+       </kw>
+       <kw library="BuiltIn" name="Set Global Variable">
+        <arg>
+         ${global_browser_options}
+        </arg>
+        <arg>
+         ${chrome options}
+        </arg>
+        <doc>
+         Makes a variable available globally in all tests and suites.
+        </doc>
+        <msg level="INFO" timestamp="20240911 07:08:24.983">
+         ${global_browser_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000028CCC06E7B0&gt;
+        </msg>
+        <status endtime="20240911 07:08:24.983" starttime="20240911 07:08:24.983" status="PASS"/>
+       </kw>
+       <status endtime="20240911 07:08:24.983" starttime="20240911 07:08:24.968" status="PASS"/>
+      </kw>
+      <status endtime="20240911 07:08:24.983" starttime="20240911 07:08:21.632" status="PASS"/>
+     </kw>
+     <status endtime="20240911 07:08:24.983" starttime="20240911 07:08:21.632" status="PASS"/>
+    </kw>
+    <status endtime="20240911 07:08:24.983" starttime="20240911 07:08:21.632" status="PASS"/>
+   </kw>
+   <kw library="BuiltIn" name="Set Suite Metadata">
+    <arg>
+     environment
+    </arg>
+    <arg>
+     ${test_server}
+    </arg>
+    <doc>
+     Sets metadata for the current test suite.
+    </doc>
+    <msg level="INFO" timestamp="20240911 07:08:24.983">
+     Set suite metadata 'environment' to value 'Dev'.
+    </msg>
+    <status endtime="20240911 07:08:24.983" starttime="20240911 07:08:24.983" status="PASS"/>
+   </kw>
+   <status endtime="20240911 07:08:24.983" starttime="20240911 07:08:21.616" status="PASS"/>
+  </kw>
+  <suite id="s1-s1" name="Test GRC Risk Export" source="C:\RobotFramework\sap_testing\Tests\Test_GRC_Risk_Export.robot">
+   <test id="s1-s1-t1" line="5" name="Exporting the risk as Excel">
+    <kw library="GRC_Risk_Export" name="Export Risk">
+     <kw library="SeleniumLibrary" name="Open Browser">
+      <arg>
+       ${URL}
+      </arg>
+      <arg>
+       ${Browser}
+      </arg>
+      <arg>
+       options=add_argument("--ignore-certificate-errors")
+      </arg>
+      <doc>
+       Opens a new browser instance to the optional ``url``.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:08:24.999">
+       Opening browser 'chrome' to base url 'https://saphana.bcs.com:44302/ui2/nwbc/?sap-nwbc-node=0000000037&amp;sap-nwbc-context=03HM333035D633D33336000128D3C800C23576737406310D0D40D8C42CA3A4A4A0D84A5FBF38B12023312F512F29B9582F393FD7CAC404A847BF34D3483FAF3C2959DF1E28AF9B9C93999A57620BD4A806E2E624E6A59726A6A7DABAFA0100&amp;sap-client=001&amp;sap-language=EN&amp;sap-nwbc-history_item=&amp;sap-theme=sap_corbu'.
+      </msg>
+      <status endtime="20240911 07:08:27.020" starttime="20240911 07:08:24.992" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       5
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:08:32.022">
+       Slept 5 seconds
+      </msg>
+      <status endtime="20240911 07:08:32.022" starttime="20240911 07:08:27.020" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Maximize Browser Window">
+      <doc>
+       Maximizes current browser window.
+      </doc>
+      <status endtime="20240911 07:08:32.067" starttime="20240911 07:08:32.022" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       6
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:08:38.068">
+       Slept 6 seconds
+      </msg>
+      <status endtime="20240911 07:08:38.068" starttime="20240911 07:08:32.067" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Input Text">
+      <arg>
+       id:sap-user
+      </arg>
+      <arg>
+       ${symvar('G_Username')}
+      </arg>
+      <doc>
+       Types the given ``text`` into the text field identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:08:38.068">
+       Sym.Dev.G_Username: brindha
+      </msg>
+      <msg level="INFO" timestamp="20240911 07:08:38.068">
+       Typing text 'brindha' into text field 'id:sap-user'.
+      </msg>
+      <status endtime="20240911 07:08:38.248" starttime="20240911 07:08:38.068" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       2
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:08:40.248">
+       Slept 2 seconds
+      </msg>
+      <status endtime="20240911 07:08:40.248" starttime="20240911 07:08:38.248" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Input Text">
+      <arg>
+       id:sap-password
+      </arg>
+      <arg>
+       %{G_Password}
+      </arg>
+      <doc>
+       Types the given ``text`` into the text field identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:08:40.248">
+       Typing text 'Test@12345' into text field 'id:sap-password'.
+      </msg>
+      <status endtime="20240911 07:08:40.333" starttime="20240911 07:08:40.248" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       2
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:08:42.333">
+       Slept 2 seconds
+      </msg>
+      <status endtime="20240911 07:08:42.333" starttime="20240911 07:08:40.333" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Click Element">
+      <arg>
+       xpath://a[normalize-space(text())='Log On']
+      </arg>
+      <doc>
+       Click the element identified by ``locator``.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:08:42.333">
+       Clicking element 'xpath://a[normalize-space(text())='Log On']'.
+      </msg>
+      <status endtime="20240911 07:08:42.472" starttime="20240911 07:08:42.333" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       5
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:08:47.472">
+       Slept 5 seconds
+      </msg>
+      <status endtime="20240911 07:08:47.472" starttime="20240911 07:08:42.472" status="PASS"/>
+     </kw>
+     <kw library="GRC_Risk_Export" name="Click Element If Exists">
+      <arg>
+       xpath://*[@id="sapSL_DEFAULT_BUTTON"]
+      </arg>
+      <kw library="BuiltIn" name="Run Keyword And Ignore Error">
+       <arg>
+        Click Element
+       </arg>
+       <arg>
+        ${locator}
+       </arg>
+       <doc>
+        Runs the given keyword with the given arguments and ignores possible error.
+       </doc>
+       <kw library="SeleniumLibrary" name="Click Element">
+        <arg>
+         ${locator}
+        </arg>
+        <doc>
+         Click the element identified by ``locator``.
+        </doc>
+        <msg level="INFO" timestamp="20240911 07:08:47.472">
+         Clicking element 'xpath://*[@id="sapSL_DEFAULT_BUTTON"]'.
+        </msg>
+        <status endtime="20240911 07:08:47.695" starttime="20240911 07:08:47.472" status="PASS"/>
+       </kw>
+       <status endtime="20240911 07:08:47.695" starttime="20240911 07:08:47.472" status="PASS"/>
+      </kw>
+      <status endtime="20240911 07:08:47.695" starttime="20240911 07:08:47.472" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       10
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:08:57.697">
+       Slept 10 seconds
+      </msg>
+      <status endtime="20240911 07:08:57.697" starttime="20240911 07:08:47.695" status="PASS"/>
+     </kw>
+     <kw library="GRC_Risk_Export" name="Check If Page Contains Text">
+      <arg>
+       ${TEXT_TO_CHECK_Role_Level}
+      </arg>
+      <kw library="BuiltIn" name="Run Keyword And Continue On Failure">
+       <arg>
+        Page Should Contain
+       </arg>
+       <arg>
+        ${text}
+       </arg>
+       <doc>
+        Runs the keyword and continues execution even if a failure occurs.
+       </doc>
+       <kw library="SeleniumLibrary" name="Page Should Contain">
+        <arg>
+         ${text}
+        </arg>
+        <doc>
+         Verifies that current page contains ``text``.
+        </doc>
+        <msg level="INFO" timestamp="20240911 07:08:57.743">
+         Current page contains text 'Access Risk Analysis'.
+        </msg>
+        <status endtime="20240911 07:08:57.743" starttime="20240911 07:08:57.697" status="PASS"/>
+       </kw>
+       <status endtime="20240911 07:08:57.743" starttime="20240911 07:08:57.697" status="PASS"/>
+      </kw>
+      <kw library="BuiltIn" name="Run Keyword And Return Status">
+       <var>
+        ${text_found}
+       </var>
+       <arg>
+        Page Should Contain
+       </arg>
+       <arg>
+        ${text}
+       </arg>
+       <doc>
+        Runs the given keyword with given arguments and returns the status as a Boolean value.
+       </doc>
+       <kw library="SeleniumLibrary" name="Page Should Contain">
+        <arg>
+         ${text}
+        </arg>
+        <doc>
+         Verifies that current page contains ``text``.
+        </doc>
+        <msg level="INFO" timestamp="20240911 07:08:57.782">
+         Current page contains text 'Access Risk Analysis'.
+        </msg>
+        <status endtime="20240911 07:08:57.782" starttime="20240911 07:08:57.743" status="PASS"/>
+       </kw>
+       <msg level="INFO" timestamp="20240911 07:08:57.782">
+        ${text_found} = True
+       </msg>
+       <status endtime="20240911 07:08:57.782" starttime="20240911 07:08:57.743" status="PASS"/>
+      </kw>
+      <kw library="BuiltIn" name="Run Keyword If">
+       <arg>
+        ${text_found}
+       </arg>
+       <arg>
+        Proceed Further
+       </arg>
+       <arg>
+        ELSE
+       </arg>
+       <arg>
+        Exit Test
+       </arg>
+       <doc>
+        Runs the given keyword with the given arguments, if ``condition`` is true.
+       </doc>
+       <kw library="GRC_Risk_Export" name="Proceed Further">
+        <kw library="BuiltIn" name="Log">
+         <arg>
+          Text is available. Proceeding further...
+         </arg>
+         <doc>
+          Logs the given message with the given level.
+         </doc>
+         <msg level="INFO" timestamp="20240911 07:08:57.782">
+          Text is available. Proceeding further...
+         </msg>
+         <status endtime="20240911 07:08:57.782" starttime="20240911 07:08:57.782" status="PASS"/>
+        </kw>
+        <status endtime="20240911 07:08:57.782" starttime="20240911 07:08:57.782" status="PASS"/>
+       </kw>
+       <status endtime="20240911 07:08:57.782" starttime="20240911 07:08:57.782" status="PASS"/>
+      </kw>
+      <status endtime="20240911 07:08:57.782" starttime="20240911 07:08:57.697" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Repeat Keyword">
+      <arg>
+       19 times
+      </arg>
+      <arg>
+       Press Keys
+      </arg>
+      <arg>
+       NONE
+      </arg>
+      <arg>
+       TAB
+      </arg>
+      <doc>
+       Executes the specified keyword multiple times.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:08:57.782">
+       Repeating keyword, round 1/19.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:08:57.782">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.782">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.782">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:08:57.803" starttime="20240911 07:08:57.782" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:08:57.803">
+       Repeating keyword, round 2/19.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:08:57.803">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.803">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.804">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:08:57.812" starttime="20240911 07:08:57.803" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:08:57.812">
+       Repeating keyword, round 3/19.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:08:57.813">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.813">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.813">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:08:57.824" starttime="20240911 07:08:57.812" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:08:57.824">
+       Repeating keyword, round 4/19.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:08:57.824">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.825">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.825">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:08:57.833" starttime="20240911 07:08:57.824" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:08:57.833">
+       Repeating keyword, round 5/19.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:08:57.833">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.833">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.834">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:08:57.843" starttime="20240911 07:08:57.833" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:08:57.843">
+       Repeating keyword, round 6/19.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:08:57.844">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.844">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.844">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:08:57.853" starttime="20240911 07:08:57.843" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:08:57.853">
+       Repeating keyword, round 7/19.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:08:57.853">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.853">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.854">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:08:57.862" starttime="20240911 07:08:57.853" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:08:57.862">
+       Repeating keyword, round 8/19.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:08:57.862">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.862">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.862">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:08:57.871" starttime="20240911 07:08:57.862" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:08:57.871">
+       Repeating keyword, round 9/19.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:08:57.871">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.872">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.872">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:08:57.880" starttime="20240911 07:08:57.871" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:08:57.880">
+       Repeating keyword, round 10/19.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:08:57.881">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.881">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.881">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:08:57.889" starttime="20240911 07:08:57.880" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:08:57.889">
+       Repeating keyword, round 11/19.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:08:57.889">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.890">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.890">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:08:57.898" starttime="20240911 07:08:57.889" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:08:57.898">
+       Repeating keyword, round 12/19.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:08:57.898">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.899">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.899">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:08:57.907" starttime="20240911 07:08:57.898" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:08:57.907">
+       Repeating keyword, round 13/19.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:08:57.908">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.908">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.908">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:08:57.916" starttime="20240911 07:08:57.907" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:08:57.916">
+       Repeating keyword, round 14/19.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:08:57.917">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.917">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.917">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:08:57.940" starttime="20240911 07:08:57.916" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:08:57.940">
+       Repeating keyword, round 15/19.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:08:57.941">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.941">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.941">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:08:57.948" starttime="20240911 07:08:57.940" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:08:57.948">
+       Repeating keyword, round 16/19.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:08:57.949">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.949">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.949">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:08:57.981" starttime="20240911 07:08:57.948" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:08:57.981">
+       Repeating keyword, round 17/19.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:08:57.982">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.982">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.982">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:08:57.988" starttime="20240911 07:08:57.981" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:08:57.988">
+       Repeating keyword, round 18/19.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:08:57.989">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.989">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.989">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:08:57.997" starttime="20240911 07:08:57.989" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:08:57.997">
+       Repeating keyword, round 19/19.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:08:57.998">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.998">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:08:57.998">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:08:58.004" starttime="20240911 07:08:57.997" status="PASS"/>
+      </kw>
+      <status endtime="20240911 07:08:58.004" starttime="20240911 07:08:57.782" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Press Keys">
+      <arg>
+       NONE
+      </arg>
+      <arg>
+       ENTER
+      </arg>
+      <doc>
+       Simulates the user pressing key(s) to an element or on the active browser.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:08:58.005">
+       Sending key(s) ('ENTER',) to page.
+      </msg>
+      <msg level="INFO" timestamp="20240911 07:08:58.005">
+       Pressing special key ENTER to browser.
+      </msg>
+      <msg level="INFO" timestamp="20240911 07:08:58.005">
+       Releasing special key ENTER.
+      </msg>
+      <status endtime="20240911 07:08:58.013" starttime="20240911 07:08:58.004" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       10
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:09:08.015">
+       Slept 10 seconds
+      </msg>
+      <status endtime="20240911 07:09:08.015" starttime="20240911 07:08:58.014" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Switch Window">
+      <arg>
+       NEW
+      </arg>
+      <doc>
+       Switches to browser window matching ``locator``.
+      </doc>
+      <status endtime="20240911 07:09:08.015" starttime="20240911 07:09:08.015" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       2
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:09:10.015">
+       Slept 2 seconds
+      </msg>
+      <status endtime="20240911 07:09:10.015" starttime="20240911 07:09:08.015" status="PASS"/>
+     </kw>
+     <kw library="GRC_Risk_Export" name="Check If Page Contains Text">
+      <arg>
+       ${TEXT_TO_CHECK_ROLE}
+      </arg>
+      <kw library="BuiltIn" name="Run Keyword And Continue On Failure">
+       <arg>
+        Page Should Contain
+       </arg>
+       <arg>
+        ${text}
+       </arg>
+       <doc>
+        Runs the keyword and continues execution even if a failure occurs.
+       </doc>
+       <kw library="SeleniumLibrary" name="Page Should Contain">
+        <arg>
+         ${text}
+        </arg>
+        <doc>
+         Verifies that current page contains ``text``.
+        </doc>
+        <msg level="INFO" timestamp="20240911 07:09:10.028">
+         Current page contains text 'Risk Analysis: Role Level'.
+        </msg>
+        <status endtime="20240911 07:09:10.028" starttime="20240911 07:09:10.015" status="PASS"/>
+       </kw>
+       <status endtime="20240911 07:09:10.028" starttime="20240911 07:09:10.015" status="PASS"/>
+      </kw>
+      <kw library="BuiltIn" name="Run Keyword And Return Status">
+       <var>
+        ${text_found}
+       </var>
+       <arg>
+        Page Should Contain
+       </arg>
+       <arg>
+        ${text}
+       </arg>
+       <doc>
+        Runs the given keyword with given arguments and returns the status as a Boolean value.
+       </doc>
+       <kw library="SeleniumLibrary" name="Page Should Contain">
+        <arg>
+         ${text}
+        </arg>
+        <doc>
+         Verifies that current page contains ``text``.
+        </doc>
+        <msg level="INFO" timestamp="20240911 07:09:10.036">
+         Current page contains text 'Risk Analysis: Role Level'.
+        </msg>
+        <status endtime="20240911 07:09:10.036" starttime="20240911 07:09:10.028" status="PASS"/>
+       </kw>
+       <msg level="INFO" timestamp="20240911 07:09:10.036">
+        ${text_found} = True
+       </msg>
+       <status endtime="20240911 07:09:10.036" starttime="20240911 07:09:10.028" status="PASS"/>
+      </kw>
+      <kw library="BuiltIn" name="Run Keyword If">
+       <arg>
+        ${text_found}
+       </arg>
+       <arg>
+        Proceed Further
+       </arg>
+       <arg>
+        ELSE
+       </arg>
+       <arg>
+        Exit Test
+       </arg>
+       <doc>
+        Runs the given keyword with the given arguments, if ``condition`` is true.
+       </doc>
+       <kw library="GRC_Risk_Export" name="Proceed Further">
+        <kw library="BuiltIn" name="Log">
+         <arg>
+          Text is available. Proceeding further...
+         </arg>
+         <doc>
+          Logs the given message with the given level.
+         </doc>
+         <msg level="INFO" timestamp="20240911 07:09:10.036">
+          Text is available. Proceeding further...
+         </msg>
+         <status endtime="20240911 07:09:10.036" starttime="20240911 07:09:10.036" status="PASS"/>
+        </kw>
+        <status endtime="20240911 07:09:10.036" starttime="20240911 07:09:10.036" status="PASS"/>
+       </kw>
+       <status endtime="20240911 07:09:10.036" starttime="20240911 07:09:10.036" status="PASS"/>
+      </kw>
+      <status endtime="20240911 07:09:10.036" starttime="20240911 07:09:10.015" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Repeat Keyword">
+      <arg>
+       5 times
+      </arg>
+      <arg>
+       Press Keys
+      </arg>
+      <arg>
+       NONE
+      </arg>
+      <arg>
+       TAB
+      </arg>
+      <doc>
+       Executes the specified keyword multiple times.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:09:10.036">
+       Repeating keyword, round 1/5.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:10.036">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:10.036">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:10.036">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:10.069" starttime="20240911 07:09:10.036" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:10.069">
+       Repeating keyword, round 2/5.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:10.070">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:10.070">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:10.070">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:10.111" starttime="20240911 07:09:10.069" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:10.111">
+       Repeating keyword, round 3/5.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:10.111">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:10.111">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:10.112">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:10.124" starttime="20240911 07:09:10.111" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:10.124">
+       Repeating keyword, round 4/5.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:10.124">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:10.124">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:10.124">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:10.132" starttime="20240911 07:09:10.124" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:10.133">
+       Repeating keyword, round 5/5.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:10.133">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:10.133">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:10.134">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:10.146" starttime="20240911 07:09:10.133" status="PASS"/>
+      </kw>
+      <status endtime="20240911 07:09:10.146" starttime="20240911 07:09:10.036" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       3
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:09:13.148">
+       Slept 3 seconds
+      </msg>
+      <status endtime="20240911 07:09:13.148" starttime="20240911 07:09:10.147" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Press Keys">
+      <arg>
+       NONE
+      </arg>
+      <arg>
+       ${symvar('System')}
+      </arg>
+      <doc>
+       Simulates the user pressing key(s) to an element or on the active browser.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:09:13.149">
+       Sym.Dev.System: FACCLNT01
+      </msg>
+      <msg level="INFO" timestamp="20240911 07:09:13.149">
+       Sending key(s) ('FACCLNT01',) to page.
+      </msg>
+      <msg level="INFO" timestamp="20240911 07:09:13.149">
+       Sending keys FACCLNT01
+      </msg>
+      <status endtime="20240911 07:09:13.195" starttime="20240911 07:09:13.148" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       3
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:09:16.196">
+       Slept 3 seconds
+      </msg>
+      <status endtime="20240911 07:09:16.196" starttime="20240911 07:09:13.195" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Repeat Keyword">
+      <arg>
+       10 times
+      </arg>
+      <arg>
+       Press Keys
+      </arg>
+      <arg>
+       NONE
+      </arg>
+      <arg>
+       TAB
+      </arg>
+      <doc>
+       Executes the specified keyword multiple times.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:09:16.196">
+       Repeating keyword, round 1/10.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:16.196">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:16.196">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:16.196">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:16.212" starttime="20240911 07:09:16.196" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:16.212">
+       Repeating keyword, round 2/10.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:16.213">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:16.213">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:16.213">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:16.219" starttime="20240911 07:09:16.212" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:16.219">
+       Repeating keyword, round 3/10.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:16.220">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:16.220">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:16.220">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:16.227" starttime="20240911 07:09:16.219" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:16.227">
+       Repeating keyword, round 4/10.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:16.228">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:16.228">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:16.228">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:16.236" starttime="20240911 07:09:16.227" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:16.236">
+       Repeating keyword, round 5/10.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:16.236">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:16.237">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:16.237">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:16.246" starttime="20240911 07:09:16.236" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:16.246">
+       Repeating keyword, round 6/10.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:16.247">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:16.247">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:16.247">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:16.253" starttime="20240911 07:09:16.246" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:16.253">
+       Repeating keyword, round 7/10.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:16.254">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:16.254">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:16.254">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:16.260" starttime="20240911 07:09:16.253" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:16.260">
+       Repeating keyword, round 8/10.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:16.261">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:16.261">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:16.261">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:16.268" starttime="20240911 07:09:16.260" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:16.268">
+       Repeating keyword, round 9/10.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:16.269">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:16.269">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:16.269">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:16.279" starttime="20240911 07:09:16.268" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:16.279">
+       Repeating keyword, round 10/10.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:16.280">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:16.280">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:16.280">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:16.289" starttime="20240911 07:09:16.280" status="PASS"/>
+      </kw>
+      <status endtime="20240911 07:09:16.289" starttime="20240911 07:09:16.196" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       3
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:09:19.290">
+       Slept 3 seconds
+      </msg>
+      <status endtime="20240911 07:09:19.290" starttime="20240911 07:09:16.289" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Press Keys">
+      <arg>
+       NONE
+      </arg>
+      <arg>
+       ${symvar('role')}
+      </arg>
+      <doc>
+       Simulates the user pressing key(s) to an element or on the active browser.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:09:19.290">
+       Sym.Dev.role: ZC_TEST_062
+      </msg>
+      <msg level="INFO" timestamp="20240911 07:09:19.290">
+       Sending key(s) ('ZC_TEST_062',) to page.
+      </msg>
+      <msg level="INFO" timestamp="20240911 07:09:19.290">
+       Sending keys ZC_TEST_062
+      </msg>
+      <status endtime="20240911 07:09:19.350" starttime="20240911 07:09:19.290" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       3
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:09:22.350">
+       Slept 3 seconds
+      </msg>
+      <status endtime="20240911 07:09:22.350" starttime="20240911 07:09:19.350" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Repeat Keyword">
+      <arg>
+       10 times
+      </arg>
+      <arg>
+       Press Keys
+      </arg>
+      <arg>
+       NONE
+      </arg>
+      <arg>
+       TAB
+      </arg>
+      <doc>
+       Executes the specified keyword multiple times.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:09:22.350">
+       Repeating keyword, round 1/10.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:22.350">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:22.352">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:22.352">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:22.362" starttime="20240911 07:09:22.350" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:22.362">
+       Repeating keyword, round 2/10.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:22.363">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:22.363">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:22.363">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:22.371" starttime="20240911 07:09:22.362" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:22.371">
+       Repeating keyword, round 3/10.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:22.372">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:22.372">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:22.372">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:22.380" starttime="20240911 07:09:22.371" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:22.380">
+       Repeating keyword, round 4/10.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:22.381">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:22.381">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:22.381">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:22.388" starttime="20240911 07:09:22.380" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:22.389">
+       Repeating keyword, round 5/10.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:22.389">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:22.389">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:22.389">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:22.398" starttime="20240911 07:09:22.389" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:22.398">
+       Repeating keyword, round 6/10.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:22.400">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:22.400">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:22.400">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:22.410" starttime="20240911 07:09:22.398" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:22.410">
+       Repeating keyword, round 7/10.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:22.411">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:22.411">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:22.411">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:22.416" starttime="20240911 07:09:22.410" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:22.417">
+       Repeating keyword, round 8/10.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:22.417">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:22.417">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:22.417">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:22.424" starttime="20240911 07:09:22.417" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:22.424">
+       Repeating keyword, round 9/10.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:22.425">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:22.425">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:22.425">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:22.435" starttime="20240911 07:09:22.424" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:22.435">
+       Repeating keyword, round 10/10.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:22.435">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:22.435">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:22.435">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:22.444" starttime="20240911 07:09:22.435" status="PASS"/>
+      </kw>
+      <status endtime="20240911 07:09:22.444" starttime="20240911 07:09:22.350" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       3
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:09:25.445">
+       Slept 3 seconds
+      </msg>
+      <status endtime="20240911 07:09:25.445" starttime="20240911 07:09:22.444" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Press Keys">
+      <arg>
+       NONE
+      </arg>
+      <arg>
+       ${TEXT3}
+      </arg>
+      <doc>
+       Simulates the user pressing key(s) to an element or on the active browser.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:09:25.445">
+       Sending key(s) ('A',) to page.
+      </msg>
+      <msg level="INFO" timestamp="20240911 07:09:25.445">
+       Sending key A
+      </msg>
+      <status endtime="20240911 07:09:25.494" starttime="20240911 07:09:25.445" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       3
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:09:28.495">
+       Slept 3 seconds
+      </msg>
+      <status endtime="20240911 07:09:28.495" starttime="20240911 07:09:25.494" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Repeat Keyword">
+      <arg>
+       14 times
+      </arg>
+      <arg>
+       Press Keys
+      </arg>
+      <arg>
+       NONE
+      </arg>
+      <arg>
+       TAB
+      </arg>
+      <doc>
+       Executes the specified keyword multiple times.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:09:28.495">
+       Repeating keyword, round 1/14.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:28.495">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:28.495">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:28.495">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:28.508" starttime="20240911 07:09:28.495" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:28.508">
+       Repeating keyword, round 2/14.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:28.509">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:28.509">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:28.509">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:28.515" starttime="20240911 07:09:28.509" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:28.515">
+       Repeating keyword, round 3/14.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:28.515">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:28.516">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:28.516">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:28.523" starttime="20240911 07:09:28.515" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:28.523">
+       Repeating keyword, round 4/14.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:28.523">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:28.523">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:28.523">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:28.534" starttime="20240911 07:09:28.523" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:28.534">
+       Repeating keyword, round 5/14.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:28.534">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:28.534">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:28.534">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:28.543" starttime="20240911 07:09:28.534" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:28.543">
+       Repeating keyword, round 6/14.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:28.544">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:28.544">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:28.544">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:28.551" starttime="20240911 07:09:28.543" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:28.551">
+       Repeating keyword, round 7/14.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:28.551">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:28.551">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:28.551">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:28.559" starttime="20240911 07:09:28.551" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:28.560">
+       Repeating keyword, round 8/14.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:28.560">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:28.560">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:28.560">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:28.568" starttime="20240911 07:09:28.560" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:28.568">
+       Repeating keyword, round 9/14.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:28.569">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:28.569">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:28.569">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:28.576" starttime="20240911 07:09:28.568" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:28.576">
+       Repeating keyword, round 10/14.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:28.577">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:28.577">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:28.577">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:28.608" starttime="20240911 07:09:28.576" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:28.608">
+       Repeating keyword, round 11/14.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:28.608">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:28.608">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:28.608">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:28.626" starttime="20240911 07:09:28.608" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:28.626">
+       Repeating keyword, round 12/14.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:28.627">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:28.627">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:28.627">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:28.633" starttime="20240911 07:09:28.626" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:28.633">
+       Repeating keyword, round 13/14.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:28.634">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:28.634">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:28.634">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:28.639" starttime="20240911 07:09:28.633" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:28.639">
+       Repeating keyword, round 14/14.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:28.640">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:28.640">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:28.640">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:28.645" starttime="20240911 07:09:28.639" status="PASS"/>
+      </kw>
+      <status endtime="20240911 07:09:28.646" starttime="20240911 07:09:28.495" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       3
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:09:31.647">
+       Slept 3 seconds
+      </msg>
+      <status endtime="20240911 07:09:31.647" starttime="20240911 07:09:28.646" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Press Keys">
+      <arg>
+       NONE
+      </arg>
+      <arg>
+       ${CHECKBOX_KEYS}
+      </arg>
+      <doc>
+       Simulates the user pressing key(s) to an element or on the active browser.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:09:31.647">
+       Sending key(s) ('1',) to page.
+      </msg>
+      <msg level="INFO" timestamp="20240911 07:09:31.647">
+       Sending key 1
+      </msg>
+      <status endtime="20240911 07:09:31.647" starttime="20240911 07:09:31.647" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       1s
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:09:32.647">
+       Slept 1 second
+      </msg>
+      <status endtime="20240911 07:09:32.647" starttime="20240911 07:09:31.647" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Press Keys">
+      <arg>
+       NONE
+      </arg>
+      <arg>
+       SPACE
+      </arg>
+      <doc>
+       Simulates the user pressing key(s) to an element or on the active browser.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:09:32.647">
+       Sending key(s) ('SPACE',) to page.
+      </msg>
+      <msg level="INFO" timestamp="20240911 07:09:32.647">
+       Pressing special key SPACE to browser.
+      </msg>
+      <msg level="INFO" timestamp="20240911 07:09:32.647">
+       Releasing special key SPACE.
+      </msg>
+      <status endtime="20240911 07:09:32.658" starttime="20240911 07:09:32.647" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       2
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:09:34.658">
+       Slept 2 seconds
+      </msg>
+      <status endtime="20240911 07:09:34.658" starttime="20240911 07:09:32.658" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Repeat Keyword">
+      <arg>
+       5 times
+      </arg>
+      <arg>
+       Press Keys
+      </arg>
+      <arg>
+       NONE
+      </arg>
+      <arg>
+       TAB
+      </arg>
+      <doc>
+       Executes the specified keyword multiple times.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:09:34.658">
+       Repeating keyword, round 1/5.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:34.658">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:34.660">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:34.660">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:34.668" starttime="20240911 07:09:34.658" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:34.668">
+       Repeating keyword, round 2/5.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:34.669">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:34.669">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:34.669">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:34.674" starttime="20240911 07:09:34.668" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:34.675">
+       Repeating keyword, round 3/5.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:34.675">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:34.675">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:34.675">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:34.683" starttime="20240911 07:09:34.675" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:34.683">
+       Repeating keyword, round 4/5.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:34.684">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:34.684">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:34.684">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:34.690" starttime="20240911 07:09:34.683" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:34.690">
+       Repeating keyword, round 5/5.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:34.690">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:34.691">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:34.691">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:34.697" starttime="20240911 07:09:34.690" status="PASS"/>
+      </kw>
+      <status endtime="20240911 07:09:34.697" starttime="20240911 07:09:34.658" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       3
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:09:37.697">
+       Slept 3 seconds
+      </msg>
+      <status endtime="20240911 07:09:37.697" starttime="20240911 07:09:34.697" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Press Keys">
+      <arg>
+       NONE
+      </arg>
+      <arg>
+       ${CHECKBOX_KEYS}
+      </arg>
+      <doc>
+       Simulates the user pressing key(s) to an element or on the active browser.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:09:37.697">
+       Sending key(s) ('1',) to page.
+      </msg>
+      <msg level="INFO" timestamp="20240911 07:09:37.697">
+       Sending key 1
+      </msg>
+      <status endtime="20240911 07:09:37.703" starttime="20240911 07:09:37.697" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       1s
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:09:38.703">
+       Slept 1 second
+      </msg>
+      <status endtime="20240911 07:09:38.703" starttime="20240911 07:09:37.703" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Press Keys">
+      <arg>
+       NONE
+      </arg>
+      <arg>
+       SPACE
+      </arg>
+      <doc>
+       Simulates the user pressing key(s) to an element or on the active browser.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:09:38.703">
+       Sending key(s) ('SPACE',) to page.
+      </msg>
+      <msg level="INFO" timestamp="20240911 07:09:38.703">
+       Pressing special key SPACE to browser.
+      </msg>
+      <msg level="INFO" timestamp="20240911 07:09:38.703">
+       Releasing special key SPACE.
+      </msg>
+      <status endtime="20240911 07:09:38.712" starttime="20240911 07:09:38.703" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       2
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:09:40.712">
+       Slept 2 seconds
+      </msg>
+      <status endtime="20240911 07:09:40.712" starttime="20240911 07:09:38.712" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Repeat Keyword">
+      <arg>
+       3 times
+      </arg>
+      <arg>
+       Press Keys
+      </arg>
+      <arg>
+       NONE
+      </arg>
+      <arg>
+       TAB
+      </arg>
+      <doc>
+       Executes the specified keyword multiple times.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:09:40.712">
+       Repeating keyword, round 1/3.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:40.712">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:40.712">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:40.712">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:40.727" starttime="20240911 07:09:40.712" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:40.727">
+       Repeating keyword, round 2/3.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:40.727">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:40.727">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:40.727">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:40.735" starttime="20240911 07:09:40.727" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:09:40.735">
+       Repeating keyword, round 3/3.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:09:40.735">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:40.735">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:09:40.736">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:09:40.741" starttime="20240911 07:09:40.735" status="PASS"/>
+      </kw>
+      <status endtime="20240911 07:09:40.741" starttime="20240911 07:09:40.712" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Press Keys">
+      <arg>
+       NONE
+      </arg>
+      <arg>
+       ENTER
+      </arg>
+      <doc>
+       Simulates the user pressing key(s) to an element or on the active browser.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:09:40.742">
+       Sending key(s) ('ENTER',) to page.
+      </msg>
+      <msg level="INFO" timestamp="20240911 07:09:40.742">
+       Pressing special key ENTER to browser.
+      </msg>
+      <msg level="INFO" timestamp="20240911 07:09:40.742">
+       Releasing special key ENTER.
+      </msg>
+      <status endtime="20240911 07:09:40.752" starttime="20240911 07:09:40.741" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       20
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:10:00.753">
+       Slept 20 seconds
+      </msg>
+      <status endtime="20240911 07:10:00.753" starttime="20240911 07:09:40.753" status="PASS"/>
+     </kw>
+     <kw library="GRC_Risk_Export" name="Check If Page Contains Text">
+      <arg>
+       ${TEXT_TO CHECK_RESULTS}
+      </arg>
+      <kw library="BuiltIn" name="Run Keyword And Continue On Failure">
+       <arg>
+        Page Should Contain
+       </arg>
+       <arg>
+        ${text}
+       </arg>
+       <doc>
+        Runs the keyword and continues execution even if a failure occurs.
+       </doc>
+       <kw library="SeleniumLibrary" name="Page Should Contain">
+        <arg>
+         ${text}
+        </arg>
+        <doc>
+         Verifies that current page contains ``text``.
+        </doc>
+        <msg level="INFO" timestamp="20240911 07:10:00.787">
+         Current page contains text 'Analysis Results'.
+        </msg>
+        <status endtime="20240911 07:10:00.787" starttime="20240911 07:10:00.753" status="PASS"/>
+       </kw>
+       <status endtime="20240911 07:10:00.787" starttime="20240911 07:10:00.753" status="PASS"/>
+      </kw>
+      <kw library="BuiltIn" name="Run Keyword And Return Status">
+       <var>
+        ${text_found}
+       </var>
+       <arg>
+        Page Should Contain
+       </arg>
+       <arg>
+        ${text}
+       </arg>
+       <doc>
+        Runs the given keyword with given arguments and returns the status as a Boolean value.
+       </doc>
+       <kw library="SeleniumLibrary" name="Page Should Contain">
+        <arg>
+         ${text}
+        </arg>
+        <doc>
+         Verifies that current page contains ``text``.
+        </doc>
+        <msg level="INFO" timestamp="20240911 07:10:00.835">
+         Current page contains text 'Analysis Results'.
+        </msg>
+        <status endtime="20240911 07:10:00.835" starttime="20240911 07:10:00.787" status="PASS"/>
+       </kw>
+       <msg level="INFO" timestamp="20240911 07:10:00.835">
+        ${text_found} = True
+       </msg>
+       <status endtime="20240911 07:10:00.835" starttime="20240911 07:10:00.787" status="PASS"/>
+      </kw>
+      <kw library="BuiltIn" name="Run Keyword If">
+       <arg>
+        ${text_found}
+       </arg>
+       <arg>
+        Proceed Further
+       </arg>
+       <arg>
+        ELSE
+       </arg>
+       <arg>
+        Exit Test
+       </arg>
+       <doc>
+        Runs the given keyword with the given arguments, if ``condition`` is true.
+       </doc>
+       <kw library="GRC_Risk_Export" name="Proceed Further">
+        <kw library="BuiltIn" name="Log">
+         <arg>
+          Text is available. Proceeding further...
+         </arg>
+         <doc>
+          Logs the given message with the given level.
+         </doc>
+         <msg level="INFO" timestamp="20240911 07:10:00.835">
+          Text is available. Proceeding further...
+         </msg>
+         <status endtime="20240911 07:10:00.835" starttime="20240911 07:10:00.835" status="PASS"/>
+        </kw>
+        <status endtime="20240911 07:10:00.835" starttime="20240911 07:10:00.835" status="PASS"/>
+       </kw>
+       <status endtime="20240911 07:10:00.835" starttime="20240911 07:10:00.835" status="PASS"/>
+      </kw>
+      <status endtime="20240911 07:10:00.835" starttime="20240911 07:10:00.753" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Repeat Keyword">
+      <arg>
+       13 times
+      </arg>
+      <arg>
+       Press Keys
+      </arg>
+      <arg>
+       NONE
+      </arg>
+      <arg>
+       TAB
+      </arg>
+      <doc>
+       Executes the specified keyword multiple times.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:10:00.835">
+       Repeating keyword, round 1/13.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:10:00.835">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:10:00.835">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:10:00.835">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:10:00.851" starttime="20240911 07:10:00.835" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:10:00.851">
+       Repeating keyword, round 2/13.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:10:00.853">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:10:00.853">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:10:00.853">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:10:00.859" starttime="20240911 07:10:00.851" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:10:00.859">
+       Repeating keyword, round 3/13.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:10:00.859">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:10:00.859">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:10:00.860">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:10:00.876" starttime="20240911 07:10:00.859" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:10:00.876">
+       Repeating keyword, round 4/13.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:10:00.876">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:10:00.876">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:10:00.876">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:10:00.883" starttime="20240911 07:10:00.876" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:10:00.883">
+       Repeating keyword, round 5/13.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:10:00.884">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:10:00.884">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:10:00.884">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:10:00.890" starttime="20240911 07:10:00.883" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:10:00.890">
+       Repeating keyword, round 6/13.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:10:00.891">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:10:00.891">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:10:00.891">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:10:00.896" starttime="20240911 07:10:00.890" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:10:00.896">
+       Repeating keyword, round 7/13.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:10:00.897">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:10:00.897">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:10:00.897">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:10:00.915" starttime="20240911 07:10:00.896" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:10:00.915">
+       Repeating keyword, round 8/13.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:10:00.916">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:10:00.916">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:10:00.916">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:10:00.930" starttime="20240911 07:10:00.916" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:10:00.930">
+       Repeating keyword, round 9/13.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:10:00.932">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:10:00.932">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:10:00.932">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:10:00.935" starttime="20240911 07:10:00.930" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:10:00.935">
+       Repeating keyword, round 10/13.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:10:00.935">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:10:00.935">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:10:00.935">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:10:00.949" starttime="20240911 07:10:00.935" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:10:00.949">
+       Repeating keyword, round 11/13.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:10:00.950">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:10:00.950">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:10:00.950">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:10:00.955" starttime="20240911 07:10:00.949" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:10:00.955">
+       Repeating keyword, round 12/13.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:10:00.956">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:10:00.956">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:10:00.956">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:10:00.969" starttime="20240911 07:10:00.955" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:10:00.969">
+       Repeating keyword, round 13/13.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        TAB
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:10:00.969">
+        Sending key(s) ('TAB',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:10:00.969">
+        Pressing special key TAB to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:10:00.969">
+        Releasing special key TAB.
+       </msg>
+       <status endtime="20240911 07:10:00.979" starttime="20240911 07:10:00.969" status="PASS"/>
+      </kw>
+      <status endtime="20240911 07:10:00.979" starttime="20240911 07:10:00.835" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       5
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:10:05.979">
+       Slept 5 seconds
+      </msg>
+      <status endtime="20240911 07:10:05.979" starttime="20240911 07:10:00.979" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Repeat Keyword">
+      <arg>
+       2 times
+      </arg>
+      <arg>
+       Press Keys
+      </arg>
+      <arg>
+       NONE
+      </arg>
+      <arg>
+       ENTER
+      </arg>
+      <doc>
+       Executes the specified keyword multiple times.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:10:05.979">
+       Repeating keyword, round 1/2.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        ENTER
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:10:05.979">
+        Sending key(s) ('ENTER',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:10:05.979">
+        Pressing special key ENTER to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:10:05.979">
+        Releasing special key ENTER.
+       </msg>
+       <status endtime="20240911 07:10:05.987" starttime="20240911 07:10:05.979" status="PASS"/>
+      </kw>
+      <msg level="INFO" timestamp="20240911 07:10:05.987">
+       Repeating keyword, round 2/2.
+      </msg>
+      <kw library="SeleniumLibrary" name="Press Keys">
+       <arg>
+        NONE
+       </arg>
+       <arg>
+        ENTER
+       </arg>
+       <doc>
+        Simulates the user pressing key(s) to an element or on the active browser.
+       </doc>
+       <msg level="INFO" timestamp="20240911 07:10:05.987">
+        Sending key(s) ('ENTER',) to page.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:10:05.987">
+        Pressing special key ENTER to browser.
+       </msg>
+       <msg level="INFO" timestamp="20240911 07:10:05.987">
+        Releasing special key ENTER.
+       </msg>
+       <status endtime="20240911 07:10:05.987" starttime="20240911 07:10:05.987" status="PASS"/>
+      </kw>
+      <status endtime="20240911 07:10:05.987" starttime="20240911 07:10:05.979" status="PASS"/>
+     </kw>
+     <kw library="BuiltIn" name="Sleep">
+      <arg>
+       5
+      </arg>
+      <doc>
+       Pauses the test executed for the given time.
+      </doc>
+      <msg level="INFO" timestamp="20240911 07:10:10.988">
+       Slept 5 seconds
+      </msg>
+      <status endtime="20240911 07:10:10.988" starttime="20240911 07:10:05.987" status="PASS"/>
+     </kw>
+     <kw library="SeleniumLibrary" name="Close All Browsers">
+      <doc>
+       Closes all open browsers and resets the browser cache.
+      </doc>
+      <status endtime="20240911 07:10:17.237" starttime="20240911 07:10:10.988" status="PASS"/>
+     </kw>
+     <status endtime="20240911 07:10:17.237" starttime="20240911 07:08:24.992" status="PASS"/>
+    </kw>
+    <tag>
+     risk
+    </tag>
+    <status endtime="20240911 07:10:17.237" starttime="20240911 07:08:24.992" status="PASS"/>
+   </test>
+   <status endtime="20240911 07:10:17.237" starttime="20240911 07:08:24.983" status="PASS"/>
+  </suite>
+  <doc>
+   Testing functionality through Robot Framework
+  </doc>
+  <meta name="environment">
+   Dev
+  </meta>
+  <meta name="test_browser_name">
+   chrome
+  </meta>
+  <meta name="test_browser_version">
+   128.0.6613.121
+  </meta>
+  <meta name="test_driver_version">
+   128.0.6613.84
+  </meta>
+  <meta name="test_environment">
+   Dev
+  </meta>
+  <meta name="test_freeze_dependencies">
+   astroid==3.2.3,attrs==23.2.0,beautifulsoup4==4.12.3,bs4==0.0.2,certifi==2024.7.4,cffi==1.16.0,chardet==5.2.0,charset-normalizer==3.3.2,click==8.1.7,colorama==0.4.6,cryptography==42.0.8,defusedxml==0.7.1,dill==0.3.8,docutils==0.21.2,et-xmlfile==1.1.0,exceptiongroup==1.2.2,gitdb==4.0.11,GitPython==3.1.43,h11==0.14.0,idna==3.7,isort==5.13.2,Jinja2==3.1.4,jira==3.8.0,jsonpath-ng==1.6.1,jsonschema==4.23.0,jsonschema-specifications==2023.12.1,lazy-object-proxy==1.10.0,lxml==5.2.2,markdown-it-py==3.0.0,MarkupSafe==2.1.5,mccabe==0.7.0,mdurl==0.1.2,natsort==8.4.0,numpy==2.0.0,oauthlib==3.2.2,openpyxl==3.1.5,outcome==1.3.0.post0,packaging==24.1,pandas==2.2.2,pathspec==0.11.2,pillow==10.4.0,pip==24.2,platformdirs==4.2.2,ply==3.11,pycparser==2.22,Pygments==2.18.0,pylint==3.2.5,PyPDF2==3.0.1,PySocks==1.7.1,python-dateutil==2.9.0.post0,pytz==2024.1,pywin32==306,PyYAML==6.0.1,referencing==0.35.1,reportlab==4.2.2,requests==2.32.3,requests-oauthlib==2.0.0,requests-toolbelt==1.0.0,rich==13.7.1,rich-click==1.6.1,robotframework==6.0.2,robotframework-datadriver==1.9.0,robotframework-excellib==2.0.1,robotframework-jsonlibrary==0.5,robotframework-pabot==2.16.0,robotframework-pythonlibcore==4.2.0,robotframework-requests==0.9.2,robotframework-sapguilibrary==1.1,robotframework-seleniumlibrary==5.1.3,robotframework-stacktrace==0.4.1,robotframework-tidy==4.5.0,rpds-py==0.19.0,selenium==4.9.1,setuptools==71.0.1,six==1.16.0,smmap==5.0.1,sniffio==1.3.1,sortedcontainers==2.4.0,soupsieve==2.5,tomli==2.0.1,tomlkit==0.13.0,trio==0.26.0,trio-websocket==0.11.1,typing_extensions==4.12.2,tzdata==2024.1,urllib3==2.2.2,wheel==0.43.0,wrapt==1.16.0,wsproto==1.2.0
+  </meta>
+  <status endtime="20240911 07:10:17.305" starttime="20240911 07:08:21.254" status="PASS"/>
+ </suite>
+ <statistics>
+  <total>
+   <stat fail="0" pass="1" skip="0">
+    All Tests
+   </stat>
+  </total>
+  <tag>
+   <stat fail="0" pass="1" skip="0">
+    risk
+   </stat>
+  </tag>
+  <suite>
+   <stat fail="0" id="s1" name="Tests" pass="1" skip="0">
+    Tests
+   </stat>
+   <stat fail="0" id="s1-s1" name="Test GRC Risk Export" pass="1" skip="0">
+    Tests.Test GRC Risk Export
+   </stat>
+  </suite>
+ </statistics>
+ <errors>
+ </errors>
+</robot>

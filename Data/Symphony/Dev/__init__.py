@@ -1,13 +1,21 @@
-# This init files loads data values available within each of the data files up at
-# the environment level. 
-# Warning: Any variable with conflicting names will be overwritten with 
-#          values as they are imported through each file.
-
 from .Data import *
 from .urls import *
 from .xpaths import *
-from .Variable import *
-from .Variable_BIS import *
 from .invoice import *
-
-
+#from .Variable import *
+from .Variable_BIS import *
+#from .role import *
+#from .SM02 import *
+#from .java_ssl import *
+#from .Roles import *
+from .payments import *
+from .closing_payment import *
+#from .Tag import *
+#from .Vendor_invoice import *
+from .SM12 import *
+from .SM37 import *
+from .slicense import *
+#from .Certificate import *
+from .TS4 import *
+from .ABAP import *
+from .Risk import *
