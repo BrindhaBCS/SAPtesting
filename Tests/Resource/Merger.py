@@ -9,17 +9,20 @@ from robot.libraries.BuiltIn import BuiltIn
 class Merger():
     @staticmethod
     def create_pdf(screenshot_directory):
-        # Retrieve the current test case file name from the BuiltIn library
-        test_case_file = BuiltIn().get_variable_value('${SUITE SOURCE}')
-        
-        # Extract the directory of the test case file
-        base_dir = os.path.abspath(os.path.dirname(test_case_file))
+        # Retrieve the SymphonyJobId from Robot Framework's BuiltIn variables
+        symphony_job_id = BuiltIn().get_variable_value('${SymphonyJobId}')
 
-        # Search upwards for the 'Reports' directory
-        reports_dir = find_reports_directory(base_dir)
+        # Define the reports directory based on SymphonyJobId
+        reports_dir = os.path.join(symphony_job_id, 'Reports')
+
+        # Check if the reports directory exists, if not create it
+        if not os.path.exists(reports_dir):
+            os.makedirs(reports_dir)
+            print(f"Reports directory created: {reports_dir}")
 
         if reports_dir:
             # Generate output PDF path using the test case file name
+            test_case_file = BuiltIn().get_variable_value('${SUITE SOURCE}')
             pdf_filename = os.path.basename(test_case_file).replace('.robot', '.pdf')
             output_pdf = os.path.join(reports_dir, pdf_filename)
 
@@ -61,7 +64,7 @@ class Merger():
                         current_time = datetime.now().strftime("%Y%m%d_%H%M%S")
                         new_filename = f"{current_time}_{file_name}{file_extension}"
 
-                        # Save screenshot to Reports folder with new filename
+                        # Save screenshot to SymphonyJobId/Reports folder with new filename
                         report_path = os.path.join(reports_dir, new_filename)
                         screenshot.save(report_path)
 
@@ -92,24 +95,7 @@ class Merger():
                     if filename.startswith("temp_") and filename.endswith(".pdf"):
                         os.remove(os.path.join(reports_dir, filename))
         else:
-            print("Reports directory not found. PDF creation aborted.")
-
-def find_reports_directory(start_dir):
-    """
-    Recursively search upwards from start_dir for the 'Reports' directory.
-    Return the path to 'Reports' directory if found, else return None.
-    """
-    current_dir = start_dir
-    while True:
-        reports_dir = os.path.join(current_dir, 'Reports')
-        if os.path.exists(reports_dir) and os.path.isdir(reports_dir):
-            return reports_dir
-        # Move one directory up
-        parent_dir = os.path.dirname(current_dir)
-        if parent_dir == current_dir:
-            break  # Reached root directory
-        current_dir = parent_dir
-    return None
+            print(f"Reports directory for SymphonyJobId '{symphony_job_id}' not found. PDF creation aborted.")
 
 # Usage example:
 if __name__ == "__main__":
