@@ -90,6 +90,6 @@ SSF Logon Ticket
     Scroll Pagedown    wnd[0]/usr/btnCERTDETAIL
     Sleep    2
     Take Screenshot    040_SSFASSO2.jpg
-    Set Global Variable    ${symphony_job_id}
+    # Set Global Variable    ${symphony_job_id}
     Merger.create pdf    ${screenshot_directory}    
     Sleep    2
