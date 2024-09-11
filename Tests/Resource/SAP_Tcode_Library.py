@@ -1839,3 +1839,8 @@ class SAP_Tcode_Library:
 
     def close_window(self, window_id):
         self.session.findById(window_id).close()
+        
+    def to_upper(self, value):
+        text = value.upper()
+        print(text)
+        return text

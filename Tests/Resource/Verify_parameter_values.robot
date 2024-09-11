@@ -80,5 +80,5 @@ Verify parameter in RZ10
     Click Element    wnd[1]/usr/btnSPOP-OPTION1
     Window Handling    wnd[1]    Information    wnd[1]/tbar[0]/btn[0]
     Window Handling    wnd[1]    Note    wnd[1]/tbar[0]/btn[0]
-    Log To Console      **gbStart**copilot_status**splitKeyValue**Parameter values are updated successfully**gbEnd**
+    Log To Console      **gbStart**copilot_status1**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- Profile Parameter values are added successfully**gbEnd**
     

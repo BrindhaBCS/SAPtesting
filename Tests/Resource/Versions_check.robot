@@ -24,9 +24,9 @@ SAP BASIS Release
     Click Element    wnd[1]/usr/btnPRELINFO
     ${version}    Software Component Version    wnd[2]/usr/tabsVERSDETAILS/tabpCOMP_VERS/ssubDETAIL_SUBSCREEN:SAPLOCS_UI_CONTROLS:0301/cntlSCV_CU_CONTROL/shellcont/shell    SAP_BASIS
     IF    '${version}' >= '750'
-        Log To Console    **gbStart**copilot_status**splitKeyValue**Version of SAP_BASIS is ${version}**gbEnd**
+        Log To Console    **gbStart**copilot_status2**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} SAP_BASIS Version Condition Met (${version})**gbEnd**
     ELSE
-        Log To Console    **gbStart**copilot_status**splitKeyValue**Technical Prerequisties not met . SAP BASIS version too low.**gbEnd**
+        Log To Console    **gbStart**copilot_status2**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} Technical Prerequisties not met . SAP BASIS version too low.**gbEnd**
     END
 
 SAP UI Release
@@ -34,14 +34,14 @@ SAP UI Release
     IF    '${version}' == '740'
         ${support_package}    software support package version    wnd[2]/usr/tabsVERSDETAILS/tabpCOMP_VERS/ssubDETAIL_SUBSCREEN:SAPLOCS_UI_CONTROLS:0301/cntlSCV_CU_CONTROL/shellcont/shell    SAP_UI
         IF    '${support_package}' >= 'SAPK-74014INSAPUI'
-            Log To Console    **gbStart**copilot_status**splitKeyValue**Version of SAP_UI is ${version} and support package is ${support_package}**gbEnd**
+            Log To Console    **gbStart**copilot_status3**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} SAP_UI Version Condition Met ${version} and support package ${support_package}**gbEnd**
         ELSE
-            Log To Console    **gbStart**copilot_status**splitKeyValue**Technical Prerequisties not met . SAP UI version too low.**gbEnd**           
+            Log To Console    **gbStart**copilot_status3**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} Technical Prerequisties not met . SAP UI version too low.**gbEnd**           
         END
     ELSE IF    '${version}' >= '740'
-        Log To Console    **gbStart**copilot_status**splitKeyValue**Version of SAP_UI is ${version}**gbEnd**
+        Log To Console    **gbStart**copilot_status3**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} SAP_UI Version Condition Met ${version}**gbEnd**
     ELSE
-        Log To Console    **gbStart**copilot_status**splitKeyValue**Technical Prerequisties not met . SAP UI version too low.**gbEnd**
+        Log To Console    **gbStart**copilot_status3**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} Technical Prerequisties not met . SAP UI version too low.**gbEnd**
     END
 
 Component ST-PI Version
@@ -51,14 +51,14 @@ Component ST-PI Version
     ${support_package}    software support package version    wnd[2]/usr/tabsVERSDETAILS/tabpCOMP_VERS/ssubDETAIL_SUBSCREEN:SAPLOCS_UI_CONTROLS:0301/cntlSCV_CU_CONTROL/shellcont/shell    ST-PI
     IF    '${version}' == '740'
         IF    '${support_package}' >= '${symvar('Current_Version')}'
-            Log To Console    **gbStart**copilot_status**splitKeyValue**Version of ST-PI is ${version} and support package is ${support_package}**gbEnd**
+            Log To Console    **gbStart**copilot_status4**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} Version of ST-PI is ${version} and support package is Up-To-Date ${support_package}**gbEnd**
         ELSE
-            Log To Console    **gbStart**copilot_status**splitKeyValue**Technical Prerequisties not met . ST-PI version too low.**gbEnd**            
+            Log To Console    **gbStart**copilot_status4**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} Technical Prerequisties not met . ST-PI version too low.**gbEnd**            
         END
     ELSE IF    '${version}' >= '740'
-        Log To Console    **gbStart**copilot_status**splitKeyValue**Version of ST-PI is ${version}**gbEnd**
+        Log To Console    **gbStart**copilot_status4**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} Version of ST-PI is ${version}**gbEnd**
     ELSE
-        Log To Console    **gbStart**copilot_status**splitKeyValue**Technical Prerequisties not met . ST-PI version too low.**gbEnd**
+        Log To Console    **gbStart**copilot_status4**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} Technical Prerequisties not met . ST-PI version too low.**gbEnd**
     END
     Log To Console    **gbStart**ST_PI_version**splitKeyValue**ST-PI ${version}**gbEnd**
     Log To Console    **gbStart**supportpackage**splitKeyValue**${support_package}**gbEnd**

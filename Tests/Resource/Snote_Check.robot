@@ -39,16 +39,23 @@ SNOTE
             Log To Console    ${number}=${SAP_note_error}
         ELSE
             Double Click Current Cell Value    wnd[0]/usr/cntlGRID1/shellcont/shell    PRSTATUS
-            # Sleep    2
+            Sleep    2
             ${value}=    Get Value    wnd[0]/usr/subSUB_101:SAPLSCW_NA_SCREEN:0101/txtSCWB_S_SCREEN_NOTE-PRSTATUS_TEXT
             Log    ${number}=${value}
             IF    '${value}' == 'Cannot be implemented'
                 Log    ${number}=${value}
                 Log To Console    ${number}=${value}
                 Click Element    wnd[0]/tbar[0]/btn[3]
-                # Sleep    1
+                Sleep    1
                 Click Element    wnd[0]/tbar[0]/btn[3]
-                # Sleep    1
+                Sleep    1
+            ELSE IF    '${value}' == 'Completely implemented'
+                Log    ${number}=${value}
+                Log To Console    ${number}=${value}
+                Click Element    wnd[0]/tbar[0]/btn[3]
+                Sleep    1
+                Click Element    wnd[0]/tbar[0]/btn[3]
+                Sleep    1
             ELSE IF    '${value}' == 'Can be implemented'
                 Click Element    wnd[0]/tbar[0]/btn[3]
                 # Sleep    2
@@ -62,3 +69,4 @@ SNOTE
             END
         END
     END
+    Log To Console    **gbStart**copilot_status6**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- Madatory Snotes Implemented Successfully**gbEnd**
