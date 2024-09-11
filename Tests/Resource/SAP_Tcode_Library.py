@@ -9,6 +9,7 @@ import sys
 import ast
 import re
 import pandas as pd
+import openpyxl
 
 
 class SAP_Tcode_Library:
@@ -1493,15 +1494,7 @@ class SAP_Tcode_Library:
             print(f"Error: {e}")
 
     def get_file_content(Self, file_path, ):
-        """
-        Reads the content of a file and returns it as a string.
-
-        Arguments:
-        - file_path: The path to the file to be read.
-
-        Returns:
-        - The content of the file as a string.
-        """
+        
         with open(file_path, 'r') as file:
             content = file.read()
         return content
@@ -1843,3 +1836,11 @@ class SAP_Tcode_Library:
                 print("No order number found.")
         except Exception as e:
             print(f"Error: {e}")
+
+    def close_window(self, window_id):
+        self.session.findById(window_id).close()
+        
+    def to_upper(self, value):
+        text = value.upper()
+        print(text)
+        return text

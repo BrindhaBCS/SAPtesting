@@ -9,7 +9,12 @@ ${browser}    chrome
 login page
     Open Browser    ${url}    ${browser}    
     Maximize Browser Window
-    Sleep    15
+    Sleep    20
+    ${element_present}=    Run Keyword And Return Status    element should be visible    xpath://span[normalize-space(text())='Software Downloads']
+    Sleep    5
+    Run Keyword If    '${element_present}' == 'False'    Reload Page
+    Sleep    5
+    # Wait Until Element Is Visible    xpath://span[normalize-space(text())='Software Downloads']    120s
     Click Element    xpath://span[normalize-space(text())='Software Downloads']
     Sleep    5
     Switch Window    NEW
@@ -17,7 +22,7 @@ login page
     Input Text    id:j_username   ${symvar('S_Username')}
     Sleep    2
     Click Element    xpath://div[text()='Continue']
-    Sleep    10
+    Sleep    15
     Input Text    id:password    %{S_Password}
     Sleep    5
     Click Element    xpath://button[text()='Sign in']
@@ -35,7 +40,7 @@ Software Download
     Sleep    4
     Click Element    id:__field0-search
     Sleep    10
-    Click Element    id:__item29-__clone71
+    Click Element    id:__item29-__clone73
     Sleep    2
     Click Element    id:__xmlview3--idProductHierarchyList
     Sleep    5

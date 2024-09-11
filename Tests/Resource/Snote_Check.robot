@@ -21,20 +21,18 @@ System Logout
     Run Transaction   /nex
 SNOTE
     Run Transaction    /nsnote
-    Sleep    2
-    Set Focus    wnd[0]/usr/lbl[5,3]
-    Sleep    2
-    Send Vkey    2
-    Sleep    2
-    Take Screenshot    snote_1.jpg
-    Sleep    1
+    # Sleep    2
+    # Set Focus    wnd[0]/usr/lbl[5,3]
+    # Sleep    2
+    # Send Vkey    2
+    # Sleep    2
     Click Element    wnd[0]/tbar[1]/btn[33]
-    Sleep    1   
+    # Sleep    1   
     FOR    ${number}    IN    @{SAP_Note}
         Input Text    wnd[0]/usr/txtNUMM-LOW    ${number}
-        Sleep    1
+        # Sleep    1
         Click Element    wnd[0]/tbar[1]/btn[8]
-        Sleep    3
+        # Sleep    3
         ${SAP_note_error}=    Get Value    wnd[0]/sbar/pane[0]
         IF    '${SAP_note_error}' == 'Unable to find SAP Note that meets specified criteria'
             Log    ${number}=${SAP_note_error}
@@ -51,13 +49,24 @@ SNOTE
                 Sleep    1
                 Click Element    wnd[0]/tbar[0]/btn[3]
                 Sleep    1
+            ELSE IF    '${value}' == 'Completely implemented'
+                Log    ${number}=${value}
+                Log To Console    ${number}=${value}
+                Click Element    wnd[0]/tbar[0]/btn[3]
+                Sleep    1
+                Click Element    wnd[0]/tbar[0]/btn[3]
+                Sleep    1
             ELSE IF    '${value}' == 'Can be implemented'
                 Click Element    wnd[0]/tbar[0]/btn[3]
-                Sleep    2
+                # Sleep    2
                 Click Element    wnd[0]/tbar[1]/btn[25]
-                Sleep    10
+                Window Handling    wnd[1]    Information    wnd[1]/tbar[0]/btn[0]
+                Window Handling    wnd[1]    Queue of correction instructions to be installed    wnd[1]/tbar[0]/btn[13]
+                Window Handling    wnd[1]    Confirmation: SAP Note read    wnd[1]/tbar[0]/btn[13]
+                Window Handling    wnd[1]    Information    wnd[1]/tbar[0]/btn[0]
                 Log    ${number}=${value}
                 Log To Console    ${number}=${value}
             END
         END
     END
+    Log To Console    **gbStart**copilot_status6**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- Madatory Snotes Implemented Successfully**gbEnd**

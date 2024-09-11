@@ -13,12 +13,9 @@ System Logon
     Connect To Session
     Open Connection    ${symvar('ABAP_Connection')}
     Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('ABAP_CLIENT')}
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('ALM_User')}
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE      ${symvar('ALM_pass')}  
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('ABAP_USER')}
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE      %{ABAP_PASSWORD}  
     Send Vkey    0
-    Input Password    wnd[1]/usr/pwdRSYST-NCODE    %{ABAP_Password}
-    Input Password    wnd[1]/usr/pwdRSYST-NCOD2    %{ABAP_Password}
-    Click Element    wnd[1]/tbar[0]/btn[0]
     Window Handling    wnd[1]    Copyright    wnd[1]/tbar[0]/btn[0]
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
 System Logout
@@ -26,6 +23,7 @@ System Logout
 
 System Registration
     Run Transaction     /n/SDF/ALM_SETUP
+    Sleep    5
     ${already exist}    Get Value    wnd[0]/usr/txtLMSIDCOM
     IF  '${already exist}' != ''
         # Log To Console    System is already registered with ALM with : ${already exist}
@@ -36,7 +34,7 @@ System Registration
         Input Text    wnd[0]/usr/ctxtDEST    BCS_ALM
         Sleep    2
         Send Vkey    0
-        Sleep    2
+        Sleep    3
         Click Element    wnd[0]/usr/btnUPD
         Sleep    2
         Click Element    wnd[1]/usr/btnPASTE
@@ -51,7 +49,7 @@ System Registration
         Sleep    2
         Click Element    wnd[2]/tbar[0]/btn[0]
         Sleep    2
-        Input Text    wnd[0]/usr/txtAUTHUSER    ALM_USER
+        Input Text    wnd[0]/usr/txtAUTHUSER    ${symvar('ALM_User')}
         Sleep    2
         Click Element    wnd[0]/usr/btnREG
         Sleep    2
@@ -88,26 +86,10 @@ System Registration
         # Log To Console    system successfully configured with : ${LMS_Configured}
         # Log    system successfully configured with : ${LMS_Configured}
         Set Global Variable     ${LMS_Configured}
-        Log To Console    **gbStart**Copilot_Status**splitKeyValue**system successfully configured :${LMS_Configured}**gbEnd**
+        Log To Console    **gbStart**Copilot_Status**splitKeyValue**System ${symvar('ABAP_Connection')} Client ${symvar('ABAP_CLIENT')} Successfully Configured in SAP Cloud ALM. LMS ID : ${LMS_Configured}**gbEnd**
     END
     
 Click Task
     [Arguments]    ${row}
     Select Checkbox    wnd[1]/usr/tbl/SDF/ALM_SETUPTASKS_CONTROL/chkWA_CURRENT_TASK-ACTIVE[0,${row}]
     
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
