@@ -81,10 +81,10 @@ Export Risk
     Repeat Keyword    3 times    Press Keys    NONE    TAB
     # Press Enter
     Press Keys    NONE    ENTER
-    Sleep    5
+    Sleep    20
     Check If Page Contains Text    ${TEXT_TO CHECK_RESULTS}
     Repeat Keyword    13 times    Press Keys    NONE    TAB
-    Sleep    20
+    Sleep    5
     # Press Enter
     Repeat Keyword    2 times    Press Keys    NONE    ENTER
     Sleep    5
