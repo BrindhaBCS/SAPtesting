@@ -7,6 +7,4 @@ Suite Teardown    Certificate_Check.System Logout
 Download Certificates
     Download Certificates
     STRUST
-    STRUS_SSL_Client_Anonymous
-    STRUSTS_SSL_Client_Standard
     

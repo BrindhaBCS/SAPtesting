@@ -33,10 +33,27 @@ System Logout
     Run Transaction   /nex
 STRUST
     Run Transaction    /nSTRUST
-    # Sleep    2
-    # Take Screenshot    ssl.jpg
-    Click Element    wnd[0]/tbar[1]/btn[25]
     Sleep    2
+    Enable Edit Mode for Anonymous
+    Enable Edit Mode for Standard
+
+Enable Edit Mode for Anonymous
+    ${window}    Get Window Title    wnd[0]
+    IF    '${window}' == 'Trust Manager: Change'
+        STRUS_SSL_Client_Anonymous
+    ELSE
+        Click Element    wnd[0]/tbar[1]/btn[25]
+        STRUS_SSL_Client_Anonymous
+    END
+
+Enable Edit Mode for Standard
+    ${window}    Get Window Title    wnd[0]
+    IF    '${window}' == 'Trust Manager: Change'
+        STRUSTS_SSL_Client_Standard
+    ELSE
+        Click Element    wnd[0]/tbar[1]/btn[25]
+        STRUSTS_SSL_Client_Standard
+    END
 STRUS_SSL_Client_Anonymous
     Double Click On Tree Item    wnd[0]/shellcont/shell    SSLCANONYM    
     Sleep    2
@@ -70,26 +87,31 @@ upload_certificate_SSL_Client_Anonymous
     Sleep    2
     Scroll Pagedown    wnd[0]/usr/btnCERTDETAIL
     Sleep    1
-    Take Screenshot    SSL_client_Anonymous_2.jpg
-    Sleep    1
     Click Element    wnd[0]/usr/btnIMPORT        #IMPORT_ICON
     Sleep    1
     Input Text    wnd[1]/usr/tabsTS_CTRL/tabpSFIL/ssubSUB1:S_TRUSTMANAGER:0202/ctxtFILEPATH    ${DESTINATION_BASE}DigiCertGlobalRootCA.crt
     Sleep    1
-    CRT_exceution
+    Click Element    wnd[1]/tbar[0]/btn[0]
+    Sleep    1
+    Click Element    wnd[0]/usr/btnINCLUDE
     Sleep    1
     Click Element    wnd[0]/usr/btnIMPORT        #IMPORT_ICON
     Sleep    1
     Input Text    wnd[1]/usr/tabsTS_CTRL/tabpSFIL/ssubSUB1:S_TRUSTMANAGER:0202/ctxtFILEPATH    ${DESTINATION_BASE}DigiCertGlobalRootG2.crt
     Sleep    1
-    CRT_exceution
+    Click Element    wnd[1]/tbar[0]/btn[0]
+    Sleep    1
+    Click Element    wnd[0]/usr/btnINCLUDE
     Sleep    1
     Click Element    wnd[0]/usr/btnIMPORT        #IMPORT_ICON
     Sleep    1
     Input Text    wnd[1]/usr/tabsTS_CTRL/tabpSFIL/ssubSUB1:S_TRUSTMANAGER:0202/ctxtFILEPATH    ${DESTINATION_BASE}DigiCertRSA4096RootG5.crt
     Sleep    1
-    CRT_exceution
+    Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    1
+    Click Element    wnd[0]/usr/btnINCLUDE
+    Sleep    1
+    Click Element    wnd[0]/tbar[0]/btn[11]
 STRUSTS_SSL_Client_Standard
     Click Element    wnd[0]/tbar[1]/btn[25]
     Sleep    2
@@ -110,7 +132,7 @@ STRUSTS_SSL_Client_Standard
             ELSE IF    '${value}' == 'CN=DigiCert RSA4096 Root G5, O="DigiCert, Inc.", C=US'
                 Log To Console    Certificate already exists: DigiCert RSA4096 Root G5
             ELSE
-                upload_certificate_SSL_Client_Anonymous
+                upload_certificate_SSL_Client_Standard
                 Log To Console    **gbStart**copilot_status6**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- STRUSTS_SSL_Client_Standard SAP Cloud ALM Connection Certificate Uploaded successfully**gbEnd**
             END
         END
@@ -129,27 +151,24 @@ upload_certificate_SSL_Client_Standard
     Sleep    1
     Input Text    wnd[1]/usr/tabsTS_CTRL/tabpSFIL/ssubSUB1:S_TRUSTMANAGER:0202/ctxtFILEPATH    ${DESTINATION_BASE}DigiCertGlobalRootCA.crt
     Sleep    1
-    CRT_exceution
+    Click Element    wnd[1]/tbar[0]/btn[0]
+    Sleep    1
+    Click Element    wnd[0]/usr/btnINCLUDE
     Sleep    1
     Click Element    wnd[0]/usr/btnIMPORT        #IMPORT_ICON
     Sleep    1
     Input Text    wnd[1]/usr/tabsTS_CTRL/tabpSFIL/ssubSUB1:S_TRUSTMANAGER:0202/ctxtFILEPATH    ${DESTINATION_BASE}DigiCertGlobalRootG2.crt
     Sleep    1
-    CRT_exceution
+    Click Element    wnd[1]/tbar[0]/btn[0]
+    Sleep    1
+    Click Element    wnd[0]/usr/btnINCLUDE
     Sleep    1
     Click Element    wnd[0]/usr/btnIMPORT        #IMPORT_ICON
     Sleep    1
     Input Text    wnd[1]/usr/tabsTS_CTRL/tabpSFIL/ssubSUB1:S_TRUSTMANAGER:0202/ctxtFILEPATH    ${DESTINATION_BASE}DigiCertRSA4096RootG5.crt
     Sleep    1
-    CRT_exceution
-    Sleep    1
-CRT_exceution 
-    Sleep    2
     Click Element    wnd[1]/tbar[0]/btn[0]
-    Sleep    2
-    Scroll Pagedown    wnd[0]/usr/btnCERTDETAIL
-    Sleep    2
+    Sleep    1
     Click Element    wnd[0]/usr/btnINCLUDE
-    Sleep    2
+    Sleep    1
     Click Element    wnd[0]/tbar[0]/btn[11]
-    Sleep    2
