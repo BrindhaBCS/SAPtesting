@@ -7,7 +7,8 @@ Library    Merger.py
 
 
 *** Variables ***
-# ${screenshot_directory}     //..//..//${CURDIR}
+${SYMPHONY_JOB_ID}    $SymphonyJobId
+${SCREENSHOT_PATH}    ${CURDIR}//..//..//
 
 *** Keywords ***
 System Logon

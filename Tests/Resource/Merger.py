@@ -8,17 +8,17 @@ from robot.libraries.BuiltIn import BuiltIn
 
 class Merger():
     @staticmethod
-    def create_pdf():
-        # Retrieve the current test case file name and symphony_job_id from the BuiltIn library
+    def create_pdf(symphony_job_id, screenshot_directory):
+        # Retrieve the current test case file name from the BuiltIn library
         test_case_file = BuiltIn().get_variable_value('${SUITE SOURCE}')
-        symphony_job_id = BuiltIn().get_variable_value('${symphony_job_id}')
         
         # Debugging output
         print(f"Test case file: {test_case_file}")
         print(f"Symphony Job ID: {symphony_job_id}")
-        
-        if not test_case_file or not symphony_job_id:
-            raise ValueError("Test case file or Symphony Job ID not found.")
+        print(f"Screenshot directory: {screenshot_directory}")
+
+        if not test_case_file or not symphony_job_id or not screenshot_directory:
+            raise ValueError("Test case file, Symphony Job ID, or Screenshot directory not found.")
 
         # Extract the directory of the test case file
         base_dir = os.path.abspath(os.path.dirname(test_case_file))
@@ -29,17 +29,6 @@ class Merger():
         if reports_dir:
             # Debugging output
             print(f"Reports directory found: {reports_dir}")
-
-            # Calculate the screenshot directory path relative to the Reports directory
-            screenshot_directory = os.path.join(reports_dir, str(symphony_job_id))
-
-            # Debugging output
-            print(f"Screenshot directory: {screenshot_directory}")
-
-            # Ensure screenshot directory exists
-            if not os.path.exists(screenshot_directory):
-                print(f"Screenshot directory does not exist: {screenshot_directory}")
-                return
 
             # Create a folder for Symphony Job ID inside the Reports directory
             symphony_job_dir = os.path.join(reports_dir, str(symphony_job_id))
@@ -106,21 +95,21 @@ class Merger():
                         # Add the saved PDF page to the PdfMerger
                         pdf_merger.append(temp_pdf_path)
 
-            # Save the combined PDF file
-            with open(output_pdf, 'wb') as out_pdf:
-                pdf_merger.write(out_pdf)
+                # Save the combined PDF file
+                with open(output_pdf, 'wb') as out_pdf:
+                    pdf_merger.write(out_pdf)
 
-            print(f"PDF created successfully: {output_pdf}")
+                print(f"PDF created successfully: {output_pdf}")
 
-        except Exception as e:
-            print(f"Error occurred during PDF creation: {e}")
+            except Exception as e:
+                print(f"Error occurred during PDF creation: {e}")
 
-        finally:
-            pdf_merger.close()
-            # Clean up temporary PDF files
-            for filename in os.listdir(symphony_job_dir):
-                if filename.startswith("temp_") and filename.endswith(".pdf"):
-                    os.remove(os.path.join(symphony_job_dir, filename))
+            finally:
+                pdf_merger.close()
+                # Clean up temporary PDF files
+                for filename in os.listdir(symphony_job_dir):
+                    if filename.startswith("temp_") and filename.endswith(".pdf"):
+                        os.remove(os.path.join(symphony_job_dir, filename))
         else:
             print("Reports directory not found. PDF creation aborted.")
 
@@ -143,4 +132,6 @@ def find_reports_directory(start_dir):
 
 # Usage example:
 if __name__ == "__main__":
-    Merger.create_pdf()
+    symphony_job_id = '66802'  # Example ID
+    screenshot_directory = 'C:/path/to/screenshots'  # Example path
+    Merger.create_pdf(symphony_job_id, screenshot_directory)
