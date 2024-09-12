@@ -36,10 +36,10 @@ STRUST
     # Sleep    2
     # Take Screenshot    ssl.jpg
     Click Element    wnd[0]/tbar[1]/btn[25]
-    # Sleep    2
+    Sleep    2
 STRUS_SSL_Client_Anonymous
     Double Click On Tree Item    wnd[0]/shellcont/shell    SSLCANONYM    
-    # Sleep    2
+    Sleep    2
     # Take Screenshot    SSL_client_Anonymous_1.jpg
     # Sleep    2
     ${space}    Get Value    wnd[0]/usr/tblS_TRUSTMANAGERPK_CTRL/txtPSECERTLIST-SUBJECT[0,0]
@@ -47,7 +47,7 @@ STRUS_SSL_Client_Anonymous
     IF    '${space}' != ''
         FOR    ${index}    IN RANGE    0    3
         ${value}    Get Value    wnd[0]/usr/tblS_TRUSTMANAGERPK_CTRL/txtPSECERTLIST-SUBJECT[0,${index}]
-        # Sleep    1
+        Sleep    4
             IF    '${value}' == 'CN=DigiCert Global Root G2, OU=www.digicert.com, O=DigiCert Inc, C=US'
                 Log To Console    Certificate already exists: DigiCert Global Root G2
             ELSE IF    '${value}' == 'CN=DigiCert Global Root CA, OU=www.digicert.com, O=DigiCert Inc, C=US'
@@ -67,29 +67,29 @@ STRUS_SSL_Client_Anonymous
 
 upload_certificate_SSL_Client_Anonymous
     Set Caret Position    wnd[0]/usr/txtPSE-OWNCERT-SUBJECT    32
-    # Sleep    2
+    Sleep    2
     Scroll Pagedown    wnd[0]/usr/btnCERTDETAIL
-    # Sleep    1
+    Sleep    1
     Take Screenshot    SSL_client_Anonymous_2.jpg
-    # Sleep    1
+    Sleep    1
     Click Element    wnd[0]/usr/btnIMPORT        #IMPORT_ICON
-    # Sleep    1
+    Sleep    1
     Input Text    wnd[1]/usr/tabsTS_CTRL/tabpSFIL/ssubSUB1:S_TRUSTMANAGER:0202/ctxtFILEPATH    ${DESTINATION_BASE}DigiCertGlobalRootCA.crt
-    # Sleep    1
+    Sleep    1
     CRT_exceution
-    # Sleep    1
+    Sleep    1
     Click Element    wnd[0]/usr/btnIMPORT        #IMPORT_ICON
-    # Sleep    1
+    Sleep    1
     Input Text    wnd[1]/usr/tabsTS_CTRL/tabpSFIL/ssubSUB1:S_TRUSTMANAGER:0202/ctxtFILEPATH    ${DESTINATION_BASE}DigiCertGlobalRootG2.crt
-    # Sleep    1
+    Sleep    1
     CRT_exceution
-    # Sleep    1
+    Sleep    1
     Click Element    wnd[0]/usr/btnIMPORT        #IMPORT_ICON
-    # Sleep    1
+    Sleep    1
     Input Text    wnd[1]/usr/tabsTS_CTRL/tabpSFIL/ssubSUB1:S_TRUSTMANAGER:0202/ctxtFILEPATH    ${DESTINATION_BASE}DigiCertRSA4096RootG5.crt
-    # Sleep    1
+    Sleep    1
     CRT_exceution
-    # Sleep    1
+    Sleep    1
 STRUSTS_SSL_Client_Standard
     Double Click On Tree Item    wnd[0]/shellcont/shell    SSLCDFAULT    
     # Sleep    2
@@ -142,12 +142,12 @@ upload_certificate_SSL_Client_Standard
     CRT_exceution
     # Sleep    1
 CRT_exceution 
-    # Sleep    2
+    Sleep    2
     Click Element    wnd[1]/tbar[0]/btn[0]
-    # Sleep    2
+    Sleep    2
     Scroll Pagedown    wnd[0]/usr/btnCERTDETAIL
-    # Sleep    2
+    Sleep    2
     Click Element    wnd[0]/usr/btnINCLUDE
-    # Sleep    2
+    Sleep    2
     Click Element    wnd[0]/tbar[0]/btn[11]
-    # Sleep    2
+    Sleep    2
