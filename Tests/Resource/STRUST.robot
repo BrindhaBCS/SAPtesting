@@ -7,7 +7,7 @@ Library    Merger.py
 
 
 *** Variables ***
-${screenshot_directory}     //..//..//${CURDIR}
+# ${screenshot_directory}     //..//..//${CURDIR}
 
 *** Keywords ***
 System Logon
@@ -90,8 +90,7 @@ SSF Logon Ticket
     Sleep    2
     Take Screenshot    040_SSFASSO2.jpg
     Log    Symphony Job ID: ${symvar('symphony_job_id')}
-    Log    Screenshot Directory: ${screenshot_directory}
   
 
-    Merger.create pdf    ${symvar('symphony_job_id')}    ${screenshot_directory}    
+    Merger.create pdf    ${symvar('symphony_job_id')}       
     Sleep    2

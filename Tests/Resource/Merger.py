@@ -8,7 +8,7 @@ from robot.libraries.BuiltIn import BuiltIn
 
 class Merger():
     @staticmethod
-    def create_pdf(symphony_job_id, screenshot_directory):
+    def create_pdf(symphony_job_id):
         # Retrieve the current test case file name from the BuiltIn library
         test_case_file = BuiltIn().get_variable_value('${SUITE SOURCE}')
         
@@ -19,6 +19,17 @@ class Merger():
         reports_dir = find_reports_directory(base_dir)
 
         if reports_dir:
+            # Retrieve ${CURDIR} from Robot Framework
+            curdir = BuiltIn().get_variable_value('${CURDIR}')
+            
+            # Calculate the screenshot directory path
+            screenshot_directory = os.path.abspath(os.path.join(curdir, '..', '..', 'Reports'))
+
+            # Ensure screenshot directory exists
+            if not os.path.exists(screenshot_directory):
+                print(f"Screenshot directory does not exist: {screenshot_directory}")
+                return
+
             # Create a folder for Symphony Job ID inside the Reports directory
             symphony_job_dir = os.path.join(reports_dir, str(symphony_job_id))
             if not os.path.exists(symphony_job_dir):
@@ -32,7 +43,7 @@ class Merger():
             pdf_merger = PdfMerger()
 
             try:
-                # Iterate through image files in the specified directory
+                # Iterate through image files in the screenshot directory
                 for filename in os.listdir(screenshot_directory):
                     if filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
                         image_path = os.path.join(screenshot_directory, filename)
@@ -119,5 +130,4 @@ def find_reports_directory(start_dir):
 # Usage example:
 if __name__ == "__main__":
     symphony_job_id = 66802  # Example Symphony Job ID
-    screenshot_directory = r'C:\path\to\screenshot\directory'  # Set the screenshot directory
-    Merger.create_pdf(symphony_job_id, screenshot_directory)
+    Merger.create_pdf(symphony_job_id)
