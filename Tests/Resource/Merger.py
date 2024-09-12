@@ -2,7 +2,6 @@ import os
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 from PIL import Image
-from datetime import datetime
 from PyPDF2 import PdfMerger
 from robot.libraries.BuiltIn import BuiltIn
 
@@ -75,21 +74,8 @@ class Merger():
                         # Draw image
                         c.drawInlineImage(screenshot, horizontal_position, vertical_position, width=width, height=height)
 
-                        # Generate new filename with current date and original filename
-                        # file_name, file_extension = os.path.splitext(filename)
-                        # current_time = datetime.now().strftime("%Y%m%d_%H%M%S")
-                        # new_filename = f"{current_time}_{file_name}{file_extension}"
-
-                        # # Save screenshot to the SymphonyJobId folder with new filename (same as PDF directory)
-                        # report_path = os.path.join(symphony_job_dir, new_filename)
-                        # screenshot.save(report_path)
-
-                        # # Add text annotation with filename below the image
-                        # text = f"Filename: {new_filename}, Time: {current_time}"
-                        # c.drawString(horizontal_position + 10, vertical_position - 15, text)
-
-
                         # Generate the original filename without adding the current date and time
+                        file_name, file_extension = os.path.splitext(filename)
                         new_filename = f"{file_name}{file_extension}"
 
                         # Save the screenshot to the SymphonyJobId folder with the original filename
