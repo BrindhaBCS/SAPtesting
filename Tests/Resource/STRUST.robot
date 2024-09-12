@@ -89,6 +89,5 @@ SSF Logon Ticket
     Scroll Pagedown    wnd[0]/usr/btnCERTDETAIL
     Sleep    2
     Take Screenshot    040_SSFASSO2.jpg
+    Merger.Create Pdf    ${symvar('symphony_job_id')}    
   
-    Merger.Create Pdf    
-    Sleep    2

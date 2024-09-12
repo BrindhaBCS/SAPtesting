@@ -106,21 +106,21 @@ class Merger():
                         # Add the saved PDF page to the PdfMerger
                         pdf_merger.append(temp_pdf_path)
 
-                # Save the combined PDF file
-                with open(output_pdf, 'wb') as out_pdf:
-                    pdf_merger.write(out_pdf)
+            # Save the combined PDF file
+            with open(output_pdf, 'wb') as out_pdf:
+                pdf_merger.write(out_pdf)
 
-                print(f"PDF created successfully: {output_pdf}")
+            print(f"PDF created successfully: {output_pdf}")
 
-            except Exception as e:
-                print(f"Error occurred during PDF creation: {e}")
+        except Exception as e:
+            print(f"Error occurred during PDF creation: {e}")
 
-            finally:
-                pdf_merger.close()
-                # Clean up temporary PDF files
-                for filename in os.listdir(symphony_job_dir):
-                    if filename.startswith("temp_") and filename.endswith(".pdf"):
-                        os.remove(os.path.join(symphony_job_dir, filename))
+        finally:
+            pdf_merger.close()
+            # Clean up temporary PDF files
+            for filename in os.listdir(symphony_job_dir):
+                if filename.startswith("temp_") and filename.endswith(".pdf"):
+                    os.remove(os.path.join(symphony_job_dir, filename))
         else:
             print("Reports directory not found. PDF creation aborted.")
 
