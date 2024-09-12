@@ -9,21 +9,22 @@ from robot.libraries.BuiltIn import BuiltIn
 class Merger():
     @staticmethod
     def create_pdf(symphony_job_id, screenshot_directory=None):
-        # Set OUTPUT_DIR to ../../Reports relative to the current working directory
-        base_dir = BuiltIn().get_variable_value('${OUTPUT_DIR}')
-        relative_reports_dir = os.path.join(base_dir, '..', '..', 'Reports')
-        reports_dir = os.path.abspath(relative_reports_dir)  # Convert to absolute path
-
-        # Create the Reports directory if it doesn't exist
-        if not os.path.exists(reports_dir):
-            os.makedirs(reports_dir)
+        # Define the base path for the Reports folder
+        base_reports_dir = r'C:\RobotFramework\sap_testing\Reports'
+        
+        # Create the path for the specific Symphony Job ID folder
+        symphony_job_dir = os.path.join(base_reports_dir, str(symphony_job_id))
+        
+        # Create the directory if it doesn't exist
+        if not os.path.exists(symphony_job_dir):
+            os.makedirs(symphony_job_dir)
 
         # Retrieve the current test case file name from the BuiltIn library
         test_case_file = BuiltIn().get_variable_value('${SUITE SOURCE}')
 
         # Generate output PDF path using the test case file name
         pdf_filename = os.path.basename(test_case_file).replace('.robot', '.pdf')
-        output_pdf = os.path.join(reports_dir, pdf_filename)
+        output_pdf = os.path.join(symphony_job_dir, pdf_filename)
 
         # Initialize PdfMerger for combining PDFs
         pdf_merger = PdfMerger()
@@ -51,7 +52,7 @@ class Merger():
                     vertical_position = (A4[1] - height) / 2
 
                     # Create a new canvas for each image
-                    temp_pdf_path = os.path.join(reports_dir, f"temp_{filename}.pdf")
+                    temp_pdf_path = os.path.join(symphony_job_dir, f"temp_{filename}.pdf")
                     c = canvas.Canvas(temp_pdf_path, pagesize=A4)
                     c.setFont("Helvetica", 11)
 
@@ -63,8 +64,8 @@ class Merger():
                     current_time = datetime.now().strftime("%Y%m%d_%H%M%S")
                     new_filename = f"{current_time}_{file_name}{file_extension}"
 
-                    # Save screenshot to the SymphonyJobId/Reports folder with new filename
-                    report_path = os.path.join(reports_dir, new_filename)
+                    # Save screenshot to the SymphonyJobId folder with new filename
+                    report_path = os.path.join(symphony_job_dir, new_filename)
                     screenshot.save(report_path)
 
                     # Add text annotation with filename below the image
@@ -90,12 +91,12 @@ class Merger():
         finally:
             pdf_merger.close()
             # Clean up temporary PDF files
-            for filename in os.listdir(reports_dir):
+            for filename in os.listdir(symphony_job_dir):
                 if filename.startswith("temp_") and filename.endswith(".pdf"):
-                    os.remove(os.path.join(reports_dir, filename))
+                    os.remove(os.path.join(symphony_job_dir, filename))
 
 # Usage example:
 if __name__ == "__main__":
-    symphony_job_id = 12345  # Example Symphony Job ID
+    symphony_job_id = 66802  # Example Symphony Job ID
     screenshot_directory = r'C:\RobotFramework\sap_testing\Reports'  # Set the screenshot directory
     Merger.create_pdf(symphony_job_id, screenshot_directory)
