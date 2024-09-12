@@ -7,7 +7,7 @@ Library    Merger.py
 
 
 *** Variables ***
-${screenshot_directory}     ${OUTPUT_DIR}
+# ${screenshot_directory}     ${OUTPUT_DIR}
 
 *** Keywords ***
 System Logon
@@ -79,5 +79,8 @@ Transport Layers
     Click Element   wnd[0]/mbar/menu[2]/menu[1]
     Sleep   1
     Take Screenshot    083_stms.jpg
-    Merger.create pdf    ${screenshot_directory}    
+    Log    Symphony Job ID: ${symvar('symphony_job_id')}
+  
+
+    Merger.create pdf    ${symvar('symphony_job_id')}       
     Sleep    2

@@ -8,15 +8,17 @@ from robot.libraries.BuiltIn import BuiltIn
 
 class Merger():
     @staticmethod
-    def create_pdf(symphony_job_id):
-        # Retrieve the current test case file name from the BuiltIn library
+    def create_pdf():
+        # Retrieve the current test case file name and symphony_job_id from the BuiltIn library
         test_case_file = BuiltIn().get_variable_value('${SUITE SOURCE}')
+        symphony_job_id = BuiltIn().get_variable_value('${symphony_job_id}')
         
         # Debugging output
         print(f"Test case file: {test_case_file}")
+        print(f"Symphony Job ID: {symphony_job_id}")
         
-        if not test_case_file:
-            raise ValueError("Test case file not found.")
+        if not test_case_file or not symphony_job_id:
+            raise ValueError("Test case file or Symphony Job ID not found.")
 
         # Extract the directory of the test case file
         base_dir = os.path.abspath(os.path.dirname(test_case_file))
@@ -141,5 +143,4 @@ def find_reports_directory(start_dir):
 
 # Usage example:
 if __name__ == "__main__":
-    symphony_job_id = 66802  # Example Symphony Job ID
-    Merger.create_pdf(symphony_job_id)
+    Merger.create_pdf()
