@@ -1505,3 +1505,11 @@ class SAP_Tcode_Library:
 
         except Exception as e:
             print("Error: {e}")
+            
+    def Delete_all_profile(self):
+        try:
+            self.session.findById("wnd[0]/usr/tabsTABSTRIP1/tabpPROF/ssubMAINAREA:SAPLSUID_MAINTENANCE:1103/cntlG_PROFILES_CONTAINER/shellcont/shell").setCurrentCell(-1, "")
+            self.session.findById("wnd[0]/usr/tabsTABSTRIP1/tabpPROF/ssubMAINAREA:SAPLSUID_MAINTENANCE:1103/cntlG_PROFILES_CONTAINER/shellcont/shell").selectAll()
+            self.session.findById("wnd[0]/usr/tabsTABSTRIP1/tabpPROF/ssubMAINAREA:SAPLSUID_MAINTENANCE:1103/cntlG_PROFILES_CONTAINER/shellcont/shell").pressToolbarButton("DEL_LINE")
+        except:
+            return  []
