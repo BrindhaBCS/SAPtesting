@@ -4,27 +4,26 @@ from reportlab.pdfgen import canvas
 from PIL import Image
 from datetime import datetime
 from PyPDF2 import PdfMerger
-from robot.libraries.BuiltIn import BuiltIn
 
 class Merger():
     @staticmethod
-    def create_pdf(screenshot_directory):
-        # Retrieve the SymphonyJobId from Robot Framework's BuiltIn variables
-        symphony_job_id = BuiltIn().get_variable_value('${SymphonyJobId}')
+    def create_pdf(screenshot_directory, symphony_job_id):
+        # Base directory where SymphonyJobId folder will be created
+        base_dir = r'C:\path\to\base\directory'  # Update this to your actual base directory
 
-        # Define the reports directory based on SymphonyJobId
-        reports_dir = os.path.join(symphony_job_id, 'Reports')
+        # Define the directory based on SymphonyJobId (which is just a number)
+        job_dir = os.path.join(base_dir, str(symphony_job_id))
 
-        # Check if the reports directory exists, if not create it
-        if not os.path.exists(reports_dir):
-            os.makedirs(reports_dir)
-            print(f"Reports directory created: {reports_dir}")
+        # Check if the job directory exists, if not create it
+        if not os.path.exists(job_dir):
+            os.makedirs(job_dir)
+            print(f"Directory created for SymphonyJobId: {job_dir}")
 
-        if reports_dir:
+        if job_dir:
             # Generate output PDF path using the test case file name
-            test_case_file = BuiltIn().get_variable_value('${SUITE SOURCE}')
+            test_case_file = 'Test_Case.robot'  # Replace with actual test case name if needed
             pdf_filename = os.path.basename(test_case_file).replace('.robot', '.pdf')
-            output_pdf = os.path.join(reports_dir, pdf_filename)
+            output_pdf = os.path.join(job_dir, pdf_filename)
 
             # Initialize PdfMerger for combining PDFs
             pdf_merger = PdfMerger()
@@ -52,7 +51,7 @@ class Merger():
                         vertical_position = (A4[1] - height) / 2
 
                         # Create a new canvas for each image
-                        temp_pdf_path = os.path.join(reports_dir, f"temp_{filename}.pdf")
+                        temp_pdf_path = os.path.join(job_dir, f"temp_{filename}.pdf")
                         c = canvas.Canvas(temp_pdf_path, pagesize=A4)
                         c.setFont("Helvetica", 11)
 
@@ -64,9 +63,9 @@ class Merger():
                         current_time = datetime.now().strftime("%Y%m%d_%H%M%S")
                         new_filename = f"{current_time}_{file_name}{file_extension}"
 
-                        # Save screenshot to SymphonyJobId/Reports folder with new filename
-                        report_path = os.path.join(reports_dir, new_filename)
-                        screenshot.save(report_path)
+                        # Save screenshot to SymphonyJobId folder with new filename
+                        screenshot_path = os.path.join(job_dir, new_filename)
+                        screenshot.save(screenshot_path)
 
                         # Add text annotation with filename below the image
                         text = f"Filename: {new_filename}, Time: {current_time}"
@@ -91,13 +90,14 @@ class Merger():
             finally:
                 pdf_merger.close()
                 # Clean up temporary PDF files
-                for filename in os.listdir(reports_dir):
+                for filename in os.listdir(job_dir):
                     if filename.startswith("temp_") and filename.endswith(".pdf"):
-                        os.remove(os.path.join(reports_dir, filename))
+                        os.remove(os.path.join(job_dir, filename))
         else:
-            print(f"Reports directory for SymphonyJobId '{symphony_job_id}' not found. PDF creation aborted.")
+            print(f"Directory for SymphonyJobId '{symphony_job_id}' not found. PDF creation aborted.")
 
 # Usage example:
 if __name__ == "__main__":
     screenshot_directory = r'C:\path\to\screenshot\directory'
-    Merger.create_pdf(screenshot_directory)
+    symphony_job_id = 12345  # Symphony Job ID passed as a number
+    Merger.create_pdf(screenshot_directory, symphony_job_id)
