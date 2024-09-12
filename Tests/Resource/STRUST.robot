@@ -94,5 +94,5 @@ SSF Logon Ticket
     Log    Screenshot Directory: ${screenshot_directory}
   
 
-    Merger.create pdf    ${screenshot_directory}    ${symvar('symphony_job_id')}
+    Merger.create pdf    ${symvar('symphony_job_id')}    ${screenshot_directory}    
     Sleep    2
