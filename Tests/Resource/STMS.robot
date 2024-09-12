@@ -82,5 +82,5 @@ Transport Layers
     Log    Symphony Job ID: ${symvar('symphony_job_id')}
   
 
-    Merger.create pdf    ${symvar('symphony_job_id')}       
+    Merger.Create Pdf    ${symvar('symphony_job_id')}    ${screenshot_directory}    
     Sleep    2
