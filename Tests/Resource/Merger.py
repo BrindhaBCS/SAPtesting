@@ -12,6 +12,12 @@ class Merger():
         # Retrieve the current test case file name from the BuiltIn library
         test_case_file = BuiltIn().get_variable_value('${SUITE SOURCE}')
         
+        # Debugging output
+        print(f"Test case file: {test_case_file}")
+        
+        if not test_case_file:
+            raise ValueError("Test case file not found.")
+
         # Extract the directory of the test case file
         base_dir = os.path.abspath(os.path.dirname(test_case_file))
 
@@ -19,11 +25,20 @@ class Merger():
         reports_dir = find_reports_directory(base_dir)
 
         if reports_dir:
+            # Debugging output
+            print(f"Reports directory found: {reports_dir}")
+
             # Retrieve ${CURDIR} from Robot Framework
             curdir = BuiltIn().get_variable_value('${CURDIR}')
             
+            # Debugging output
+            print(f"CURDIR: {curdir}")
+
             # Calculate the screenshot directory path
             screenshot_directory = os.path.abspath(os.path.join(curdir, '..', '..', 'Reports'))
+
+            # Debugging output
+            print(f"Screenshot directory: {screenshot_directory}")
 
             # Ensure screenshot directory exists
             if not os.path.exists(screenshot_directory):
@@ -38,6 +53,9 @@ class Merger():
             # Generate output PDF path using the test case file name
             pdf_filename = os.path.basename(test_case_file).replace('.robot', '.pdf')
             output_pdf = os.path.join(symphony_job_dir, pdf_filename)
+
+            # Debugging output
+            print(f"Output PDF path: {output_pdf}")
 
             # Initialize PdfMerger for combining PDFs
             pdf_merger = PdfMerger()
