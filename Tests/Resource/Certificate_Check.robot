@@ -113,8 +113,6 @@ upload_certificate_SSL_Client_Anonymous
     Sleep    1
     Click Element    wnd[0]/tbar[0]/btn[11]
 STRUSTS_SSL_Client_Standard
-    Click Element    wnd[0]/tbar[1]/btn[25]
-    Sleep    2
     Double Click On Tree Item    wnd[0]/shellcont/shell    SSLCDFAULT    
     Sleep    2
     # Take Screenshot    SSL_client_Standard_1.jpg
