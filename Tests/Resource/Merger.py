@@ -80,7 +80,7 @@ class Merger():
                         current_time = datetime.now().strftime("%Y%m%d_%H%M%S")
                         new_filename = f"{current_time}_{file_name}{file_extension}"
 
-                        # Save screenshot to the SymphonyJobId folder with new filename
+                        # Save screenshot to the SymphonyJobId folder with new filename (same as PDF directory)
                         report_path = os.path.join(symphony_job_dir, new_filename)
                         screenshot.save(report_path)
 
@@ -112,6 +112,7 @@ class Merger():
                         os.remove(os.path.join(symphony_job_dir, filename))
         else:
             print("Reports directory not found. PDF creation aborted.")
+
 
 def find_reports_directory(start_dir):
     """

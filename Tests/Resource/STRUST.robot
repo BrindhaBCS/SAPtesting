@@ -7,13 +7,13 @@ Library    Merger.py
 
 
 *** Variables ***
-${SYMPHONY_JOB_ID}    $SymphonyJobId
-${SCREENSHOT_PATH}    ${CURDIR}//..//..//
+# ${SYMPHONY_JOB_ID}    12345
+${SCREENSHOT_PATH}   ${OUTPUT_DIR}
 
 *** Keywords ***
 System Logon
     Start Process     ${symvar('SAP_SERVER')}     
-    Sleep    10s
+    Sleep    2s
     Connect To Session
     Open Connection    ${symvar('SAP_connection')}    
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('Client_Id')}
@@ -28,7 +28,7 @@ System Logon
 
 System Logout
     Run Transaction   /nex
-    Sleep    5
+    Sleep    1
     # Take Screenshot    logoutpage.jpg
     # Sleep    10
 Transaction STRUST
@@ -90,5 +90,6 @@ SSF Logon Ticket
     Scroll Pagedown    wnd[0]/usr/btnCERTDETAIL
     Sleep    2
     Take Screenshot    040_SSFASSO2.jpg
-    Merger.Create Pdf    ${symvar('symphony_job_id')}    
+    Log    ${SCREENSHOT_PATH}     
+    Merger.Create Pdf    ${symvar('symphony_job_id')}    ${SCREENSHOT_PATH}    
   
