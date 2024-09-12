@@ -28,14 +28,8 @@ class Merger():
             # Debugging output
             print(f"Reports directory found: {reports_dir}")
 
-            # Retrieve ${CURDIR} from Robot Framework
-            curdir = BuiltIn().get_variable_value('${CURDIR}')
-            
-            # Debugging output
-            print(f"CURDIR: {curdir}")
-
-            # Calculate the screenshot directory path
-            screenshot_directory = os.path.abspath(os.path.join(curdir, '..', '..', 'Reports'))
+            # Calculate the screenshot directory path relative to the Reports directory
+            screenshot_directory = os.path.join(reports_dir, str(symphony_job_id))
 
             # Debugging output
             print(f"Screenshot directory: {screenshot_directory}")
