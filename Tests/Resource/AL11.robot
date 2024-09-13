@@ -8,7 +8,7 @@ Library    Merger.py
 
 
 *** Variables ***
-${screenshot_directory}     ${OUTPUT_DIR}
+${source_directory}     ${OUTPUT_DIR}
 
 *** Keywords ***
 System Logon
