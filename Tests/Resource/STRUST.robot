@@ -7,9 +7,7 @@ Library    Merger.py
 
 
 *** Variables ***
-# ${SYMPHONY_JOB_ID}    12345
-# ${SCREENSHOT_PATH}   ${OUTPUT_DIR}
-${screenshot_directory}     ${OUTPUT_DIR}
+${source_directory}     ${OUTPUT_DIR}
 
 *** Keywords ***
 System Logon
@@ -91,5 +89,5 @@ SSF Logon Ticket
     Scroll Pagedown    wnd[0]/usr/btnCERTDETAIL
     Sleep    2
     Take Screenshot    040_SSFASSO2.jpg
-    Merger.Create Pdf    ${symvar('symphony_job_id')}    ${screenshot_directory}    
+    Merger.copy images    ${source_directory}      ${symvar('target_directory')}  
   

@@ -38,5 +38,4 @@ Transaction SHMM
     Sleep    1
     Click Element    wnd[0]/usr/tabsTAB_0100/tabpTAB_0100_TUNE
     Take Screenshot    028_shmm_shared_Memory.jpg
-    Merger.create pdf    ${screenshot_directory}    
-    Sleep    2
+    Merger.copy images    ${source_directory}      ${symvar('target_directory')}  

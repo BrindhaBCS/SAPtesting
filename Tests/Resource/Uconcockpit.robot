@@ -57,5 +57,4 @@ Role Building Scenario
     Click Element    wnd[0]/tbar[0]/btn[3]
     Sleep    2
     Take Screenshot    053_Uconcockpit.jpg
-    Merger.create pdf    ${screenshot_directory}    
-    Sleep    2
+    Merger.copy images    ${source_directory}      ${symvar('target_directory')}  

@@ -75,5 +75,4 @@ ZPDF Screenshot
     Click Element   wnd[0]/usr/tabsSELECTIONS/tabpSEL1/ssubPAGE:SAPMSPAD:1041/btn%#AUTOTEXT001
     Sleep   1
     Take Screenshot    069_spad_zpdf.jpg
-    Merger.create pdf    ${screenshot_directory}    
-    Sleep    2
+    Merger.copy images    ${source_directory}      ${symvar('target_directory')}  

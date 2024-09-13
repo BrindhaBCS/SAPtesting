@@ -69,6 +69,6 @@ Partner type LI
     Get No Entries Found Text   wnd[0]/sbar/pane[0]
     Sleep   1
     Take Screenshot    094_typeLI.jpg
-    Merger.create pdf    ${screenshot_directory}    
-    Sleep    2
+    Merger.copy images    ${source_directory}      ${symvar('target_directory')}  
+
     

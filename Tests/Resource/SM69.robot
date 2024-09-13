@@ -65,5 +65,5 @@ SM69 Scroll
     selected_rows   wnd[0]/usr/cntlEXT_COM/shellcont/shell    103   
     Sleep    1
     Take Screenshot    006_sm69.jpg
-    Merger.create pdf    ${screenshot_directory}    
-    Sleep    2
+    Merger.copy images    ${source_directory}      ${symvar('target_directory')}  
+

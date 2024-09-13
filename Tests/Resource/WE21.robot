@@ -89,6 +89,6 @@ XML HTTP
     Click Element   wnd[1]/tbar[0]/btn[0]
     Sleep   1
     Take Screenshot    110_HTTP.jpg
-    Merger.create pdf    ${screenshot_directory}    
-    Sleep    2
+    Merger.copy images    ${source_directory}      ${symvar('target_directory')}  
+
     

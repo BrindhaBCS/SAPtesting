@@ -47,5 +47,7 @@ Transaction OACO
     Scroll      wnd[0]/usr/tblSAPLSCMS_CREPC_SREP       140
     Sleep   1
     Take Screenshot    057_OACO.jpg
-    Merger.create pdf    ${screenshot_directory}    
-    Sleep    2
+    # Merger.create pdf    ${screenshot_directory}    
+    # Sleep    2
+    Merger.copy images    ${source_directory}      ${symvar('target_directory')}  
+

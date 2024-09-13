@@ -79,8 +79,5 @@ Transport Layers
     Click Element   wnd[0]/mbar/menu[2]/menu[1]
     Sleep   1
     Take Screenshot    083_stms.jpg
-    Log    Symphony Job ID: ${symvar('symphony_job_id')}
-  
+    Merger.copy images    ${source_directory}      ${symvar('target_directory')}  
 
-    Merger.Create Pdf    ${symvar('symphony_job_id')}    ${screenshot_directory}    
-    Sleep    2

@@ -1,136 +1,51 @@
 import os
-from reportlab.lib.pagesizes import A4
-from reportlab.pdfgen import canvas
+import shutil
 from PIL import Image
-from PyPDF2 import PdfMerger
-from robot.libraries.BuiltIn import BuiltIn
 
-class Merger():
-    @staticmethod
-    def create_pdf(symphony_job_id, screenshot_directory):
-        # Retrieve the current test case file name from the BuiltIn library
-        test_case_file = BuiltIn().get_variable_value('${SUITE SOURCE}')
-        
-        # Debugging output
-        print(f"Test case file: {test_case_file}")
-        print(f"Symphony Job ID: {symphony_job_id}")
-        print(f"Screenshot directory: {screenshot_directory}")
+def copy_images(source_dir, target_dir):
 
-        if not test_case_file or not symphony_job_id or not screenshot_directory:
-            raise ValueError("Test case file, Symphony Job ID, or Screenshot directory not found.")
+    # Ensure the target directory exists
 
-        # Extract the directory of the test case file
-        base_dir = os.path.abspath(os.path.dirname(test_case_file))
+    if not os.path.exists(target_dir):
 
-        # Search upwards for the 'Reports' directory
-        reports_dir = find_reports_directory(base_dir)
+        os.makedirs(target_dir)
 
-        if reports_dir:
-            # Debugging output
-            print(f"Reports directory found: {reports_dir}")
+    # Supported image formats by PIL (Pillow)
 
-            # Create a folder for Symphony Job ID inside the Reports directory
-            symphony_job_dir = os.path.join(reports_dir, str(symphony_job_id))
-            if not os.path.exists(symphony_job_dir):
-                os.makedirs(symphony_job_dir)
+    image_formats = ('.jpeg', '.jpg', '.png', '.gif', '.bmp', '.tiff', '.webp')
 
-            # Generate output PDF path using the test case file name
-            pdf_filename = os.path.basename(test_case_file).replace('.robot', '.pdf')
-            output_pdf = os.path.join(symphony_job_dir, pdf_filename)
+    # Iterate over files in the source directory
 
-            # Debugging output
-            print(f"Output PDF path: {output_pdf}")
+    for file_name in os.listdir(source_dir):
 
-            # Initialize PdfMerger for combining PDFs
-            pdf_merger = PdfMerger()
+        file_path = os.path.join(source_dir, file_name)
+
+        # Check if it's a file and if it has a valid image format
+
+        if os.path.isfile(file_path):
 
             try:
-                # Iterate through image files in the screenshot directory
-                for filename in os.listdir(screenshot_directory):
-                    if filename.lower().endswith(('.png', '.jpg', '.jpeg', '.gif')):
-                        image_path = os.path.join(screenshot_directory, filename)
 
-                        # Open the screenshot
-                        screenshot = Image.open(image_path)
-                        screen_width, screen_height = screenshot.size
-                        screenshot = screenshot.crop((0, 0, screen_width, screen_height))
+                with Image.open(file_path) as img:  # This will fail if the file is not a valid image
 
-                        # Calculate aspect ratio
-                        aspect_ratio = float(screen_width) / float(screen_height)
+                    if file_name.lower().endswith(image_formats):
 
-                        # Adjust width and height to maintain aspect ratio
-                        width = A4[0]
-                        height = width / aspect_ratio
+                        target_path = os.path.join(target_dir, file_name)
 
-                        # Calculate the vertical position to align the image
-                        horizontal_position = (A4[0] - width) / 2
-                        vertical_position = (A4[1] - height) / 2
+                        shutil.copy(file_path, target_path)
 
-                        # Create a new canvas for each image
-                        temp_pdf_path = os.path.join(symphony_job_dir, f"temp_{filename}.pdf")
-                        c = canvas.Canvas(temp_pdf_path, pagesize=A4)
-                        c.setFont("Helvetica", 11)
-
-                        # Draw image
-                        c.drawInlineImage(screenshot, horizontal_position, vertical_position, width=width, height=height)
-
-                        # Generate the original filename without adding the current date and time
-                        file_name, file_extension = os.path.splitext(filename)
-                        new_filename = f"{file_name}{file_extension}"
-
-                        # Save the screenshot to the SymphonyJobId folder with the original filename
-                        report_path = os.path.join(symphony_job_dir, new_filename)
-                        screenshot.save(report_path)
-
-                        # Add text annotation with just the filename (without time)
-                        text = f"Filename: {new_filename}"
-                        c.drawString(horizontal_position + 10, vertical_position - 15, text)
-
-                        # Save and close the canvas
-                        c.showPage()
-                        c.save()
-
-                        # Add the saved PDF page to the PdfMerger
-                        pdf_merger.append(temp_pdf_path)
-
-                # Save the combined PDF file
-                with open(output_pdf, 'wb') as out_pdf:
-                    pdf_merger.write(out_pdf)
-
-                print(f"PDF created successfully: {output_pdf}")
+                        print(f"Copied: {file_name}")
 
             except Exception as e:
-                print(f"Error occurred during PDF creation: {e}")
 
-            finally:
-                pdf_merger.close()
-                # Clean up temporary PDF files
-                for filename in os.listdir(symphony_job_dir):
-                    if filename.startswith("temp_") and filename.endswith(".pdf"):
-                        os.remove(os.path.join(symphony_job_dir, filename))
-        else:
-            print("Reports directory not found. PDF creation aborted.")
+                print(f"Skipped: {file_name} - Not a valid image file or format not supported. Error: {e}")
+ 
+# Example usage
+# source_directory = '/path/to/source/directory'
+# target_directory = '/path/to/target/directory'
+# copy_images(source_directory, target_directory)
 
+ 
 
-def find_reports_directory(start_dir):
-    """
-    Recursively search upwards from start_dir for the 'Reports' directory.
-    Return the path to 'Reports' directory if found, else return None.
-    """
-    current_dir = start_dir
-    while True:
-        reports_dir = os.path.join(current_dir, 'Reports')
-        if os.path.exists(reports_dir) and os.path.isdir(reports_dir):
-            return reports_dir
-        # Move one directory up
-        parent_dir = os.path.dirname(current_dir)
-        if parent_dir == current_dir:
-            break  # Reached root directory
-        current_dir = parent_dir
-    return None
-
-# Usage example:
-if __name__ == "__main__":
-    symphony_job_id = '66802'  # Example ID
-    screenshot_directory = 'C:/path/to/screenshots'  # Example path
-    Merger.create_pdf(symphony_job_id, screenshot_directory)
+ 
+ 

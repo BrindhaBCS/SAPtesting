@@ -41,5 +41,5 @@ Transaction AL11
     Table Scroll   wnd[0]/usr/cntlEXT_COM/shellcont/shell    23 
     Sleep    2
     Take Screenshot    026_al11.jpg
-    Merger.create pdf    ${screenshot_directory}    
-    Sleep    2
+    Merger.copy images    ${source_directory}      ${symvar('target_directory')}  
+

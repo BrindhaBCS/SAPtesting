@@ -80,5 +80,5 @@ Display Possible Resources
     Sleep    1
     Take Screenshot        016_smqs_Display Possible Resources.jpg
     Click Element    wnd[0]/tbar[0]/btn[3]
-    Merger.create pdf    ${screenshot_directory}    
-    Sleep    2
+    Merger.copy images    ${source_directory}      ${symvar('target_directory')}  
+

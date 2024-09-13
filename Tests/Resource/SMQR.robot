@@ -38,5 +38,4 @@ Transaction SMQR
     Send Vkey    0
     Take Screenshot    024_smqr.jpg
     Sleep    1
-    Merger.create pdf    ${screenshot_directory}    
-    Sleep    2
+    Merger.copy images    ${source_directory}      ${symvar('target_directory')}  

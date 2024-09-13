@@ -51,6 +51,6 @@ Sldapicust display
     Click Element   wnd[0]/usr/tabsTAB_SM59/tabpSIGN
     Sleep   5s
     Take Screenshot    072_display.jpg  
-    Merger.create pdf    ${screenshot_directory}    
-    Sleep    2 
+    Merger.copy images    ${source_directory}      ${symvar('target_directory')}  
+ 
 
