@@ -1844,3 +1844,34 @@ class SAP_Tcode_Library:
         text = value.upper()
         print(text)
         return text
+    def Delete_all_profile(self):
+        try:
+            self.session.findById("wnd[0]/usr/tabsTABSTRIP1/tabpPROF/ssubMAINAREA:SAPLSUID_MAINTENANCE:1103/cntlG_PROFILES_CONTAINER/shellcont/shell").setCurrentCell(-1, "")
+            self.session.findById("wnd[0]/usr/tabsTABSTRIP1/tabpPROF/ssubMAINAREA:SAPLSUID_MAINTENANCE:1103/cntlG_PROFILES_CONTAINER/shellcont/shell").selectAll()
+            self.session.findById("wnd[0]/usr/tabsTABSTRIP1/tabpPROF/ssubMAINAREA:SAPLSUID_MAINTENANCE:1103/cntlG_PROFILES_CONTAINER/shellcont/shell").pressToolbarButton("DEL_LINE")
+        except:
+            return  []
+        
+    def change_of_process(self, window_id, button_id):
+        text = self.session.findById(window_id).text
+        text_split = text.split()
+        window = " ".join(text_split[:-1])
+        if window == "Change processor of SAP Note":
+            self.session.findById(button_id).press()
+
+    def create_transport(self, window_id, create_button, text, finish_btn,):
+        window = self.session.findById(window_id).Text
+        if window == "Prompt for local Workbench request":
+            transport = self.session.findById("wnd[1]/usr/ctxtKO008-TRKORR").Text
+            if transport == " ":
+                self.session.findById(create_button).press()
+                self.session.findById("wnd[2]/usr/txtKO013-AS4TEXT").Text = text
+                self.session.findById(finish_btn).press()
+                self.session.findById("wnd[1]/tbar[0]/btn[0]").press()
+            else:
+                self.session.findById("wnd[1]/tbar[0]/btn[0]").press()
+
+
+        
+
+     
