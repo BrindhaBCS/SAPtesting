@@ -8,8 +8,8 @@ Suite Teardown    STRUST.System Logout
 
 Executing STRUST
     Transaction STRUST
-    # SSL server standard        
-    # SSL client SSL Client (Anonymous)
-    # SSL client SSL Client (Standard)  
-    # WS Security Other System Encryption   
+    SSL server standard        
+    SSL client SSL Client (Anonymous)
+    SSL client SSL Client (Standard)  
+    WS Security Other System Encryption   
     SSF Logon Ticket

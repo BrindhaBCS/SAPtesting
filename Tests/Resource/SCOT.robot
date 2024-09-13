@@ -36,6 +36,8 @@ Transaction SCOT
     Send Vkey    0
     Take Screenshot    017_scot.jpg
     Sleep    1
+    Merger.copy images    ${source_directory}      ${symvar('target_directory')}  
+
     
 SMTP Nodes    
     Click Toolbar Button    wnd[0]/usr/subCONTENT:SAPLSBCS_ADM:0104/subSUB_CONTENT:SAPLSBCS_NODES:0100/cntlSMTP_NODES_TOOLBAR_CONTAINER/shellcont/shell  EXPA
@@ -65,4 +67,3 @@ Settings Nodes
     Sleep    1
     Take Screenshot    023_sig&encry.jpg
     Sleep    1
-    Merger.copy images    ${source_directory}      ${symvar('target_directory')}  

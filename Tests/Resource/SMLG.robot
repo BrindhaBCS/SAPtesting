@@ -49,10 +49,11 @@ SMLG Attributes
     Click Element   wnd[1]/tbar[0]/btn[12]
     Sleep   1
     Take Screenshot    045_smlg.jpg
-
-SMLG Load Distributions
     Click Element   wnd[0]/tbar[1]/btn[5]
     Sleep   1
     Take Screenshot    046_smlg.jpg
+
+SMLG Load Distributions
+   
     Merger.copy images    ${source_directory}      ${symvar('target_directory')}  
 
