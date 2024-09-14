@@ -4,7 +4,7 @@ Library    Process
 Library    String
 # Library    SeleniumLibrary
 *** Variables ***
-@{SAP_Note}        3281776    3421256    3374186    3312428    3281776    
+@{SAP_Note}        3421256    3374186    3312428    3281776    
 *** Keywords ***
 System Logon
     Start Process     ${symvar('ABAP_SAP_SERVER')}     
@@ -85,20 +85,182 @@ SNOTE
                         Sleep    2
                         Click Element    wnd[0]/tbar[1]/btn[8]
                         Sleep    2
+                        Click Element    wnd[0]/tbar[1]/btn[25]
+                        Sleep    2
                         Window Handling    wnd[1]    Information    wnd[1]/tbar[0]/btn[0]
-                        Click Element    wnd[1]/tbar[0]/btn[13]
+                        Sleep    2
+                        ${window1}    Get Window Title    wnd[1]
+                        IF    "${window1}" == "Queue of correction instructions to be installed"
+                            ${status1}    Get Value    wnd[1]/usr/txtGV_TEXT2
+                            IF    "${status1}" == "Confirm completion of the manual activities"
+                                ${row}    Get Row Count    wnd[1]/usr/cntlCONTAINER/shellcont/shellcont/shell/shellcont[0]/shell
+                                Log To Console    ${row}
+                                # Sleep    10
+                                Click Element    wnd[1]/tbar[0]/btn[9]
+                                Sleep    10
+                                Click Element    wnd[1]/tbar[0]/btn[0]
+                                Sleep    2
+                            ELSE IF    "${status1}" == "Implement the automatic correction instructions"
+                                Click Element    wnd[1]/tbar[0]/btn[13]
+                            END
+                        ELSE
+                            Log To Console    Queue window doesn't exits after job execution
+                        END
                     ELSE IF    "${status}" == "Implement the automatic correction instructions"
                         Click Element    wnd[1]/tbar[0]/btn[13]
                     END
                 ELSE
-                    Log    Queue window1 doesn't exists
+                    Log To Console    Queue window doesn't exits  
                 END
                 Window Handling    wnd[1]    Confirmation: Manual action    wnd[1]/usr/btnBUTTON_1
-                Window Handling    wnd[1]    Confirmation: SAP Note read    wnd[1]/tbar[0]/btn[13]
+                ${title}    Get Window Title    wnd[1]
+                IF    "${title}" == "Confirmation: Manual action"
+                    Click Element    wnd[1]/usr/btnBUTTON_1
+                ELSE IF    "${title}" == "Confirmation: SAP Note read"
+                    Click Element    wnd[1]/usr/btnBUTTON_1                
+                END
                 Window Handling    wnd[1]    Information    wnd[1]/tbar[0]/btn[0]
-                Create Transport    wnd[1]    wnd[1]/tbar[0]/btn[8]    TR-ALM    finish_btn
-                Log    ${number}=${value}
-                Log To Console    ${number}=${value}
+                Create Transport    wnd[1]    wnd[1]/tbar[0]/btn[8]    TR-ALM    wnd[2]/tbar[0]/btn[0]
+                Sleep    10
+                Window Handling    wnd[1]    Object Editing: Initial Screen    wnd[1]/tbar[0]/btn[0]
+                Sleep    10
+                Window Handling    wnd[1]    Confirm Changes    wnd[1]/tbar[0]/btn[0]
+                Sleep    10
+                Window Handling    wnd[1]    Inactive Objects for ${symvar('ABAP_USER')}    wnd[1]/tbar[0]/btn[0]
+                Sleep    10
+                Window Handling    wnd[2]    Activation Error    wnd[2]/usr/btnBUTTON_1
+                Sleep    5
+                ${window2}    Get Window Title    wnd[1]
+                IF    "${window2}" == "Queue of correction instructions to be installed"
+                    ${status2}    Get Value    wnd[1]/usr/txtGV_TEXT2
+                    IF    "${status2}" == "Confirm completion of the manual activities"
+                        ${row}    Get Row Count    wnd[1]/usr/cntlCONTAINER/shellcont/shellcont/shell/shellcont[0]/shell
+                        Log To Console    ${row}
+                        # Sleep    10
+                        Click Element    wnd[1]/tbar[0]/btn[9]
+                        Sleep    10
+                        Click Element    wnd[1]/tbar[0]/btn[0]
+                        Sleep    2
+                    ELSE IF    "${status2}" == "Implement the automatic correction instructions"
+                        Click Element    wnd[1]/tbar[0]/btn[13]
+                    END
+                ELSE
+                    Log To Console    Queue window doesn't exits after activation error
+                END
+                Window Handling    wnd[1]    Confirm SAP Note Implementation    wnd[1]/tbar[0]/btn[0]
+                Sleep    5
+                Window Handling    wnd[1]    Queue of correction instructions to be installed    wnd[1]/tbar[0]/btn[13]
+                Sleep    5
+                Window Handling    wnd[1]    Confirm Changes    wnd[1]/tbar[0]/btn[0]
+                Sleep    5
+                Window Handling    wnd[1]    Inactive Objects for ${symvar('ABAP_USER')}    wnd[1]/tbar[0]/btn[0]
+                Sleep    5
+                Click Element    wnd[0]/tbar[0]/btn[3]
+            ELSE IF    '${value}' == 'Incompletely implemented'
+                Click Element    wnd[0]/tbar[0]/btn[3]
+                Sleep    2
+                Click Element    wnd[0]/tbar[1]/btn[25]
+                Window Handling    wnd[1]    Change processor of SAP Note 000${number}   wnd[1]/usr/btnSPOP-OPTION1
+                Window Handling    wnd[1]    Information    wnd[1]/tbar[0]/btn[0]
+                Change Of Process    wnd[1]    wnd[1]/usr/btnSPOP-OPTION1
+                Sleep    2
+                ${window}    Get Window Title    wnd[1]
+                IF    "${window}" == "Queue of correction instructions to be installed"
+                    ${status}    Get Value    wnd[1]/usr/txtGV_TEXT2
+                    IF    "${status}" == "Confirm completion of the manual activities"
+                        ${row}    Get Row Count    wnd[1]/usr/cntlCONTAINER/shellcont/shellcont/shell/shellcont[0]/shell
+                        Log To Console    ${row}
+                        # Sleep    10
+                        Click Element    wnd[1]/tbar[0]/btn[9]
+                        Sleep    10
+                        Click Element    wnd[1]/tbar[0]/btn[0]
+                        Sleep    2
+                        Run Transaction    /nSE38
+                        Input Text    wnd[0]/usr/ctxtRS38M-PROGRAMM    /SDF/JM_NOTE_CHECKPNT_3485517
+                        Sleep    2
+                        Click Element    wnd[0]/tbar[1]/btn[8]
+                        Sleep    2
+                        Window Handling    wnd[1]    Execute/test object    wnd[1]/usr/btnBUTTON_1
+                        Sleep    10
+                        Run Transaction    /nsnote
+                        Sleep    2
+                        Click Element    wnd[0]/tbar[1]/btn[33]
+                        Sleep    2
+                        Input Text    wnd[0]/usr/txtNUMM-LOW    ${number}
+                        Sleep    2
+                        Click Element    wnd[0]/tbar[1]/btn[8]
+                        Sleep    2
+                        Click Element    wnd[0]/tbar[1]/btn[25]
+                        Sleep    2
+                        Window Handling    wnd[1]    Information    wnd[1]/tbar[0]/btn[0]
+                        Sleep    2
+                        ${window1}    Get Window Title    wnd[1]
+                        IF    "${window1}" == "Queue of correction instructions to be installed"
+                            ${status1}    Get Value    wnd[1]/usr/txtGV_TEXT2
+                            IF    "${status1}" == "Confirm completion of the manual activities"
+                                ${row}    Get Row Count    wnd[1]/usr/cntlCONTAINER/shellcont/shellcont/shell/shellcont[0]/shell
+                                Log To Console    ${row}
+                                # Sleep    10
+                                Click Element    wnd[1]/tbar[0]/btn[9]
+                                Sleep    10
+                                Click Element    wnd[1]/tbar[0]/btn[0]
+                                Sleep    2
+                            ELSE IF    "${status1}" == "Implement the automatic correction instructions"
+                                Click Element    wnd[1]/tbar[0]/btn[13]
+                            END
+                        ELSE
+                            Log To Console    Queue window doesn't exits after job execution
+                        END
+                    ELSE IF    "${status}" == "Implement the automatic correction instructions"
+                        Click Element    wnd[1]/tbar[0]/btn[13]
+                    END
+                ELSE
+                    Log To Console    Queue window doesn't exits
+                END
+                Window Handling    wnd[1]    Confirmation: Manual action    wnd[1]/usr/btnBUTTON_1
+                ${title}    Get Window Title    wnd[1]
+                IF    "${title}" == "Confirmation: Manual action"
+                    Click Element    wnd[1]/usr/btnBUTTON_1
+                ELSE IF    "${title}" == "Confirmation: SAP Note read"
+                    Click Element    wnd[1]/usr/btnBUTTON_1                
+                END
+                Window Handling    wnd[1]    Information    wnd[1]/tbar[0]/btn[0]
+                Create Transport    wnd[1]    wnd[1]/tbar[0]/btn[8]    TR-ALM    wnd[2]/tbar[0]/btn[0]
+                Sleep    10
+                Window Handling    wnd[1]    Object Editing: Initial Screen    wnd[1]/tbar[0]/btn[0]
+                Sleep    10
+                Window Handling    wnd[1]    Confirm Changes    wnd[1]/tbar[0]/btn[0]
+                Sleep    10
+                Window Handling    wnd[1]    Inactive Objects for ${symvar('ABAP_USER')}    wnd[1]/tbar[0]/btn[0]
+                Sleep    10
+                Window Handling    wnd[2]    Activation Error    wnd[2]/usr/btnBUTTON_1
+                Sleep    5
+                ${window2}    Get Window Title    wnd[1]
+                IF    "${window2}" == "Queue of correction instructions to be installed"
+                    ${status2}    Get Value    wnd[1]/usr/txtGV_TEXT2
+                    IF    "${status2}" == "Confirm completion of the manual activities"
+                        ${row}    Get Row Count    wnd[1]/usr/cntlCONTAINER/shellcont/shellcont/shell/shellcont[0]/shell
+                        Log To Console    ${row}
+                        # Sleep    10
+                        Click Element    wnd[1]/tbar[0]/btn[9]
+                        Sleep    10
+                        Click Element    wnd[1]/tbar[0]/btn[0]
+                        Sleep    2
+                    ELSE IF    "${status2}" == "Implement the automatic correction instructions"
+                        Click Element    wnd[1]/tbar[0]/btn[13]
+                    END
+                ELSE
+                    Log To Console    Queue window doesn't exits after activation error
+                END
+                Window Handling    wnd[1]    Confirm SAP Note Implementation    wnd[1]/tbar[0]/btn[0]
+                Sleep    5
+                Window Handling    wnd[1]    Queue of correction instructions to be installed    wnd[1]/tbar[0]/btn[13]
+                Sleep    5
+                Window Handling    wnd[1]    Confirm Changes    wnd[1]/tbar[0]/btn[0]
+                Sleep    5
+                Window Handling    wnd[1]    Inactive Objects for ${symvar('ABAP_USER')}    wnd[1]/tbar[0]/btn[0]
+                Sleep    5
+                Click Element    wnd[0]/tbar[0]/btn[3]
             END
         END
     END

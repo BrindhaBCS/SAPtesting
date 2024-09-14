@@ -1863,7 +1863,7 @@ class SAP_Tcode_Library:
         window = self.session.findById(window_id).Text
         if window == "Prompt for local Workbench request":
             transport = self.session.findById("wnd[1]/usr/ctxtKO008-TRKORR").Text
-            if transport == " ":
+            if transport == "":
                 self.session.findById(create_button).press()
                 self.session.findById("wnd[2]/usr/txtKO013-AS4TEXT").Text = text
                 self.session.findById(finish_btn).press()
