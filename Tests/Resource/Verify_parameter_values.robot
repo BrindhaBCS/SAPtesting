@@ -44,41 +44,49 @@ Verify parameter in RZ10
             IF    '${param_value}' == '${values}[${i}]'
                 Log To Console    ${parameters}[${i}] value is ${values}[${i}]
                 Click Element    wnd[0]/tbar[0]/btn[3]
-                # Sleep    2
+                Sleep    2
             ELSE
-                # Sleep    2
+                Sleep    2
                 Input Text    wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]    ${EMPTY}
-                # Sleep    2
+                Sleep    2
                 Input Text    wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]    ${values}[${i}]
                 Click Element    wnd[0]/tbar[1]/btn[16]
-                # Sleep    2
+                Sleep    2
                 Click Element    wnd[0]/tbar[1]/btn[5]
-                # Sleep    2
+                Sleep    2
                 Click Element    wnd[0]/tbar[0]/btn[3]
                 Click Element    wnd[0]/tbar[1]/btn[16]
             END
         ELSE
-            # Sleep    2
+            Sleep    2
             Click Element    wnd[0]/tbar[1]/btn[5]
-            # Sleep    2
+            Sleep    2
             Input Text    wnd[0]/usr/ctxtPARAMETER_INTERNAL-PARNAME    ${parameters}[${i}]
-            # Sleep    2
+            Sleep    2
             Input Text    wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]    ${values}[${i}]
-            # Sleep    2
+            Sleep    2
             Click Element    wnd[0]/tbar[1]/btn[16]
-            # Sleep    2
+            Sleep    2
             Click Element    wnd[0]/tbar[1]/btn[5]
-            # Sleep    2
+            Sleep    2
             Click Element    wnd[0]/tbar[0]/btn[3]
+            Sleep    2
             Manage Window    wnd[1]    Maintain Profile 'DEFAULT' Version    wnd[1]/usr/btnKNOPF1
+            Sleep    2
             Click Element    wnd[0]/tbar[1]/btn[16]
         END
         
     END
+    Sleep    2
     Click Element    wnd[0]/tbar[0]/btn[3]
+    Sleep    2
     Click Element    wnd[0]/tbar[0]/btn[11]
+    Sleep    2
     Click Element    wnd[1]/usr/btnSPOP-OPTION1
+    Sleep    2
     Window Handling    wnd[1]    Information    wnd[1]/tbar[0]/btn[0]
+    Sleep    2
     Window Handling    wnd[1]    Note    wnd[1]/tbar[0]/btn[0]
+    Sleep    2
     Log To Console      **gbStart**copilot_status1**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- Profile Parameter values are added successfully**gbEnd**
     
