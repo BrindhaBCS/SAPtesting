@@ -1,7 +1,7 @@
 ABAP_SAP_SERVER = "C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPGUI\\saplogon.exe"
 ABAP_USER = "BCSADMIN"
 ABAP_CLIENT = "001"
-ABAP_Connection = "RBT"
+ABAP_Connection = "TS5"
 supportpackage_path = "C:\\Users\\Administrator\\Downloads\\"
 supportpackage = "SAPK-74003INSTPI"
 Current_Version = "SAPK-74027INSTPI"

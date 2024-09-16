@@ -130,22 +130,27 @@ SNOTE
                 Sleep    10
                 Window Handling    wnd[2]    Activation Error    wnd[2]/usr/btnBUTTON_1
                 Sleep    5
-                ${window2}    Get Window Title    wnd[1]
-                IF    "${window2}" == "Queue of correction instructions to be installed"
-                    ${status2}    Get Value    wnd[1]/usr/txtGV_TEXT2
-                    IF    "${status2}" == "Confirm completion of the manual activities"
-                        ${row}    Get Row Count    wnd[1]/usr/cntlCONTAINER/shellcont/shellcont/shell/shellcont[0]/shell
-                        Log To Console    ${row}
-                        # Sleep    10
-                        Click Element    wnd[1]/tbar[0]/btn[9]
-                        Sleep    10
-                        Click Element    wnd[1]/tbar[0]/btn[0]
-                        Sleep    2
-                    ELSE IF    "${status2}" == "Implement the automatic correction instructions"
-                        Click Element    wnd[1]/tbar[0]/btn[13]
+                ${window_exist}    Run Keyword And Return Status    Element Should Exist    wnd[1]
+                IF    '${window_exist}' == 'True'
+                    ${window2}    Get Window Title    wnd[1]
+                    IF    "${window2}" == "Queue of correction instructions to be installed"
+                        ${status2}    Get Value    wnd[1]/usr/txtGV_TEXT2
+                        IF    "${status2}" == "Confirm completion of the manual activities"
+                            ${row}    Get Row Count    wnd[1]/usr/cntlCONTAINER/shellcont/shellcont/shell/shellcont[0]/shell
+                            Log    ${row}
+                            # Sleep    10
+                            Click Element    wnd[1]/tbar[0]/btn[9]
+                            Sleep    10
+                            Click Element    wnd[1]/tbar[0]/btn[0]
+                            Sleep    2
+                        ELSE IF    "${status2}" == "Implement the automatic correction instructions"
+                            Click Element    wnd[1]/tbar[0]/btn[13]
+                        END
+                    ELSE
+                        Log   Queue window doesn't exits after activation error
                     END
                 ELSE
-                    Log To Console    Queue window doesn't exits after activation error
+                    Log    Window wnd[1] does not exist
                 END
                 Window Handling    wnd[1]    Confirm SAP Note Implementation    wnd[1]/tbar[0]/btn[0]
                 Sleep    5
