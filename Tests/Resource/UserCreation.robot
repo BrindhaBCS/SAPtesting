@@ -14,12 +14,12 @@ System Logon
     Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{dev_PASSWORD}
     # Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('dev_PASSWORD')}
     Send Vkey    0
-    Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
+    Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
 System Logout
     Run Transaction   /nex
 Create User
     Run Transaction    /nSU01
-    Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('dev_TestUser_Name')}
+    Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('SAP_User_ID')}
     Sleep    1
     Click Element    wnd[0]/tbar[1]/btn[8]
     Window Handling    wnd[1]    Address Maintenance      wnd[1]/usr/btnBUTTON_2
@@ -38,8 +38,8 @@ Create User
     Input Text    wnd[0]/usr/tabsTABSTRIP1/tabpLOGO/ssubMAINAREA:SAPLSUID_MAINTENANCE:1101/pwdSUID_ST_NODE_PASSWORD_EXT-PASSWORD    ${symvar('dev_pass')}
     Input Text    wnd[0]/usr/tabsTABSTRIP1/tabpLOGO/ssubMAINAREA:SAPLSUID_MAINTENANCE:1101/pwdSUID_ST_NODE_PASSWORD_EXT-PASSWORD2    ${symvar('dev_pass')}
     Click Element    wnd[0]/usr/tabsTABSTRIP1/tabpPROF
-    Open Excel Document    ${symvar('User_excel_path')}    ${symvar('Department')}
-    ${column_data}=    Read Excel Column    1    sheet_name=${symvar('Department')}
+    Open Excel Document    ${symvar('User_excel_path')}    ${symvar('Requested_SAP_Roles')}
+    ${column_data}=    Read Excel Column    1    sheet_name=${symvar('Requested_SAP_Roles')}
     ${row_count}=    Get Length    ${column_data}
     Log    Column data length: ${row_count}
     FOR    ${row}    IN RANGE    1    ${row_count}

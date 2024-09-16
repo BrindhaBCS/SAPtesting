@@ -19,7 +19,7 @@ System Logout
     Run Transaction   /nex
 Modify User
     Run Transaction    /nSU01
-    Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('dev_TestUser_Name')}
+    Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('SAP_User_ID')}
     Sleep    1
     Click Element    wnd[0]/tbar[1]/btn[7]
     Window Handling    wnd[1]    Address Maintenance      wnd[1]/usr/btnBUTTON_2
@@ -30,8 +30,8 @@ Modify User
     Sleep    1
     delete all profile
     Sleep    2
-    Open Excel Document    ${symvar('User_excel_path')}    ${symvar('Department1')}
-    ${column_data}=    Read Excel Column    1    sheet_name=${symvar('Department1')}
+    Open Excel Document    ${symvar('User_excel_path')}    ${symvar('Requested_SAP_Roles')}
+    ${column_data}=    Read Excel Column    1    sheet_name=${symvar('Requested_SAP_Roles')}
     ${row_count}=    Get Length    ${column_data}
     Log    Column data length: ${row_count}
     FOR    ${row}    IN RANGE    1    ${row_count}

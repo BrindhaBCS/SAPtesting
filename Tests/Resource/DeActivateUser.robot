@@ -19,7 +19,7 @@ System Logout
     Run Transaction   /nex
 DeActivate User
     Run Transaction    /nSU01
-    Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('dev_TestUser_Name')}
+    Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('SAP_User_ID')}
     Click Element    wnd[0]/tbar[1]/btn[7]
     # Sleep    5
     Window Handling    wnd[1]    Address Maintenance      wnd[1]/usr/btnBUTTON_2
