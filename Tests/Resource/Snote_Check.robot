@@ -114,7 +114,7 @@ SNOTE
                 END
                 Window Handling    wnd[1]    Confirmation: Manual action    wnd[1]/usr/btnBUTTON_1
                 ${title}    Get Window Title    wnd[1]
-                IF    "${title}" == "Confirmation: Manual action"
+                IF    "${title}" == "Confirm SAP Note Implementation"
                     Click Element    wnd[1]/usr/btnBUTTON_1
                 ELSE IF    "${title}" == "Confirmation: SAP Note read"
                     Click Element    wnd[1]/usr/btnBUTTON_1                
@@ -130,7 +130,7 @@ SNOTE
                 Sleep    10
                 Window Handling    wnd[2]    Activation Error    wnd[2]/usr/btnBUTTON_1
                 Sleep    5
-                ${window_exist}    Run Keyword And Return Status    Element Should Exist    wnd[1]
+                ${window_exist}    Run Keyword And Return Status    Element Should Be Present    wnd[1]
                 IF    '${window_exist}' == 'True'
                     ${window2}    Get Window Title    wnd[1]
                     IF    "${window2}" == "Queue of correction instructions to be installed"
@@ -224,7 +224,7 @@ SNOTE
                 END
                 Window Handling    wnd[1]    Confirmation: Manual action    wnd[1]/usr/btnBUTTON_1
                 ${title}    Get Window Title    wnd[1]
-                IF    "${title}" == "Confirmation: Manual action"
+                IF    "${title}" == "Confirm SAP Note Implementation"
                     Click Element    wnd[1]/usr/btnBUTTON_1
                 ELSE IF    "${title}" == "Confirmation: SAP Note read"
                     Click Element    wnd[1]/usr/btnBUTTON_1                
