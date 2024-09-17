@@ -4,7 +4,7 @@ Library    Process
 Library    String
 # Library    SeleniumLibrary
 *** Variables ***
-@{SAP_Note}        3421256    3374186    3312428    3281776    
+@{SAP_Note}        3421256    3374186    3312428    3324052    3281776    
 *** Keywords ***
 System Logon
     Start Process     ${symvar('ABAP_SAP_SERVER')}     

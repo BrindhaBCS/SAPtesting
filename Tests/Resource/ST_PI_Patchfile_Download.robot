@@ -58,8 +58,8 @@ Software Download
     Sleep    4
     Click Element    id:__field0-search
     Sleep    10
-    Wait Until Element Is Visible    id:__item29-__clone73    120s
-    Click Element    id:__item29-__clone73
+    Wait Until Element Is Visible    xpath://*[@class='sapMSLIDescriptionText']    120s
+    Click Element    xpath://*[@class='sapMSLIDescriptionText']
     Sleep    2
     Click Element    id:__xmlview3--idProductHierarchyList
     Sleep    5
