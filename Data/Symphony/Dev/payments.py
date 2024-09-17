@@ -1,8 +1,0 @@
-SAP_SERVER = "C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPGUI\\saplogon.exe"
-sap_user = "maestro"
-sap_client = "001"
-connection = "TS4"
-filepath = "C:\\tmp"
-filename = "payments.xlsx"
-customer_no = "1000000010"
-company_code = "BC01"
