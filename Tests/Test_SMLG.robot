@@ -9,4 +9,4 @@ Suite Teardown    SMLG.System Logout
 Executing SMLG
     Transaction SMLG
     # SMLG Attributes
-    SMLG Load Distributions
+    # SMLG Load Distributions
