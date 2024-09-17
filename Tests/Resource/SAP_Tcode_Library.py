@@ -1513,3 +1513,11 @@ class SAP_Tcode_Library:
             self.session.findById("wnd[0]/usr/tabsTABSTRIP1/tabpPROF/ssubMAINAREA:SAPLSUID_MAINTENANCE:1103/cntlG_PROFILES_CONTAINER/shellcont/shell").pressToolbarButton("DEL_LINE")
         except:
             return  []
+    def get_total_row(self, file_path, sheet_name):
+        # Read the Excel file into a DataFrame
+        df = pd.read_excel(file_path, sheet_name=sheet_name)
+        
+        # Get the total number of rows
+        total_rows = df.shape[0]
+        
+        return total_rows
