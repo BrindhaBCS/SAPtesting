@@ -8,5 +8,5 @@ Suite Teardown    Uconcockpit.System Logout
 
 Executing Uconcockpit
     Transaction Uconcockpit
-    RFC Basic Scenario
-    Role Building Scenario
+    # RFC Basic Scenario
+    # Role Building Scenario

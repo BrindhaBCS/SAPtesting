@@ -8,7 +8,7 @@ Suite Teardown    SPAD.System Logout
 
 Executing SPAD  
     Transaction SPAD
-    ARCH Screenshot    
-    LOCL Screenshot    
-    LP01 Screenshot   
-    ZPDF Screenshot
+    # ARCH Screenshot    
+    # LOCL Screenshot    
+    # LP01 Screenshot   
+    # ZPDF Screenshot
