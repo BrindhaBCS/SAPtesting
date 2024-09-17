@@ -82,8 +82,13 @@ SNOTE
                         Sleep    2
                         Click Element    wnd[0]/tbar[1]/btn[8]
                         Sleep    2
-                        Create Transport    wnd[1]    wnd[1]/tbar[0]/btn[8]    TR-ALM    wnd[2]/tbar[0]/btn[0]
-                        Sleep    2
+                        ${window_exist}    Run Keyword And Return Status    Element Should Be Present    wnd[1]
+                        IF    '${window_exist}' == 'True'
+                            Create Transport    wnd[1]    wnd[1]/tbar[0]/btn[8]    TR-ALM    wnd[2]/tbar[0]/btn[0]
+                            Sleep    2
+                        ELSE
+                            Log    Transport in SE38 job:/SDF/JM_NOTE_CHECKPNT_3485517 not file_exists
+                        END
                         Run Transaction    /nsnote
                         Sleep    2
                         Click Element    wnd[0]/tbar[1]/btn[33]
@@ -194,6 +199,23 @@ SNOTE
                         Sleep    2
                         Window Handling    wnd[1]    Execute/test object    wnd[1]/usr/btnBUTTON_1
                         Sleep    10
+                        ${title}    Get Window Title    wnd[0]
+                        IF    "${title}" == "/SDF/JM_NOTE_CHECKPNT_3485517 - Note Implementation"
+                            Select Radio Button    wnd[0]/usr/radUPDATE
+                            Sleep    2
+                            Click Element    wnd[0]/tbar[1]/btn[8]
+                            Sleep    2
+                            ${window_exist}    Run Keyword And Return Status    Element Should Be Present    wnd[1]
+                            IF    '${window_exist}' == 'True'
+                                Create Transport    wnd[1]    wnd[1]/tbar[0]/btn[8]    TR-ALM    wnd[2]/tbar[0]/btn[0]
+                                Sleep    2
+                            ELSE
+                                Log    Transport in SE38 job:/SDF/JM_NOTE_CHECKPNT_3485517 not file_exists
+                            END
+                        ELSE
+                            ${status}    Get Value    wnd[0]/sbar/pane[0]
+                            Log    ${status}
+                        END                        
                         Run Transaction    /nsnote
                         Sleep    2
                         Click Element    wnd[0]/tbar[1]/btn[33]
