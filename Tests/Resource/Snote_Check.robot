@@ -2,6 +2,7 @@
 Library    SAP_Tcode_Library.py
 Library    Process
 Library    String
+Resource    ../Web/Support_Web.robot
 # Library    SeleniumLibrary
 *** Variables ***
 @{SAP_Note}        3421256    3374186    3312428    3324052    3281776    
@@ -77,6 +78,12 @@ SNOTE
                         Sleep    2
                         Click Element    wnd[0]/tbar[1]/btn[8]
                         Sleep    10
+                        Select Radio Button    wnd[0]/usr/radUPDATE
+                        Sleep    2
+                        Click Element    wnd[0]/tbar[1]/btn[8]
+                        Sleep    2
+                        Create Transport    wnd[1]    wnd[1]/tbar[0]/btn[8]    TR-ALM    wnd[2]/tbar[0]/btn[0]
+                        Sleep    2
                         Run Transaction    /nsnote
                         Sleep    2
                         Click Element    wnd[0]/tbar[1]/btn[33]
