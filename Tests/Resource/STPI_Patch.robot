@@ -77,19 +77,20 @@ Spam Component selection
     Sleep   2
     # Take Screenshot    09_Spam_component2.jpg
 Spam Patch selection
-    ${patch_value}  Spam Search and Select Label    wnd[1]/usr  ${symvar('Current_Version')}
-    Log    ${patch_value}   
+    Spam Search and Select Label    wnd[1]/usr  ${symvar('Current_Version')}
     Sleep    2
     Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep   2
-    # Take Screenshot    07_spam.jpg
 
 Important SAP note handling
     Is Imp Notes Existing   wnd[1]  wnd[1]/tbar[0]/btn[0]
-    # Take Screenshot    08_spam.jpg
-    Click Element    wnd[2]/tbar[0]/btn[0]
+    ${window}    Run Keyword And Return Status    Element Should Be Present    wnd[2]
+    IF    "${window}" == "True"
+        Click Element    wnd[2]/tbar[0]/btn[0]
+    ELSE
+        Log    window 2 is not exists.
+    END
     Click Element    wnd[1]/usr/btnBUTTON_2
-    # Take Screenshot    09_spam.jpg
    
 Importing queue from support package
     Click Element    wnd[0]/mbar/menu[0]/menu[3]
