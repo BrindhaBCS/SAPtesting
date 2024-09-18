@@ -5,12 +5,16 @@ Library    OperatingSystem
 Library    Collections
 Library    SAP_Tcode_Library
 Library    Process
+Library    ExcelLibrary
+Library    openpyxl
 *** Variables ***
 ${url}    https://support.sap.com
 ${browser}    chrome
 ${Package}    
 ${BASE_LOCATOR}       __identifier1-__xmlview3--idProductDownloadList
 ${MAX_TRIES}          100  # Maximum number of locators to try
+${filepath}    C:\\RobotFramework\\sap_testing\\Tests\\Resource\\Prerequisite_Status.xlsx
+${sheetname}    Sheet1
 *** Keywords ***
 System Logon
     Start Process     ${symvar('ABAP_SAP_SERVER')}     
@@ -26,6 +30,13 @@ System Logon
 
 System Logout
     Run Transaction   /nex
+Write Excel
+    [Arguments]    ${filepath}    ${sheetname}    ${rownum}    ${colnum}    ${cell_value}
+    Open Excel Document    ${filepath}    1
+    Get Sheet    ${sheetname}  
+    Write Excel Cell      ${rownum}       ${colnum}     ${cell_value}       ${sheetname}
+    Save Excel Document     ${filepath}
+    Close Current Excel Document
 Verify Package
     ${Package}    Verify The Support Packages    ${symvar('supportpackage')}    ${symvar('Current_Version')}    ${symvar('supportpackage_path')}
     Log    ${Package}  
@@ -35,7 +46,7 @@ Verify Package
         login page
         Software Download
     ELSE
-        Log To Console    All the Packages are already exist
+        Log To Console    All the Packages are already exists
     END
 login page
     # # Open Browser    ${url}    ${browser}
@@ -100,7 +111,7 @@ Software Download
         Run Keyword If    '${file_exists}' == 'False'    Log   The file ${element_text} already exists, skipping download.
         
         Run Keyword If    '${element_text}' == '${symvar('supportpackage')}'    Exit For Loop
-        Log To Console    **gbStart**copilot_status**splitKeyValue**Support packages downloaded from SAP Portal into local server**gbEnd**
+        Log To Console    Support packages downloaded from SAP Portal into local server
     END
 
 Verify Maintenance Certificate
@@ -112,5 +123,6 @@ Verify Maintenance Certificate
     IF     '${value1}' == 'Maintenance_HDB' and '${value2}' == 'Valid'
         Verify Package
     ELSE
-        Log To Console    **gbStart**copilot_status**splitKeyValue**No valid maintainence certificate **gbEnd**
+        Write Excel    ${filepath}    ${sheetname}    4    2    No valid maintainence certificate
+        Write Excel    ${filepath}    ${sheetname}    4    3    Failed
     END

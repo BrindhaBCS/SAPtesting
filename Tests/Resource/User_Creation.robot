@@ -3,6 +3,11 @@ Library    Process
 Library    OperatingSystem
 Library    String
 Library    SAP_Tcode_Library.py
+Library    ExcelLibrary
+Library    openpyxl
+*** Variables ***
+${filepath}    C:\\RobotFramework\\sap_testing\\Tests\\Resource\\Prerequisite_Status.xlsx
+${sheetname}    Sheet1
 
 *** Keywords *** 
 System Logon
@@ -16,7 +21,13 @@ System Logon
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
 System Logout
     Run Transaction   /nex
-
+Write Excel
+    [Arguments]    ${filepath}    ${sheetname}    ${rownum}    ${colnum}    ${cell_value}
+    Open Excel Document    ${filepath}    1
+    Get Sheet    ${sheetname}  
+    Write Excel Cell      ${rownum}       ${colnum}     ${cell_value}       ${sheetname}
+    Save Excel Document     ${filepath}
+    Close Current Excel Document
 Create User
     Run Transaction    /nSU01
     Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('ALM_User')}
@@ -25,7 +36,8 @@ Create User
     ${user}    To Upper    ${symvar('ALM_User')}
     ${status}    Get Value    wnd[0]/sbar/pane[0]
     IF    '${status}' == 'User ${user} already exists'
-        Log To Console    **gbStart**copilot_status**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- ${status}**gbEnd**
+        Write Excel    ${filepath}    ${sheetname}    8    2    ${status}
+        Write Excel    ${filepath}    ${sheetname}    8    2    Passed
     ELSE
         Input Text    wnd[0]/usr/tabsTABSTRIP1/tabpADDR/ssubMAINAREA:SAPLSUID_MAINTENANCE:1900/txtSUID_ST_NODE_PERSON_NAME-NAME_LAST    ${symvar('ALM_User')}
         Click Element     wnd[0]/usr/tabsTABSTRIP1/tabpLOGO
@@ -39,5 +51,6 @@ Create User
         
         Click Element    wnd[0]/tbar[0]/btn[11]
         ${output}   Get Value    wnd[0]/sbar/pane[0]
-        Log To Console    **gbStart**copilot_status**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- ${output}**gbEnd**
+        Write Excel    ${filepath}    ${sheetname}    8    2    ${output}
+        Write Excel    ${filepath}    ${sheetname}    8    2    Passed
     END

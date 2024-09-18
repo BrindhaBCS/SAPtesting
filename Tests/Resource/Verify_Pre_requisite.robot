@@ -25,6 +25,7 @@ ${certificate_Fail}    SSL Certificate need to be added to the System
 ${Snote_Pass}    Snotes are available in the System
 ${Snote_Fail}    Snotes need to be added to the System
 
+
 *** Keywords ***
 System Logon
     Start Process    ${symvar('ABAP_SAP_SERVER')}

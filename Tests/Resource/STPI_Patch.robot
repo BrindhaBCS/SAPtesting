@@ -3,6 +3,8 @@ Library    Process
 Library    OperatingSystem
 Library    String
 Library    CustomSapGuiLibrary.py
+Library    ExcelLibrary
+Library    openpyxl
 
 *** Variables ***
 # System Variables
@@ -15,6 +17,8 @@ ${finish_str}   Confirm queue
 ${refresh_id}   wnd[0]/tbar[1]/btn[30]
 ${button_id}    wnd[0]/mbar/menu[0]/menu[5]
 ${comp_id}    wnd[1]/usr/tabsQUEUE_CALC/tabpQUEUE_CALC_FC1/ssubQUEUE_CALC_SCA:SAPLOCS_ALV_UI:0306/cntlCONTROL_ALL_COMP/shellcont/shell
+${filepath}    C:\\RobotFramework\\sap_testing\\Tests\\Resource\\Prerequisite_Status.xlsx
+${sheetname}    Sheet1
 
 *** Keywords *** 
 System Logon
@@ -28,11 +32,18 @@ System Logon
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
 System Logout
     Run Transaction   /nex
+Write Excel
+    [Arguments]    ${filepath}    ${sheetname}    ${rownum}    ${colnum}    ${cell_value}
+    Open Excel Document    ${filepath}    1
+    Get Sheet    ${sheetname}  
+    Write Excel Cell      ${rownum}       ${colnum}     ${cell_value}       ${sheetname}
+    Save Excel Document     ${filepath}
+    Close Current Excel Document
 Spam Certificate Verification
     Run Transaction     /nspam  
     Get Maintenance Certificate Text    wnd[0]/sbar/pane[0]
     Sleep    2
-    Take Screenshot    01_spam.jpg
+    # Take Screenshot    01_spam.jpg
 Loading package
     @{packages}    Generate Package Sequence    ${symvar('supportpackage')}    ${symvar('Current_Version')}
     # Log To Console    @{packages}
@@ -50,11 +61,11 @@ Loading package
         ${status1}    Get Value    wnd[0]/sbar/pane[0]
         Log To Console    ${status1}
     END
-    Take Screenshot    02_spam.jpg
+    # Take Screenshot    02_spam.jpg
 
 Display/Define
     Click Element    wnd[0]/usr/btnPAT100-QUEUE
-    Take Screenshot    03_spam.jpg
+    # Take Screenshot    03_spam.jpg
 
 Spam Component selection
     ${row}    Select Spam Based On Text    wnd[1]/usr/cntlCOMP_ONLY_CONTROL/shellcont/shell     ${symvar('patch_comp')}
@@ -64,32 +75,32 @@ Spam Component selection
     Take Screenshot    08_Spam_component1.jpg
     Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep   2
-    Take Screenshot    09_Spam_component2.jpg
+    # Take Screenshot    09_Spam_component2.jpg
 Spam Patch selection
     ${patch_value}  Spam Search and Select Label    wnd[1]/usr  ${symvar('Current_Version')}
     Log    ${patch_value}   
     Sleep    2
     Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep   2
-    Take Screenshot    07_spam.jpg
+    # Take Screenshot    07_spam.jpg
 
 Important SAP note handling
     Is Imp Notes Existing   wnd[1]  wnd[1]/tbar[0]/btn[0]
-    Take Screenshot    08_spam.jpg
+    # Take Screenshot    08_spam.jpg
     Click Element    wnd[2]/tbar[0]/btn[0]
     Click Element    wnd[1]/usr/btnBUTTON_2
-    Take Screenshot    09_spam.jpg
+    # Take Screenshot    09_spam.jpg
    
 Importing queue from support package
     Click Element    wnd[0]/mbar/menu[0]/menu[3]
     Click Element    wnd[1]/tbar[0]/btn[0]
     Click Element    wnd[1]/tbar[0]/btn[27]
-    Take Screenshot    10_spam.jpg
+    # Take Screenshot    10_spam.jpg
     Select Radio Button    wnd[1]/usr/tabsSTART_OPTIONS/tabpSTART_FC1/ssubSTART_OPTIONS_SCA:SAPLOCS_UI:0701/radLAY0700-RB1_BTCHIM
-    Take Screenshot    11_spam.jpg
+    # Take Screenshot    11_spam.jpg
     Click Element    wnd[1]/tbar[0]/btn[0]
     Click Element    wnd[1]/tbar[0]/btn[25]
-    Take Screenshot    12_spam.jpg
+    # Take Screenshot    12_spam.jpg
 
 Confirm Queue
     
@@ -97,6 +108,8 @@ Confirm Queue
     Log    ${cell_text_1}
     No Queue Pending    ${no_Queue_id}
     Click Element   wnd[1]/tbar[0]/btn[27]
-    Take Screenshot    13_spam.jpg
-    Log To Console    **gbStart**copilot_status**splitKeyValue**ST-PI support package version is updated to the latest**gbEnd**
+    # Take Screenshot    13_spam.jpg
+    Write Excel    ${filepath}    ${sheetname}    4    2    ST-PI support package version is updated to the latest
+    Write Excel    ${filepath}    ${sheetname}    4    3    Passed
+    Log To Console    ST-PI support package version is updated to the latest
 
