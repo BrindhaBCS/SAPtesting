@@ -1,4 +1,4 @@
-MM_SAP_SERVER = "$SAP_SERVER"
+MM_SAP_SERVER = "$MM_SAP_SERVER"
 MM_SAP_connection = "$MM_SAP_connection"
 MM_Client_Id = "$MM_Client_Id"
 MM_User_Name = "$MM_User_Name"
