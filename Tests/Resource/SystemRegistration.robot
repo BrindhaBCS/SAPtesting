@@ -37,6 +37,10 @@ System Registration
         ${is_destination_exists}    Run Keyword And Return Status    Element Should Be Present    wnd[0]/usr/btn%P017010_1000
         IF    "${is_destination_exists}" == "True"
             Click Element    wnd[0]/usr/btn%P017010_1000
+            Sleep    2
+            Input Text    wnd[0]/usr/ctxtDEST    BCS_ALM
+            Sleep    2
+            Send Vkey    0
         ELSE
             Log    Their is no existing http port for BCS_ALM
         END
