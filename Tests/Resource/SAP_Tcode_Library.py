@@ -1515,5 +1515,5 @@ class SAP_Tcode_Library:
             return  []
     def get_total_row(self, file_path, sheet_name):
         df = pd.read_excel(file_path, sheet_name=sheet_name)
-        total_rows = df.shape[0] + 1
+        total_rows = df.shape[0]
         return total_rows
