@@ -94,8 +94,8 @@ Important SAP note handling
    
 Importing queue from support package
     Click Element    wnd[0]/mbar/menu[0]/menu[3]
-    Click Element    wnd[1]/tbar[0]/btn[0]
-    Click Element    wnd[1]/tbar[0]/btn[27]
+    # Click Element    wnd[1]/tbar[0]/btn[0]
+    Window Handling    wnd[1]    SPAM: Import: Queue    wnd[1]/tbar[0]/btn[27]
     # Take Screenshot    10_spam.jpg
     Select Radio Button    wnd[1]/usr/tabsSTART_OPTIONS/tabpSTART_FC1/ssubSTART_OPTIONS_SCA:SAPLOCS_UI:0701/radLAY0700-RB1_BTCHIM
     # Take Screenshot    11_spam.jpg
