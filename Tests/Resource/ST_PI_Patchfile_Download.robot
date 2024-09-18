@@ -21,10 +21,10 @@ System Logon
     Sleep    2
     Connect To Session
     Open Connection    ${symvar('ABAP_Connection')}    
-    SeleniumLibrary.Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('ABAP_CLIENT')}
-    SeleniumLibrary.Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('ABAP_USER')}
+    SAP_Tcode_Library.Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('ABAP_CLIENT')}
+    SAP_Tcode_Library.Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('ABAP_USER')}
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('RBT_USER_PASSWORD')}
-    SeleniumLibrary.Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{ABAP_PASSWORD}
+    SAP_Tcode_Library.Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{ABAP_PASSWORD}
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
 
