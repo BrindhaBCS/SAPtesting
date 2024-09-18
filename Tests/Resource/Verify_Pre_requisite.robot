@@ -25,7 +25,7 @@ ${certificate_Fail}    SSL Certificate need to be added to the System
 ${Snote_Pass}    Snotes are available in the System
 ${Snote_Fail}    Snotes need to be added to the System
 ${all_notes_cannot_be_implemented}    True
-
+${is_all_parameter_exists}    True
 *** Keywords ***
 System Logon
     Start Process    ${symvar('ABAP_SAP_SERVER')}
@@ -109,19 +109,21 @@ Verify parameter in RZ10
             Get Parameter Value    wnd[0]/usr    ${parameters}[${i}]
             ${param_value}    Get Value    wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]
             IF    '${param_value}' == '${values}[${i}]'
-                Write Excel    ${filepath}    ${sheetname}    5    2    ${parameter_Pass}
-                Write Excel    ${filepath}    ${sheetname}    5    3    Passed
                 Click Element    wnd[0]/tbar[0]/btn[3]
             ELSE
-                Write Excel    ${filepath}    ${sheetname}    5    2    ${parameter_Fail}
-                Write Excel    ${filepath}    ${sheetname}    5    3    Failed
+                Set Variable    ${is_all_parameter_exists}    False
             END
         ELSE
-            Write Excel    ${filepath}    ${sheetname}    5    2    ${parameter_Fail}
-            Write Excel    ${filepath}    ${sheetname}    5    3    Failed
+            Set Variable    ${is_all_parameter_exists}    False
         END        
     END
-    
+    IF    "${is_all_parameter_exists}" == "True"
+        Write Excel    ${filepath}    ${sheetname}    5    2    ${parameter_Pass}
+        Write Excel    ${filepath}    ${sheetname}    5    3    Passed
+    ELSE
+        Write Excel    ${filepath}    ${sheetname}    5    2    ${parameter_Fail}
+        Write Excel    ${filepath}    ${sheetname}    5    3    Failed
+    END
 STRUST
     Run Transaction    /nSTRUST
     Sleep    2
