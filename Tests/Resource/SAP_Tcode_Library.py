@@ -1514,10 +1514,6 @@ class SAP_Tcode_Library:
         except:
             return  []
     def get_total_row(self, file_path, sheet_name):
-        # Read the Excel file into a DataFrame
         df = pd.read_excel(file_path, sheet_name=sheet_name)
-        
-        # Get the total number of rows
-        total_rows = df.shape[0]
-        
+        total_rows = df.shape[0] + 1
         return total_rows

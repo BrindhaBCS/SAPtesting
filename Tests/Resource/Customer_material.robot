@@ -45,8 +45,7 @@ Kellogs_
     Log    Total rows count: ${ROWS_COUNT}
     Run Transaction    /nXD01
     Sleep    1
-    ${END_ROW}=    Evaluate    ${ROWS_COUNT} + 6
-    FOR    ${row_index}    IN RANGE    6    ${END_ROW}
+    FOR    ${row_index}    IN RANGE    6    ${ROWS_COUNT}
         Run Keyword And Ignore Error    Click Element    wnd[1]/usr/btnKONTENGRUPPE_INFO
         Run Keyword And Ignore Error    Set Focus    wnd[2]/usr/tblSAPMF02DTCTRL_KONTENGRUPPEN/txtT077D-KTOKD[0,0]
         Run Keyword And Ignore Error    Click Element    wnd[2]/tbar[0]/btn[0]
