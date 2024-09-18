@@ -134,22 +134,22 @@ Kellogs_
         ${Acct assgmt group}    Read Excel Sheet    ${filename}    ${sheetname}    6    37
         Run Keyword And Ignore Error    Input Text    wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA3:SAPMF02D:7322/ctxtKNVV-KTGRD   ${Acct assgmt group}
         ${Tax_1}    Read Excel Sheet    ${filename}    ${sheetname}    ${row_index}    38
-        Sleep    1
         Run Keyword And Ignore Error    Input Text    wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA4:SAPMF02D:7323/subSUB_STEUER:SAPMF02D:7350/tblSAPMF02DTCTRL_STEUERN/ctxtKNVI-TAXKD[4,0]   ${Tax_1}
         ${Tax_2}    Read Excel Sheet    ${filename}    ${sheetname}    ${row_index}    39
-        Sleep    1
         Run Keyword And Ignore Error    Input Text    wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA4:SAPMF02D:7323/subSUB_STEUER:SAPMF02D:7350/tblSAPMF02DTCTRL_STEUERN/ctxtKNVI-TAXKD[4,1]   ${Tax_2}
         ${Tax_3}    Read Excel Sheet    ${filename}    ${sheetname}    ${row_index}    40
-        Sleep    1
         Run Keyword And Ignore Error    Input Text    wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA4:SAPMF02D:7323/subSUB_STEUER:SAPMF02D:7350/tblSAPMF02DTCTRL_STEUERN/ctxtKNVI-TAXKD[4,2]   ${Tax_3}
         Sleep    1
         Run Keyword And Ignore Error    Click Element    wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB05
         Sleep    1
         Run Keyword And Ignore Error    Click Element    wnd[0]/tbar[0]/btn[11]
-        Sleep    5
-        ${Text}    Get Value    wnd[0]/sbar/pane[0]
+        Sleep    3
+        ${Text}=    Get Value    wnd[0]/sbar/pane[0]
         Sleep    1
-        Write Excel Sheet    ${filename}    ${sheetname}    ${row_index}    41    ${Text}
+        ${split_text}=    Split String    ${Text}    ${SPACE}
+        ${customer_number}=    Set Variable    ${split_text}[1]
+        Log To Console    ${customer_number}
+        Write Excel Sheet    ${FILENAME}    ${SHEETNAME}    ${ROW_INDEX}    41    ${customer_number}
         Sleep    1
     END
     
