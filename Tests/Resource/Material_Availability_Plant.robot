@@ -39,8 +39,8 @@ Executing Material Availability
     Run Transaction    /nmb52
     Send Vkey    0
     Sleep    2
-    Input Text    wnd[0]/usr/ctxtMATNR-LOW    ${Material}
-    Input Text    wnd[0]/usr/ctxtWERKS-LOW    ${Plant}
+    Input Text    wnd[0]/usr/ctxtMATNR-LOW    ${symvar('Material')}
+    Input Text    wnd[0]/usr/ctxtWERKS-LOW    ${symvar('Plant')}
     #Execute the requirement using F8
     Click Element    wnd[0]/mbar/menu[0]/menu[0]
     Sleep    1
