@@ -1119,13 +1119,6 @@ class SAP_Tcode_Library:
         except Exception as e:
             print("Error: {e}")
 
-    def set_caret_position(self, element_id, position):
-        try:
-            element = self.session.findById(element_id)
-            element.caretposition = position
-
-        except Exception as e:
-            print("Error: {e}")
             
     def scot_tree(self, tree_id):
         try:
@@ -1505,7 +1498,22 @@ class SAP_Tcode_Library:
         with open(file_path, 'r') as file:
             content = file.read()
         return content
-    
+    def set_caret_position(self, element_id, position):
+        try:
+            element = self.session.findById(element_id)
+            element.caretposition = position
+
+        except Exception as e:
+            print("Error: {e}")
+            
+    def Delete_all_profile(self):
+        try:
+            self.session.findById("wnd[0]/usr/tabsTABSTRIP1/tabpPROF/ssubMAINAREA:SAPLSUID_MAINTENANCE:1103/cntlG_PROFILES_CONTAINER/shellcont/shell").setCurrentCell(-1, "")
+            self.session.findById("wnd[0]/usr/tabsTABSTRIP1/tabpPROF/ssubMAINAREA:SAPLSUID_MAINTENANCE:1103/cntlG_PROFILES_CONTAINER/shellcont/shell").selectAll()
+            self.session.findById("wnd[0]/usr/tabsTABSTRIP1/tabpPROF/ssubMAINAREA:SAPLSUID_MAINTENANCE:1103/cntlG_PROFILES_CONTAINER/shellcont/shell").pressToolbarButton("DEL_LINE")
+        except:
+            return  []
+        
     def material_availability(self, filepath, result_filepath):
         # Read data from the Excel file
         df = pd.read_excel(filepath, header =1)
