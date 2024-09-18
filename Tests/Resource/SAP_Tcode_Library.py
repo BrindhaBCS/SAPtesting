@@ -1505,3 +1505,29 @@ class SAP_Tcode_Library:
         with open(file_path, 'r') as file:
             content = file.read()
         return content
+    
+    def material_availability(self, filepath, result_filepath):
+        # Read data from the Excel file
+        df = pd.read_excel(filepath, header =1)
+ 
+        # Clean any extra spaces in column names
+        df.columns = df.columns.str.strip()
+ 
+        # Extract specific columns, adjusting names if necessary
+        extracted_columns = df[['Material', 'Plnt', 'Descr.', 'Unrestr.']]
+       
+        extracted_columns = extracted_columns.rename(columns={
+                            'Material': 'Material_ID',
+                            'Plnt': 'Plant',
+                            'Descr.': 'Description',
+                            'Unrestr.': 'Unrestricted_Stock'
+                        })
+ 
+        # Remove rows where all values are NaN or blank
+        cleaned_data = extracted_columns.dropna(how='all')
+ 
+        # Display the cleaned data
+        print(cleaned_data)
+        cleaned_data.to_excel(result_filepath, index=False)
+ 
+        print("Cleaned data has been saved successfully!")
