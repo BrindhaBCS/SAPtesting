@@ -116,9 +116,9 @@ Software Download
 
 Verify Maintenance Certificate
     SAP_Tcode_Library.Run Transaction    /nSLICENSE
-    ${value1}    Get Cell Value    wnd[0]/usr/tabsTABSTRIP_1000/tabpLIKEY_ALV/ssubACTIVE_TAB:SAPMSLIC:3030/cntlCC_ALV_LICENSES/shellcont/shell     0    SW_PRODUCT
+    ${value1}    SAP_Tcode_Library.Get Value    wnd[0]/usr/tabsTABSTRIP_1000/tabpLOCAL_LIKEYS/ssubACTIVE_TAB:SAPMSLIC:3020/tblSAPMSLICLIKEYLIST_CONTROL/txtLIKEY_TABLE-SW_PRODUCT[3,0]
     Log To Console    ${value1}
-    ${value2}    Get Cell Value    wnd[0]/usr/tabsTABSTRIP_1000/tabpLIKEY_ALV/ssubACTIVE_TAB:SAPMSLIC:3030/cntlCC_ALV_LICENSES/shellcont/shell     0    VALIDITY_TEXT
+    ${value2}    SAP_Tcode_Library.Get Value   wnd[0]/usr/tabsTABSTRIP_1000/tabpLOCAL_LIKEYS/ssubACTIVE_TAB:SAPMSLIC:3020/tblSAPMSLICLIKEYLIST_CONTROL/txtLIKEY_TABLE-VALIDITY_TEXT[10,0]
     Log To Console    ${value2}
     IF     '${value1}' == 'Maintenance_HDB' and '${value2}' == 'Valid'
         Verify Package
