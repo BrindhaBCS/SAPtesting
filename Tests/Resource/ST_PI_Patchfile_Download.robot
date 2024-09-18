@@ -115,7 +115,7 @@ Software Download
     END
 
 Verify Maintenance Certificate
-    Run Transaction    /nSLICENSE
+    SAP_Tcode_Library.Run Transaction    /nSLICENSE
     ${value1}    Get Cell Value    wnd[0]/usr/tabsTABSTRIP_1000/tabpLIKEY_ALV/ssubACTIVE_TAB:SAPMSLIC:3030/cntlCC_ALV_LICENSES/shellcont/shell     0    SW_PRODUCT
     Log To Console    ${value1}
     ${value2}    Get Cell Value    wnd[0]/usr/tabsTABSTRIP_1000/tabpLIKEY_ALV/ssubACTIVE_TAB:SAPMSLIC:3030/cntlCC_ALV_LICENSES/shellcont/shell     0    VALIDITY_TEXT
