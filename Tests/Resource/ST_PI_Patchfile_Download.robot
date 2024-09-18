@@ -3,7 +3,7 @@ Library    SeleniumLibrary
 Library    ChromeOptions.py
 Library    OperatingSystem
 Library    Collections
-Library    SAP_Tcode_Library
+Library    SAP_Tcode_Library.py
 Library    Process
 Library    ExcelLibrary
 Library    openpyxl
