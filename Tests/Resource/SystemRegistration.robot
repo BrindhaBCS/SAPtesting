@@ -1,6 +1,7 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
+Resource    ../Web/Support_Web.robot
 
 *** Variables ***
 ${File_path}    ${CURDIR}\\keyfile.txt
@@ -26,14 +27,19 @@ System Registration
     Sleep    5
     ${already exist}    Get Value    wnd[0]/usr/txtLMSIDCOM
     IF  '${already exist}' != ''
-        # Log To Console    System is already registered with ALM with : ${already exist}
-        # Log    System is already registered with ALM with : ${already exist}
         Set Global Variable     ${already exist}
         Log To Console    **gbStart**Copilot_Status**splitKeyValue**System is already registered with ALM :${already exist}**gbEnd**
     ELSE     
         Input Text    wnd[0]/usr/ctxtDEST    BCS_ALM
         Sleep    2
         Send Vkey    0
+        Sleep    3
+        ${is_destination_exists}    Run Keyword And Return Status    Element Should Be Visible and Enabled    wnd[0]/usr/btn%P017010_1000
+        IF    "${is_destination_exists}" == "True"
+            Click Element    wnd[0]/usr/btn%P017010_1000
+        ELSE
+            Log    Their is no existing http port for BCS_ALM
+        END
         Sleep    3
         Click Element    wnd[0]/usr/btnUPD
         Sleep    2
