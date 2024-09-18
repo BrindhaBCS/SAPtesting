@@ -24,7 +24,7 @@ ${certificate_Pass}    SSL Certificates are available in the System
 ${certificate_Fail}    SSL Certificate need to be added to the System
 ${Snote_Pass}    Snotes are available in the System
 ${Snote_Fail}    Snotes need to be added to the System
-
+${all_notes_cannot_be_implemented}    True
 
 *** Keywords ***
 System Logon
@@ -203,26 +203,29 @@ SNOTE
         ${SAP_note_error}=    Get Value    wnd[0]/sbar/pane[0]
         IF    '${SAP_note_error}' == 'Unable to find SAP Note that meets specified criteria'
             Log To Console    ${SAP_note_error} ${number}
+            Set Variable    ${all_notes_cannot_be_implemented}    False
         ELSE
             Double Click Current Cell Value    wnd[0]/usr/cntlGRID1/shellcont/shell    PRSTATUS
             Sleep    2
             ${value}=    Get Value    wnd[0]/usr/subSUB_101:SAPLSCW_NA_SCREEN:0101/txtSCWB_S_SCREEN_NOTE-PRSTATUS_TEXT
-            # Log    ${number}=${value}
             IF    '${value}' == 'Cannot be implemented'
-                # Log    ${number}=${value}
-                Write Excel    ${filepath}    ${sheetname}    7    2    ${Snote_Pass}
-                Write Excel    ${filepath}    ${sheetname}    7    3    Passed
                 Click Element    wnd[0]/tbar[0]/btn[3]
                 Sleep    1
                 Click Element    wnd[0]/tbar[0]/btn[3]
                 Sleep    1
             ELSE IF    '${value}' == 'Can be implemented'
-                # Click Element    wnd[0]/tbar[0]/btn[3]
-                # Sleep    2
-                # Click Element    wnd[0]/tbar[1]/btn[25]
-                # Sleep    10
-                Write Excel    ${filepath}    ${sheetname}    7    2    ${Snote_Fail}
-                Write Excel    ${filepath}    ${sheetname}    7    3    Failed
+                Set Variable    ${all_notes_cannot_be_implemented}    False
+                Click Element    wnd[0]/tbar[0]/btn[3]
+                Sleep    1
+                Click Element    wnd[0]/tbar[0]/btn[3]
+                Sleep    1
             END
         END
+    END
+    IF    ${all_notes_cannot_be_implemented} == "True"
+        Write Excel    ${filepath}    ${sheetname}    7    2    ${Snote_Pass}
+        Write Excel    ${filepath}    ${sheetname}    7    3    Passed
+    ELSE
+        Write Excel    ${filepath}    ${sheetname}    7    2    ${Snote_Fail}
+        Write Excel    ${filepath}    ${sheetname}    7    3    Failed
     END

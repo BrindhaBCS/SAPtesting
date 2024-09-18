@@ -3,9 +3,14 @@ Library    SAP_Tcode_Library.py
 Library    Process
 Library    String
 Resource    ../Web/Support_Web.robot
-# Library    SeleniumLibrary
+Library    ExcelLibrary
+Library    openpyxl
 *** Variables ***
 @{SAP_Note}        3421256    3374186    3312428    3324052    3281776    
+${Snote_Pass}    Snotes are available in the System
+${Snote_Fail}    Snotes need to be added to the System
+${filepath}    C:\\RobotFramework\\sap_testing\\Tests\\Resource\\Prerequisite_Status.xlsx
+${sheetname}    Sheet1
 *** Keywords ***
 System Logon
     Start Process     ${symvar('ABAP_SAP_SERVER')}     
@@ -21,6 +26,14 @@ System Logon
 
 System Logout
     Run Transaction   /nex
+
+Write Excel
+    [Arguments]    ${filepath}    ${sheetname}    ${rownum}    ${colnum}    ${cell_value}
+    Open Excel Document    ${filepath}    1
+    Get Sheet    ${sheetname}  
+    Write Excel Cell      ${rownum}       ${colnum}     ${cell_value}       ${sheetname}
+    Save Excel Document     ${filepath}
+    Close Current Excel Document
 SNOTE
     Run Transaction    /nsnote
     # Sleep    2
@@ -298,4 +311,6 @@ SNOTE
             END
         END
     END
-    Log To Console    **gbStart**copilot_status6**splitKeyValue**System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- Madatory Snotes Implemented Successfully**gbEnd**
+    Log To Console   System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- Madatory Snotes Implemented Successfull
+    Write Excel    ${filepath}    ${sheetname}    7    2    ${Snote_Pass}
+    Write Excel    ${filepath}    ${sheetname}    7    3    Passed

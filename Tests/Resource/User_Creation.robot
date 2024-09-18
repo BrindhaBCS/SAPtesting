@@ -37,7 +37,7 @@ Create User
     ${status}    Get Value    wnd[0]/sbar/pane[0]
     IF    '${status}' == 'User ${user} already exists'
         Write Excel    ${filepath}    ${sheetname}    8    2    ${status}
-        Write Excel    ${filepath}    ${sheetname}    8    2    Passed
+        Write Excel    ${filepath}    ${sheetname}    8    3    Passed
     ELSE
         Input Text    wnd[0]/usr/tabsTABSTRIP1/tabpADDR/ssubMAINAREA:SAPLSUID_MAINTENANCE:1900/txtSUID_ST_NODE_PERSON_NAME-NAME_LAST    ${symvar('ALM_User')}
         Click Element     wnd[0]/usr/tabsTABSTRIP1/tabpLOGO
@@ -52,5 +52,5 @@ Create User
         Click Element    wnd[0]/tbar[0]/btn[11]
         ${output}   Get Value    wnd[0]/sbar/pane[0]
         Write Excel    ${filepath}    ${sheetname}    8    2    ${output}
-        Write Excel    ${filepath}    ${sheetname}    8    2    Passed
+        Write Excel    ${filepath}    ${sheetname}    8    3    Passed
     END
