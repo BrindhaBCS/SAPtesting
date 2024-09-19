@@ -3,7 +3,6 @@
 # Warning: Any variable with conflicting names will be overwritten with 
 #          values as they are imported through each file.
 
-from .Variable import *
-from .Variablenew import *
-from .material_master import *
-
+from .SA_Roles import *
+from .SalesDoc import *
+from .UserProfile import *
