@@ -24,7 +24,8 @@ ${certificate_Pass}    SSL Certificates are available in the System
 ${certificate_Fail}    SSL Certificate need to be added to the System
 ${Snote_Pass}    Snotes are available in the System
 ${Snote_Fail}    Snotes need to be added to the System
-# ${all_notes_cannot_be_implemented}    True
+${all_notes_cannot_be_implemented}
+${is_all_parameter_exists}
 *** Keywords ***
 System Logon
     Start Process    ${symvar('ABAP_SAP_SERVER')}
