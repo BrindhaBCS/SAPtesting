@@ -210,12 +210,12 @@ SNOTE
             Double Click Current Cell Value    wnd[0]/usr/cntlGRID1/shellcont/shell    PRSTATUS
             Sleep    2
             ${value}=    Get Value    wnd[0]/usr/subSUB_101:SAPLSCW_NA_SCREEN:0101/txtSCWB_S_SCREEN_NOTE-PRSTATUS_TEXT
-            IF    '${value}' == 'Cannot be implemented'
+            IF    '${value}' == 'Cannot be implemented' OR '${value}' == 'Completely implemented'
                 Click Element    wnd[0]/tbar[0]/btn[3]
                 Sleep    1
                 Click Element    wnd[0]/tbar[0]/btn[3]
                 Sleep    1
-            ELSE IF    '${value}' == 'Can be implemented'
+            ELSE IF    '${value}' == 'Can be implemented' OR '${value}' == 'Incompletely implemented'
                 Set Variable    ${all_notes_cannot_be_implemented}    False
                 Click Element    wnd[0]/tbar[0]/btn[3]
                 Sleep    1
