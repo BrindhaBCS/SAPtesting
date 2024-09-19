@@ -58,7 +58,7 @@ Sales Document with CreditBlocks
     Log To Console    ${sliced_data}
     ${i}    Get Length   ${sliced_data}
     Log    ${i}
-    ${json}    Excel Column To Json    file_path=C:\\tmp\\SalesDocument.xlsx    sheet_name=Sheet1    column_index=4
+    ${json}    Excel Column To Json    file_path=C:\\tmp\\SalesDocument.xlsx    sheet_name=Sheet1    column_index=6
     Log To Console    **gbStart**copilot_salesdocument**splitKeyValue**${json}**gbEnd**
     Close Current Excel Document
     Sleep    5
