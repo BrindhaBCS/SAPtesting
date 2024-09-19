@@ -7,3 +7,4 @@ Test Tags    DeActivateUser
 *** Test Cases ***
 DeActivate User
     DeActivate User
+    
