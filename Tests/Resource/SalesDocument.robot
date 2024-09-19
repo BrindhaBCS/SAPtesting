@@ -48,6 +48,7 @@ Sales Document with CreditBlocks
     Log    ${i}
     ${json}    Excel Column To Json    file_path=C:\\tmp\\SalesDocument.xlsx    sheet_name=Sheet1    column_index=4
     Log To Console    **gbStart**copilot_Sales_Document**splitKeyValue**${json}**gbEnd**
+    
     Close Current Excel Document
     Sleep    5
     FOR    ${index}    IN RANGE    0    ${i}
