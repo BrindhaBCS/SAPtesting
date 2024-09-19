@@ -30,7 +30,7 @@ ${is_all_parameter_exists}
 System Logon
     Start Process    ${symvar('ABAP_SAP_SERVER')}
     Connect To Session
-    Open Connection     ${symvar('ABAP_Connection')}
+    Open Connection     ${symvar('ABAP_SID')}
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('ABAP_CLIENT')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('ABAP_USER')}
     # Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('ABAP_PASSWORD')}

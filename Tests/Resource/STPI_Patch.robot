@@ -24,7 +24,7 @@ ${sheetname}    Sheet1
 System Logon
     Start Process    ${symvar('ABAP_SAP_SERVER')}
     Connect To Session
-    Open Connection     ${symvar('ABAP_Connection')}
+    Open Connection     ${symvar('ABAP_SID')}
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('ABAP_PATCHCLIENT')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('DDIC_USER')}
     Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{ABAP_PASSWORD}

@@ -16,7 +16,7 @@ System Logon
     Start Process     ${symvar('ABAP_SAP_SERVER')}     
     Sleep    2
     Connect To Session
-    Open Connection    ${symvar('ABAP_Connection')}    
+    Open Connection    ${symvar('ABAP_SID')}    
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('ABAP_CLIENT')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('ABAP_USER')}
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('RBT_USER_PASSWORD')}
@@ -50,23 +50,23 @@ SNOTE
             Log To Console    ${number}=${SAP_note_error}
         ELSE
             Double Click Current Cell Value    wnd[0]/usr/cntlGRID1/shellcont/shell    PRSTATUS
-            Sleep    2
+            # Sleep    2
             ${value}=    Get Value    wnd[0]/usr/subSUB_101:SAPLSCW_NA_SCREEN:0101/txtSCWB_S_SCREEN_NOTE-PRSTATUS_TEXT
             Log    ${number}=${value}
             IF    '${value}' == 'Cannot be implemented'
                 Log    ${number}=${value}
                 Log To Console    ${number}=${value}
                 Click Element    wnd[0]/tbar[0]/btn[3]
-                Sleep    1
+                # Sleep    1
                 Click Element    wnd[0]/tbar[0]/btn[3]
-                Sleep    1
+                # Sleep    1
             ELSE IF    '${value}' == 'Completely implemented'
                 Log    ${number}=${value}
                 Log To Console    ${number}=${value}
                 Click Element    wnd[0]/tbar[0]/btn[3]
-                Sleep    1
+                # Sleep    1
                 Click Element    wnd[0]/tbar[0]/btn[3]
-                Sleep    1
+                # Sleep    1
             ELSE IF    '${value}' == 'Can be implemented'
                 Click Element    wnd[0]/tbar[0]/btn[3]
                 # Sleep    2
@@ -74,7 +74,7 @@ SNOTE
                 Window Handling    wnd[1]    Change processor of SAP Note 000${number}   wnd[1]/usr/btnSPOP-OPTION1
                 Window Handling    wnd[1]    Information    wnd[1]/tbar[0]/btn[0]
                 Change Of Process    wnd[1]    wnd[1]/usr/btnSPOP-OPTION1
-                Sleep    2
+                # Sleep    2
                 ${window}    Get Window Title    wnd[1]
                 IF    "${window}" == "Queue of correction instructions to be installed"
                     ${status}    Get Value    wnd[1]/usr/txtGV_TEXT2
@@ -83,37 +83,37 @@ SNOTE
                         Log To Console    ${row}
                         # Sleep    10
                         Click Element    wnd[1]/tbar[0]/btn[9]
-                        Sleep    10
+                        # Sleep    10
                         Click Element    wnd[1]/tbar[0]/btn[0]
-                        Sleep    2
+                        # Sleep    2
                         Run Transaction    /nSE38
                         Input Text    wnd[0]/usr/ctxtRS38M-PROGRAMM    /SDF/JM_NOTE_CHECKPNT_3485517
-                        Sleep    2
+                        # Sleep    2
                         Click Element    wnd[0]/tbar[1]/btn[8]
-                        Sleep    10
+                        # Sleep    10
                         Select Radio Button    wnd[0]/usr/radUPDATE
-                        Sleep    2
+                        # Sleep    2
                         Click Element    wnd[0]/tbar[1]/btn[8]
-                        Sleep    2
+                        # Sleep    2
                         ${window_exist}    Run Keyword And Return Status    Element Should Be Present    wnd[1]
                         IF    '${window_exist}' == 'True'
                             Create Transport    wnd[1]    wnd[1]/tbar[0]/btn[8]    TR-ALM    wnd[2]/tbar[0]/btn[0]
-                            Sleep    2
+                            # Sleep    2
                         ELSE
                             Log    Transport in SE38 job:/SDF/JM_NOTE_CHECKPNT_3485517 not file_exists
                         END
                         Run Transaction    /nsnote
-                        Sleep    2
+                        # Sleep    2
                         Click Element    wnd[0]/tbar[1]/btn[33]
-                        Sleep    2
+                        # Sleep    2
                         Input Text    wnd[0]/usr/txtNUMM-LOW    ${number}
-                        Sleep    2
+                        # Sleep    2
                         Click Element    wnd[0]/tbar[1]/btn[8]
-                        Sleep    2
+                        # Sleep    2
                         Click Element    wnd[0]/tbar[1]/btn[25]
-                        Sleep    2
+                        # Sleep    2
                         Window Handling    wnd[1]    Information    wnd[1]/tbar[0]/btn[0]
-                        Sleep    2
+                        # Sleep    2
                         ${window1}    Get Window Title    wnd[1]
                         IF    "${window1}" == "Queue of correction instructions to be installed"
                             ${status1}    Get Value    wnd[1]/usr/txtGV_TEXT2
@@ -122,9 +122,9 @@ SNOTE
                                 Log To Console    ${row}
                                 # Sleep    10
                                 Click Element    wnd[1]/tbar[0]/btn[9]
-                                Sleep    10
+                                # Sleep    10
                                 Click Element    wnd[1]/tbar[0]/btn[0]
-                                Sleep    2
+                                # Sleep    2
                             ELSE IF    "${status1}" == "Implement the automatic correction instructions"
                                 Click Element    wnd[1]/tbar[0]/btn[13]
                             END
@@ -146,15 +146,15 @@ SNOTE
                 END
                 Window Handling    wnd[1]    Information    wnd[1]/tbar[0]/btn[0]
                 Create Transport    wnd[1]    wnd[1]/tbar[0]/btn[8]    TR-ALM    wnd[2]/tbar[0]/btn[0]
-                Sleep    10
+                # Sleep    10
                 Window Handling    wnd[1]    Object Editing: Initial Screen    wnd[1]/tbar[0]/btn[0]
-                Sleep    10
+                # Sleep    10
                 Window Handling    wnd[1]    Confirm Changes    wnd[1]/tbar[0]/btn[0]
-                Sleep    10
+                # Sleep    10
                 Window Handling    wnd[1]    Inactive Objects for ${symvar('ABAP_USER')}    wnd[1]/tbar[0]/btn[0]
-                Sleep    10
+                # Sleep    10
                 Window Handling    wnd[2]    Activation Error    wnd[2]/usr/btnBUTTON_1
-                Sleep    5
+                # Sleep    5
                 ${window_exist}    Run Keyword And Return Status    Element Should Be Present    wnd[1]
                 IF    '${window_exist}' == 'True'
                     ${window2}    Get Window Title    wnd[1]
@@ -165,9 +165,9 @@ SNOTE
                             Log    ${row}
                             # Sleep    10
                             Click Element    wnd[1]/tbar[0]/btn[9]
-                            Sleep    10
+                            # Sleep    10
                             Click Element    wnd[1]/tbar[0]/btn[0]
-                            Sleep    2
+                            # Sleep    2
                         ELSE IF    "${status2}" == "Implement the automatic correction instructions"
                             Click Element    wnd[1]/tbar[0]/btn[13]
                         END
@@ -178,22 +178,22 @@ SNOTE
                     Log    Window wnd[1] does not exist
                 END
                 Window Handling    wnd[1]    Confirm SAP Note Implementation    wnd[1]/tbar[0]/btn[0]
-                Sleep    5
+                # Sleep    5
                 Window Handling    wnd[1]    Queue of correction instructions to be installed    wnd[1]/tbar[0]/btn[13]
-                Sleep    5
+                # Sleep    5
                 Window Handling    wnd[1]    Confirm Changes    wnd[1]/tbar[0]/btn[0]
-                Sleep    5
+                # Sleep    5
                 Window Handling    wnd[1]    Inactive Objects for ${symvar('ABAP_USER')}    wnd[1]/tbar[0]/btn[0]
-                Sleep    5
+                # Sleep    5
                 Click Element    wnd[0]/tbar[0]/btn[3]
             ELSE IF    '${value}' == 'Incompletely implemented'
                 Click Element    wnd[0]/tbar[0]/btn[3]
-                Sleep    2
+                # Sleep    2
                 Click Element    wnd[0]/tbar[1]/btn[25]
                 Window Handling    wnd[1]    Change processor of SAP Note 000${number}   wnd[1]/usr/btnSPOP-OPTION1
                 Window Handling    wnd[1]    Information    wnd[1]/tbar[0]/btn[0]
                 Change Of Process    wnd[1]    wnd[1]/usr/btnSPOP-OPTION1
-                Sleep    2
+                # Sleep    2
                 ${window}    Get Window Title    wnd[1]
                 IF    "${window}" == "Queue of correction instructions to be installed"
                     ${status}    Get Value    wnd[1]/usr/txtGV_TEXT2
@@ -202,26 +202,26 @@ SNOTE
                         Log To Console    ${row}
                         # Sleep    10
                         Click Element    wnd[1]/tbar[0]/btn[9]
-                        Sleep    10
+                        # Sleep    10
                         Click Element    wnd[1]/tbar[0]/btn[0]
-                        Sleep    2
+                        # Sleep    2
                         Run Transaction    /nSE38
                         Input Text    wnd[0]/usr/ctxtRS38M-PROGRAMM    /SDF/JM_NOTE_CHECKPNT_3485517
-                        Sleep    2
+                        # Sleep    2
                         Click Element    wnd[0]/tbar[1]/btn[8]
-                        Sleep    2
+                        # Sleep    2
                         Window Handling    wnd[1]    Execute/test object    wnd[1]/usr/btnBUTTON_1
-                        Sleep    10
+                        # Sleep    10
                         ${title}    Get Window Title    wnd[0]
                         IF    "${title}" == "/SDF/JM_NOTE_CHECKPNT_3485517 - Note Implementation"
                             Select Radio Button    wnd[0]/usr/radUPDATE
-                            Sleep    2
+                            # Sleep    2
                             Click Element    wnd[0]/tbar[1]/btn[8]
-                            Sleep    2
+                            # Sleep    2
                             ${window_exist}    Run Keyword And Return Status    Element Should Be Present    wnd[1]
                             IF    '${window_exist}' == 'True'
                                 Create Transport    wnd[1]    wnd[1]/tbar[0]/btn[8]    TR-ALM    wnd[2]/tbar[0]/btn[0]
-                                Sleep    2
+                                # Sleep    2
                             ELSE
                                 Log    Transport in SE38 job:/SDF/JM_NOTE_CHECKPNT_3485517 not file_exists
                             END
@@ -230,17 +230,17 @@ SNOTE
                             Log    ${status}
                         END                        
                         Run Transaction    /nsnote
-                        Sleep    2
+                        # Sleep    2
                         Click Element    wnd[0]/tbar[1]/btn[33]
-                        Sleep    2
+                        # Sleep    2
                         Input Text    wnd[0]/usr/txtNUMM-LOW    ${number}
-                        Sleep    2
+                        # Sleep    2
                         Click Element    wnd[0]/tbar[1]/btn[8]
-                        Sleep    2
+                        # Sleep    2
                         Click Element    wnd[0]/tbar[1]/btn[25]
-                        Sleep    2
+                        # Sleep    2
                         Window Handling    wnd[1]    Information    wnd[1]/tbar[0]/btn[0]
-                        Sleep    2
+                        # Sleep    2
                         ${window1}    Get Window Title    wnd[1]
                         IF    "${window1}" == "Queue of correction instructions to be installed"
                             ${status1}    Get Value    wnd[1]/usr/txtGV_TEXT2
@@ -249,9 +249,9 @@ SNOTE
                                 Log To Console    ${row}
                                 # Sleep    10
                                 Click Element    wnd[1]/tbar[0]/btn[9]
-                                Sleep    10
+                                # Sleep    10
                                 Click Element    wnd[1]/tbar[0]/btn[0]
-                                Sleep    2
+                                # Sleep    2
                             ELSE IF    "${status1}" == "Implement the automatic correction instructions"
                                 Click Element    wnd[1]/tbar[0]/btn[13]
                             END
@@ -273,15 +273,15 @@ SNOTE
                 END
                 Window Handling    wnd[1]    Information    wnd[1]/tbar[0]/btn[0]
                 Create Transport    wnd[1]    wnd[1]/tbar[0]/btn[8]    TR-ALM    wnd[2]/tbar[0]/btn[0]
-                Sleep    10
+                # Sleep    10
                 Window Handling    wnd[1]    Object Editing: Initial Screen    wnd[1]/tbar[0]/btn[0]
-                Sleep    10
+                # Sleep    10
                 Window Handling    wnd[1]    Confirm Changes    wnd[1]/tbar[0]/btn[0]
-                Sleep    10
+                # Sleep    10
                 Window Handling    wnd[1]    Inactive Objects for ${symvar('ABAP_USER')}    wnd[1]/tbar[0]/btn[0]
-                Sleep    10
+                # Sleep    10
                 Window Handling    wnd[2]    Activation Error    wnd[2]/usr/btnBUTTON_1
-                Sleep    5
+                # Sleep    5
                 ${window2}    Get Window Title    wnd[1]
                 IF    "${window2}" == "Queue of correction instructions to be installed"
                     ${status2}    Get Value    wnd[1]/usr/txtGV_TEXT2
@@ -290,9 +290,9 @@ SNOTE
                         Log To Console    ${row}
                         # Sleep    10
                         Click Element    wnd[1]/tbar[0]/btn[9]
-                        Sleep    10
+                        # Sleep    10
                         Click Element    wnd[1]/tbar[0]/btn[0]
-                        Sleep    2
+                        # Sleep    2
                     ELSE IF    "${status2}" == "Implement the automatic correction instructions"
                         Click Element    wnd[1]/tbar[0]/btn[13]
                     END
@@ -300,13 +300,13 @@ SNOTE
                     Log To Console    Queue window doesn't exits after activation error
                 END
                 Window Handling    wnd[1]    Confirm SAP Note Implementation    wnd[1]/tbar[0]/btn[0]
-                Sleep    5
+                # Sleep    5
                 Window Handling    wnd[1]    Queue of correction instructions to be installed    wnd[1]/tbar[0]/btn[13]
-                Sleep    5
+                # Sleep    5
                 Window Handling    wnd[1]    Confirm Changes    wnd[1]/tbar[0]/btn[0]
-                Sleep    5
+                # Sleep    5
                 Window Handling    wnd[1]    Inactive Objects for ${symvar('ABAP_USER')}    wnd[1]/tbar[0]/btn[0]
-                Sleep    5
+                # Sleep    5
                 Click Element    wnd[0]/tbar[0]/btn[3]
             END
         END

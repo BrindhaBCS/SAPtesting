@@ -20,7 +20,7 @@ System Logon
     Start Process     ${symvar('ABAP_SAP_SERVER')}     
     Sleep    2
     Connect To Session
-    Open Connection    ${symvar('ABAP_Connection')}    
+    Open Connection    ${symvar('ABAP_SID')}    
     SAP_Tcode_Library.Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('ABAP_CLIENT')}
     SAP_Tcode_Library.Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('ABAP_USER')}
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('RBT_USER_PASSWORD')}
