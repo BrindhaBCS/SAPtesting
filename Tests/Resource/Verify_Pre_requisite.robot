@@ -102,7 +102,7 @@ Verify parameter in RZ10
     Click Element   wnd[1]/tbar[0]/btn[0]
     Select Radio Button    wnd[0]/usr/radSPFL1010-EXPERT
     Click Element    wnd[0]/usr/btnEDIT_PUSH
-    Set Variable    ${is_all_parameter_exists}    True
+    ${is_all_parameter_exists}    Set Variable    True
     ${length}    Get Length    ${parameters}
     FOR    ${i}    IN RANGE    0    ${length}
         ${result}    Check Parameter Found    wnd[0]/usr    ${parameters}[${i}]
@@ -193,7 +193,7 @@ SNOTE
     Set Focus    wnd[0]/usr/lbl[5,3]
     Sleep    2
     Send Vkey    2
-    Set Variable    ${all_notes_cannot_be_implemented}    True
+    ${all_notes_cannot_be_implemented}    Set Variable    True
     Sleep    1
     Click Element    wnd[0]/tbar[1]/btn[33]
     Sleep    1   
