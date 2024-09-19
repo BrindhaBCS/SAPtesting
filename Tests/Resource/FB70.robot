@@ -47,8 +47,8 @@ Transaction FB70
     Sleep   2
     Input Text  wnd[0]/usr/subITEMS:SAPLFSKB:0100/tblSAPLFSKBTABLE/txtACGL_ITEM-WRBTR[4,0]      ${amount_cur_doc}
     Sleep   2
-    Input Text  wnd[0]/usr/subITEMS:SAPLFSKB:0100/tblSAPLFSKBTABLE/ctxtACGL_ITEM-KOSTL[17,0]    ${cost_center}
-    Sleep   2
+    # Input Text  wnd[0]/usr/subITEMS:SAPLFSKB:0100/tblSAPLFSKBTABLE/ctxtACGL_ITEM-KOSTL[17,0]    ${cost_center}
+    # Sleep   2
     Click Element   wnd[0]/tbar[0]/btn[11]
     Sleep   2
     ${output}   Get Value    wnd[0]/sbar/pane[0]
