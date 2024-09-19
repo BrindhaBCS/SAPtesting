@@ -11,8 +11,12 @@ Resource    ../Web/Support_Web.robot
 ${Results_Directory_Path}   ${CURDIR}//Results//
 ${MM_Filename}      MM_Materials_MB52.xlsx
 
-${filepath}    ${CURDIR}//Results//MM_Materials_MB52.xlsx
-${result_filepath}    ${CURDIR}//Results//Cleaned_MM_Materials_MB52.xlsx
+# ${filepath}    ${CURDIR}//Results//MM_Materials_MB52.xlsx
+# ${result_filepath}    ${CURDIR}//Results//Cleaned_MM_Materials_MB52.xlsx
+
+${input_filepath}    ${symvar('filepath')}//${MM_Filename}
+${result_filepath}    ${symvar('filepath')}//${symvar('filename')}
+
 ${Plant}    1040
 ${Material}    2000000071
 
@@ -52,7 +56,7 @@ Executing Material Availability
     Sleep    1
     Click Element    wnd[1]/tbar[0]/btn[20]
     Sleep    1
-    Input Text    wnd[1]/usr/ctxtDY_PATH   ${Results_Directory_Path}
+    Input Text    wnd[1]/usr/ctxtDY_PATH   ${symvar('filepath')}
     Sleep    1
     Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${MM_Filename}
     Click Element    wnd[1]/tbar[0]/btn[11]
@@ -60,4 +64,5 @@ Executing Material Availability
     Log To Console    mm1completed 
 Result
     Log To Console    Material Availability Unresticted Data
-    Material Availability    ${filepath}    ${result_filepath}    
+    Material Availability    ${input_filepath}    ${result_filepath}
+    # Material Availability    ${filepath}    ${result_filepath}    
