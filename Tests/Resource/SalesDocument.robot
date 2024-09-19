@@ -30,11 +30,17 @@ Sales Document with CreditBlocks
     Click Element    wnd[0]/tbar[1]/btn[8]
     Sleep    1
     Click Element    wnd[0]/mbar/menu[3]/menu[1]/menu[1]
+    Sleep    1
     clear field text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME
+    Sleep    1
     Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    SalesDocument
+    Sleep    1
     Click Element    wnd[1]/tbar[0]/btn[20]
+    Sleep    1
     clear field text    wnd[1]/usr/ctxtDY_PATH
-    Input Text    wnd[1]/usr/ctxtDY_PATH    c:\\tmp 
+    Sleep    1
+    Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp\\
+    Sleep    1
     Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    1
     Run Keyword And Ignore Error    Click Element    wnd[1]/tbar[0]/btn[12]
