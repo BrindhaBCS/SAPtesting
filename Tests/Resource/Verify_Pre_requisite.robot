@@ -24,8 +24,7 @@ ${certificate_Pass}    SSL Certificates are available in the System
 ${certificate_Fail}    SSL Certificate need to be added to the System
 ${Snote_Pass}    Snotes are available in the System
 ${Snote_Fail}    Snotes need to be added to the System
-${all_notes_cannot_be_implemented}    True
-${is_all_parameter_exists}    True
+# ${all_notes_cannot_be_implemented}    True
 *** Keywords ***
 System Logon
     Start Process    ${symvar('ABAP_SAP_SERVER')}
@@ -102,6 +101,7 @@ Verify parameter in RZ10
     Click Element   wnd[1]/tbar[0]/btn[0]
     Select Radio Button    wnd[0]/usr/radSPFL1010-EXPERT
     Click Element    wnd[0]/usr/btnEDIT_PUSH
+    Set Variable    ${is_all_parameter_exists}    True
     ${length}    Get Length    ${parameters}
     FOR    ${i}    IN RANGE    0    ${length}
         ${result}    Check Parameter Found    wnd[0]/usr    ${parameters}[${i}]
@@ -192,8 +192,7 @@ SNOTE
     Set Focus    wnd[0]/usr/lbl[5,3]
     Sleep    2
     Send Vkey    2
-    Sleep    2
-    Take Screenshot    snote_1.jpg
+    Set Variable    ${all_notes_cannot_be_implemented}    True
     Sleep    1
     Click Element    wnd[0]/tbar[1]/btn[33]
     Sleep    1   
