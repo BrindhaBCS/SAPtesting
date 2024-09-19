@@ -231,3 +231,17 @@ SNOTE
         Write Excel    ${filepath}    ${sheetname}    7    2    ${Snote_Fail}
         Write Excel    ${filepath}    ${sheetname}    7    3    Failed
     END
+
+Verify User
+    Run Transaction    /nSU01
+    Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('ALM_User')}
+    Click Element    wnd[0]/tbar[1]/btn[7]
+    ${user}    To Upper    ${symvar('ALM_User')}
+    ${status}    Get Value    wnd[0]/sbar/pane[0]
+    IF    '${status}' == 'User ${user} does not exist'
+        Write Excel    ${filepath}    ${sheetname}    8    2    ${status}
+        Write Excel    ${filepath}    ${sheetname}    8    3    Failed
+    ELSE
+        Write Excel    ${filepath}    ${sheetname}    8    2    User ${user} Available in the system
+        Write Excel    ${filepath}    ${sheetname}    8    3    Passed
+    END

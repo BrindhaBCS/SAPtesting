@@ -12,3 +12,4 @@ Verify the system is ready for ALM configuration
     Verify parameter in RZ10
     STRUST
     SNOTE
+    Verify User
