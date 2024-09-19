@@ -173,9 +173,8 @@ Material_master
             FOR    ${index}    IN RANGE    0    10
                 Send VKey    0
                 Sleep    1
-                ${is_present}    Run Keyword And Return Status    Element Should Be Present    wnd[1]/usr/btnSPOP-OPTION1
-                Run Keyword And Ignore Error  Click Element    wnd[1]/usr/btnSPOP-OPTION1
-
+                ${is_present}    Run Keyword And Return Status    Element Should Be Present    wnd[0]/usr/tabsTABSPR1/tabpSP25
+                Send Vkey    11
                 Exit For Loop If    ${is_present}
             END
         
