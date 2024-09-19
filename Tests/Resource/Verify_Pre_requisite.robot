@@ -216,7 +216,6 @@ SNOTE
                 Click Element    wnd[0]/tbar[0]/btn[3]
                 Sleep    1
             ELSE IF    '${value}' == 'Completely implemented'
-                Set Variable    ${all_notes_cannot_be_implemented}    False
                 Click Element    wnd[0]/tbar[0]/btn[3]
                 Sleep    1
                 Click Element    wnd[0]/tbar[0]/btn[3]
