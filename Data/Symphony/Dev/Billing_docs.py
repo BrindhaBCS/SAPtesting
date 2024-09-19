@@ -1,0 +1,6 @@
+BILLING_SAP_SERVER = "$BILLING_SAP_SERVER"
+BILLING_SAP_connection = "$BILLING_SAP_connection"
+BILLING_Client_Id = "$BILLING_Client_Id"
+BILLING_User_Name = "$BILLING_User_Name"
+sales_organation = "$sales_organation"
+create_by = "$create_by"
