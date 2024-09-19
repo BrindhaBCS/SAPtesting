@@ -8,6 +8,7 @@ from robot.api import logger
 import sys
 import ast
 import re
+import openpyxl
 import pandas as pd
 
 
@@ -1357,9 +1358,15 @@ class SAP_Tcode_Library:
         except Exception as e:
             return f"Error: {e}"
     def window_handling(self, element_id, text, button_id):
-        window = self.session.findById(element_id).Text
-        if window == text :
-            self.session.findById(button_id).press()
+        try:
+            window = self.session.findById(element_id).Text
+            if window == text :
+                self.session.findById(button_id).press()
+            else:
+                print(f"Text '{window}' did not match expected text '{text}'.")
+        
+        except Exception as e:
+            print(f"An error occurred: {e}")
             
     def clear_field_text(self, field_id):
         try:
@@ -1513,3 +1520,27 @@ class SAP_Tcode_Library:
             self.session.findById("wnd[0]/usr/tabsTABSTRIP1/tabpPROF/ssubMAINAREA:SAPLSUID_MAINTENANCE:1103/cntlG_PROFILES_CONTAINER/shellcont/shell").pressToolbarButton("DEL_LINE")
         except:
             return  []
+        
+    def count_excel_rows(self, abs_filename, sheet_name):
+        try:
+            wb = openpyxl.load_workbook(abs_filename)
+            ws = wb[sheet_name]
+            count = 0
+            for row in ws:
+                if not all([cell.value == None for cell in row]):
+                    count += 1
+            print(count)
+            return(count)
+    
+        except Exception as e:
+            print(e)
+
+    def read_excel_cell_value(self, file_path, sheet_name, row, column): 
+        row = int(row)
+        column = int(column)   
+        wb = openpyxl.load_workbook(file_path, data_only=True)
+        if sheet_name not in wb.sheetnames:
+            raise ValueError(f"Sheet {sheet_name} does not exist in the workbook")
+        sheet = wb[sheet_name]
+        cell_value = sheet.cell(row=row, column=column).value
+        return cell_value
