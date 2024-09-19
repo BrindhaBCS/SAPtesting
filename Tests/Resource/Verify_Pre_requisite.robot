@@ -18,7 +18,7 @@ ${SAP_UI_success}    SAP UI version patch level met the criteria
 ${SAP_UI_fail}    SAP BASIS and SAP UI version patch level too low. Need to Patch SAP_UI Either 740 SP15 or higher
 ${ST_PI_Success}    ST-PI patch version met the criteria
 ${ST_PI_Fail}    Latest patch of ST-PI needs to be applied
-${parameter_Pass}    Profile Parameters are set
+${parameter_Pass}    Profile Parameters are available in the system
 ${parameter_Fail}    Profile parameter are not in place. Need to add them
 ${certificate_Pass}    SSL Certificates are available in the System
 ${certificate_Fail}    SSL Certificate need to be added to the System
@@ -224,7 +224,7 @@ SNOTE
             END
         END
     END
-    IF    ${all_notes_cannot_be_implemented} == "True"
+    IF    "${all_notes_cannot_be_implemented}" == "True"
         Write Excel    ${filepath}    ${sheetname}    7    2    ${Snote_Pass}
         Write Excel    ${filepath}    ${sheetname}    7    3    Passed
     ELSE
