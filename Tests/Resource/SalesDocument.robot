@@ -47,6 +47,7 @@ Sales Document with CreditBlocks
     ${i}    Get Length   ${sliced_data}
     Log    ${i}
     ${json}    Excel Column To Json    file_path=C:\\tmp\\SalesDocument.xlsx    sheet_name=Sheet1    column_index=4
+    Log To Console    **gbStart**copilot_Sales_Document**splitKeyValue**${json}**gbEnd**
     Close Current Excel Document
     Sleep    5
     FOR    ${index}    IN RANGE    0    ${i}
@@ -62,6 +63,7 @@ Sales Document with CreditBlocks
             Click Element    wnd[0]/tbar[0]/btn[3]
             Exit For Loop
         ELSE
-            Log    Yours input not match
+            Log    No Document found
+            Log To Console    No Document found
         END
     END
