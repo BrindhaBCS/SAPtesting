@@ -112,10 +112,10 @@ Verify parameter in RZ10
             IF    '${param_value}' == '${values}[${i}]'
                 Click Element    wnd[0]/tbar[0]/btn[3]
             ELSE
-                Set Variable    ${is_all_parameter_exists}    False
+                ${is_all_parameter_exists}    Set Variable    False
             END
         ELSE
-            Set Variable    ${is_all_parameter_exists}    False
+            ${is_all_parameter_exists}    Set Variable    False
         END        
     END
     IF    "${is_all_parameter_exists}" == "True"
@@ -221,13 +221,13 @@ SNOTE
                 Click Element    wnd[0]/tbar[0]/btn[3]
                 Sleep    1
             ELSE IF    '${value}' == 'Can be implemented'
-                Set Variable    ${all_notes_cannot_be_implemented}    False
+                ${all_notes_cannot_be_implemented}    Set Variable    False
                 Click Element    wnd[0]/tbar[0]/btn[3]
                 Sleep    1
                 Click Element    wnd[0]/tbar[0]/btn[3]
                 Sleep    1
             ELSE IF    '${value}' == 'Incompletely implemented'
-                Set Variable    ${all_notes_cannot_be_implemented}    False
+                ${all_notes_cannot_be_implemented}    Set Variable    False
                 Click Element    wnd[0]/tbar[0]/btn[3]
                 Sleep    1
                 Click Element    wnd[0]/tbar[0]/btn[3]
