@@ -17,7 +17,7 @@ System Logon
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('BILLING_User_Password')}
     Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{BILLING_PASSWORD}
     Send Vkey    0
-    Sleep    5
+    Sleep    3
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
     Sleep   1
 
@@ -80,6 +80,9 @@ Billing Documents Not Posted to Accounting
     Sleep    2
     Select Document On Text   wnd[0]/usr/cntlGRID1/shellcont/shell    VBELN    ${symvar('Enter_Bill_Document')}
     Sleep    2
+    Click Element    wnd[0]/tbar[1]/btn[18]
+    Sleep    2
+
         
 
 System Logout
