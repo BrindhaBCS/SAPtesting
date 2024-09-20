@@ -53,3 +53,8 @@ Create User
         ${last_profile_index}    Set Variable    ${total}
         
     END
+    Click Element    wnd[0]/tbar[0]/btn[11]
+    Sleep    1
+    ${result}    Get Value    wnd[0]/sbar/pane[0]
+    Log    ${result}
+    Log To Console    ${result}

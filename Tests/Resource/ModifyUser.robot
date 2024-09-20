@@ -6,15 +6,14 @@ Library    openpyxl
 
 *** Keywords *** 
 System Logon
-    Start Process    ${symvar('dev_SAP_SERVER')}
+    Start Process    ${symvar('SAP_SERVER')}
     Connect To Session
-    Open Connection     ${symvar('dev_Connection')}
-    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('dev_Client_Id')}
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('dev_User_Name')}
-    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{dev_PASSWORD}
-    # Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('dev_PASSWORD')}
+    Open Connection     ${symvar('User_Connection')}
+    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('User_Client')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('Login_User')}
+    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{DEV_PASSWORD}
+    # Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('DEV_PASSWORD')}
     Send Vkey    0
-    Sleep    10
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
 System Logout
     Run Transaction   /nex
@@ -31,18 +30,21 @@ Modify User
     Sleep    1
     delete all profile
     Sleep    2
-    Open Excel Document    ${symvar('User_excel_path')}    ${symvar('Requested_SAP_Roles')}
-    ${column_data}=    Read Excel Column    1    sheet_name=${symvar('Requested_SAP_Roles')}
-    ${row_count}=    Get Length    ${column_data}
-    Log    Column data length: ${row_count}
-    FOR    ${row}    IN RANGE    1    ${row_count}
-        ${value}=    Set Variable    ${column_data}[${row}]
-        Log    ${value}
-        ${sap_cell_range}=    Evaluate    ${row} -1
-        Set Cell Value    wnd[0]/usr/tabsTABSTRIP1/tabpPROF/ssubMAINAREA:SAPLSUID_MAINTENANCE:1103/cntlG_PROFILES_CONTAINER/shellcont/shell    ${sap_cell_range}    PROFILE    ${value}
-        Send Vkey    0
+    ${last_profile_index}    Set Variable    0
+    FOR    ${role}    IN    @{symvar('Requested_SAP_Roles')}
+        ${row_count}    Count Excel Rows     ${symvar('User_Profile_Excelpath')}       ${role}
+        ${total_rows}=    Evaluate    ${row_count} + 1
+        FOR    ${row}    IN RANGE    1    ${total_rows}
+            ${i}    Evaluate    ${last_profile_index} + ${row}
+            ${j}    Evaluate    ${i} - 1
+            ${profile}    Read Excel Cell Value    ${symvar('User_Profile_Excelpath')}    ${role}    ${row}    1
+            Set Cell Value    wnd[0]/usr/tabsTABSTRIP1/tabpPROF/ssubMAINAREA:SAPLSUID_MAINTENANCE:1103/cntlG_PROFILES_CONTAINER/shellcont/shell    ${j}    PROFILE    ${profile}
+            Send Vkey    0
+        END
+        ${total}=    Evaluate    ${last_profile_index} + ${row_count}
+        ${last_profile_index}    Set Variable    ${total}
+        
     END
-    Close Current Excel Document
     Click Element    wnd[0]/tbar[0]/btn[11]
     Sleep    1
     ${result}    Get Value    wnd[0]/sbar/pane[0]

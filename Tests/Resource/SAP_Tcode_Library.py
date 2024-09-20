@@ -1522,27 +1522,40 @@ class SAP_Tcode_Library:
             return  []
         
     def material_availability(self, filepath, result_filepath):
-        # Read data from the Excel file
         df = pd.read_excel(filepath, header =1)
- 
-        # Clean any extra spaces in column names
         df.columns = df.columns.str.strip()
- 
-        # Extract specific columns, adjusting names if necessary
         extracted_columns = df[['Material', 'Plnt', 'Descr.', 'Unrestr.']]
-       
         extracted_columns = extracted_columns.rename(columns={
                             'Material': 'Material_ID',
                             'Plnt': 'Plant',
                             'Descr.': 'Description',
                             'Unrestr.': 'Unrestricted_Stock'
                         })
- 
-        # Remove rows where all values are NaN or blank
         cleaned_data = extracted_columns.dropna(how='all')
- 
-        # Display the cleaned data
         print(cleaned_data)
         cleaned_data.to_excel(result_filepath, index=False)
- 
         print("Cleaned data has been saved successfully!")
+
+    def count_excel_rows(self, abs_filename, sheet_name):
+        try:
+            wb = openpyxl.load_workbook(abs_filename)
+            ws = wb[sheet_name]
+            count = 0
+            for row in ws:
+                if not all([cell.value == None for cell in row]):
+                    count += 1
+            print(count)
+            return(count)
+    
+        except Exception as e:
+            print(e)
+            
+    def read_excel_cell_value(self, file_path, sheet_name, row, column): 
+        row = int(row)
+        column = int(column)   
+        wb = openpyxl.load_workbook(file_path, data_only=True)
+        if sheet_name not in wb.sheetnames:
+            raise ValueError(f"Sheet {sheet_name} does not exist in the workbook")
+        sheet = wb[sheet_name]
+        cell_value = sheet.cell(row=row, column=column).value
+        return cell_value

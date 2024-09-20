@@ -6,15 +6,15 @@ Library    openpyxl
 Library    DateTime
 *** Keywords *** 
 System Logon
-    Start Process    ${symvar('dev_SAP_SERVER')}
+    Start Process    ${symvar('SAP_SERVER')}
     Connect To Session
-    Open Connection     ${symvar('dev_Connection')}
-    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('dev_Client_Id')}
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('dev_User_Name')}
-    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{dev_PASSWORD}
-    # Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('dev_PASSWORD')}
+    Open Connection     ${symvar('User_Connection')}
+    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('User_Client')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('Login_User')}
+    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{DEV_PASSWORD}
+    # Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('DEV_PASSWORD')}
     Send Vkey    0
-    Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
+    Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
 System Logout
     Run Transaction   /nex
 DeActivate User
