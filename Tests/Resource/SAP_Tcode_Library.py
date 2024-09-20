@@ -16,7 +16,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
-import openpyxl
+from openpyxl import load_workbook
 import json
 
 class SAP_Tcode_Library:
@@ -1891,3 +1891,13 @@ class SAP_Tcode_Library:
             print("Error: Invalid column index. It should be an integer.")
         except Exception as e:
             print(f"An unexpected error occurred: {e}")
+
+    def get_total_row(self, excel_path, sheet_name):
+        try:
+            workbook = load_workbook(excel_path)
+            sheet = workbook[sheet_name]
+            row_count = sheet.max_row
+            return row_count
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            return None 
