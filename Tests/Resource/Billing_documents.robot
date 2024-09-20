@@ -77,6 +77,9 @@ Billing Documents Not Posted to Accounting
     Log To Console    **gbStart**Copilot_Status**splitKeyValue**${json}**gbEnd**
     Close Current Excel Document
     Sleep    2
+    Select Document On Text   wnd[0]/usr/cntlGRID1/shellcont/shell    VBELN    ${symvar('Enter_Bill_Document')}
+    Sleep    2
+        
 
 System Logout
     Run Transaction   /nex
