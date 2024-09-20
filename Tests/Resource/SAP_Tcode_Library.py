@@ -1868,29 +1868,29 @@ class SAP_Tcode_Library:
         
     def excel_column_to_json(self, file_path, sheet_name, column_index):
         """
-        Convert a specified column from an Excel file to a JSON string, excluding the header, and print it.
+        Convert a specified column from an Excel file to a JSON string, excluding the header, and return it.
         The JSON output is a dictionary with a fixed key "SD_Documents" and the column data as the list of values.
 
         :param file_path: Path to the Excel file
         :param sheet_name: Name of the sheet in the Excel file
         :param column_index: Index of the column to convert (0-based index)
+        :return: JSON data as a string
         """
         try:
             column_index = int(column_index)
             df = pd.read_excel(file_path, sheet_name=sheet_name)
             if column_index < 0 or column_index >= len(df.columns):
-                print(f"Error: Column index {column_index} is out of range.")
-                return
+                return None 
             column_data = df.iloc[:, column_index].dropna().tolist() 
             json_dict = {"SD_Documents": column_data}
             json_data = json.dumps(json_dict, indent=4)
-            print('JSON data:')
-            print(json_data)
-
+            return json_data 
         except ValueError:
             print("Error: Invalid column index. It should be an integer.")
+            return None
         except Exception as e:
             print(f"An unexpected error occurred: {e}")
+            return None
 
     def get_total_row(self, excel_path, sheet_name):
         try:
