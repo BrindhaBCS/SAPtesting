@@ -35,18 +35,12 @@ Sales Document with CreditBlocks
     Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    0.5 seconds
     clear field text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME
-    Sleep    0.5 seconds
     Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    SalesDocument
-    Sleep    0.5 seconds
     Click Element    wnd[1]/tbar[0]/btn[20]
-    Sleep    0.5 seconds
     clear field text    wnd[1]/usr/ctxtDY_PATH
-    Sleep    0.5 seconds
     Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp
-    Sleep    0.5 seconds
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    0.5 seconds
-    Sleep    1
     Run Keyword And Ignore Error    Click Element    wnd[1]/tbar[0]/btn[12]
     Sleep    1
     Open Excel Document    C:\\tmp\\SalesDocument.xlsx    Sheet1
@@ -58,10 +52,10 @@ Sales Document with CreditBlocks
     Log To Console    ${sliced_data}
     ${i}    Get Length   ${sliced_data}
     Log    ${i}
-    ${json}    Excel Column To Json    file_path=C:\\tmp\\SalesDocument.xlsx    sheet_name=Sheet1    column_index=5
-    Log To Console    **gbStart**copilot_salesdocument**splitKeyValue**${json}**gbEnd**
+    # ${json}    Excel Column To Json    file_path=C:\\tmp\\SalesDocument.xlsx    sheet_name=Sheet1    column_index=5
+    # Log To Console    **gbStart**copilot_salesdocument**splitKeyValue**${json}**gbEnd**
     Close Current Excel Document
-    Sleep    5
+    Sleep    0.5 seconds
     FOR    ${index}    IN RANGE    0    ${i}
         ${col}=    Evaluate    ${index} + 3
         ${Get_Document}    Run Keyword And Ignore Error    Get Value    wnd[0]/usr/lbl[21,${col}]
@@ -69,14 +63,19 @@ Sales Document with CreditBlocks
         Log    ${Get_Document_Number}
         IF    '${Input_Document_Number}' == '${Get_Document_Number}'
             Select Checkbox    wnd[0]/usr/chk[1,${col}]
-            Sleep    1
+            Sleep    0.5 seconds
             Click Element    wnd[0]/tbar[1]/btn[34]
-            Sleep    1
+            Sleep    0.5 seconds
             Click Element    wnd[0]/tbar[0]/btn[11]
-            Sleep    1
+            Sleep    0.5 seconds
             Click Element    wnd[0]/tbar[0]/btn[3]
+            Sleep    0.5 seconds
+            Log To Console    **gbStart**copilot_Sales_Document**splitKeyValue**The document ${Get_Document_Number} is released successfully...**gbEnd**
             Exit For Loop
         ELSE
             Log    Yours input not match
         END
     END
+    Sleep    0.5 seconds
+    Delete Specific File    file_path=C:\\tmp\\SalesDocument.xlsx
+    Sleep    0.5 seconds
