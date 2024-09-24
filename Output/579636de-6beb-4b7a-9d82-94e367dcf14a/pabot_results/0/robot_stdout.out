@@ -1,0 +1,41 @@
+==============================================================================
+Tests :: Testing functionality through Robot Framework                        
+==============================================================================
+Tests.Test material master                                                    
+==============================================================================
+Material_master                                                       12
+  
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Test_material_master.robot:9
+    T:  Material_master    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Test_material_master.robot:10
+      Material_master    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Resource\material_master.robot:56
+      ${initial_row} IN RANGE [ 2 | ${rows} ]    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Resource\material_master.robot:56
+      ${initial_row} = 2    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Resource\material_master.robot:58
+      Read Excel Sheet    ${symvar('Excel_file')}    ${symvar('Sheet_name')}    ${initial_row}    1
+      |  ${symvar('Excel_file')} = C:\RobotFramework\sap_testing\Tests\Resource\Material.xlsx (str)
+      |  ${symvar('Sheet_name')} = Testing Team (str)
+      |  ${initial_row} = <Unable to define variable value>
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Resource\material_master.robot:15
+      Get Sheet    ${sheetname}
+      |  ${sheetname} = Testing Team (str)
+______________________________________________________________________________
+| FAIL |
+KeyError: 'Worksheet Testing Team does not exist.'
+------------------------------------------------------------------------------
+Tests.Test material master                                            | FAIL |
+1 test, 0 passed, 1 failed
+==============================================================================
+Tests :: Testing functionality through Robot Framework                | FAIL |
+1 test, 0 passed, 1 failed
+==============================================================================
+Output:  C:\RobotFramework\sap_testing\Output\579636de-6beb-4b7a-9d82-94e367dcf14a\pabot_results\0\Output.xml

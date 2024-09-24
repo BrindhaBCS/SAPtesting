@@ -1,0 +1,64 @@
+==============================================================================
+Tests :: Testing functionality through Robot Framework                        
+==============================================================================
+Tests.test nSGHT                                                              
+==============================================================================
+start                                                                   
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\test_nSGHT.robot:6
+    T:  start    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\test_nSGHT.robot:7
+      start    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Resource\nSGHT.robot:18
+      Open Connection    IDES
+______________________________________________________________________________
+| FAIL |
+ValueError: Cannot open connection 'IDES', please check connection name.
+------------------------------------------------------------------------------
+nSGHT                                                                   
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\test_nSGHT.robot:9
+    T:  nSGHT    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\test_nSGHT.robot:10
+      nSGHT_transaction    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Resource\nSGHT.robot:30
+      ${tcode} IN [ @{t-codes} | @{t-codees} ]    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Resource\nSGHT.robot:30
+      ${tcode} = /nSGHT    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Resource\nSGHT.robot:32
+      Run Transaction    ${tcode}
+      |  ${tcode} = /nSGHT (str)
+______________________________________________________________________________
+| FAIL |
+AttributeError: 'int' object has no attribute 'findById'
+------------------------------------------------------------------------------
+stop                                                                    
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\test_nSGHT.robot:12
+    T:  stop    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\test_nSGHT.robot:13
+      stop    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Resource\nSGHT.robot:58
+      Run Transaction    /nex
+______________________________________________________________________________
+| FAIL |
+AttributeError: 'int' object has no attribute 'findById'
+------------------------------------------------------------------------------
+Tests.test nSGHT                                                      | FAIL |
+3 tests, 0 passed, 3 failed
+==============================================================================
+Tests :: Testing functionality through Robot Framework                | FAIL |
+3 tests, 0 passed, 3 failed
+==============================================================================
+Output:  C:\RobotFramework\sap_testing\Output\a1bd5e36-7550-428e-a483-1f67099fec5f\pabot_results\0\Output.xml

@@ -1,0 +1,3295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.12.3 on win32)" generated="20240902 07:15:53.864" rpa="false" schemaversion="3">
+<suite id="s1" name="Tests" source="C:\RobotFramework\sap_testing\Tests">
+<kw name="Setup highest level suite" type="SETUP">
+<kw name="Set Variable" library="BuiltIn">
+<var>${d.test_server}</var>
+<arg>${test_server}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:15:54.520" level="INFO">${d.test_server} = Dev</msg>
+<status status="PASS" starttime="20240902 07:15:54.520" endtime="20240902 07:15:54.520"/>
+</kw>
+<kw name="Reset screenshot count variable" library="Support">
+<kw name="Set Variable" library="BuiltIn">
+<var>${screenshotCount}</var>
+<arg>${PABOTQUEUEINDEX}_1</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:15:54.520" level="INFO">${screenshotCount} = 0_1</msg>
+<status status="PASS" starttime="20240902 07:15:54.520" endtime="20240902 07:15:54.520"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${screenshotCount}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240902 07:15:54.520" level="INFO">${screenshotCount} = 0_1</msg>
+<status status="PASS" starttime="20240902 07:15:54.520" endtime="20240902 07:15:54.520"/>
+</kw>
+<kw name="Set up screenshot directory" library="Support">
+<kw name="Create Directory" library="OperatingSystem">
+<arg>${OUTPUTDIR}${/}${wvar('screenshot_dir')}</arg>
+<doc>Creates the specified directory.</doc>
+<msg timestamp="20240902 07:15:54.520" level="INFO">Web.Dev.screenshot_dir: Screenshot</msg>
+<msg timestamp="20240902 07:15:54.520" level="INFO" html="true">Created directory '&lt;a href="file://C:\RobotFramework\sap_testing\Output\1aa616b4-9506-48b5-a784-a708a862ca65\pabot_results\0\Screenshot"&gt;C:\RobotFramework\sap_testing\Output\1aa616b4-9506-48b5-a784-a708a862ca65\pabot_results\0\Screenshot&lt;/a&gt;'.</msg>
+<status status="PASS" starttime="20240902 07:15:54.520" endtime="20240902 07:15:54.520"/>
+</kw>
+<status status="PASS" starttime="20240902 07:15:54.520" endtime="20240902 07:15:54.520"/>
+</kw>
+<status status="PASS" starttime="20240902 07:15:54.520" endtime="20240902 07:15:54.520"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${screenshot_taking}</arg>
+<arg>${True}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240902 07:15:54.520" level="INFO">${screenshot_taking} = True</msg>
+<status status="PASS" starttime="20240902 07:15:54.520" endtime="20240902 07:15:54.520"/>
+</kw>
+<kw name="Setup linux execution" library="Support">
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${web_test_check}</var>
+<arg>Variable Should Exist</arg>
+<arg>${web_test}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Variable Should Exist" library="BuiltIn">
+<arg>${web_test}</arg>
+<doc>Fails unless the given variable exists within the current scope.</doc>
+<status status="PASS" starttime="20240902 07:15:54.520" endtime="20240902 07:15:54.520"/>
+</kw>
+<msg timestamp="20240902 07:15:54.520" level="INFO">${web_test_check} = True</msg>
+<status status="PASS" starttime="20240902 07:15:54.520" endtime="20240902 07:15:54.520"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>${web_test_check}</arg>
+<arg>Setup Docker Execution Options</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<kw name="Setup Docker Execution Options" library="Support_Web">
+<kw name="Setup Suite Metadata" library="Support_Web">
+<arg>${browser}</arg>
+<kw name="Get Browser Metadata" library="BrowserSupport">
+<var>&amp;{browser_information}</var>
+<arg>browser=${browser}</arg>
+<doc>Fetches browser metadata information
+:param browser: Name of the browser for which information is fetched
+:param reload: Re-read the metadata based on the browser
+:return: Browser metadata information, dict of format
+            {"browser_version": browser version value,
+             "driver_version": driver version value}</doc>
+<msg timestamp="20240902 07:15:57.986" level="INFO">&amp;{browser_information} = { browser_version=128.0.6613.114 | driver_version=127.0.6533.72  }</msg>
+<status status="PASS" starttime="20240902 07:15:54.520" endtime="20240902 07:15:57.986"/>
+</kw>
+<kw name="Set Suite Metadata" library="BuiltIn">
+<arg>test_browser_name</arg>
+<arg>${browser}</arg>
+<doc>Sets metadata for the current test suite.</doc>
+<msg timestamp="20240902 07:15:57.986" level="INFO">Set suite metadata 'test_browser_name' to value 'chrome'.</msg>
+<status status="PASS" starttime="20240902 07:15:57.986" endtime="20240902 07:15:57.986"/>
+</kw>
+<kw name="Set Suite Metadata" library="BuiltIn">
+<arg>test_browser_version</arg>
+<arg>${browser_information.browser_version}</arg>
+<doc>Sets metadata for the current test suite.</doc>
+<msg timestamp="20240902 07:15:57.986" level="INFO">Set suite metadata 'test_browser_version' to value '128.0.6613.114'.</msg>
+<status status="PASS" starttime="20240902 07:15:57.986" endtime="20240902 07:15:57.986"/>
+</kw>
+<kw name="Set Suite Metadata" library="BuiltIn">
+<arg>test_driver_version</arg>
+<arg>${browser_information.driver_version}</arg>
+<doc>Sets metadata for the current test suite.</doc>
+<msg timestamp="20240902 07:15:57.986" level="INFO">Set suite metadata 'test_driver_version' to value '127.0.6533.72 '.</msg>
+<status status="PASS" starttime="20240902 07:15:57.986" endtime="20240902 07:15:57.986"/>
+</kw>
+<status status="PASS" starttime="20240902 07:15:54.520" endtime="20240902 07:15:57.986"/>
+</kw>
+<kw name="Setup Global Docker Execution Options" library="Support_Web">
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${global_browser_options}</arg>
+<arg>None</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240902 07:15:57.986" level="INFO">${global_browser_options} = None</msg>
+<status status="PASS" starttime="20240902 07:15:57.986" endtime="20240902 07:15:57.986"/>
+</kw>
+<kw name="Get Environment Variable" library="OperatingSystem">
+<var>${docker_check}</var>
+<arg>EXECUTION_ENVIRONMENT</arg>
+<arg>not_found</arg>
+<doc>Returns the value of an environment variable with the given name.</doc>
+<msg timestamp="20240902 07:15:57.986" level="INFO">${docker_check} = not_found</msg>
+<status status="PASS" starttime="20240902 07:15:57.986" endtime="20240902 07:15:57.986"/>
+</kw>
+<kw name="Run Keyword And Return If" library="BuiltIn">
+<arg>"${docker_check}"!="docker"</arg>
+<arg>Log</arg>
+<arg>Not executing on Docker</arg>
+<doc>Runs the specified keyword and returns from the enclosing user keyword.</doc>
+<kw name="Log" library="BuiltIn">
+<arg>Not executing on Docker</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240902 07:15:57.986" level="INFO">Not executing on Docker</msg>
+<status status="PASS" starttime="20240902 07:15:57.986" endtime="20240902 07:15:57.986"/>
+</kw>
+<msg timestamp="20240902 07:15:57.986" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20240902 07:15:57.986" endtime="20240902 07:15:57.986"/>
+</kw>
+<kw name="Create List" library="BuiltIn">
+<var>@{options}</var>
+<arg>--headless</arg>
+<arg>--no-sandbox</arg>
+<arg>--disable-dev-shm-usage</arg>
+<doc>Returns a list containing given items.</doc>
+<status status="NOT RUN" starttime="20240902 07:15:57.986" endtime="20240902 07:15:57.986"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>@{docker_options}</arg>
+<arg>@{options}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="NOT RUN" starttime="20240902 07:15:57.986" endtime="20240902 07:15:57.986"/>
+</kw>
+<status status="PASS" starttime="20240902 07:15:57.986" endtime="20240902 07:15:57.986"/>
+</kw>
+<kw name="Create Webdriver for chrome preferences" library="Support_Web">
+<kw name="Update Docker Execution Options" library="Support_Web">
+<var>${list_prefs}</var>
+<arg>${list_prefs}</arg>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${docker_check}</var>
+<arg>Variable Should Exist</arg>
+<arg>${docker_options}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Variable Should Exist" library="BuiltIn">
+<arg>${docker_options}</arg>
+<doc>Fails unless the given variable exists within the current scope.</doc>
+<msg timestamp="20240902 07:15:57.986" level="FAIL">Variable '${docker_options}' does not exist.</msg>
+<status status="FAIL" starttime="20240902 07:15:57.986" endtime="20240902 07:15:57.986"/>
+</kw>
+<msg timestamp="20240902 07:15:57.986" level="INFO">${docker_check} = False</msg>
+<status status="PASS" starttime="20240902 07:15:57.986" endtime="20240902 07:15:57.986"/>
+</kw>
+<kw name="Get Length" library="BuiltIn">
+<var>${list_prefs_length}</var>
+<arg>${list_prefs}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<msg timestamp="20240902 07:15:57.986" level="INFO">Length is 1</msg>
+<msg timestamp="20240902 07:15:57.986" level="INFO">${list_prefs_length} = 1</msg>
+<status status="PASS" starttime="20240902 07:15:57.986" endtime="20240902 07:15:57.986"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<var>${list_prefs}</var>
+<arg>${docker_check} and ${list_prefs_length}&gt;0 and ${list_prefs}[0] != []</arg>
+<arg>Combine Lists</arg>
+<arg>${list_prefs}</arg>
+<arg>${docker_options}</arg>
+<arg>ELSE IF</arg>
+<arg>${docker_check}</arg>
+<arg>Set Variable</arg>
+<arg>${docker_options}</arg>
+<arg>ELSE</arg>
+<arg>Set Variable</arg>
+<arg>${list_prefs}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<kw name="Set Variable" library="BuiltIn">
+<arg>${list_prefs}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" starttime="20240902 07:15:57.986" endtime="20240902 07:15:57.986"/>
+</kw>
+<msg timestamp="20240902 07:15:57.986" level="INFO">${list_prefs} = [[]]</msg>
+<status status="PASS" starttime="20240902 07:15:57.986" endtime="20240902 07:15:57.986"/>
+</kw>
+<msg timestamp="20240902 07:15:57.986" level="INFO">${list_prefs} = [[]]</msg>
+<status status="PASS" starttime="20240902 07:15:57.986" endtime="20240902 07:15:57.986"/>
+</kw>
+<kw name="Create Chrome Options for download preferences" library="Support_Web">
+<var>${chrome_options}</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${chrome_options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20240902 07:15:57.986" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001A6E050A2D0&gt;</msg>
+<status status="PASS" starttime="20240902 07:15:57.986" endtime="20240902 07:15:57.986"/>
+</kw>
+<msg timestamp="20240902 07:15:57.986" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001A6E050A2D0&gt;</msg>
+<status status="PASS" starttime="20240902 07:15:57.986" endtime="20240902 07:15:57.986"/>
+</kw>
+<kw name="Update Preferences List" library="Support_Web">
+<arg>${chrome_options}</arg>
+<arg>@{list_prefs}</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string_prefs}</var>
+<arg>${list_prefs}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20240902 07:15:57.986" level="INFO">${string_prefs} = [[]]</msg>
+<status status="PASS" starttime="20240902 07:15:57.986" endtime="20240902 07:15:57.986"/>
+</kw>
+<kw name="Return From Keyword If" library="BuiltIn">
+<arg>${string_prefs} == [[]]</arg>
+<doc>Returns from the enclosing user keyword if ``condition`` is true.</doc>
+<msg timestamp="20240902 07:15:57.986" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20240902 07:15:57.986" endtime="20240902 07:15:57.986"/>
+</kw>
+<for flavor="IN">
+<var>${preference}</var>
+<value>@{list_prefs}</value>
+<iter>
+<var name="${preference}"/>
+<kw name="Call Method" library="BuiltIn">
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>${preference}</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="NOT RUN" starttime="20240902 07:15:58.001" endtime="20240902 07:15:58.001"/>
+</kw>
+<status status="NOT RUN" starttime="20240902 07:15:57.986" endtime="20240902 07:15:58.001"/>
+</iter>
+<status status="NOT RUN" starttime="20240902 07:15:57.986" endtime="20240902 07:15:58.001"/>
+</for>
+<status status="PASS" starttime="20240902 07:15:57.986" endtime="20240902 07:15:58.001"/>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<arg>${chrome_options}</arg>
+<arg>add_experimental_option</arg>
+<arg>prefs</arg>
+<arg>${kw_prefs}</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20240902 07:15:58.001" endtime="20240902 07:15:58.001"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${global_browser_options}</arg>
+<arg>${chrome options}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240902 07:15:58.001" level="INFO">${global_browser_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x000001A6E050A2D0&gt;</msg>
+<status status="PASS" starttime="20240902 07:15:58.001" endtime="20240902 07:15:58.001"/>
+</kw>
+<status status="PASS" starttime="20240902 07:15:57.986" endtime="20240902 07:15:58.001"/>
+</kw>
+<status status="PASS" starttime="20240902 07:15:54.520" endtime="20240902 07:15:58.001"/>
+</kw>
+<status status="PASS" starttime="20240902 07:15:54.520" endtime="20240902 07:15:58.001"/>
+</kw>
+<status status="PASS" starttime="20240902 07:15:54.520" endtime="20240902 07:15:58.001"/>
+</kw>
+<kw name="Set Suite Metadata" library="BuiltIn">
+<arg>environment</arg>
+<arg>${test_server}</arg>
+<doc>Sets metadata for the current test suite.</doc>
+<msg timestamp="20240902 07:15:58.001" level="INFO">Set suite metadata 'environment' to value 'Dev'.</msg>
+<status status="PASS" starttime="20240902 07:15:58.001" endtime="20240902 07:15:58.001"/>
+</kw>
+<status status="PASS" starttime="20240902 07:15:54.520" endtime="20240902 07:15:58.001"/>
+</kw>
+<suite id="s1-s1" name="Test Roles change date" source="C:\RobotFramework\sap_testing\Tests\Test_Roles_change_date.robot">
+<kw name="System Logon" library="Roles_change_date" type="SETUP">
+<kw name="Start Process" library="Process">
+<arg>${symvar('SAP_SERVER')}</arg>
+<doc>Starts a new process on background.</doc>
+<msg timestamp="20240902 07:15:58.986" level="INFO">Sym.Dev.SAP_SERVER: C:\Program Files (x86)\SAP\FrontEnd\SAPgui\saplogon.exe</msg>
+<msg timestamp="20240902 07:15:58.986" level="INFO">Starting process:
+"C:\Program Files (x86)\SAP\FrontEnd\SAPgui\saplogon.exe"</msg>
+<status status="PASS" starttime="20240902 07:15:58.986" endtime="20240902 07:15:58.986"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:16:03.986" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240902 07:15:58.986" endtime="20240902 07:16:03.986"/>
+</kw>
+<kw name="Connect To Session" library="SAP_Tcode_Library">
+<doc>Connects to an open session SAP.</doc>
+<status status="PASS" starttime="20240902 07:16:03.986" endtime="20240902 07:16:03.986"/>
+</kw>
+<kw name="Open Connection" library="SAP_Tcode_Library">
+<arg>${symvar('SA_Role_Connection')}</arg>
+<doc>Opens a connection to the given connection name. Be sure to provide the full connection name, including the bracket part.</doc>
+<msg timestamp="20240902 07:16:03.986" level="INFO">Sym.Dev.SA_Role_Connection: TS4</msg>
+<status status="PASS" starttime="20240902 07:16:03.986" endtime="20240902 07:16:04.361"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:16:05.369" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:16:04.361" endtime="20240902 07:16:05.369"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/txtRSYST-MANDT</arg>
+<arg>${symvar('SA_Role_Client_Id')}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240902 07:16:05.369" level="INFO">Sym.Dev.SA_Role_Client_Id: 001</msg>
+<msg timestamp="20240902 07:16:05.369" level="INFO">Typing text '001' into text field 'wnd[0]/usr/txtRSYST-MANDT'.</msg>
+<status status="PASS" starttime="20240902 07:16:05.369" endtime="20240902 07:16:05.369"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:16:06.372" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:16:05.369" endtime="20240902 07:16:06.372"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/txtRSYST-BNAME</arg>
+<arg>${symvar('SA_Role_User_Name')}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240902 07:16:06.372" level="INFO">Sym.Dev.SA_Role_User_Name: Preethi</msg>
+<msg timestamp="20240902 07:16:06.372" level="INFO">Typing text 'Preethi' into text field 'wnd[0]/usr/txtRSYST-BNAME'.</msg>
+<status status="PASS" starttime="20240902 07:16:06.372" endtime="20240902 07:16:06.372"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:16:07.387" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:16:06.372" endtime="20240902 07:16:07.387"/>
+</kw>
+<kw name="Input Password" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/pwdRSYST-BCODE</arg>
+<arg>%{SA_Role_User_Password}</arg>
+<doc>Inserts the given password into the text field identified by locator.
+The password is not recorded in the log.</doc>
+<msg timestamp="20240902 07:16:07.387" level="INFO">Typing password into text field 'wnd[0]/usr/pwdRSYST-BCODE'.</msg>
+<status status="PASS" starttime="20240902 07:16:07.387" endtime="20240902 07:16:07.387"/>
+</kw>
+<kw name="Send Vkey" library="SAP_Tcode_Library">
+<arg>0</arg>
+<doc>Sends a SAP virtual key combination to the window, not into an element.
+If you want to send a value to a text field, use `input text` instead.</doc>
+<status status="PASS" starttime="20240902 07:16:07.387" endtime="20240902 07:16:07.718"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:16:10.725" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240902 07:16:07.718" endtime="20240902 07:16:10.725"/>
+</kw>
+<kw name="Multiple Logon Handling" library="SAP_Tcode_Library">
+<arg>wnd[1]</arg>
+<arg>wnd[1]/usr/radMULTI_LOGON_OPT2</arg>
+<arg>wnd[1]/tbar[0]/btn[0]</arg>
+<status status="PASS" starttime="20240902 07:16:10.725" endtime="20240902 07:16:10.725"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:16:11.740" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:16:10.725" endtime="20240902 07:16:11.740"/>
+</kw>
+<status status="PASS" starttime="20240902 07:15:58.986" endtime="20240902 07:16:11.740"/>
+</kw>
+<test id="s1-s1-t1" name="Change Date" line="7">
+<kw name="Change Date" library="Roles_change_date">
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/nse16</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:16:11.740" endtime="20240902 07:16:11.834"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:16:13.836" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:16:11.834" endtime="20240902 07:16:13.836"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtDATABROWSE-TABLENAME</arg>
+<arg>AGR_DEFINE</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240902 07:16:13.836" level="INFO">Typing text 'AGR_DEFINE' into text field 'wnd[0]/usr/ctxtDATABROWSE-TABLENAME'.</msg>
+<status status="PASS" starttime="20240902 07:16:13.836" endtime="20240902 07:16:13.836"/>
+</kw>
+<kw name="Send Vkey" library="SAP_Tcode_Library">
+<arg>0</arg>
+<doc>Sends a SAP virtual key combination to the window, not into an element.
+If you want to send a value to a text field, use `input text` instead.</doc>
+<status status="PASS" starttime="20240902 07:16:13.836" endtime="20240902 07:16:14.011"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtI8-LOW</arg>
+<arg>${symvar('Change_From_Date')}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240902 07:16:14.011" level="INFO">Sym.Dev.Change_From_Date: 14.08.2024</msg>
+<msg timestamp="20240902 07:16:14.027" level="INFO">Typing text '14.08.2024' into text field 'wnd[0]/usr/ctxtI8-LOW'.</msg>
+<status status="PASS" starttime="20240902 07:16:14.011" endtime="20240902 07:16:14.027"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:16:16.027" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:16:14.027" endtime="20240902 07:16:16.027"/>
+</kw>
+<kw name="Get Current Date" library="DateTime">
+<var>${Get Current Date}</var>
+<arg>result_format=%d.%m.%Y</arg>
+<doc>Returns current local or UTC time with an optional increment.</doc>
+<msg timestamp="20240902 07:16:16.027" level="INFO">${Get Current Date} = 02.09.2024</msg>
+<status status="PASS" starttime="20240902 07:16:16.027" endtime="20240902 07:16:16.027"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtI8-HIGH</arg>
+<arg>${symvar('Change_To_Date')}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240902 07:16:16.027" level="INFO">Sym.Dev.Change_To_Date: 31.08.2024</msg>
+<msg timestamp="20240902 07:16:16.027" level="INFO">Typing text '31.08.2024' into text field 'wnd[0]/usr/ctxtI8-HIGH'.</msg>
+<status status="PASS" starttime="20240902 07:16:16.027" endtime="20240902 07:16:16.027"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:16:18.027" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:16:16.027" endtime="20240902 07:16:18.027"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[8]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240902 07:16:18.027" endtime="20240902 07:16:18.152"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:16:20.154" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:16:18.152" endtime="20240902 07:16:20.154"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/mbar/menu[1]/menu[5]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240902 07:16:20.154" endtime="20240902 07:16:20.373"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:16:22.376" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:16:20.373" endtime="20240902 07:16:22.376"/>
+</kw>
+<kw name="Select Radio Button" library="SAP_Tcode_Library">
+<arg>wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[2,0]</arg>
+<doc>Sets radio button to the specified value.</doc>
+<status status="PASS" starttime="20240902 07:16:22.376" endtime="20240902 07:16:22.376"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:16:24.376" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:16:22.376" endtime="20240902 07:16:24.376"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[1]/tbar[0]/btn[0]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240902 07:16:24.376" endtime="20240902 07:16:24.548"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:16:26.550" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:16:24.548" endtime="20240902 07:16:26.550"/>
+</kw>
+<kw name="Clear Field Text" library="SAP_Tcode_Library">
+<arg>wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME</arg>
+<msg timestamp="20240902 07:16:26.550" level="INFO">Text cleared in field with ID: wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME</msg>
+<status status="PASS" starttime="20240902 07:16:26.550" endtime="20240902 07:16:26.550"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:16:28.550" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:16:26.550" endtime="20240902 07:16:28.550"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME</arg>
+<arg>Change_Role_extract</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240902 07:16:28.550" level="INFO">Typing text 'Change_Role_extract' into text field 'wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME'.</msg>
+<status status="PASS" starttime="20240902 07:16:28.550" endtime="20240902 07:16:28.550"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:16:30.550" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:16:28.550" endtime="20240902 07:16:30.550"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[1]/tbar[0]/btn[20]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240902 07:16:30.550" endtime="20240902 07:16:30.659"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:16:32.669" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:16:30.659" endtime="20240902 07:16:32.669"/>
+</kw>
+<kw name="Clear Field Text" library="SAP_Tcode_Library">
+<arg>wnd[1]/usr/ctxtDY_PATH</arg>
+<msg timestamp="20240902 07:16:32.669" level="INFO">Text cleared in field with ID: wnd[1]/usr/ctxtDY_PATH</msg>
+<status status="PASS" starttime="20240902 07:16:32.669" endtime="20240902 07:16:32.669"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:16:34.677" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:16:32.669" endtime="20240902 07:16:34.677"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[1]/usr/ctxtDY_PATH</arg>
+<arg>C:\\tmp</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240902 07:16:34.677" level="INFO">Typing text 'C:\tmp' into text field 'wnd[1]/usr/ctxtDY_PATH'.</msg>
+<status status="PASS" starttime="20240902 07:16:34.677" endtime="20240902 07:16:34.677"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:16:36.677" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:16:34.677" endtime="20240902 07:16:36.677"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[1]/tbar[0]/btn[11]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240902 07:16:36.677" endtime="20240902 07:16:36.848"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:16:38.849" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:16:36.848" endtime="20240902 07:16:38.849"/>
+</kw>
+<kw name="Roles Extract" library="SAP_Tcode_Library">
+<var>${role_length}</var>
+<arg>C:\\tmp\\Change_Role_extract.xlsx</arg>
+<arg>Sheet1</arg>
+<arg>C:\\tmp\\Change_Role_extract.txt</arg>
+<msg timestamp="20240902 07:16:38.849" level="INFO">Data has been written to C:\tmp\Change_Role_extract.txt</msg>
+<msg timestamp="20240902 07:16:38.849" level="INFO">${role_length} = ['ZC_TEST_059', 'ZC_TEST_061', 'ZC_TEST_062', 'ZF_SU01D', 'Z_GRC_RISK_P059', 'Z_NWBC_TEST_ROLE']</msg>
+<status status="PASS" starttime="20240902 07:16:38.849" endtime="20240902 07:16:38.849"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${GLOBAL_ROLE_LENGTH}</arg>
+<arg>${role_length}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240902 07:16:38.864" level="INFO">${GLOBAL_ROLE_LENGTH} = ['ZC_TEST_059', 'ZC_TEST_061', 'ZC_TEST_062', 'ZF_SU01D', 'Z_GRC_RISK_P059', 'Z_NWBC_TEST_ROLE']</msg>
+<status status="PASS" starttime="20240902 07:16:38.849" endtime="20240902 07:16:38.864"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${GLOBAL_ROLE_LENGTH}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240902 07:16:38.864" level="INFO">['ZC_TEST_059', 'ZC_TEST_061', 'ZC_TEST_062', 'ZF_SU01D', 'Z_GRC_RISK_P059', 'Z_NWBC_TEST_ROLE']</msg>
+<status status="PASS" starttime="20240902 07:16:38.864" endtime="20240902 07:16:38.864"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:16:40.869" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:16:38.864" endtime="20240902 07:16:40.869"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/nse16</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:16:40.869" endtime="20240902 07:16:40.916"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:16:42.916" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:16:40.916" endtime="20240902 07:16:42.916"/>
+</kw>
+<kw name="Clear Field Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtDATABROWSE-TABLENAME</arg>
+<msg timestamp="20240902 07:16:42.916" level="INFO">Text cleared in field with ID: wnd[0]/usr/ctxtDATABROWSE-TABLENAME</msg>
+<status status="PASS" starttime="20240902 07:16:42.916" endtime="20240902 07:16:42.916"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtDATABROWSE-TABLENAME</arg>
+<arg>AGR_TCODES</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240902 07:16:42.916" level="INFO">Typing text 'AGR_TCODES' into text field 'wnd[0]/usr/ctxtDATABROWSE-TABLENAME'.</msg>
+<status status="PASS" starttime="20240902 07:16:42.916" endtime="20240902 07:16:42.916"/>
+</kw>
+<kw name="Send Vkey" library="SAP_Tcode_Library">
+<arg>0</arg>
+<doc>Sends a SAP virtual key combination to the window, not into an element.
+If you want to send a value to a text field, use `input text` instead.</doc>
+<status status="PASS" starttime="20240902 07:16:42.916" endtime="20240902 07:16:43.025"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:16:45.025" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:16:43.025" endtime="20240902 07:16:45.025"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/btn%_I1_%_APP_%-VALU_PUSH</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240902 07:16:45.025" endtime="20240902 07:16:45.119"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:16:47.120" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:16:45.119" endtime="20240902 07:16:47.120"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[1]/tbar[0]/btn[23]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240902 07:16:47.120" endtime="20240902 07:16:47.323"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:16:49.323" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:16:47.323" endtime="20240902 07:16:49.323"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[2]/usr/ctxtDY_PATH</arg>
+<arg>C:\\tmp\\</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240902 07:16:49.323" level="INFO">Typing text 'C:\tmp\' into text field 'wnd[2]/usr/ctxtDY_PATH'.</msg>
+<status status="PASS" starttime="20240902 07:16:49.323" endtime="20240902 07:16:49.323"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:16:51.323" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:16:49.323" endtime="20240902 07:16:51.323"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[2]/usr/ctxtDY_FILENAME</arg>
+<arg>Change_Role_extract.txt</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240902 07:16:51.323" level="INFO">Typing text 'Change_Role_extract.txt' into text field 'wnd[2]/usr/ctxtDY_FILENAME'.</msg>
+<status status="PASS" starttime="20240902 07:16:51.323" endtime="20240902 07:16:51.323"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:16:53.324" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:16:51.323" endtime="20240902 07:16:53.324"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[2]/tbar[0]/btn[0]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240902 07:16:53.324" endtime="20240902 07:16:53.576"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:16:55.576" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:16:53.576" endtime="20240902 07:16:55.576"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[1]/tbar[0]/btn[8]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240902 07:16:55.576" endtime="20240902 07:16:55.826"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:16:57.826" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:16:55.826" endtime="20240902 07:16:57.826"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[8]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240902 07:16:57.826" endtime="20240902 07:16:57.889"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:16:59.889" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:16:57.889" endtime="20240902 07:16:59.889"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/mbar/menu[1]/menu[5]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240902 07:16:59.889" endtime="20240902 07:17:00.108"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:17:02.108" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:17:00.108" endtime="20240902 07:17:02.108"/>
+</kw>
+<kw name="Select Radio Button" library="SAP_Tcode_Library">
+<arg>wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[2,0]</arg>
+<doc>Sets radio button to the specified value.</doc>
+<status status="PASS" starttime="20240902 07:17:02.108" endtime="20240902 07:17:02.108"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:17:04.110" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:17:02.108" endtime="20240902 07:17:04.110"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[1]/tbar[0]/btn[0]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240902 07:17:04.110" endtime="20240902 07:17:04.298"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:17:06.298" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:17:04.298" endtime="20240902 07:17:06.298"/>
+</kw>
+<kw name="Clear Field Text" library="SAP_Tcode_Library">
+<arg>wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME</arg>
+<msg timestamp="20240902 07:17:06.298" level="INFO">Text cleared in field with ID: wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME</msg>
+<status status="PASS" starttime="20240902 07:17:06.298" endtime="20240902 07:17:06.298"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:17:08.298" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:17:06.298" endtime="20240902 07:17:08.298"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME</arg>
+<arg>Change_Tcode_extract</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240902 07:17:08.298" level="INFO">Typing text 'Change_Tcode_extract' into text field 'wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME'.</msg>
+<status status="PASS" starttime="20240902 07:17:08.298" endtime="20240902 07:17:08.298"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:17:10.298" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:17:08.298" endtime="20240902 07:17:10.298"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[1]/tbar[0]/btn[20]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240902 07:17:10.298" endtime="20240902 07:17:10.454"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:17:12.460" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:17:10.454" endtime="20240902 07:17:12.460"/>
+</kw>
+<kw name="Clear Field Text" library="SAP_Tcode_Library">
+<arg>wnd[1]/usr/ctxtDY_PATH</arg>
+<msg timestamp="20240902 07:17:12.460" level="INFO">Text cleared in field with ID: wnd[1]/usr/ctxtDY_PATH</msg>
+<status status="PASS" starttime="20240902 07:17:12.460" endtime="20240902 07:17:12.460"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:17:14.460" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:17:12.460" endtime="20240902 07:17:14.460"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[1]/usr/ctxtDY_PATH</arg>
+<arg>C:\\tmp</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240902 07:17:14.460" level="INFO">Typing text 'C:\tmp' into text field 'wnd[1]/usr/ctxtDY_PATH'.</msg>
+<status status="PASS" starttime="20240902 07:17:14.460" endtime="20240902 07:17:14.460"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:17:16.460" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:17:14.460" endtime="20240902 07:17:16.460"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[1]/tbar[0]/btn[11]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240902 07:17:16.460" endtime="20240902 07:17:16.648"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:17:21.648" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240902 07:17:16.648" endtime="20240902 07:17:21.648"/>
+</kw>
+<kw name="Tcode Extract" library="SAP_Tcode_Library">
+<var>${tcode_length}</var>
+<arg>C:\\tmp\\Change_Tcode_extract.xlsx</arg>
+<arg>Sheet1</arg>
+<msg timestamp="20240902 07:17:21.679" level="INFO">${tcode_length} = ['ME21N', 'ME22N', 'ME23N', 'ME28', 'FB60', 'FK02', 'MMPV', 'F110', 'FBZ0', 'FK02', 'OB52', 'SU01D', 'ME21N', 'ME22N', 'ME23N', 'ME28', 'R3TRWDYAWDA_NWBC_LSAPI_TEST', 'R3TRWDYAWDR_TEST_BTC_TABLE', 'R3...</msg>
+<status status="PASS" starttime="20240902 07:17:21.648" endtime="20240902 07:17:21.679"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${GLOBAL_TCODE_LENGTH}</arg>
+<arg>${tcode_length}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240902 07:17:21.679" level="INFO">${GLOBAL_TCODE_LENGTH} = ['ME21N', 'ME22N', 'ME23N', 'ME28', 'FB60', 'FK02', 'MMPV', 'F110', 'FBZ0', 'FK02', 'OB52', 'SU01D', 'ME21N', 'ME22N', 'ME23N', 'ME28', 'R3TRWDYAWDA_NWBC_LSAPI_TEST', 'R3TRWDYAWDR_TEST_BTC_TABLE', 'R3...</msg>
+<status status="PASS" starttime="20240902 07:17:21.679" endtime="20240902 07:17:21.679"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${GLOBAL_TCODE_LENGTH}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240902 07:17:21.679" level="INFO">['ME21N', 'ME22N', 'ME23N', 'ME28', 'FB60', 'FK02', 'MMPV', 'F110', 'FBZ0', 'FK02', 'OB52', 'SU01D', 'ME21N', 'ME22N', 'ME23N', 'ME28', 'R3TRWDYAWDA_NWBC_LSAPI_TEST', 'R3TRWDYAWDR_TEST_BTC_TABLE', 'R3TRWDYAWDR_TEST_EVENTS', 'R3TRWDYAWDR_TEST_IT05_NOPATT', 'R3TRWDYAWDR_TEST_PORTAL_NAV_OBN', 'DWDM', 'ME21N', 'ME22N', 'ME23N', 'ME28', 'PFCG', 'SE09', 'SE11', 'SE16', 'SE24', 'SE38', 'SE80', 'SM51', 'SU0', 'SU01', 'S_YI3_39000013']</msg>
+<status status="PASS" starttime="20240902 07:17:21.679" endtime="20240902 07:17:21.679"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:17:26.686" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240902 07:17:21.679" endtime="20240902 07:17:26.686"/>
+</kw>
+<status status="PASS" starttime="20240902 07:16:11.740" endtime="20240902 07:17:26.686"/>
+</kw>
+<kw name="Create new user" library="Roles_change_date">
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/nSU01</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:17:26.686" endtime="20240902 07:17:26.795"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:17:27.795" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:17:26.795" endtime="20240902 07:17:27.795"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME</arg>
+<arg>${symvar('Change_Date_User_Name')}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240902 07:17:27.795" level="INFO">Sym.Dev.Change_Date_User_Name: CHANGE_DATE</msg>
+<msg timestamp="20240902 07:17:27.795" level="INFO">Typing text 'CHANGE_DATE' into text field 'wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME'.</msg>
+<status status="PASS" starttime="20240902 07:17:27.795" endtime="20240902 07:17:27.795"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:17:28.795" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:17:27.795" endtime="20240902 07:17:28.795"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[8]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240902 07:17:28.795" endtime="20240902 07:17:29.076"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:17:34.076" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240902 07:17:29.076" endtime="20240902 07:17:34.076"/>
+</kw>
+<kw name="Window Handling" library="SAP_Tcode_Library">
+<arg>wnd[1]</arg>
+<arg>Address Maintenance</arg>
+<arg>wnd[1]/usr/btnBUTTON_2</arg>
+<status status="PASS" starttime="20240902 07:17:34.076" endtime="20240902 07:17:34.233"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:17:39.241" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240902 07:17:34.233" endtime="20240902 07:17:39.241"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/tabsTABSTRIP1/tabpADDR/ssubMAINAREA:SAPLSUID_MAINTENANCE:1900/txtSUID_ST_NODE_PERSON_NAME-NAME_LAST</arg>
+<arg>${symvar('New_User_Last_Name')}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240902 07:17:39.241" level="INFO">Sym.Dev.New_User_Last_Name: ROLE</msg>
+<msg timestamp="20240902 07:17:39.241" level="INFO">Typing text 'ROLE' into text field 'wnd[0]/usr/tabsTABSTRIP1/tabpADDR/ssubMAINAREA:SAPLSUID_MAINTENANCE:1900/txtSUID_ST_NODE_PERSON_NAME-NAME_LAST'.</msg>
+<status status="PASS" starttime="20240902 07:17:39.241" endtime="20240902 07:17:39.241"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/tabsTABSTRIP1/tabpLOGO</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240902 07:17:39.241" endtime="20240902 07:17:39.339"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:17:41.342" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:17:39.339" endtime="20240902 07:17:41.342"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/tabsTABSTRIP1/tabpLOGO/ssubMAINAREA:SAPLSUID_MAINTENANCE:1101/pwdSUID_ST_NODE_PASSWORD_EXT-PASSWORD</arg>
+<arg>${symvar('New_User_Password')}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240902 07:17:41.342" level="INFO">Sym.Dev.New_User_Password: Welcome@123</msg>
+<msg timestamp="20240902 07:17:41.342" level="INFO">Typing text 'Welcome@123' into text field 'wnd[0]/usr/tabsTABSTRIP1/tabpLOGO/ssubMAINAREA:SAPLSUID_MAINTENANCE:1101/pwdSUID_ST_NODE_PASSWORD_EXT-PASSWORD'.</msg>
+<status status="PASS" starttime="20240902 07:17:41.342" endtime="20240902 07:17:41.342"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/tabsTABSTRIP1/tabpLOGO/ssubMAINAREA:SAPLSUID_MAINTENANCE:1101/pwdSUID_ST_NODE_PASSWORD_EXT-PASSWORD2</arg>
+<arg>${symvar('New_User_Password')}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240902 07:17:41.342" level="INFO">Sym.Dev.New_User_Password: Welcome@123</msg>
+<msg timestamp="20240902 07:17:41.342" level="INFO">Typing text 'Welcome@123' into text field 'wnd[0]/usr/tabsTABSTRIP1/tabpLOGO/ssubMAINAREA:SAPLSUID_MAINTENANCE:1101/pwdSUID_ST_NODE_PASSWORD_EXT-PASSWORD2'.</msg>
+<status status="PASS" starttime="20240902 07:17:41.342" endtime="20240902 07:17:41.342"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:17:43.342" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:17:41.342" endtime="20240902 07:17:43.342"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/tabsTABSTRIP1/tabpACTG</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240902 07:17:43.342" endtime="20240902 07:17:43.545"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:17:44.545" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:17:43.545" endtime="20240902 07:17:44.545"/>
+</kw>
+<kw name="Get Sap Cell Value AGR NAME" library="SAP_Tcode_Library">
+<var>${tech}</var>
+<arg>wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell</arg>
+<arg>0</arg>
+<msg timestamp="20240902 07:17:44.545" level="INFO">${tech} = </msg>
+<status status="PASS" starttime="20240902 07:17:44.545" endtime="20240902 07:17:44.545"/>
+</kw>
+<if>
+<branch type="IF" condition="'${tech}' != ''">
+<kw name="Delete Allrole Save" library="SAP_Tcode_Library">
+<status status="NOT RUN" starttime="20240902 07:17:44.545" endtime="20240902 07:17:44.545"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240902 07:17:44.545" endtime="20240902 07:17:44.545"/>
+</kw>
+<kw name="Clear Field Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME</arg>
+<status status="NOT RUN" starttime="20240902 07:17:44.545" endtime="20240902 07:17:44.545"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240902 07:17:44.545" endtime="20240902 07:17:44.545"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME</arg>
+<arg>${symvar('Change_Date_User_Name')}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<status status="NOT RUN" starttime="20240902 07:17:44.545" endtime="20240902 07:17:44.545"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240902 07:17:44.545" endtime="20240902 07:17:44.545"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[7]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240902 07:17:44.545" endtime="20240902 07:17:44.545"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240902 07:17:44.545" endtime="20240902 07:17:44.545"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[19]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240902 07:17:44.545" endtime="20240902 07:17:44.545"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240902 07:17:44.545" endtime="20240902 07:17:44.545"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/tabsTABSTRIP1/tabpACTG</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="NOT RUN" starttime="20240902 07:17:44.545" endtime="20240902 07:17:44.545"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240902 07:17:44.545" endtime="20240902 07:17:44.545"/>
+</kw>
+<kw name="Get Length" library="BuiltIn">
+<var>${desc}</var>
+<arg>${GLOBAL_ROLE_LENGTH}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<status status="NOT RUN" starttime="20240902 07:17:44.545" endtime="20240902 07:17:44.545"/>
+</kw>
+<for flavor="IN RANGE">
+<var>${loop}</var>
+<value>0</value>
+<value>${desc}</value>
+<iter>
+<var name="${loop}"/>
+<kw name="Set Variable" library="BuiltIn">
+<var>${value}</var>
+<arg>${GLOBAL_ROLE_LENGTH[${loop}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20240902 07:17:44.545" endtime="20240902 07:17:44.545"/>
+</kw>
+<kw name="Modify Sap Cell" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell</arg>
+<arg>${loop}</arg>
+<arg>${value}</arg>
+<status status="NOT RUN" starttime="20240902 07:17:44.545" endtime="20240902 07:17:44.545"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240902 07:17:44.545" endtime="20240902 07:17:44.545"/>
+</kw>
+<status status="NOT RUN" starttime="20240902 07:17:44.545" endtime="20240902 07:17:44.545"/>
+</iter>
+<status status="NOT RUN" starttime="20240902 07:17:44.545" endtime="20240902 07:17:44.545"/>
+</for>
+<status status="NOT RUN" starttime="20240902 07:17:44.545" endtime="20240902 07:17:44.560"/>
+</branch>
+<branch type="ELSE">
+<kw name="Get Length" library="BuiltIn">
+<var>${desc}</var>
+<arg>${GLOBAL_ROLE_LENGTH}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<msg timestamp="20240902 07:17:44.560" level="INFO">Length is 6</msg>
+<msg timestamp="20240902 07:17:44.560" level="INFO">${desc} = 6</msg>
+<status status="PASS" starttime="20240902 07:17:44.560" endtime="20240902 07:17:44.560"/>
+</kw>
+<for flavor="IN RANGE">
+<var>${loop}</var>
+<value>0</value>
+<value>${desc}</value>
+<iter>
+<var name="${loop}">0</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${value}</var>
+<arg>${GLOBAL_ROLE_LENGTH[${loop}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:17:44.560" level="INFO">${value} = ZC_TEST_059</msg>
+<status status="PASS" starttime="20240902 07:17:44.560" endtime="20240902 07:17:44.560"/>
+</kw>
+<kw name="Modify Sap Cell" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell</arg>
+<arg>${loop}</arg>
+<arg>${value}</arg>
+<status status="PASS" starttime="20240902 07:17:44.560" endtime="20240902 07:17:44.576"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:17:45.576" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:17:44.576" endtime="20240902 07:17:45.576"/>
+</kw>
+<status status="PASS" starttime="20240902 07:17:44.560" endtime="20240902 07:17:45.576"/>
+</iter>
+<iter>
+<var name="${loop}">1</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${value}</var>
+<arg>${GLOBAL_ROLE_LENGTH[${loop}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:17:45.576" level="INFO">${value} = ZC_TEST_061</msg>
+<status status="PASS" starttime="20240902 07:17:45.576" endtime="20240902 07:17:45.576"/>
+</kw>
+<kw name="Modify Sap Cell" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell</arg>
+<arg>${loop}</arg>
+<arg>${value}</arg>
+<status status="PASS" starttime="20240902 07:17:45.576" endtime="20240902 07:17:45.592"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:17:46.592" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:17:45.592" endtime="20240902 07:17:46.592"/>
+</kw>
+<status status="PASS" starttime="20240902 07:17:45.576" endtime="20240902 07:17:46.592"/>
+</iter>
+<iter>
+<var name="${loop}">2</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${value}</var>
+<arg>${GLOBAL_ROLE_LENGTH[${loop}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:17:46.592" level="INFO">${value} = ZC_TEST_062</msg>
+<status status="PASS" starttime="20240902 07:17:46.592" endtime="20240902 07:17:46.592"/>
+</kw>
+<kw name="Modify Sap Cell" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell</arg>
+<arg>${loop}</arg>
+<arg>${value}</arg>
+<status status="PASS" starttime="20240902 07:17:46.592" endtime="20240902 07:17:46.607"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:17:47.607" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:17:46.607" endtime="20240902 07:17:47.607"/>
+</kw>
+<status status="PASS" starttime="20240902 07:17:46.592" endtime="20240902 07:17:47.607"/>
+</iter>
+<iter>
+<var name="${loop}">3</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${value}</var>
+<arg>${GLOBAL_ROLE_LENGTH[${loop}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:17:47.607" level="INFO">${value} = ZF_SU01D</msg>
+<status status="PASS" starttime="20240902 07:17:47.607" endtime="20240902 07:17:47.607"/>
+</kw>
+<kw name="Modify Sap Cell" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell</arg>
+<arg>${loop}</arg>
+<arg>${value}</arg>
+<status status="PASS" starttime="20240902 07:17:47.607" endtime="20240902 07:17:47.623"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:17:48.627" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:17:47.623" endtime="20240902 07:17:48.627"/>
+</kw>
+<status status="PASS" starttime="20240902 07:17:47.607" endtime="20240902 07:17:48.627"/>
+</iter>
+<iter>
+<var name="${loop}">4</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${value}</var>
+<arg>${GLOBAL_ROLE_LENGTH[${loop}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:17:48.627" level="INFO">${value} = Z_GRC_RISK_P059</msg>
+<status status="PASS" starttime="20240902 07:17:48.627" endtime="20240902 07:17:48.627"/>
+</kw>
+<kw name="Modify Sap Cell" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell</arg>
+<arg>${loop}</arg>
+<arg>${value}</arg>
+<status status="PASS" starttime="20240902 07:17:48.627" endtime="20240902 07:17:48.643"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:17:49.643" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:17:48.643" endtime="20240902 07:17:49.643"/>
+</kw>
+<status status="PASS" starttime="20240902 07:17:48.627" endtime="20240902 07:17:49.643"/>
+</iter>
+<iter>
+<var name="${loop}">5</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${value}</var>
+<arg>${GLOBAL_ROLE_LENGTH[${loop}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:17:49.643" level="INFO">${value} = Z_NWBC_TEST_ROLE</msg>
+<status status="PASS" starttime="20240902 07:17:49.643" endtime="20240902 07:17:49.643"/>
+</kw>
+<kw name="Modify Sap Cell" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell</arg>
+<arg>${loop}</arg>
+<arg>${value}</arg>
+<status status="PASS" starttime="20240902 07:17:49.643" endtime="20240902 07:17:49.658"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:17:50.658" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:17:49.658" endtime="20240902 07:17:50.658"/>
+</kw>
+<status status="PASS" starttime="20240902 07:17:49.643" endtime="20240902 07:17:50.658"/>
+</iter>
+<status status="PASS" starttime="20240902 07:17:44.560" endtime="20240902 07:17:50.658"/>
+</for>
+<status status="PASS" starttime="20240902 07:17:44.560" endtime="20240902 07:17:50.658"/>
+</branch>
+<status status="PASS" starttime="20240902 07:17:44.545" endtime="20240902 07:17:50.658"/>
+</if>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:17:52.658" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:17:50.658" endtime="20240902 07:17:52.658"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[0]/btn[11]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240902 07:17:52.658" endtime="20240902 07:17:52.908"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:17:55.908" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240902 07:17:52.908" endtime="20240902 07:17:55.908"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/nstauthtrace</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:17:55.908" endtime="20240902 07:17:56.055"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:17:59.055" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240902 07:17:56.055" endtime="20240902 07:17:59.055"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[7]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240902 07:17:59.055" endtime="20240902 07:17:59.133"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>4</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:03.133" level="INFO">Slept 4 seconds</msg>
+<status status="PASS" starttime="20240902 07:17:59.133" endtime="20240902 07:18:03.133"/>
+</kw>
+<kw name="Set Focus" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtSC_100_TRACE_USER</arg>
+<doc>Sets the focus to the given element.</doc>
+<status status="PASS" starttime="20240902 07:18:03.133" endtime="20240902 07:18:03.133"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:05.133" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:18:03.133" endtime="20240902 07:18:05.133"/>
+</kw>
+<kw name="Clear Field Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtSC_100_TRACE_USER</arg>
+<msg timestamp="20240902 07:18:05.133" level="INFO">Text cleared in field with ID: wnd[0]/usr/ctxtSC_100_TRACE_USER</msg>
+<status status="PASS" starttime="20240902 07:18:05.133" endtime="20240902 07:18:05.133"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:07.133" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:18:05.133" endtime="20240902 07:18:07.133"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/ctxtSC_100_TRACE_USER</arg>
+<arg>${symvar('Change_Date_User_Name')}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240902 07:18:07.133" level="INFO">Sym.Dev.Change_Date_User_Name: CHANGE_DATE</msg>
+<msg timestamp="20240902 07:18:07.133" level="INFO">Typing text 'CHANGE_DATE' into text field 'wnd[0]/usr/ctxtSC_100_TRACE_USER'.</msg>
+<status status="PASS" starttime="20240902 07:18:07.133" endtime="20240902 07:18:07.133"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:09.146" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:18:07.133" endtime="20240902 07:18:09.146"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[6]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240902 07:18:09.146" endtime="20240902 07:18:09.257"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:12.257" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240902 07:18:09.257" endtime="20240902 07:18:12.257"/>
+</kw>
+<status status="PASS" starttime="20240902 07:17:26.686" endtime="20240902 07:18:12.257"/>
+</kw>
+<kw name="System Logout" library="Roles_change_date">
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/nex</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:18:12.257" endtime="20240902 07:18:12.304"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:14.304" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:18:12.304" endtime="20240902 07:18:14.304"/>
+</kw>
+<status status="PASS" starttime="20240902 07:18:12.257" endtime="20240902 07:18:14.304"/>
+</kw>
+<kw name="TEST_System_Logon" library="Roles_change_date">
+<kw name="Start Process" library="Process">
+<arg>${symvar('SAP_SERVER')}</arg>
+<doc>Starts a new process on background.</doc>
+<msg timestamp="20240902 07:18:14.304" level="INFO">Sym.Dev.SAP_SERVER: C:\Program Files (x86)\SAP\FrontEnd\SAPgui\saplogon.exe</msg>
+<msg timestamp="20240902 07:18:14.304" level="INFO">Starting process:
+"C:\Program Files (x86)\SAP\FrontEnd\SAPgui\saplogon.exe"</msg>
+<status status="PASS" starttime="20240902 07:18:14.304" endtime="20240902 07:18:14.304"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:19.311" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240902 07:18:14.304" endtime="20240902 07:18:19.311"/>
+</kw>
+<kw name="Connect To Session" library="SAP_Tcode_Library">
+<doc>Connects to an open session SAP.</doc>
+<status status="PASS" starttime="20240902 07:18:19.311" endtime="20240902 07:18:19.311"/>
+</kw>
+<kw name="Open Connection" library="SAP_Tcode_Library">
+<arg>${symvar('SA_Role_Connection')}</arg>
+<doc>Opens a connection to the given connection name. Be sure to provide the full connection name, including the bracket part.</doc>
+<msg timestamp="20240902 07:18:19.311" level="INFO">Sym.Dev.SA_Role_Connection: TS4</msg>
+<status status="PASS" starttime="20240902 07:18:19.311" endtime="20240902 07:18:19.655"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:20.663" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:18:19.655" endtime="20240902 07:18:20.663"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/txtRSYST-MANDT</arg>
+<arg>${symvar('SA_Role_Client_Id')}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240902 07:18:20.663" level="INFO">Sym.Dev.SA_Role_Client_Id: 001</msg>
+<msg timestamp="20240902 07:18:20.663" level="INFO">Typing text '001' into text field 'wnd[0]/usr/txtRSYST-MANDT'.</msg>
+<status status="PASS" starttime="20240902 07:18:20.663" endtime="20240902 07:18:20.663"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:21.663" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:18:20.663" endtime="20240902 07:18:21.663"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/txtRSYST-BNAME</arg>
+<arg>${symvar('Change_Date_User_Name')}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240902 07:18:21.663" level="INFO">Sym.Dev.Change_Date_User_Name: CHANGE_DATE</msg>
+<msg timestamp="20240902 07:18:21.663" level="INFO">Typing text 'CHANGE_DATE' into text field 'wnd[0]/usr/txtRSYST-BNAME'.</msg>
+<status status="PASS" starttime="20240902 07:18:21.663" endtime="20240902 07:18:21.663"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:22.663" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:18:21.663" endtime="20240902 07:18:22.663"/>
+</kw>
+<kw name="Input Password" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/pwdRSYST-BCODE</arg>
+<arg>${symvar('New_User_Password')}</arg>
+<doc>Inserts the given password into the text field identified by locator.
+The password is not recorded in the log.</doc>
+<msg timestamp="20240902 07:18:22.663" level="INFO">Sym.Dev.New_User_Password: Welcome@123</msg>
+<msg timestamp="20240902 07:18:22.663" level="INFO">Typing password into text field 'wnd[0]/usr/pwdRSYST-BCODE'.</msg>
+<status status="PASS" starttime="20240902 07:18:22.663" endtime="20240902 07:18:22.663"/>
+</kw>
+<kw name="Send Vkey" library="SAP_Tcode_Library">
+<arg>0</arg>
+<doc>Sends a SAP virtual key combination to the window, not into an element.
+If you want to send a value to a text field, use `input text` instead.</doc>
+<status status="PASS" starttime="20240902 07:18:22.663" endtime="20240902 07:18:22.913"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:25.913" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240902 07:18:22.913" endtime="20240902 07:18:25.913"/>
+</kw>
+<kw name="Input Password" library="SAP_Tcode_Library">
+<arg>wnd[1]/usr/pwdRSYST-NCODE</arg>
+<arg>${symvar('User_Reset_Password')}</arg>
+<doc>Inserts the given password into the text field identified by locator.
+The password is not recorded in the log.</doc>
+<msg timestamp="20240902 07:18:25.913" level="INFO">Sym.Dev.User_Reset_Password: Welcome@@123</msg>
+<msg timestamp="20240902 07:18:25.913" level="INFO">Typing password into text field 'wnd[1]/usr/pwdRSYST-NCODE'.</msg>
+<status status="PASS" starttime="20240902 07:18:25.913" endtime="20240902 07:18:25.913"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:27.913" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:18:25.913" endtime="20240902 07:18:27.913"/>
+</kw>
+<kw name="Input Password" library="SAP_Tcode_Library">
+<arg>wnd[1]/usr/pwdRSYST-NCOD2</arg>
+<arg>${symvar('User_Reset_Password')}</arg>
+<doc>Inserts the given password into the text field identified by locator.
+The password is not recorded in the log.</doc>
+<msg timestamp="20240902 07:18:27.913" level="INFO">Sym.Dev.User_Reset_Password: Welcome@@123</msg>
+<msg timestamp="20240902 07:18:27.913" level="INFO">Typing password into text field 'wnd[1]/usr/pwdRSYST-NCOD2'.</msg>
+<status status="PASS" starttime="20240902 07:18:27.913" endtime="20240902 07:18:27.913"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:29.913" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:18:27.913" endtime="20240902 07:18:29.913"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[1]/tbar[0]/btn[0]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240902 07:18:29.913" endtime="20240902 07:18:29.991"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:31.991" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:18:29.991" endtime="20240902 07:18:31.991"/>
+</kw>
+<kw name="Window Handling" library="SAP_Tcode_Library">
+<arg>wnd[1]</arg>
+<arg>Copyright</arg>
+<arg>wnd[1]/tbar[0]/btn[0]</arg>
+<status status="PASS" starttime="20240902 07:18:31.991" endtime="20240902 07:18:32.288"/>
+</kw>
+<kw name="Multiple Logon Handling" library="SAP_Tcode_Library">
+<arg>wnd[1]</arg>
+<arg>wnd[1]/usr/radMULTI_LOGON_OPT2</arg>
+<arg>wnd[1]/tbar[0]/btn[0]</arg>
+<status status="PASS" starttime="20240902 07:18:32.288" endtime="20240902 07:18:32.304"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:33.304" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:18:32.304" endtime="20240902 07:18:33.304"/>
+</kw>
+<status status="PASS" starttime="20240902 07:18:14.304" endtime="20240902 07:18:33.304"/>
+</kw>
+<kw name="Test_User" library="Roles_change_date">
+<kw name="Get Length" library="BuiltIn">
+<var>${aesc}</var>
+<arg>${GLOBAL_TCODE_LENGTH}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<msg timestamp="20240902 07:18:33.304" level="INFO">Length is 37</msg>
+<msg timestamp="20240902 07:18:33.304" level="INFO">${aesc} = 37</msg>
+<status status="PASS" starttime="20240902 07:18:33.304" endtime="20240902 07:18:33.304"/>
+</kw>
+<for flavor="IN RANGE">
+<var>${j}</var>
+<value>0</value>
+<value>${aesc}</value>
+<iter>
+<var name="${j}">0</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:18:33.304" level="INFO">${input} = ME21N</msg>
+<status status="PASS" starttime="20240902 07:18:33.304" endtime="20240902 07:18:33.304"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:34.304" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:18:33.304" endtime="20240902 07:18:34.304"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:18:34.304" endtime="20240902 07:18:34.695"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:35.695" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:18:34.695" endtime="20240902 07:18:35.695"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:18:35.742" level="INFO" html="true">&lt;a href="tcode_0.jpg"&gt;&lt;img src="tcode_0.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:18:35.695" endtime="20240902 07:18:35.742"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:36.742" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:18:35.742" endtime="20240902 07:18:36.742"/>
+</kw>
+<status status="PASS" starttime="20240902 07:18:33.304" endtime="20240902 07:18:36.742"/>
+</iter>
+<iter>
+<var name="${j}">1</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:18:36.742" level="INFO">${input} = ME22N</msg>
+<status status="PASS" starttime="20240902 07:18:36.742" endtime="20240902 07:18:36.742"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:37.743" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:18:36.742" endtime="20240902 07:18:37.743"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:18:37.743" endtime="20240902 07:18:38.181"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:39.181" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:18:38.181" endtime="20240902 07:18:39.181"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:18:39.227" level="INFO" html="true">&lt;a href="tcode_1.jpg"&gt;&lt;img src="tcode_1.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:18:39.181" endtime="20240902 07:18:39.227"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:40.229" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:18:39.227" endtime="20240902 07:18:40.229"/>
+</kw>
+<status status="PASS" starttime="20240902 07:18:36.742" endtime="20240902 07:18:40.229"/>
+</iter>
+<iter>
+<var name="${j}">2</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:18:40.229" level="INFO">${input} = ME23N</msg>
+<status status="PASS" starttime="20240902 07:18:40.229" endtime="20240902 07:18:40.229"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:41.229" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:18:40.229" endtime="20240902 07:18:41.229"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:18:41.229" endtime="20240902 07:18:41.682"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:42.682" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:18:41.682" endtime="20240902 07:18:42.682"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:18:42.729" level="INFO" html="true">&lt;a href="tcode_2.jpg"&gt;&lt;img src="tcode_2.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:18:42.682" endtime="20240902 07:18:42.729"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:43.729" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:18:42.729" endtime="20240902 07:18:43.729"/>
+</kw>
+<status status="PASS" starttime="20240902 07:18:40.229" endtime="20240902 07:18:43.729"/>
+</iter>
+<iter>
+<var name="${j}">3</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:18:43.729" level="INFO">${input} = ME28</msg>
+<status status="PASS" starttime="20240902 07:18:43.729" endtime="20240902 07:18:43.729"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:44.729" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:18:43.729" endtime="20240902 07:18:44.729"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:18:44.729" endtime="20240902 07:18:44.854"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:45.854" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:18:44.854" endtime="20240902 07:18:45.854"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:18:45.885" level="INFO" html="true">&lt;a href="tcode_3.jpg"&gt;&lt;img src="tcode_3.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:18:45.854" endtime="20240902 07:18:45.885"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:46.885" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:18:45.885" endtime="20240902 07:18:46.885"/>
+</kw>
+<status status="PASS" starttime="20240902 07:18:43.729" endtime="20240902 07:18:46.885"/>
+</iter>
+<iter>
+<var name="${j}">4</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:18:46.885" level="INFO">${input} = FB60</msg>
+<status status="PASS" starttime="20240902 07:18:46.885" endtime="20240902 07:18:46.885"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:47.887" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:18:46.885" endtime="20240902 07:18:47.887"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:18:47.887" endtime="20240902 07:18:47.981"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:48.981" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:18:47.981" endtime="20240902 07:18:48.981"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:18:49.012" level="INFO" html="true">&lt;a href="tcode_4.jpg"&gt;&lt;img src="tcode_4.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:18:48.981" endtime="20240902 07:18:49.012"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:50.012" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:18:49.012" endtime="20240902 07:18:50.012"/>
+</kw>
+<status status="PASS" starttime="20240902 07:18:46.885" endtime="20240902 07:18:50.012"/>
+</iter>
+<iter>
+<var name="${j}">5</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:18:50.012" level="INFO">${input} = FK02</msg>
+<status status="PASS" starttime="20240902 07:18:50.012" endtime="20240902 07:18:50.012"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:51.012" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:18:50.012" endtime="20240902 07:18:51.012"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:18:51.012" endtime="20240902 07:18:51.121"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:52.121" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:18:51.121" endtime="20240902 07:18:52.121"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:18:52.168" level="INFO" html="true">&lt;a href="tcode_5.jpg"&gt;&lt;img src="tcode_5.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:18:52.121" endtime="20240902 07:18:52.168"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:53.168" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:18:52.168" endtime="20240902 07:18:53.168"/>
+</kw>
+<status status="PASS" starttime="20240902 07:18:50.012" endtime="20240902 07:18:53.168"/>
+</iter>
+<iter>
+<var name="${j}">6</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:18:53.168" level="INFO">${input} = MMPV</msg>
+<status status="PASS" starttime="20240902 07:18:53.168" endtime="20240902 07:18:53.168"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:54.168" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:18:53.168" endtime="20240902 07:18:54.168"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:18:54.168" endtime="20240902 07:18:54.231"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:55.231" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:18:54.231" endtime="20240902 07:18:55.231"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:18:55.262" level="INFO" html="true">&lt;a href="tcode_6.jpg"&gt;&lt;img src="tcode_6.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:18:55.231" endtime="20240902 07:18:55.262"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:56.262" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:18:55.262" endtime="20240902 07:18:56.262"/>
+</kw>
+<status status="PASS" starttime="20240902 07:18:53.168" endtime="20240902 07:18:56.262"/>
+</iter>
+<iter>
+<var name="${j}">7</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:18:56.262" level="INFO">${input} = F110</msg>
+<status status="PASS" starttime="20240902 07:18:56.262" endtime="20240902 07:18:56.262"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:57.262" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:18:56.262" endtime="20240902 07:18:57.262"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:18:57.262" endtime="20240902 07:18:57.356"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:58.356" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:18:57.356" endtime="20240902 07:18:58.356"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:18:58.387" level="INFO" html="true">&lt;a href="tcode_7.jpg"&gt;&lt;img src="tcode_7.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:18:58.356" endtime="20240902 07:18:58.387"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:18:59.387" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:18:58.387" endtime="20240902 07:18:59.387"/>
+</kw>
+<status status="PASS" starttime="20240902 07:18:56.262" endtime="20240902 07:18:59.387"/>
+</iter>
+<iter>
+<var name="${j}">8</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:18:59.387" level="INFO">${input} = FBZ0</msg>
+<status status="PASS" starttime="20240902 07:18:59.387" endtime="20240902 07:18:59.387"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:00.387" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:18:59.387" endtime="20240902 07:19:00.387"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:19:00.387" endtime="20240902 07:19:00.465"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:01.465" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:00.465" endtime="20240902 07:19:01.465"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:19:01.512" level="INFO" html="true">&lt;a href="tcode_8.jpg"&gt;&lt;img src="tcode_8.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:19:01.465" endtime="20240902 07:19:01.512"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:02.514" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:01.512" endtime="20240902 07:19:02.514"/>
+</kw>
+<status status="PASS" starttime="20240902 07:18:59.387" endtime="20240902 07:19:02.514"/>
+</iter>
+<iter>
+<var name="${j}">9</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:19:02.514" level="INFO">${input} = FK02</msg>
+<status status="PASS" starttime="20240902 07:19:02.514" endtime="20240902 07:19:02.514"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:03.514" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:02.514" endtime="20240902 07:19:03.514"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:19:03.514" endtime="20240902 07:19:03.607"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:04.607" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:03.607" endtime="20240902 07:19:04.607"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:19:04.639" level="INFO" html="true">&lt;a href="tcode_9.jpg"&gt;&lt;img src="tcode_9.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:19:04.607" endtime="20240902 07:19:04.639"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:05.639" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:04.639" endtime="20240902 07:19:05.639"/>
+</kw>
+<status status="PASS" starttime="20240902 07:19:02.514" endtime="20240902 07:19:05.639"/>
+</iter>
+<iter>
+<var name="${j}">10</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:19:05.639" level="INFO">${input} = OB52</msg>
+<status status="PASS" starttime="20240902 07:19:05.639" endtime="20240902 07:19:05.639"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:06.639" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:05.639" endtime="20240902 07:19:06.639"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:19:06.639" endtime="20240902 07:19:06.733"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:07.740" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:06.733" endtime="20240902 07:19:07.740"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:19:07.771" level="INFO" html="true">&lt;a href="tcode_10.jpg"&gt;&lt;img src="tcode_10.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:19:07.740" endtime="20240902 07:19:07.771"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:08.771" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:07.771" endtime="20240902 07:19:08.771"/>
+</kw>
+<status status="PASS" starttime="20240902 07:19:05.639" endtime="20240902 07:19:08.771"/>
+</iter>
+<iter>
+<var name="${j}">11</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:19:08.771" level="INFO">${input} = SU01D</msg>
+<status status="PASS" starttime="20240902 07:19:08.771" endtime="20240902 07:19:08.771"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:09.771" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:08.771" endtime="20240902 07:19:09.771"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:19:09.771" endtime="20240902 07:19:09.849"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:10.865" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:09.865" endtime="20240902 07:19:10.865"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:19:10.896" level="INFO" html="true">&lt;a href="tcode_11.jpg"&gt;&lt;img src="tcode_11.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:19:10.865" endtime="20240902 07:19:10.896"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:11.900" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:10.896" endtime="20240902 07:19:11.900"/>
+</kw>
+<status status="PASS" starttime="20240902 07:19:08.771" endtime="20240902 07:19:11.900"/>
+</iter>
+<iter>
+<var name="${j}">12</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:19:11.900" level="INFO">${input} = ME21N</msg>
+<status status="PASS" starttime="20240902 07:19:11.900" endtime="20240902 07:19:11.900"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:12.900" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:11.900" endtime="20240902 07:19:12.900"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:19:12.900" endtime="20240902 07:19:13.244"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:14.244" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:13.244" endtime="20240902 07:19:14.244"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:19:14.275" level="INFO" html="true">&lt;a href="tcode_12.jpg"&gt;&lt;img src="tcode_12.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:19:14.244" endtime="20240902 07:19:14.275"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:15.275" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:14.275" endtime="20240902 07:19:15.275"/>
+</kw>
+<status status="PASS" starttime="20240902 07:19:11.900" endtime="20240902 07:19:15.275"/>
+</iter>
+<iter>
+<var name="${j}">13</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:19:15.275" level="INFO">${input} = ME22N</msg>
+<status status="PASS" starttime="20240902 07:19:15.275" endtime="20240902 07:19:15.275"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:16.280" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:15.275" endtime="20240902 07:19:16.280"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:19:16.280" endtime="20240902 07:19:16.717"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:17.718" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:16.717" endtime="20240902 07:19:17.718"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:19:17.749" level="INFO" html="true">&lt;a href="tcode_13.jpg"&gt;&lt;img src="tcode_13.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:19:17.718" endtime="20240902 07:19:17.749"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:18.752" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:17.749" endtime="20240902 07:19:18.752"/>
+</kw>
+<status status="PASS" starttime="20240902 07:19:15.275" endtime="20240902 07:19:18.752"/>
+</iter>
+<iter>
+<var name="${j}">14</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:19:18.752" level="INFO">${input} = ME23N</msg>
+<status status="PASS" starttime="20240902 07:19:18.752" endtime="20240902 07:19:18.752"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:19.752" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:18.752" endtime="20240902 07:19:19.752"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:19:19.752" endtime="20240902 07:19:20.237"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:21.243" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:20.237" endtime="20240902 07:19:21.243"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:19:21.290" level="INFO" html="true">&lt;a href="tcode_14.jpg"&gt;&lt;img src="tcode_14.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:19:21.243" endtime="20240902 07:19:21.290"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:22.290" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:21.290" endtime="20240902 07:19:22.290"/>
+</kw>
+<status status="PASS" starttime="20240902 07:19:18.752" endtime="20240902 07:19:22.290"/>
+</iter>
+<iter>
+<var name="${j}">15</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:19:22.290" level="INFO">${input} = ME28</msg>
+<status status="PASS" starttime="20240902 07:19:22.290" endtime="20240902 07:19:22.290"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:23.292" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:22.290" endtime="20240902 07:19:23.292"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:19:23.292" endtime="20240902 07:19:23.417"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:24.417" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:23.417" endtime="20240902 07:19:24.417"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:19:24.449" level="INFO" html="true">&lt;a href="tcode_15.jpg"&gt;&lt;img src="tcode_15.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:19:24.417" endtime="20240902 07:19:24.449"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:25.449" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:24.449" endtime="20240902 07:19:25.449"/>
+</kw>
+<status status="PASS" starttime="20240902 07:19:22.290" endtime="20240902 07:19:25.449"/>
+</iter>
+<iter>
+<var name="${j}">16</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:19:25.449" level="INFO">${input} = R3TRWDYAWDA_NWBC_LSAPI_TEST</msg>
+<status status="PASS" starttime="20240902 07:19:25.449" endtime="20240902 07:19:25.449"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:26.449" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:25.449" endtime="20240902 07:19:26.449"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:19:26.449" endtime="20240902 07:19:26.542"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:27.542" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:26.542" endtime="20240902 07:19:27.542"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:19:27.574" level="INFO" html="true">&lt;a href="tcode_16.jpg"&gt;&lt;img src="tcode_16.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:19:27.542" endtime="20240902 07:19:27.574"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:28.574" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:27.574" endtime="20240902 07:19:28.574"/>
+</kw>
+<status status="PASS" starttime="20240902 07:19:25.449" endtime="20240902 07:19:28.574"/>
+</iter>
+<iter>
+<var name="${j}">17</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:19:28.574" level="INFO">${input} = R3TRWDYAWDR_TEST_BTC_TABLE</msg>
+<status status="PASS" starttime="20240902 07:19:28.574" endtime="20240902 07:19:28.574"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:29.574" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:28.574" endtime="20240902 07:19:29.574"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:19:29.574" endtime="20240902 07:19:29.636"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:30.636" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:29.636" endtime="20240902 07:19:30.636"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:19:30.668" level="INFO" html="true">&lt;a href="tcode_17.jpg"&gt;&lt;img src="tcode_17.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:19:30.636" endtime="20240902 07:19:30.668"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:31.668" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:30.668" endtime="20240902 07:19:31.668"/>
+</kw>
+<status status="PASS" starttime="20240902 07:19:28.574" endtime="20240902 07:19:31.668"/>
+</iter>
+<iter>
+<var name="${j}">18</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:19:31.668" level="INFO">${input} = R3TRWDYAWDR_TEST_EVENTS</msg>
+<status status="PASS" starttime="20240902 07:19:31.668" endtime="20240902 07:19:31.668"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:32.668" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:31.668" endtime="20240902 07:19:32.668"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:19:32.668" endtime="20240902 07:19:32.746"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:33.746" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:32.746" endtime="20240902 07:19:33.746"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:19:33.793" level="INFO" html="true">&lt;a href="tcode_18.jpg"&gt;&lt;img src="tcode_18.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:19:33.746" endtime="20240902 07:19:33.793"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:34.794" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:33.793" endtime="20240902 07:19:34.794"/>
+</kw>
+<status status="PASS" starttime="20240902 07:19:31.668" endtime="20240902 07:19:34.794"/>
+</iter>
+<iter>
+<var name="${j}">19</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:19:34.794" level="INFO">${input} = R3TRWDYAWDR_TEST_IT05_NOPATT</msg>
+<status status="PASS" starttime="20240902 07:19:34.794" endtime="20240902 07:19:34.794"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:35.809" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:34.794" endtime="20240902 07:19:35.809"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:19:35.809" endtime="20240902 07:19:35.888"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:36.888" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:35.888" endtime="20240902 07:19:36.888"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:19:36.919" level="INFO" html="true">&lt;a href="tcode_19.jpg"&gt;&lt;img src="tcode_19.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:19:36.888" endtime="20240902 07:19:36.919"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:37.919" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:36.919" endtime="20240902 07:19:37.919"/>
+</kw>
+<status status="PASS" starttime="20240902 07:19:34.794" endtime="20240902 07:19:37.919"/>
+</iter>
+<iter>
+<var name="${j}">20</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:19:37.919" level="INFO">${input} = R3TRWDYAWDR_TEST_PORTAL_NAV_OBN</msg>
+<status status="PASS" starttime="20240902 07:19:37.919" endtime="20240902 07:19:37.919"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:38.926" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:37.919" endtime="20240902 07:19:38.926"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:19:38.926" endtime="20240902 07:19:38.989"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:39.989" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:38.989" endtime="20240902 07:19:39.989"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:19:40.020" level="INFO" html="true">&lt;a href="tcode_20.jpg"&gt;&lt;img src="tcode_20.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:19:39.989" endtime="20240902 07:19:40.020"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:41.028" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:40.020" endtime="20240902 07:19:41.028"/>
+</kw>
+<status status="PASS" starttime="20240902 07:19:37.919" endtime="20240902 07:19:41.028"/>
+</iter>
+<iter>
+<var name="${j}">21</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:19:41.028" level="INFO">${input} = DWDM</msg>
+<status status="PASS" starttime="20240902 07:19:41.028" endtime="20240902 07:19:41.028"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:42.034" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:41.028" endtime="20240902 07:19:42.034"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:19:42.034" endtime="20240902 07:19:42.347"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:43.347" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:42.347" endtime="20240902 07:19:43.347"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:19:43.378" level="INFO" html="true">&lt;a href="tcode_21.jpg"&gt;&lt;img src="tcode_21.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:19:43.347" endtime="20240902 07:19:43.378"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:44.378" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:43.378" endtime="20240902 07:19:44.378"/>
+</kw>
+<status status="PASS" starttime="20240902 07:19:41.028" endtime="20240902 07:19:44.378"/>
+</iter>
+<iter>
+<var name="${j}">22</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:19:44.378" level="INFO">${input} = ME21N</msg>
+<status status="PASS" starttime="20240902 07:19:44.378" endtime="20240902 07:19:44.378"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:45.378" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:44.378" endtime="20240902 07:19:45.378"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:19:45.378" endtime="20240902 07:19:45.737"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:46.737" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:45.737" endtime="20240902 07:19:46.737"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:19:46.784" level="INFO" html="true">&lt;a href="tcode_22.jpg"&gt;&lt;img src="tcode_22.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:19:46.737" endtime="20240902 07:19:46.784"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:47.784" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:46.784" endtime="20240902 07:19:47.784"/>
+</kw>
+<status status="PASS" starttime="20240902 07:19:44.378" endtime="20240902 07:19:47.784"/>
+</iter>
+<iter>
+<var name="${j}">23</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:19:47.784" level="INFO">${input} = ME22N</msg>
+<status status="PASS" starttime="20240902 07:19:47.784" endtime="20240902 07:19:47.784"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:48.790" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:47.784" endtime="20240902 07:19:48.790"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:19:48.790" endtime="20240902 07:19:49.244"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:50.244" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:49.244" endtime="20240902 07:19:50.244"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:19:50.290" level="INFO" html="true">&lt;a href="tcode_23.jpg"&gt;&lt;img src="tcode_23.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:19:50.244" endtime="20240902 07:19:50.290"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:51.290" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:50.290" endtime="20240902 07:19:51.290"/>
+</kw>
+<status status="PASS" starttime="20240902 07:19:47.784" endtime="20240902 07:19:51.290"/>
+</iter>
+<iter>
+<var name="${j}">24</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:19:51.290" level="INFO">${input} = ME23N</msg>
+<status status="PASS" starttime="20240902 07:19:51.290" endtime="20240902 07:19:51.290"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:52.291" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:51.290" endtime="20240902 07:19:52.291"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:19:52.291" endtime="20240902 07:19:52.728"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:53.728" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:52.728" endtime="20240902 07:19:53.728"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:19:53.760" level="INFO" html="true">&lt;a href="tcode_24.jpg"&gt;&lt;img src="tcode_24.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:19:53.728" endtime="20240902 07:19:53.760"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:54.761" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:53.760" endtime="20240902 07:19:54.761"/>
+</kw>
+<status status="PASS" starttime="20240902 07:19:51.290" endtime="20240902 07:19:54.761"/>
+</iter>
+<iter>
+<var name="${j}">25</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:19:54.761" level="INFO">${input} = ME28</msg>
+<status status="PASS" starttime="20240902 07:19:54.761" endtime="20240902 07:19:54.761"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:55.767" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:54.761" endtime="20240902 07:19:55.767"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:19:55.767" endtime="20240902 07:19:55.892"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:56.892" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:55.892" endtime="20240902 07:19:56.892"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:19:56.923" level="INFO" html="true">&lt;a href="tcode_25.jpg"&gt;&lt;img src="tcode_25.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:19:56.892" endtime="20240902 07:19:56.923"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:57.923" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:56.923" endtime="20240902 07:19:57.923"/>
+</kw>
+<status status="PASS" starttime="20240902 07:19:54.761" endtime="20240902 07:19:57.923"/>
+</iter>
+<iter>
+<var name="${j}">26</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:19:57.923" level="INFO">${input} = PFCG</msg>
+<status status="PASS" starttime="20240902 07:19:57.923" endtime="20240902 07:19:57.923"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:19:58.923" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:57.923" endtime="20240902 07:19:58.923"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:19:58.923" endtime="20240902 07:19:59.110"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:00.111" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:19:59.110" endtime="20240902 07:20:00.111"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:20:00.142" level="INFO" html="true">&lt;a href="tcode_26.jpg"&gt;&lt;img src="tcode_26.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:20:00.111" endtime="20240902 07:20:00.142"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:01.151" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:00.142" endtime="20240902 07:20:01.151"/>
+</kw>
+<status status="PASS" starttime="20240902 07:19:57.923" endtime="20240902 07:20:01.151"/>
+</iter>
+<iter>
+<var name="${j}">27</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:20:01.151" level="INFO">${input} = SE09</msg>
+<status status="PASS" starttime="20240902 07:20:01.151" endtime="20240902 07:20:01.151"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:02.151" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:01.151" endtime="20240902 07:20:02.151"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:20:02.151" endtime="20240902 07:20:02.247"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:03.247" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:02.247" endtime="20240902 07:20:03.247"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:20:03.278" level="INFO" html="true">&lt;a href="tcode_27.jpg"&gt;&lt;img src="tcode_27.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:20:03.247" endtime="20240902 07:20:03.278"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:04.278" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:03.278" endtime="20240902 07:20:04.278"/>
+</kw>
+<status status="PASS" starttime="20240902 07:20:01.151" endtime="20240902 07:20:04.278"/>
+</iter>
+<iter>
+<var name="${j}">28</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:20:04.278" level="INFO">${input} = SE11</msg>
+<status status="PASS" starttime="20240902 07:20:04.278" endtime="20240902 07:20:04.278"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:05.283" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:04.278" endtime="20240902 07:20:05.283"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:20:05.283" endtime="20240902 07:20:05.361"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:06.361" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:05.361" endtime="20240902 07:20:06.361"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:20:06.408" level="INFO" html="true">&lt;a href="tcode_28.jpg"&gt;&lt;img src="tcode_28.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:20:06.361" endtime="20240902 07:20:06.408"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:07.408" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:06.408" endtime="20240902 07:20:07.408"/>
+</kw>
+<status status="PASS" starttime="20240902 07:20:04.278" endtime="20240902 07:20:07.408"/>
+</iter>
+<iter>
+<var name="${j}">29</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:20:07.408" level="INFO">${input} = SE16</msg>
+<status status="PASS" starttime="20240902 07:20:07.408" endtime="20240902 07:20:07.408"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:08.408" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:07.408" endtime="20240902 07:20:08.408"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:20:08.408" endtime="20240902 07:20:08.471"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:09.486" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:08.471" endtime="20240902 07:20:09.486"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:20:09.533" level="INFO" html="true">&lt;a href="tcode_29.jpg"&gt;&lt;img src="tcode_29.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:20:09.486" endtime="20240902 07:20:09.533"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:10.533" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:09.533" endtime="20240902 07:20:10.533"/>
+</kw>
+<status status="PASS" starttime="20240902 07:20:07.408" endtime="20240902 07:20:10.533"/>
+</iter>
+<iter>
+<var name="${j}">30</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:20:10.533" level="INFO">${input} = SE24</msg>
+<status status="PASS" starttime="20240902 07:20:10.533" endtime="20240902 07:20:10.533"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:11.533" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:10.533" endtime="20240902 07:20:11.533"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:20:11.533" endtime="20240902 07:20:11.611"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:12.611" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:11.611" endtime="20240902 07:20:12.611"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:20:12.658" level="INFO" html="true">&lt;a href="tcode_30.jpg"&gt;&lt;img src="tcode_30.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:20:12.611" endtime="20240902 07:20:12.658"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:13.661" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:12.658" endtime="20240902 07:20:13.661"/>
+</kw>
+<status status="PASS" starttime="20240902 07:20:10.533" endtime="20240902 07:20:13.661"/>
+</iter>
+<iter>
+<var name="${j}">31</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:20:13.661" level="INFO">${input} = SE38</msg>
+<status status="PASS" starttime="20240902 07:20:13.661" endtime="20240902 07:20:13.661"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:14.661" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:13.661" endtime="20240902 07:20:14.661"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:20:14.661" endtime="20240902 07:20:14.739"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:15.739" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:14.739" endtime="20240902 07:20:15.739"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:20:15.786" level="INFO" html="true">&lt;a href="tcode_31.jpg"&gt;&lt;img src="tcode_31.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:20:15.739" endtime="20240902 07:20:15.786"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:16.786" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:15.786" endtime="20240902 07:20:16.786"/>
+</kw>
+<status status="PASS" starttime="20240902 07:20:13.661" endtime="20240902 07:20:16.786"/>
+</iter>
+<iter>
+<var name="${j}">32</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:20:16.786" level="INFO">${input} = SE80</msg>
+<status status="PASS" starttime="20240902 07:20:16.786" endtime="20240902 07:20:16.786"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:17.786" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:16.786" endtime="20240902 07:20:17.786"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:20:17.786" endtime="20240902 07:20:18.333"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:19.334" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:18.333" endtime="20240902 07:20:19.334"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:20:19.381" level="INFO" html="true">&lt;a href="tcode_32.jpg"&gt;&lt;img src="tcode_32.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:20:19.334" endtime="20240902 07:20:19.381"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:20.384" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:19.381" endtime="20240902 07:20:20.384"/>
+</kw>
+<status status="PASS" starttime="20240902 07:20:16.786" endtime="20240902 07:20:20.384"/>
+</iter>
+<iter>
+<var name="${j}">33</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:20:20.384" level="INFO">${input} = SM51</msg>
+<status status="PASS" starttime="20240902 07:20:20.384" endtime="20240902 07:20:20.384"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:21.384" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:20.384" endtime="20240902 07:20:21.384"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:20:21.384" endtime="20240902 07:20:21.790"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:22.790" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:21.790" endtime="20240902 07:20:22.790"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:20:22.822" level="INFO" html="true">&lt;a href="tcode_33.jpg"&gt;&lt;img src="tcode_33.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:20:22.790" endtime="20240902 07:20:22.822"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:23.822" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:22.822" endtime="20240902 07:20:23.822"/>
+</kw>
+<status status="PASS" starttime="20240902 07:20:20.384" endtime="20240902 07:20:23.822"/>
+</iter>
+<iter>
+<var name="${j}">34</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:20:23.822" level="INFO">${input} = SU0</msg>
+<status status="PASS" starttime="20240902 07:20:23.822" endtime="20240902 07:20:23.822"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:24.822" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:23.822" endtime="20240902 07:20:24.822"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:20:24.822" endtime="20240902 07:20:24.947"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:25.947" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:24.947" endtime="20240902 07:20:25.947"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:20:25.978" level="INFO" html="true">&lt;a href="tcode_34.jpg"&gt;&lt;img src="tcode_34.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:20:25.947" endtime="20240902 07:20:25.978"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:26.978" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:25.978" endtime="20240902 07:20:26.978"/>
+</kw>
+<status status="PASS" starttime="20240902 07:20:23.822" endtime="20240902 07:20:26.978"/>
+</iter>
+<iter>
+<var name="${j}">35</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:20:26.978" level="INFO">${input} = SU01</msg>
+<status status="PASS" starttime="20240902 07:20:26.978" endtime="20240902 07:20:26.978"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:27.978" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:26.978" endtime="20240902 07:20:27.978"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:20:27.978" endtime="20240902 07:20:28.072"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:29.072" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:28.072" endtime="20240902 07:20:29.072"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:20:29.103" level="INFO" html="true">&lt;a href="tcode_35.jpg"&gt;&lt;img src="tcode_35.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:20:29.072" endtime="20240902 07:20:29.103"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:30.103" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:29.103" endtime="20240902 07:20:30.103"/>
+</kw>
+<status status="PASS" starttime="20240902 07:20:26.978" endtime="20240902 07:20:30.103"/>
+</iter>
+<iter>
+<var name="${j}">36</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${input}</var>
+<arg>${GLOBAL_TCODE_LENGTH[${j}]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240902 07:20:30.103" level="INFO">${input} = S_YI3_39000013</msg>
+<status status="PASS" starttime="20240902 07:20:30.103" endtime="20240902 07:20:30.103"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:31.103" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:30.103" endtime="20240902 07:20:31.103"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/n${input}</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:20:31.103" endtime="20240902 07:20:31.212"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:32.212" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:31.212" endtime="20240902 07:20:32.212"/>
+</kw>
+<kw name="Take Screenshot" library="SAP_Tcode_Library">
+<arg>tcode_${j}.jpg</arg>
+<doc>Takes a screenshot, only if 'screenshots on error' has been enabled,
+either at import of with keyword `enable screenshots on error`.</doc>
+<msg timestamp="20240902 07:20:32.259" level="INFO" html="true">&lt;a href="tcode_36.jpg"&gt;&lt;img src="tcode_36.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20240902 07:20:32.212" endtime="20240902 07:20:32.259"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:33.259" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:32.259" endtime="20240902 07:20:33.259"/>
+</kw>
+<status status="PASS" starttime="20240902 07:20:30.103" endtime="20240902 07:20:33.259"/>
+</iter>
+<status status="PASS" starttime="20240902 07:18:33.304" endtime="20240902 07:20:33.259"/>
+</for>
+<status status="PASS" starttime="20240902 07:18:33.304" endtime="20240902 07:20:33.259"/>
+</kw>
+<kw name="System Logout" library="Roles_change_date">
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/nex</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:20:33.259" endtime="20240902 07:20:33.308"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:35.308" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:20:33.308" endtime="20240902 07:20:35.308"/>
+</kw>
+<status status="PASS" starttime="20240902 07:20:33.259" endtime="20240902 07:20:35.308"/>
+</kw>
+<kw name="System Logon" library="Roles_change_date">
+<kw name="Start Process" library="Process">
+<arg>${symvar('SAP_SERVER')}</arg>
+<doc>Starts a new process on background.</doc>
+<msg timestamp="20240902 07:20:35.308" level="INFO">Sym.Dev.SAP_SERVER: C:\Program Files (x86)\SAP\FrontEnd\SAPgui\saplogon.exe</msg>
+<msg timestamp="20240902 07:20:35.308" level="INFO">Starting process:
+"C:\Program Files (x86)\SAP\FrontEnd\SAPgui\saplogon.exe"</msg>
+<status status="PASS" starttime="20240902 07:20:35.308" endtime="20240902 07:20:35.308"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:40.317" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20240902 07:20:35.308" endtime="20240902 07:20:40.317"/>
+</kw>
+<kw name="Connect To Session" library="SAP_Tcode_Library">
+<doc>Connects to an open session SAP.</doc>
+<status status="PASS" starttime="20240902 07:20:40.317" endtime="20240902 07:20:40.317"/>
+</kw>
+<kw name="Open Connection" library="SAP_Tcode_Library">
+<arg>${symvar('SA_Role_Connection')}</arg>
+<doc>Opens a connection to the given connection name. Be sure to provide the full connection name, including the bracket part.</doc>
+<msg timestamp="20240902 07:20:40.317" level="INFO">Sym.Dev.SA_Role_Connection: TS4</msg>
+<status status="PASS" starttime="20240902 07:20:40.317" endtime="20240902 07:20:40.661"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:41.661" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:40.661" endtime="20240902 07:20:41.661"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/txtRSYST-MANDT</arg>
+<arg>${symvar('SA_Role_Client_Id')}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240902 07:20:41.661" level="INFO">Sym.Dev.SA_Role_Client_Id: 001</msg>
+<msg timestamp="20240902 07:20:41.661" level="INFO">Typing text '001' into text field 'wnd[0]/usr/txtRSYST-MANDT'.</msg>
+<status status="PASS" starttime="20240902 07:20:41.661" endtime="20240902 07:20:41.661"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:42.661" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:41.661" endtime="20240902 07:20:42.661"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/txtRSYST-BNAME</arg>
+<arg>${symvar('SA_Role_User_Name')}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240902 07:20:42.661" level="INFO">Sym.Dev.SA_Role_User_Name: Preethi</msg>
+<msg timestamp="20240902 07:20:42.661" level="INFO">Typing text 'Preethi' into text field 'wnd[0]/usr/txtRSYST-BNAME'.</msg>
+<status status="PASS" starttime="20240902 07:20:42.661" endtime="20240902 07:20:42.661"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:43.663" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:42.661" endtime="20240902 07:20:43.663"/>
+</kw>
+<kw name="Input Password" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/pwdRSYST-BCODE</arg>
+<arg>%{SA_Role_User_Password}</arg>
+<doc>Inserts the given password into the text field identified by locator.
+The password is not recorded in the log.</doc>
+<msg timestamp="20240902 07:20:43.663" level="INFO">Typing password into text field 'wnd[0]/usr/pwdRSYST-BCODE'.</msg>
+<status status="PASS" starttime="20240902 07:20:43.663" endtime="20240902 07:20:43.663"/>
+</kw>
+<kw name="Send Vkey" library="SAP_Tcode_Library">
+<arg>0</arg>
+<doc>Sends a SAP virtual key combination to the window, not into an element.
+If you want to send a value to a text field, use `input text` instead.</doc>
+<status status="PASS" starttime="20240902 07:20:43.663" endtime="20240902 07:20:44.007"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:47.011" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240902 07:20:44.007" endtime="20240902 07:20:47.011"/>
+</kw>
+<kw name="Multiple Logon Handling" library="SAP_Tcode_Library">
+<arg>wnd[1]</arg>
+<arg>wnd[1]/usr/radMULTI_LOGON_OPT2</arg>
+<arg>wnd[1]/tbar[0]/btn[0]</arg>
+<status status="PASS" starttime="20240902 07:20:47.011" endtime="20240902 07:20:47.011"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:48.012" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:47.011" endtime="20240902 07:20:48.012"/>
+</kw>
+<status status="PASS" starttime="20240902 07:20:35.308" endtime="20240902 07:20:48.012"/>
+</kw>
+<kw name="Own_User" library="Roles_change_date">
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/nstauthtrace</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:20:48.012" endtime="20240902 07:20:48.168"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:49.168" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:48.168" endtime="20240902 07:20:49.168"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[8]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240902 07:20:49.168" endtime="20240902 07:20:49.684"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:50.684" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:49.684" endtime="20240902 07:20:50.684"/>
+</kw>
+<kw name="Send Vkey" library="SAP_Tcode_Library">
+<arg>vkey_id=45</arg>
+<doc>Sends a SAP virtual key combination to the window, not into an element.
+If you want to send a value to a text field, use `input text` instead.</doc>
+<status status="PASS" starttime="20240902 07:20:50.684" endtime="20240902 07:20:50.934"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:51.934" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:20:50.934" endtime="20240902 07:20:51.934"/>
+</kw>
+<kw name="Select Radio Button" library="SAP_Tcode_Library">
+<arg>wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[2,0]</arg>
+<doc>Sets radio button to the specified value.</doc>
+<status status="PASS" starttime="20240902 07:20:51.934" endtime="20240902 07:20:51.934"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:53.936" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:20:51.934" endtime="20240902 07:20:53.936"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[1]/tbar[0]/btn[0]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240902 07:20:53.936" endtime="20240902 07:20:54.148"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:56.148" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:20:54.148" endtime="20240902 07:20:56.148"/>
+</kw>
+<kw name="Clear Field Text" library="SAP_Tcode_Library">
+<arg>wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME</arg>
+<msg timestamp="20240902 07:20:56.148" level="INFO">Text cleared in field with ID: wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME</msg>
+<status status="PASS" starttime="20240902 07:20:56.148" endtime="20240902 07:20:56.148"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:20:58.150" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:20:56.148" endtime="20240902 07:20:58.150"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME</arg>
+<arg>Change_Date_Overall_Report</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240902 07:20:58.150" level="INFO">Typing text 'Change_Date_Overall_Report' into text field 'wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME'.</msg>
+<status status="PASS" starttime="20240902 07:20:58.150" endtime="20240902 07:20:58.150"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:21:00.150" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:20:58.150" endtime="20240902 07:21:00.150"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[1]/tbar[0]/btn[20]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240902 07:21:00.150" endtime="20240902 07:21:00.416"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:21:02.432" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:21:00.416" endtime="20240902 07:21:02.432"/>
+</kw>
+<kw name="Clear Field Text" library="SAP_Tcode_Library">
+<arg>wnd[1]/usr/ctxtDY_PATH</arg>
+<msg timestamp="20240902 07:21:02.432" level="INFO">Text cleared in field with ID: wnd[1]/usr/ctxtDY_PATH</msg>
+<status status="PASS" starttime="20240902 07:21:02.432" endtime="20240902 07:21:02.432"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:21:04.432" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:21:02.432" endtime="20240902 07:21:04.432"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[1]/usr/ctxtDY_PATH</arg>
+<arg>C:\\tmp</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240902 07:21:04.432" level="INFO">Typing text 'C:\tmp' into text field 'wnd[1]/usr/ctxtDY_PATH'.</msg>
+<status status="PASS" starttime="20240902 07:21:04.432" endtime="20240902 07:21:04.432"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:21:06.433" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:21:04.432" endtime="20240902 07:21:06.433"/>
+</kw>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[1]/tbar[0]/btn[11]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240902 07:21:06.433" endtime="20240902 07:21:06.823"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:21:08.823" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:21:06.823" endtime="20240902 07:21:08.823"/>
+</kw>
+<status status="PASS" starttime="20240902 07:20:48.012" endtime="20240902 07:21:08.823"/>
+</kw>
+<kw name="Deletefile" library="Roles_change_date">
+<kw name="Delete Specific File" library="SAP_Tcode_Library">
+<arg>file_path=C:\\tmp\\Change_Role_extract.xlsx</arg>
+<status status="PASS" starttime="20240902 07:21:08.823" endtime="20240902 07:21:08.823"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:21:09.823" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:21:08.823" endtime="20240902 07:21:09.823"/>
+</kw>
+<kw name="Delete Specific File" library="SAP_Tcode_Library">
+<arg>file_path=C:\\tmp\\Change_Role_extract.txt</arg>
+<status status="PASS" starttime="20240902 07:21:09.823" endtime="20240902 07:21:09.823"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:21:10.823" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:21:09.823" endtime="20240902 07:21:10.823"/>
+</kw>
+<kw name="Delete Specific File" library="SAP_Tcode_Library">
+<arg>file_path=C:\\tmp\\Change_Tcode_extract.xlsx</arg>
+<status status="PASS" starttime="20240902 07:21:10.823" endtime="20240902 07:21:10.823"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:21:11.823" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240902 07:21:10.823" endtime="20240902 07:21:11.823"/>
+</kw>
+<status status="PASS" starttime="20240902 07:21:08.823" endtime="20240902 07:21:11.823"/>
+</kw>
+<tag>Regression</tag>
+<tag>Roles_change_date</tag>
+<status status="PASS" starttime="20240902 07:16:11.740" endtime="20240902 07:21:11.823"/>
+</test>
+<kw name="System Logout" library="Roles_change_date" type="TEARDOWN">
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/nex</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240902 07:21:11.823" endtime="20240902 07:21:11.870"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240902 07:21:13.873" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240902 07:21:11.870" endtime="20240902 07:21:13.873"/>
+</kw>
+<status status="PASS" starttime="20240902 07:21:11.823" endtime="20240902 07:21:13.873"/>
+</kw>
+<status status="PASS" starttime="20240902 07:15:58.001" endtime="20240902 07:21:13.873"/>
+</suite>
+<doc>Testing functionality through Robot Framework</doc>
+<meta name="environment">Dev</meta>
+<meta name="test_browser_name">chrome</meta>
+<meta name="test_browser_version">128.0.6613.114</meta>
+<meta name="test_driver_version">127.0.6533.72 </meta>
+<meta name="test_environment">Dev</meta>
+<meta name="test_freeze_dependencies">annotated-types==0.7.0,arrow==1.3.0,astroid==3.2.2,asttokens==2.4.1,attrs==23.2.0,beautifulsoup4==4.12.3,binaryornot==0.4.4,bs4==0.0.2,certifi==2024.6.2,cffi==1.16.0,chardet==5.2.0,charset-normalizer==3.3.2,click==8.1.7,colorama==0.4.6,cookiecutter==2.6.0,cryptography==42.0.7,decorator==5.1.1,defusedxml==0.7.1,dill==0.3.8,docutils==0.21.2,et-xmlfile==1.1.0,exceptiongroup==1.2.1,executing==2.0.1,gitdb==4.0.11,GitPython==3.1.43,grpcio==1.64.1,h11==0.14.0,idna==3.7,ipython==8.25.0,isort==5.13.2,jaraco.classes==3.4.0,jaraco.context==5.3.0,jaraco.functools==4.0.1,jedi==0.19.1,Jinja2==3.1.4,jira==3.8.0,jsonpath-ng==1.6.1,jsonschema==4.22.0,jsonschema-specifications==2023.12.1,keyring==25.2.1,lazy-object-proxy==1.10.0,lxml==5.2.2,markdown-it-py==3.0.0,MarkupSafe==2.1.5,matplotlib-inline==0.1.7,mccabe==0.7.0,mdurl==0.1.2,more-itertools==10.3.0,MouseInfo==0.1.3,natsort==8.4.0,numpy==2.0.0,oauthlib==3.2.2,openpyxl==3.1.5,outcome==1.3.0.post0,packaging==24.0,pandas==2.2.2,parso==0.8.4,pathspec==0.11.2,pillow==10.3.0,pip==24.2,platformdirs==4.2.2,ply==3.11,prompt_toolkit==3.0.47,pure-eval==0.2.2,PyAutoGUI==0.9.54,pycparser==2.22,pydantic==2.7.4,pydantic_core==2.18.4,PyGetWindow==0.0.9,Pygments==2.18.0,pylint==3.2.2,PyMsgBox==1.0.9,PyPDF2==3.0.1,pyperclip==1.9.0,PyRect==0.2.0,PyScreeze==1.0.1,PySocks==1.7.1,python-dateutil==2.9.0.post0,python-dotenv==1.0.1,python-slugify==8.0.4,pytweening==1.2.0,pytz==2024.1,pywin32==306,pywin32-ctypes==0.2.2,PyYAML==6.0.1,redis==5.0.6,referencing==0.35.1,reportlab==4.2.0,requests==2.32.3,requests-oauthlib==2.0.0,requests-toolbelt==1.0.0,RestrictedPython==7.1,rich==13.7.1,rich-click==1.6.1,robotframework==6.0.2,robotframework-datadriver==1.9.0,robotframework-excellib==2.0.1,robotframework-jsonlibrary==0.5,robotframework-pabot==2.16.0,robotframework-pythonlibcore==4.2.0,robotframework-requests==0.9.2,robotframework-sapguilibrary==1.1,robotframework-seleniumlibrary==5.1.3,robotframework-stacktrace==0.4.1,robotframework-tidy==4.5.0,rpds-py==0.18.1,selenium==4.9.1,setuptools==70.0.0,shellingham==1.5.4,six==1.16.0,smmap==5.0.1,sniffio==1.3.1,sortedcontainers==2.4.0,soupsieve==2.5,stack-data==0.6.3,statsd==4.0.1,text-unidecode==1.3,tomli==2.0.1,tomlkit==0.12.5,traitlets==5.14.3,trio==0.25.1,trio-websocket==0.11.1,typer==0.12.3,types-python-dateutil==2.9.0.20240316,typing_extensions==4.12.1,tzdata==2024.1,urllib3==2.2.1,wcwidth==0.2.13,websocket-client==1.8.0,wheel==0.43.0,wrapt==1.16.0,wsproto==1.2.0</meta>
+<status status="PASS" starttime="20240902 07:15:54.254" endtime="20240902 07:21:13.935"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">Regression</stat>
+<stat pass="1" fail="0" skip="0">Roles_change_date</stat>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Tests">Tests</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="Test Roles change date">Tests.Test Roles change date</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

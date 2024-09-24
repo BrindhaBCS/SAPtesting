@@ -1241,7 +1241,8 @@ class CustomSapGuiLibrary:
             else:
                 print("search text is not found")
                 return("search text is not found")
-        return found_elements
+        # return found_elements
+        return("Certificate got expired")
     
     def get_cell_value_from_gridtable(self, table_id):
         try:

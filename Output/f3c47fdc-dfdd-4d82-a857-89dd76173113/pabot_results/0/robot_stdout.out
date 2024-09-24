@@ -1,0 +1,43 @@
+==============================================================================
+Tests :: Testing functionality through Robot Framework                        
+==============================================================================
+Tests.Test.Roles                                                              
+==============================================================================
+START                                                                   
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\test.roles.robot:6
+    T:  START    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\test.roles.robot:7
+      START    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Resource\roles.robot:7
+      Start Process    ${sapvar('role_sapserver')}
+      |  ${sapvar('role_sapserver')} = 'C:\Program Files (x86)\SAP\FrontEnd\SAPgui\saplogon.exe' (str)
+______________________________________________________________________________
+| FAIL |
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+------------------------------------------------------------------------------
+PFCG_TCODE                                                              
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\test.roles.robot:8
+    T:  PFCG_TCODE    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\test.roles.robot:9
+      PFCG_TCODE    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Resource\roles.robot:18
+      Run Transaction    wnd[0]/tbar[0]/okcd    PFCG
+______________________________________________________________________________
+| FAIL |
+AttributeError: 'int' object has no attribute 'findById'
+------------------------------------------------------------------------------
+Tests.Test.Roles                                                      | FAIL |
+2 tests, 0 passed, 2 failed
+==============================================================================
+Tests :: Testing functionality through Robot Framework                | FAIL |
+2 tests, 0 passed, 2 failed
+==============================================================================
+Output:  C:\RobotFramework\sap_testing\Output\f3c47fdc-dfdd-4d82-a857-89dd76173113\pabot_results\0\Output.xml

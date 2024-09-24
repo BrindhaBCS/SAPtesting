@@ -1,0 +1,41 @@
+==============================================================================
+Tests :: Testing functionality through Robot Framework                        
+==============================================================================
+Tests.Test Create Sales Orders                                                
+==============================================================================
+  
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Test_Create Sales Orders.robot:6
+      System Logon    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Resource\Create_Sales_Orders.robot:9
+      Start Process    ${symvar('SALES_SERVER')}
+      |  ${symvar('SALES_SERVER')} =  (str)
+______________________________________________________________________________
+Executing VA01                                                        | FAIL |
+Parent suite setup failed:
+OSError: [WinError 87] The parameter is incorrect
+------------------------------------------------------------------------------
+  
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Test_Create Sales Orders.robot:7
+      System Logout    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\RobotFramework\sap_testing\Tests\Resource\Create_Sales_Orders.robot:49
+      Run Transaction    /nex
+______________________________________________________________________________
+Tests.Test Create Sales Orders                                        | FAIL |
+Suite setup failed:
+OSError: [WinError 87] The parameter is incorrect
+
+Also suite teardown failed:
+AttributeError: 'int' object has no attribute 'findById'
+
+1 test, 0 passed, 1 failed
+==============================================================================
+Tests :: Testing functionality through Robot Framework                | FAIL |
+1 test, 0 passed, 1 failed
+==============================================================================
+Output:  C:\RobotFramework\sap_testing\Output\c186afd0-dea9-4c51-9f00-89348189d2d4\pabot_results\0\Output.xml

@@ -8,6 +8,16 @@ from robot.api import logger
 import sys
 import ast
 import openpyxl
+import re
+import glob
+from openpyxl import load_workbook
+import pandas as pd
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.base import MIMEBase
+from email import encoders
+import json
 
 
 class SAP_Tcode_Library:
@@ -1348,4 +1358,485 @@ class SAP_Tcode_Library:
             field.Text = ""
             print(f"Text cleared in field with ID: {field_id}")
         except Exception as e:
-            print(f"Error: {e}")              
+            print(f"Error: {e}")     
+
+    def extract_order_number(self,sentence):
+        """
+        Extracts the integer value from the given sentence.
+
+        Args:
+            sentence (str): The sentence containing the order number.
+
+        Returns:
+            int: The extracted order number.
+        """
+        # Use regular expression to extract the integer value
+        import re
+        pattern = r'\b(\d+)\b'
+        match = re.search(pattern, sentence)
+        if match:
+            return int(match.group(1))
+        else:
+            raise ValueError("No order number found in the sentence")  
+
+
+    def extract_integer_values(self,sentence):
+        integer_values = re.findall(r'\b(\d+)\b', sentence)
+        if len(integer_values) == 1:
+            order_number = int(integer_values[0])
+            return {"order_number": order_number}
+        elif len(integer_values) > 1:
+            order_number = int(integer_values[0])
+            material_number = int(integer_values[1])
+            return {"order_number": order_number, "material_number": material_number}
+        else:
+            return None
+        
+    def print_table_row(self, material_numbers, order_quantities, amounts):
+        """
+        Prints table rows for the given material numbers, order quantities, and amounts.
+
+        Args:
+            material_numbers (list): List of material numbers.
+            order_quantities (list): List of order quantities corresponding to the material numbers.
+            amounts (list): List of amounts corresponding to the material numbers.
+
+        Raises:
+            ValueError: If the lengths of material_numbers, order_quantities, and amounts do not match.
+        """
+        if len(material_numbers) != len(order_quantities) or len(material_numbers) != len(amounts):
+            raise ValueError("Material numbers, order quantities, and amounts must have the same length")
+
+        base_material_number_path = "wnd[0]/usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\\01/ssubSUBSCREEN_BODY:SAPMV45A:4400/subSUBSCREEN_TC:SAPMV45A:4900/tblSAPMV45ATCTRL_U_ERF_AUFTRAG/ctxtRV45A-MABNR"
+        base_order_quantity_path = "wnd[0]/usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\\01/ssubSUBSCREEN_BODY:SAPMV45A:4400/subSUBSCREEN_TC:SAPMV45A:4900/tblSAPMV45ATCTRL_U_ERF_AUFTRAG/txtRV45A-KWMENG"
+        base_amount_path = "wnd[0]/usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\\01/ssubSUBSCREEN_BODY:SAPMV45A:4400/subSUBSCREEN_TC:SAPMV45A:4900/tblSAPMV45ATCTRL_U_ERF_AUFTRAG/txtKOMV-KBETR"
+
+        try:
+            for i, (material_number, order_quantity, amount) in enumerate(zip(material_numbers, order_quantities, amounts)):
+                material_number_path = f"{base_material_number_path}[1,{i}]"
+                order_quantity_path = f"{base_order_quantity_path}[3,{i}]"
+                amount_path = f"{base_amount_path}[15,{i}]"
+                self.session.findById(material_number_path).text = material_number
+            
+                self.session.findById(order_quantity_path).text = order_quantity
+                self.session.findById(amount_path).text = amount
+                self.session.findById("wnd[0]").sendVKey(0)
+                time.sleep(1)
+
+        except Exception as e:
+            print(e)
+
+    def picked_qty_loc_select(self, picked_qty, location):
+        picked_txt = "wnd[0]/usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\\02/ssubSUBSCREEN_BODY:SAPMV50A:1104/tblSAPMV50ATC_LIPS_PICK/txtLIPSD-PIKMG"
+        location_txt ="wnd[0]/usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\\02/ssubSUBSCREEN_BODY:SAPMV50A:1104/tblSAPMV50ATC_LIPS_PICK/ctxtLIPS-LGORT"
+        try:
+            for i in range(len(picked_qty)):
+                picked_id = f"{picked_txt}[7,{i}]"
+                location_id =f"{location_txt}[3,{i}]"
+                print(picked_id)
+                print(location_id)
+                print(picked_qty[i])
+                print(location[i])
+                self.session.findById(picked_id).text = picked_qty[i]
+                self.session.findById(location_id).text = location[i]
+                self.session.findById("wnd[0]").sendVKey(0) 
+                time.sleep(1)                       
+ 
+        except Exception as e:
+            print(e)                      
+
+    def quantity_select(self, material, quantity, amount):
+        mat_txt = "wnd[0]/usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\\01/ssubSUBSCREEN_BODY:SAPMV45A:4400/subSUBSCREEN_TC:SAPMV45A:4900/tblSAPMV45ATCTRL_U_ERF_AUFTRAG/ctxtRV45A-MABNR"
+        qty_txt = "wnd[0]/usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\\01/ssubSUBSCREEN_BODY:SAPMV45A:4400/subSUBSCREEN_TC:SAPMV45A:4900/tblSAPMV45ATCTRL_U_ERF_AUFTRAG/txtRV45A-KWMENG"
+        amt_txt = "wnd[0]/usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\\01/ssubSUBSCREEN_BODY:SAPMV45A:4400/subSUBSCREEN_TC:SAPMV45A:4900/tblSAPMV45ATCTRL_U_ERF_AUFTRAG/txtKOMV-KBETR"
+        
+        try:
+            for i in range(len(material)):
+                mat_id = f"{mat_txt}[1,{i}]"
+                qty_id = f"{qty_txt}[3,{i}]"
+                amt_id = f"{amt_txt}[15,{i}]"
+                
+                print(f"Material ID: {mat_id}")
+                print(f"Quantity ID: {qty_id}")
+                print(f"Amount ID: {amt_id}")
+                
+                print(f"Material: {material[i]}")
+                print(f"Quantity: {quantity[i]}")
+                print(f"Amount: {amount[i]}")
+
+                # Check if element exists before interacting
+                if self.session.findById(mat_id) is not None:
+                    self.session.findById(mat_id).text = material[i]
+                else:
+                    print(f"Material field not found: {mat_id}")
+                    continue  # Skip to the next iteration
+
+                if self.session.findById(qty_id) is not None:
+                    self.session.findById(qty_id).text = quantity[i]
+                else:
+                    print(f"Quantity field not found: {qty_id}")
+                    continue  # Skip to the next iteration
+
+                if self.session.findById(amt_id) is not None:
+                    self.session.findById(amt_id).text = amount[i]
+                else:
+                    print(f"Amount field not found: {amt_id}")
+                    continue  # Skip to the next iteration
+
+                # Process the entry
+                self.session.findById("wnd[0]").sendVKey(0)
+                # self.exceed_quantity_handling(error_id)
+                # time.sleep(2)  # Ensure there is enough time between interactions
+                # self.quantity_handling(window_id, text, button_id1, button_id2)
+                # time.sleep(2)
+
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
+    def picked_qty_loc_select(self, picked_qty, location):
+        picked_txt = "wnd[0]/usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\\02/ssubSUBSCREEN_BODY:SAPMV50A:1104/tblSAPMV50ATC_LIPS_PICK/txtLIPSD-PIKMG"
+        location_txt ="wnd[0]/usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\\02/ssubSUBSCREEN_BODY:SAPMV50A:1104/tblSAPMV50ATC_LIPS_PICK/ctxtLIPS-LGORT"
+        try:
+            for i in range(len(picked_qty)):
+                picked_id = f"{picked_txt}[7,{i}]"
+                location_id =f"{location_txt}[3,{i}]"
+                print(picked_id)
+                print(location_id)
+                print(picked_qty[i])
+                print(location[i])
+                self.session.findById(picked_id).text = picked_qty[i]
+                self.session.findById(location_id).text = location[i]
+                self.session.findById("wnd[0]").sendVKey(0)                         
+
+        except Exception as e:
+            print(e)
+
+    def document_entry(self, doc_no):
+        doc_txt = "wnd[0]/usr/tblSAPMV60ATCTRL_ERF_FAKT/ctxtKOMFK-VBELN"
+        try:
+            for i in range(len(doc_no)):
+                picked_id = f"{doc_txt}[0,{i}]"
+                print(picked_id)
+                print(doc_no[i])
+                self.session.findById(picked_id).text = doc_no[i]
+                self.session.findById("wnd[0]").sendVKey(0)                         
+
+        except Exception as e:
+            print(e)
+
+
+    def exceed_quantity_handling(self, error_id):
+        try:
+            status = self.session.findById(error_id).text
+            print(status)
+            status_split = status.split()
+            status_splits = status_split[:-1]
+            status_text = [status_split for status_split in status_splits if not status_split.isnumeric()]  # Fix the index here
+            status1 = ' '.join(status_text)
+            print(status1)
+            if status1 == "Reorder point for item has been exceeded:":
+                found = True
+                self.session.findById("wnd[0]").sendVKey(0)
+                time.sleep(5)
+                return status
+            else:
+                print(status)  # Fix the variable name here
+        except Exception as e:
+            print(f"Error: {e}")
+
+    def Extract_number(self, status_id):
+        try:
+            status = self.session.findById(status_id).text
+            print(status)
+            pattern = r'\b\d+\b'
+            print(pattern)
+            order_numbers = re.findall(pattern, status)
+            print(order_numbers)
+            if order_numbers:
+                order_number = order_numbers[0]
+                print("Order Number:", order_number)
+                return order_number
+            else:
+                print("No order number found.")
+        except Exception as e:
+            print(f"Error: {e}")
+    def Modify_sap_cell(self, cell_path, row_index, agr_name_value):
+        try:
+            # Obtain the SAP GUI session
+            sap_gui = win32com.client.GetObject("SAPGUI")
+            application = sap_gui.GetScriptingEngine
+            session = application.Children(0).Children(0)
+            # Modify the specified cell
+            session.findById(cell_path).modifyCell(int(row_index), "AGR_NAME", agr_name_value)
+            return f"Cell at row {row_index} modified successfully with AGR_NAME: {agr_name_value}"
+        except Exception as e:
+            return f"An error occurred: {e}"
+
+    def Get_sap_cell_value_AGR_NAME(self, cell_path, row_index):
+        try:
+            # Obtain the SAP GUI session
+            sap_gui = win32com.client.GetObject("SAPGUI")
+            application = sap_gui.GetScriptingEngine
+            session = application.Children(0).Children(0)
+            
+            # Access the table
+            table = session.findById(cell_path)
+            
+            # Retrieve the specified cell value
+            cell_value = table.getCellValue(int(row_index), "AGR_NAME")
+            return cell_value
+        except Exception as e:
+            return f"An error occurred: {e}"
+
+
+    def Roles_extract(self, file_location, sheet_name, output_file):
+        try:
+            # Read the Excel file and select the specified column
+            df = pd.read_excel(file_location, sheet_name=sheet_name, usecols=[2], header=None)
+            df.columns = ['AGR_NAME']
+            
+            # Strip whitespace and filter out any rows that match the column header name (case-insensitive)
+            df['AGR_NAME'] = df['AGR_NAME'].str.strip()
+            filtered_data = df[~df['AGR_NAME'].str.casefold().eq('agr_name')]
+            
+            # Convert the filtered data to a list of strings, removing any empty strings
+            roles_list = filtered_data['AGR_NAME'].dropna().astype(str).tolist()
+            roles_list = [role for role in roles_list if role]  # Remove empty strings
+            
+            # Write the filtered data to the specified output file
+            filtered_data_str = "\n".join(roles_list)
+            with open(output_file, 'w') as file:
+                file.write(filtered_data_str)
+            
+            # Print the result for verification
+            print(f"Data has been written to {output_file}")
+            
+            # Return the list of roles without empty strings
+            return roles_list
+        
+        except FileNotFoundError:
+            print(f"Error: The file at location '{file_location}' was not found.")
+            return []
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            return []
+        
+
+    def Tcode_extract(self, file_location, sheet_name):
+        try:
+            # Read the Excel file and select only the T_CODE column (column 9)
+            df = pd.read_excel(file_location, sheet_name=sheet_name, usecols=[9], header=None)
+            df.columns = ['T_CODE']
+            
+            # Strip whitespace and filter out any rows with empty T_CODEs
+            df['T_CODE'] = df['T_CODE'].str.strip()
+            tcodes_list = df['T_CODE'].dropna().astype(str).tolist()
+            tcodes_list = [tcode for tcode in tcodes_list if tcode]  # Remove empty strings
+            
+            # Exclude the first TCODE entry, assuming it is the header 'TCODE'
+            if tcodes_list and tcodes_list[0].casefold() == 'tcode':
+                tcodes_list = tcodes_list[1:]
+            
+            # Return the list of T_CODES without empty strings and excluding the header
+            return tcodes_list
+            
+        except FileNotFoundError:
+            print(f"Error: The file at location '{file_location}' was not found.")
+            return []
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            return []
+        
+    def Delete_allrole_save(self):
+        try:
+            self.session.findById("wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell").setCurrentCell(-1, "")
+            self.session.findById("wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell").selectAll()
+            self.session.findById("wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell").pressToolbarButton("DEL_LINE")
+            self.session.findById("wnd[0]/tbar[0]/btn[11]").press()
+        except:
+            return  []
+
+    def send_mail(self, from_email, password, to_mail, subject, content, file_path=None):
+        HOST = "smtp-mail.outlook.com"
+        PORT = 587
+        message = MIMEMultipart()
+        message['From'] = from_email
+        message['To'] = ", ".join(to_mail)
+        message['Subject'] = subject
+        message.attach(MIMEText(content, 'plain'))
+        if file_path and os.path.isfile(file_path):
+            with open(file_path, "rb") as attachment:
+                part = MIMEBase("application", "octet-stream")
+                part.set_payload(attachment.read())
+                encoders.encode_base64(part)
+                part.add_header(
+                    "Content-Disposition",
+                    f"attachment; filename= {os.path.basename(file_path)}",
+                )
+                message.attach(part)
+        try:
+            smtp = smtplib.SMTP(HOST, PORT)
+            smtp.ehlo()
+            smtp.starttls()
+            smtp.login(from_email, password)
+            smtp.sendmail(from_email, to_mail, message.as_string())
+            print("[*] Email sent successfully!")
+        except Exception as e:
+            print(f"[!] An error occurred: {e}")
+        finally:
+            smtp.quit()
+            
+    def delete_specific_file(self, file_path):
+        try:
+            if os.path.exists(file_path):
+                os.remove(file_path)
+            else:
+                print(f"The file '{file_path}' does not exist.")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
+    def get_certificate_value(self, lable_id, search_texts):
+        user_area = self.session.findById(lable_id)
+        item_count = user_area.Children.Count
+        found_certificate = []
+        for search_text in search_texts:
+            for i in range(item_count):
+                element = user_area.Children.ElementAt(i)
+                if element.Text.strip() == search_text.strip():
+                    found_certificate.append(element.Text)
+                    print(element.Text)
+                    break
+            else:
+                print("['Certificate is not found']")
+                return("['Certificate is not found']")
+        return found_certificate   
+
+    def system_messages(self, Text_box_ids, messages):
+        """
+        Sets the text of specified SAP GUI labels and returns the resulting values.
+
+        Args:
+            label_ids (list): A list of SAP GUI label IDs to set the text for.
+            messages (list): A list of strings to search for in the SAP GUI window.
+
+        Returns:
+            list: A list of the resulting values of the specified labels.
+        """
+        for Text_box_id, messages in zip(Text_box_ids, messages):
+            self.session.findById("wnd[1]/usr/" + Text_box_id).text = messages
+
+        # Wait for the SAP GUI window to update with the new label values
+        time.sleep(1)
+        label_values = [self.session.findById("wnd[1]/usr/" + Text_box_id).text for Text_box_id in Text_box_ids]
+
+        print(label_values)
+
+        return label_values            
+    def get_total_row(self, excel_path, sheet_name):
+        try:
+            workbook = load_workbook(excel_path)
+            sheet = workbook[sheet_name]
+            row_count = sheet.max_row
+            return row_count
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            return None 
+
+    def get_material_count(self, excel_path):
+        workbook=load_workbook(excel_path)
+        sheet=workbook.active
+        row_count = sheet.max_row
+
+        print(row_count)
+        return row_count  
+
+    def select_from_list_by_key(self, element_id, key):
+        """Selects the specified option from the selection list.
+        """
+        element_type = self.get_element_type(element_id)
+        if element_type == "GuiComboBox":
+            self.session.findById(element_id).key = key
+            time.sleep(self.explicit_wait)
+        else:
+            self.take_screenshot()
+            message = "Cannot use keyword 'select from list by key' for element type '%s'" % element_type
+            raise ValueError(message)   
+    def excel_column_to_json(self, file_path, sheet_name, column_index):
+        """
+        Convert a specified column from an Excel file to a JSON string, excluding the header, and return it.
+        The JSON output is a dictionary with a fixed key "SD_Documents" and the column data as the list of values.
+
+        :param file_path: Path to the Excel file
+        :param sheet_name: Name of the sheet in the Excel file
+        :param column_index: Index of the column to convert (0-based index)
+        :return: JSON data as a string
+        """
+        try:
+            column_index = int(column_index)
+            df = pd.read_excel(file_path, sheet_name=sheet_name)
+            if column_index < 0 or column_index >= len(df.columns):
+                return None  
+
+            column_data = df.iloc[:, column_index].dropna().tolist() 
+            json_dict = {"SD_Documents": column_data}
+            json_data = json.dumps(json_dict, indent=4)
+            
+            return json_data 
+
+        except ValueError:
+            print("Error: Invalid column index. It should be an integer.")
+            return None
+        except Exception as e:
+            print(f"An unexpected error occurred: {e}")
+            return None
+
+    def select_document_on_text(self, control_id, column_name, search_text):
+        try:
+            control = self.session.findById(control_id)
+            row_count = control.RowCount  
+            print(f"Total Rows: {row_count}")
+            
+            for row in range(row_count):
+                print(f"Checking Row: {row}")
+                cell_value = control.GetCellValue(row, column_name)  
+                print(f"Cell Value in column '{column_name}': {cell_value}")
+                
+                if search_text in cell_value:
+                    print(f"Text '{search_text}' found in row {row}")
+                    
+                    # Focus on the row before clicking (if required)
+                    control.selectedRows = row  # Select the row (if applicable)
+                    control.currentCellRow = row  # Set the current row to focus
+                    
+                    # Try different methods for clicking
+                    control.doubleClickCell(row, column_name)  # Double click the cell
+                    print(f"Double-clicked on row {row}")
+                    
+                    # Return the row where the text was found
+                    return row  
+                
+                else:
+                    print("Text not found in this row")
+                    
+            # If text is not found in any row
+            return f"Text '{search_text}' not found"
+        
+        except Exception as e:
+            return f"Error: {e}"   
+
+    def clean_list(self, data):
+        cleaned_data = [item.strip() for item in data if item.strip()]
+        return cleaned_data  
+
+    def read_table_column(self, table_id, column_index):
+        """Reads the value of cell from selected column using column id
+        """
+        table = self.session.findById(table_id)
+        row_count = self.session.findById(table_id).rowCount
+        column_values = []
+        for row in range(row_count):
+            cell_value = self.get_cell_value(table_id,row, column_index)
+            column_values.append(cell_value)
+        return column_values    
+
+                     

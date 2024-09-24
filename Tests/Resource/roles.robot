@@ -9,7 +9,8 @@ START
     Connect To Session
     Open Connection    ${sapvar('role_server')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${sapvar('role_name')}
-    Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${sapvar('role_password')}
+    # Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${sapvar('role_password')}
+	Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{role_password}
     Send Vkey    wnd[0]    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
     Sleep   1

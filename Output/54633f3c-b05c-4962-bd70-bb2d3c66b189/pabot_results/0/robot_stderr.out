@@ -1,0 +1,22 @@
+[ WARN ] Failed to fetch value for field: Sym.Dev.target_directory
+[ WARN ] Traceback (most recent call last):
+  File "C:\RobotFramework\sap_testing\RoboEnvironment\Symphony\Lib\site-packages\robot\running\usererrorhandler.py", line 73, in run
+    raise self.error
+  File "C:\RobotFramework\sap_testing\RoboEnvironment\Symphony\Lib\site-packages\robot\running\namespace.py", line 220, in get_runner
+    return self._kw_store.get_runner(name, recommend_on_failure)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\RobotFramework\sap_testing\RoboEnvironment\Symphony\Lib\site-packages\robot\running\namespace.py", line 263, in get_runner
+    self._raise_no_keyword_found(name, recommend)
+  File "C:\RobotFramework\sap_testing\RoboEnvironment\Symphony\Lib\site-packages\robot\running\namespace.py", line 283, in _raise_no_keyword_found
+    raise KeywordError(finder.recommend_similar_keywords(name, message))
+robot.errors.KeywordError: No keyword with name 'Merger.copy images' found.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\RobotFramework\sap_testing\Execution\Access_Data.py", line 59, in get_data
+    field_value = eval(command)
+                  ^^^^^^^^^^^^^
+  File "<string>", line 1, in <module>
+AttributeError: module 'Data.Symphony.Dev' has no attribute 'target_directory'
+

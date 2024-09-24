@@ -76,4 +76,3 @@ Role Building Scenario
     Click Element    wnd[0]/tbar[0]/btn[3]
     Sleep    2
     Take Screenshot    053_Uconcockpit.jpg
-

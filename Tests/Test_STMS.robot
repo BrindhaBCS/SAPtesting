@@ -7,4 +7,3 @@ Test Tags    STMS_ST
 *** Test Cases ***
 STMS
     STMS
-

@@ -1,0 +1,2439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.12.3 on win32)" generated="20240918 11:57:14.285" rpa="false" schemaversion="3">
+<suite id="s1" name="Tests" source="C:\RobotFramework\sap_testing\Tests">
+<kw name="Setup highest level suite" type="SETUP">
+<kw name="Set Variable" library="BuiltIn">
+<var>${d.test_server}</var>
+<arg>${test_server}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240918 11:57:14.988" level="INFO">${d.test_server} = Dev</msg>
+<status status="PASS" starttime="20240918 11:57:14.988" endtime="20240918 11:57:14.988"/>
+</kw>
+<kw name="Reset screenshot count variable" library="Support">
+<kw name="Set Variable" library="BuiltIn">
+<var>${screenshotCount}</var>
+<arg>${PABOTQUEUEINDEX}_1</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240918 11:57:14.988" level="INFO">${screenshotCount} = 0_1</msg>
+<status status="PASS" starttime="20240918 11:57:14.988" endtime="20240918 11:57:14.988"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${screenshotCount}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240918 11:57:14.988" level="INFO">${screenshotCount} = 0_1</msg>
+<status status="PASS" starttime="20240918 11:57:14.988" endtime="20240918 11:57:14.988"/>
+</kw>
+<kw name="Set up screenshot directory" library="Support">
+<kw name="Create Directory" library="OperatingSystem">
+<arg>${OUTPUTDIR}${/}${wvar('screenshot_dir')}</arg>
+<doc>Creates the specified directory.</doc>
+<msg timestamp="20240918 11:57:15.004" level="INFO">Web.Dev.screenshot_dir: Screenshot</msg>
+<msg timestamp="20240918 11:57:15.004" level="INFO" html="true">Created directory '&lt;a href="file://C:\RobotFramework\sap_testing\Output\26b4826a-485e-48d8-94f2-cdf80bfae41c\pabot_results\0\Screenshot"&gt;C:\RobotFramework\sap_testing\Output\26b4826a-485e-48d8-94f2-cdf80bfae41c\pabot_results\0\Screenshot&lt;/a&gt;'.</msg>
+<status status="PASS" starttime="20240918 11:57:14.988" endtime="20240918 11:57:15.004"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:14.988" endtime="20240918 11:57:15.004"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:14.988" endtime="20240918 11:57:15.004"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${screenshot_taking}</arg>
+<arg>${True}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240918 11:57:15.004" level="INFO">${screenshot_taking} = True</msg>
+<status status="PASS" starttime="20240918 11:57:15.004" endtime="20240918 11:57:15.004"/>
+</kw>
+<kw name="Setup linux execution" library="Support">
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${web_test_check}</var>
+<arg>Variable Should Exist</arg>
+<arg>${web_test}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Variable Should Exist" library="BuiltIn">
+<arg>${web_test}</arg>
+<doc>Fails unless the given variable exists within the current scope.</doc>
+<status status="PASS" starttime="20240918 11:57:15.004" endtime="20240918 11:57:15.004"/>
+</kw>
+<msg timestamp="20240918 11:57:15.004" level="INFO">${web_test_check} = True</msg>
+<status status="PASS" starttime="20240918 11:57:15.004" endtime="20240918 11:57:15.004"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<arg>${web_test_check}</arg>
+<arg>Setup Docker Execution Options</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<kw name="Setup Docker Execution Options" library="Support_Web">
+<kw name="Setup Suite Metadata" library="Support_Web">
+<arg>${browser}</arg>
+<kw name="Get Browser Metadata" library="BrowserSupport">
+<var>&amp;{browser_information}</var>
+<arg>browser=${browser}</arg>
+<doc>Fetches browser metadata information
+:param browser: Name of the browser for which information is fetched
+:param reload: Re-read the metadata based on the browser
+:return: Browser metadata information, dict of format
+            {"browser_version": browser version value,
+             "driver_version": driver version value}</doc>
+<msg timestamp="20240918 11:57:18.394" level="INFO">&amp;{browser_information} = { browser_version=128.0.6613.138 | driver_version=127.0.6533.72  }</msg>
+<status status="PASS" starttime="20240918 11:57:15.004" endtime="20240918 11:57:18.394"/>
+</kw>
+<kw name="Set Suite Metadata" library="BuiltIn">
+<arg>test_browser_name</arg>
+<arg>${browser}</arg>
+<doc>Sets metadata for the current test suite.</doc>
+<msg timestamp="20240918 11:57:18.394" level="INFO">Set suite metadata 'test_browser_name' to value 'chrome'.</msg>
+<status status="PASS" starttime="20240918 11:57:18.394" endtime="20240918 11:57:18.394"/>
+</kw>
+<kw name="Set Suite Metadata" library="BuiltIn">
+<arg>test_browser_version</arg>
+<arg>${browser_information.browser_version}</arg>
+<doc>Sets metadata for the current test suite.</doc>
+<msg timestamp="20240918 11:57:18.394" level="INFO">Set suite metadata 'test_browser_version' to value '128.0.6613.138'.</msg>
+<status status="PASS" starttime="20240918 11:57:18.394" endtime="20240918 11:57:18.394"/>
+</kw>
+<kw name="Set Suite Metadata" library="BuiltIn">
+<arg>test_driver_version</arg>
+<arg>${browser_information.driver_version}</arg>
+<doc>Sets metadata for the current test suite.</doc>
+<msg timestamp="20240918 11:57:18.394" level="INFO">Set suite metadata 'test_driver_version' to value '127.0.6533.72 '.</msg>
+<status status="PASS" starttime="20240918 11:57:18.394" endtime="20240918 11:57:18.394"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:15.004" endtime="20240918 11:57:18.394"/>
+</kw>
+<kw name="Setup Global Docker Execution Options" library="Support_Web">
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${global_browser_options}</arg>
+<arg>None</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240918 11:57:18.394" level="INFO">${global_browser_options} = None</msg>
+<status status="PASS" starttime="20240918 11:57:18.394" endtime="20240918 11:57:18.394"/>
+</kw>
+<kw name="Get Environment Variable" library="OperatingSystem">
+<var>${docker_check}</var>
+<arg>EXECUTION_ENVIRONMENT</arg>
+<arg>not_found</arg>
+<doc>Returns the value of an environment variable with the given name.</doc>
+<msg timestamp="20240918 11:57:18.394" level="INFO">${docker_check} = not_found</msg>
+<status status="PASS" starttime="20240918 11:57:18.394" endtime="20240918 11:57:18.394"/>
+</kw>
+<kw name="Run Keyword And Return If" library="BuiltIn">
+<arg>"${docker_check}"!="docker"</arg>
+<arg>Log</arg>
+<arg>Not executing on Docker</arg>
+<doc>Runs the specified keyword and returns from the enclosing user keyword.</doc>
+<kw name="Log" library="BuiltIn">
+<arg>Not executing on Docker</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240918 11:57:18.394" level="INFO">Not executing on Docker</msg>
+<status status="PASS" starttime="20240918 11:57:18.394" endtime="20240918 11:57:18.394"/>
+</kw>
+<msg timestamp="20240918 11:57:18.394" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20240918 11:57:18.394" endtime="20240918 11:57:18.394"/>
+</kw>
+<kw name="Create List" library="BuiltIn">
+<var>@{options}</var>
+<arg>--headless</arg>
+<arg>--no-sandbox</arg>
+<arg>--disable-dev-shm-usage</arg>
+<doc>Returns a list containing given items.</doc>
+<status status="NOT RUN" starttime="20240918 11:57:18.394" endtime="20240918 11:57:18.394"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>@{docker_options}</arg>
+<arg>@{options}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="NOT RUN" starttime="20240918 11:57:18.394" endtime="20240918 11:57:18.394"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:18.394" endtime="20240918 11:57:18.394"/>
+</kw>
+<kw name="Create Webdriver for chrome preferences" library="Support_Web">
+<kw name="Update Docker Execution Options" library="Support_Web">
+<var>${list_prefs}</var>
+<arg>${list_prefs}</arg>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${docker_check}</var>
+<arg>Variable Should Exist</arg>
+<arg>${docker_options}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Variable Should Exist" library="BuiltIn">
+<arg>${docker_options}</arg>
+<doc>Fails unless the given variable exists within the current scope.</doc>
+<msg timestamp="20240918 11:57:18.394" level="FAIL">Variable '${docker_options}' does not exist.</msg>
+<status status="FAIL" starttime="20240918 11:57:18.394" endtime="20240918 11:57:18.394"/>
+</kw>
+<msg timestamp="20240918 11:57:18.394" level="INFO">${docker_check} = False</msg>
+<status status="PASS" starttime="20240918 11:57:18.394" endtime="20240918 11:57:18.394"/>
+</kw>
+<kw name="Get Length" library="BuiltIn">
+<var>${list_prefs_length}</var>
+<arg>${list_prefs}</arg>
+<doc>Returns and logs the length of the given item as an integer.</doc>
+<msg timestamp="20240918 11:57:18.394" level="INFO">Length is 1</msg>
+<msg timestamp="20240918 11:57:18.394" level="INFO">${list_prefs_length} = 1</msg>
+<status status="PASS" starttime="20240918 11:57:18.394" endtime="20240918 11:57:18.394"/>
+</kw>
+<kw name="Run Keyword If" library="BuiltIn">
+<var>${list_prefs}</var>
+<arg>${docker_check} and ${list_prefs_length}&gt;0 and ${list_prefs}[0] != []</arg>
+<arg>Combine Lists</arg>
+<arg>${list_prefs}</arg>
+<arg>${docker_options}</arg>
+<arg>ELSE IF</arg>
+<arg>${docker_check}</arg>
+<arg>Set Variable</arg>
+<arg>${docker_options}</arg>
+<arg>ELSE</arg>
+<arg>Set Variable</arg>
+<arg>${list_prefs}</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<kw name="Set Variable" library="BuiltIn">
+<arg>${list_prefs}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" starttime="20240918 11:57:18.394" endtime="20240918 11:57:18.394"/>
+</kw>
+<msg timestamp="20240918 11:57:18.394" level="INFO">${list_prefs} = [[]]</msg>
+<status status="PASS" starttime="20240918 11:57:18.394" endtime="20240918 11:57:18.394"/>
+</kw>
+<msg timestamp="20240918 11:57:18.394" level="INFO">${list_prefs} = [[]]</msg>
+<status status="PASS" starttime="20240918 11:57:18.394" endtime="20240918 11:57:18.394"/>
+</kw>
+<kw name="Create Chrome Options for download preferences" library="Support_Web">
+<var>${chrome_options}</var>
+<kw name="Evaluate" library="BuiltIn">
+<var>${chrome_options}</var>
+<arg>sys.modules['selenium.webdriver'].ChromeOptions()</arg>
+<arg>sys</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20240918 11:57:18.394" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000017FB79FA7E0&gt;</msg>
+<status status="PASS" starttime="20240918 11:57:18.394" endtime="20240918 11:57:18.394"/>
+</kw>
+<msg timestamp="20240918 11:57:18.394" level="INFO">${chrome_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000017FB79FA7E0&gt;</msg>
+<status status="PASS" starttime="20240918 11:57:18.394" endtime="20240918 11:57:18.394"/>
+</kw>
+<kw name="Update Preferences List" library="Support_Web">
+<arg>${chrome_options}</arg>
+<arg>@{list_prefs}</arg>
+<kw name="Convert To String" library="BuiltIn">
+<var>${string_prefs}</var>
+<arg>${list_prefs}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20240918 11:57:18.394" level="INFO">${string_prefs} = [[]]</msg>
+<status status="PASS" starttime="20240918 11:57:18.394" endtime="20240918 11:57:18.394"/>
+</kw>
+<kw name="Return From Keyword If" library="BuiltIn">
+<arg>${string_prefs} == [[]]</arg>
+<doc>Returns from the enclosing user keyword if ``condition`` is true.</doc>
+<msg timestamp="20240918 11:57:18.394" level="INFO">Returning from the enclosing user keyword.</msg>
+<status status="PASS" starttime="20240918 11:57:18.394" endtime="20240918 11:57:18.394"/>
+</kw>
+<for flavor="IN">
+<var>${preference}</var>
+<value>@{list_prefs}</value>
+<iter>
+<var name="${preference}"/>
+<kw name="Call Method" library="BuiltIn">
+<arg>${chrome_options}</arg>
+<arg>add_argument</arg>
+<arg>${preference}</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="NOT RUN" starttime="20240918 11:57:18.394" endtime="20240918 11:57:18.394"/>
+</kw>
+<status status="NOT RUN" starttime="20240918 11:57:18.394" endtime="20240918 11:57:18.394"/>
+</iter>
+<status status="NOT RUN" starttime="20240918 11:57:18.394" endtime="20240918 11:57:18.394"/>
+</for>
+<status status="PASS" starttime="20240918 11:57:18.394" endtime="20240918 11:57:18.394"/>
+</kw>
+<kw name="Call Method" library="BuiltIn">
+<arg>${chrome_options}</arg>
+<arg>add_experimental_option</arg>
+<arg>prefs</arg>
+<arg>${kw_prefs}</arg>
+<doc>Calls the named method of the given object with the provided arguments.</doc>
+<status status="PASS" starttime="20240918 11:57:18.394" endtime="20240918 11:57:18.394"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${global_browser_options}</arg>
+<arg>${chrome options}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<msg timestamp="20240918 11:57:18.394" level="INFO">${global_browser_options} = &lt;selenium.webdriver.chrome.options.Options object at 0x0000017FB79FA7E0&gt;</msg>
+<status status="PASS" starttime="20240918 11:57:18.394" endtime="20240918 11:57:18.394"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:18.394" endtime="20240918 11:57:18.394"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:15.004" endtime="20240918 11:57:18.394"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:15.004" endtime="20240918 11:57:18.394"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:15.004" endtime="20240918 11:57:18.394"/>
+</kw>
+<kw name="Set Suite Metadata" library="BuiltIn">
+<arg>environment</arg>
+<arg>${test_server}</arg>
+<doc>Sets metadata for the current test suite.</doc>
+<msg timestamp="20240918 11:57:18.394" level="INFO">Set suite metadata 'environment' to value 'Dev'.</msg>
+<status status="PASS" starttime="20240918 11:57:18.394" endtime="20240918 11:57:18.394"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:14.988" endtime="20240918 11:57:18.394"/>
+</kw>
+<suite id="s1-s1" name="Test Customer material" source="C:\RobotFramework\sap_testing\Tests\Test_Customer_material.robot">
+<kw name="System Logon" library="Customer_material" type="SETUP">
+<kw name="Start Process" library="Process">
+<arg>${symvar('SAP_SERVER')}</arg>
+<doc>Starts a new process on background.</doc>
+<msg timestamp="20240918 11:57:18.972" level="INFO">Sym.Dev.SAP_SERVER: C:\Program Files (x86)\SAP\FrontEnd\SAPgui\saplogon.exe</msg>
+<msg timestamp="20240918 11:57:18.972" level="INFO">Starting process:
+"C:\Program Files (x86)\SAP\FrontEnd\SAPgui\saplogon.exe"</msg>
+<status status="PASS" starttime="20240918 11:57:18.972" endtime="20240918 11:57:18.972"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240918 11:57:20.975" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240918 11:57:18.972" endtime="20240918 11:57:20.975"/>
+</kw>
+<kw name="Connect To Session" library="SAP_Tcode_Library">
+<doc>Connects to an open session SAP.</doc>
+<status status="PASS" starttime="20240918 11:57:20.975" endtime="20240918 11:57:20.975"/>
+</kw>
+<kw name="Open Connection" library="SAP_Tcode_Library">
+<arg>${symvar('Connection')}</arg>
+<doc>Opens a connection to the given connection name. Be sure to provide the full connection name, including the bracket part.</doc>
+<msg timestamp="20240918 11:57:20.975" level="INFO">Sym.Dev.Connection: BIS</msg>
+<status status="PASS" starttime="20240918 11:57:20.975" endtime="20240918 11:57:22.153"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240918 11:57:23.153" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240918 11:57:22.153" endtime="20240918 11:57:23.153"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/txtRSYST-MANDT</arg>
+<arg>${symvar('Client_Id')}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:23.153" level="INFO">Sym.Dev.Client_Id: 800</msg>
+<msg timestamp="20240918 11:57:23.153" level="INFO">Typing text '800' into text field 'wnd[0]/usr/txtRSYST-MANDT'.</msg>
+<status status="PASS" starttime="20240918 11:57:23.153" endtime="20240918 11:57:23.153"/>
+</kw>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/txtRSYST-BNAME</arg>
+<arg>${symvar('User_Name')}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:23.153" level="INFO">Sym.Dev.User_Name: BCSADMIN</msg>
+<msg timestamp="20240918 11:57:23.169" level="INFO">Typing text 'BCSADMIN' into text field 'wnd[0]/usr/txtRSYST-BNAME'.</msg>
+<status status="PASS" starttime="20240918 11:57:23.153" endtime="20240918 11:57:23.169"/>
+</kw>
+<kw name="Input Password" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/pwdRSYST-BCODE</arg>
+<arg>%{User_Password}</arg>
+<doc>Inserts the given password into the text field identified by locator.
+The password is not recorded in the log.</doc>
+<msg timestamp="20240918 11:57:23.169" level="INFO">Typing password into text field 'wnd[0]/usr/pwdRSYST-BCODE'.</msg>
+<status status="PASS" starttime="20240918 11:57:23.169" endtime="20240918 11:57:23.169"/>
+</kw>
+<kw name="Send Vkey" library="SAP_Tcode_Library">
+<arg>0</arg>
+<doc>Sends a SAP virtual key combination to the window, not into an element.
+If you want to send a value to a text field, use `input text` instead.</doc>
+<status status="PASS" starttime="20240918 11:57:23.169" endtime="20240918 11:57:23.575"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240918 11:57:25.577" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240918 11:57:23.575" endtime="20240918 11:57:25.577"/>
+</kw>
+<kw name="Multiple Logon Handling" library="SAP_Tcode_Library">
+<arg>wnd[1]</arg>
+<arg>wnd[1]/usr/radMULTI_LOGON_OPT2</arg>
+<arg>wnd[1]/tbar[0]/btn[0]</arg>
+<msg timestamp="20240918 11:57:27.111" level="INFO">Multiple logon exists</msg>
+<status status="PASS" starttime="20240918 11:57:25.577" endtime="20240918 11:57:27.127"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240918 11:57:28.127" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240918 11:57:27.127" endtime="20240918 11:57:28.127"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:18.972" endtime="20240918 11:57:28.127"/>
+</kw>
+<test id="s1-s1-t1" name="Kellogs_" line="9">
+<kw name="Kellogs_" library="Customer_material">
+<kw name="Get Total Row" library="SAP_Tcode_Library">
+<var>${ROWS_COUNT}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<msg timestamp="20240918 11:57:28.236" level="INFO">${ROWS_COUNT} = 102</msg>
+<status status="PASS" starttime="20240918 11:57:28.127" endtime="20240918 11:57:28.236"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>Total rows count: ${ROWS_COUNT}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20240918 11:57:28.236" level="INFO">Total rows count: 102</msg>
+<status status="PASS" starttime="20240918 11:57:28.236" endtime="20240918 11:57:28.236"/>
+</kw>
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/nXD01</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<status status="PASS" starttime="20240918 11:57:28.236" endtime="20240918 11:57:29.274"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240918 11:57:30.274" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240918 11:57:29.274" endtime="20240918 11:57:30.274"/>
+</kw>
+<for flavor="IN RANGE">
+<var>${row_index}</var>
+<value>6</value>
+<value>${ROWS_COUNT}</value>
+<iter>
+<var name="${row_index}">6</var>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Click Element</arg>
+<arg>wnd[1]/usr/btnKONTENGRUPPE_INFO</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[1]/usr/btnKONTENGRUPPE_INFO</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240918 11:57:30.274" endtime="20240918 11:57:30.696"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:30.274" endtime="20240918 11:57:30.696"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Set Focus</arg>
+<arg>wnd[2]/usr/tblSAPMF02DTCTRL_KONTENGRUPPEN/txtT077D-KTOKD[0,0]</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Set Focus" library="SAP_Tcode_Library">
+<arg>wnd[2]/usr/tblSAPMF02DTCTRL_KONTENGRUPPEN/txtT077D-KTOKD[0,0]</arg>
+<doc>Sets the focus to the given element.</doc>
+<status status="PASS" starttime="20240918 11:57:30.696" endtime="20240918 11:57:30.727"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:30.696" endtime="20240918 11:57:30.727"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Click Element</arg>
+<arg>wnd[2]/tbar[0]/btn[0]</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[2]/tbar[0]/btn[0]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240918 11:57:30.727" endtime="20240918 11:57:31.368"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:30.727" endtime="20240918 11:57:31.368"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Company_Code}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>3</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:31.368" endtime="20240918 11:57:31.462"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:31.462" endtime="20240918 11:57:31.462"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:31.462" level="INFO">${data} = BCS1</msg>
+<status status="PASS" starttime="20240918 11:57:31.462" endtime="20240918 11:57:31.462"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:31.462" endtime="20240918 11:57:31.462"/>
+</kw>
+<msg timestamp="20240918 11:57:31.462" level="INFO">${Company_Code} = BCS1</msg>
+<status status="PASS" starttime="20240918 11:57:31.368" endtime="20240918 11:57:31.462"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[1]/usr/ctxtRF02D-BUKRS</arg>
+<arg>${Company_Code}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[1]/usr/ctxtRF02D-BUKRS</arg>
+<arg>${Company_Code}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:31.462" level="INFO">Typing text 'BCS1' into text field 'wnd[1]/usr/ctxtRF02D-BUKRS'.</msg>
+<status status="PASS" starttime="20240918 11:57:31.462" endtime="20240918 11:57:31.462"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:31.462" endtime="20240918 11:57:31.462"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Sales_Organization}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>4</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:31.462" endtime="20240918 11:57:31.556"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:31.556" endtime="20240918 11:57:31.556"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:31.556" level="INFO">${data} = BCIN</msg>
+<status status="PASS" starttime="20240918 11:57:31.556" endtime="20240918 11:57:31.556"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:31.556" endtime="20240918 11:57:31.556"/>
+</kw>
+<msg timestamp="20240918 11:57:31.556" level="INFO">${Sales_Organization} = BCIN</msg>
+<status status="PASS" starttime="20240918 11:57:31.462" endtime="20240918 11:57:31.556"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[1]/usr/ctxtRF02D-VKORG</arg>
+<arg>${Sales_Organization}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[1]/usr/ctxtRF02D-VKORG</arg>
+<arg>${Sales_Organization}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:31.571" level="INFO">Typing text 'BCIN' into text field 'wnd[1]/usr/ctxtRF02D-VKORG'.</msg>
+<status status="PASS" starttime="20240918 11:57:31.556" endtime="20240918 11:57:31.571"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:31.556" endtime="20240918 11:57:31.571"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Distribution Channel}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>5</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:31.571" endtime="20240918 11:57:31.649"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:31.649" endtime="20240918 11:57:31.649"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:31.649" level="INFO">${data} = B1</msg>
+<status status="PASS" starttime="20240918 11:57:31.649" endtime="20240918 11:57:31.649"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:31.649" endtime="20240918 11:57:31.649"/>
+</kw>
+<msg timestamp="20240918 11:57:31.649" level="INFO">${Distribution Channel} = B1</msg>
+<status status="PASS" starttime="20240918 11:57:31.571" endtime="20240918 11:57:31.649"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[1]/usr/ctxtRF02D-VTWEG</arg>
+<arg>${Distribution Channel}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[1]/usr/ctxtRF02D-VTWEG</arg>
+<arg>${Distribution Channel}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:31.665" level="INFO">Typing text 'B1' into text field 'wnd[1]/usr/ctxtRF02D-VTWEG'.</msg>
+<status status="PASS" starttime="20240918 11:57:31.649" endtime="20240918 11:57:31.665"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:31.649" endtime="20240918 11:57:31.665"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Division}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>6</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:31.665" endtime="20240918 11:57:31.759"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:31.759" endtime="20240918 11:57:31.759"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:31.759" level="INFO">${data} = BD</msg>
+<status status="PASS" starttime="20240918 11:57:31.759" endtime="20240918 11:57:31.759"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:31.759" endtime="20240918 11:57:31.759"/>
+</kw>
+<msg timestamp="20240918 11:57:31.759" level="INFO">${Division} = BD</msg>
+<status status="PASS" starttime="20240918 11:57:31.665" endtime="20240918 11:57:31.759"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[1]/usr/ctxtRF02D-SPART</arg>
+<arg>${Division}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[1]/usr/ctxtRF02D-SPART</arg>
+<arg>${Division}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:31.759" level="INFO">Typing text 'BD' into text field 'wnd[1]/usr/ctxtRF02D-SPART'.</msg>
+<status status="PASS" starttime="20240918 11:57:31.759" endtime="20240918 11:57:31.759"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:31.759" endtime="20240918 11:57:31.759"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Send Vkey</arg>
+<arg>vkey_id=0</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Send Vkey" library="SAP_Tcode_Library">
+<arg>vkey_id=0</arg>
+<doc>Sends a SAP virtual key combination to the window, not into an element.
+If you want to send a value to a text field, use `input text` instead.</doc>
+<status status="PASS" starttime="20240918 11:57:31.759" endtime="20240918 11:57:33.681"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:31.759" endtime="20240918 11:57:33.681"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240918 11:57:34.683" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240918 11:57:33.681" endtime="20240918 11:57:34.683"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Title}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>7</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:34.683" endtime="20240918 11:57:34.808"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:34.808" endtime="20240918 11:57:34.808"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:34.808" level="INFO">${data} = Company</msg>
+<status status="PASS" starttime="20240918 11:57:34.808" endtime="20240918 11:57:34.808"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:34.808" endtime="20240918 11:57:34.808"/>
+</kw>
+<msg timestamp="20240918 11:57:34.808" level="INFO">${Title} = Company</msg>
+<status status="PASS" starttime="20240918 11:57:34.683" endtime="20240918 11:57:34.808"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Select From List By Label</arg>
+<arg>element_id=wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0201/subAREA1:SAPMF02D:7111/subADDRESS:SAPLSZA1:0300/subCOUNTRY_SCREEN:SAPLSZA1:0301/cmbSZA1_D0100-TITLE_MEDI</arg>
+<arg>value=${Title}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Select From List By Label" library="SAP_Tcode_Library">
+<arg>element_id=wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0201/subAREA1:SAPMF02D:7111/subADDRESS:SAPLSZA1:0300/subCOUNTRY_SCREEN:SAPLSZA1:0301/cmbSZA1_D0100-TITLE_MEDI</arg>
+<arg>value=${Title}</arg>
+<doc>Selects the specified option from the selection list.</doc>
+<status status="PASS" starttime="20240918 11:57:34.808" endtime="20240918 11:57:34.808"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:34.808" endtime="20240918 11:57:34.808"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Name}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>8</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:34.824" endtime="20240918 11:57:34.902"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:34.902" endtime="20240918 11:57:34.902"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:34.902" level="INFO">${data} = Testing -1</msg>
+<status status="PASS" starttime="20240918 11:57:34.902" endtime="20240918 11:57:34.902"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:34.902" endtime="20240918 11:57:34.902"/>
+</kw>
+<msg timestamp="20240918 11:57:34.902" level="INFO">${Name} = Testing -1</msg>
+<status status="PASS" starttime="20240918 11:57:34.808" endtime="20240918 11:57:34.902"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0201/subAREA1:SAPMF02D:7111/subADDRESS:SAPLSZA1:0300/subCOUNTRY_SCREEN:SAPLSZA1:0301/txtADDR1_DATA-NAME1</arg>
+<arg>${name}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0201/subAREA1:SAPMF02D:7111/subADDRESS:SAPLSZA1:0300/subCOUNTRY_SCREEN:SAPLSZA1:0301/txtADDR1_DATA-NAME1</arg>
+<arg>${name}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:34.918" level="INFO">Typing text 'Testing -1' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0201/subAREA1:SAPMF02D:7111/subADDRESS:SAPLSZA1:0300/subCOUNTRY_SCREEN:SAPLSZA1:0301/txtADDR1_DATA-NAME1'.</msg>
+<status status="PASS" starttime="20240918 11:57:34.902" endtime="20240918 11:57:34.918"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:34.902" endtime="20240918 11:57:34.918"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${search_term}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>9</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:34.918" endtime="20240918 11:57:35.011"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:35.011" endtime="20240918 11:57:35.011"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:35.011" level="INFO">${data} = BCS</msg>
+<status status="PASS" starttime="20240918 11:57:35.011" endtime="20240918 11:57:35.011"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:35.011" endtime="20240918 11:57:35.011"/>
+</kw>
+<msg timestamp="20240918 11:57:35.011" level="INFO">${search_term} = BCS</msg>
+<status status="PASS" starttime="20240918 11:57:34.918" endtime="20240918 11:57:35.011"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0201/subAREA1:SAPMF02D:7111/subADDRESS:SAPLSZA1:0300/subCOUNTRY_SCREEN:SAPLSZA1:0301/txtADDR1_DATA-SORT1</arg>
+<arg>${search_term}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0201/subAREA1:SAPMF02D:7111/subADDRESS:SAPLSZA1:0300/subCOUNTRY_SCREEN:SAPLSZA1:0301/txtADDR1_DATA-SORT1</arg>
+<arg>${search_term}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:35.011" level="INFO">Typing text 'BCS' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0201/subAREA1:SAPMF02D:7111/subADDRESS:SAPLSZA1:0300/subCOUNTRY_SCREEN:SAPLSZA1:0301/txtADDR1_DATA-SORT1'.</msg>
+<status status="PASS" starttime="20240918 11:57:35.011" endtime="20240918 11:57:35.011"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:35.011" endtime="20240918 11:57:35.011"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Street/House_number}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>10</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:35.011" endtime="20240918 11:57:35.105"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:35.105" endtime="20240918 11:57:35.105"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:35.105" level="INFO">${data} = Moulivakkam, Gerukampakkam</msg>
+<status status="PASS" starttime="20240918 11:57:35.105" endtime="20240918 11:57:35.105"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:35.105" endtime="20240918 11:57:35.105"/>
+</kw>
+<msg timestamp="20240918 11:57:35.105" level="INFO">${Street/House_number} = Moulivakkam, Gerukampakkam</msg>
+<status status="PASS" starttime="20240918 11:57:35.011" endtime="20240918 11:57:35.105"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0201/subAREA1:SAPMF02D:7111/subADDRESS:SAPLSZA1:0300/subCOUNTRY_SCREEN:SAPLSZA1:0301/txtADDR1_DATA-STREET</arg>
+<arg>${Street/House_number}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0201/subAREA1:SAPMF02D:7111/subADDRESS:SAPLSZA1:0300/subCOUNTRY_SCREEN:SAPLSZA1:0301/txtADDR1_DATA-STREET</arg>
+<arg>${Street/House_number}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:35.121" level="INFO">Typing text 'Moulivakkam, Gerukampakkam' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0201/subAREA1:SAPMF02D:7111/subADDRESS:SAPLSZA1:0300/subCOUNTRY_SCREEN:SAPLSZA1:0301/txtADDR1_DATA-STREET'.</msg>
+<status status="PASS" starttime="20240918 11:57:35.105" endtime="20240918 11:57:35.121"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:35.105" endtime="20240918 11:57:35.121"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Street/House_number_State}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>11</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:35.121" endtime="20240918 11:57:35.199"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:35.199" endtime="20240918 11:57:35.199"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:35.199" level="INFO">${data} = Chennai</msg>
+<status status="PASS" starttime="20240918 11:57:35.199" endtime="20240918 11:57:35.199"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:35.199" endtime="20240918 11:57:35.199"/>
+</kw>
+<msg timestamp="20240918 11:57:35.199" level="INFO">${Street/House_number_State} = Chennai</msg>
+<status status="PASS" starttime="20240918 11:57:35.121" endtime="20240918 11:57:35.199"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0201/subAREA1:SAPMF02D:7111/subADDRESS:SAPLSZA1:0300/subCOUNTRY_SCREEN:SAPLSZA1:0301/txtADDR1_DATA-HOUSE_NUM1</arg>
+<arg>${Street/House_number_State}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0201/subAREA1:SAPMF02D:7111/subADDRESS:SAPLSZA1:0300/subCOUNTRY_SCREEN:SAPLSZA1:0301/txtADDR1_DATA-HOUSE_NUM1</arg>
+<arg>${Street/House_number_State}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:35.214" level="INFO">Typing text 'Chennai' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0201/subAREA1:SAPMF02D:7111/subADDRESS:SAPLSZA1:0300/subCOUNTRY_SCREEN:SAPLSZA1:0301/txtADDR1_DATA-HOUSE_NUM1'.</msg>
+<status status="PASS" starttime="20240918 11:57:35.199" endtime="20240918 11:57:35.214"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:35.199" endtime="20240918 11:57:35.214"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Post_Code}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>12</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:35.214" endtime="20240918 11:57:35.355"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:35.355" endtime="20240918 11:57:35.355"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:35.355" level="INFO">${data} = 600122</msg>
+<status status="PASS" starttime="20240918 11:57:35.355" endtime="20240918 11:57:35.355"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:35.355" endtime="20240918 11:57:35.355"/>
+</kw>
+<msg timestamp="20240918 11:57:35.355" level="INFO">${Post_Code} = 600122</msg>
+<status status="PASS" starttime="20240918 11:57:35.214" endtime="20240918 11:57:35.355"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0201/subAREA1:SAPMF02D:7111/subADDRESS:SAPLSZA1:0300/subCOUNTRY_SCREEN:SAPLSZA1:0301/txtADDR1_DATA-POST_CODE1</arg>
+<arg>${Post_Code}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0201/subAREA1:SAPMF02D:7111/subADDRESS:SAPLSZA1:0300/subCOUNTRY_SCREEN:SAPLSZA1:0301/txtADDR1_DATA-POST_CODE1</arg>
+<arg>${Post_Code}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:35.355" level="INFO">Typing text '600122' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0201/subAREA1:SAPMF02D:7111/subADDRESS:SAPLSZA1:0300/subCOUNTRY_SCREEN:SAPLSZA1:0301/txtADDR1_DATA-POST_CODE1'.</msg>
+<status status="PASS" starttime="20240918 11:57:35.355" endtime="20240918 11:57:35.355"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:35.355" endtime="20240918 11:57:35.355"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Post_Code_State}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>13</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:35.355" endtime="20240918 11:57:35.449"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:35.449" endtime="20240918 11:57:35.449"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:35.449" level="INFO">${data} = Chennai</msg>
+<status status="PASS" starttime="20240918 11:57:35.449" endtime="20240918 11:57:35.449"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:35.449" endtime="20240918 11:57:35.449"/>
+</kw>
+<msg timestamp="20240918 11:57:35.449" level="INFO">${Post_Code_State} = Chennai</msg>
+<status status="PASS" starttime="20240918 11:57:35.355" endtime="20240918 11:57:35.449"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0201/subAREA1:SAPMF02D:7111/subADDRESS:SAPLSZA1:0300/subCOUNTRY_SCREEN:SAPLSZA1:0301/txtADDR1_DATA-CITY1</arg>
+<arg>${Post_Code_State}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0201/subAREA1:SAPMF02D:7111/subADDRESS:SAPLSZA1:0300/subCOUNTRY_SCREEN:SAPLSZA1:0301/txtADDR1_DATA-CITY1</arg>
+<arg>${Post_Code_State}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:35.449" level="INFO">Typing text 'Chennai' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0201/subAREA1:SAPMF02D:7111/subADDRESS:SAPLSZA1:0300/subCOUNTRY_SCREEN:SAPLSZA1:0301/txtADDR1_DATA-CITY1'.</msg>
+<status status="PASS" starttime="20240918 11:57:35.449" endtime="20240918 11:57:35.449"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:35.449" endtime="20240918 11:57:35.449"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Country}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>14</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:35.449" endtime="20240918 11:57:35.543"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:35.543" endtime="20240918 11:57:35.543"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:35.543" level="INFO">${data} = IN</msg>
+<status status="PASS" starttime="20240918 11:57:35.543" endtime="20240918 11:57:35.543"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:35.543" endtime="20240918 11:57:35.543"/>
+</kw>
+<msg timestamp="20240918 11:57:35.543" level="INFO">${Country} = IN</msg>
+<status status="PASS" starttime="20240918 11:57:35.449" endtime="20240918 11:57:35.543"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0201/subAREA1:SAPMF02D:7111/subADDRESS:SAPLSZA1:0300/subCOUNTRY_SCREEN:SAPLSZA1:0301/ctxtADDR1_DATA-COUNTRY</arg>
+<arg>${Country}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0201/subAREA1:SAPMF02D:7111/subADDRESS:SAPLSZA1:0300/subCOUNTRY_SCREEN:SAPLSZA1:0301/ctxtADDR1_DATA-COUNTRY</arg>
+<arg>${Country}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:35.558" level="INFO">Typing text 'IN' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0201/subAREA1:SAPMF02D:7111/subADDRESS:SAPLSZA1:0300/subCOUNTRY_SCREEN:SAPLSZA1:0301/ctxtADDR1_DATA-COUNTRY'.</msg>
+<status status="PASS" starttime="20240918 11:57:35.543" endtime="20240918 11:57:35.558"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:35.543" endtime="20240918 11:57:35.558"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Region}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>15</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:35.558" endtime="20240918 11:57:35.636"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:35.636" endtime="20240918 11:57:35.636"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:35.636" level="INFO">${data} = 22</msg>
+<status status="PASS" starttime="20240918 11:57:35.636" endtime="20240918 11:57:35.636"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:35.636" endtime="20240918 11:57:35.636"/>
+</kw>
+<msg timestamp="20240918 11:57:35.652" level="INFO">${Region} = 22</msg>
+<status status="PASS" starttime="20240918 11:57:35.558" endtime="20240918 11:57:35.652"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0201/subAREA1:SAPMF02D:7111/subADDRESS:SAPLSZA1:0300/subCOUNTRY_SCREEN:SAPLSZA1:0301/ctxtADDR1_DATA-REGION</arg>
+<arg>${Region}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0201/subAREA1:SAPMF02D:7111/subADDRESS:SAPLSZA1:0300/subCOUNTRY_SCREEN:SAPLSZA1:0301/ctxtADDR1_DATA-REGION</arg>
+<arg>${Region}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:35.652" level="INFO">Typing text '22' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0201/subAREA1:SAPMF02D:7111/subADDRESS:SAPLSZA1:0300/subCOUNTRY_SCREEN:SAPLSZA1:0301/ctxtADDR1_DATA-REGION'.</msg>
+<status status="PASS" starttime="20240918 11:57:35.652" endtime="20240918 11:57:35.652"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:35.652" endtime="20240918 11:57:35.652"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Transportation_Zone}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>17</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:35.652" endtime="20240918 11:57:35.793"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:35.793" endtime="20240918 11:57:35.793"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:35.793" level="INFO">${data} = 0000000001</msg>
+<status status="PASS" starttime="20240918 11:57:35.793" endtime="20240918 11:57:35.793"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:35.793" endtime="20240918 11:57:35.793"/>
+</kw>
+<msg timestamp="20240918 11:57:35.793" level="INFO">${Transportation_Zone} = 0000000001</msg>
+<status status="PASS" starttime="20240918 11:57:35.652" endtime="20240918 11:57:35.793"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0201/subAREA1:SAPMF02D:7111/subADDRESS:SAPLSZA1:0300/subCOUNTRY_SCREEN:SAPLSZA1:0301/ctxtADDR1_DATA-TRANSPZONE</arg>
+<arg>${Transportation_Zone}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0201/subAREA1:SAPMF02D:7111/subADDRESS:SAPLSZA1:0300/subCOUNTRY_SCREEN:SAPLSZA1:0301/ctxtADDR1_DATA-TRANSPZONE</arg>
+<arg>${Transportation_Zone}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:35.793" level="INFO">Typing text '0000000001' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0201/subAREA1:SAPMF02D:7111/subADDRESS:SAPLSZA1:0300/subCOUNTRY_SCREEN:SAPLSZA1:0301/ctxtADDR1_DATA-TRANSPZONE'.</msg>
+<status status="PASS" starttime="20240918 11:57:35.793" endtime="20240918 11:57:35.793"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:35.793" endtime="20240918 11:57:35.793"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240918 11:57:36.805" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240918 11:57:35.793" endtime="20240918 11:57:36.805"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Send Vkey</arg>
+<arg>vkey_id=0</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Send Vkey" library="SAP_Tcode_Library">
+<arg>vkey_id=0</arg>
+<doc>Sends a SAP virtual key combination to the window, not into an element.
+If you want to send a value to a text field, use `input text` instead.</doc>
+<status status="PASS" starttime="20240918 11:57:36.805" endtime="20240918 11:57:38.043"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:36.805" endtime="20240918 11:57:38.043"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Send Vkey</arg>
+<arg>vkey_id=0</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Send Vkey" library="SAP_Tcode_Library">
+<arg>vkey_id=0</arg>
+<doc>Sends a SAP virtual key combination to the window, not into an element.
+If you want to send a value to a text field, use `input text` instead.</doc>
+<status status="PASS" starttime="20240918 11:57:38.043" endtime="20240918 11:57:38.387"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:38.043" endtime="20240918 11:57:38.387"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Click Element</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB02</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB02</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240918 11:57:38.387" endtime="20240918 11:57:39.466"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:38.387" endtime="20240918 11:57:39.466"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240918 11:57:40.467" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240918 11:57:39.466" endtime="20240918 11:57:40.467"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Click Element</arg>
+<arg>wnd[0]/tbar[1]/btn[26]</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[26]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240918 11:57:40.467" endtime="20240918 11:57:41.217"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:40.467" endtime="20240918 11:57:41.217"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240918 11:57:42.222" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240918 11:57:41.217" endtime="20240918 11:57:42.222"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Recon. account}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>18</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:42.222" endtime="20240918 11:57:42.300"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:42.300" endtime="20240918 11:57:42.300"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:42.300" level="INFO">${data} = 150000</msg>
+<status status="PASS" starttime="20240918 11:57:42.300" endtime="20240918 11:57:42.300"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:42.300" endtime="20240918 11:57:42.300"/>
+</kw>
+<msg timestamp="20240918 11:57:42.300" level="INFO">${Recon. account} = 150000</msg>
+<status status="PASS" starttime="20240918 11:57:42.222" endtime="20240918 11:57:42.300"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7211/ctxtKNB1-AKONT</arg>
+<arg>${Recon. account}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7211/ctxtKNB1-AKONT</arg>
+<arg>${Recon. account}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:42.316" level="INFO">Typing text '150000' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7211/ctxtKNB1-AKONT'.</msg>
+<status status="PASS" starttime="20240918 11:57:42.316" endtime="20240918 11:57:42.316"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:42.300" endtime="20240918 11:57:42.316"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Click Element</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB02</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB02</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240918 11:57:42.316" endtime="20240918 11:57:42.675"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:42.316" endtime="20240918 11:57:42.675"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Terms of payment}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>19</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:42.675" endtime="20240918 11:57:42.785"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:42.785" endtime="20240918 11:57:42.785"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:42.785" level="INFO">${data} = 0001</msg>
+<status status="PASS" starttime="20240918 11:57:42.785" endtime="20240918 11:57:42.785"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:42.785" endtime="20240918 11:57:42.785"/>
+</kw>
+<msg timestamp="20240918 11:57:42.785" level="INFO">${Terms of payment} = 0001</msg>
+<status status="PASS" starttime="20240918 11:57:42.675" endtime="20240918 11:57:42.785"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB02/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7215/ctxtKNB1-ZTERM</arg>
+<arg>${Terms of payment}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB02/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7215/ctxtKNB1-ZTERM</arg>
+<arg>${Terms of payment}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:42.785" level="INFO">Typing text '0001' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB02/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7215/ctxtKNB1-ZTERM'.</msg>
+<status status="PASS" starttime="20240918 11:57:42.785" endtime="20240918 11:57:42.785"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:42.785" endtime="20240918 11:57:42.785"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Click Element</arg>
+<arg>wnd[0]/tbar[1]/btn[27]</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[1]/btn[27]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240918 11:57:42.785" endtime="20240918 11:57:43.535"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:42.785" endtime="20240918 11:57:43.535"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Sales district}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>20</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:43.535" endtime="20240918 11:57:43.629"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:43.629" endtime="20240918 11:57:43.644"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:43.644" level="INFO">${data} = 000001</msg>
+<status status="PASS" starttime="20240918 11:57:43.644" endtime="20240918 11:57:43.644"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:43.644" endtime="20240918 11:57:43.644"/>
+</kw>
+<msg timestamp="20240918 11:57:43.644" level="INFO">${Sales district} = 000001</msg>
+<status status="PASS" starttime="20240918 11:57:43.535" endtime="20240918 11:57:43.644"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7310/ctxtKNVV-BZIRK</arg>
+<arg>${Sales district}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7310/ctxtKNVV-BZIRK</arg>
+<arg>${Sales district}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:43.644" level="INFO">Typing text '000001' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7310/ctxtKNVV-BZIRK'.</msg>
+<status status="PASS" starttime="20240918 11:57:43.644" endtime="20240918 11:57:43.644"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:43.644" endtime="20240918 11:57:43.644"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Sales Office}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>21</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:43.644" endtime="20240918 11:57:43.738"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:43.738" endtime="20240918 11:57:43.738"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:43.738" level="INFO">${data} = BCCH</msg>
+<status status="PASS" starttime="20240918 11:57:43.738" endtime="20240918 11:57:43.738"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:43.738" endtime="20240918 11:57:43.738"/>
+</kw>
+<msg timestamp="20240918 11:57:43.738" level="INFO">${Sales Office} = BCCH</msg>
+<status status="PASS" starttime="20240918 11:57:43.644" endtime="20240918 11:57:43.738"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7310/ctxtKNVV-VKBUR</arg>
+<arg>${Sales Office}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7310/ctxtKNVV-VKBUR</arg>
+<arg>${Sales Office}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:43.738" level="INFO">Typing text 'BCCH' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7310/ctxtKNVV-VKBUR'.</msg>
+<status status="PASS" starttime="20240918 11:57:43.738" endtime="20240918 11:57:43.738"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:43.738" endtime="20240918 11:57:43.738"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Sales Group}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>22</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:43.754" endtime="20240918 11:57:43.879"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:43.879" endtime="20240918 11:57:43.879"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:43.879" level="INFO">${data} = BCG</msg>
+<status status="PASS" starttime="20240918 11:57:43.879" endtime="20240918 11:57:43.879"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:43.879" endtime="20240918 11:57:43.879"/>
+</kw>
+<msg timestamp="20240918 11:57:43.879" level="INFO">${Sales Group} = BCG</msg>
+<status status="PASS" starttime="20240918 11:57:43.738" endtime="20240918 11:57:43.879"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7310/ctxtKNVV-VKGRP</arg>
+<arg>${Sales Group}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7310/ctxtKNVV-VKGRP</arg>
+<arg>${Sales Group}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:43.894" level="INFO">Typing text 'BCG' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7310/ctxtKNVV-VKGRP'.</msg>
+<status status="PASS" starttime="20240918 11:57:43.879" endtime="20240918 11:57:43.894"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:43.879" endtime="20240918 11:57:43.894"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Customer group}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>23</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:43.894" endtime="20240918 11:57:43.988"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:43.988" endtime="20240918 11:57:43.988"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:43.988" level="INFO">${data} = 01</msg>
+<status status="PASS" starttime="20240918 11:57:43.988" endtime="20240918 11:57:43.988"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:43.988" endtime="20240918 11:57:43.988"/>
+</kw>
+<msg timestamp="20240918 11:57:43.988" level="INFO">${Customer group} = 01</msg>
+<status status="PASS" starttime="20240918 11:57:43.894" endtime="20240918 11:57:43.988"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7310/ctxtKNVV-KDGRP</arg>
+<arg>${Customer group}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7310/ctxtKNVV-KDGRP</arg>
+<arg>${Customer group}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:43.988" level="INFO">Typing text '01' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7310/ctxtKNVV-KDGRP'.</msg>
+<status status="PASS" starttime="20240918 11:57:43.988" endtime="20240918 11:57:43.988"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:43.988" endtime="20240918 11:57:43.988"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Currency}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>24</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:43.988" endtime="20240918 11:57:44.082"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:44.082" endtime="20240918 11:57:44.082"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:44.082" level="INFO">${data} = INR</msg>
+<status status="PASS" starttime="20240918 11:57:44.082" endtime="20240918 11:57:44.082"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:44.082" endtime="20240918 11:57:44.082"/>
+</kw>
+<msg timestamp="20240918 11:57:44.082" level="INFO">${Currency} = INR</msg>
+<status status="PASS" starttime="20240918 11:57:43.988" endtime="20240918 11:57:44.082"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7310/ctxtKNVV-WAERS</arg>
+<arg>${Currency}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7310/ctxtKNVV-WAERS</arg>
+<arg>${Currency}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:44.097" level="INFO">Typing text 'INR' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7310/ctxtKNVV-WAERS'.</msg>
+<status status="PASS" starttime="20240918 11:57:44.082" endtime="20240918 11:57:44.097"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:44.082" endtime="20240918 11:57:44.097"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${PP cust. proc.}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>25</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:44.097" endtime="20240918 11:57:44.175"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:44.175" endtime="20240918 11:57:44.175"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:44.175" level="INFO">${data} = A</msg>
+<status status="PASS" starttime="20240918 11:57:44.175" endtime="20240918 11:57:44.175"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:44.175" endtime="20240918 11:57:44.175"/>
+</kw>
+<msg timestamp="20240918 11:57:44.191" level="INFO">${PP cust. proc.} = A</msg>
+<status status="PASS" starttime="20240918 11:57:44.097" endtime="20240918 11:57:44.191"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7310/ctxtKNVV-PVKSM</arg>
+<arg>${PP cust. proc.}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7310/ctxtKNVV-PVKSM</arg>
+<arg>${PP cust. proc.}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:44.191" level="INFO">Typing text 'A' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7310/ctxtKNVV-PVKSM'.</msg>
+<status status="PASS" starttime="20240918 11:57:44.191" endtime="20240918 11:57:44.191"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:44.191" endtime="20240918 11:57:44.191"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Price group}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>26</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:44.191" endtime="20240918 11:57:44.285"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:44.285" endtime="20240918 11:57:44.285"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:44.285" level="INFO">${data} = 01</msg>
+<status status="PASS" starttime="20240918 11:57:44.285" endtime="20240918 11:57:44.285"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:44.285" endtime="20240918 11:57:44.285"/>
+</kw>
+<msg timestamp="20240918 11:57:44.285" level="INFO">${Price group} = 01</msg>
+<status status="PASS" starttime="20240918 11:57:44.191" endtime="20240918 11:57:44.285"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0200/subAREA2:SAPMF02D:7311/ctxtKNVV-KONDA</arg>
+<arg>${Price group}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0200/subAREA2:SAPMF02D:7311/ctxtKNVV-KONDA</arg>
+<arg>${Price group}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:44.285" level="INFO">Typing text '01' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0200/subAREA2:SAPMF02D:7311/ctxtKNVV-KONDA'.</msg>
+<status status="PASS" starttime="20240918 11:57:44.285" endtime="20240918 11:57:44.285"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:44.285" endtime="20240918 11:57:44.285"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Cust.pric.proc.}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>27</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:44.285" endtime="20240918 11:57:44.426"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:44.426" endtime="20240918 11:57:44.426"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:44.426" level="INFO">${data} = 1</msg>
+<status status="PASS" starttime="20240918 11:57:44.426" endtime="20240918 11:57:44.426"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:44.426" endtime="20240918 11:57:44.426"/>
+</kw>
+<msg timestamp="20240918 11:57:44.426" level="INFO">${Cust.pric.proc.} = 1</msg>
+<status status="PASS" starttime="20240918 11:57:44.285" endtime="20240918 11:57:44.426"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0200/subAREA2:SAPMF02D:7311/ctxtKNVV-KALKS</arg>
+<arg>${Cust.pric.proc.}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0200/subAREA2:SAPMF02D:7311/ctxtKNVV-KALKS</arg>
+<arg>${Cust.pric.proc.}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:44.441" level="INFO">Typing text '1' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0200/subAREA2:SAPMF02D:7311/ctxtKNVV-KALKS'.</msg>
+<status status="PASS" starttime="20240918 11:57:44.426" endtime="20240918 11:57:44.441"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:44.426" endtime="20240918 11:57:44.441"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Price List}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>28</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:44.441" endtime="20240918 11:57:44.519"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:44.519" endtime="20240918 11:57:44.519"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:44.519" level="INFO">${data} = 01</msg>
+<status status="PASS" starttime="20240918 11:57:44.519" endtime="20240918 11:57:44.519"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:44.519" endtime="20240918 11:57:44.519"/>
+</kw>
+<msg timestamp="20240918 11:57:44.519" level="INFO">${Price List} = 01</msg>
+<status status="PASS" starttime="20240918 11:57:44.441" endtime="20240918 11:57:44.519"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0200/subAREA2:SAPMF02D:7311/ctxtKNVV-PLTYP</arg>
+<arg>${Price List}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0200/subAREA2:SAPMF02D:7311/ctxtKNVV-PLTYP</arg>
+<arg>${Price List}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:44.535" level="INFO">Typing text '01' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB01/ssubSUBSC:SAPLATAB:0200/subAREA2:SAPMF02D:7311/ctxtKNVV-PLTYP'.</msg>
+<status status="PASS" starttime="20240918 11:57:44.519" endtime="20240918 11:57:44.535"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:44.519" endtime="20240918 11:57:44.535"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Click Element</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB02</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB02</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240918 11:57:44.535" endtime="20240918 11:57:45.019"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:44.535" endtime="20240918 11:57:45.019"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240918 11:57:46.032" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240918 11:57:45.019" endtime="20240918 11:57:46.032"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Delivery Priority}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>29</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:46.032" endtime="20240918 11:57:46.110"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:46.110" endtime="20240918 11:57:46.110"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:46.110" level="INFO">${data} = 01</msg>
+<status status="PASS" starttime="20240918 11:57:46.110" endtime="20240918 11:57:46.110"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:46.110" endtime="20240918 11:57:46.110"/>
+</kw>
+<msg timestamp="20240918 11:57:46.110" level="INFO">${Delivery Priority} = 01</msg>
+<status status="PASS" starttime="20240918 11:57:46.032" endtime="20240918 11:57:46.110"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB02/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7315/ctxtKNVV-LPRIO</arg>
+<arg>${Delivery Priority}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB02/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7315/ctxtKNVV-LPRIO</arg>
+<arg>${Delivery Priority}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:46.126" level="INFO">Typing text '01' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB02/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7315/ctxtKNVV-LPRIO'.</msg>
+<status status="PASS" starttime="20240918 11:57:46.110" endtime="20240918 11:57:46.126"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:46.110" endtime="20240918 11:57:46.126"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Shipping Conditions}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>30</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:46.126" endtime="20240918 11:57:46.219"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:46.219" endtime="20240918 11:57:46.219"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:46.219" level="INFO">${data} = 02</msg>
+<status status="PASS" starttime="20240918 11:57:46.219" endtime="20240918 11:57:46.219"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:46.219" endtime="20240918 11:57:46.219"/>
+</kw>
+<msg timestamp="20240918 11:57:46.219" level="INFO">${Shipping Conditions} = 02</msg>
+<status status="PASS" starttime="20240918 11:57:46.126" endtime="20240918 11:57:46.219"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB02/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7315/ctxtKNVV-VSBED</arg>
+<arg>${Shipping Conditions}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB02/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7315/ctxtKNVV-VSBED</arg>
+<arg>${Shipping Conditions}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:46.219" level="INFO">Typing text '02' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB02/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7315/ctxtKNVV-VSBED'.</msg>
+<status status="PASS" starttime="20240918 11:57:46.219" endtime="20240918 11:57:46.219"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:46.219" endtime="20240918 11:57:46.219"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Delivering Plant}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>31</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:46.219" endtime="20240918 11:57:46.313"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:46.313" endtime="20240918 11:57:46.313"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:46.313" level="INFO">${data} = BCSP</msg>
+<status status="PASS" starttime="20240918 11:57:46.313" endtime="20240918 11:57:46.313"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:46.313" endtime="20240918 11:57:46.313"/>
+</kw>
+<msg timestamp="20240918 11:57:46.313" level="INFO">${Delivering Plant} = BCSP</msg>
+<status status="PASS" starttime="20240918 11:57:46.219" endtime="20240918 11:57:46.313"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB02/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7315/ctxtKNVV-VWERK</arg>
+<arg>${Delivering Plant}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB02/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7315/ctxtKNVV-VWERK</arg>
+<arg>${Delivering Plant}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:46.313" level="INFO">Typing text 'BCSP' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB02/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7315/ctxtKNVV-VWERK'.</msg>
+<status status="PASS" starttime="20240918 11:57:46.313" endtime="20240918 11:57:46.313"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:46.313" endtime="20240918 11:57:46.329"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Click Element</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240918 11:57:46.329" endtime="20240918 11:57:46.730"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:46.329" endtime="20240918 11:57:46.730"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240918 11:57:47.732" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240918 11:57:46.730" endtime="20240918 11:57:47.732"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Invoicing dates}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>32</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:47.732" endtime="20240918 11:57:47.857"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:47.857" endtime="20240918 11:57:47.857"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:47.857" level="INFO">${data} = 01</msg>
+<status status="PASS" starttime="20240918 11:57:47.857" endtime="20240918 11:57:47.857"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:47.857" endtime="20240918 11:57:47.857"/>
+</kw>
+<msg timestamp="20240918 11:57:47.857" level="INFO">${Invoicing dates} = 01</msg>
+<status status="PASS" starttime="20240918 11:57:47.732" endtime="20240918 11:57:47.857"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7320/ctxtKNVV-PERFK</arg>
+<arg>${Invoicing dates}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7320/ctxtKNVV-PERFK</arg>
+<arg>${Invoicing dates}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:47.873" level="INFO">Typing text '01' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7320/ctxtKNVV-PERFK'.</msg>
+<status status="PASS" starttime="20240918 11:57:47.857" endtime="20240918 11:57:47.873"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:47.857" endtime="20240918 11:57:47.873"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${InvoicingListDates}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>33</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:47.873" endtime="20240918 11:57:47.966"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:47.966" endtime="20240918 11:57:47.966"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:47.966" level="INFO">${data} = 01</msg>
+<status status="PASS" starttime="20240918 11:57:47.966" endtime="20240918 11:57:47.966"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:47.966" endtime="20240918 11:57:47.966"/>
+</kw>
+<msg timestamp="20240918 11:57:47.966" level="INFO">${InvoicingListDates} = 01</msg>
+<status status="PASS" starttime="20240918 11:57:47.873" endtime="20240918 11:57:47.966"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7320/ctxtKNVV-PERRL</arg>
+<arg>${InvoicingListDates}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7320/ctxtKNVV-PERRL</arg>
+<arg>${InvoicingListDates}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:47.966" level="INFO">Typing text '01' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA1:SAPMF02D:7320/ctxtKNVV-PERRL'.</msg>
+<status status="PASS" starttime="20240918 11:57:47.966" endtime="20240918 11:57:47.966"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:47.966" endtime="20240918 11:57:47.966"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Incoterms1}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>34</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:47.966" endtime="20240918 11:57:48.060"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:48.060" endtime="20240918 11:57:48.060"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:48.060" level="INFO">${data} = CFR</msg>
+<status status="PASS" starttime="20240918 11:57:48.060" endtime="20240918 11:57:48.060"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:48.060" endtime="20240918 11:57:48.060"/>
+</kw>
+<msg timestamp="20240918 11:57:48.060" level="INFO">${Incoterms1} = CFR</msg>
+<status status="PASS" starttime="20240918 11:57:47.966" endtime="20240918 11:57:48.060"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA2:SAPMF02D:7321/ctxtKNVV-INCO1</arg>
+<arg>${Incoterms1}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA2:SAPMF02D:7321/ctxtKNVV-INCO1</arg>
+<arg>${Incoterms1}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:48.060" level="INFO">Typing text 'CFR' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA2:SAPMF02D:7321/ctxtKNVV-INCO1'.</msg>
+<status status="PASS" starttime="20240918 11:57:48.060" endtime="20240918 11:57:48.060"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:48.060" endtime="20240918 11:57:48.060"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Incoterms2}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>35</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:48.060" endtime="20240918 11:57:48.154"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:48.154" endtime="20240918 11:57:48.154"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:48.154" level="INFO">${data} = Cost and Freight</msg>
+<status status="PASS" starttime="20240918 11:57:48.154" endtime="20240918 11:57:48.154"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:48.154" endtime="20240918 11:57:48.154"/>
+</kw>
+<msg timestamp="20240918 11:57:48.154" level="INFO">${Incoterms2} = Cost and Freight</msg>
+<status status="PASS" starttime="20240918 11:57:48.060" endtime="20240918 11:57:48.154"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA2:SAPMF02D:7321/txtKNVV-INCO2</arg>
+<arg>${Incoterms2}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA2:SAPMF02D:7321/txtKNVV-INCO2</arg>
+<arg>${Incoterms2}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:48.170" level="INFO">Typing text 'Cost and Freight' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA2:SAPMF02D:7321/txtKNVV-INCO2'.</msg>
+<status status="PASS" starttime="20240918 11:57:48.154" endtime="20240918 11:57:48.170"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:48.154" endtime="20240918 11:57:48.170"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Credit ctrl area}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>36</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:48.170" endtime="20240918 11:57:48.295"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:48.295" endtime="20240918 11:57:48.295"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:48.295" level="INFO">${data} = BCCA</msg>
+<status status="PASS" starttime="20240918 11:57:48.295" endtime="20240918 11:57:48.295"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:48.295" endtime="20240918 11:57:48.295"/>
+</kw>
+<msg timestamp="20240918 11:57:48.295" level="INFO">${Credit ctrl area} = BCCA</msg>
+<status status="PASS" starttime="20240918 11:57:48.170" endtime="20240918 11:57:48.295"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA2:SAPMF02D:7321/ctxtKNVV-KKBER</arg>
+<arg>${Credit ctrl area}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA2:SAPMF02D:7321/ctxtKNVV-KKBER</arg>
+<arg>${Credit ctrl area}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:48.310" level="INFO">Typing text 'BCCA' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA2:SAPMF02D:7321/ctxtKNVV-KKBER'.</msg>
+<status status="PASS" starttime="20240918 11:57:48.295" endtime="20240918 11:57:48.310"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:48.295" endtime="20240918 11:57:48.310"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Acct assgmt group}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>6</arg>
+<arg>37</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:48.310" endtime="20240918 11:57:48.404"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:48.404" endtime="20240918 11:57:48.404"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:48.404" level="INFO">${data} = 01</msg>
+<status status="PASS" starttime="20240918 11:57:48.404" endtime="20240918 11:57:48.404"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:48.404" endtime="20240918 11:57:48.404"/>
+</kw>
+<msg timestamp="20240918 11:57:48.404" level="INFO">${Acct assgmt group} = 01</msg>
+<status status="PASS" starttime="20240918 11:57:48.310" endtime="20240918 11:57:48.404"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA3:SAPMF02D:7322/ctxtKNVV-KTGRD</arg>
+<arg>${Acct assgmt group}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA3:SAPMF02D:7322/ctxtKNVV-KTGRD</arg>
+<arg>${Acct assgmt group}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:48.404" level="INFO">Typing text '01' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA3:SAPMF02D:7322/ctxtKNVV-KTGRD'.</msg>
+<status status="PASS" starttime="20240918 11:57:48.404" endtime="20240918 11:57:48.404"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:48.404" endtime="20240918 11:57:48.404"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Tax_1}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>38</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:48.404" endtime="20240918 11:57:48.498"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:48.498" endtime="20240918 11:57:48.498"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:48.498" level="INFO">${data} = 1</msg>
+<status status="PASS" starttime="20240918 11:57:48.498" endtime="20240918 11:57:48.498"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:48.498" endtime="20240918 11:57:48.498"/>
+</kw>
+<msg timestamp="20240918 11:57:48.498" level="INFO">${Tax_1} = 1</msg>
+<status status="PASS" starttime="20240918 11:57:48.404" endtime="20240918 11:57:48.498"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA4:SAPMF02D:7323/subSUB_STEUER:SAPMF02D:7350/tblSAPMF02DTCTRL_STEUERN/ctxtKNVI-TAXKD[4,0]</arg>
+<arg>${Tax_1}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA4:SAPMF02D:7323/subSUB_STEUER:SAPMF02D:7350/tblSAPMF02DTCTRL_STEUERN/ctxtKNVI-TAXKD[4,0]</arg>
+<arg>${Tax_1}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:48.498" level="INFO">Typing text '1' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA4:SAPMF02D:7323/subSUB_STEUER:SAPMF02D:7350/tblSAPMF02DTCTRL_STEUERN/ctxtKNVI-TAXKD[4,0]'.</msg>
+<status status="PASS" starttime="20240918 11:57:48.498" endtime="20240918 11:57:48.498"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:48.498" endtime="20240918 11:57:48.498"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Tax_2}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>39</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:48.498" endtime="20240918 11:57:48.591"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:48.591" endtime="20240918 11:57:48.591"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:48.591" level="INFO">${data} = 1</msg>
+<status status="PASS" starttime="20240918 11:57:48.591" endtime="20240918 11:57:48.591"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:48.591" endtime="20240918 11:57:48.591"/>
+</kw>
+<msg timestamp="20240918 11:57:48.591" level="INFO">${Tax_2} = 1</msg>
+<status status="PASS" starttime="20240918 11:57:48.498" endtime="20240918 11:57:48.591"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA4:SAPMF02D:7323/subSUB_STEUER:SAPMF02D:7350/tblSAPMF02DTCTRL_STEUERN/ctxtKNVI-TAXKD[4,1]</arg>
+<arg>${Tax_2}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA4:SAPMF02D:7323/subSUB_STEUER:SAPMF02D:7350/tblSAPMF02DTCTRL_STEUERN/ctxtKNVI-TAXKD[4,1]</arg>
+<arg>${Tax_2}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:48.607" level="INFO">Typing text '1' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA4:SAPMF02D:7323/subSUB_STEUER:SAPMF02D:7350/tblSAPMF02DTCTRL_STEUERN/ctxtKNVI-TAXKD[4,1]'.</msg>
+<status status="PASS" starttime="20240918 11:57:48.591" endtime="20240918 11:57:48.607"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:48.591" endtime="20240918 11:57:48.607"/>
+</kw>
+<kw name="Read Excel Sheet" library="Customer_material">
+<var>${Tax_3}</var>
+<arg>${filename}</arg>
+<arg>${sheetname}</arg>
+<arg>${row_index}</arg>
+<arg>40</arg>
+<kw name="Open Excel Document" library="ExcelLibrary">
+<arg>${filepath}</arg>
+<arg>1</arg>
+<doc>Opens xlsx document file.</doc>
+<status status="PASS" starttime="20240918 11:57:48.607" endtime="20240918 11:57:48.685"/>
+</kw>
+<kw name="Get Sheet" library="ExcelLibrary">
+<arg>${sheetname}</arg>
+<doc>Returns a page from the current document.</doc>
+<status status="PASS" starttime="20240918 11:57:48.685" endtime="20240918 11:57:48.685"/>
+</kw>
+<kw name="Read Excel Cell" library="ExcelLibrary">
+<var>${data}</var>
+<arg>${rownum}</arg>
+<arg>${colnum}</arg>
+<doc>Returns content of a cell.</doc>
+<msg timestamp="20240918 11:57:48.685" level="INFO">${data} = 1</msg>
+<status status="PASS" starttime="20240918 11:57:48.685" endtime="20240918 11:57:48.685"/>
+</kw>
+<kw name="Close Current Excel Document" library="ExcelLibrary">
+<doc>Closes current document.</doc>
+<status status="PASS" starttime="20240918 11:57:48.685" endtime="20240918 11:57:48.685"/>
+</kw>
+<msg timestamp="20240918 11:57:48.685" level="INFO">${Tax_3} = 1</msg>
+<status status="PASS" starttime="20240918 11:57:48.607" endtime="20240918 11:57:48.685"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Input Text</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA4:SAPMF02D:7323/subSUB_STEUER:SAPMF02D:7350/tblSAPMF02DTCTRL_STEUERN/ctxtKNVI-TAXKD[4,2]</arg>
+<arg>${Tax_3}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Input Text" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA4:SAPMF02D:7323/subSUB_STEUER:SAPMF02D:7350/tblSAPMF02DTCTRL_STEUERN/ctxtKNVI-TAXKD[4,2]</arg>
+<arg>${Tax_3}</arg>
+<doc>Inserts the given text into the text field identified by locator.
+Use keyword `input password` to insert a password in a text field.</doc>
+<msg timestamp="20240918 11:57:48.701" level="INFO">Typing text '1' into text field 'wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB03/ssubSUBSC:SAPLATAB:0200/subAREA4:SAPMF02D:7323/subSUB_STEUER:SAPMF02D:7350/tblSAPMF02DTCTRL_STEUERN/ctxtKNVI-TAXKD[4,2]'.</msg>
+<status status="PASS" starttime="20240918 11:57:48.701" endtime="20240918 11:57:48.701"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:48.685" endtime="20240918 11:57:48.701"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240918 11:57:49.707" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240918 11:57:48.701" endtime="20240918 11:57:49.707"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Click Element</arg>
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB05</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/usr/subSUBTAB:SAPLATAB:0100/tabsTABSTRIP100/tabpTAB05</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<status status="PASS" starttime="20240918 11:57:49.707" endtime="20240918 11:57:50.278"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:49.707" endtime="20240918 11:57:50.278"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240918 11:57:51.279" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20240918 11:57:50.278" endtime="20240918 11:57:51.279"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Click Element</arg>
+<arg>wnd[0]/tbar[0]/btn[11]</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Click Element" library="SAP_Tcode_Library">
+<arg>wnd[0]/tbar[0]/btn[11]</arg>
+<doc>Performs a single click on a given element. Used only for buttons, tabs and menu items.</doc>
+<msg timestamp="20240918 12:07:27.614" level="FAIL">com_error: (-2147023170, 'The remote procedure call failed.', None, None)</msg>
+<status status="FAIL" starttime="20240918 11:57:51.279" endtime="20240918 12:07:27.614"/>
+</kw>
+<status status="PASS" starttime="20240918 11:57:51.279" endtime="20240918 12:07:27.614"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240918 12:07:30.615" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240918 12:07:27.614" endtime="20240918 12:07:30.615"/>
+</kw>
+<kw name="Get Value" library="SAP_Tcode_Library">
+<var>${Text}</var>
+<arg>wnd[0]/sbar/pane[0]</arg>
+<doc>Gets the value of the given element. The possible return values depend on the type of element (see Return values).</doc>
+<msg timestamp="20240918 12:07:30.693" level="INFO" html="true">&lt;a href="sap-screenshot_1.jpg"&gt;&lt;img src="sap-screenshot_1.jpg" width="800px"&gt;&lt;/a&gt;</msg>
+<msg timestamp="20240918 12:07:30.693" level="FAIL">ValueError: Cannot find element with id 'wnd[0]/sbar/pane[0]'</msg>
+<status status="FAIL" starttime="20240918 12:07:30.615" endtime="20240918 12:07:30.693"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240918 12:07:30.693" endtime="20240918 12:07:30.693"/>
+</kw>
+<kw name="Split String" library="String">
+<var>${split_text}</var>
+<arg>${Text}</arg>
+<arg>${SPACE}</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<status status="NOT RUN" starttime="20240918 12:07:30.693" endtime="20240918 12:07:30.693"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${customer_number}</var>
+<arg>${split_text}[1]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20240918 12:07:30.693" endtime="20240918 12:07:30.693"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${customer_number}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="NOT RUN" starttime="20240918 12:07:30.693" endtime="20240918 12:07:30.693"/>
+</kw>
+<kw name="Write Excel Sheet" library="Customer_material">
+<arg>${FILENAME}</arg>
+<arg>${SHEETNAME}</arg>
+<arg>${ROW_INDEX}</arg>
+<arg>41</arg>
+<arg>${customer_number}</arg>
+<status status="NOT RUN" starttime="20240918 12:07:30.693" endtime="20240918 12:07:30.693"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240918 12:07:30.693" endtime="20240918 12:07:30.693"/>
+</kw>
+<status status="FAIL" starttime="20240918 11:57:30.274" endtime="20240918 12:07:30.693"/>
+</iter>
+<status status="FAIL" starttime="20240918 11:57:30.274" endtime="20240918 12:07:30.693"/>
+</for>
+<status status="FAIL" starttime="20240918 11:57:28.127" endtime="20240918 12:07:30.693"/>
+</kw>
+<tag>Customer_material_temp</tag>
+<tag>Regression</tag>
+<status status="FAIL" starttime="20240918 11:57:28.127" endtime="20240918 12:07:30.693">ValueError: Cannot find element with id 'wnd[0]/sbar/pane[0]'</status>
+</test>
+<kw name="System Logout" library="Customer_material" type="TEARDOWN">
+<kw name="Run Transaction" library="SAP_Tcode_Library">
+<arg>/nex</arg>
+<doc>Runs a Sap transaction. An error is given when an unknown transaction is specified.</doc>
+<msg timestamp="20240918 12:07:30.693" level="FAIL">com_error: (-2147023174, 'The RPC server is unavailable.', None, None)</msg>
+<status status="FAIL" starttime="20240918 12:07:30.693" endtime="20240918 12:07:30.693"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240918 12:07:32.702" level="INFO">Slept 2 seconds</msg>
+<status status="PASS" starttime="20240918 12:07:30.693" endtime="20240918 12:07:32.702"/>
+</kw>
+<status status="FAIL" starttime="20240918 12:07:30.693" endtime="20240918 12:07:32.702">com_error: (-2147023174, 'The RPC server is unavailable.', None, None)</status>
+</kw>
+<status status="FAIL" starttime="20240918 11:57:18.394" endtime="20240918 12:07:32.702">Suite teardown failed:
+com_error: (-2147023174, 'The RPC server is unavailable.', None, None)</status>
+</suite>
+<doc>Testing functionality through Robot Framework</doc>
+<meta name="environment">Dev</meta>
+<meta name="test_browser_name">chrome</meta>
+<meta name="test_browser_version">128.0.6613.138</meta>
+<meta name="test_driver_version">127.0.6533.72 </meta>
+<meta name="test_environment">Dev</meta>
+<meta name="test_freeze_dependencies">annotated-types==0.7.0,arrow==1.3.0,astroid==3.2.2,asttokens==2.4.1,attrs==23.2.0,beautifulsoup4==4.12.3,binaryornot==0.4.4,bs4==0.0.2,certifi==2024.6.2,cffi==1.16.0,chardet==5.2.0,charset-normalizer==3.3.2,click==8.1.7,colorama==0.4.6,cookiecutter==2.6.0,cryptography==42.0.7,decorator==5.1.1,defusedxml==0.7.1,dill==0.3.8,docutils==0.21.2,et-xmlfile==1.1.0,exceptiongroup==1.2.1,executing==2.0.1,gitdb==4.0.11,GitPython==3.1.43,grpcio==1.64.1,h11==0.14.0,idna==3.7,ipython==8.25.0,isort==5.13.2,jaraco.classes==3.4.0,jaraco.context==5.3.0,jaraco.functools==4.0.1,jedi==0.19.1,Jinja2==3.1.4,jira==3.8.0,jsonpath-ng==1.6.1,jsonschema==4.22.0,jsonschema-specifications==2023.12.1,keyring==25.2.1,lazy-object-proxy==1.10.0,lxml==5.2.2,markdown-it-py==3.0.0,MarkupSafe==2.1.5,matplotlib-inline==0.1.7,mccabe==0.7.0,mdurl==0.1.2,more-itertools==10.3.0,MouseInfo==0.1.3,natsort==8.4.0,numpy==2.0.0,oauthlib==3.2.2,openpyxl==3.1.5,outcome==1.3.0.post0,packaging==24.0,pandas==2.2.2,parso==0.8.4,pathspec==0.11.2,pillow==10.3.0,pip==24.2,platformdirs==4.2.2,ply==3.11,prompt_toolkit==3.0.47,pure-eval==0.2.2,PyAutoGUI==0.9.54,pycparser==2.22,pydantic==2.7.4,pydantic_core==2.18.4,PyGetWindow==0.0.9,Pygments==2.18.0,pylint==3.2.2,PyMsgBox==1.0.9,PyPDF2==3.0.1,pyperclip==1.9.0,PyRect==0.2.0,PyScreeze==1.0.1,PySocks==1.7.1,python-dateutil==2.9.0.post0,python-dotenv==1.0.1,python-slugify==8.0.4,pytweening==1.2.0,pytz==2024.1,pywin32==306,pywin32-ctypes==0.2.2,PyYAML==6.0.1,redis==5.0.6,referencing==0.35.1,reportlab==4.2.0,requests==2.32.3,requests-oauthlib==2.0.0,requests-toolbelt==1.0.0,RestrictedPython==7.1,rich==13.7.1,rich-click==1.6.1,robotframework==6.0.2,robotframework-datadriver==1.9.0,robotframework-excellib==2.0.1,robotframework-jsonlibrary==0.5,robotframework-pabot==2.16.0,robotframework-pythonlibcore==4.2.0,robotframework-requests==0.9.2,robotframework-sapguilibrary==1.1,robotframework-seleniumlibrary==5.1.3,robotframework-stacktrace==0.4.1,robotframework-tidy==4.5.0,rpds-py==0.18.1,selenium==4.9.1,setuptools==70.0.0,shellingham==1.5.4,six==1.16.0,smmap==5.0.1,sniffio==1.3.1,sortedcontainers==2.4.0,soupsieve==2.5,stack-data==0.6.3,statsd==4.0.1,text-unidecode==1.3,tomli==2.0.1,tomlkit==0.12.5,traitlets==5.14.3,trio==0.25.1,trio-websocket==0.11.1,typer==0.12.3,types-python-dateutil==2.9.0.20240316,typing_extensions==4.12.1,tzdata==2024.1,urllib3==2.2.1,wcwidth==0.2.13,websocket-client==1.8.0,wheel==0.43.0,wrapt==1.16.0,wsproto==1.2.0</meta>
+<status status="FAIL" starttime="20240918 11:57:14.722" endtime="20240918 12:07:32.780"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="1" skip="0">Customer_material_temp</stat>
+<stat pass="0" fail="1" skip="0">Regression</stat>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Tests">Tests</stat>
+<stat pass="0" fail="1" skip="0" id="s1-s1" name="Test Customer material">Tests.Test Customer material</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

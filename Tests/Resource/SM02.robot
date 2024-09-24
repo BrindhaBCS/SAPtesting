@@ -26,4 +26,3 @@ SM02
 System Logout
     Run Transaction     /nex
     Sleep   5
-
