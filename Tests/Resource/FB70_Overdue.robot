@@ -32,13 +32,13 @@ System Logout
 checking for Customer Overdue
 	Run Transaction    /nfb70
 	Sleep    1
-	Click Element	wnd[0]/tbar[1]/btn[7]
-    Sleep	0.5 seconds
-	Clear Field Text    wnd[1]/usr/ctxtBKPF-BUKRS
-	Sleep	0.5 seconds
-	Input Text    wnd[1]/usr/ctxtBKPF-BUKRS    ${symvar('company_code')}
-    Sleep	0.5 seconds
-	Click Element    wnd[1]/tbar[0]/btn[0]
+	# Click Element	wnd[0]/tbar[1]/btn[7]
+    # Sleep	0.5 seconds
+	# Clear Field Text    wnd[1]/usr/ctxtBKPF-BUKRS
+	# Sleep	0.5 seconds
+	# Input Text    wnd[1]/usr/ctxtBKPF-BUKRS    ${symvar('company_code')}
+    # Sleep	0.5 seconds
+	# Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep	0.5 seconds
 	Input Text	wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-ACCNT    ${symvar('Customer')} 
     Sleep	0.5 seconds
