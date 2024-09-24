@@ -5,14 +5,14 @@ Library    OperatingSystem
 Library    Collections
 *** Variables *** 
 ${Results_Directory_Path}    ${CURDIR}
-${company_code}    ${symvar('company_code')} 
-${Customer}    ${symvar('Customer')} 
-${Invoice_date}    ${symvar('Invoice_date')} 
-${Posting_Date}    ${symvar('Posting_Date')} 
-${Amount}    ${symvar('Amount')} 
-${Text}    ${symvar('Text')} 
-${G/L_acct}    ${symvar('G/L_acct')}
-${FILE_NAME}    ${symvar('FILE_NAME')}
+# ${company_code}    ${symvar('company_code')}
+# ${Customer}    ${symvar('Customer')} 
+# ${Invoice_date}    ${symvar('Invoice_date')} 
+# ${Posting_Date}    ${symvar('Posting_Date')} 
+# ${Amount}    ${symvar('Amount')} 
+# ${Text}    ${symvar('Text')} 
+# ${G/L_acct}    ${symvar('G/L_acct')}
+# ${FILE_NAME}    ${symvar('FILE_NAME')}
 *** Keywords ***
 System Logon
     Start Process     ${symvar('SAP_SERVER')}     
@@ -36,25 +36,25 @@ checking for Customer Overdue
     Sleep	0.5 seconds
 	Clear Field Text    wnd[1]/usr/ctxtBKPF-BUKRS
 	Sleep	0.5 seconds
-	Input Text    wnd[1]/usr/ctxtBKPF-BUKRS    ${company_code}
+	Input Text    wnd[1]/usr/ctxtBKPF-BUKRS    ${symvar('company_code')}
     Sleep	0.5 seconds
 	Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep	0.5 seconds
-	Input Text	wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-ACCNT	${Customer}
+	Input Text	wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-ACCNT    ${symvar('Customer')} 
     Sleep	0.5 seconds
-	Input Text	wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-BLDAT	${Invoice_date}
+	Input Text	wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-BLDAT	${symvar('Invoice_date')} 
 	Sleep	0.5 seconds
-	Input Text	wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-BUDAT	${Posting_Date}
+	Input Text	wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-BUDAT	${symvar('Posting_Date')} 
 	Sleep	0.5 seconds
 	Run Keyword And Ignore Error    Send Vkey    vkey_id=0
 	Run Keyword And Ignore Error    Send Vkey    vkey_id=0
 	Run Keyword And Ignore Error    Send Vkey    vkey_id=0
     Sleep	0.5 seconds
-	Input Text	wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/txtINVFO-WRBTR	${Amount}
+	Input Text	wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/txtINVFO-WRBTR	${symvar('Amount')} 
     Sleep	0.5 seconds
-	Input Text	wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-SGTXT	${Text}
+	Input Text	wnd[0]/usr/tabsTS/tabpMAIN/ssubPAGE:SAPLFDCB:0510/ctxtINVFO-SGTXT	${symvar('Text')} 
     Sleep	0.5 seconds
-	Input Text	wnd[0]/usr/subITEMS:SAPLFSKB:0100/tblSAPLFSKBTABLE/ctxtACGL_ITEM-HKONT[1,0]    ${G/L_acct}
+	Input Text	wnd[0]/usr/subITEMS:SAPLFSKB:0100/tblSAPLFSKBTABLE/ctxtACGL_ITEM-HKONT[1,0]    ${symvar('GL_acct')}
     Sleep	0.5 seconds
 	Input Text	wnd[0]/usr/subITEMS:SAPLFSKB:0100/tblSAPLFSKBTABLE/txtACGL_ITEM-WRBTR[4,0]	*
     Sleep	0.5 seconds
@@ -66,7 +66,7 @@ checking for Customer Overdue
 	Sleep	5
 	Run Transaction    /nfbl5n
 	Sleep	2
-	Input Text    wnd[0]/usr/ctxtDD_KUNNR-LOW    ${Customer}
+	Input Text    wnd[0]/usr/ctxtDD_KUNNR-LOW    ${symvar('Customer')}
 	Sleep    1   
 
     Send Vkey    vkey_id=8
@@ -85,7 +85,7 @@ checking for Customer Overdue
 	Sleep	2
 	Click Element	wnd[0]/mbar/menu[0]/menu[3]/menu[1]
 	Sleep	2
-	Input Text	wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME	${FILE_NAME}
+	Input Text	wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME	${symvar('FILE_NAME')}
 	Sleep	2
 	Click Element	wnd[1]/tbar[0]/btn[20]
 	Sleep	2
