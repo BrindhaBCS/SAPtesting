@@ -34,6 +34,8 @@ checking for Customer Overdue
 	Sleep    1
 	Click Element	wnd[0]/tbar[1]/btn[7]
     Sleep	0.5 seconds
+	Clear Field Text    wnd[1]/usr/ctxtBKPF-BUKRS
+	Sleep	0.5 seconds
 	Input Text    wnd[1]/usr/ctxtBKPF-BUKRS    ${company_code}
     Sleep	0.5 seconds
 	Click Element    wnd[1]/tbar[0]/btn[0]
