@@ -47,7 +47,7 @@ Billing Documents_2 Not Posted to Accounting
     # ${sliced_data} =    Evaluate    [int(x) for x in ${Cleaned_List}[1:]]
     # Log    ${sliced_data}
 
-    IF    ${symvar('Enter_Bill_Document')} in ${coulumn_value}
+    IF    ${symvar('Enter_Bill_Document')} in @{coulumn_value}
         Select Document On Text   wnd[0]/usr/cntlGRID1/shellcont/shell    VBELN    ${symvar('Enter_Bill_Document')}
         
         Sleep    2
