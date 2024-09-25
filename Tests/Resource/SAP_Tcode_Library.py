@@ -1901,3 +1901,30 @@ class SAP_Tcode_Library:
         except Exception as e:
             print(f"An error occurred: {e}")
             return None 
+    def excel_to_json(self, file_path, sheet_name):
+        """
+        Convert the entire Excel sheet to a JSON string, removing leading and trailing spaces from each cell,
+        and return it. The JSON output will include each column as a key with the column data as the list of values.
+
+        :param file_path: Path to the Excel file
+        :param sheet_name: Name of the sheet in the Excel file
+        :return: JSON data as a string
+        """
+        try:
+            # Read the Excel sheet into a DataFrame
+            df = pd.read_excel(file_path, sheet_name=sheet_name)
+            
+            # Remove leading and trailing spaces in all columns
+            df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
+            
+            # Convert DataFrame to dictionary with records orientation
+            json_data = df.to_dict(orient="list")
+            
+            # Convert the dictionary to JSON format
+            json_string = json.dumps(json_data, indent=4)
+            
+            return json_string 
+
+        except Exception as e:
+            print(f"An unexpected error occurred: {e}")
+            return None
