@@ -69,7 +69,7 @@ Billing Documents Not Posted to Accounting
     
     ${json}    Excel To Json    file_path=C:\\tmp\\biling_documents.xlsx   sheet_name=Sheet1   
     Log    ${json} 
-    Log To Console    **gbStart**Copilot_Status**splitKeyValue**${json}**gbEnd**
+    Log To Console    **gbStart**Copilot_Status_json**splitKeyValue**${json}**gbEnd**
     Close Current Excel Document
     Sleep    2
 
