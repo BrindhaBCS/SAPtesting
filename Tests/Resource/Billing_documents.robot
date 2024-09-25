@@ -73,15 +73,16 @@ Billing Documents Not Posted to Accounting
     ${sliced_data} =    Evaluate    [int(x) for x in ${Cleaned_List}[1:]]
     Log    ${sliced_data}
     
-    ${json}    Excel Column To Json    file_path=C:\\tmp\\biling_documents.xlsx    sheet_name=Sheet1    column_index=9
+    # ${json}    Excel Column To Json    file_path=C:\\tmp\\biling_documents.xlsx    sheet_name=Sheet1    column_index=9
     
-    Log To Console    **gbStart**Copilot_Status**splitKeyValue**${json}**gbEnd**
+    # Log To Console    **gbStart**Copilot_Status**splitKeyValue**${json}**gbEnd**
     Close Current Excel Document
     Sleep    2
     Select Document On Text   wnd[0]/usr/cntlGRID1/shellcont/shell    VBELN    ${symvar('Enter_Bill_Document')}
     Sleep    2
     Click Element    wnd[0]/tbar[1]/btn[18]
     Sleep    2
+    Log To Console    **gbStart**Copilot_Status**splitKeyValue**${symvar('Enter_Bill_Document')} successfully Release**gbEnd**
 
         
 
