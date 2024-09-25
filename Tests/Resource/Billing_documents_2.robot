@@ -40,6 +40,7 @@ Billing Documents_2 Not Posted to Accounting
             Select Document On Text   wnd[0]/usr/cntlGRID1/shellcont/shell    VBELN    ${symvar('Enter_Bill_Document')}
             Click Element    wnd[0]/tbar[1]/btn[18]
             Log To Console    **gbStart**Copilot_Status**splitKeyValue**${symvar('Enter_Bill_Document')} successfully Release**gbEnd**
+            Exit For Loop
         ELSE
             Log To Console    **gbStart**Copilot_Status**splitKeyValue**${symvar('Enter_Bill_Document')} Does't Exist**gbEnd**
         END
