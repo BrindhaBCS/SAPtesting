@@ -14,14 +14,13 @@ System Logon
     Open Connection    ${symvar('BILLING_SAP_connection')}    
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('BILLING_Client_Id')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('BILLING_User_Name')}    
-    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('BILLING_User_Password')}
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{BILLING_PASSWORD}
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('BILLING_User_Password')}
     Send Vkey    0
-    Sleep    3
+    Sleep    5
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
     Sleep   1
 
-Billing Documents Not Posted to Accounting
+Billing Documents_2 Not Posted to Accounting
     Run Transaction    VFX3
 	Sleep	2
 	Select Checkbox    wnd[0]/usr/chkRFBSK_AB	
@@ -35,30 +34,10 @@ Billing Documents Not Posted to Accounting
 	Click Element	wnd[0]/tbar[1]/btn[8]
 	Sleep	2
 
-    Click Element	wnd[0]/mbar/menu[0]/menu[1]/menu[2]
-	Sleep	2
-	Select Radio Button    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[2,0]
-	Sleep	2
-	
-	Click Element	wnd[1]/tbar[0]/btn[0]
-	Sleep	2
-    Clear Field Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME
-	Input Text	wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    biling_documents
-	Sleep	2
-	
-	Click Element	wnd[1]/tbar[0]/btn[20]
-	Sleep	2
-
-    Clear Field Text    wnd[1]/usr/ctxtDY_PATH
-    Input Text	wnd[1]/usr/ctxtDY_PATH	C:\\tmp
-	Sleep	2
-	Set Focus	wnd[1]/usr/ctxtDY_PATH
-	Sleep	2
-	
-	Click Element	wnd[1]/tbar[0]/btn[0]
-	Sleep	2
-
-
+    ${Total_row}    Get Row Count    wnd[0]/usr/cntlGRID1/shellcont/shell 
+    Log To Console    ${Total_row}
+    ${coulumn_value}    Read Table Column    wnd[0]/usr/cntlGRID1/shellcont/shell    VBELN
+    
     Open Excel Document    C:\\tmp\\biling_documents.xlsx    Sheet1
     ${column_data}=    Read Excel Column    10    sheet_name=Sheet1
     
@@ -66,18 +45,20 @@ Billing Documents Not Posted to Accounting
     Log    ${Cleaned_List}
     ${sliced_data} =    Evaluate    [int(x) for x in ${Cleaned_List}[1:]]
     Log    ${sliced_data}
-    
-    ${json}    Excel To Json    file_path=C:\\tmp\\biling_documents.xlsx   sheet_name=Sheet1   
-    Log    ${json} 
-    Log To Console    **gbStart**Copilot_Status**splitKeyValue**${json}**gbEnd**
-    Close Current Excel Document
-    Sleep    2
 
+    IF    ${symvar('Enter_Bill_Document')} in ${coulumn_value}
+        Select Document On Text   wnd[0]/usr/cntlGRID1/shellcont/shell    VBELN    ${symvar('Enter_Bill_Document')}
         
+        Sleep    2
+        Click Element    wnd[0]/tbar[1]/btn[18]
+        Sleep    2
+    
+        Log To Console    **gbStart**Copilot_Status**splitKeyValue**${symvar('Enter_Bill_Document')} successfully Release**gbEnd**
+    ELSE
+        Log To Console    **gbStart**Copilot_Status**splitKeyValue**${symvar('Enter_Bill_Document')} Does't Exist**gbEnd**
+    END
+    Delete Specific File    C:\\tmp\\biling_documents.xlsx
 
 System Logout
     Run Transaction   /nex
-    Sleep    5   
-
-
-        
+    Sleep    5 
