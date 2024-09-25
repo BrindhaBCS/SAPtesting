@@ -39,13 +39,13 @@ Billing Documents_2 Not Posted to Accounting
     Log To Console    ${Total_row}
     ${coulumn_value}    Read Table Column    wnd[0]/usr/cntlGRID1/shellcont/shell    VBELN
     
-    Open Excel Document    C:\\tmp\\biling_documents.xlsx    Sheet1
-    ${column_data}=    Read Excel Column    10    sheet_name=Sheet1
+    # Open Excel Document    C:\\tmp\\biling_documents.xlsx    Sheet1
+    # ${column_data}=    Read Excel Column    10    sheet_name=Sheet1
     
-    ${Cleaned_List}=    Clean List    ${column_data}     
-    Log    ${Cleaned_List}
-    ${sliced_data} =    Evaluate    [int(x) for x in ${Cleaned_List}[1:]]
-    Log    ${sliced_data}
+    # ${Cleaned_List}=    Clean List    ${column_data}     
+    # Log    ${Cleaned_List}
+    # ${sliced_data} =    Evaluate    [int(x) for x in ${Cleaned_List}[1:]]
+    # Log    ${sliced_data}
 
     IF    ${symvar('Enter_Bill_Document')} in ${coulumn_value}
         Select Document On Text   wnd[0]/usr/cntlGRID1/shellcont/shell    VBELN    ${symvar('Enter_Bill_Document')}
