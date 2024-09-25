@@ -59,15 +59,15 @@ Billing Documents Not Posted to Accounting
 	Sleep	2
 
 
-    Open Excel Document    ${symvar('Excel_sheet')}    ${symvar('BILLING_Sheet_name')}
-    ${column_data}=    Read Excel Column    10    sheet_name=${symvar('BILLING_Sheet_name')}
+    Open Excel Document    C:\\tmp\\biling_documents.xlsx    Sheet1
+    ${column_data}=    Read Excel Column    10    sheet_name=Sheet1
     
     ${Cleaned_List}=    Clean List    ${column_data}     
     Log    ${Cleaned_List}
     ${sliced_data} =    Evaluate    [int(x) for x in ${Cleaned_List}[1:]]
     Log    ${sliced_data}
     
-    ${json}    Excel To Json    file_path=${symvar('Excel_sheet')}   sheet_name=${symvar('BILLING_Sheet_name')}   
+    ${json}    Excel To Json    file_path=C:\\tmp\\biling_documents.xlsx   sheet_name=Sheet1   
     Log    ${json} 
     Log To Console    **gbStart**Copilot_Status_json**splitKeyValue**${json}**gbEnd**
     Close Current Excel Document
