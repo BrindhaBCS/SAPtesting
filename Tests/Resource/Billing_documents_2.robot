@@ -39,6 +39,7 @@ Billing Documents_2 Not Posted to Accounting
     Log To Console    ${Total_row}
     ${coulumn_value}    Read Table Column    wnd[0]/usr/cntlGRID1/shellcont/shell    VBELN
     
+    Set Global Variable    ${coulumn_value}
     # Open Excel Document    C:\\tmp\\biling_documents.xlsx    Sheet1
     # ${column_data}=    Read Excel Column    10    sheet_name=Sheet1
     
