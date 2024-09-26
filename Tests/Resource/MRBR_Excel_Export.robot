@@ -28,14 +28,15 @@ MRBR_Excel_Export
     Select Radio Button    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[2,0]
     Click Element    wnd[1]/tbar[0]/btn[0]
     clear field text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME
-    Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    MRBR
+    Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    MRBR_Block
     Click Element    wnd[1]/tbar[0]/btn[20]
     clear field text    wnd[1]/usr/ctxtDY_PATH
     Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    0.5
-    ${Json}    Excel To Json    file_path=C:\\tmp\\MRBR.xlsx    sheet_name=Sheet1
-    Log To Console    ${Json}
-    Sleep    1
+    ${json}    Excel To Json    excel_file=C:\\tmp\\MRBR_Block.xlsx     json_file=C:\\tmp\\MRBR_Block.json
+    log    ${json}
     Log To Console    **gbStart**copilot_Json**splitKeyValue**${json}**gbEnd**
-    Log to console    ${json}
+    log to console    ${json}  
+    Sleep    1
+    Delete Specific File    file_path=C:\\tmp\\MRBR_Block.json

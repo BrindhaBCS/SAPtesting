@@ -1901,26 +1901,6 @@ class SAP_Tcode_Library:
         except Exception as e:
             print(f"An error occurred: {e}")
             return None 
-    def excel_to_json(self, file_path, sheet_name):
-        """
-        Convert the entire Excel sheet to a JSON string, removing leading and trailing spaces from each cell,
-        and return it. The JSON output will include each column as a key with the column data as the list of values.
-
-        :param file_path: Path to the Excel file
-        :param sheet_name: Name of the sheet in the Excel file
-        :return: JSON data as a string
-        """
-        try:
-            df = pd.read_excel(file_path, sheet_name=sheet_name)
-            df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
-            json_data = df.to_dict(orient="list")
-            json_string = json.dumps(json_data, indent=4)
-            
-            return json_string 
-
-        except Exception as e:
-            print(f"An unexpected error occurred: {e}")
-            return None
     def get_sap_table_value(self, table_id, row_num, column_id):
         # Get Sap Table Value    table_id=wnd[0]/usr/cntlGRID1/shellcont/shell    row_num=${row_num}    column_id=BELNR
         """
@@ -1954,7 +1934,8 @@ class SAP_Tcode_Library:
             table.currentCellRow = row_number      
         except com_error as e:
             raise ValueError(f"Error selecting row {row_number} in SAP table: {e}")
-    def process_excel_file(self, excel_file, json_file):
+        
+    def excel_to_json(self, excel_file, json_file):
             df = pd.read_excel(excel_file, engine='openpyxl')
             for column in df.select_dtypes(['datetime']):
                 df[column] = df[column].astype(str)
