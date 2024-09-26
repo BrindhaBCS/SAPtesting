@@ -1934,6 +1934,7 @@ class SAP_Tcode_Library:
             table.currentCellRow = row_number      
         except com_error as e:
             raise ValueError(f"Error selecting row {row_number} in SAP table: {e}")
+        
     def excel_to_json(self, excel_file, json_file):
             df = pd.read_excel(excel_file, engine='openpyxl')
             for column in df.select_dtypes(['datetime']):

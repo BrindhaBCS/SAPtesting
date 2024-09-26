@@ -41,9 +41,9 @@ Sales Document with CreditBlocks
     Sleep    0.5 seconds
     Run Keyword And Ignore Error    Click Element    wnd[1]/tbar[0]/btn[12]
     Sleep    0.5  
-    ${Json}    excel_to_json    excel_file=C:\\tmp\\SalesDocument.xlsx     json_file=C:\\tmp\\SalesDocument.json
+    ${Json}    Excel To Json    excel_file=C:\\tmp\\SalesDocument.xlsx     json_file=C:\\tmp\\SalesDocument.json
     log    ${json}
     Log To Console    **gbStart**copilot_Sales_Document_status**splitKeyValue**${json}**gbEnd**
     log to console    ${json}  
     Sleep    1
-    Delete Specific File    file_path=json_file=C:\\tmp\\SalesDocument.json
+    Delete Specific File    file_path=C:\\tmp\\SalesDocument.json
