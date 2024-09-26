@@ -1911,16 +1911,9 @@ class SAP_Tcode_Library:
         :return: JSON data as a string
         """
         try:
-            # Read the Excel sheet into a DataFrame
             df = pd.read_excel(file_path, sheet_name=sheet_name)
-            
-            # Remove leading and trailing spaces in all columns
             df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
-            
-            # Convert DataFrame to dictionary with records orientation
             json_data = df.to_dict(orient="list")
-            
-            # Convert the dictionary to JSON format
             json_string = json.dumps(json_data, indent=4)
             
             return json_string 
@@ -1928,3 +1921,36 @@ class SAP_Tcode_Library:
         except Exception as e:
             print(f"An unexpected error occurred: {e}")
             return None
+    def get_sap_table_value(self, table_id, row_num, column_id):
+        # Get Sap Table Value    table_id=wnd[0]/usr/cntlGRID1/shellcont/shell    row_num=${row_num}    column_id=BELNR
+        """
+        Retrieves the value from a specific cell in the SAP table.
+
+        :param table_id: The ID of the SAP table element
+        :param row_num: The row number to get the value from
+        :param column_id: The ID of the column to retrieve (e.g., "BELNR")
+        :return: The value from the specified cell
+        """
+        try:
+            table = self.session.findById(table_id)
+            table.currentCellRow = row_num
+            cell_value = table.getCellValue(row_num, column_id)
+            return cell_value  
+        except com_error as e:
+            raise ValueError(f"Error retrieving value from SAP table: {e}")
+
+    def select_row(self, table_id, row_number):
+        # Select Row    table_id=wnd[0]/usr/cntlGRID1/shellcont/shell    row_number=${row_num}
+        """
+        Selects a specific row in the SAP table.
+
+        :param table_id: The ID of the SAP table element
+        :param row_number: The row number to select (0-based index)
+        """
+        try:
+            table = self.session.findById(table_id)
+            table.clearSelection()
+            table.selectedRows = str(row_number)
+            table.currentCellRow = row_number      
+        except com_error as e:
+            raise ValueError(f"Error selecting row {row_number} in SAP table: {e}")
