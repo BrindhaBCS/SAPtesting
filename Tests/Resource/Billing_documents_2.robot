@@ -45,7 +45,9 @@ Billing Documents_2 Not Posted to Accounting
             Log To Console    **gbStart**Copilot_Status**splitKeyValue**${symvar('Enter_Bill_Document')} Does't Exist**gbEnd**
         END
     END    
-    Delete Specific File    file_path=C:\\tmp\\biling_documents.xlsx
+    
+    Delete Specific File    excel_file=C:\\tmp\\biling_documents.xlsx
+   
 
 System Logout
     Run Transaction   /nex
