@@ -57,7 +57,7 @@ Billing Documents Not Posted to Accounting
     ${sliced_data} =    Evaluate    [int(x) for x in ${Cleaned_List}[1:]]
     Log    ${sliced_data}
     
-    ${json}    Excel To Json    file_path=C:\\tmp\\biling_documents.xlsx   sheet_name=Sheet1   
+    ${json}    Excel To Json    excel_file=C:\\tmp\\biling_documents.xlsx   json_file=C:\\tmp\\biling_documents.json  
     Log    ${json} 
     Log To Console    **gbStart**Copilot_Status_json**splitKeyValue**${json}**gbEnd**
     Close Current Excel Document
