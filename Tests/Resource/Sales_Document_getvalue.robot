@@ -52,10 +52,10 @@ Sales Document get value
             Sleep    0.5
             Click Element    wnd[0]/tbar[0]/btn[3]
             Sleep    0.5
-            Log To Console    **gbStart**copilot_Sales_Document**splitKeyValue**The document ${Get_Document_Number} is released successfully...**gbEnd**
+            Log To Console    **gbStart**copilot_Sales_Document**splitKeyValue**The document ${Input_Document_Number} is released successfully...**gbEnd**
             Exit For Loop
         ELSE
-            Log To Console    **gbStart**copilot_Sales_Document**splitKeyValue**The document ${Get_Document_Number} is not found...**gbEnd**
+            Log To Console    **gbStart**copilot_Sales_Document**splitKeyValue**The document ${Input_Document_Number} is not found...**gbEnd**
         END
     END
     Sleep    0.5
