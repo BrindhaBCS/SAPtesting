@@ -46,7 +46,7 @@ Billing Documents_2 Not Posted to Accounting
         END
     END    
     
-    Delete Specific File    excel_file=C:\\tmp\\biling_documents.xlsx
+    Delete Specific File    C:\\tmp\\biling_documents.xlsx
    
 
 System Logout

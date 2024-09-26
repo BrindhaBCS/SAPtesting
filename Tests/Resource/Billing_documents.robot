@@ -62,7 +62,7 @@ Billing Documents Not Posted to Accounting
     Log To Console    **gbStart**Copilot_Status_json**splitKeyValue**${json}**gbEnd**
     Close Current Excel Document
     Sleep    0.5
-    Delete Specific File    json_file=C:\\tmp\\biling_documents.json
+    Delete Specific File    C:\\tmp\\biling_documents.json
         
 
 System Logout
