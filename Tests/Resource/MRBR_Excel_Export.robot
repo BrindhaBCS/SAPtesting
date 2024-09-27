@@ -33,7 +33,9 @@ MRBR_Excel_Export
     clear field text    wnd[1]/usr/ctxtDY_PATH
     Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp
     Click Element    wnd[1]/tbar[0]/btn[11]
-    Sleep    0.5
+    Sleep    2
+    Process Excel    file_path=C:\\tmp\\MRBR_Block.xlsx    sheet_name=Sheet1
+    Sleep    5
     ${json}    Excel To Json    excel_file=C:\\tmp\\MRBR_Block.xlsx     json_file=C:\\tmp\\MRBR_Block.json
     log    ${json}
     Log To Console    **gbStart**copilot_Json**splitKeyValue**${json}**gbEnd**
