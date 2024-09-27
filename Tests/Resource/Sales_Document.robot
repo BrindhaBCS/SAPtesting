@@ -41,7 +41,7 @@ Sales Document with CreditBlocks
     Sleep    0.5 seconds
     Run Keyword And Ignore Error    Click Element    wnd[1]/tbar[0]/btn[12]
     Sleep    2
-    Process Excel    file_path=C:\\tmp\\SalesDocument.xlsx    sheet_name=Sheet1    header_row=0
+    Process Excel    file_path=C:\\tmp\\SalesDocument.xlsx    sheet_name=Sheet1    header_row=1
     Sleep    1
     ${json}    Excel To Json    excel_file=C:\\tmp\\SalesDocument.xlsx     json_file=C:\\tmp\\SalesDocument.json
     log    ${json}
