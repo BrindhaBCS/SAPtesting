@@ -1946,31 +1946,32 @@ class SAP_Tcode_Library:
                 json_data = json.load(f)
             return json_data
 
-    def process_excel(self, file_path, sheet_name, header_row):
+    def process_excel(self, file_path, sheet_name, header_row=None):
         try:
-            header_row = int(header_row)
+            if header_row is not None:
+                header_row = int(header_row)
         except ValueError:
             print("Header row must be an integer.")
             return
-
         df = pd.read_excel(file_path, sheet_name=sheet_name, header=None)
-        
+        if header_row is None:
+            header_row = 0  # Use the first row as header
         if header_row >= len(df):
             print("Header row is out of bounds.")
             return
-        
         new_header = df.iloc[header_row]
-        df = df.drop(index=header_row)  
-        df.columns = new_header  
+        df = df.drop(index=header_row)
+        df.columns = new_header
         print("Current columns after setting header:", df.columns.tolist())
-
         df = df[df.apply(lambda x: x.str.strip().astype(bool).any(), axis=1)]
-        df.dropna(axis=1, how='all', inplace=True) 
-        df.dropna(axis=0, how='all', inplace=True) 
+        df.dropna(axis=1, how='all', inplace=True)
+        df.dropna(axis=0, how='all', inplace=True)
         df.reset_index(drop=True, inplace=True)
+
         df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
         
         try:
+
             with pd.ExcelWriter(file_path, engine='openpyxl', mode='w') as writer:
                 df.to_excel(writer, index=False, sheet_name=sheet_name)
             print(f"Processed Excel sheet '{sheet_name}' has been updated in: {file_path}")
