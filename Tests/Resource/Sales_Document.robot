@@ -40,9 +40,9 @@ Sales Document with CreditBlocks
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    0.5 seconds
     Run Keyword And Ignore Error    Click Element    wnd[1]/tbar[0]/btn[12]
-    Sleep    2
-    Process Excel    file_path=C:\\tmp\\SalesDocument.xlsx    sheet_name=Sheet1    header_row=2
-    Sleep    1
+    Sleep    5
+    Process Excel    file_path=C:\\tmp\\SalesDocument.xlsx    sheet_name=Sheet1
+    Sleep    5
     ${json}    Excel To Json    excel_file=C:\\tmp\\SalesDocument.xlsx     json_file=C:\\tmp\\SalesDocument.json
     log    ${json}
     Log To Console    **gbStart**copilot_Sales_Document_status**splitKeyValue**${json}**gbEnd**
