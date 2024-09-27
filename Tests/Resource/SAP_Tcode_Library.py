@@ -1871,6 +1871,16 @@ class SAP_Tcode_Library:
             else:
                 self.session.findById("wnd[1]/tbar[0]/btn[0]").press()
 
+    def get_license_product(self, element_id):
+        license = self.session.findById(element_id).Text
+        if license != "":
+            license_split = license.split('_')
+            product = license_split[0]
+            return product
+        else:
+            return None
+
+
 
         
 
