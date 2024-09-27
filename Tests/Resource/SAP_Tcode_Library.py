@@ -1524,11 +1524,11 @@ class SAP_Tcode_Library:
     def material_availability(self, filepath, result_filepath):
         df = pd.read_excel(filepath, header =1)
         df.columns = df.columns.str.strip()
-        extracted_columns = df[['Material', 'Plnt', 'Descr.', 'Unrestr.']]
+        extracted_columns = df[['Material', 'Plnt', 'Material Description', 'Unrestr.']]
         extracted_columns = extracted_columns.rename(columns={
                             'Material': 'Material_ID',
                             'Plnt': 'Plant',
-                            'Descr.': 'Description',
+                            'Material Description': 'Material Description',
                             'Unrestr.': 'Unrestricted_Stock'
                         })
         cleaned_data = extracted_columns.dropna(how='all')

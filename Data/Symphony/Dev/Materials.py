@@ -5,8 +5,8 @@ MM_User_Name = "$MM_User_Name"
 MM_User_Password = "$MM_User_Password"
 Plant ="$Plant"
 Material ="$Material"
-filepath = "$filepath"
-filename = "$filename"
+MM_Cleaned_filepath = "$MM_Cleaned_filepath"
+MM_Cleaned_filename = "$MM_Cleaned_filename"
 
 
 # MM_SAP_SERVER = "C:\\Program Files\\SAP\\FrontEnd\\SAPgui\\saplogon.exe"

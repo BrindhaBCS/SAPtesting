@@ -14,8 +14,8 @@ ${MM_Filename}      MM_Materials_MB52.xlsx
 # ${filepath}    ${CURDIR}//Results//MM_Materials_MB52.xlsx
 # ${result_filepath}    ${CURDIR}//Results//Cleaned_MM_Materials_MB52.xlsx
 
-${input_filepath}    ${symvar('filepath')}//${MM_Filename}
-${result_filepath}    ${symvar('filepath')}//${symvar('filename')}
+${input_filepath}    ${symvar('MM_Cleaned_filepath')}//${MM_Filename}
+${result_filepath}    ${symvar('MM_Cleaned_filepath')}//${symvar('MM_Cleaned_filename')}
 
 ${Plant}    1040
 ${Material}    2000000071
@@ -56,7 +56,7 @@ Executing Material Availability
     Sleep    1
     Click Element    wnd[1]/tbar[0]/btn[20]
     Sleep    1
-    Input Text    wnd[1]/usr/ctxtDY_PATH   ${symvar('filepath')}
+    Input Text    wnd[1]/usr/ctxtDY_PATH   ${symvar('MM_Cleaned_filepath')}
     Sleep    1
     Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${MM_Filename}
     Click Element    wnd[1]/tbar[0]/btn[11]
