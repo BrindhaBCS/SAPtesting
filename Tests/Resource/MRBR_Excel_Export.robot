@@ -34,7 +34,7 @@ MRBR_Excel_Export
     Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    2
-    Process Excel    file_path=C:\\tmp\\MRBR_Block.xlsx    sheet_name=Sheet1
+    Process Excel    file_path=C:\\tmp\\MRBR_Block.xlsx    sheet_name=Sheet1    column_index=0
     Sleep    5
     ${json}    Excel To Json    excel_file=C:\\tmp\\MRBR_Block.xlsx     json_file=C:\\tmp\\MRBR_Block.json
     log    ${json}
@@ -42,3 +42,5 @@ MRBR_Excel_Export
     log to console    ${json}  
     Sleep    1
     Delete Specific File    file_path=C:\\tmp\\MRBR_Block.json
+    Sleep    1
+    # Delete Specific File    C:\\tmp\\MRBR_Block.xlsx
