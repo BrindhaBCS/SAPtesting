@@ -43,4 +43,4 @@ MRBR_Excel_Export
     Sleep    1
     Delete Specific File    file_path=C:\\tmp\\MRBR_Block.json
     Sleep    1
-    # Delete Specific File    C:\\tmp\\MRBR_Block.xlsx
+    Delete Specific File    file_path=C:\\tmp\\MRBR_Block.xlsx

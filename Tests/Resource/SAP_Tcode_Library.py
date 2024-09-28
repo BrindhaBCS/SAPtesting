@@ -1973,3 +1973,53 @@ class SAP_Tcode_Library:
             print(f"Processed Excel sheet '{sheet_name}' has been updated in: {file_path}")
         except Exception as e:
             print(f"Error writing to Excel: {e}")
+
+    def get_sap_shell_item_value(self, table_shell, row_number, column):
+        try:
+            row_number = int(row_number)
+            if 0 <= row_number <= 9:
+                row_identifier = f"{' ' * 10}{row_number}"  # 10 spaces for single digit
+            elif 10 <= row_number <= 99:
+                row_identifier = f"{' ' * 9}{row_number}"   # 9 spaces for double digits
+            elif 100 <= row_number <= 999:
+                row_identifier = f"{' ' * 8}{row_number}"   # 8 spaces for triple digits
+            else:
+                raise ValueError("Row number out of range. Must be between 0 and 999.")
+            element = self.session.findById(table_shell)
+            return element.getItemText(row_identifier, column)
+        except Exception as e:
+            raise Exception(f"Failed to retrieve value from SAP shell: {str(e)}")
+        
+    def expand_sap_shell_node(self, table_shell, row_number, column):
+        try:
+            row_number = int(row_number)
+            if 0 <= row_number <= 9:
+                row_identifier = f"{' ' * 10}{row_number}"  # 10 spaces for single digit
+            elif 10 <= row_number <= 99:
+                row_identifier = f"{' ' * 9}{row_number}"   # 9 spaces for double digits
+            elif 100 <= row_number <= 999:
+                row_identifier = f"{' ' * 8}{row_number}"   # 8 spaces for triple digits
+            else:
+                raise ValueError("Row number out of range. Must be between 0 and 999.")
+            tree_id = table_shell 
+            element = self.session.findById(tree_id)
+            element.selectItem(row_identifier, column)
+            element.expandNode(row_identifier)
+        except Exception as e:
+            raise Exception(f"Failed to expand node in SAP shell: {str(e)}")
+        
+    def double_click_sap_shell_item(self, table_shell, row_number, column):
+        try:
+            row_number = int(row_number)
+            if 0 <= row_number <= 9:
+                row_identifier = f"{' ' * 10}{row_number}"  # 10 spaces for single digit
+            elif 10 <= row_number <= 99:
+                row_identifier = f"{' ' * 9}{row_number}"   # 9 spaces for double digits
+            elif 100 <= row_number <= 999:
+                row_identifier = f"{' ' * 8}{row_number}"   # 8 spaces for triple digits
+            else:
+                raise ValueError("Row number out of range. Must be between 0 and 999.")
+            element = self.session.findById(table_shell)
+            element.doubleClickItem(row_identifier, column)
+        except Exception as e:
+            raise Exception(f"Failed to double-click item in SAP shell: {str(e)}")
