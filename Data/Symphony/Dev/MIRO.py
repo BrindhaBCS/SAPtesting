@@ -1,0 +1,12 @@
+# SAP_SERVER = "C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPgui\\saplogon.exe"
+# MIRO_Connection = "TS4"
+# MIRO_Client_Id = "001"
+# MIRO_User_Name = "Naren"
+# MIRO_User_Password = "Adminbcs@2024"
+# Parked_Document_No = "5105600847"
+
+SAP_SERVER = "$SAP_SERVER"
+MIRO_Connection = "$MIRO_Connection"
+MIRO_Client_Id = "$MIRO_Client_Id"
+MIRO_User_Name = "$MIRO_User_Name"
+Parked_Document_No = "$Parked_Document_No"

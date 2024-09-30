@@ -1953,13 +1953,30 @@ class SAP_Tcode_Library:
             json.dump(data, f, ensure_ascii=False, indent=4)
         return data
 
+<<<<<<< HEAD
     def process_excel(self, file_path, sheet_name):
         df = pd.read_excel(file_path, sheet_name=sheet_name, header=None)
+=======
+    def process_excel(self, file_path, sheet_name, column_index=None):
+        df = pd.read_excel(file_path, sheet_name=sheet_name, header=None)
+        if column_index is not None:
+            try:
+                column_index = int(column_index)  # Ensure column_index is an integer
+            except ValueError:
+                print("Invalid column index provided. Please provide a valid integer.")
+                return
+            if 0 <= column_index < df.shape[1]:
+                df.drop(df.columns[column_index], axis=1, inplace=True)
+            else:
+                print(f"Column index {column_index} is out of bounds.")
+                return
+>>>>>>> a707a2dabbacb7c797cb6bff3f53a2cae3241f63
         df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
         df.dropna(how='all', inplace=True)
         df.dropna(axis=1, how='all', inplace=True)
         if df.iloc[0].isnull().all(): 
             new_header = df.iloc[1]  
+<<<<<<< HEAD
             df = df[2:] 
         else:
             new_header = df.iloc[0]  
@@ -1967,8 +1984,72 @@ class SAP_Tcode_Library:
         df.columns = new_header
         df.reset_index(drop=True, inplace=True)
         try:
+=======
+            df = df[2:]  # Remove first two rows
+        else:
+            new_header = df.iloc[0]  # Use first row as header
+            df = df[1:]  # Remove first row
+        df.columns = new_header
+        df.reset_index(drop=True, inplace=True)
+        try:
+            # Write the modified DataFrame back to the Excel file
+>>>>>>> a707a2dabbacb7c797cb6bff3f53a2cae3241f63
             with pd.ExcelWriter(file_path, engine='openpyxl', mode='w') as writer:
                 df.to_excel(writer, index=False, sheet_name=sheet_name)
             print(f"Processed Excel sheet '{sheet_name}' has been updated in: {file_path}")
         except Exception as e:
+<<<<<<< HEAD
             print(f"Error writing to Excel: {e}")
+=======
+            print(f"Error writing to Excel: {e}")
+
+    def get_sap_shell_item_value(self, table_shell, row_number, column):
+        try:
+            row_number = int(row_number)
+            if 0 <= row_number <= 9:
+                row_identifier = f"{' ' * 10}{row_number}"  # 10 spaces for single digit
+            elif 10 <= row_number <= 99:
+                row_identifier = f"{' ' * 9}{row_number}"   # 9 spaces for double digits
+            elif 100 <= row_number <= 999:
+                row_identifier = f"{' ' * 8}{row_number}"   # 8 spaces for triple digits
+            else:
+                raise ValueError("Row number out of range. Must be between 0 and 999.")
+            element = self.session.findById(table_shell)
+            return element.getItemText(row_identifier, column)
+        except Exception as e:
+            raise Exception(f"Failed to retrieve value from SAP shell: {str(e)}")
+        
+    def expand_sap_shell_node(self, table_shell, row_number, column):
+        try:
+            row_number = int(row_number)
+            if 0 <= row_number <= 9:
+                row_identifier = f"{' ' * 10}{row_number}"  # 10 spaces for single digit
+            elif 10 <= row_number <= 99:
+                row_identifier = f"{' ' * 9}{row_number}"   # 9 spaces for double digits
+            elif 100 <= row_number <= 999:
+                row_identifier = f"{' ' * 8}{row_number}"   # 8 spaces for triple digits
+            else:
+                raise ValueError("Row number out of range. Must be between 0 and 999.")
+            tree_id = table_shell 
+            element = self.session.findById(tree_id)
+            element.selectItem(row_identifier, column)
+            element.expandNode(row_identifier)
+        except Exception as e:
+            raise Exception(f"Failed to expand node in SAP shell: {str(e)}")
+        
+    def double_click_sap_shell_item(self, table_shell, row_number, column):
+        try:
+            row_number = int(row_number)
+            if 0 <= row_number <= 9:
+                row_identifier = f"{' ' * 10}{row_number}"  # 10 spaces for single digit
+            elif 10 <= row_number <= 99:
+                row_identifier = f"{' ' * 9}{row_number}"   # 9 spaces for double digits
+            elif 100 <= row_number <= 999:
+                row_identifier = f"{' ' * 8}{row_number}"   # 8 spaces for triple digits
+            else:
+                raise ValueError("Row number out of range. Must be between 0 and 999.")
+            element = self.session.findById(table_shell)
+            element.doubleClickItem(row_identifier, column)
+        except Exception as e:
+            raise Exception(f"Failed to double-click item in SAP shell: {str(e)}")
+>>>>>>> a707a2dabbacb7c797cb6bff3f53a2cae3241f63

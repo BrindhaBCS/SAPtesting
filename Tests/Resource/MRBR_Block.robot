@@ -37,5 +37,3 @@ MRBR_Block
             Log To Console    **gbStart**copilot_Result**splitKeyValue**${Input_Invoice_doc} User Input Not Match Actual Current Data !!!**gbEnd**
         END
     END
-    Sleep    1
-    Delete Specific File    C:\\tmp\\MRBR_Block.xlsx
