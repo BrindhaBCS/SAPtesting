@@ -1,6 +1,8 @@
 import pythoncom
 import win32com.client
 import time
+from datetime import datetime
+import _strptime
 from pythoncom import com_error
 import robot.libraries.Screenshot as screenshot
 import os
@@ -1879,6 +1881,11 @@ class SAP_Tcode_Library:
             return product
         else:
             return None
+    def calculate_date_difference(self, given_date_str):
+        given_date = datetime.strptime(given_date_str, '%d.%m.%Y').date()
+        current_date = datetime.now().date()
+        date_difference = (given_date - current_date).days
+        return date_difference
 
 
 
