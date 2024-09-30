@@ -3,6 +3,7 @@ Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    String
+Library    FileOperations.py
  
 *** Keywords ***
 System Logon
@@ -66,3 +67,4 @@ License Renewal
     Click Element    wnd[1]/tbar[0]/btn[0]
     Click Element    wnd[1]/tbar[0]/btn[0]
     Log To Console      **gbStart**copilot_status**splitKeyValue**License Renewed Successfully**gbEnd**
+    Delete File    ${symvar('uploading_path')}\\${symvar('License_file')}
