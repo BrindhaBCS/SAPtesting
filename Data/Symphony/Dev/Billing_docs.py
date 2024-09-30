@@ -1,0 +1,7 @@
+BILLING_SAP_SERVER = "C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPgui\\saplogon.exe"
+BILLING_SAP_connection = "TS4"
+BILLING_Client_Id = "001"
+BILLING_User_Name = "Maestro"
+sales_organation = "Z001"
+create_by = "NAREN"
+Enter_Bill_Document = "90000119"

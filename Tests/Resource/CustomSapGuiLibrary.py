@@ -1104,7 +1104,7 @@ class CustomSapGuiLibrary:
                     if cell_value == comp:
                         comp_area.modifyCell(x,"PATCH_REQ",patch)
             except Exception as e:
-                print(e)
+                 print(e)
 
     def multiple_logon_handling(self, logon_window_id, logon_id, continue_id):  
         try:
@@ -1241,7 +1241,12 @@ class CustomSapGuiLibrary:
             else:
                 print("search text is not found")
                 return("search text is not found")
+<<<<<<< HEAD
         return found_elements
+=======
+        # return found_elements
+        return("Certificate got expired")
+>>>>>>> e001e1b67ccffaafec1d155e271d3f7566087eec
     
     def get_cell_value_from_gridtable(self, table_id):
         try:
@@ -1269,6 +1274,7 @@ class CustomSapGuiLibrary:
                 print("No match found")
                 return None
         except Exception as e:
+<<<<<<< HEAD
             return f"Error: {str(e)}"
         
     def software_component_version(self, comp_id, search_comp):      
@@ -1306,3 +1312,6 @@ class CustomSapGuiLibrary:
                 print(content)
         except Exception as e:
             print(f"Error: {e}")
+=======
+            return f"Error: {str(e)}"
+>>>>>>> e001e1b67ccffaafec1d155e271d3f7566087eec
