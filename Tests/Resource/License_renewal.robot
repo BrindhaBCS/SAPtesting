@@ -15,8 +15,8 @@ System Logon
     # Sleep    2
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('license_user')}
     # Sleep    2
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('sap_pass')}      
-    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
+    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('sap_pass')}      
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
     # Sleep   5
