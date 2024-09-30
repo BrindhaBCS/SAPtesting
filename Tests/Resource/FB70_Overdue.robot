@@ -18,8 +18,8 @@ System Logon
     Open Connection    ${symvar('Overdue_SAP_connection')}    
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('Overdue_Client_Id')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('Overdue_User_Name')}    
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('User_Password')}
-    #Input Password   wnd[0]/usr/pwdRSYST-BCODE    %('User_Password')
+    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('User_Password')}
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{User_Password}
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
     Sleep   1
