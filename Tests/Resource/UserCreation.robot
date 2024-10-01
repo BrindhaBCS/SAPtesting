@@ -52,9 +52,9 @@ Create User
         ${last_profile_index}    Set Variable    ${total}
         
     END
-    Sleep    5
+    # Sleep    5
     Click Element    wnd[0]/tbar[0]/btn[11]
-    Sleep    5
+    # Sleep    5
     ${result}    Get Value    wnd[0]/sbar/pane[0]
     Log    ${result}
     Log To Console    ${result}
