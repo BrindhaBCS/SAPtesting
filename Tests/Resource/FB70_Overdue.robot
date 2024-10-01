@@ -6,8 +6,8 @@ Library    Collections
 Library    ExcelLibrary
 *** Variables *** 
 ${Results_Directory_Path}    ${CURDIR}
-${Customer}    116
-${Company Code}    BC01   
+${Customer_Code}    ${symvar('Customer_Code')}
+${Company_Code}    ${symvar('Company_Code')}
 ${FILE_NAME}    openitems.xlsx
 
 *** Keywords ***
@@ -18,8 +18,8 @@ System Logon
     Open Connection    ${symvar('SAP_connection')}    
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('Client_Id')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('User_Name')}    
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('User_Password')}
-    #Input Password   wnd[0]/usr/pwdRSYST-BCODE    %('User_Password')
+    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('User_Password')}
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{User_Password}
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
     Sleep   1
@@ -29,10 +29,10 @@ System Logout
 checking for Customer Overdue
 	Run Transaction    /nfbl5n
 	Sleep	2
-	Input Text    wnd[0]/usr/ctxtDD_KUNNR-LOW    ${Customer}
+	Input Text    wnd[0]/usr/ctxtDD_KUNNR-LOW    ${Customer_Code}
 	Sleep    1
 
-	Input Text    wnd[0]/usr/ctxtDD_BUKRS-LOW    ${Company Code}
+	Input Text    wnd[0]/usr/ctxtDD_BUKRS-LOW    ${Company_Code}
 	Sleep    1
     Send Vkey    vkey_id=8
 	Sleep	2
@@ -60,8 +60,6 @@ checking for Customer Overdue
 	Sleep	2
 	Input Text	wnd[1]/usr/ctxtDY_PATH	${Results_Directory_Path}
 	Sleep	2
-	# Open Excel Document    C:\\Robot framework\\Saptesting\\Tests\\Resource\\${FILE_NAME}    Sheet1   
-	Sleep    2
 	Click Element	wnd[1]/tbar[0]/btn[0]
 	Sleep	2
 	
