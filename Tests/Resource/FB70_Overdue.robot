@@ -50,7 +50,7 @@ checking for Customer Overdue
 	Sleep	2
 	Click Element	wnd[0]/mbar/menu[0]/menu[3]/menu[1]
 	Sleep	2
-	Delete Specific File    C:\\Robot framework\\Saptesting\\Tests\\Resource\\${FILE_NAME}
+	Delete Specific File    ${CURDIR}\\${FILE_NAME}
 	Sleep    2
 	Input Text	wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME	${FILE_NAME}
 	Sleep	2
@@ -62,7 +62,7 @@ checking for Customer Overdue
 	Sleep	2
 	Click Element	wnd[1]/tbar[0]/btn[0]
 	Sleep	2
-	${json}    Excel To Json    excel_file=C:\\Robot framework\\Saptesting\\Tests\\Resource\\${FILE_NAME}    json_file=C:\\tmp\\openitems.json
+	${json}    Excel To Json    excel_file=${CURDIR}\\${FILE_NAME}    json_file=C:\\tmp\\openitems.json
 	Sleep    2
 	Log To Console    **gbStart**copilot_Json**splitKeyValue**${json}**gbEnd**
     Log To Console    ${json}  
