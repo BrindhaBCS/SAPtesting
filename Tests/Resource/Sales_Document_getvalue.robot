@@ -32,9 +32,9 @@ Sales Document get value
     ${sliced}=    Evaluate    [item.strip() for item in ${column_data}[1:] if item.strip()] 
     Log    ${sliced}
     ${sliced_data} =    Evaluate    [int(x) for x in ${sliced}[1:]]
-    Log    ${sliced_data}
-    Log To Console    ${sliced_data}
-    ${i}    Get Length   ${sliced_data}
+    Log    ${sliced}
+    Log To Console    ${sliced}
+    ${i}    Get Length   ${sliced}
     Log    ${i}
     Close Current Excel Document
     Sleep    2
