@@ -31,6 +31,8 @@ Sales Document with CreditBlocks
     Select Radio Button    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[2,0]
     Sleep    0.5 seconds
     Click Element    wnd[1]/tbar[0]/btn[0]
+    Delete Specific File    file_path=C:\\tmp\\SalesDocument.xlsx
+    Sleep    0.5 seconds
     clear field text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME
     Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    SalesDocument
     Sleep    0.5 seconds
@@ -41,8 +43,6 @@ Sales Document with CreditBlocks
     Sleep    0.5 seconds
     Run Keyword And Ignore Error    Click Element    wnd[1]/tbar[0]/btn[12]
     Sleep    2
-    Delete Specific File    file_path=C:\\tmp\\SalesDocument.xlsx
-    Sleep    10
     Process Excel    file_path=C:\\tmp\\SalesDocument.xlsx    sheet_name=Sheet1
     Sleep    2
     ${json}    Excel To Json    excel_file=C:\\tmp\\SalesDocument.xlsx     json_file=C:\\tmp\\SalesDocument.json
