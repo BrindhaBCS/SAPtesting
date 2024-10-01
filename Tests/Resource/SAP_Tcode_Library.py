@@ -1628,4 +1628,14 @@ class SAP_Tcode_Library:
 
         print(label_values)
 
-        return label_values                
+        return label_values       
+
+    def delete_specific_file(self, file_path):
+        try:
+            if os.path.exists(file_path):
+                os.remove(file_path)
+            else:
+                print(f"The file '{file_path}' does not exist.")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
