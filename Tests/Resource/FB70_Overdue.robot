@@ -62,6 +62,13 @@ checking for Customer Overdue
 	Sleep	2
 	Click Element	wnd[1]/tbar[0]/btn[0]
 	Sleep	2
+	${json}    Excel To Json    excel_file=C:\\Robot framework\\Saptesting\\Tests\\Resource\\${FILE_NAME}    json_file=C:\\tmp\\openitems.json
+	Sleep    2
+	Log To Console    **gbStart**copilot_Json**splitKeyValue**${json}**gbEnd**
+    Log To Console    ${json}  
+	Sleep    2
+	Delete Specific File    file_path=C:\\tmp\\openitems.json
+
 	
 	
 
