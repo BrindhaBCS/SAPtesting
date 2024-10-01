@@ -31,6 +31,8 @@ Sales Document with CreditBlocks
     Select Radio Button    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[2,0]
     Sleep    0.5 seconds
     Click Element    wnd[1]/tbar[0]/btn[0]
+    Run Keyword And Ignore Error    Delete Specific File    file_path=C:\\tmp\\SalesDocument.xlsx
+    Sleep    0.5 seconds
     clear field text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME
     Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    SalesDocument
     Sleep    0.5 seconds

@@ -23,6 +23,7 @@ System Logon
 
 Billing Documents Not Posted to Accounting
     Run Transaction    VFX3
+    Run Keyword And Ignore Error    Delete Specific File    C:\\tmp\\biling_documents.xlsx
 	Select Checkbox    wnd[0]/usr/chkRFBSK_AB	
 	Input Text	wnd[0]/usr/ctxtVKORG	${symvar('sales_organation')}
 	Input Text	wnd[0]/usr/txtERNAM-LOW    ${symvar('create_by')}
