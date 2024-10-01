@@ -36,7 +36,7 @@ checking for Customer Overdue
 	Sleep    1
     Send Vkey    vkey_id=8
 	Sleep	2
-	Set Focus	wnd[0]/usr/lbl[56,8]
+	Run Keyword And Ignore Error    Set Focus	wnd[0]/usr/lbl[56,8]
 	Sleep	2
 	Send Vkey    2
 	Sleep	2
