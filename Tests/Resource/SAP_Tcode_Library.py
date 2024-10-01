@@ -9,6 +9,7 @@ import sys
 import ast
 import re
 import pandas as pd
+import  json
 
 
 
@@ -1655,7 +1656,7 @@ class SAP_Tcode_Library:
         df = pd.read_excel(excel_file, engine='openpyxl')
         data = df.to_dict(orient='records')
         with open(json_file, 'w', encoding='utf-8') as f:
-            json.dump(data, f, ensure_ascii=False, indent=4)
+            json.dump(data, f, ensure_ascii=False, indent=4, default=str)
         return data
 
     def process_excel(self, file_path, sheet_name, column_index=None):
