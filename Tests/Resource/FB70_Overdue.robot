@@ -64,6 +64,7 @@ checking for Customer Overdue
 	Process Excel    file_path=${CURDIR}\\${FILE_NAME}    sheet_name=Sheet1    column_index=0
 	Sleep    0.5
 	Process Excel    file_path=${CURDIR}\\${FILE_NAME}    sheet_name=Sheet1    column_index=6
+	Sleep    0.5
 	${json}    Excel To Json    excel_file=${CURDIR}\\${FILE_NAME}    json_file=C:\\tmp\\openitems.json
 	Sleep    0.5
 	Log To Console    **gbStart**copilot_Json**splitKeyValue**${json}**gbEnd**
