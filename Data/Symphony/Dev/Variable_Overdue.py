@@ -13,8 +13,8 @@
 # FILE_NAME = "openitems.xlsx"
 
 SAP_SERVER = "$SAP_SERVER"
-Client_Id = "$Client_Id"
-User_Name = "$User_Name"
-SAP_connection = "$SAP_connection"
-Customer_Code = "$Customer_Code"
-Company_Code = "$Company_Code"
+Overdue_Client_Id = "$Overdue_Client_Id"
+Overdue_User_Name = "$Overdue_User_Name"
+Overdue_SAP_connection = "$Overdue_SAP_connection"
+Overdue_Customer_Code = "$Overdue_Customer_Code"
+Overdue_Company_Code = "$Overdue_Company_Code"

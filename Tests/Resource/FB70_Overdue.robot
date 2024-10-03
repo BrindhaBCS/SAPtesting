@@ -6,8 +6,8 @@ Library    Collections
 Library    ExcelLibrary
 *** Variables *** 
 ${Results_Directory_Path}    ${CURDIR}
-${Customer_Code}    ${symvar('Customer_Code')}
-${Company_Code}    ${symvar('Company_Code')}
+${Customer_Code}    ${symvar('Overdue_Customer_Code')}
+${Company_Code}    ${symvar('Overdue_Company_Code')}
 ${FILE_NAME}    openitems.xlsx
 
 *** Keywords ***
@@ -15,11 +15,11 @@ System Logon
     Start Process     ${symvar('SAP_SERVER')}     
     Sleep    4
     Connect To Session
-    Open Connection    ${symvar('SAP_connection')}    
-    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('Client_Id')}
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('User_Name')}    
+    Open Connection    ${symvar('Overdue_SAP_connection')}    
+    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('Overdue_Client_Id')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('Overdue_User_Name')}    
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('User_Password')}
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{User_Password}
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{Overdue_User_Password}
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
     Sleep   1
