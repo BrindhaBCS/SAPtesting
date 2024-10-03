@@ -31,9 +31,9 @@ MRBR_Block
             Select Row    table_id=wnd[0]/usr/cntlGRID1/shellcont/shell    row_number=${row_num}
             Click Element    wnd[0]/tbar[1]/btn[9]
             Click Element    wnd[0]/tbar[0]/btn[11]
-            Log To Console    **gbStart**copilot_Result**splitKeyValue**${Input_Invoice_doc} Will be Released..........**gbEnd**
+            Log To Console    **gbStart**copilot_Result**splitKeyValue**The document ${Input_Invoice_doc} Will be Released Successfully...**gbEnd**
             Exit For Loop
         ELSE
-            Log To Console    **gbStart**copilot_Result**splitKeyValue**${Input_Invoice_doc} User Input Not Match Actual Current Data !!!**gbEnd**
+            Log To Console    **gbStart**copilot_Result**splitKeyValue**The document ${Input_Invoice_doc} User Input Not Match Actual Current Data !!!**gbEnd**
         END
     END
