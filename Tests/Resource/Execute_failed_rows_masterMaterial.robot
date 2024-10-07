@@ -6,11 +6,10 @@ Library    String
 Library    ExcelLibrary
 
 *** Variables ***
-# @{failed_entries}
+
 ${pass_count}    0
 ${fail_count}    0
 
-   
 
 *** Keywords ***
 
@@ -42,7 +41,8 @@ System Logon
     Open Connection    ${symvar('MASTER_SAP_connection')}    
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('MASTER_Client_Id')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('MASTER_User_Name')}    
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('MASTER_User_Password')}
+    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('MASTER_User_Password')}
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
     Send Vkey    0
     Sleep    5
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
@@ -55,14 +55,12 @@ Material_master
     Sleep    2
     ${initial_row}    Set Variable    ${row_num}
 
-    
-    
     ${industry_sector}    Read Excel Sheet    ${symvar('Excel_file')}    ${symvar('Sheet_name')}   ${initial_row}    1 
     Log To Console    ${industry_sector}
     Select From List By Key    wnd[0]/usr/cmbRMMG1-MBRSH    ${industry_sector}
     Sleep	2
     ${Material_type}    Read Excel Sheet    ${symvar('Excel_file')}    ${symvar('Sheet_name')}   ${initial_row}    2 
-    # Log To Console    ${Material_type}
+    
     Select From List By Key    wnd[0]/usr/cmbRMMG1-MTART	    ${Material_type}
     Sleep	2
     Click Element	wnd[0]/tbar[1]/btn[5]
@@ -76,20 +74,17 @@ Material_master
 
     FOR  ${value}  IN RANGE     0    ${rowcount}
         ${cell_id}=  Set Variable    wnd[1]/usr/tblSAPLMGMMTC_VIEW/txtMSICHTAUSW-DYTXT[0,${row_index}]
-        # Log To Console  Trying to set value ${value} in cell ${cell_id}
+        
         Run Keyword And Ignore Error  Set Focus    ${cell_id}
-        # Sleep  1
+        
 
         ${is_row_visible}    Run Keyword And Return Status    Get Table Cell Text    wnd[1]/usr/tblSAPLMGMMTC_VIEW    ${row_index}    0
         Run Keyword If    "${is_row_visible}" == "False"    Exit For Loop
 
         ${Data}=    Get Table Cell Text    wnd[1]/usr/tblSAPLMGMMTC_VIEW    ${row_index}    0
-        # Log To Console    Row ${row_index} Data: ${Data}
-        # Sleep    0.5
-
+        
         Run Keyword If    "${Data}" in "@{symvar('search_comp')}"    Select Table Row    wnd[1]/usr/tblSAPLMGMMTC_VIEW    ${value}
     
-
         ${row_index}=  Evaluate  ${row_index} + 1
         
         IF  ${row_index} >= ${visible_rows}
@@ -213,7 +208,6 @@ ReExecute_Failed_case
 
         
         IF    '${status}' == 'Failed'
-            # Log To Console    Executing "material master" for row ${initial_row}
             
             Material_master    ${initial_row}                
         END

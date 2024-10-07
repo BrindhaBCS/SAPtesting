@@ -6,11 +6,10 @@ Library    String
 Library    ExcelLibrary
 
 *** Variables ***
-# @{failed_entries}
+
 ${pass_count}    0
 ${fail_count}    0
 
-   
 
 *** Keywords ***
 
@@ -42,19 +41,18 @@ System Logon
     Open Connection    ${symvar('MASTER_SAP_connection')}    
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('MASTER_Client_Id')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('MASTER_User_Name')}    
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('MASTER_User_Password')}
+    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('MASTER_User_Password')}
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
     Send Vkey    0
     Sleep    5
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
     Sleep   1
 
-    
+
 Material_master   
     
     Run Transaction    mm01
     Sleep    2
-
-
     ${total_row}    Get Material Count    ${symvar('Excel_file')}
     
     ${rows}=    Evaluate    ${total_row} + 1
@@ -65,7 +63,6 @@ Material_master
     Set Global Variable    ${failed_rows}
 
     
-    
     FOR    ${initial_row}    IN RANGE    2    ${rows}
        
         ${industry_sector}    Read Excel Sheet    ${symvar('Excel_file')}    ${symvar('Sheet_name')}   ${initial_row}    1 
@@ -73,12 +70,11 @@ Material_master
         Select From List By Key    wnd[0]/usr/cmbRMMG1-MBRSH    ${industry_sector}
         Sleep	2
         ${Material_type}    Read Excel Sheet    ${symvar('Excel_file')}    ${symvar('Sheet_name')}   ${initial_row}    2 
-        # Log To Console    ${Material_type}
+       
         Select From List By Key    wnd[0]/usr/cmbRMMG1-MTART	    ${Material_type}
         Sleep	2
         Click Element	wnd[0]/tbar[1]/btn[5]
         Sleep	2
-
 
         ${rowcount} =     Get Row Count    wnd[1]/usr/tblSAPLMGMMTC_VIEW
         log to console    ${rowcount}
@@ -86,10 +82,8 @@ Material_master
         ${visible_rows}    Set Variable    17  
         FOR  ${value}  IN RANGE     0    ${rowcount}
             ${cell_id}=  Set Variable    wnd[1]/usr/tblSAPLMGMMTC_VIEW/txtMSICHTAUSW-DYTXT[0,${row_index}]
-            # Log To Console  Trying to set value ${value} in cell ${cell_id}
             Run Keyword And Ignore Error  Set Focus    ${cell_id}
-            # Sleep  1
-
+            
             ${is_row_visible}    Run Keyword And Return Status    Get Table Cell Text    wnd[1]/usr/tblSAPLMGMMTC_VIEW    ${row_index}    0
             Run Keyword If    "${is_row_visible}" == "False"    Exit For Loop
 
@@ -156,8 +150,6 @@ Material_master
             Sleep    1
 
             
-
-
             FOR    ${index}    IN RANGE    0    10
                 Send VKey    0
                 Sleep    1
@@ -187,9 +179,7 @@ Material_master
             FOR    ${index}    IN RANGE    0    10
                 Send VKey    0
                 Sleep    1
-                # ${is_present}    Run Keyword And Return Status    Element Should Be Present    wnd[1]/usr/btnSPOP-OPTION1
-                # Run Keyword And Ignore Error  Click Element    wnd[1]/usr/btnSPOP-OPTION1
-
+                
                 ${is_present}    Run Keyword And Return Status    Element Should Be Present    wnd[0]/usr/tabsTABSPR1/tabpSP25
                 Send Vkey    11
 
@@ -208,15 +198,12 @@ Material_master
         Write Excel    ${symvar('Excel_file')}    ${symvar('Sheet_name')}    ${initial_row}    22    Passed
     
 
-
-
     END
 
     FOR    ${initial_row}    IN RANGE    2    ${rows}
         ${Read_column}    Read Excel Sheet    ${symvar('Excel_file')}    ${symvar('Sheet_name')}    ${initial_row}    22
         ${status}    Set Variable    ${Read_column}
 
-        # Check if the value in column 22 is "Pass" or "Fail"
         IF    '${status}' == 'Passed'
             ${pass_count}    Evaluate    ${pass_count} + 1
         ELSE IF    '${status}' == 'Failed'
