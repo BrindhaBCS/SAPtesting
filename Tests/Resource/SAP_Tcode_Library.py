@@ -1651,13 +1651,6 @@ class SAP_Tcode_Library:
             self.take_screenshot()
             message = "Cannot use keyword 'select from list by key' for element type '%s'" % element_type
             raise ValueError(message)  
-        
-    def excel_to_json(self, excel_file, json_file):
-        df = pd.read_excel(excel_file, engine='openpyxl')
-        data = df.to_dict(orient='records')
-        with open(json_file, 'w', encoding='utf-8') as f:
-            json.dump(data, f, ensure_ascii=False, indent=4, default=str)
-        return data
 
     def excel_to_json(self, excel_file, json_file):
         # Read the Excel file
