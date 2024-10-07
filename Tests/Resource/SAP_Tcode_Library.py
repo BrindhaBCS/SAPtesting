@@ -1935,12 +1935,6 @@ class SAP_Tcode_Library:
         except com_error as e:
             raise ValueError(f"Error selecting row {row_number} in SAP table: {e}")
 
-    def excel_to_json_covert(self, excel_file, json_file):
-        df = pd.read_excel(excel_file, engine='openpyxl')
-        data = df.to_dict(orient='records')
-        with open(json_file, 'w', encoding='utf-8') as f:
-            json.dump(data, f, ensure_ascii=False, indent=4, default=str)
-        return data
     def excel_to_json(self, excel_file, json_file):
         # Read the Excel file
         df = pd.read_excel(excel_file, engine='openpyxl')
