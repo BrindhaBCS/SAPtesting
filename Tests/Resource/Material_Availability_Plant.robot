@@ -18,7 +18,7 @@ ${input_filepath}    ${symvar('MM_Cleaned_filepath')}//${MM_Filename}
 ${result_filepath}    ${symvar('MM_Cleaned_filepath')}//${symvar('MM_Cleaned_filename')}
 
 ${Plant}    1040
-${Material}    2000000071
+${Material}    laptop
 
 *** Keywords ***
 System Logon
@@ -37,13 +37,12 @@ System Logon
 System Logout
     Run Transaction   /nex
     Sleep    5
-    Sleep    10
 
 Executing Material Availability
     Run Transaction    /nmb52
     Send Vkey    0
     Sleep    2
-    Input Text    wnd[0]/usr/ctxtMATNR-LOW    ${symvar('Material')}
+    #Input Text    wnd[0]/usr/ctxtMATNR-LOW    ${symvar('Material')}
     Input Text    wnd[0]/usr/ctxtWERKS-LOW    ${symvar('Plant')}
     #Execute the requirement using F8
     Click Element    wnd[0]/mbar/menu[0]/menu[0]
@@ -64,5 +63,5 @@ Executing Material Availability
     Log To Console    mm1completed 
 Result
     Log To Console    Material Availability Unresticted Data
-    Material Availability    ${input_filepath}    ${result_filepath}
+    Material Availability Description    ${input_filepath}    ${symvar('Material')}    ${result_filepath}
     # Material Availability    ${filepath}    ${result_filepath}    
