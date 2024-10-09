@@ -1,0 +1,10 @@
+# SAP_SERVER = "C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPgui\\saplogon.exe"
+# Client_Id = "001"
+# User_Name = "SELENIUM"
+# SAP_connection = "IDES"
+# User_Password = "Test@12345"
+
+SAP_SERVER = "$SAP_SERVER"
+MCR_Client_Id = "$MCR_Client_Id"
+MCR_User_Name = "$MCR_User_Name"
+MCR_SAP_connection = "$MCR_SAP_connection"

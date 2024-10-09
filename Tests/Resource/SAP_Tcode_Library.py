@@ -1492,6 +1492,111 @@ class SAP_Tcode_Library:
             dfAsString = df.to_string(header=None, index=False)
             f.write(dfAsString)
 
-   
+    def clear_field_text(self, field_id):
+        try:
+            field = self.session.findById(field_id)
+            field.Text = ""
+            print(f"Text cleared in field with ID: {field_id}")
+        except Exception as e:
+            print(f"Error: {e}")
+    def click_node_link_3(self, tree_id, link_id1, link_id2, link_id13, link_id14):
+            """Selects a link of a TableTreeControl 'tree_id' which is contained within a shell object.
+        
+            Use the Scripting tracker recorder to find the 'link_id1' and 'link_id2' of the link to select.
+            """
+    
+            self.session.findById(tree_id).expandNode(link_id1)
+            self.session.findById(tree_id).topNode = link_id2
+            self.session.findById(tree_id).selectItem(link_id13, link_id14)
+            self.session.findById(tree_id).ensureVisibleHorizontalItem(link_id13, link_id14)
+            self.session.findById(tree_id).clickLink(link_id13, link_id14)
+ 
+    def read_table_column(self, table_id, column_index):
+            """Reads the value of cell from selected column using column id
+            """
+        
+            table = self.session.findById(table_id)
+            row_count = self.session.findById(table_id).rowCount
+        
+    
+            column_values = []
+            for row in range(row_count):
+                cell_value = self.get_cell_value(table_id,row, column_index)
+                column_values.append(cell_value)
+    
+            return column_values
+    def click_current_cell(self,element_id,cell_value):
+            try:
+                element =self.session.findById(element_id)
+                element.currentCellColumn = cell_value
+                element.clickCurrentCell()
+            except Exception as e:
+                print(f"Error: {e}")
 
+    def set_caret_position(self, element_id, caret_position):
+        try:
+          self.session.findById(element_id).caretPosition = caret_position
+          time.sleep(self.explicit_wait)
+        except Exception as e:
+         print(f"error: {e}")
+        
+    def click_node_link_1(self, tree_id, link_id6, link_id7, link_id8, link_id9, link_id10):
+            """Selects a link of a TableTreeControl 'tree_id' which is contained within a shell object.
+        
+            Use the Scripting tracker recorder to find the 'link_id1' and 'link_id2' of the link to select.
+            """
+            
+            self.session.findById(tree_id).expandNode(link_id6)
+            self.session.findById(tree_id).topNode = link_id7
+            self.session.findById(tree_id).expandNode(link_id8)
+            self.session.findById(tree_id).selectItem(link_id9, link_id10)
+            self.session.findById(tree_id).ensureVisibleHorizontalItem(link_id9, link_id10)
+            self.session.findById(tree_id).topNode = link_id7
+            self.session.findById(tree_id).clickLink(link_id9, link_id10)
+    
+    def mcr_report_pdf(self, excel_directory, images_directory, Doc_name,):
+ 
+        # Read data from the Excel file
+        df = pd.read_excel(excel_directory)
+ 
+        # Create a new Word document
+        doc = docx.Document()
+ 
+        section = doc.sections[-1]
+        section.orientation = WD_ORIENT.LANDSCAPE
+ 
+        # Add a Title to the document
+        doc.add_heading('Monthly Compliance Report', 0)
+ 
+        # Add a table to the Word document
+        table = doc.add_table(rows=df.shape[0] + 1, cols=df.shape[1], style="Table Grid")
+        table.autofit = False
+        table.alignment = WD_TABLE_ALIGNMENT.CENTER
+ 
+        # Add column headers to the table
+        for j in range(df.shape[1]):
+            table.cell(0, j).text = df.columns[j]
+ 
+        # Add data from the DataFrame to the table
+        for i in range(df.shape[0]):
+            for j in range(df.shape[1]):
+                table.cell(i + 1, j).text = str(df.values[i, j])
+ 
+        print("Data from test.xlsx has been successfully added to output.docx as a table.")
+ 
+        widths = (Inches(0.5), Inches(1.0),  Inches(0.8), Inches(1.6), Inches(4))
+        for row in table.rows:
+            for idx, width in enumerate(widths):
+                row.cells[idx].width=width
+ 
+        for i in range(df.shape[0]):
+            cell_value = str(df.values[i,4])
+            no_of_images=list(cell_value.split(','))
+            for j in range(len(no_of_images)):
+                cell_1=table.cell(i+1,4)
+                cell_1.add_paragraph().add_run().add_picture((os.path.join(images_directory, str(no_of_images[j]))), width=Inches(3.5), height=Inches(2.5))
+       
+         # Save the Word document
+        doc.save(f"{Doc_name}.docx")
+        convert(f"{Doc_name}.docx", f"{Doc_name}.pdf")
 
