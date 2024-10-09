@@ -51,7 +51,7 @@ checking for Customer Overdue
 	Click Element	wnd[1]/tbar[0]/btn[0]
 	Sleep    0.5
 	${Total}    Print Account Row    C:\\tmp\\Totaloverdue.xlsx
-	Log To Console    **gbStart**copilot_Status_One**splitKeyValue**Total Amount Of Open Items Is ${Total} INR**gbEnd**
+	Log To Console    **gbStart**copilot_Status_One**splitKeyValue**Total Amount Of Open Items Is ${Total}**gbEnd**
     Sleep    0.5
 	Set Focus	wnd[0]/usr/lbl[56,8]
 	Sleep    0.5
@@ -80,7 +80,7 @@ checking for Customer Overdue
 	Click Element	wnd[1]/tbar[0]/btn[0]
 	Sleep	0.5
 	${Over}    Print Account Row    C:\\tmp\\Listoverdue.xlsx
-	Log To Console    **gbStart**copilot_Status_Two**splitKeyValue**Total Overdue Amount ${over} INR**gbEnd**
+	Log To Console    **gbStart**copilot_Status_Two**splitKeyValue**Total Overdue Amount ${over}**gbEnd**
 	Sleep    0.5
 	Delete Specific File    file_path=C:\\tmp\\Totaloverdue.xlsx
 	Delete Specific File    file_path=C:\\tmp\\Listoverdue.xlsx
