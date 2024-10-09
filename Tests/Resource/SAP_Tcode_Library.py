@@ -1703,11 +1703,15 @@ class SAP_Tcode_Library:
         except Exception as e:
             print(f"Error writing to Excel: {e}")
     def print_account_row(self, file_path):
-        df = pd.read_excel(file_path, header=None, dtype=str)
-        account_string = 'Account'
-        account_row = df[df.apply(lambda row: row.astype(str).str.contains(account_string).any(), axis=1)]
-        if not account_row.empty:
-            filtered_row = account_row.values[0][~pd.isna(account_row.values[0])].tolist()
-            print(" ".join(filtered_row))
-        else:
-            print(f"'{account_string}' not found.")
+            df = pd.read_excel(file_path, header=None, dtype=str)
+            account_string = 'Account'
+            account_row = df[df.apply(lambda row: row.astype(str).str.contains(account_string).any(), axis=1)]
+            if not account_row.empty:
+                filtered_row = account_row.values[0][~pd.isna(account_row.values[0])].tolist()
+                match = re.search(r'(\d+\.?\d*)\s*(INR)', " ".join(filtered_row))
+                if match:
+                    return f"{match.group(1)} {match.group(2)}"
+                else:
+                    return "Currency value not found."
+            else:
+                return f"'{account_string}' not found."
