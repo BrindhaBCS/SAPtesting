@@ -1,8 +1,6 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
-
-
 *** Variables ***
 ${tree_id}      wnd[0]/usr/cntlTREE_CONTROL_CONTAINER/shellcont/shell
 ${link_id1}     02${SPACE*2}1${SPACE*6}2
@@ -34,7 +32,7 @@ ${local file}    wnd[0]/tbar[1]/btn[45]
 ${Text with tabs Button}    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[1,0]
 ${local file continue}    wnd[1]/tbar[0]/btn[0]
 ${Object 3}    \#*
-${Results_Directory_Path}    C:\\Users\\BCS268\\Documents\\Results
+${Results_Directory_Path}    C://Users//Administrator//Documents//Results
 # ${file_path}    ${CURDIR}\\${symvar('filename')}
 ${Req_Result11_Filename}      SAP_QUERY.xls
 ${Req_Result12_Filename}    SAP_PROGRAMS.xls
@@ -51,9 +49,9 @@ ${Req_Result21_Filename}    Mandantonderhoud.xls
 ${Req_Result22_Filename}    Control Booking.xls
 ${Req_Result22.1_Filename}    Control Booking1.xls
 ${Req_Result_Filename}    Deleteaudit.xls
-${directory}    C://SAP_Robot//SAPtesting//Output//pabot_results//0
-${excel_directory}    C://SAP_Robot//SAPtesting//Execution//MCR_REPORT.xlsx
-${images_directory}    C://SAP_Robot//SAPtesting//Output//pabot_results//0//
+${directory}    C://RobotFramework//sap_testing//Output//pabot_results//0
+${excel_directory}    C://RobotFramework//sap_testing//Execution//MCR_REPORT.xlsx
+${images_directory}    C://RobotFramework//sap_testing//Output//pabot_results//0//
 
 
 
