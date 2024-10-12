@@ -39,7 +39,7 @@ Audit log configuration
     Audit log configuration
 Control RFC connections users
     Control RFC connections users
-Delete audit audit files
+Delete audit files
     Delete audit audit files
 Table maintenance without restrictions
     Table maintenance without restrictions
