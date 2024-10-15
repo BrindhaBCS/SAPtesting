@@ -2,7 +2,6 @@
 # Client_Id = "001"
 # User_Name = "SELENIUM"
 # SAP_connection = "IDES"
-# User_Password = "Test@12345"
 
 SAP_SERVER = "$SAP_SERVER"
 MCR_Client_Id = "$MCR_Client_Id"
