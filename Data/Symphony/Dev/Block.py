@@ -2,7 +2,6 @@
 # Block_Connection = "TS4"
 # Block_Client_Id = "001"
 # Block_User_Name = "Preethi"
-# Block_User_Password = "Mylife@12345"
 # Block_Company_Code = "BC01"
 # Input_Invoice_doc = "5105600830"
 SAP_SERVER = "$SAP_SERVER"
