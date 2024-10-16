@@ -1625,8 +1625,8 @@ class SAP_Tcode_Library:
                 "options": {
                     "scales": {
                         "y": {
-                             "min": 0,  # Ensure the chart starts at zero
-                             "max": 1000,  # Remove if it was set
+                              min: 0,  # Ensure the chart starts at zero
+                              max: 1000,  # Remove if it was set
                         }
                     }
                 }
