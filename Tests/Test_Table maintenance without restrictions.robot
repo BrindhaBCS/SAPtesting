@@ -7,3 +7,5 @@ Test Tags    Table_maintenance_without_restrictions
 *** Test Cases ***
 Table maintenance without restrictions
     Table maintenance without restrictions
+Generate report
+    Generate report

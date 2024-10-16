@@ -1,6 +1,7 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
+Library    OperatingSystem
 
 *** Variables ***
 ${tree_id}      wnd[0]/usr/cntlTREE_CONTROL_CONTAINER/shellcont/shell
@@ -21,6 +22,17 @@ ${Replace}    /app/con[0]/ses[0]/wnd[1]/tbar[0]/btn[11]
 ${Execute}    wnd[0]/tbar[1]/btn[8]
 ${BACK}    wnd[0]/tbar[0]/btn[3]
 ${Req_Result16_Filename}    Usercontrol gebruikers met User Maintenance.xls
+${FILE1}        C:\\tmp\\Usercontrol gebruikers met User Maintenance.xlsx
+${SHEET1}       Usercontrol gebruikers met User 
+${COL1_INDEX}   2
+${SKIPROWS}     13
+${FILE2}        C:\\tmp\\All users.XLSX
+${SHEET2}       Sheet1
+${COL2_INDEX}   0
+${OUTPUT_FILE}  C:\\tmp\\Authorised Users List\\Usercontrol gebruikers met User Maintenance.xlsx
+${HEADER1}      Usercontrol gebruikers met User Maintenance
+${HEADER2}      All Users
+${COMPARISON_COL_NAME}    Compared_Users
 
 
 
@@ -73,6 +85,19 @@ Usercontrol gebruikers met User Maintenance
     Click Element    ${Replace}
     Sleep    2
     Click Element    ${BACK}
+    Sleep    1
+    Delete Specific File    ${FILE1}
+    Sleep    1
+    Convert Xls To Xlsx    xls_file=C:\\tmp\\Usercontrol gebruikers met User Maintenance.xls    xlsx_file=C:\\tmp\\Usercontrol gebruikers met User Maintenance.xlsx
+    Sleep    1
+    Create Directory    C:\\tmp\\Authorised Users List
+    Sleep    1
+    # Extract Columns    file1=${FILE1}   sheet1=${SHEET1}    col1_index=${COL1_INDEX}    file2=${FILE2}    sheet2=${SHEET2}    col2_index=${COL2_INDEX}   output_file=${OUTPUT_FILE}
+    Extract Columns    ${FILE1}    ${SHEET1}    ${COL1_INDEX}    ${SKIPROWS}    ${FILE2}    ${SHEET2}    ${COL2_INDEX}    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
+    Sleep    1
+    Compare Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}    ${COMPARISON_COL_NAME}
+    Sleep    1
+    Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
     Sleep    1
     Log To Console    Usercontrol gebruikers met User Maintenance Completed
     

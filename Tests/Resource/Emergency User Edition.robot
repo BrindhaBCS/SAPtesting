@@ -2,6 +2,7 @@
 Library    Process
 Library    SAP_Tcode_Library.py
 
+
 *** Variables ***
 ${tree_id}      wnd[0]/usr/cntlTREE_CONTROL_CONTAINER/shellcont/shell
 ${link_id6}    02${SPACE*2}1${SPACE*5}10
@@ -38,7 +39,10 @@ Emergency User Edition
     Take Screenshot    Emergency_User_Edition2.jpg
     Input Text    wnd[0]/usr/ctxtUSER-LOW    *SAP*
     Sleep    1
-    Input Text    wnd[0]/usr/ctxtFDATE    10.10.2024
+    ${current_date}=    Evaluate    datetime.datetime.now().strftime('%d.%m.%Y')    datetime
+    Sleep    2
+    Input Text    wnd[0]/usr/ctxtFDATE    ${current_date}
+    Log    ${current_date}
     Sleep    1
     Select Checkbox    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB1/ssub%_SUBSCREEN_TAB:RSUSR100N:1100/chkPASS
     Sleep    1

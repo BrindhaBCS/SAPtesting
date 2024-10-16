@@ -1,6 +1,7 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
+Library    DateTime
 
 *** Variables ***
 ${local file}    wnd[0]/tbar[1]/btn[45]
@@ -9,12 +10,6 @@ ${local file continue}    wnd[1]/tbar[0]/btn[0]
 ${Replace}    /app/con[0]/ses[0]/wnd[1]/tbar[0]/btn[11]
 ${Execute}    wnd[0]/tbar[1]/btn[8]
 ${BACK}    wnd[0]/tbar[0]/btn[3]
-
-
-
-
-
-
 
 *** Keywords ***
 System Logon
@@ -45,10 +40,17 @@ Control mandant changes
     Sleep    2
     Send Vkey    0
     Sleep    2
-    Input Text    wnd[0]/usr/ctxtDBEG    01.10.2024
+    # Calculate past one month date
+    ${past_month_date}=    Evaluate    (datetime.datetime.now() - datetime.timedelta(days=30)).strftime('%d.%m.%Y')    datetime
+    # Calculate current date
+    ${current_date}=    Evaluate    datetime.datetime.now().strftime('%d.%m.%Y')    datetime
+    Sleep    1
+    Input Text    wnd[0]/usr/ctxtDBEG    ${past_month_date}
     Sleep    2
-    Input Text    wnd[0]/usr/ctxtDEND    10.10.2024
+    Log    ${past_month_date}
+    Input Text    wnd[0]/usr/ctxtDEND    ${current_date}
     Sleep    2
+    Log    ${current_date}
     Take Screenshot    Control_mandant_changes2.jpg
     Click Element    ${Execute}
     Sleep    5

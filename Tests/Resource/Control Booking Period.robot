@@ -1,6 +1,7 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
+Library    OperatingSystem
 
 *** Variables ***
 ${tree_id}      wnd[0]/usr/cntlTREE_CONTROL_CONTAINER/shellcont/shell
@@ -22,7 +23,20 @@ ${Execute}    wnd[0]/tbar[1]/btn[8]
 ${Replace}    /app/con[0]/ses[0]/wnd[1]/tbar[0]/btn[11]
 ${Req_Result22_Filename}    Control Booking.xls
 ${Req_Result22.1_Filename}    Control Booking1.xls
-
+${FILE1}        C:\\tmp\\Control Booking.xlsx
+${SHEET1}       Control Booking 
+${COL1_INDEX}   2
+${SKIPROWS}     17
+${FILE2}        C:\\tmp\\All users.XLSX
+${SHEET2}       Sheet1
+${COL2_INDEX}   0
+${OUTPUT_FILE}  C:\\tmp\\Authorised Users List\\Control Booking.xlsx
+${HEADER1}      Control Booking
+${HEADER2}      All Users
+${COMPARISON_COL_NAME}    Compared_Users
+${FILE3}        C:\\tmp\\Control Booking1.xlsx
+${SHEET3}       Control Booking1
+${OUTPUT_FILE1}  C:\\tmp\\Authorised Users List\\Control Booking1.xlsx
 
 *** Keywords ***
 System Logon
@@ -81,6 +95,19 @@ Control Booking Period
     Sleep    1
     Click Element    ${BACK}
     Sleep    1
+    Delete Specific File    ${FILE1}
+    Sleep    1
+    Convert Xls To Xlsx    xls_file=C:\\tmp\\Control Booking.xls    xlsx_file=C:\\tmp\\Control Booking.xlsx
+    Sleep    1
+    Create Directory    C:\\tmp\\Authorised Users List
+    Sleep    1
+    # Extract Columns    file1=${FILE1}   sheet1=${SHEET1}    col1_index=${COL1_INDEX}    file2=${FILE2}    sheet2=${SHEET2}    col2_index=${COL2_INDEX}   output_file=${OUTPUT_FILE}
+    Extract Columns    ${FILE1}    ${SHEET1}    ${COL1_INDEX}    ${SKIPROWS}    ${FILE2}    ${SHEET2}    ${COL2_INDEX}    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
+    Sleep    1
+    Compare Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}    ${COMPARISON_COL_NAME}
+    Sleep    1
+    Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
+    Sleep    1
     Click Element    ${AUTHORIZATION TAB}
     Sleep    2
     Input Text    ${AUTHORIZATION OBJECT 1}    ${Authorization Object 1 VALUE}
@@ -111,6 +138,20 @@ Control Booking Period
     Sleep    1
     Click Element    ${Replace}
     Sleep    1
-    Log To Console    Control Booking Period  completed
+    # Log To Console    Control Booking Period  completed
     Click Element    ${BACK}
     Sleep    1
+    Delete Specific File    ${FILE3}
+    Sleep    1
+    Convert Xls To Xlsx    xls_file=C:\\tmp\\Control Booking1.xls    xlsx_file=C:\\tmp\\Control Booking1.xlsx
+    Sleep    1
+    Create Directory    C:\\tmp\\Authorised Users List
+    Sleep    1
+    # Extract Columns    file1=${FILE1}   sheet1=${SHEET1}    col1_index=${COL1_INDEX}    file2=${FILE2}    sheet2=${SHEET2}    col2_index=${COL2_INDEX}   output_file=${OUTPUT_FILE}
+    Extract Columns    ${FILE3}    ${SHEET3}    ${COL1_INDEX}    ${SKIPROWS}    ${FILE2}    ${SHEET2}    ${COL2_INDEX}    ${OUTPUT_FILE1}    ${HEADER1}    ${HEADER2}
+    Sleep    1
+    Compare Columns    ${OUTPUT_FILE1}    ${HEADER1}    ${HEADER2}    ${COMPARISON_COL_NAME}
+    Sleep    1
+    Matched Columns    ${OUTPUT_FILE1}    ${HEADER1}    ${HEADER2}
+    Sleep    1
+    Log To Console    Control Booking Period  completed

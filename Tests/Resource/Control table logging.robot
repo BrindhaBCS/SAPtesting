@@ -1,6 +1,7 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
+Library    DateTime
 
 *** Variables ***
 ${BACK}    wnd[0]/tbar[0]/btn[3]
@@ -34,9 +35,14 @@ Control table logging
     Send Vkey    0
     Sleep    2
     Take Screenshot    Control_table_logging2.jpg
-    Input Text    wnd[0]/usr/ctxtI11-LOW    01.10.2024
+    ${past_month_date}=    Evaluate    (datetime.datetime.now() - datetime.timedelta(days=30)).strftime('%d.%m.%Y')    datetime
+    # Calculate current date
+    log    ${past_month_date}
+    ${current_date}=    Evaluate    datetime.datetime.now().strftime('%d.%m.%Y')    datetime
+    Log    ${current_date}
+    Input Text    wnd[0]/usr/ctxtI11-LOW    ${past_month_date}
     Sleep    2
-    Input Text    wnd[0]/usr/ctxtI11-HIGH    10.10.2024
+    Input Text    wnd[0]/usr/ctxtI11-HIGH    ${current_date}
     Sleep    2
     Input Text    wnd[0]/usr/ctxtI8-LOW    X
     Sleep    2

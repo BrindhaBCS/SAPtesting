@@ -1,7 +1,7 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
-
+Library    OperatingSystem
 
 *** Variables ***
 ${tree_id}      wnd[0]/usr/cntlTREE_CONTROL_CONTAINER/shellcont/shell
@@ -23,6 +23,18 @@ ${Replace}    /app/con[0]/ses[0]/wnd[1]/tbar[0]/btn[11]
 ${Execute}    wnd[0]/tbar[1]/btn[8]
 ${BACK}    wnd[0]/tbar[0]/btn[3]
 ${Req_Result12_Filename}    START_PROGRAMS.xls
+${FILE1}        C:\\tmp\\START_PROGRAMS.xlsx
+${SHEET1}       START_PROGRAMS
+${COL1_INDEX}   2
+${SKIPROWS}     18
+${FILE2}        C:\\tmp\\All users.XLSX
+${SHEET2}       Sheet1
+${COL2_INDEX}   0
+${OUTPUT_FILE}  C:\\tmp\\Authorised Users List\\START_PROGRAMS.xlsx
+${HEADER1}      START_PROGRAMS
+${HEADER2}      All Users
+${COMPARISON_COL_NAME}    Compared_Users
+
 
 
 
@@ -86,4 +98,17 @@ Check to start Programs immediately
     Sleep    1
     Click Element    ${BACK}
     Sleep    1
+    Delete Specific File    ${FILE1}
+    Sleep    1
+    Convert Xls To Xlsx    xls_file=C:\\tmp\\START_PROGRAMS.xls    xlsx_file=C:\\tmp\\START_PROGRAMS.xlsx
+    Sleep    1
+    Create Directory    C:\\tmp\\Authorised Users List
+    Sleep    1
+    Extract Columns    ${FILE1}    ${SHEET1}    ${COL1_INDEX}    ${SKIPROWS}    ${FILE2}    ${SHEET2}    ${COL2_INDEX}    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
+    Sleep    1
+    Compare Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}    ${COMPARISON_COL_NAME}
+    Sleep    1
+    Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
+    Sleep    1
     Log To Console    Check to start Programs immediately completed
+    
