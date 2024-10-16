@@ -1625,9 +1625,12 @@ class SAP_Tcode_Library:
                 "options": {
                     "scales": {
                         "y": {
-                              "min": 0,  # Ensure the chart starts at zero
-                              "max": 1000,  # Remove if it was set
-                        }
+                              "beginAtZero": true,  # Ensure the y-axis starts at zero
+                              "min": 0,  # Set minimum value for the y-axis
+                              "max": 1000,  # Set maximum value for the y-axis
+                              "ticks": {
+                                "stepSize": 200  # Controls the step size for y-axis ticks
+                              }
                     }
                 }
             }
