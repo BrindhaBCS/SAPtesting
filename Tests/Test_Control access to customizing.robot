@@ -7,3 +7,5 @@ Test Tags    Control_access_to_customizing
 *** Test Cases ***
 Control access to customizing
     Control access to customizing
+Generate report
+    Generate report

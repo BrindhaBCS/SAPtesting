@@ -7,3 +7,5 @@ Test Tags    SAP_Query
 *** Test Cases ***
 Autorisaties SAP Query
     Autorisaties SAP Query
+Generate report
+    Generate report

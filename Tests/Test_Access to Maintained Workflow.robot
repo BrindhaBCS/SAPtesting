@@ -7,3 +7,5 @@ Test Tags    Access_to_Maintained_Workflow
 *** Test Cases ***
 Access to Maintained Workflow
     Access to Maintained Workflow
+Generate report
+    Generate report

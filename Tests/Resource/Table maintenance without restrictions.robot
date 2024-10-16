@@ -127,4 +127,6 @@ Table maintenance without restrictions
 
 Generate report
     Image Resize    ${symvar('MCR_directory')}
-    Mcr Report Pdf    ${symvar('MCR_excel_directory')}    ${symvar('MCR_images_directory')}    Doc_name=MCR_OUTPUT
+    Sleep    1
+    Move Resized Images     ${symvar('MCR_directory')} 
+    Sleep    1

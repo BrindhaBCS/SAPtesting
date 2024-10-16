@@ -7,6 +7,8 @@ Test Tags    Audit_log_configuration
 *** Test Cases ***
 Audit log configuration
     Audit log configuration
+Generate report
+    Generate report
     
     
     

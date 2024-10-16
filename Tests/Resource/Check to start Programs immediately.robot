@@ -111,4 +111,9 @@ Check to start Programs immediately
     Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
     Sleep    1
     Log To Console    Check to start Programs immediately completed
+Generate report
+    Image Resize    ${symvar('MCR_directory')}
+    Sleep    1
+    Move Resized Images     ${symvar('MCR_directory')} 
+    Sleep    1  
     

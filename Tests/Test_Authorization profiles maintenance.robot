@@ -7,3 +7,5 @@ Test Tags    Authorization_profiles_maintenance
 *** Test Cases ***
 Authorization profiles maintenance
     Authorization profiles maintenance
+Generate report
+    Generate report

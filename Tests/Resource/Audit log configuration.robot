@@ -34,3 +34,8 @@ Audit log configuration
     Click Element    ${BACK}
     Sleep    1
     Log To Console    Audit log configuration completed
+Generate report
+    Image Resize    ${symvar('MCR_directory')}
+    Sleep    1
+    Move Resized Images     ${symvar('MCR_directory')} 
+    Sleep    1

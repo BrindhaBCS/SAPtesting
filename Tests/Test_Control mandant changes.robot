@@ -7,3 +7,6 @@ Test Tags    Control_mandant_changes
 *** Test Cases ***
 Control mandant changes
     Control mandant changes
+Generate report
+    Generate report
+    

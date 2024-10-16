@@ -7,3 +7,5 @@ Test Tags    Mandantonderhoud
 *** Test Cases ***
 Mandantonderhoud
     Mandantonderhoud
+Generate report
+    Generate report

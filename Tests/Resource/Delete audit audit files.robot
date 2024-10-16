@@ -128,4 +128,9 @@ Delete audit files
     Sleep    1
 
     Log To Console    Delete audit files completed
+Generate report
+    Image Resize    ${symvar('MCR_directory')}
+    Sleep    1
+    Move Resized Images     ${symvar('MCR_directory')} 
+    Sleep    1
     

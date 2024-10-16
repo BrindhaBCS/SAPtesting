@@ -7,3 +7,5 @@ Test Tags    Emergency_User_Edition
 *** Test Cases ***
 Emergency User Edition
     Emergency User Edition
+Generate report
+    Generate report

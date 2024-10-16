@@ -86,3 +86,8 @@ Control RFC connections users
     Click Element   wnd[1]/tbar[0]/btn[8]
     Sleep    2
     Log To Console    Control RFC connections users completed
+Generate report
+    Image Resize    ${symvar('MCR_directory')}
+    Sleep    1
+    Move Resized Images     ${symvar('MCR_directory')} 
+    Sleep    1

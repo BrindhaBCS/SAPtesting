@@ -7,6 +7,8 @@ Test Tags    Control_blocking_transactions
 *** Test Cases ***
 Control blocking transactions
     Control blocking transactions
+Generate report
+    Generate report
     
     
     

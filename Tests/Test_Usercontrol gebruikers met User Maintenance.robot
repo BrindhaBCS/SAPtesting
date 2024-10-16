@@ -7,3 +7,5 @@ Test Tags    Usercontrol_gebruikers_met_User_Maintenance
 *** Test Cases ***
 Usercontrol gebruikers met User Maintenance
     Usercontrol gebruikers met User Maintenance
+Generate report
+    Generate report

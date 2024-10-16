@@ -101,3 +101,8 @@ Usercontrol gebruikers met User Maintenance
     Sleep    1
     Log To Console    Usercontrol gebruikers met User Maintenance Completed
     
+Generate report
+    Image Resize    ${symvar('MCR_directory')}
+    Sleep    1
+    Move Resized Images     ${symvar('MCR_directory')} 
+    Sleep    1

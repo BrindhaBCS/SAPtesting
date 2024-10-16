@@ -7,6 +7,8 @@ Test Tags    Control_RFC_connections_users
 *** Test Cases ***
 Control RFC connections users
     Control RFC connections users
+Generate report
+    Generate report
     
     
     

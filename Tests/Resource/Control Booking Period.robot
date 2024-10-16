@@ -155,3 +155,8 @@ Control Booking Period
     Matched Columns    ${OUTPUT_FILE1}    ${HEADER1}    ${HEADER2}
     Sleep    1
     Log To Console    Control Booking Period  completed
+Generate report
+    Image Resize    ${symvar('MCR_directory')}
+    Sleep    1
+    Move Resized Images     ${symvar('MCR_directory')} 
+    Sleep    1

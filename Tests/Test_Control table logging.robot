@@ -7,6 +7,8 @@ Test Tags    Control_table_logging
 *** Test Cases ***
 Control table logging
     Control table logging
+Generate report
+    Generate report
     
     
     

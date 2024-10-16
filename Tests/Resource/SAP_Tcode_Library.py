@@ -12,6 +12,11 @@ from docx import Document
 from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.shared import Cm, Pt, Mm, Inches
 from docx.enum.section import WD_ORIENT
+import  logging
+logging.basicConfig(level=logging.INFO)
+import glob 
+from openpyxl import load_workbook, Workbook
+import win32com.client as win32
 
 import pandas as pd
 import docx
@@ -1599,4 +1604,151 @@ class SAP_Tcode_Library:
          # Save the Word document
         doc.save(f"{Doc_name}.docx")
         convert(f"{Doc_name}.docx", f"{Doc_name}.pdf")
+
+
+    def extract_columns(self, file1, sheet1, col1_index, skiprows, file2, sheet2, col2_index, output_file, header1, header2):
+        # Ensure the column indices are integers in case they are passed as strings
+        col1_index = int(col1_index)
+        col2_index = int(col2_index)
+        skiprows = int(skiprows)  # Convert skiprows to integer if it's a string
+
+        # Read data from the first file, skipping the specified number of rows
+        df1 = pd.read_excel(file1, sheet_name=sheet1, skiprows=skiprows)  # Skip specified rows
+        df2 = pd.read_excel(file2, sheet_name=sheet2)  # Read data from the second Excel file
+
+        # Validate that the column indices are within bounds
+        if col1_index >= len(df1.columns) or col2_index >= len(df2.columns):
+            raise ValueError("Column index is out of bounds for one of the files.")
+
+        # Create a new DataFrame for the output
+        result_df = pd.DataFrame()
+
+        # Extract data using column indices, dropping NaN values to handle empty rows
+        result_df[header1] = df1.iloc[:, col1_index].dropna().reset_index(drop=True)
+        result_df[header2] = df2.iloc[:, col2_index].dropna().reset_index(drop=True)
+
+        # Write the result to a new Excel file
+        result_df.to_excel(output_file, index=False)
+
+        return "Columns extracted successfully."
+
+
+    def compare_columns(self, input_file, col1_name, col2_name, comparison_col_name):
+    # Read the combined Excel file
+        df = pd.read_excel(input_file)
+
+        # Initialize a list to hold the comparison results
+        comparison_results = []
+
+        # Convert the second column to a set for faster lookup
+        col2_set = set(df[col2_name])  # Use the column name passed as an argument
+
+        # Iterate through the first column and check if each username exists in the second column
+        for col1_value in df[col1_name]:  # Use the column name passed as an argument
+            if col1_value in col2_set:
+                comparison_results.append(col1_value)  # Add the username if it exists in Column2
+            else:
+                comparison_results.append("")  # Keep it empty if it doesn't exist
+
+        # Add the comparison results to the DataFrame in the specified comparison column
+        df[comparison_col_name] = comparison_results  # Use the comparison column name passed as an argument
+
+        # Write the updated DataFrame back to the same Excel file
+        df.to_excel(input_file, index=False)
+
+        return "Comparison completed successfully."
+
+    def convert_xls_to_xlsx(self, xls_file, xlsx_file):
+        """Convert .xls file to .xlsx format."""
+        excel = win32.Dispatch('Excel.Application')
+        wb = None  # Initialize wb to None
+        try:
+            # Open the .xls file
+            wb = excel.Workbooks.Open(xls_file)
+            # Save it as .xlsx
+            wb.SaveAs(xlsx_file, FileFormat=51)  # 51 corresponds to .xlsx
+            print(f"Successfully converted {xls_file} to {xlsx_file}.")
+        except Exception as e:
+            print(f"Error: {e}")
+        finally:
+            # Close the workbook if it was successfully opened
+            if wb:
+                wb.Close()
+            excel.Quit()
+
+
+    
+    def Matched_columns(self, input_file, col1_name, col2_name):
+    # Read the combined Excel file
+        df = pd.read_excel(input_file)
+
+        # Initialize lists to hold the comparison results
+        matched_results = []
+        not_matched_results = []
+
+        # Convert the second column to a set for faster lookup
+        col2_set = set(df[col2_name])  # Use the column name passed as an argument
+
+        # Iterate through the first column and check if each username exists in the second column
+        for col1_value in df[col1_name]:  # Use the column name passed as an argument
+            if col1_value in col2_set:
+                matched_results.append(col1_value)  # Add the username if it exists in Column2
+                not_matched_results.append("")  # Keep it empty for matched users
+            else:
+                matched_results.append("")  # Keep it empty for matched users
+                not_matched_results.append(col1_value)  # Add the username if it does not exist in Column2
+
+        # Add the results to the DataFrame in the respective columns
+        df['Matched'] = matched_results
+        df['Not Matched'] = not_matched_results
+
+        # Write the updated DataFrame back to the same Excel file
+        df.to_excel(input_file, index=False)
+
+        # Check for "Not Matched" entries and log a message if any exist
+        if any(not_matched_results):
+            logging.info("Authorization does not exist")
+
+        return "Column matching completed successfully."
+
+    def delete_specific_file(self, file_path):
+        try:
+            if os.path.exists(file_path):
+                os.remove(file_path)
+            else:
+                print(f"The file '{file_path}' does not exist.")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
+    def move_resized_images(self, screenshots_directory):
+        # Create the 'Resized Images' folder if it does not exist
+        resized_images_folder = os.path.join(screenshots_directory, "Resized Images")
+        if not os.path.exists(resized_images_folder):
+            os.makedirs(resized_images_folder)
+
+        # Move images starting with 'resized_' to the new folder
+        for filename in os.listdir(screenshots_directory):
+            if filename.startswith('resized_') and (filename.endswith('.jpg') or filename.endswith('.png')):
+                old_img_path = os.path.join(screenshots_directory, filename)
+                new_img_path = os.path.join(resized_images_folder, filename)
+
+                # Check if the new image path already exists
+                if os.path.exists(new_img_path):
+                    # Generate a new filename to avoid conflict
+                    base_name, extension = os.path.splitext(filename)
+                    counter = 1
+                    # Keep incrementing the counter until we find a unique filename
+                    while os.path.exists(new_img_path):
+                        new_img_path = os.path.join(resized_images_folder, f"{base_name}_{counter}{extension}")
+                        counter += 1
+                
+                os.rename(old_img_path, new_img_path)
+
+        print('All resized images have been moved to the "Resized Images" folder.')
+
+    
+
+    
+    
+
 

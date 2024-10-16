@@ -107,4 +107,9 @@ Release Debug Privilege on Production
     # Click Element    ${BACK}
     # Sleep    1
     Log To Console     Release Debug Privilege on Production Completed
+Generate report
+    Image Resize    ${symvar('MCR_directory')}
+    Sleep    1
+    Move Resized Images     ${symvar('MCR_directory')} 
+    Sleep    1
     

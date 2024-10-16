@@ -7,5 +7,7 @@ Test Tags    Start_programs
 *** Test Cases ***
 Check to start Programs immediately
     Check to start Programs immediately
+Generate report
+    Generate report
     
     

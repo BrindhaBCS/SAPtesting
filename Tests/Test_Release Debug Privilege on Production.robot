@@ -7,3 +7,5 @@ Test Tags    Release_Debug
 *** Test Cases ***
 Release Debug Privilege on Production
     Release Debug Privilege on Production
+Generate report
+    Generate report

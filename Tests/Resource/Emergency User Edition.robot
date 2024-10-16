@@ -56,4 +56,9 @@ Emergency User Edition
     Click Element    ${BACK}
     Sleep    1
     Log To Console    Emergency User Edition Completed
+Generate report
+    Image Resize    ${symvar('MCR_directory')}
+    Sleep    1
+    Move Resized Images     ${symvar('MCR_directory')} 
+    Sleep    1
    

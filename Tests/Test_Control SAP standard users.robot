@@ -7,3 +7,5 @@ Test Tags    Control_SAP_standard_users
 *** Test Cases ***
 Control SAP standard users
     Control SAP standard users
+Generate report
+    Generate report

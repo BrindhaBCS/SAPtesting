@@ -80,4 +80,8 @@ Control SAP standard users
     Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
     Sleep    1
     Log To Console    Control SAP standard users Completed
-    
+Generate report
+    Image Resize    ${symvar('MCR_directory')}
+    Sleep    1
+    Move Resized Images     ${symvar('MCR_directory')} 
+    Sleep    1

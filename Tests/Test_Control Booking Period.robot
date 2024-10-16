@@ -7,3 +7,5 @@ Test Tags    Control_Booking_Period
 *** Test Cases ***
 Control Booking Period
     Control Booking Period
+Generate report
+    Generate report

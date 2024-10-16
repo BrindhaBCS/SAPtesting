@@ -57,4 +57,9 @@ Control table logging
     Log To Console    ${Number of Entries}
     Click Element    ${BACK}
     Log To Console    Control table logging completed
+Generate report
+    Image Resize    ${symvar('MCR_directory')}
+    Sleep    1
+    Move Resized Images     ${symvar('MCR_directory')} 
+    Sleep    1
     

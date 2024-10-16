@@ -7,3 +7,8 @@ Test Tags    Access_Password_Manager
 *** Test Cases ***
 Access Password Manager
     Access Password Manager
+Generate report
+    Generate report
+    
+
+    

@@ -40,6 +40,11 @@ Control blocking transactions
     Sleep    5
     Take Screenshot    Control_blocking_transactions2.jpg
     Log To Console    Control blocking transactions completed
+Generate report
+    Image Resize    ${symvar('MCR_directory')}
+    Sleep    1
+    Move Resized Images     ${symvar('MCR_directory')} 
+    Sleep    1
     # Click Element    ${local file}
     # Sleep    2
     # Select Radio Button    ${Text with tabs Button}
