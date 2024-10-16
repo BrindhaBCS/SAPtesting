@@ -1591,6 +1591,15 @@ class SAP_Tcode_Library:
             qual_insp_data = pd.to_numeric(df_processed['Qual.Insp.'], errors='coerce').fillna(0).tolist()
             blocked_data = pd.to_numeric(df_processed['Blocked'], errors='coerce').fillna(0).tolist()
 
+            # Find the minimum length to ensure all lists are of the same size
+            min_length = min(len(labels), len(unrestr_data), len(qual_insp_data), len(blocked_data))
+
+            # Trim all lists to this minimum length
+            labels = labels[:min_length]
+            unrestr_data = unrestr_data[:min_length]
+            qual_insp_data = qual_insp_data[:min_length]
+            blocked_data = blocked_data[:min_length]
+
             # Create chart data
             chart_data = {
                 "type": "bar",
