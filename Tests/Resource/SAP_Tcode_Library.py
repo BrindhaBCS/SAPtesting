@@ -1563,6 +1563,49 @@ class SAP_Tcode_Library:
         print("Cleaned data has been saved successfully!")
         #return result.to_string()
 
+    def generate_chart_data(self, file_path):
+        try:
+            df_excel_raw = pd.read_excel(file_path, engine='openpyxl')
+            headers_from_excel = df_excel_raw.iloc[0].values
+            df_processed = pd.read_excel(file_path, header=1, engine='openpyxl')
+            df_processed.columns = headers_from_excel
+            df_processed.columns = df_processed.columns.str.strip()
+            df_processed = df_processed.loc[:, ~df_processed.columns.isna()]
+            labels = df_processed['Material Description'].astype(str).tolist()
+            unrestr_data = df_processed['Unrestr.'].tolist()
+            qual_insp_data = df_processed['Qual.Insp.'].tolist()
+            blocked_data = df_processed['Blocked'].tolist()
+            chart_data = {
+                "type": "bar",
+                "title": "Grouped chart data",
+                "labels": labels,
+                "datasets": [
+                    {
+                        "label": "Unrestricted",
+                        "data": unrestr_data,
+                        "backgroundColor": "rgba(255, 99, 132, 0.6)",
+                    },
+                    {
+                        "label": "Qual.Insp.",
+                        "data": qual_insp_data,
+                        "backgroundColor": "rgba(54, 162, 235, 0.6)",
+                    },
+                    {
+                        "label": "Blocked",
+                        "data": blocked_data,
+                        "backgroundColor": "rgba(75, 192, 192, 0.6)",
+                    },
+                ]
+            }
+
+            return json.dumps(chart_data)
+        except FileNotFoundError:
+            print(f"Error: The file at {file_path} does not exist.")
+            return None 
+        except Exception as e:
+            print(f"An error occurred: {str(e)}")
+            return None
+
     def count_excel_rows(self, abs_filename, sheet_name):
         try:
             wb = openpyxl.load_workbook(abs_filename)
