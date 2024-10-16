@@ -67,7 +67,7 @@ Result
     Sleep    0.5
     Log To Console    **gbStart**copilot_Json**splitKeyValue**${json}**gbEnd**
     Log to console    ${json}
-    ${chart_json}    Generate Chart Data    excel_file=C:\\tmp\\MM_MB52_Full_Desc_Details.xlsx 
+    ${chart_json}    Generate Chart Data    file_path=C:\\tmp\\MM_MB52_Full_Desc_Details.xlsx 
     Sleep    0.5
     Log To Console    **gbStart**copilot_cpiechart_data**splitKeyValue**${chart_json}**gbEnd**
     #Log To Console    gbStart##copilot_cpiechart_data##splitKeyValue##{json.dumps(chart_data)}##gbEnd
