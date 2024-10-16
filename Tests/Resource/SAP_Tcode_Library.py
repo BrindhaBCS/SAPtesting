@@ -1621,7 +1621,15 @@ class SAP_Tcode_Library:
                         "data": blocked_data,
                         "backgroundColor": "rgba(75, 192, 192, 0.6)",
                     },
-                ]
+                ],
+                "options": {
+                    "scales": {
+                        "y": {
+                            "beginAtZero": True,  # Ensure the chart starts at zero
+                            "max": None,  # Remove if it was set
+                        }
+                    }
+                }
             }
             return json.dumps(chart_data)
         except FileNotFoundError:
