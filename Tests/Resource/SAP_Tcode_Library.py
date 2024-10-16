@@ -1565,16 +1565,33 @@ class SAP_Tcode_Library:
 
     def generate_chart_data(self, file_path):
         try:
+            # Load Excel Data
             df_excel_raw = pd.read_excel(file_path, engine='openpyxl')
+
+            # Extract headers from the first row
             headers_from_excel = df_excel_raw.iloc[0].values
+
+            # Load the DataFrame with proper headers
             df_processed = pd.read_excel(file_path, header=1, engine='openpyxl')
+
+            # Set correct headers
             df_processed.columns = headers_from_excel
+
+            # Remove any leading/trailing spaces from column headers
             df_processed.columns = df_processed.columns.str.strip()
+
+            # Remove any columns with NaN headers
             df_processed = df_processed.loc[:, ~df_processed.columns.isna()]
-            labels = df_processed['Material Description'].astype(str).tolist()
-            unrestr_data = df_processed['Unrestr.'].tolist()
-            qual_insp_data = df_processed['Qual.Insp.'].tolist()
-            blocked_data = df_processed['Blocked'].tolist()
+
+            # Clean 'Material Description' and remove NaN
+            labels = df_processed['Material Description'].astype(str).str.strip().replace('nan', np.nan).dropna().tolist()
+
+            # Clean and convert the data columns, replace NaN with 0
+            unrestr_data = pd.to_numeric(df_processed['Unrestr.'], errors='coerce').fillna(0).tolist()
+            qual_insp_data = pd.to_numeric(df_processed['Qual.Insp.'], errors='coerce').fillna(0).tolist()
+            blocked_data = pd.to_numeric(df_processed['Blocked'], errors='coerce').fillna(0).tolist()
+
+            # Create chart data
             chart_data = {
                 "type": "bar",
                 "title": "Grouped chart data",
@@ -1597,7 +1614,6 @@ class SAP_Tcode_Library:
                     },
                 ]
             }
-
             return json.dumps(chart_data)
         except FileNotFoundError:
             print(f"Error: The file at {file_path} does not exist.")
