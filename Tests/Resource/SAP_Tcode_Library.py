@@ -1625,7 +1625,7 @@ class SAP_Tcode_Library:
                 "options": {
                     "scales": {
                         "y": {
-                              "beginAtZero": true,  # Ensure the y-axis starts at zero
+                              "beginAtZero": True,  # Ensure the y-axis starts at zero
                               "min": 0,  # Set minimum value for the y-axis
                               "max": 1000,  # Set maximum value for the y-axis
                               "ticks": {
