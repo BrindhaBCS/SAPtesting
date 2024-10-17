@@ -6,8 +6,8 @@
 # sheetname = "Sheet1"
 
 SAP_SERVER = "$SAP_SERVER"
-Connection = "$Connection"
-Client_Id = "$Client_Id"
-User_Name = "$User_Name"
-filename = "$filename"
-sheetname = "$sheetname"
+Customer_Connection = "$Customer_Connection"
+Customer_Client_Id = "$Customer_Client_Id"
+Customer_User_Name = "$Customer_User_Name"
+Customer_filename = "$Customer_filename"
+Customer_sheetname = "$Customer_sheetname"
