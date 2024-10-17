@@ -103,7 +103,7 @@ Mandantonderhoud
     Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
     Sleep    1
 Generate report
-    Image Resize    ${symvar('MCR_directory')}
+    Image Resize    ${OUTPUT_DIR}
     Sleep    1
-    Move Resized Images     ${symvar('MCR_directory')} 
+    Copy Images    ${OUTPUT_DIR}    ${symvar('MCR_Resized_Images_directory')}
     Sleep    1

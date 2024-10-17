@@ -87,7 +87,7 @@ Control RFC connections users
     Sleep    2
     Log To Console    Control RFC connections users completed
 Generate report
-    Image Resize    ${symvar('MCR_directory')}
+    Image Resize    ${OUTPUT_DIR}
     Sleep    1
-    Move Resized Images     ${symvar('MCR_directory')} 
+    Copy Images    ${OUTPUT_DIR}    ${symvar('MCR_Resized_Images_directory')}
     Sleep    1

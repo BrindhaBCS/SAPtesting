@@ -7,3 +7,5 @@ Test Tags    Assigned_SAP_standard_profiles
 *** Test Cases ***
 Assigned SAP standard profiles
     Assigned SAP standard profiles
+Generate report
+    Generate report

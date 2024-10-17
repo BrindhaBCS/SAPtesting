@@ -25,6 +25,7 @@ import docx
 from docx.enum.section import WD_ORIENT
 from docx2pdf import convert
 from PIL import Image
+import shutil
 
 
 class SAP_Tcode_Library:
@@ -1746,6 +1747,32 @@ class SAP_Tcode_Library:
 
         print('All resized images have been moved to the "Resized Images" folder.')
 
+    def copy_images(self, source_dir, target_dir):
+        """
+        Copy valid image files from source_dir to target_dir.
+        Supported formats are '.jpeg', '.jpg', '.png', '.gif', '.bmp', '.tiff', '.webp'.
+        """
+        # Ensure the target directory exists
+        if not os.path.exists(target_dir):
+            os.makedirs(target_dir)
+
+        # Supported image formats by PIL (Pillow)
+        image_formats = ('.jpeg', '.jpg', '.png', '.gif', '.bmp', '.tiff', '.webp')
+
+        # Iterate over files in the source directory
+        for file_name in os.listdir(source_dir):
+            file_path = os.path.join(source_dir, file_name)
+
+            # Check if it's a file and if it has a valid image format
+            if os.path.isfile(file_path):
+                try:
+                    with Image.open(file_path) as img:  # This will fail if the file is not a valid image
+                        if file_name.lower().endswith(image_formats):
+                            target_path = os.path.join(target_dir, file_name)
+                            shutil.copy(file_path, target_path)
+                            print(f"Copied: {file_name}")
+                except Exception as e:
+                    print(f"Skipped: {file_name} - Not a valid image file or format not supported. Error: {e}")
     
 
     

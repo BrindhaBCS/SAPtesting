@@ -156,7 +156,7 @@ Control Booking Period
     Sleep    1
     Log To Console    Control Booking Period  completed
 Generate report
-    Image Resize    ${symvar('MCR_directory')}
+    Image Resize    ${OUTPUT_DIR}
     Sleep    1
-    Move Resized Images     ${symvar('MCR_directory')} 
+    Copy Images    ${OUTPUT_DIR}    ${symvar('MCR_Resized_Images_directory')}
     Sleep    1
