@@ -132,19 +132,12 @@ Material_master
                 Run Keyword And Ignore Error    Exit For Loop If    ${is_present}
             END
         ${material_status}    Get Value    wnd[0]/sbar
-        IF  '${material_status}' == 'Choose a valid function'
-            Write Excel    ${symvar('Excel_file')}    ${symvar('Sheet_name')}    ${initial_row}    21    ${material_status}
-            Sleep    1
-        ELSE
-            ${material_number}=    Extract Order Number    ${material_status}
-            Log    ${material_number}
-            Set Global Variable    ${material_number}
-            Log To Console    **gbStart**Copilot_Status**splitKeyValue**${material_number}**gbEnd**
-            Write Excel    ${symvar('Excel_file')}    ${symvar('Sheet_name')}    ${initial_row}    21    ${material_number}
-        END
-    END
-    
+        ${material_number}=    Extract Numeric    ${material_status}
+        Log    ${material_number}
+        Set Global Variable    ${material_number}
+        # Log To Console    **gbStart**Copilot_Status**splitKeyValue**${material_number}**gbEnd**
+        Write Excel    ${symvar('Excel_file')}    ${symvar('Sheet_name')}    ${initial_row}    21    ${material_number}
 
+    END
 System Logout
     Run Transaction     /nex
-    Sleep   5

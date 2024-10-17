@@ -147,16 +147,11 @@ Kellogs_
         Sleep    3
         ${Text}=    Get Value    wnd[0]/sbar/pane[0]
         Sleep    1
-        IF  '${Text}' == 'Choose a valid function'
-            Write Excel Sheet    ${FILENAME}    ${SHEETNAME}    ${ROW_INDEX}    41    ${Text}
-            Sleep    1
-        ELSE
-            ${split_text}=    Split String    ${Text}    ${SPACE}
-            ${customer_number}=    Set Variable    ${split_text}[1]
-            Log To Console    ${customer_number}
-            Write Excel Sheet    ${FILENAME}    ${SHEETNAME}    ${ROW_INDEX}    41    ${customer_number}
-            Sleep    1
-        END
+        ${customer_number}=    Extract Numeric    ${Text}
+        Log To Console    ${customer_number}
+        Write Excel Sheet    ${FILENAME}    ${SHEETNAME}    ${ROW_INDEX}    41    ${customer_number}
+        Sleep    1
+
     END
     
 
