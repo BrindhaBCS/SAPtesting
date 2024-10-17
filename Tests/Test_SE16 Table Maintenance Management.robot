@@ -7,3 +7,5 @@ Test Tags    SE16_Table_Maintenance_Management
 *** Test Cases ***
 SE16 Table Maintenance Management
     SE16 Table Maintenance Management
+Generate report
+    Generate report

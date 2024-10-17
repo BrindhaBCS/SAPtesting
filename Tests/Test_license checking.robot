@@ -7,3 +7,5 @@ Test Tags    license_checking
 *** Test Cases ***
 license checking
     license checking
+Generate report
+    Generate report

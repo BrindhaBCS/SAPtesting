@@ -12,17 +12,17 @@ ${link_id2}     01${SPACE*2}1${SPACE*6}1
 ${link_id3}    03${SPACE*2}2${SPACE*6}1
 ${link_id4}    04${SPACE*2}2${SPACE*6}2
 ${link_id5}    1
-${Req_Result1_Filename}    SAP_Profiles.xls
+${Req_Result2_Filename}    User_Accounts.xls
 ${Replace}    wnd[1]/tbar[0]/btn[11]
-${FILE1}        C:\\tmp\\SAP_Profiles.xlsx
-${SHEET1}       SAP_Profiles
+${FILE1}        C:\\tmp\\User_Accounts.xlsx
+${SHEET1}       User_Accounts
 ${COL1_INDEX}   2
-${SKIPROWS}     15
+${SKIPROWS}     14
 ${FILE2}        C:\\tmp\\All users.XLSX
 ${SHEET2}       Sheet1
 ${COL2_INDEX}   0
-${OUTPUT_FILE}  C:\\tmp\\Authorised Users List\\SAP_Profiles.xlsx
-${HEADER1}      SAP Profiles
+${OUTPUT_FILE}  C:\\tmp\\Authorised Users List\\User_Accounts.xlsx
+${HEADER1}      User Accounts
 ${HEADER2}      All Users
 ${COMPARISON_COL_NAME}    Compared_Users
 
@@ -38,8 +38,8 @@ System Logon
     Open Connection    ${symvar('MCR_SAP_connection')}    
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('MCR_Client_Id')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('MCR_User_Name')}    
-    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('MCR_User_Password')}
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{MCR_User_Password}
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('MCR_User_Password')}
+    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{MCR_User_Password}
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
     Sleep   1
@@ -47,46 +47,37 @@ System Logout
     Run Transaction   /nex
     Sleep    2
 
-Assigned SAP standard profiles
+Usercontrol (non)personal user accounts
     Maximize Window
     Run Transaction     SUIM
     Click Node Link     ${tree_id}    ${link_id1}    ${link_id2}    ${link_id3}     ${link_id4}    ${link_id5}
     Sleep    1
-    Click Element    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB2
-    Sleep    1
-   Input Text    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB2/ssub%_SUBSCREEN_TAB:RSUSR100N:1200/ctxtF_PROF-LOW    s*
-    Send Vkey    0
-    Select Checkbox    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB2/ssub%_SUBSCREEN_TAB:RSUSR100N:1200/chkPROF
-    Input Text    wnd[0]/usr/ctxtFDATE    ${start_date}
-    Input Text    wnd[0]/usr/ctxtTDATE    ${end_date}
-    Take Screenshot    req1_output.jpg
-    Sleep    3
-   
+    # Click Element    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB2
+    # Sleep    1
+    Select Checkbox    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB1/ssub%_SUBSCREEN_TAB:RSUSR100N:1100/chkUSER_CRT
+    Take Screenshot    Usercontrol (non)personal user accounts.jpg
+    Sleep    2
+    
     Click Element    wnd[0]/mbar/menu[0]/menu[0]
     Sleep    1
+    Take Screenshot    Usercontrol (non)personal user accounts2.jpg
    
     Click Element    wnd[0]/mbar/menu[0]/menu[3]/menu[1]
     Sleep    1
- 
+    
     Select Radio Button    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[1,0]
     
     Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    1
     
     Input Text    wnd[1]/usr/ctxtDY_PATH    ${symvar('MCR_Results_Directory_Path')}
-    Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${Req_Result1_Filename}
-    Sleep    1
+    Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${Req_Result2_Filename}
     # Generate the Results file.
     Click Element    ${Replace}
     Sleep    1
-    Click Element    wnd[0]/tbar[0]/btn[3]
-    Sleep    1
-    Log To Console    Assigned SAP standard profiles Completed
-    Click Element    wnd[0]/tbar[0]/btn[3]
-    Sleep    1
     Delete Specific File    ${FILE1}
     Sleep    1
-    Convert Xls To Xlsx    xls_file=C:\\tmp\\SAP_Profiles.xls    xlsx_file=C:\\tmp\\SAP_Profiles.xlsx
+    Convert Xls To Xlsx    xls_file=C:\\tmp\\User_Accounts.xlsx    xlsx_file=C:\\tmp\\User_Accounts.xlsx
     Sleep    1
     Create Directory    C:\\tmp\\Authorised Users List
     Sleep    1
@@ -96,6 +87,7 @@ Assigned SAP standard profiles
     Sleep    1
     Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
     Sleep    1
+    Log To Console    Usercontrol (non)personal user accounts completed
 Generate report
     Image Resize    ${OUTPUT_DIR}
     Sleep    1
