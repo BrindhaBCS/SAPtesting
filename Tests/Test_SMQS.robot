@@ -9,9 +9,9 @@ Suite Teardown    SMQS.System Logout
 Executing SMQS
 
     Transaction SMQS
-    QRFC Administration     
-    QRFC Administration INBOUND
-    QRFC Administration OUTBOUND
-    QRFC Administration OUTBOUND SCHEDULER
-    QRFC Administration INBOUND SCHEDULER
-    Display Possible Resources
+    # QRFC Administration     
+    # QRFC Administration INBOUND
+    # QRFC Administration OUTBOUND
+    # QRFC Administration OUTBOUND SCHEDULER
+    # QRFC Administration INBOUND SCHEDULER
+    # Display Possible Resources
