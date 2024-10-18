@@ -81,7 +81,7 @@ Assigned SAP standard profiles
     Sleep    1
     Click Element    wnd[0]/tbar[0]/btn[3]
     Sleep    1
-    Log To Console    Assigned SAP standard profiles Completed
+    
     Click Element    wnd[0]/tbar[0]/btn[3]
     Sleep    1
     Delete Specific File    ${FILE1}
@@ -96,6 +96,8 @@ Assigned SAP standard profiles
     Sleep    1
     Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
     Sleep    1
+    Delete Specific File    file_path=C:\\tmp\\SAP_Profiles.xls
+    Log To Console    Assigned SAP standard profiles Completed
 Generate report
     Image Resize    ${OUTPUT_DIR}
     Sleep    1

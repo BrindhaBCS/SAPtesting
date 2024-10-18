@@ -108,6 +108,7 @@ Control Booking Period
     Sleep    1
     Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
     Sleep    1
+    Delete Specific File    file_path=C:\\tmp\\Control Booking.xls
     Click Element    ${AUTHORIZATION TAB}
     Sleep    2
     Input Text    ${AUTHORIZATION OBJECT 1}    ${Authorization Object 1 VALUE}
@@ -154,6 +155,7 @@ Control Booking Period
     Sleep    1
     Matched Columns    ${OUTPUT_FILE1}    ${HEADER1}    ${HEADER2}
     Sleep    1
+    Delete Specific File    file_path=C:\\tmp\\Control Booking1.xls
     Log To Console    Control Booking Period  completed
 Generate report
     Image Resize    ${OUTPUT_DIR}

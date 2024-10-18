@@ -79,6 +79,7 @@ Control SAP standard users
     Sleep    1
     Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
     Sleep    1
+    Delete Specific File    file_path=C:\\tmp\\Control SAP standard users.xls
     Log To Console    Control SAP standard users Completed
 Generate report
     Image Resize    ${OUTPUT_DIR}

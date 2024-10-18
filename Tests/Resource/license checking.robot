@@ -108,9 +108,7 @@ license checking
     Sleep    1
     Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
     Sleep    1
-    
-    # Matched Columns    ${OUTPUT_FILE}
-    # Sleep    2
+    Delete Specific File    file_path=C:\\tmp\\Licensed_Users.xls
     Log To Console    license_checking Completed
 Generate report
     Image Resize    ${OUTPUT_DIR}

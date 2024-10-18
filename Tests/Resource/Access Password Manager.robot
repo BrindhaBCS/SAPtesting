@@ -107,6 +107,7 @@ Access Password Manager
     Sleep    1
     Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
     Sleep    1
+    Delete Specific File    file_path=C:\\tmp\\Access password.xls
     Log To Console    Access password completed
 Generate report
     Image Resize    ${OUTPUT_DIR}

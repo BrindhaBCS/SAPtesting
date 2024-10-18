@@ -72,6 +72,7 @@ SE16 Table Maintenance Management
     # Genertate the Results file.
     Click Element    ${Replace}
     Sleep    1
+    
     Log To Console    SE16 Table Maintenance Management completed
 Generate report
     Image Resize    ${OUTPUT_DIR}

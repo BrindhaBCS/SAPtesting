@@ -110,6 +110,7 @@ Check to start Programs immediately
     Sleep    1
     Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
     Sleep    1
+    Delete Specific File    file_path=C:\\tmp\\START_PROGRAMS.xls
     Log To Console    Check to start Programs immediately completed
 Generate report
     Image Resize    ${OUTPUT_DIR}

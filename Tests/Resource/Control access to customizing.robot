@@ -115,6 +115,7 @@ Control access to customizing
     Sleep    1
     Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
     Sleep    1
+    Delete Specific File    file_path=C:\\tmp\\Control Access.xls
     Log To Console    Control Access Completed
 
     Click Element    ${BACK}
@@ -172,6 +173,7 @@ Control access to customizing
     Sleep    1
     Matched Columns    ${OUTPUT_FILE1}    ${HEADER1}    ${HEADER2}
     Sleep    1
+    Delete Specific File    file_path=C:\\tmp\\Control Access1.xls
     Log To Console    Control Access1 Completed
 Generate report
     Image Resize    ${OUTPUT_DIR}

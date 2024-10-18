@@ -108,6 +108,7 @@ Transportstraat Management
     Sleep    1
     Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
     Sleep    1
+    Delete Specific File    file_path=C:\\tmp\\Transportstraat_Users.xls
     Log To Console    Transportstraat_Users completed
 Generate report
     Image Resize    ${OUTPUT_DIR}

@@ -77,7 +77,7 @@ Usercontrol (non)personal user accounts
     Sleep    1
     Delete Specific File    ${FILE1}
     Sleep    1
-    Convert Xls To Xlsx    xls_file=C:\\tmp\\User_Accounts.xlsx    xlsx_file=C:\\tmp\\User_Accounts.xlsx
+    Convert Xls To Xlsx    xls_file=C:\\tmp\\User_Accounts.xls    xlsx_file=C:\\tmp\\User_Accounts.xlsx
     Sleep    1
     Create Directory    C:\\tmp\\Authorised Users List
     Sleep    1
@@ -87,6 +87,7 @@ Usercontrol (non)personal user accounts
     Sleep    1
     Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
     Sleep    1
+    Delete Specific File    file_path=C:\\tmp\\User_Accounts.xls
     Log To Console    Usercontrol (non)personal user accounts completed
 Generate report
     Image Resize    ${OUTPUT_DIR}

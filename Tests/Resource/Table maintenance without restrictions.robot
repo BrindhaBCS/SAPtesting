@@ -123,6 +123,7 @@ Table maintenance without restrictions
     Sleep    1
     Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
     Sleep    1
+    Delete Specific File    file_path=C:\\tmp\\Table maintenance without restrictions.xls
     Log To Console    Table maintenance without restrictions completed
 
 Generate report

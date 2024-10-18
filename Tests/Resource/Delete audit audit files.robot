@@ -126,7 +126,7 @@ Delete audit files
     Sleep    1
     Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
     Sleep    1
-
+    Delete Specific File    file_path=C:\\tmp\\Deleteaudit.xls
     Log To Console    Delete audit files completed
 Generate report
     Image Resize    ${OUTPUT_DIR}

@@ -104,8 +104,7 @@ Release Debug Privilege on Production
     Sleep    1
     Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
     Sleep    1
-    # Click Element    ${BACK}
-    # Sleep    1
+    Delete Specific File    file_path=C:\\tmp\\Release Debug.xls
     Log To Console     Release Debug Privilege on Production Completed
 Generate report
     Image Resize    ${OUTPUT_DIR}

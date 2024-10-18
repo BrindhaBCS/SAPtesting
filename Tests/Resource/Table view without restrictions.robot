@@ -115,6 +115,7 @@ Table view without restrictions
     Sleep    1
     Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
     Sleep    1
+    Delete Specific File    file_path=C:\\tmp\\Table_Authorization_Group_Users.xls
     Log To Console    Table view without restrictions part1 completed
     #To start with the Requirement 9 part 2, go back to the previous window
     Click Element    wnd[0]/tbar[0]/btn[3]
@@ -165,6 +166,7 @@ Table view without restrictions
     Sleep    1
     Matched Columns    ${OUTPUT_FILE1}    ${HEADER1}    ${HEADER2}
     Sleep    1
+    Delete Specific File    file_path=C:\\tmp\\Table_Authorization_Group_Users2.xls
     Log To Console    Table view without restrictions part2 completed
 Generate report
     Image Resize    ${OUTPUT_DIR}

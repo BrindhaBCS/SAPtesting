@@ -116,6 +116,7 @@ production systems open via OSS
     Sleep    1
     Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
     Sleep    1
+    Delete Specific File    file_path=C:\\tmp\\SAP_Support_Users.xls
     Log To Console    production systems open via OSS Completed
 Generate report
     Image Resize    ${OUTPUT_DIR}

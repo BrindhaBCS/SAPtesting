@@ -72,6 +72,7 @@ Transaction SA38
     Sleep    1
     Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
     Sleep    1
+    Delete Specific File    file_path=C:\\tmp\\SA38.xls
     Log To Console    SA38 Requirement completed
 
 

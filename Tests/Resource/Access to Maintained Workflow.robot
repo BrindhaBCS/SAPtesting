@@ -104,6 +104,7 @@ Access to Maintained Workflow
     Sleep    1
     Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
     Sleep    1
+    Delete Specific File    file_path=C:\\tmp\\Maintenance Workflow.xls
     Log To Console    Access to Maintained Workflow completed
 Generate report
     Image Resize    ${OUTPUT_DIR}

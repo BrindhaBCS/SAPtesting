@@ -99,6 +99,7 @@ Usercontrol gebruikers met User Maintenance
     Sleep    1
     Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
     Sleep    1
+    Delete Specific File    file_path=C:\\tmp\\Usercontrol gebruikers met User Maintenance.xls
     Log To Console    Usercontrol gebruikers met User Maintenance Completed
     
 Generate report

@@ -97,6 +97,7 @@ Autorisaties SAP Query
     Sleep    1
     Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
     Sleep    1
+    Delete Specific File    file_path=C:\\tmp\\SAP_QUERY.xls
     Log To Console    Autorisaties SAP Query completed
 Generate report
     Image Resize    ${OUTPUT_DIR}

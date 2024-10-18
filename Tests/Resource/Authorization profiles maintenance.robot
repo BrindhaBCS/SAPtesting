@@ -119,6 +119,7 @@ Authorization profiles maintenance
     Sleep    1
     Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
     Sleep    1
+    Delete Specific File    file_path=C:\\tmp\\Authorization Profiles.xls
     Log To Console    Authorization Profiles completed
 Generate report
     Image Resize    ${OUTPUT_DIR}
