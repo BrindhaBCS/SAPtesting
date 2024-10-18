@@ -2,8 +2,7 @@
 Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
-Library    ../../Symphony/Lib/site-packages/SeleniumLibrary/__init__.py
-Resource    ../Web/Support_Web.robot
+
  
 *** Variables ***    
 ${tree_id}      wnd[0]/usr/cntlTREE_CONTROL_CONTAINER/shellcont/shell
