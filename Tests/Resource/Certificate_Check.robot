@@ -91,7 +91,7 @@ STRUS_SSL_Client_Anonymous
             upload_certificate_SSL_Client_Anonymous
             ${result_one}    Set Variable    System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- STRUS_SSL_Client_Anonymous SAP Cloud ALM Connection Certificate Added Successfully...
             Log To Console    System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- STRUS_SSL_Client_Anonymous SAP Cloud ALM Connection Certificate Added Successfully
-            Log To Console    **gbStart**copilot_Client_Anonymous**splitKeyValue**${result_one}**gbEnd**
+            Log To Console    **gbStart**copilot_status_Client_Anonymous**splitKeyValue**${result_one}**gbEnd**
 
             END
         END
@@ -99,7 +99,7 @@ STRUS_SSL_Client_Anonymous
         upload_certificate_SSL_Client_Anonymous
         ${result_two}    Set Variable    System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- STRUS_SSL_Client_Anonymous SAP Cloud ALM Connection Certificate Added Successfully
         Log To Console    System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- STRUS_SSL_Client_Anonymous SAP Cloud ALM Connection Certificate Added Successfully
-        Log To Console    **gbStart**copilot_Client_Anonymous**splitKeyValue**${result_two}**gbEnd**
+        Log To Console    **gbStart**copilot_status_Client_Anonymous**splitKeyValue**${result_two}**gbEnd**
     END
 
 upload_certificate_SSL_Client_Anonymous
@@ -139,14 +139,14 @@ STRUSTS_SSL_Client_Standard
                 upload_certificate_SSL_Client_Standard
                 ${result_one_.}    Set Variable    System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- STRUSTS_SSL_Client_Standard SAP Cloud ALM Connection Certificate Uploaded successfully...
                 Log To Console    System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- STRUSTS_SSL_Client_Standard SAP Cloud ALM Connection Certificate Uploaded successfully
-                Log To Console    **gbStart**copilot_Client_Standard**splitKeyValue**${result_one_.}**gbEnd**
+                Log To Console    **gbStart**copilot_status_Client_Standard**splitKeyValue**${result_one_.}**gbEnd**
             END
         END
     ELSE
         upload_certificate_SSL_Client_Standard
         ${result_two_.}    Set Variable    System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- STRUSTS_SSL_Client_Standard SAP Cloud ALM Connection Certificate Uploaded successfully.....
         Log To Console    System ${symvar('ABAP_Connection')} client ${symvar('ABAP_CLIENT')} -- STRUSTS_SSL_Client_Standard SAP Cloud ALM Connection Certificate Uploaded successfully
-        Log To Console    **gbStart**copilot_Client_Standard**splitKeyValue**${result_two_.}**gbEnd**
+        Log To Console    **gbStart**copilot_status_Client_Standard**splitKeyValue**${result_two_.}**gbEnd**
     END
 upload_certificate_SSL_Client_Standard
     Set Caret Position    wnd[0]/usr/txtPSE-OWNCERT-SUBJECT    21
