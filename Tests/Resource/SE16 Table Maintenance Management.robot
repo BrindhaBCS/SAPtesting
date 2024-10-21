@@ -10,6 +10,10 @@ ${link_id6}    02${SPACE*2}1${SPACE*6}2
 ${link_id7}    01${SPACE*2}1${SPACE*6}1
 ${link_id8}    03${SPACE*2}3${SPACE*6}7
 ${link_id9}    04${SPACE*2}3${SPACE*6}8
+${link_id1}     02${SPACE*2}1${SPACE*5}10
+${link_id2}     01${SPACE*2}1${SPACE*6}1
+${link_id3}    03${SPACE*2}2${SPACE*6}1
+${link_id4}    04${SPACE*2}2${SPACE*6}2
 ${Req_Result10_Filename}      SE16_Users.xls 
 ${Replace}    wnd[1]/tbar[0]/btn[11]
 ${AUTHORIZATION TAB}    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB4
