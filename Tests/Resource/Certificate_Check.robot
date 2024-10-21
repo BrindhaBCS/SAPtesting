@@ -7,18 +7,8 @@ Library    openpyxl
 *** Variables ***
 @{URLS}    https://dl.cacerts.digicert.com/DigiCertGlobalRootCA.crt    https://cacerts.digicert.com/DigiCertGlobalRootG2.crt    https://cacerts.digicert.com/DigiCertRSA4096RootG5.crt
 ${DESTINATION_BASE}    C:\\tmp\\
-# ${certificate_Pass}    SSL Certificates are available in the System
-# ${certificate_Fail}    SSL Certificate need to be added to the System
-# ${filepath}    C:\\RobotFramework\\sap_testing\\Tests\\Resource\\Prerequisite_Status.xlsx
-# ${sheetname}    Sheet1
 
 *** Keywords ***
-#     [Arguments]    ${filepath}    ${sheetname}    ${rownum}    ${colnum}    ${cell_value}
-#     Open Excel Document    ${filepath}    1
-#     Get Sheet    ${sheetname}  
-#     Write Excel Cell      ${rownum}       ${colnum}     ${cell_value}       ${sheetname}
-#     Save Excel Document     ${filepath}
-#     Close Current Excel Document
 Download Certificates
     FOR    ${url}    IN    @{URLS}
         ${file_name}=    Get File Name From URL    ${url}
@@ -72,10 +62,7 @@ Enable Edit Mode for Standard
 STRUS_SSL_Client_Anonymous
     Double Click On Tree Item    wnd[0]/shellcont/shell    SSLCANONYM    
     Sleep    2
-    # Take Screenshot    SSL_client_Anonymous_1.jpg
-    # Sleep    2
     ${space}    Get Value    wnd[0]/usr/tblS_TRUSTMANAGERPK_CTRL/txtPSECERTLIST-SUBJECT[0,0]
-    # Sleep    1
     IF    '${space}' != ''
         FOR    ${index}    IN RANGE    0    3
         ${value}    Get Value    wnd[0]/usr/tblS_TRUSTMANAGERPK_CTRL/txtPSECERTLIST-SUBJECT[0,${index}]

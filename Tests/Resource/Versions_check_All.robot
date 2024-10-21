@@ -6,7 +6,14 @@ Library    String
 Library    ExcelLibrary
 Library    openpyxl
 *** Variables ***
-${system}    System ${symvar('ABAP_SID')} client ${symvar('ABAP_CLIENT')}
+${filepath}    C:\\RobotFramework\\sap_testing\\Tests\\Resource\\Prerequisite_Status.xlsx
+${sheetname}    Sheet1
+${Basis_success}    SAP BASIS version patch level met the criteria
+${Basis_fail}    SAP BASIS version patch level too low. Need to Patch SAP BASIS Either 7.40 SP16 or higher
+${SAP_UI_success}    SAP UI version patch level met the criteria
+${SAP_UI_fail}    SAP BASIS and SAP UI version patch level too low. Need to Patch SAP_UI Either 740 SP15 or higher
+${ST_PI_Success}    ST-PI patch version met the criteria
+${ST_PI_Fail}    Latest patch of ST-PI needs to be applied
 
 *** Keywords ***
 System Logon
@@ -22,14 +29,23 @@ System Logon
 
 System Logout
     Run Transaction   /nex
+Write Excel
+    [Arguments]    ${filepath}    ${sheetname}    ${rownum}    ${colnum}    ${cell_value}
+    Open Excel Document    ${filepath}    1
+    Get Sheet    ${sheetname}  
+    Write Excel Cell      ${rownum}       ${colnum}     ${cell_value}       ${sheetname}
+    Save Excel Document     ${filepath}
+    Close Current Excel Document
 SAP BASIS Release
     Click Element    wnd[0]/mbar/menu[4]/menu[11]
     Click Element    wnd[1]/usr/btnPRELINFO
     ${version}    Software Component Version    wnd[2]/usr/tabsVERSDETAILS/tabpCOMP_VERS/ssubDETAIL_SUBSCREEN:SAPLOCS_UI_CONTROLS:0301/cntlSCV_CU_CONTROL/shellcont/shell    SAP_BASIS
     IF    '${version}' >= '750'
-        Log To Console    **gbStart**copilot_status_Client_Standard**splitKeyValue**${system} SAP BASIS Version is ${version}**gbEnd**
+        Write Excel    ${filepath}    ${sheetname}    2    2    ${Basis_success}
+        Write Excel    ${filepath}    ${sheetname}    2    3    Passed
     ELSE
-        Log To Console    **gbStart**copilot_status_Client_Standard**splitKeyValue**${system} SAP BASIS Version is not met the requirment. Please Update it.**gbEnd**
+        Write Excel    ${filepath}    ${sheetname}    2    2    ${Basis_fail}
+        Write Excel    ${filepath}    ${sheetname}    2    3    Failed
     END
 
 SAP UI Release
@@ -37,14 +53,18 @@ SAP UI Release
     IF    '${version}' == '740'
         ${support_package}    software support package version    wnd[2]/usr/tabsVERSDETAILS/tabpCOMP_VERS/ssubDETAIL_SUBSCREEN:SAPLOCS_UI_CONTROLS:0301/cntlSCV_CU_CONTROL/shellcont/shell    SAP_UI
         IF    '${support_package}' >= 'SAPK-74014INSAPUI'
-            Log To Console    **gbStart**copilot_status_Client_Standard**splitKeyValue**${system} SAP BASIS Version is ${version} and Support Package is ${support_package}**gbEnd**
+            Write Excel    ${filepath}    ${sheetname}    3    2    ${SAP_UI_success}
+            Write Excel    ${filepath}    ${sheetname}    3    3    Passed
         ELSE
-            Log To Console    **gbStart**copilot_status_Client_Standard**splitKeyValue**${system} SAP BASIS Version is ${version} and Support Package is ${support_package}**gbEnd**          
+            Write Excel    ${filepath}    ${sheetname}    3    2    ${SAP_UI_fail}
+            Write Excel    ${filepath}    ${sheetname}    3    3    Failed          
         END
     ELSE IF    '${version}' >= '740'
-        Log To Console    **gbStart**copilot_status_Client_Standard**splitKeyValue**${system} SAP BASIS Version is ${version}**gbEnd**
+        Write Excel    ${filepath}    ${sheetname}    3    2    ${SAP_UI_success}
+        Write Excel    ${filepath}    ${sheetname}    3    3    Passed
     ELSE
-        Log To Console    **gbStart**copilot_status_Client_Standard**splitKeyValue**${system} SAP BASIS Version is not met the requirment. Please Update it.**gbEnd**
+        Write Excel    ${filepath}    ${sheetname}    3    2    ${SAP_UI_fail}
+            Write Excel    ${filepath}    ${sheetname}    3    3    Failed
     END
 
 Component ST-PI Version

@@ -109,5 +109,8 @@ Confirm Queue
     Log    ${cell_text_1}
     No Queue Pending    ${no_Queue_id}
     Click Element   wnd[1]/tbar[0]/btn[27]
-    Log To Console    **gbStart**copilot_status**splitKeyValue**ST-PI support package version is updated to the latest**gbEnd**
+    # Take Screenshot    13_spam.jpg
+    Write Excel    ${filepath}    ${sheetname}    4    2    ST-PI support package version is updated to the latest
+    Write Excel    ${filepath}    ${sheetname}    4    3    Passed
+    Log To Console    ST-PI support package version is updated to the latest
 
