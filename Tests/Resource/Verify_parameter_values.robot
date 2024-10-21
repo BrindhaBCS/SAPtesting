@@ -20,8 +20,8 @@ System Logon
     Open Connection     ${symvar('ABAP_SID')}
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('ABAP_CLIENT')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('ABAP_USER')}
-    # Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('ABAP_PASSWORD')}
-    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{ABAP_PASSWORD} 
+    Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('ABAP_PASSWORD')}
+    # Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{ABAP_PASSWORD} 
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
 
@@ -63,7 +63,9 @@ Verify parameter in RZ10
                 Click Element    wnd[0]/tbar[1]/btn[5]
                 Sleep    2
                 Click Element    wnd[0]/tbar[0]/btn[3]
+                Sleep    2
                 Click Element    wnd[0]/tbar[1]/btn[16]
+                Sleep    2
             END
         ELSE
             Sleep    2
@@ -75,6 +77,8 @@ Verify parameter in RZ10
             Sleep    2
             Click Element    wnd[0]/tbar[1]/btn[16]
             Sleep    2
+            Manage Window    wnd[1]    Maintain Profile 'DEFAULT' Version    wnd[1]/usr/btnKNOPF1
+            Sleep    2
             Click Element    wnd[0]/tbar[1]/btn[5]
             Sleep    2
             Click Element    wnd[0]/tbar[0]/btn[3]
@@ -82,6 +86,7 @@ Verify parameter in RZ10
             Manage Window    wnd[1]    Maintain Profile 'DEFAULT' Version    wnd[1]/usr/btnKNOPF1
             Sleep    2
             Click Element    wnd[0]/tbar[1]/btn[16]
+            Sleep    2
         END
         
     END
