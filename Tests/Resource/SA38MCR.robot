@@ -28,8 +28,8 @@ System Logon
     Open Connection    ${symvar('MCR_SAP_connection')}    
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('MCR_Client_Id')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('MCR_User_Name')}    
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('MCR_User_Password')}
-    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{MCR_User_Password}
+    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('MCR_User_Password')}
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{MCR_User_Password}
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
     Sleep   1
@@ -74,6 +74,11 @@ Transaction SA38
     Sleep    1
     Delete Specific File    file_path=C:\\tmp\\SA38.xls
     Log To Console    SA38 Requirement completed
+Generate report
+    Image Resize    ${OUTPUT_DIR}
+    Sleep    1
+    Copy Images    ${OUTPUT_DIR}    ${symvar('MCR_Resized_Images_directory')}
+    Sleep    1
 
 
 

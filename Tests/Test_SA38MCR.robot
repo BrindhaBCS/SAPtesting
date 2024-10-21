@@ -8,3 +8,5 @@ Test Tags    SA38
 *** Test Cases ***
 MCR
     Transaction SA38
+Generate report
+    Generate report
