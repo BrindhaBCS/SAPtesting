@@ -52,12 +52,14 @@ SE16 Table Maintenance Management
     Maximize Window
     Run Transaction     /nSUIM
     Sleep    2
-
+    Click Node Link     ${tree_id}    ${link_id1}    ${link_id2}    ${link_id3}     ${link_id4}    ${link_id5}
+    Sleep    1
+    Click Element    wnd[0]/tbar[0]/btn[3]
+    Sleep    1
     Click Node Link     ${tree_id}    ${link_id6}    ${link_id7}    ${link_id8}     ${link_id9}    ${link_id5}
     Sleep    2
     Click Element    ${AUTHORIZATION TAB}
     Sleep    2
-  
     Input Text    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB4/ssub%_SUBSCREEN_TAB:RSUSR002:1004/ctxtOBJ1    S_TCODE
     Send Vkey    0
     Input Text    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB4/ssub%_SUBSCREEN_TAB:RSUSR002:1004/txtVAL101    SE16
