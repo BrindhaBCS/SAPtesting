@@ -18,6 +18,7 @@ from email.mime.base import MIMEBase
 from email import encoders
 from openpyxl import load_workbook
 import json
+import re
 
 class SAP_Tcode_Library:
     """The SapGuiLibrary is a library that enables users to create tests for the Sap Gui application
@@ -2032,4 +2033,9 @@ class SAP_Tcode_Library:
             element.doubleClickItem(row_identifier, column)
         except Exception as e:
             raise Exception(f"Failed to double-click item in SAP shell: {str(e)}")
-
+    def extract_numeric(self, data):
+        match = re.search(r'\d+', data)
+        if match:
+            return match.group()
+        else:
+            return data

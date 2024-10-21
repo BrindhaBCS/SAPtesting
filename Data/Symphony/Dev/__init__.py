@@ -4,7 +4,7 @@
 #          values as they are imported through each file.
 
 from .Variable import *
-from .Variablenew import *
+from .Customer_master import *
 from .material_master import *
 from .Billing_docs import *
 

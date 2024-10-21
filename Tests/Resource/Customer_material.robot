@@ -4,20 +4,20 @@ Library    SAP_Tcode_Library.py
 Library    ExcelLibrary
 Library    String
 *** Variables ***
-${filename}    ${symvar('filename')}
-${sheetname}    ${symvar('sheetname')}
+${filename}    ${symvar('Customer_filename')}
+${sheetname}    ${symvar('Customer_sheetname')}
 ${START_ROW}    6
 *** Keywords ***
 System Logon
     Start Process     ${symvar('SAP_SERVER')}
     Sleep    2
     Connect To Session
-    Open Connection    ${symvar('Connection')}
+    Open Connection    ${symvar('Customer_Connection')}
     Sleep   1
-    Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('Client_Id')}
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('User_Name')}
-    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('User_Password')}
-    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{User_Password}
+    Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('Customer_Client_Id')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('Customer_User_Name')}
+    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('Customer_User_Password')}
+    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{Customer_User_Password}
     Send Vkey    0
     Sleep    2
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
@@ -41,11 +41,13 @@ Write Excel Sheet
     Close Current Excel Document
 
 Kellogs_
-    ${ROWS_COUNT}=    get total row    ${filename}    ${sheetname}
-    Log    Total rows count: ${ROWS_COUNT}
-    Run Transaction    /nXD01
+    ${ROWS_COUN}=    get total row    ${filename}    ${sheetname}
+    Log    Total rows count: ${ROWS_COUN}
     Sleep    1
+    ${ROWS_COUNT} =    Evaluate    ${ROWS_COUN} + 1
     FOR    ${row_index}    IN RANGE    6    ${ROWS_COUNT}
+        Run Transaction    /nXD01
+        Sleep    0.5
         Run Keyword And Ignore Error    Click Element    wnd[1]/usr/btnKONTENGRUPPE_INFO
         Run Keyword And Ignore Error    Set Focus    wnd[2]/usr/tblSAPMF02DTCTRL_KONTENGRUPPEN/txtT077D-KTOKD[0,0]
         Run Keyword And Ignore Error    Click Element    wnd[2]/tbar[0]/btn[0]
@@ -145,13 +147,12 @@ Kellogs_
         Sleep    3
         ${Text}=    Get Value    wnd[0]/sbar/pane[0]
         Sleep    1
-        ${split_text}=    Split String    ${Text}    ${SPACE}
-        ${customer_number}=    Set Variable    ${split_text}[1]
+        ${customer_number}=    Extract Numeric    ${Text}
         Log To Console    ${customer_number}
         Write Excel Sheet    ${FILENAME}    ${SHEETNAME}    ${ROW_INDEX}    41    ${customer_number}
         Sleep    1
+
     END
-    
     
 
     
