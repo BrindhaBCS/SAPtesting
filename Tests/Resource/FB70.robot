@@ -74,6 +74,8 @@ FB70 Invoice entry
     FOR    ${row_count}    IN RANGE    2    ${rows}
 
         Set Global Variable     ${row_count}
+        Write Excel     ${symvar('excel_path')}    ${symvar('sheet_name')}    ${row_count}    2      ${symvar('invoice_date')}
+
         ${customer}    Read Excel    ${symvar('excel_path')}    ${symvar('sheet_name')}    ${row_count}    1
         Log To Console  ${customer}
         Set Global Variable     ${customer}
