@@ -6,7 +6,7 @@
 # sheet_name = "INPUT" 
 
 
-SAP_SERVER = "$SAP_SERVER"
+# SAP_SERVER = "$SAP_SERVER"
 vendor_user = "$vendor_user"
 vendor_client = "$vendor_client"
 vendor_connection = "$vendor_connection"

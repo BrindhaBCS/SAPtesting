@@ -7,7 +7,7 @@
 # login_client = "800"
 # invoice_connection = "BIS"
 
-SAP_SERVER = "$SAP_SERVER"
+# SAP_SERVER = "$SAP_SERVER"
 login_user = "$login_user"
 excel_path = "$excel_path"
 sheet_name = "$sheet_name" 

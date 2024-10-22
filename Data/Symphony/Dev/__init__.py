@@ -4,6 +4,7 @@
 #          values as they are imported through each file.
 
 from .Data import *
+<<<<<<< HEAD
 #from .urls import *
 #from .xpaths import *
 from .Variable import *
@@ -16,5 +17,24 @@ from .UserProfile import *
 from .Materials import*
 #from ABAP import*
 
+=======
+# from .urls import *
+# from .xpaths import *
+from .Variable import *
+from .invoice import *
+from .Certificate import *
+from .payments import *
+from .closing_payment import *
+from .Vendor_invoice import *
+from .slicense import *
+from .SM12 import *
+from .SM37 import *
+from .TS4 import *
+from .sales_order import*
+from .ABAP import *
+from .Sales import *
+from .Risk import *
+from .Idoc import *
+>>>>>>> ccb703008f8241cf3aa983eb6e3fb29b2984a544
 
 
