@@ -1,4 +1,4 @@
-SAP_SERVER = "$SAP_SERVER"
+# SAP_SERVER = "$SAP_SERVER"
 job_user = "$job_user"
 job_client = "$job_client"
 job_connection = "$job_connection"

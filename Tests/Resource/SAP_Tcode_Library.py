@@ -1,6 +1,8 @@
 import pythoncom
 import win32com.client
 import time
+from datetime import datetime
+import _strptime
 from pythoncom import com_error
 import robot.libraries.Screenshot as screenshot
 import os
@@ -10,6 +12,7 @@ import ast
 import re
 import openpyxl
 import pandas as pd
+import openpyxl
 
 
 class SAP_Tcode_Library:
@@ -1414,12 +1417,12 @@ class SAP_Tcode_Library:
         row_count = comp_area.RowCount
         try:
             for x in range(row_count):
-                print (x)   
+                # print (x)   
                 cell_value = comp_area.GetCellValue(x, "COMPONENT")
-                print (cell_value)
+                # print (cell_value)
                 if cell_value == search_comp:
                     patch = comp_area.GetCellValue(x, "HIGH_PATCH")
-                    print(f"Found version for {search_comp}: {patch}")
+                    # print(f"Found version for {search_comp}: {patch}")
                     return patch
                     break  
                 else:
@@ -1478,11 +1481,16 @@ class SAP_Tcode_Library:
                 return
     
     def manage_window(self, element_id, text, button_id):
-        window_title = self.session.findById(element_id).Text
-        window_title_split = window_title.split()
-        window = " ".join(window_title_split[:-1])
-        if window == text :
-            self.session.findById(button_id).press()
+        try:
+            window_title = self.session.findById(element_id).Text
+            window_title_split = window_title.split()
+            window = " ".join(window_title_split[:-1])
+            if window == text :
+                self.session.findById(button_id).press()
+            else:
+                print(window_title)
+        except Exception as e:
+            print(f"Error: {e}")
 
     def double_click_current_cell_value(self, element_id, cell_value):
         try:
@@ -1493,15 +1501,7 @@ class SAP_Tcode_Library:
             print(f"Error: {e}")
 
     def get_file_content(Self, file_path, ):
-        """
-        Reads the content of a file and returns it as a string.
-
-        Arguments:
-        - file_path: The path to the file to be read.
-
-        Returns:
-        - The content of the file as a string.
-        """
+        
         with open(file_path, 'r') as file:
             content = file.read()
         return content
