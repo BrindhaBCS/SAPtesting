@@ -1604,8 +1604,8 @@ class SAP_Tcode_Library:
             chart_data = {
                 "type": "bar",
                 "title": "Grouped chart data",
-                "label": labels,
-                "dataset": [
+                "labels": labels,
+                "datasets": [
                     {
                         "label": "Unrestricted",
                         "data": unrestr_data,
@@ -1619,20 +1619,9 @@ class SAP_Tcode_Library:
                     {
                         "label": "Blocked",
                         "data": blocked_data,
-                        "backgroundColor": "rgba(75, 192, 192, 0.6)",
+                         "backgroundColor": "rgba(75, 192, 192, 0.6)",
                     },
-                ],
-                "options": {
-                    "scales": {
-                        "y": {
-                              "beginAtZero": True,  # Ensure the y-axis starts at zero
-                              "min": 0,  # Set minimum value for the y-axis
-                              "max": 1000,  # Set maximum value for the y-axis
-                              "ticks": {
-                                "stepSize": 200  # Controls the step size for y-axis ticks
-                              }
-                    }
-                }
+                    ]
             }
             return json.dumps(chart_data)
         except FileNotFoundError:
