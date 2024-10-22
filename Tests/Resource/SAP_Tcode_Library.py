@@ -1536,6 +1536,112 @@ class SAP_Tcode_Library:
         cleaned_data.to_excel(result_filepath, index=False)
         print("Cleaned data has been saved successfully!")
 
+    def material_availability_description(self, filepath, search_pattern, result_filepath):
+        # Read data from the Excel file
+        df = pd.read_excel(filepath, header =1)
+
+        # Clean any extra spaces in column names
+        df.columns = df.columns.str.strip()
+
+        
+        material_description_col = 'Material Description'
+        material_id_col = 'Material'
+        plant_col = 'Plnt'
+        unrestricted_stock_col = 'Unrestr.'
+
+        # Filter rows where the description matches the pattern
+        matching_rows = df[df[material_description_col].str.contains(search_pattern, na=False, flags=re.IGNORECASE)]
+        result = matching_rows[[material_id_col, plant_col, material_description_col, unrestricted_stock_col]]
+        # Rename the columns
+        result = result.rename(columns={
+            material_id_col: 'Material ID',
+            plant_col: 'Plant',
+            material_description_col: 'Material Description',
+            unrestricted_stock_col: 'Unrestricted Stock'
+        })
+        result.to_excel(result_filepath, index=False)
+        print("Cleaned data has been saved successfully!")
+        #return result.to_string()
+
+    def generate_chart_data(self, file_path):
+        try:
+            # Load Excel Data
+            df_excel_raw = pd.read_excel(file_path, engine='openpyxl')
+
+            # Extract headers from the first row
+            headers_from_excel = df_excel_raw.iloc[0].values
+
+            # Load the DataFrame with proper headers
+            df_processed = pd.read_excel(file_path, header=1, engine='openpyxl')
+
+            # Set correct headers
+            df_processed.columns = headers_from_excel
+
+            # Remove any leading/trailing spaces from column headers
+            df_processed.columns = df_processed.columns.str.strip()
+
+            # Remove any columns with NaN headers
+            df_processed = df_processed.loc[:, ~df_processed.columns.isna()]
+
+            # Clean 'Material Description' and remove NaN
+            labels = df_processed['Material Description'].astype(str).str.strip().replace('nan', np.nan).dropna().tolist()
+
+            # Clean and convert the data columns, replace NaN with 0
+            unrestr_data = pd.to_numeric(df_processed['Unrestr.'], errors='coerce').fillna(0).tolist()
+            qual_insp_data = pd.to_numeric(df_processed['Qual.Insp.'], errors='coerce').fillna(0).tolist()
+            blocked_data = pd.to_numeric(df_processed['Blocked'], errors='coerce').fillna(0).tolist()
+
+            # Find the minimum length to ensure all lists are of the same size
+            min_length = min(len(labels), len(unrestr_data), len(qual_insp_data), len(blocked_data))
+
+            # Trim all lists to this minimum length
+            labels = labels[:min_length]
+            unrestr_data = unrestr_data[:min_length]
+            qual_insp_data = qual_insp_data[:min_length]
+            blocked_data = blocked_data[:min_length]
+
+            # Create chart data
+            chart_data = {
+                "type": "bar",
+                "title": "Grouped chart data",
+                "label": labels,
+                "dataset": [
+                    {
+                        "label": "Unrestricted",
+                        "data": unrestr_data,
+                        "backgroundColor": "rgba(255, 99, 132, 0.6)",
+                    },
+                    {
+                        "label": "Qual.Insp.",
+                        "data": qual_insp_data,
+                        "backgroundColor": "rgba(54, 162, 235, 0.6)",
+                    },
+                    {
+                        "label": "Blocked",
+                        "data": blocked_data,
+                        "backgroundColor": "rgba(75, 192, 192, 0.6)",
+                    },
+                ],
+                "options": {
+                    "scales": {
+                        "y": {
+                              "beginAtZero": True,  # Ensure the y-axis starts at zero
+                              "min": 0,  # Set minimum value for the y-axis
+                              "max": 1000,  # Set maximum value for the y-axis
+                              "ticks": {
+                                "stepSize": 200  # Controls the step size for y-axis ticks
+                              }
+                    }
+                }
+            }
+            return json.dumps(chart_data)
+        except FileNotFoundError:
+            print(f"Error: The file at {file_path} does not exist.")
+            return None 
+        except Exception as e:
+            print(f"An error occurred: {str(e)}")
+            return None
+
     def count_excel_rows(self, abs_filename, sheet_name):
         try:
             wb = openpyxl.load_workbook(abs_filename)
@@ -1559,3 +1665,54 @@ class SAP_Tcode_Library:
         sheet = wb[sheet_name]
         cell_value = sheet.cell(row=row, column=column).value
         return cell_value
+
+    def excel_to_json(self, excel_file, json_file):
+        df = pd.read_excel(excel_file, engine='openpyxl')
+        for column in df.select_dtypes(['datetime']):
+            df[column] = df[column].astype(str)
+        data = df.to_dict(orient='records')
+        with open(json_file, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
+        with open(json_file, 'r', encoding='utf-8') as f:
+            json_data = json.load(f)
+        return json_data
+    
+    def process_excel(self, file_path, sheet_name, column_index=None):
+            df = pd.read_excel(file_path, sheet_name=sheet_name, header=None)
+            if column_index is not None:
+                try:
+                    column_index = int(column_index)  # Ensure column_index is an integer
+                except ValueError:
+                    print("Invalid column index provided. Please provide a valid integer.")
+                    return
+                if 0 <= column_index < df.shape[1]:
+                    df.drop(df.columns[column_index], axis=1, inplace=True)
+                else:
+                    print(f"Column index {column_index} is out of bounds.")
+                    return
+            df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
+            df.dropna(how='all', inplace=True)
+            df.dropna(axis=1, how='all', inplace=True)
+            if df.iloc[0].isnull().all(): 
+                new_header = df.iloc[1]  
+                df = df[2:]  # Remove first two rows
+            else:
+                new_header = df.iloc[0]  # Use first row as header
+                df = df[1:]  # Remove first row
+            df.columns = new_header
+            df.reset_index(drop=True, inplace=True)
+            try:
+                # Write the modified DataFrame back to the Excel file
+                with pd.ExcelWriter(file_path, engine='openpyxl', mode='w') as writer:
+                    df.to_excel(writer, index=False, sheet_name=sheet_name)
+                print(f"Processed Excel sheet '{sheet_name}' has been updated in: {file_path}")
+            except Exception as e:
+                print(f"Error writing to Excel: {e}")
+    def delete_specific_file(self, file_path):
+        try:
+            if os.path.exists(file_path):
+                os.remove(file_path)
+            else:
+                print(f"The file '{file_path}' does not exist.")
+        except Exception as e:
+            print(f"An error occurred: {e}")

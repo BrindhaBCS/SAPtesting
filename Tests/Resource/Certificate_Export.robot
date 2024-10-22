@@ -40,6 +40,8 @@ SSL server standard
     Set Caret Position    wnd[0]/usr/txtPSE-OWNCERT-SUBJECT    32
     Send Vkey    2    
     Sleep  2
+    # Click Element    wnd[0]/tbar[1]/btn[25]
+    # Sleep  2
     Scroll Pagedown    wnd[0]/usr/btnCERTDETAIL      
     Sleep   2
     Take Screenshot    instance3.jpg

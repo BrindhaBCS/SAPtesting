@@ -18,12 +18,12 @@ ${input_filepath}    ${symvar('MM_Cleaned_filepath')}//${MM_Filename}
 ${result_filepath}    ${symvar('MM_Cleaned_filepath')}//${symvar('MM_Cleaned_filename')}
 
 ${Plant}    1040
-${Material}    2000000071
+${Material}    laptop
 
 *** Keywords ***
 System Logon
     Start Process     ${symvar('MM_SAP_SERVER')}     
-    Sleep    10s
+    Sleep    2
     Connect To Session
     Open Connection    ${symvar('MM_SAP_connection')}    
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('MM_Client_Id')}
@@ -32,18 +32,15 @@ System Logon
     Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{MM_User_Password}
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
-    Sleep   1
 
 System Logout
     Run Transaction   /nex
-    Sleep    5
-    Sleep    10
 
 Executing Material Availability
     Run Transaction    /nmb52
     Send Vkey    0
-    Sleep    2
-    Input Text    wnd[0]/usr/ctxtMATNR-LOW    ${symvar('Material')}
+    Sleep    1
+    #Input Text    wnd[0]/usr/ctxtMATNR-LOW    ${symvar('Material')}
     Input Text    wnd[0]/usr/ctxtWERKS-LOW    ${symvar('Plant')}
     #Execute the requirement using F8
     Click Element    wnd[0]/mbar/menu[0]/menu[0]
@@ -64,5 +61,17 @@ Executing Material Availability
     Log To Console    mm1completed 
 Result
     Log To Console    Material Availability Unresticted Data
-    Material Availability    ${input_filepath}    ${result_filepath}
-    # Material Availability    ${filepath}    ${result_filepath}    
+    Material Availability Description    ${input_filepath}    ${symvar('Material')}    ${result_filepath}
+    # Material Availability    ${filepath}    ${result_filepath} 
+    ${json}    Excel To Json    excel_file=C:\\tmp\\MM_Availability.xlsx    json_file=C:\\tmp\\Json\\MM_Availability.json
+    Sleep    0.5
+    Log To Console    **gbStart**copilot_Json**splitKeyValue**${json}**gbEnd**
+    Log to console    ${json}
+    ${chart_json}    Generate Chart Data    file_path=C:\\tmp\\MM_MB52_Full_Desc_Details.xlsx 
+    Sleep    0.5
+    Log To Console    **gbStart**copilot_cpiechart_data**splitKeyValue**${chart_json}**gbEnd**
+    #Log To Console    gbStart##copilot_cpiechart_data##splitKeyValue##{json.dumps(chart_data)}##gbEnd
+    Log to console    ${chart_json}
+    Sleep    2
+    Delete Specific File    file_path=C:\\tmp\\Json\\MM_Availability.json
+    Delete Specific File    file_path=C:\\tmp\\MM_Availability.xlsx
