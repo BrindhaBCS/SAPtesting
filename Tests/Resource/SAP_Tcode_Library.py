@@ -1604,8 +1604,8 @@ class SAP_Tcode_Library:
             chart_data = {
                 "type": "bar",
                 "title": "Grouped chart data",
-                "labels": labels,
-                "datasets": [
+                "label": labels,
+                "dataset": [
                     {
                         "label": "Unrestricted",
                         "data": unrestr_data,
