@@ -103,7 +103,7 @@ Authorization profiles maintenance
     Sleep    1
     Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${Req_Result13_Filename}
     Sleep    1
-    Click Element    ${Replace}
+    Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    1
     Click Element    ${BACK}
     Sleep    1

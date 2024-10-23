@@ -57,16 +57,12 @@ Usercontrol (non)personal user accounts
     Select Checkbox    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB1/ssub%_SUBSCREEN_TAB:RSUSR100N:1100/chkUSER_CRT
     Take Screenshot    Usercontrol (non)personal user accounts.jpg
     Sleep    2
-    
     Click Element    wnd[0]/mbar/menu[0]/menu[0]
     Sleep    1
     Take Screenshot    Usercontrol (non)personal user accounts2.jpg
-   
     Click Element    wnd[0]/mbar/menu[0]/menu[3]/menu[1]
     Sleep    1
-    
     Select Radio Button    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[1,0]
-    
     Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    1
     
