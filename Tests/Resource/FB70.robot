@@ -4,6 +4,7 @@ Library     CustomSapGuiLibrary.py
 Library    OperatingSystem
 Library     ExcelLibrary
 Library     openpyxl
+Library    DateTime
 
 *** Keywords ***
 Read Excel
@@ -64,6 +65,8 @@ Transaction FB70
     Write Excel     ${symvar('excel_path')}    ${symvar('sheet_name')}    ${row_count}    10      ${company_code}
     
 FB70 Invoice entry
+    ${date}    Get Current Date    result_format=%d.%m.%Y
+    # Log To Console    ${date}
 
     ${user_count}    Count Excel Rows     ${symvar('excel_path')}
     ${rows}=    Evaluate    ${user_count} + 1
@@ -74,7 +77,7 @@ FB70 Invoice entry
     FOR    ${row_count}    IN RANGE    2    ${rows}
 
         Set Global Variable     ${row_count}
-        Write Excel     ${symvar('excel_path')}    ${symvar('sheet_name')}    ${row_count}    2      ${symvar('invoice_date')}
+        Write Excel     ${symvar('excel_path')}    ${symvar('sheet_name')}    ${row_count}    2      ${date}
 
         ${customer}    Read Excel    ${symvar('excel_path')}    ${symvar('sheet_name')}    ${row_count}    1
         Log To Console  ${customer}
