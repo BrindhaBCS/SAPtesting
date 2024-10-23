@@ -99,7 +99,7 @@ Authorization profiles maintenance
     Select Radio Button    ${Text with tabs Button}
     Click Element    ${local file continue}
     Sleep    1
-    Input Text    wnd[1]/usr/ctxtDY_PATH    ${symvar('MCR_Results_Directory_Path')}
+    Input Text    wnd[1]/usr/ctxtDY_PATH     ${symvar('MCR_Results_Directory_Path')}
     Sleep    1
     Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${Req_Result13_Filename}
     Sleep    1
