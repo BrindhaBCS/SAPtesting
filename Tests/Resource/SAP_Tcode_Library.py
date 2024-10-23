@@ -1609,17 +1609,20 @@ class SAP_Tcode_Library:
                     {
                         "label": "Unrestricted",
                         "data": unrestr_data,
-                        "backgroundColor": "rgba(255, 99, 132, 0.6)",
+                        #"backgroundColor": "rgba(255, 99, 132, 0.6)",
+                        "backgroundColor": "rgba(255, 0, 0, 0.8)",
                     },
                     {
                         "label": "Qual.Insp.",
                         "data": qual_insp_data,
-                        "backgroundColor": "rgba(54, 162, 235, 0.6)",
+                        #"backgroundColor": "rgba(54, 162, 235, 0.6)",
+                        "backgroundColor": "rgba(0, 255, 0, 0.8)",
                     },
                     {
                         "label": "Blocked",
                         "data": blocked_data,
-                         "backgroundColor": "rgba(75, 192, 192, 0.6)",
+                         #"backgroundColor": "rgba(75, 192, 192, 0.6)",
+                         "backgroundColor": "rgba(0, 0, 255, 0.8)",
                     },
                     ]
             }
