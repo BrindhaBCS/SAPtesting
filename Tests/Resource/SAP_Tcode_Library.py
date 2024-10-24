@@ -1891,6 +1891,17 @@ class SAP_Tcode_Library:
         current_date = datetime.now().date()
         date_difference = (given_date - current_date).days
         return date_difference
+    def Fbl1n_arrange(self):
+        try:
+            self.session.findById("wnd[1]/usr/tabsTS_LINES/tabpLI01/ssubSUB810:SAPLSKBH:0810/tblSAPLSKBHTC_WRITE_LIST").getAbsoluteRow(9).selected = True
+            self.session.findById("wnd[1]/usr/tabsTS_LINES/tabpLI01/ssubSUB810:SAPLSKBH:0810/tblSAPLSKBHTC_WRITE_LIST").getAbsoluteRow(10).selected = True
+            self.session.findById("wnd[1]/usr/tabsTS_LINES/tabpLI01/ssubSUB810:SAPLSKBH:0810/tblSAPLSKBHTC_WRITE_LIST/txtGT_WRITE_LIST-SELTEXT[0,9]").setFocus()
+            self.session.findById("wnd[1]/usr/tabsTS_LINES/tabpLI01/ssubSUB810:SAPLSKBH:0810/tblSAPLSKBHTC_WRITE_LIST/txtGT_WRITE_LIST-SELTEXT[0,9]").caretPosition = 0
+            self.session.findById("wnd[1]/usr/btnAPP_FL_SING").press()
+            self.session.findById("wnd[1]/usr/tabsTS_LINES/tabpLI01/ssubSUB810:SAPLSKBH:0810/tblSAPLSKBHTC_WRITE_LIST").getAbsoluteRow(0).selected = True
+            self.session.findById("wnd[1]/usr/btnAPP_FL_SING").press()
+        except:
+            return[]
 
 
 
