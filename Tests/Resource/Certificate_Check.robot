@@ -71,13 +71,13 @@ STRUS_SSL_Client_Anonymous
                 Log To Console    Certificate already exists: DigiCert RSA4096 Root G5
             ELSE
             upload_certificate_SSL_Client_Anonymous
-            ${result_one}    Set Variable    System ${symvar('ABAP_SID')} client ${symvar('ABAP_CLIENT')} -- STRUS_SSL_Client_Anonymous SAP Cloud ALM Connection Certificate Added Successfully...
+            ${result_one}    Set Variable    System ${symvar('ABAP_SID')} client ${symvar('ABAP_CLIENT')} -- STRUS_SSL_Client_Anonymous SAP Cloud ALM Connection Certificate Uploaded Successfully...
             Log To Console    **gbStart**copilot_status_Client_Anonymous**splitKeyValue**${result_one}**gbEnd**
             END
         END
     ELSE
         upload_certificate_SSL_Client_Anonymous
-        ${result_two}    Set Variable    System ${symvar('ABAP_SID')} client ${symvar('ABAP_CLIENT')} -- STRUS_SSL_Client_Anonymous SAP Cloud ALM Connection Certificate Added Successfully
+        ${result_two}    Set Variable    System ${symvar('ABAP_SID')} client ${symvar('ABAP_CLIENT')} -- STRUS_SSL_Client_Anonymous SAP Cloud ALM Connection Certificate Uploaded Successfully
         Log To Console    **gbStart**copilot_status_Client_Anonymous**splitKeyValue**${result_two}**gbEnd**
     END
 
