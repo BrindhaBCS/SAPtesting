@@ -301,5 +301,5 @@ SNOTE
         END
     END
     # Log To Console   System ${symvar('ABAP_SID')} client ${symvar('ABAP_CLIENT')} -- Madatory Snotes Implemented Successfull
-    ${result}    Set Variable    System ${symvar('ABAP_SID')} client ${symvar('ABAP_CLIENT')}-- Madatory Snotes Implemented Successfull....
+    ${result}    Set Variable    System ${symvar('ABAP_SID')} client ${symvar('ABAP_CLIENT')}-- Madatory Snotes Implemented successfully.
     Log To Console    **gbStart**copilot_status_Snote**splitKeyValue**${result}**gbEnd**
