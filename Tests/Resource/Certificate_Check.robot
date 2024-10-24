@@ -2,8 +2,6 @@
 Library    Process
 Library    String
 Library    SAP_Tcode_Library.py
-Library    ExcelLibrary
-Library    openpyxl
 *** Variables ***
 @{URLS}    https://dl.cacerts.digicert.com/DigiCertGlobalRootCA.crt    https://cacerts.digicert.com/DigiCertGlobalRootG2.crt    https://cacerts.digicert.com/DigiCertRSA4096RootG5.crt
 ${DESTINATION_BASE}    C:\\tmp\\
@@ -39,8 +37,6 @@ STRUST
     Sleep    2
     Enable Edit Mode for Anonymous
     Enable Edit Mode for Standard
-    # Write Excel    ${filepath}    ${sheetname}    6    2    ${certificate_Pass}
-    # Write Excel    ${filepath}    ${sheetname}    6    3    Passed
 
 Enable Edit Mode for Anonymous
     ${window}    Get Window Title    wnd[0]
@@ -69,16 +65,12 @@ STRUS_SSL_Client_Anonymous
         Sleep    4
             IF    '${value}' == 'CN=DigiCert Global Root G2, OU=www.digicert.com, O=DigiCert Inc, C=US'
                 Log To Console    Certificate already exists: DigiCert Global Root G2
-                Log To Console    **gbStart**copilot_status_Client_Anonymous**splitKeyValue**Client Anonymous Current version certificates allready exist in your SAP SYSTEM ${symvar('ABAP_SID')} client ${symvar('ABAP_CLIENT')}..**gbEnd**
             ELSE IF    '${value}' == 'CN=DigiCert Global Root CA, OU=www.digicert.com, O=DigiCert Inc, C=US'
                 Log To Console    Certificate already exists: DigiCert Global Root CA
-                Log To Console    **gbStart**copilot_status_Client_Anonymous**splitKeyValue**Client Anonymous Current version certificates allready exist in your SAP SYSTEM ${symvar('ABAP_SID')} client ${symvar('ABAP_CLIENT')}..**gbEnd**
             ELSE IF    '${value}' == 'CN=DigiCert RSA4096 Root G5, O="DigiCert, Inc.", C=US'
                 Log To Console    Certificate already exists: DigiCert RSA4096 Root G5
-                Log To Console    **gbStart**copilot_status_Client_Anonymous**splitKeyValue**Client Anonymous Current version certificates allready exist in your SAP SYSTEM ${symvar('ABAP_SID')} client ${symvar('ABAP_CLIENT')}..**gbEnd**
             ELSE
             upload_certificate_SSL_Client_Anonymous
-            Log To Console    System ${symvar('ABAP_SID')} client ${symvar('ABAP_CLIENT')} -- STRUS_SSL_Client_Anonymous SAP Cloud ALM Connection Certificate Added Successfully
             ${result_one}    Set Variable    System ${symvar('ABAP_SID')} client ${symvar('ABAP_CLIENT')} -- STRUS_SSL_Client_Anonymous SAP Cloud ALM Connection Certificate Added Successfully...
             Log To Console    **gbStart**copilot_status_Client_Anonymous**splitKeyValue**${result_one}**gbEnd**
             END
@@ -118,16 +110,12 @@ STRUSTS_SSL_Client_Standard
         Sleep    1
             IF    '${value}' == 'CN=DigiCert Global Root G2, OU=www.digicert.com, O=DigiCert Inc, C=US'
                 Log To Console    Certificate already exists: DigiCert Global Root G2
-                Log To Console    **gbStart**copilot_status_Client_Standard**splitKeyValue**Client Standard Current version certificates allready exist in your SAP SYSTEM ${symvar('ABAP_SID')} client ${symvar('ABAP_CLIENT')}..**gbEnd**
             ELSE IF    '${value}' == 'CN=DigiCert Global Root CA, OU=www.digicert.com, O=DigiCert Inc, C=US'
                 Log To Console    Certificate already exists: DigiCert Global Root CA
-                Log To Console    **gbStart**copilot_status_Client_Standard**splitKeyValue**Client Standard Current version certificates allready exist in your SAP SYSTEM ${symvar('ABAP_SID')} client ${symvar('ABAP_CLIENT')}..**gbEnd**
             ELSE IF    '${value}' == 'CN=DigiCert RSA4096 Root G5, O="DigiCert, Inc.", C=US'
                 Log To Console    Certificate already exists: DigiCert RSA4096 Root G5
-                Log To Console    **gbStart**copilot_status_Client_Standard**splitKeyValue**Client Standard Current version certificates allready exist in your SAP SYSTEM ${symvar('ABAP_SID')} client ${symvar('ABAP_CLIENT')}..**gbEnd**
             ELSE
                 upload_certificate_SSL_Client_Standard
-                Log To Console    System ${symvar('ABAP_SID')} client ${symvar('ABAP_CLIENT')} -- STRUSTS_SSL_Client_Standard SAP Cloud ALM Connection Certificate Uploaded successfully
                 ${result_one_.}    Set Variable    System ${symvar('ABAP_SID')} client ${symvar('ABAP_CLIENT')} -- STRUSTS_SSL_Client_Standard SAP Cloud ALM Connection Certificate Uploaded successfully...
                 Log To Console    **gbStart**copilot_status_Client_Standard**splitKeyValue**${result_one_.}**gbEnd**
             END

@@ -311,6 +311,5 @@ SNOTE
             END
         END
     END
-    Log To Console   System ${symvar('ABAP_SID')} client ${symvar('ABAP_CLIENT')} -- Madatory Snotes Implemented Successfull
     Write Excel    ${filepath}    ${sheetname}    7    2    ${Snote_Pass}
     Write Excel    ${filepath}    ${sheetname}    7    3    Passed

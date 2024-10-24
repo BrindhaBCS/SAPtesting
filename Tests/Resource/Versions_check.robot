@@ -27,9 +27,9 @@ SAP BASIS Release
     Click Element    wnd[1]/usr/btnPRELINFO
     ${version}    Software Component Version    wnd[2]/usr/tabsVERSDETAILS/tabpCOMP_VERS/ssubDETAIL_SUBSCREEN:SAPLOCS_UI_CONTROLS:0301/cntlSCV_CU_CONTROL/shellcont/shell    SAP_BASIS
     IF    '${version}' >= '750'
-        Log To Console    **gbStart**copilot_status_Client_Standard**splitKeyValue**${system} SAP BASIS Version is ${version}**gbEnd**
+        Log To Console    **gbStart**copilot_status1**splitKeyValue**${system} SAP BASIS Version is ${version}**gbEnd**
     ELSE
-        Log To Console    **gbStart**copilot_status_Client_Standard**splitKeyValue**${system} SAP BASIS Version is not met the requirment. Please Update it.**gbEnd**
+        Log To Console    **gbStart**copilot_status1**splitKeyValue**${system} SAP BASIS Version is not met the requirment. Please Update it.**gbEnd**
     END
 
 SAP UI Release
@@ -37,14 +37,14 @@ SAP UI Release
     IF    '${version}' == '740'
         ${support_package}    software support package version    wnd[2]/usr/tabsVERSDETAILS/tabpCOMP_VERS/ssubDETAIL_SUBSCREEN:SAPLOCS_UI_CONTROLS:0301/cntlSCV_CU_CONTROL/shellcont/shell    SAP_UI
         IF    '${support_package}' >= 'SAPK-74014INSAPUI'
-            Log To Console    **gbStart**copilot_status_Client_Standard**splitKeyValue**${system} SAP BASIS Version is ${version} and Support Package is ${support_package}**gbEnd**
+            Log To Console    **gbStart**copilot_status2**splitKeyValue**${system} SAP BASIS Version is ${version} and Support Package is ${support_package}**gbEnd**
         ELSE
-            Log To Console    **gbStart**copilot_status_Client_Standard**splitKeyValue**${system} SAP BASIS Version is ${version} and Support Package is ${support_package}**gbEnd**          
+            Log To Console    **gbStart**copilot_status2**splitKeyValue**${system} SAP BASIS Version is ${version} and Support Package is ${support_package}**gbEnd**          
         END
     ELSE IF    '${version}' >= '740'
-        Log To Console    **gbStart**copilot_status_Client_Standard**splitKeyValue**${system} SAP BASIS Version is ${version}**gbEnd**
+        Log To Console    **gbStart**copilot_status2**splitKeyValue**${system} SAP BASIS Version is ${version}**gbEnd**
     ELSE
-        Log To Console    **gbStart**copilot_status_Client_Standard**splitKeyValue**${system} SAP BASIS Version is not met the requirment. Please Update it.**gbEnd**
+        Log To Console    **gbStart**copilot_status2**splitKeyValue**${system} SAP BASIS Version is not met the requirment. Please Update it.**gbEnd**
     END
 
 Component ST-PI Version
@@ -54,14 +54,12 @@ Component ST-PI Version
     ${support_package}    software support package version    wnd[2]/usr/tabsVERSDETAILS/tabpCOMP_VERS/ssubDETAIL_SUBSCREEN:SAPLOCS_UI_CONTROLS:0301/cntlSCV_CU_CONTROL/shellcont/shell    ST-PI
     IF    '${version}' == '740'
         IF    '${support_package}' == '${symvar('Current_Version')}'
-            Write Excel    ${filepath}    ${sheetname}    4    2    ${ST_PI_Success}
-            Write Excel    ${filepath}    ${sheetname}    4    3    Passed
+            Log To Console    **gbStart**ST_PI_Status**splitKeyValue**ST-PI version is ${version} and support package is ${support_package}**gbEnd**
         ELSE
             Log To Console    **gbStart**ST_PI_Status**splitKeyValue**Technical Prerequisties not met . ST-PI version too low.**gbEnd**            
         END
     ELSE IF    '${version}' >= '740'
-        Write Excel    ${filepath}    ${sheetname}    4    2    ${ST_PI_Success}
-        Write Excel    ${filepath}    ${sheetname}    4    3    Passed
+        Log To Console    **gbStart**ST_PI_Status**splitKeyValue**ST-PI version is ${version} and support package is ${support_package}**gbEnd**
     ELSE
         Log To Console    **gbStart**ST_PI_Status**splitKeyValue**Technical Prerequisties not met . ST-PI version too low.**gbEnd**
     END

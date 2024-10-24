@@ -64,7 +64,7 @@ SAP UI Release
         Write Excel    ${filepath}    ${sheetname}    3    3    Passed
     ELSE
         Write Excel    ${filepath}    ${sheetname}    3    2    ${SAP_UI_fail}
-            Write Excel    ${filepath}    ${sheetname}    3    3    Failed
+        Write Excel    ${filepath}    ${sheetname}    3    3    Failed
     END
 
 Component ST-PI Version
@@ -77,12 +77,16 @@ Component ST-PI Version
             Write Excel    ${filepath}    ${sheetname}    4    2    ${ST_PI_Success}
             Write Excel    ${filepath}    ${sheetname}    4    3    Passed
         ELSE
+            Write Excel    ${filepath}    ${sheetname}    4    2    ${ST_PI_Fail}
+            Write Excel    ${filepath}    ${sheetname}    4    3    Failed
             Log To Console    **gbStart**ST_PI_Status**splitKeyValue**Technical Prerequisties not met . ST-PI version too low.**gbEnd**            
         END
     ELSE IF    '${version}' >= '740'
         Write Excel    ${filepath}    ${sheetname}    4    2    ${ST_PI_Success}
         Write Excel    ${filepath}    ${sheetname}    4    3    Passed
     ELSE
+        Write Excel    ${filepath}    ${sheetname}    4    2    ${ST_PI_Fail}
+        Write Excel    ${filepath}    ${sheetname}    4    3    Failed
         Log To Console    **gbStart**ST_PI_Status**splitKeyValue**Technical Prerequisties not met . ST-PI version too low.**gbEnd**
     END
     Log To Console    **gbStart**ST_PI_version**splitKeyValue**ST-PI ${version}**gbEnd**
