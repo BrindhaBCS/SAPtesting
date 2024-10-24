@@ -54,12 +54,12 @@ Component ST-PI Version
     ${support_package}    software support package version    wnd[2]/usr/tabsVERSDETAILS/tabpCOMP_VERS/ssubDETAIL_SUBSCREEN:SAPLOCS_UI_CONTROLS:0301/cntlSCV_CU_CONTROL/shellcont/shell    ST-PI
     IF    '${version}' == '740'
         IF    '${support_package}' == '${symvar('Current_Version')}'
-            Log To Console    **gbStart**copilot_status3**splitKeyValue**ST-PI version is ${version} and support package is ${support_package}**gbEnd**
+            Log To Console    **gbStart**copilot_status3**splitKeyValue**${system} Pre-requites for ST-PI Component version is met.ST-PI version is ${version} and support package is ${support_package}**gbEnd**
         ELSE
             Log To Console    **gbStart**copilot_status3**splitKeyValue**Technical Prerequisties not met . ST-PI version too low.**gbEnd**            
         END
     ELSE IF    '${version}' >= '740'
-        Log To Console    **gbStart**copilot_status3**splitKeyValue**ST-PI version is ${version} and support package is ${support_package}**gbEnd**
+        Log To Console    **gbStart**copilot_status3**splitKeyValue**${system} Pre-requites for ST-PI Component version is met.ST-PI version is ${version} and support package is ${support_package}**gbEnd**
     ELSE
         Log To Console    **gbStart**copilot_status3**splitKeyValue**Technical Prerequisties not met . ST-PI version too low.**gbEnd**
     END
