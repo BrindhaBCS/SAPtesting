@@ -31,4 +31,5 @@ SE16
     Send Vkey    0 
     Sleep    1
     Take Screenshot    SE163.jpg
-
+    Log To Console    Control Prohibited Passwords Completed
+    

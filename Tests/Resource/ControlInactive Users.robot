@@ -82,7 +82,7 @@ SE16
     Sleep    1
     Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
     Sleep    1
-    Log To Console    Control Inactive Users Complated
+    Log To Console    Control Inactive Users Completed
 
 
 
