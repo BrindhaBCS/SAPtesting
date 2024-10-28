@@ -1,8 +1,8 @@
 *** Settings ***
-Resource    ../Tests/Resource/Strust_Tcode.robot
-Suite Setup    Strust_Tcode.System Logon
-Suite Teardown    Strust_Tcode.System Logout
-Test Tags    Strust_Tcode_DTA
+Resource    ../Tests/Resource/SM12_Tcode.robot
+Suite Setup    SM12_Tcode.System Logon
+Suite Teardown    SM12_Tcode.System Logout
+Test Tags    SM12_Tcode_DTA
 *** Test Cases ***
-Strust_Tcode
-    Strust_Tcode
+SM12_TRANSATION_CODE
+    SM12_TRANSATION_CODE
