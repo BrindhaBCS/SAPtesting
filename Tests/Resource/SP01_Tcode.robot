@@ -67,9 +67,9 @@ SP01_Tcode
         Input Text    wnd[0]/usr/tabsTABSTRIP_BL1/tabpSCR1/ssub%_SUBSCREEN_BL1:RSPOSP01NR:0100/ctxtS_RQCRED-HIGH    ${TO_DATE_SP01}
         Sleep    0.3
         Click Element    element_id=wnd[0]/tbar[1]/btn[8]
-        Click Element    element_id=wnd[1]/usr/btnSEL2
-        Sleep    0.2
-        Send Vkey    vkey_id=8
+        # Click Element    element_id=wnd[1]/usr/btnSEL2
+        # Sleep    0.2
+        # Send Vkey    vkey_id=8
         Sleep    0.3
         Click Element    element_id=wnd[0]/mbar/menu[5]/menu[5]/menu[2]/menu[2]
         Sleep    0.2
