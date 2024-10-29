@@ -36,8 +36,8 @@ ST06_Tcode
         TRY
             Expand St06
             select node    tree_id=wnd[0]/shellcont/shellcont/shell/shellcont[0]/shellcont/shell/shellcont[0]/shell    node_id=${SPACE*10}4
-            ${ans}    Select Node St06    tree_id=wnd[0]/shellcont/shellcont/shell/shellcont[0]/shellcont/shell/shellcont[0]/shell    node_id=${SPACE*10}4
-            Log    ${ans}
+            # ${ans}    Select Node St06    tree_id=wnd[0]/shellcont/shellcont/shell/shellcont[0]/shellcont/shell/shellcont[0]/shell    node_id=${SPACE*10}4
+            # Log    ${ans}
             ${A}    Check Value In Table    table_path=wnd[0]/shellcont/shellcont/shell/shellcont[1]/shell    input_value=Idle    column_name=_DESCR1    second_column_name=_VALUE1
             ${new_value}    Set Variable    ${A}
             Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=E11    value=${new_value}
@@ -55,6 +55,15 @@ ST06_Tcode
             ${current_value}    Read Value From Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=E12
             ${new_value_one}    Set Variable    ${current_value}\n${Data_Two}
             Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=E12    value=${new_value_one}
+            ${pp}    Extract Numeric    data=${D}
+            ${ppp}    Extract Numeric    data=${g}
+            IF    '${pp}' <= '10'
+                Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D12    value=3
+            ELSE IF    '${ppp}' <= '10'
+                Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D12    value=3
+            ELSE
+                Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D12    value=1
+            END
         EXCEPT
             Log To Console    Check System Idle capacity..
         END

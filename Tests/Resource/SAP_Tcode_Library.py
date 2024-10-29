@@ -2197,7 +2197,12 @@ class SAP_Tcode_Library:
             self.session.findById("wnd[1]/usr/btnAPP_FL_SING").press()
         except:
             return[]
-
+    def extract_numeric(self, data):
+        match = re.search(r'\d+', data)
+        if match:
+            return match.group()
+        else:
+            return data
 
 
 
