@@ -25,13 +25,6 @@ System Logon
 System Logout
     Run Transaction   /nex
 SM51_Tcode
-    # Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D8    value=3
-    # Send Vkey    vkey_id=0
-    # Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D9    value=3
-    # Send Vkey    vkey_id=0
-    # Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D10    value=3
-    # Send Vkey    vkey_id=0
-
     ${Tcode}    Read Value From Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=B8
     Clear Excel Cell    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=E8
     IF  '${Tcode}' != 'SM51'
@@ -64,6 +57,11 @@ SM51_Tcode
                 ${current_value}    Read Value From Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=E8
                 ${new_value}    Set Variable    ${current_value}\n${value}
                 Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=E8    value=${new_value}
+                IF    '${status}' == 'Active'
+                    Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D8    value=1
+                ELSE
+                    Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D8    value=3
+                END
             END
         END
     END

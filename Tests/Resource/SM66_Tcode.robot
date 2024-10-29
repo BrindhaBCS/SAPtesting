@@ -47,6 +47,12 @@ SM66_Tcode
                 ${current_value}    Read Value From Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=E9
                 ${new_value}    Set Variable    ${current_value}\n${value}
                 Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=E9    value=${new_value}
+                IF    '${status}' == 'Running'
+                    Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D9    value=1
+                ELSE
+                    Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D9    value=3
+                END
+                
             END
         END
     END
