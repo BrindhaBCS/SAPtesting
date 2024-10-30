@@ -65,3 +65,4 @@ SM51_Tcode
             END
         END
     END
+    Delete Specific File    file_path=C:\\tmp\\SM51.txt

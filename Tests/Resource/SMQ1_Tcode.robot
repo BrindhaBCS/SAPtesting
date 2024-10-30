@@ -43,6 +43,8 @@ SMQ1_Tcode
         Log    ${check_value}  
         IF  '${check_value}' == 'No queues with errors found'
             Log To Console    No queues with errors found
+            Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=E20    value=No queues with errors found
+            Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D20    value=1
         ELSE 
             Click Element    wnd[0]/mbar/menu[4]/menu[5]/menu[2]/menu[1]
             Sleep    0.5
@@ -59,5 +61,8 @@ SMQ1_Tcode
             Sleep    0.5
             ${log}    Extract SmQ1    file_path=C:\\tmp\\SMQ1.txt
             Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=E20    value=${log}
+            Sleep    0.4
+            Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D20    value=3
         END
     END
+    Delete Specific File    file_path=C:\\tmp\\SMQ1.txt

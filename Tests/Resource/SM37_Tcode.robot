@@ -50,6 +50,8 @@ SM37_Tcode
         ${No_maore_data}    Get Value    element_id=wnd[0]/sbar/pane[0]
         IF  '${No_maore_data}' == 'No job matches the selection criteria'
             Log To Console    No job matches the selection criteria 
+            Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=E17    value=No job matches the selection criteria 
+            Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D17    value=1
         ELSE
             Click Element    element_id=wnd[0]/mbar/menu[5]/menu[5]/menu[2]/menu[2]
             Sleep    0.5
@@ -65,5 +67,8 @@ SM37_Tcode
             ${one_two}    Remove Duplicates    ${one}
             ${one_two_t}    Convert To String    item=${one_two}
             Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=E17    value=${one_two_t}
+            Sleep    0.4
+            Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D17    value=3
         END
     END
+    Delete Specific File    file_path=C:\\tmp\\SM37.txt

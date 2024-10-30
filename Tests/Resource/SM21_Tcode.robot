@@ -55,6 +55,6 @@ SM21_Tcode
                 ${new_value}    Set Variable    ${current_value}\n${value}
                 Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=E10    value=${new_value}
             END
-            Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D9    value=3
+            Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D10    value=3
         END
     END

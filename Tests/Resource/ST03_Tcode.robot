@@ -50,4 +50,5 @@ ST03_Tcode
         ${cur}    Read Value From Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=E25
         ${write}    Set Variable    ${cur}\n${Time_o}
         Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=E25    value=${write}
+        Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D25   value=1
     END
