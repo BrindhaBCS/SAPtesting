@@ -3,6 +3,7 @@ Library    Process
 Library    SAP_Tcode_Library.py
 *** Variables ***
 ${Input_Invoice_doc}    ${symvar('Input_Invoice_doc')}
+${Excel_path}    C:\\tmp\\${symvar('job_id')}\\MRBR_Block.xlsx
 *** Keywords ***
 System Logon
     Start Process     ${symvar('SAP_SERVER')}
@@ -31,15 +32,15 @@ MRBR_Excel_Export
     Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    MRBR_Block
     Click Element    wnd[1]/tbar[0]/btn[20]
     clear field text    wnd[1]/usr/ctxtDY_PATH
-    Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp
+    Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp\\${symvar('job_id')}\\
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    0.5
-    Process Excel    file_path=C:\\tmp\\MRBR_Block.xlsx    sheet_name=Sheet1    column_index=0
+    Process Excel    file_path=${Excel_path}    sheet_name=Sheet1    column_index=0
     Sleep    0.5
-    ${json}    Excel To Json    excel_file=C:\\tmp\\MRBR_Block.xlsx     json_file=C:\\tmp\\MRBR_Block.json
+    ${json}    Excel To Json    excel_file=${Excel_path}     json_file=C:\\tmp\\${symvar('job_id')}\\MRBR_Block.json
     log    ${json}
     Log To Console    **gbStart**copilot_Json**splitKeyValue**${json}**gbEnd**
     log to console    ${json}  
     Sleep    0.5
-    Delete Specific File    file_path=C:\\tmp\\MRBR_Block.json
-    Delete Specific File    file_path=C:\\tmp\\MRBR_Block.xlsx
+    Delete Specific File    file_path=C:\\tmp\\${symvar('job_id')}\\MRBR_Block.json
+    Delete Specific File    file_path=C:\\tmp\\${symvar('job_id')}\\MRBR_Block.xlsx
