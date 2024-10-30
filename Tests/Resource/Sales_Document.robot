@@ -31,23 +31,23 @@ Sales Document with CreditBlocks
     Select Radio Button    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[2,0]
     Sleep    0.5 seconds
     Click Element    wnd[1]/tbar[0]/btn[0]
-    Run Keyword And Ignore Error    Delete Specific File    file_path=C:\\tmp\\${symvar('job_id')}\\SalesDocument.xlsx
+    Run Keyword And Ignore Error    Delete Specific File    file_path=C:\\tmp\\SalesDocument.xlsx
     Sleep    0.5 seconds
     clear field text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME
     Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    SalesDocument
     Sleep    0.5 seconds
     Click Element    wnd[1]/tbar[0]/btn[20]
     clear field text    wnd[1]/usr/ctxtDY_PATH
-    Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp\\${symvar('job_id')}\\
+    Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    0.5 seconds
     Run Keyword And Ignore Error    Click Element    wnd[1]/tbar[0]/btn[12]
     Sleep    0.5
-    Process Excel    file_path=C:\\tmp\\${symvar('job_id')}\\SalesDocument.xlsx    sheet_name=Sheet1
+    Process Excel    file_path=C:\\tmp\\SalesDocument.xlsx    sheet_name=Sheet1
     Sleep    0.5
-    ${json}    Excel To Json    excel_file=C:\\tmp\\${symvar('job_id')}\\SalesDocument.xlsx     json_file=C:\\tmp\\${symvar('job_id')}\\SalesDocument.json
+    ${json}    Excel To Json    excel_file=C:\\tmp\\SalesDocument.xlsx     json_file=C:\\tmp\\SalesDocument.json
     log    ${json}
     Log To Console    **gbStart**copilot_Sales_Document_status**splitKeyValue**${json}**gbEnd**
     log to console    ${json}  
     Sleep    0.5
-    Delete Specific File    file_path=C:\\tmp\\${symvar('job_id')}\\SalesDocument.json
+    Delete Specific File    file_path=C:\\tmp\\SalesDocument.json
