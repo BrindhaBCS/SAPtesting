@@ -44,8 +44,6 @@ Billing Documents_2 Not Posted to Accounting
             Log To Console    **gbStart**Copilot_Status**splitKeyValue**${symvar('Enter_Bill_Document')} Does't Exist**gbEnd**
         END
     END    
-    
-    Run Keyword And Ignore Error    Delete Specific File    C:\\tmp\\${symvar('job_id')}\\biling_documents.xlsx
    
 
 System Logout

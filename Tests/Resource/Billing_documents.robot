@@ -65,6 +65,7 @@ Billing Documents Not Posted to Accounting
     Close Current Excel Document
     Sleep    0.5
     Delete Specific File    C:\\tmp\\${symvar('job_id')}\\biling_documents.json
+    Run Keyword And Ignore Error    Delete Specific File    C:\\tmp\\${symvar('job_id')}\\biling_documents.xlsx
         
 
 System Logout
