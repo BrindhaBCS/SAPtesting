@@ -23,7 +23,7 @@ System Logon
 
 Billing Documents Not Posted to Accounting
     Run Transaction    VFX3
-    Run Keyword And Ignore Error    Delete Specific File    C:\\tmp\\biling_documents.xlsx
+    Run Keyword And Ignore Error    Delete Specific File    C:\\tmp\\${symvar('job_id')}\\biling_documents.xlsx
 	Select Checkbox    wnd[0]/usr/chkRFBSK_AB	
 	Input Text	wnd[0]/usr/ctxtVKORG	${symvar('sales_organation')}
 	Input Text	wnd[0]/usr/txtERNAM-LOW    ${symvar('create_by')}
@@ -42,7 +42,7 @@ Billing Documents Not Posted to Accounting
 	Click Element	wnd[1]/tbar[0]/btn[20]
 	Sleep	0.5
     Clear Field Text    wnd[1]/usr/ctxtDY_PATH
-    Input Text	wnd[1]/usr/ctxtDY_PATH	C:\\tmp
+    Input Text	wnd[1]/usr/ctxtDY_PATH	C:\\tmp\\${symvar('job_id')}\\
 	Sleep	0.5
 	Set Focus	wnd[1]/usr/ctxtDY_PATH
 	Sleep	0.5
@@ -50,21 +50,21 @@ Billing Documents Not Posted to Accounting
 	Sleep	0.5
 
 
-    Open Excel Document    C:\\tmp\\biling_documents.xlsx    Sheet1
+    Open Excel Document    C:\\tmp\\${symvar('job_id')}\\biling_documents.xlsx    Sheet1
     ${column_data}=    Read Excel Column    10    sheet_name=Sheet1
     
     ${Cleaned_List}=    Clean List    ${column_data}     
     Log    ${Cleaned_List}
     ${sliced_data} =    Evaluate    [int(x) for x in ${Cleaned_List}[1:]]
     Log    ${sliced_data}
-    Process Excel    file_path=C:\\tmp\\biling_documents.xlsx    sheet_name=Sheet1    column_index=0
+    Process Excel    file_path=C:\\tmp\\${symvar('job_id')}\\biling_documents.xlsx    sheet_name=Sheet1    column_index=0
     Sleep    2
-    ${json}    Excel To Json    excel_file=C:\\tmp\\biling_documents.xlsx   json_file=C:\\tmp\\biling_documents.json  
+    ${json}    Excel To Json    excel_file=C:\\tmp\\${symvar('job_id')}\\biling_documents.xlsx   json_file=C:\\tmp\\${symvar('job_id')}\\biling_documents.json  
     Log    ${json} 
     Log To Console    **gbStart**Copilot_Status_json**splitKeyValue**${json}**gbEnd**
     Close Current Excel Document
     Sleep    0.5
-    Delete Specific File    C:\\tmp\\biling_documents.json
+    Delete Specific File    C:\\tmp\\${symvar('job_id')}\\biling_documents.json
         
 
 System Logout

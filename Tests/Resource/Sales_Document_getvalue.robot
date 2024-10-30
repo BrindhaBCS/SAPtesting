@@ -59,4 +59,4 @@ Sales Document get value
         END
     END
     Sleep    0.5
-    Delete Specific File    C:\\tmp\\SalesDocument.xlsx
+    Delete Specific File    C:\\tmp\\${symvar('job_id')}\\SalesDocument.xlsx

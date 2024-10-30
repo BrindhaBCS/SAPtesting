@@ -26,7 +26,7 @@ System Logout
 MIR5 Parked details
     Run Transaction    /nMIR5
     Sleep    0.5 seconds
-    Input Text    wnd[0]/usr/ctxtSO_BUKRS-LOW     bc01
+    Input Text    wnd[0]/usr/ctxtSO_BUKRS-LOW     ${symvar('Parked_Company_Code')}
     Sleep    0.5 seconds
     Unselect Checkbox    wnd[0]/usr/chkP_IV_OV 
     Sleep    0.5 seconds
@@ -44,17 +44,17 @@ MIR5 Parked details
     Sleep    0.5 seconds
     Click Element    wnd[1]/tbar[0]/btn[20]
     clear field text    wnd[1]/usr/ctxtDY_PATH
-    Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp
+    Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp\\${symvar('job_id')}\\
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    0.5 seconds
     Run Keyword And Ignore Error    Click Element    wnd[1]/tbar[0]/btn[12]
     Sleep    0.5 seconds
-    Process Excel    file_path=C:\\tmp\\ParkedDetail.xlsx    sheet_name=Sheet1    column_index=0
+    Process Excel    file_path=C:\\tmp\\${symvar('job_id')}\\ParkedDetail.xlsx    sheet_name=Sheet1    column_index=0
     Sleep    0.5 seconds
-    ${json}    Excel To Json    excel_file=C:\\tmp\\ParkedDetail.xlsx     json_file=C:\\tmp\\ParkedDetail.json
+    ${json}    Excel To Json    excel_file=C:\\tmp\\${symvar('job_id')}\\ParkedDetail.xlsx     json_file=C:\\tmp\\${symvar('job_id')}\\ParkedDetail.json
     Log    ${json}
     Log To Console    **gbStart**copilot_Parked_Document_List**splitKeyValue**${json}**gbEnd**
     Log To Console    ${json}  
     Sleep    0.5 seconds
-    Delete Specific File    file_path=C:\\tmp\\ParkedDetail.json
-    Delete Specific File    file_path=C:\\tmp\\ParkedDetail.xlsx
+    Delete Specific File    file_path=C:\\tmp\\${symvar('job_id')}\\ParkedDetail.json
+    Delete Specific File    file_path=C:\\tmp\\${symvar('job_id')}\\ParkedDetail.xlsx
