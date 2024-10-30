@@ -34,7 +34,7 @@ Sales Document get value
     # ${sliced_data} =    Evaluate    [int(x) for x in ${sliced}[1:]]
     # Log    ${sliced}
     # Log To Console    ${sliced}
-    ${sliced}    Evaluate    ${column_data}[1:]
+    ${sliced}    Set Variable    ${column_data}[1:]
     ${i}    Get Length   ${sliced}
     Log    ${i}
     Close Current Excel Document
