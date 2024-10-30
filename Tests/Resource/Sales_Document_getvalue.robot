@@ -27,7 +27,7 @@ Sales Document get value
     Sleep    0.5
     Click Element    wnd[0]/tbar[1]/btn[8]
     Sleep    0.5
-    Open Excel Document    C:\\tmp\\SalesDocument.xlsx    Sheet1
+    Open Excel Document    C:\\tmp\\${symvar('job_id')}\\SalesDocument.xlsx    Sheet1
     ${column_data}=    Read Excel Column    5    sheet_name=Sheet1
     ${sliced}=    Evaluate    [item.strip() for item in ${column_data}[1:] if item.strip()] 
     Log    ${sliced}
