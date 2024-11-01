@@ -59,4 +59,5 @@ SM59_Transation_code
             ${combined_values}    Set Variable    ${combined_values}${row_values}\n
         END
         Write Value To Excel    ${Excel_file_path}    ${Excel_Sheet}    E22    ${combined_values}
+        Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D22   value=1
     END

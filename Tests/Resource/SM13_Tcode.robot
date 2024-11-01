@@ -52,4 +52,5 @@ SM13_Transation_code
         ${total_row}    Get Row Count  wnd[0]/usr/cntlGRID1/shellcont/shell   
         ${row}    Set Variable    ${total_row} updated record found
         Write Value To Excel    ${Excel_file_path}    ${Excel_Sheet}    E15    ${row}
+        Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D15   value=1
     END

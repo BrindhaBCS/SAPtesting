@@ -43,8 +43,10 @@ SMLG_Transation_code
         IF    ${response_time} > 100
             Log To Console    Responce time is more than 100
             Write Value To Excel    ${Excel_file_path}    ${Excel_Sheet}    E13    ${response_time}
+            Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D13   value=1
         ELSE
             Log To Console    Responce time is less that 100 
             Write Value To Excel    ${Excel_file_path}    ${Excel_Sheet}    E13    ${response_time}
+            Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D13   value=3
         END   
-    END
+    END  

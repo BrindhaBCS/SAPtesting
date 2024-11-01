@@ -56,6 +56,11 @@ SP01_Tcode
         Click Element    wnd[1]/tbar[0]/btn[0]
         Sleep    0.8
         ${res}    Result Output Request Sp01   file_path=C:\\tmp\\SP01.txt
+        IF    '${res}' == 'List does not contain any data'
+            Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D19   value=1
+        ELSE
+            Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D19   value=3
+        END
         Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=E19    value=${res}
         Click Element    element_id=wnd[0]/tbar[0]/btn[3]
         Click Element    element_id=wnd[0]/usr/tabsTABSTRIP_BL1/tabpSCR1
@@ -67,9 +72,9 @@ SP01_Tcode
         Input Text    wnd[0]/usr/tabsTABSTRIP_BL1/tabpSCR1/ssub%_SUBSCREEN_BL1:RSPOSP01NR:0100/ctxtS_RQCRED-HIGH    ${TO_DATE_SP01}
         Sleep    0.3
         Click Element    element_id=wnd[0]/tbar[1]/btn[8]
-        # Click Element    element_id=wnd[1]/usr/btnSEL2
-        # Sleep    0.2
-        # Send Vkey    vkey_id=8
+        Run Keyword And Ignore Error    Click Element    element_id=wnd[1]/usr/btnSEL2
+        Sleep    0.2
+        Run Keyword And Ignore Error    Send Vkey    vkey_id=8
         Sleep    0.3
         Click Element    element_id=wnd[0]/mbar/menu[5]/menu[5]/menu[2]/menu[2]
         Sleep    0.2
@@ -85,4 +90,12 @@ SP01_Tcode
         ${current_data}    Read Value From Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=E19
         ${new}    Set Variable    ${current_data}\n${resq}
         Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=E19    value=${new}
+        ${resq_cleaned}    Arrange Single Line Sentence    multi_line_text=${resq}
+        IF    '${resq_cleaned}' == 'List does not contain any data'
+            Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D19   value=1
+        ELSE
+            Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D19   value=3
+        END
     END
+    Delete Specific File    file_path=C:\\tmp\\SP01_Two.txt
+    Delete Specific File    file_path=C:\\tmp\\SP01.txt

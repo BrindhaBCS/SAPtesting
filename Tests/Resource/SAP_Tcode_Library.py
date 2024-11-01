@@ -2203,6 +2203,18 @@ class SAP_Tcode_Library:
             return match.group()
         else:
             return data
+    def arrange_single_line_sentence(self, multi_line_text):
+        single_line = multi_line_text.replace('\n', ' ').replace('\r', ' ')
+        return single_line
+    def db12_disk_calculate(self, data):
+        used_space, total_space = map(lambda x: float(x.replace(',', '.').split()[0]), data.split('/'))
+        available_space = total_space - used_space
+        percentage_available = (available_space / total_space) * 100
+        
+        if percentage_available < 10:
+            return None
+        else:
+            return f"Free space: {available_space}"
 
 
 

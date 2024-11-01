@@ -42,9 +42,11 @@ ST02_Transation_code
         Log To Console    ${swape_size}
         IF    ${swape_size} > 0    
             Log To Console    Swap size exceeded 0
+            Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D24   value=3
         ELSE    
             Log To Console    Swap size is within acceptable limits.
             ${current_value}    Read Value From Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=E124
             Write Value To Excel    ${Excel_file_path}    ${Excel_Sheet}    E24    ${current_value}\n${swape_size}
+            Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D24   value=1
         END
     END

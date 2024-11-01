@@ -43,4 +43,5 @@ ST04_Transation_code
         ${log_volume_size}    Get Value    wnd[0]/usr/txtHDB_OVERVIEW-DB_STORAGE_LOG
         Log To Console    ${log_volume_size}
         Write Value To Excel    ${Excel_file_path}    ${Excel_Sheet}    E26    ${data_volume_size}\n${log_volume_size}
+        Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D26   value=1
     END

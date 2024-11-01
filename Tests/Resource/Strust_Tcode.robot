@@ -43,6 +43,15 @@ Strust_Tcode
                 ${Owner}    Get Sap Table Value    table_id=wnd[0]/usr/cntlPK_CTRL/shellcont/shell    row_num=${row}   column_id=SUBJECT
                 ${FromDate}    Get Sap Table Value    table_id=wnd[0]/usr/cntlPK_CTRL/shellcont/shell    row_num=${row}   column_id=DATEFROM
                 ${ToDate}    Get Sap Table Value    table_id=wnd[0]/usr/cntlPK_CTRL/shellcont/shell    row_num=${row}   column_id=DATETO
+
+                ${current_date}=   Get Current Date   result_format=%d.%m.%Y
+                ${compare_date}=    Convert Date   ${ToDate}   date_format=%d.%m.%Y
+                ${reference_date}=    Convert Date   ${current_date}   date_format=%d.%m.%Y
+                IF    '${ToDate}' >= '${reference_date}'
+                    Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D29   value=3
+                ELSE
+                    Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D29   value=1
+                END
                 ${Output_Log}    Set Variable    Owner:${Owner} FromDate:${FromDate} ToDate:${ToDate}
                 ${current_value}    Read Value From Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=E29
                 ${value}    Set Variable    ${current_value}\n${Output_Log}

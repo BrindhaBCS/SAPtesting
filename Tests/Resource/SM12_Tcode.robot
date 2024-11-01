@@ -55,4 +55,5 @@ SM12_TRANSATION_CODE
             ${combined_lock_time}=    Set Variable    ${combined_lock_time}\n${lock_time_value}
         END
         Write Value To Excel    ${Excel_file_path}    ${Excel_Sheet}    E14    ${combined_lock_time}
+        Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D14   value=1
     END

@@ -42,6 +42,7 @@ SMICM_Tcode
             Click Element    element_id=wnd[0]/tbar[1]/btn[29]
             ${value}    Get Value    element_id=wnd[1]/usr/ssub%_SUBSCREEN_FREESEL:SAPLSSEL:1105/ctxt%%DYN001-LOW
             IF  '${value}' == '@01@'
+                Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D16   value=1
                 Click Element   element_id=wnd[1]/tbar[0]/btn[0]
                 ${result}    Set Variable    ${Ring}: Active
                 Log To Console    message=${result}
@@ -53,6 +54,9 @@ SMICM_Tcode
                     ${res}    Set Variable    ${Iron}\n${result}
                     Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=E16    value=${res}
                 END
+            ELSE
+                Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=E16    value=No Active Request is there.
+                Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D16   value=3
             END
             ${COLUMN}    Evaluate    ${COLUMN} + 1
         END

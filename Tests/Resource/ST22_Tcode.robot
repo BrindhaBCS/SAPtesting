@@ -52,6 +52,7 @@ ST22_Transation_code
                 Log To Console    Label value at column ${i}: ${value}
                 ${current_value}    Read Value From Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=E18
                 Write Value To Excel    ${Excel_file_path}    ${Excel_Sheet}    E18    ${current_value}\n${value}
+                Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D18   value=1
             EXCEPT
                 Continue For Loop
             END 

@@ -37,6 +37,12 @@ DB12_Tcode
         Double Click Sap Shell Item    table_shell=wnd[0]/shellcont[1]/shell/shellcont[1]/shell    row_number=101    column=Task
         ${sent}    Get Value    element_id=wnd[0]/usr/txtHDB_OVERVIEW-LABEL_DB_STORAGE_DATA
         ${sent_value}    Get Value    element_id=wnd[0]/usr/txtHDB_OVERVIEW-DB_STORAGE_DATA
+        ${ra}    Db12 Disk Calculate    data=${sent_value}
+        IF    '${ra}' =='None'
+            Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D28   value=3
+        ELSE
+            Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=D28   value=1
+        END
         ${sent_one}    Get Value    element_id=wnd[0]/usr/txtHDB_OVERVIEW-LABEL_DB_STORAGE_LOG
         ${sent_value_one}    Get Value    element_id=wnd[0]/usr/txtHDB_OVERVIEW-DB_STORAGE_LOG
         ${sent_two}    Get Value    element_id=wnd[0]/usr/txtHDB_OVERVIEW-LABEL_DB_STORAGE_TRACE
