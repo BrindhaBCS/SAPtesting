@@ -25,6 +25,8 @@ System Logon
 System Logout
     Run Transaction   /nex
 SM51_Tcode
+    ${date}    Get Current Date    result_format=%d.%m.%Y
+    Write Value To Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=A1    value=${date}
     ${Tcode}    Read Value From Excel    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=B8
     Clear Excel Cell    file_path=${Excel_file_path}    sheet_name=${Excel_Sheet}    cell=E8
     IF  '${Tcode}' != 'SM51'
