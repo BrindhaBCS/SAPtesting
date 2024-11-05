@@ -107,8 +107,8 @@ Access Batch Job Management
     Sleep    1
     Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    3
-    close open excel    ${file_loc}
-    Sleep    2
+    # close open excel    ${file_loc}
+    # Sleep    2
     Click Element    wnd[0]/mbar/menu[0]/menu[3]/menu[1]
     Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    1
