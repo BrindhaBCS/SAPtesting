@@ -34,8 +34,8 @@ System Logon
     Open Connection    ${symvar('MCR_SAP_connection')}    
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('MCR_Client_Id')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('MCR_User_Name')}    
-    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('MCR_User_Password')}
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{MCR_User_Password}
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('MCR_User_Password')}
+    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{MCR_User_Password}
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
     Sleep   1
@@ -107,7 +107,8 @@ Access Batch Job Management
     Sleep    1
     Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    3
-    # close open excel    ${file_loc}
+    # Close All Excel Documents
+    # Close Open Excel    ${file_loc}
     # Sleep    2
     Click Element    wnd[0]/mbar/menu[0]/menu[3]/menu[1]
     Click Element    wnd[1]/tbar[0]/btn[0]
@@ -120,4 +121,4 @@ Access Batch Job Management
     Click Element    wnd[1]/tbar[0]/btn[0]
     Log to console    Req 7 completed
 
-
+    # ########### MCR Requirement 7 Completed #######################
