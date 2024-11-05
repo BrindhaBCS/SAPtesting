@@ -12,7 +12,7 @@ ${local file continue}    wnd[1]/tbar[0]/btn[0]
 ${Replace}    wnd[1]/tbar[0]/btn[11]
 ${Req_ResultSE16_Filename}    Control SAP developers.xls
 ${FILE1}        C:\\tmp\\Control SAP developers.xlsx
-${SHEET1}       Control SAP Developers
+${SHEET1}       Control SAP developers
 ${COL1_INDEX}   1
 ${SKIPROWS}     4
 ${FILE2}        C:\\tmp\\All users.XLSX
