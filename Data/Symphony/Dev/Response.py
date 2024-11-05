@@ -1,0 +1,8 @@
+Text_File_Name = "$Text_File_Name"
+URL = "$URL"
+User_Name = "$User_Name"
+Passcode = "$Passcode"
+From_email = "$From_email"
+From_user_passcode = "$From_user_passcode"
+To_email = "$To_email"
+Subject = "$Subject"

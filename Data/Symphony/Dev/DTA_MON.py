@@ -1,6 +1,0 @@
-SAP_SERVER = "$SAP_SERVER"
-DTA_Connection = "$DTA_Connection"
-DTA_Client_Id = "$DTA_Client_Id"
-DTA_User_Name = "$DTA_User_Name"
-Excel_Name = "$Excel_Name"
-Sheet_Name = "$Sheet_Name"

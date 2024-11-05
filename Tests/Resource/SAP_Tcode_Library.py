@@ -18,6 +18,9 @@ from email.mime.base import MIMEBase
 from email import encoders
 import json
 from openpyxl.utils import get_column_letter
+import  requests
+import win32com.client as win32
+
 
 
 class SAP_Tcode_Library:
@@ -2215,6 +2218,86 @@ class SAP_Tcode_Library:
             return None
         else:
             return f"Free space: {available_space}"
+    def response_check(self, url, user, passcode):
+        login_data = {
+            "username": user,
+            "password": passcode,
+        }
+        try:
+            start_time = time.time()
+            response = requests.get(url, auth=(user, passcode))
+            end_time = time.time()
+            response_time = end_time - start_time
+            if response.status_code == 200:
+                timestamp = response.headers.get("Date", "Timestamp")
+                print(f"Timestamp: {timestamp}")
+                print(f"Response Time: {response_time:.4f} seconds")
+                return f"Response code: {response.status_code}",f"Time stamp: {timestamp}"
+            else:
+                print(f"Failed to connect url check your status code . Status code: {response.status_code}")
+        except requests.exceptions.RequestException as e:
+            print(f"An error occurred: {e}")
+            
+    def convert_xls_to_xlsx(self, xls_file, xlsx_file):
+        excel = win32.Dispatch('Excel.Application')
+        wb = None  
+        try:
+            wb = excel.Workbooks.Open(xls_file)
+            wb.SaveAs(xlsx_file, FileFormat=51) 
+            print(f"Successfully converted {xls_file} to {xlsx_file}.")
+        except Exception as e:
+            print(f"Error: {e}")
+        finally:
+            if wb:
+                wb.Close()
+            excel.Quit()
+    def response_time(self, url, user, passcode):
+        login_data = {
+            "username": user,
+            "password": passcode,
+        }
+        try:
+            start_time = time.time()
+            response = requests.get(url, auth=(user, passcode))
+            end_time = time.time()
+            response_time = end_time - start_time
+            return f"{response_time:.4f}"
+        except requests.exceptions.RequestException as e:
+            print(f"An error occurred: {e}")
+    def send_mail(self, from_email, password, to_mail, subject, content, file_path=None):
+        HOST = "smtp-mail.outlook.com"
+        PORT = 587
+        message = MIMEMultipart()
+        message['From'] = from_email
+        message['To'] = ", ".join(to_mail)
+        message['Subject'] = subject
+
+        message.attach(MIMEText(content, 'plain'))
+
+        if file_path and os.path.isfile(file_path):
+            with open(file_path, "rb") as attachment:
+                part = MIMEBase("application", "octet-stream")
+                part.set_payload(attachment.read())
+                encoders.encode_base64(part)
+                part.add_header(
+                    "Content-Disposition",
+                    f"attachment; filename= {os.path.basename(file_path)}",
+                )
+                message.attach(part)
+
+        try:
+            smtp = smtplib.SMTP(HOST, PORT)
+            smtp.ehlo()
+            smtp.starttls()
+            smtp.login(from_email, password)
+            smtp.sendmail(from_email, to_mail, message.as_string())
+            print("[*] Email sent successfully!")
+        except smtplib.SMTPAuthenticationError:
+            print("[!] Authentication error: Please check your email or password.")
+        except Exception as e:
+            print(f"[!] An error occurred: {e}")
+        finally:
+            smtp.quit()
 
 
 
