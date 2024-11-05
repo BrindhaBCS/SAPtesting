@@ -1494,7 +1494,7 @@ class SAP_Tcode_Library:
     def req7_usernames_extract(self, file_loc):
         df = pd.read_excel(file_loc, header=None, usecols=[0])
 
-        with open("output_req7.txt", 'w') as f:
+        with open("C:\\tmp\\output_req7.txt", 'w') as f:
             dfAsString = df.to_string(header=None, index=False)
             f.write(dfAsString)
 
