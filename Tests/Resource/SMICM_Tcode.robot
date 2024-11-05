@@ -35,7 +35,7 @@ SMICM_Tcode
         Click Element    element_id=wnd[0]/mbar/menu[2]/menu[6]
         Sleep    0.2
         ${COLUMN}    Evaluate   5
-        WHILE    ${COLUMN} < 8
+        WHILE    ${COLUMN} <=7
             ${Ring}    Get Value    element_id=wnd[0]/usr/lbl[106,${COLUMN}]
             Set Focus    wnd[0]/usr/lbl[106,${COLUMN}]
             Sleep    0.2
