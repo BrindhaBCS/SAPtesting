@@ -10,7 +10,7 @@ ${local file}    wnd[0]/tbar[1]/btn[45]
 ${Text with tabs Button}    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[1,0]
 ${local file continue}    wnd[1]/tbar[0]/btn[0]
 ${Replace}    wnd[1]/tbar[0]/btn[11]
-${Req_ResultSAPDevelopers_Filename}    Control SAP developers.xls
+${Req_ResultSE16_Filename}    Control SAP developers.xls
 ${FILE1}        C:\\tmp\\Control SAP developers.xlsx
 ${SHEET1}       Control SAP Developers
 ${COL1_INDEX}   1
@@ -64,7 +64,7 @@ Control SAP developers
     Click Element    ${local file continue}
     Sleep    1
     Input Text    wnd[1]/usr/ctxtDY_PATH    ${symvar('MCR_Results_Directory_Path')}
-    Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${Req_ResultSAPDevelopers_Filename}
+    Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${Req_ResultSE16_Filename}
     Sleep    1
     Click Element    ${Replace}
     Sleep    1
