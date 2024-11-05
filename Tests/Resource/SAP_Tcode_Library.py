@@ -1775,7 +1775,38 @@ class SAP_Tcode_Library:
                     print(f"Skipped: {file_name} - Not a valid image file or format not supported. Error: {e}")
     
 
-    
+    def close_open_excel(self, file_path):
+        # Initialize the Excel application
+        try:
+            excel = win32.Dispatch("Excel.Application")
+        except Exception as e:
+            print(f"Failed to connect to Excel: {e}")
+            return
+
+        # Make sure Excel is open and visible for debugging purposes
+        excel.Visible = True
+
+        try:
+            # Check if Excel Workbooks are accessible
+            if excel.Workbooks.Count > 0:
+                # Iterate through open workbooks to find the file
+                for workbook in excel.Workbooks:
+                    if workbook.FullName.lower() == file_path.lower():
+                        workbook.Close(SaveChanges=False)  # Close without saving
+                        break
+
+                # Optionally quit Excel if no other workbooks are open
+                if excel.Workbooks.Count == 0:
+                    excel.Quit()
+            else:
+                print("No open workbooks found.")
+
+        except AttributeError as e:
+            print(f"Error accessing Workbooks: {e}")
+
+        finally:
+            # Release resources
+            excel = None
     
 
 

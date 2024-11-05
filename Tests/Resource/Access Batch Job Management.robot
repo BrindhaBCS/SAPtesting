@@ -2,7 +2,7 @@
 Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
-
+Library    ExcelLibrary
  
 *** Variables ***    
 ${tree_id}      wnd[0]/usr/cntlTREE_CONTROL_CONTAINER/shellcont/shell
@@ -18,25 +18,24 @@ ${link_id8_Req8}    03${SPACE*2}2${SPACE*6}7
 ${link_id9}    04${SPACE*2}3${SPACE*6}8
 ${link_id9_Req8}    04${SPACE*2}2${SPACE*6}8
 #${link_id10}    1
-${Results_Directory_Path}    C:\\Users\\sride\\Documents\\Results\\
-${Req_Result7_Filename}       Batch_Job_Users.xlsx
+${Req_Result7_Filename}       Batch_Job_Users.xls
 ${Req_Result7_usernames_Filename}    Req7_users_filter.xlsx
-${Req7_usernames_path}        C:\\Robot_SAP\\SAPtesting\\
+${Req7_usernames_path}        C:\\tmp
 ${Req7_usernames_textfile}    output_req7.txt
-${directory}    C://Robot_SAP//SAPtesting//Output//pabot_results//0
-${file_loc}      C://Users//sride//Documents//Results//Batch_Job_Users.xlsx
-${images_directory}    C://Robot_SAP//SAPtesting//Output//pabot_results//0//
+${file_loc}      C:\\tmp\\Batch_Job_Users.xls
+${Replace}    wnd[1]/tbar[0]/btn[11]
+
 
 *** Keywords ***
 System Logon
     Start Process     ${symvar('SAP_SERVER')}     
-    Sleep    10s
+    Sleep    5
     Connect To Session
-    Open Connection    ${symvar('SAP_connection')}    
-    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('Client_Id')}
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('User_Name')}    
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('User_Password')}
-    #Input Password   wnd[0]/usr/pwdRSYST-BCODE    %('User_Password')
+    Open Connection    ${symvar('MCR_SAP_connection')}    
+    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('MCR_Client_Id')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('MCR_User_Name')}    
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('MCR_User_Password')}
+    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{MCR_User_Password}
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
     Sleep   1
@@ -46,7 +45,7 @@ System Logout
     Sleep    5
     Sleep    10
 
-Executing MCR_Req7
+Access Batch Job Management
     #Run the Tcode SUIM
     Maximize Window
     Run Transaction     SUIM
@@ -85,13 +84,14 @@ Executing MCR_Req7
     #Select to generate it
     Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    1
+
     #Enter the Directory path and Results file name to store the Results.
-    Input Text    wnd[1]/usr/ctxtDY_PATH    ${Results_Directory_Path}
+    Input Text    wnd[1]/usr/ctxtDY_PATH    ${symvar('MCR_Results_Directory_Path')}
     Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${Req_Result7_Filename}
     # Generate the Results file.
-    Click Element    wnd[1]/tbar[0]/btn[0]
+    Click Element    ${Replace}
     Sleep    1
-    Log To Console    Requirement 7 completed
+    Log To Console    Access Batch Job Management completed
     Req7 usernames extract    ${file_loc}
     Click Element    wnd[0]/tbar[0]/btn[3]
     Sleep    1
@@ -104,16 +104,20 @@ Executing MCR_Req7
     Click Element    wnd[1]/tbar[0]/btn[8]
     Sleep    1
     Click Element    wnd[0]/mbar/menu[0]/menu[0]
+    Sleep    1
     Click Element    wnd[1]/tbar[0]/btn[0]
+    Sleep    3
+    close open excel    ${file_loc}
+    Sleep    2
     Click Element    wnd[0]/mbar/menu[0]/menu[3]/menu[1]
     Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    1
     #Enter the Directory path and Results file name to store the Results.
-    Input Text    wnd[1]/usr/ctxtDY_PATH    ${Results_Directory_Path}
+    Input Text    wnd[1]/usr/ctxtDY_PATH    ${symvar('MCR_Results_Directory_Path')}
     Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${Req_Result7_usernames_Filename}
     Sleep     1
     # Generate the Results file.
     Click Element    wnd[1]/tbar[0]/btn[0]
     Log to console    Req 7 completed
 
-   
+
