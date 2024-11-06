@@ -32,14 +32,14 @@ Write Excel
     Close Current Excel Document 
 
 System Logon
-    Start Process     ${symvar('SAP_SERVER')}     
+    Start Process     ${symvar('P2P_SAP_SERVER')}     
     Sleep    2s
     Connect To Session
-    Open Connection    ${symvar('SAP_connection')}    
-    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('Client_Id')}
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('User_Name')}    
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('User_Password')}
-    #Input Password   wnd[0]/usr/pwdRSYST-BCODE    %('User_Password')
+    Open Connection    ${symvar('P2P_SAP_connection')}    
+    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('P2P_Client_Id')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('P2P_User_Name')}    
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('P2P_User_Password')}
+    #Input Password   wnd[0]/usr/pwdRSYST-BCODE    %('P2P_User_Password')
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
     Sleep   1
@@ -56,7 +56,7 @@ Executing PO Creation
     FOR    ${initial_row}    IN RANGE    2    ${rows}
         Run Transaction    /nme21n
         Sleep    1
-        Select From List By Key    wnd[0]/usr/subSUB0:SAPLMEGUI:0013/subSUB0:SAPLMEGUI:0030/subSUB1:SAPLMEGUI:1105/cmbMEPO_TOPLINE-BSART    NB
+        Run Keyword And Ignore Error    Select From List By Key    wnd[0]/usr/subSUB0:SAPLMEGUI:0013/subSUB0:SAPLMEGUI:0030/subSUB1:SAPLMEGUI:1105/cmbMEPO_TOPLINE-BSART    NB
         ${supplier}    Read Excel Cell Value    ${PO_Creation_File}    ${PO_Creation_Sheet}   ${initial_row}    3
         Run Keyword And Ignore Error    Input Text    wnd[0]/usr/subSUB0:SAPLMEGUI:0013/subSUB0:SAPLMEGUI:0030/subSUB1:SAPLMEGUI:1105/ctxtMEPO_TOPLINE-SUPERFIELD    ${supplier}    
         Run Keyword And Ignore Error    Log To Console    ${supplier}
