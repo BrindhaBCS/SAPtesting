@@ -19,6 +19,7 @@ from email import encoders
 from openpyxl import load_workbook
 import json
 
+
 class SAP_Tcode_Library:
     """The SapGuiLibrary is a library that enables users to create tests for the Sap Gui application
 
