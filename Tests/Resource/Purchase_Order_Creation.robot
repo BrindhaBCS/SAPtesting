@@ -9,7 +9,7 @@ Library    ExcelLibrary
 
 *** Variables ***    
 
-${PO_Creation_File}      Purchase_Order_Details.xlsx
+${PO_Creation_File}      C:\\Purchase_Order_Details.xlsx
 ${PO_Creation_Sheet}     Purchase order
 
 *** Keywords ***
