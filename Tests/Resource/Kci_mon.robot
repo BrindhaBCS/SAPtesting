@@ -10,9 +10,9 @@ ${user}    ${symvar('User_Name')}
 ${pass}    ${symvar('Passcode')}
 *** Keywords ***
 response_page
-    ${File}    Create File    ${symvar('File_Path')}${symvar('File_Name')}.xls     content=${EMPTY}
-    Convert Xls To Xlsx    xls_file=${symvar('File_Path')}${symvar('File_Name')}.xls    xlsx_file=${symvar('File_Path')}${symvar('File_Name')}.xlsx
-    Delete Specific File    file_path=${symvar('File_Path')}${symvar('File_Name')}.xls
+    ${File}    Create File    ${symvar('File_Path')}${symvar('File_Name')}.csv     content=${EMPTY}
+    Convert Csv To Xlsx    xls_file=${symvar('File_Path')}${symvar('File_Name')}.csv    xlsx_file=${symvar('File_Path')}${symvar('File_Name')}.xlsx
+    Delete Specific File    file_path=${symvar('File_Path')}${symvar('File_Name')}.csv
     ${row}    Set Variable    1
     FOR    ${day}    IN RANGE    ${DAYS_TO_RUN}
         Log To Console    Day ${day + 1} started.
