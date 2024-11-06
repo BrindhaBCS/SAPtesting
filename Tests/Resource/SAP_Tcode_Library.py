@@ -2297,6 +2297,11 @@ class SAP_Tcode_Library:
             print(f"[!] An error occurred: {e}")
         finally:
             smtp.quit()
+    def create_empty_excel(self, file_path):
+        sheet_name = os.path.splitext(os.path.basename(file_path))[0]
+        workbook = Workbook()
+        workbook.active.title = sheet_name
+        workbook.save(file_path)
 
 
 

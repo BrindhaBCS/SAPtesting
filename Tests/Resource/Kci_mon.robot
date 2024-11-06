@@ -10,9 +10,7 @@ ${user}    ${symvar('User_Name')}
 ${pass}    ${symvar('Passcode')}
 *** Keywords ***
 response_page
-    ${File}    Create File    ${symvar('File_Path')}${symvar('File_Name')}.xls     content=${EMPTY}
-    Convert Xls To Xlsx    xls_file=${symvar('File_Path')}${symvar('File_Name')}.xls    xlsx_file=${symvar('File_Path')}${symvar('File_Name')}.xlsx
-    Delete Specific File    file_path=${symvar('File_Path')}${symvar('File_Name')}.xls
+    ${File}    Create Empty Excel   ${symvar('File_Path')}${symvar('File_Name')}.xlsx
     ${row}    Set Variable    1
     FOR    ${day}    IN RANGE    ${DAYS_TO_RUN}
         Log To Console    Day ${day + 1} started.
@@ -24,7 +22,7 @@ response_page
             ${response}    Response Check    url=${url}    user=${user}    passcode=${pass}
             ${res}    Set Variable   Response Time: ${time} : ${response}
             Sleep    30 seconds
-            Write Value To Excel    file_path=${symvar('File_Path')}${symvar('File_Name')}.xlsx    sheet_name=Kci_Monitoring    cell=A${row}    value=${res}
+            Write Value To Excel    file_path=${symvar('File_Path')}${symvar('File_Name')}.xlsx    sheet_name=${symvar('File_Name')}    cell=A${row}    value=${res}
             ${row}    Evaluate    ${row} + 1
             Log To Console    Day ${day + 1} completed.
         END
