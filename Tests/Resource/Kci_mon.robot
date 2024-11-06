@@ -8,12 +8,11 @@ ${DAYS_TO_RUN}      365
 ${url}    ${symvar('URL')}
 ${user}    ${symvar('User_Name')}
 ${pass}    ${symvar('Passcode')}
-${file_input}    ${symvar('File_Path')}${symvar('File_Name')}.xls 
 *** Keywords ***
 response_page
-    ${File}    Create File    ${file_input}     content=${EMPTY}
-    Convert Xls To Xlsx    xls_file=${file_input}    xlsx_file=${symvar('File_Path')}${symvar('File_Name')}.xlsx
-    Delete Specific File    file_path=${file_input}
+    ${File}    Create File    ${symvar('File_Path')}${symvar('File_Name')}.xls     content=${EMPTY}
+    Convert Xls To Xlsx    xls_file=${symvar('File_Path')}${symvar('File_Name')}.xls    xlsx_file=${symvar('File_Path')}${symvar('File_Name')}.xlsx
+    Delete Specific File    file_path=${symvar('File_Path')}${symvar('File_Name')}.xls
     ${row}    Set Variable    1
     FOR    ${day}    IN RANGE    ${DAYS_TO_RUN}
         Log To Console    Day ${day + 1} started.
