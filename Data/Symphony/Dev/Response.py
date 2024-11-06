@@ -1,4 +1,5 @@
-Text_File_Name = "$Text_File_Name"
+File_Path = "$File_Path"
+File_Name = "$File_Name"
 URL = "$URL"
 User_Name = "$User_Name"
 Passcode = "$Passcode"
