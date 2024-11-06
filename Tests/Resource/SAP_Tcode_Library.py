@@ -2237,26 +2237,19 @@ class SAP_Tcode_Library:
                 print(f"Failed to connect url check your status code . Status code: {response.status_code}")
         except requests.exceptions.RequestException as e:
             print(f"An error occurred: {e}")
-    def convert_csv_to_xlsx(self, csv_file, xlsx_file):
+    def convert_xls_to_xlsx(self, xls_file, xlsx_file):
+        excel = win32.Dispatch('Excel.Application')
+        wb = None  
         try:
-            csv_data = pd.read_csv(csv_file, encoding='utf-8') 
-            
-            if csv_data.empty:
-                print(f"The CSV file {csv_file} is empty, creating an empty Excel file.")
-                csv_data = pd.DataFrame()
-            csv_data.to_excel(xlsx_file, index=False, engine='openpyxl')
-            print(f"Successfully converted {csv_file} to {xlsx_file}.")
-            
-        except pd.errors.EmptyDataError:
-            print(f"The file {csv_file} is empty or unreadable, creating an empty Excel file.")
-            empty_data = pd.DataFrame()
-            empty_data.to_excel(xlsx_file, index=False, engine='openpyxl')
-            print(f"Created an empty Excel file at {xlsx_file}.")
-            
-        except FileNotFoundError:
-            print(f"The file {csv_file} does not exist.")
+            wb = excel.Workbooks.Open(xls_file)
+            wb.SaveAs(xlsx_file, FileFormat=51) 
+            print(f"Successfully converted {xls_file} to {xlsx_file}.")
         except Exception as e:
             print(f"Error: {e}")
+        finally:
+            if wb:
+                wb.Close()
+            excel.Quit()
     def response_time(self, url, user, passcode):
         login_data = {
             "username": user,
