@@ -1,8 +1,9 @@
-P2P_SAP_SERVER = "$P2P_SAP_SERVER"
+#P2P_SAP_SERVER = "$P2P_SAP_SERVER"
 P2P_SAP_connection = "$P2P_SAP_connection"
 P2P_Client_Id = "$P2P_Client_Id"
 P2P_User_Name = "$P2P_User_Name"
 P2P_User_Password = "$P2P_User_Password"
+P2P_SAP_SERVER = "C:\\Program Files\\SAP\\FrontEnd\\SAPgui\\saplogon.exe"
 
 
 

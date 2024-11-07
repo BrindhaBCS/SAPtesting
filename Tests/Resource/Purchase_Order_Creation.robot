@@ -3,13 +3,13 @@ Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    Collections
-Library    ../../Symphony/Lib/site-packages/SeleniumLibrary/__init__.py
+#Library    ../../Symphony/Lib/site-packages/SeleniumLibrary/__init__.py
 Resource    ../Web/Support_Web.robot
 Library    ExcelLibrary
 
 *** Variables ***    
 
-${PO_Creation_File}      C:\\Robot_SAP\\SAPtesting\\Purchase_Order_Details.xlsx
+${PO_Creation_File}      C:\\RobotFramework\\sap_testing\\Tests\\Resource\\Purchase_Order_Details.xlsx
 ${PO_Creation_Sheet}     Purchase order
 
 *** Keywords ***
