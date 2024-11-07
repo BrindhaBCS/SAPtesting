@@ -7,6 +7,7 @@ Suite Teardown    Access Batch Job Management.System Logout
 *** Test Cases ***
 Access Batch Job Management
     Access Batch Job Management  
+    Generate report
 
 
 

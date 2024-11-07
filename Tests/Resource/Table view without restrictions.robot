@@ -59,7 +59,7 @@ System Logon
 System Logout
     Run Transaction   /nex
     Sleep    5
-    Sleep    10
+    # Sleep    10
 
 Table view without restrictions
     #Run the Tcode SUIM
@@ -82,12 +82,12 @@ Table view without restrictions
     Send Vkey    0
     Input Text    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB4/ssub%_SUBSCREEN_TAB:RSUSR002:1004/txtVAL201    ${Req9_input}
     Send Vkey    0
-    Take Screenshot    req9_output.jpg
+    Take Screenshot    Table_view1.jpg
     Sleep    2
     #Execute the requirement using F8
     Click Element    wnd[0]/mbar/menu[0]/menu[0]
     Sleep    1
-    Take Screenshot    req9_output2.jpg
+    Take Screenshot    Table_view2.jpg
     #Send the output to the Local file
     Click Element    wnd[0]/mbar/menu[0]/menu[3]/menu[2]
     Sleep    1
@@ -96,6 +96,7 @@ Table view without restrictions
     #Select to generate it
     Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    1
+    Take Screenshot    Table_view3.jpg
     #Enter the Directory path and Results file name to store the Results.
     Input Text    wnd[1]/usr/ctxtDY_PATH    ${symvar('MCR_Results_Directory_Path')}
     Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${Req_Result9_Filename}
@@ -124,7 +125,9 @@ Table view without restrictions
     #To start with the Requirement 9, go back to the previous window
     Click Node Link     ${tree_id}    ${link_id6}    ${link_id7}    ${link_id8}     ${link_id9}    ${link_id5}
     Sleep    1
+    Take Screenshot    Table_view4.jpg
     Click Element    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB4
+    Take Screenshot    Table_view5.jpg
     Input Text    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB4/ssub%_SUBSCREEN_TAB:RSUSR002:1004/ctxtOBJ1    S_TCODE
     Send Vkey    0
     Input Text    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB4/ssub%_SUBSCREEN_TAB:RSUSR002:1004/txtVAL101    SE16*
@@ -133,20 +136,22 @@ Table view without restrictions
     Send Vkey    0
     Input Text    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB4/ssub%_SUBSCREEN_TAB:RSUSR002:1004/txtVAL201    ${Req9_input}
     Send Vkey    0
-    Take Screenshot    req9_output3.jpg
+    Take Screenshot    Table_view6.jpg
     Sleep    2
     #Execute the requirement using F8
     Click Element    wnd[0]/mbar/menu[0]/menu[0]
     Sleep    1
-    Take Screenshot    req9_output4.jpg
+    Take Screenshot    Table_view7.jpg
     #Send the output to the Local file
     Click Element    wnd[0]/mbar/menu[0]/menu[3]/menu[2]
     Sleep    1
     #Select the Local file format
     Select Radio Button    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[1,0]
     #Select to generate it
+    Take Screenshot    Table_view8.jpg
     Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    1
+    Take Screenshot    Table_view9.jpg
     #Enter the Directory path and Results file name to store the Results.
     Input Text    wnd[1]/usr/ctxtDY_PATH    ${symvar('MCR_Results_Directory_Path')}
     Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${Req_Result9_2_Filename}
@@ -169,7 +174,7 @@ Table view without restrictions
     Delete Specific File    file_path=C:\\tmp\\Table_Authorization_Group_Users2.xls
     Log To Console    Table view without restrictions part2 completed
 Generate report
-    Image Resize    ${OUTPUT_DIR}
-    Sleep    1
-    Copy Images    ${OUTPUT_DIR}    ${symvar('MCR_Resized_Images_directory')}
+   Image Resize    ${symvar('MCR_directory')}
+    Sleep    2
+    Copy Images    ${symvar('MCR_directory')}    ${symvar('MCR_Resized_Images_directory')}
     Sleep    1

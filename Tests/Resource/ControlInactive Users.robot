@@ -83,6 +83,11 @@ SE16
     Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
     Sleep    1
     Log To Console    Control Inactive Users Completed
+Generate report
+   Image Resize    ${symvar('MCR_directory')}
+    Sleep    2
+    Copy Images    ${symvar('MCR_directory')}    ${symvar('MCR_Resized_Images_directory')}
+    Sleep    1
 
 
 

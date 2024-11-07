@@ -76,12 +76,12 @@ Transportstraat Management
     Send Vkey    0
     Input Text    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB4/ssub%_SUBSCREEN_TAB:RSUSR002:1004/txtVAL201    TABL
     Send Vkey    0
-    Take Screenshot    req8_output.jpg
+    Take Screenshot    Transportstraat_Management1.jpg
     Sleep    2
     #Execute the requirement using F8
     Click Element    wnd[0]/mbar/menu[0]/menu[0]
     Sleep    1
-    Take Screenshot    req8_output2.jpg
+    Take Screenshot    Transportstraat_Management2.jpg
     #Send the output to the Local file
     Click Element    wnd[0]/mbar/menu[0]/menu[3]/menu[2]
     Sleep    1
@@ -90,6 +90,7 @@ Transportstraat Management
     #Select to generate it
     Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    1
+    Take Screenshot    Transportstraat_Management3.jpg
     #Enter the Directory path and Results file name to store the Results.
     Input Text    wnd[1]/usr/ctxtDY_PATH    ${symvar('MCR_Results_Directory_Path')}
     Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${Req_Result8_Filename}
@@ -111,8 +112,8 @@ Transportstraat Management
     Delete Specific File    file_path=C:\\tmp\\Transportstraat_Users.xls
     Log To Console    Transportstraat_Users completed
 Generate report
-    Image Resize    ${OUTPUT_DIR}
-    Sleep    1
-    Copy Images    ${OUTPUT_DIR}    ${symvar('MCR_Resized_Images_directory')}
+   Image Resize    ${symvar('MCR_directory')}
+    Sleep    2
+    Copy Images    ${symvar('MCR_directory')}    ${symvar('MCR_Resized_Images_directory')}
     Sleep    1
     

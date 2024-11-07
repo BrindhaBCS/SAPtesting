@@ -7,3 +7,4 @@ Suite Teardown    ControlSAPDevelopers.System Logout
 *** Test Cases ***
 Control SAP developers
     Control SAP developers
+    Generate report

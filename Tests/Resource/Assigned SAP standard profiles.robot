@@ -59,7 +59,7 @@ Assigned SAP standard profiles
     Select Checkbox    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB2/ssub%_SUBSCREEN_TAB:RSUSR100N:1200/chkPROF
     Input Text    wnd[0]/usr/ctxtFDATE    ${start_date}
     Input Text    wnd[0]/usr/ctxtTDATE    ${end_date}
-    Take Screenshot    req1_output.jpg
+    Take Screenshot    SAP_standard_profiles1.jpg
     Sleep    3
    
     Click Element    wnd[0]/mbar/menu[0]/menu[0]
@@ -67,6 +67,8 @@ Assigned SAP standard profiles
    
     Click Element    wnd[0]/mbar/menu[0]/menu[3]/menu[1]
     Sleep    1
+    Take Screenshot    SAP_standard_profiles2.jpg
+    Sleep    3
  
     Select Radio Button    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[1,0]
     
@@ -76,6 +78,8 @@ Assigned SAP standard profiles
     Input Text    wnd[1]/usr/ctxtDY_PATH    ${symvar('MCR_Results_Directory_Path')}
     Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${Req_Result1_Filename}
     Sleep    1
+    Take Screenshot    SAP_standard_profiles3.jpg
+    Sleep    3
     # Generate the Results file.
     Click Element    ${Replace}
     Sleep    1
@@ -99,7 +103,7 @@ Assigned SAP standard profiles
     Delete Specific File    file_path=C:\\tmp\\SAP_Profiles.xls
     Log To Console    Assigned SAP standard profiles Completed
 Generate report
-    Image Resize    ${OUTPUT_DIR}
-    Sleep    1
-    Copy Images    ${OUTPUT_DIR}    ${symvar('MCR_Resized_Images_directory')}
+   Image Resize    ${symvar('MCR_directory')}
+    Sleep    2
+    Copy Images    ${symvar('MCR_directory')}    ${symvar('MCR_Resized_Images_directory')}
     Sleep    1

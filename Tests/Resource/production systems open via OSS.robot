@@ -54,7 +54,7 @@ System Logon
 System Logout
     Run Transaction   /nex
     Sleep    5
-    Sleep    10
+    # Sleep    10
 
 production systems open via OSS
 #Run the Tcode SUIM
@@ -83,12 +83,12 @@ production systems open via OSS
     Sleep    2
     Input Text    wnd[0]/usr/ctxtFDATE    ${start_date_Req6}
     Input Text    wnd[0]/usr/ctxtTDATE    ${end_date_Req6}
-    Take Screenshot    Req6_input.jpg
+    Take Screenshot    production_systems1.jpg
     Sleep    3
     #Execute the requirement using F8
     Click Element    wnd[0]/mbar/menu[0]/menu[0]
     Sleep    3
-    Take Screenshot    Req6_output.jpg
+    Take Screenshot    production_systems2.jpg
     #Send the output to the Local file
     Click Element    wnd[0]/mbar/menu[0]/menu[3]/menu[1]
     Sleep    1
@@ -97,6 +97,7 @@ production systems open via OSS
     #Select to generate it
     Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    1
+    Take Screenshot    production_systems3.jpg
     #Enter the Directory path and Results file name to store the Results.
     Input Text    wnd[1]/usr/ctxtDY_PATH    ${symvar('MCR_Results_Directory_Path')}
     Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${Req_Result6_Filename}
@@ -119,9 +120,9 @@ production systems open via OSS
     Delete Specific File    file_path=C:\\tmp\\SAP_Support_Users.xls
     Log To Console    production systems open via OSS Completed
 Generate report
-    Image Resize    ${OUTPUT_DIR}
-    Sleep    1
-    Copy Images    ${OUTPUT_DIR}    ${symvar('MCR_Resized_Images_directory')}
+   Image Resize    ${symvar('MCR_directory')}
+    Sleep    2
+    Copy Images    ${symvar('MCR_directory')}    ${symvar('MCR_Resized_Images_directory')}
     Sleep    1
 
     

@@ -55,11 +55,11 @@ Usercontrol (non)personal user accounts
     # Click Element    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB2
     # Sleep    1
     Select Checkbox    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB1/ssub%_SUBSCREEN_TAB:RSUSR100N:1100/chkUSER_CRT
-    Take Screenshot    Usercontrol (non)personal user accounts.jpg
+    Take Screenshot    Usercontrol_(non)personal_user_accounts.jpg
     Sleep    2
     Click Element    wnd[0]/mbar/menu[0]/menu[0]
     Sleep    1
-    Take Screenshot    Usercontrol (non)personal user accounts2.jpg
+    Take Screenshot    Usercontrol_(non)personal_user_accounts2.jpg
     Click Element    wnd[0]/mbar/menu[0]/menu[3]/menu[1]
     Sleep    1
     Select Radio Button    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[1,0]
@@ -86,7 +86,7 @@ Usercontrol (non)personal user accounts
     Delete Specific File    file_path=C:\\tmp\\User_Accounts.xls
     Log To Console    Usercontrol (non)personal user accounts completed
 Generate report
-    Image Resize    ${OUTPUT_DIR}
-    Sleep    1
-    Copy Images    ${OUTPUT_DIR}    ${symvar('MCR_Resized_Images_directory')}
+   Image Resize    ${symvar('MCR_directory')}
+    Sleep    2
+    Copy Images    ${symvar('MCR_directory')}    ${symvar('MCR_Resized_Images_directory')}
     Sleep    1

@@ -44,7 +44,7 @@ license checking
     Sleep    1
     Click Element    wnd[0]/tbar[1]/btn[18]
     Sleep    3
-    Take Screenshot    Usmm_output.jpg
+    Take Screenshot    Usmm1.jpg
     
     Sap Tcode Usmm Reg5
     Sleep    1
@@ -80,7 +80,7 @@ license checking
     Sleep    1
     Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    1
-    Take Screenshot    Req5_NoID.jpg
+    Take Screenshot    Usmm4.jpg
     Sap Tcode Usmm Reg5
     Sleep    1
     #Select the Local file format
@@ -93,6 +93,7 @@ license checking
     Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${Req_Result5_noid_Filename}
     # Generate the Results file.
     Sleep    1
+    Take Screenshot    Usmm5.jpg
     Click Element    ${Replace}
     Sleep    1
     Delete Specific File    ${FILE1}
@@ -111,7 +112,7 @@ license checking
     Delete Specific File    file_path=C:\\tmp\\Licensed_Users.xls
     Log To Console    license_checking Completed
 Generate report
-    Image Resize    ${OUTPUT_DIR}
-    Sleep    1
-    Copy Images    ${OUTPUT_DIR}    ${symvar('MCR_Resized_Images_directory')}
+   Image Resize    ${symvar('MCR_directory')}
+    Sleep    2
+    Copy Images    ${symvar('MCR_directory')}    ${symvar('MCR_Resized_Images_directory')}
     Sleep    1

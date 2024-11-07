@@ -82,7 +82,7 @@ Control SAP standard users
     Delete Specific File    file_path=C:\\tmp\\Control SAP standard users.xls
     Log To Console    Control SAP standard users Completed
 Generate report
-    Image Resize    ${OUTPUT_DIR}
-    Sleep    1
-    Copy Images    ${OUTPUT_DIR}    ${symvar('MCR_Resized_Images_directory')}
+   Image Resize    ${symvar('MCR_directory')}
+    Sleep    2
+    Copy Images    ${symvar('MCR_directory')}    ${symvar('MCR_Resized_Images_directory')}
     Sleep    1

@@ -7,3 +7,4 @@ Suite Teardown    ControlInactive Users.System Logout
 *** Test Cases ***
 SE16
     SE16
+    Generate report

@@ -43,7 +43,7 @@ System Logon
 System Logout
     Run Transaction   /nex
     Sleep    5
-    Sleep    10
+    # Sleep    10
 
 Access Batch Job Management
     #Run the Tcode SUIM
@@ -53,8 +53,10 @@ Access Batch Job Management
     #Enter into the Change document for Users
     Click Node Link     ${tree_id}    ${link_id1}    ${link_id2}    ${link_id3}     ${link_id4}    ${link_id5}
     Sleep    1
+    Take Screenshot    Access_Batch1.jpg
     Click Element    wnd[0]/tbar[0]/btn[3]
     Sleep    1
+    Take Screenshot    Access_Batch2.jpg
     # Enter into the Users by complex Selection Criteria
     Click Node Link     ${tree_id}    ${link_id6}    ${link_id7}    ${link_id8}     ${link_id9}    ${link_id5}
     Sleep    1
@@ -72,19 +74,19 @@ Access Batch Job Management
     Send Vkey    0
     Input Text    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB4/ssub%_SUBSCREEN_TAB:RSUSR002:1004/txtVAL301    SM36*
     Input Text    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB4/ssub%_SUBSCREEN_TAB:RSUSR002:1004/txtVAL302    SM37*
-    Take Screenshot    req7_output.jpg
+    Take Screenshot    Access_Batch3.jpg
     Sleep    2
     #Execute the requirement using F8
     Click Element    wnd[0]/mbar/menu[0]/menu[0]
     Sleep    1
-    Take Screenshot    req7_output2.jpg
+    Take Screenshot    Access_Batch4.jpg
     #Send the output to the Local file
     Click Element    wnd[0]/mbar/menu[0]/menu[3]/menu[1]
     Sleep    1
     #Select to generate it
     Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    1
-
+    Take Screenshot    Access_Batch5.jpg
     #Enter the Directory path and Results file name to store the Results.
     Input Text    wnd[1]/usr/ctxtDY_PATH    ${symvar('MCR_Results_Directory_Path')}
     Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${Req_Result7_Filename}
@@ -113,12 +115,17 @@ Access Batch Job Management
     Click Element    wnd[0]/mbar/menu[0]/menu[3]/menu[1]
     Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    1
+    Take Screenshot    Access_Batch6.jpg
     #Enter the Directory path and Results file name to store the Results.
     Input Text    wnd[1]/usr/ctxtDY_PATH    ${symvar('MCR_Results_Directory_Path')}
     Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${Req_Result7_usernames_Filename}
     Sleep     1
     # Generate the Results file.
     Click Element    wnd[1]/tbar[0]/btn[0]
-    Log to console    Req 7 completed
+    Log to console    Access Batch Job Management completed
 
-    # ########### MCR Requirement 7 Completed #######################
+Generate report
+   Image Resize    ${symvar('MCR_directory')}
+    Sleep    2
+    Copy Images    ${symvar('MCR_directory')}    ${symvar('MCR_Resized_Images_directory')}
+    Sleep    1

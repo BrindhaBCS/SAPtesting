@@ -52,7 +52,7 @@ System Logon
 System Logout
     Run Transaction   /nex
     Sleep    5
-    Sleep    10
+    # Sleep    10
 
 Access to transport taking into production
     
@@ -67,6 +67,7 @@ Access to transport taking into production
     # Enter into the Users by complex Selection Criteria
     Click Node Link     ${tree_id}    ${link_id6}    ${link_id7}    ${link_id8}     ${link_id9}    ${link_id5}
     Sleep    1
+    Take Screenshot    Access_transport1.jpg
     #Go to the Authorizations Tab
     Click Element    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB4
     Sleep    1
@@ -83,12 +84,12 @@ Access to transport taking into production
     Input Text    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB4/ssub%_SUBSCREEN_TAB:RSUSR002:1004/txtVAL201    IMPA
     Send Vkey    0
     Sleep    1
-    Take Screenshot    req3_output.jpg
+    Take Screenshot    Access_transport2.jpg
     Sleep    2
     #Execute the requirement using F8
     Click Element    wnd[0]/mbar/menu[0]/menu[0]
     Sleep    1
-    Take Screenshot    req3_output2.jpg
+    Take Screenshot    Access_transport3.jpg
     #Send the output to the Local file
     Click Element    wnd[0]/mbar/menu[0]/menu[3]/menu[2]
     Sleep    1
@@ -97,6 +98,7 @@ Access to transport taking into production
     #Select to generate it
     Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    1
+    Take Screenshot    Access_transport4.jpg
     #Enter the Directory path and Results file name to store the Results.
     Input Text    wnd[1]/usr/ctxtDY_PATH    ${symvar('MCR_Results_Directory_Path')}
     Sleep    1
@@ -120,9 +122,9 @@ Access to transport taking into production
     Delete Specific File    file_path=C:\\tmp\\Users_By_Complex_Selection.xls
     Log To Console    Requirement Access to transport taking into production completed
 Generate report
-    Image Resize    ${OUTPUT_DIR}
-    Sleep    1
-    Copy Images    ${OUTPUT_DIR}    ${symvar('MCR_Resized_Images_directory')}
+   Image Resize    ${symvar('MCR_directory')}
+    Sleep    2
+    Copy Images    ${symvar('MCR_directory')}    ${symvar('MCR_Resized_Images_directory')}
     Sleep    1
         
     
