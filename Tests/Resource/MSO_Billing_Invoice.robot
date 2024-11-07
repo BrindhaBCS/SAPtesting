@@ -1,0 +1,76 @@
+*** Settings ***
+Library    Process
+Library    SAP_Tcode_Library.py
+Library    ExcelLibrary
+Library    String
+Library    DateTime
+*** Variables ***
+${filename}    ${symvar('MSO_filename')}
+${sheetname}    ${symvar('MSO_sheetname3')}
+
+
+${START_ROW}    3
+*** Keywords ***
+System Logon
+    Start Process     ${symvar('SAP_SERVER')}
+    Sleep    2
+    Connect To Session
+    Open Connection    ${symvar('MSO_Connection')}
+    Sleep   1
+    Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('MSO_Client_Id')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('MSO_User_Name')}
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('MSO_User_Password')}
+    # Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{Customer_User_Password}
+    Send Vkey    0
+    Sleep    2
+    Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
+    Sleep   1
+System Logout
+    Run Transaction   /nex
+    Sleep    2
+Read Excel Sheet
+    [Arguments]    ${filepath}    ${sheetname}    ${rownum}    ${colnum}    
+    Open Excel Document    ${filepath}    1
+    Get Sheet    ${sheetname}    
+    ${data}    Read Excel Cell    ${rownum}    ${colnum}        
+    [Return]    ${data}
+    Close Current Excel Document
+Write Excel Sheet
+    [Arguments]    ${filepath}    ${sheetname}    ${rownum}    ${colnum}    ${cell_value}
+    Open Excel Document    ${filepath}    1
+    Get Sheet    ${sheetname}  
+    Write Excel Cell      ${rownum}       ${colnum}     ${cell_value}       ${sheetname}
+    Save Excel Document     ${filepath}
+    Close Current Excel Document
+
+MSO_Billing_Invoice
+    Run Transaction    VF01
+    ${ROWS_COUN}=    get total row    ${filename}    ${sheetname}
+    Log    Total rows count: ${ROWS_COUN}
+    Sleep    1
+    ${ROWS_COUNT} =    Evaluate    ${ROWS_COUN} + 1
+    FOR    ${row_index}    IN RANGE    3    ${ROWS_COUNT}
+        
+        Sleep	2
+        ${Delivery_Document_Number}    Read Value From Excel    file_path=${filename}    sheet_name=${symvar('MSO_sheetname2')}    cell=G${row_index}
+        Write Value To Excel    file_path=${filename}    sheet_name=${sheetname}    cell=c${row_index}   value=${Delivery_Document_Number}
+        Sleep    1
+        Run Keyword And Ignore Error    Input Text	wnd[0]/usr/tblSAPMV60ATCTRL_ERF_FAKT/ctxtKOMFK-VBELN[0,0]	${Delivery_Document_Number}
+	    Sleep	2
+        Click Element	wnd[0]/tbar[0]/btn[0]
+	    Sleep	2
+	    Click Element	wnd[0]/tbar[0]/btn[11]
+	    Sleep	2
+        ${Text}=    Get Value    wnd[0]/sbar/pane[0]
+        Sleep    1
+        ${customer_number}=    Extract Numeric    ${Text}
+        Log To Console    ${customer_number}
+        Write Value To Excel    file_path=${filename}    sheet_name=${sheetname}    cell=D${row_index}   value=${customer_number}
+        Sleep    1
+        
+
+
+    END
+
+        
+        
