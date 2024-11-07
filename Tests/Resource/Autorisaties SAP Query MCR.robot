@@ -100,7 +100,9 @@ Autorisaties SAP Query
     Delete Specific File    file_path=C:\\tmp\\SAP_QUERY.xls
     Log To Console    Autorisaties SAP Query completed
 Generate report
-   Image Resize    ${symvar('MCR_directory')}
+    Image Resize    ${OUTPUT_DIR}
     Sleep    2
-    Copy Images    ${symvar('MCR_directory')}    ${symvar('MCR_Resized_Images_directory')}
+    Copy Images    ${OUTPUT_DIR}    ${symvar('MCR_Resized_Images_directory')}
     Sleep    1
+    Mcr Report Pdf    ${symvar('MCR_excel_directory')}    ${symvar('MCR_Resized_Images_directory')}    C:\\tmp\\MCR_OUTPUT
+    Sleep    2
