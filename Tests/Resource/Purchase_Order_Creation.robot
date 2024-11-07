@@ -3,13 +3,13 @@ Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    Collections
-Library    ../../Symphony/Lib/site-packages/SeleniumLibrary/__init__.py
+#Library    ../../Symphony/Lib/site-packages/SeleniumLibrary/__init__.py
 Resource    ../Web/Support_Web.robot
 Library    ExcelLibrary
 
 *** Variables ***    
 
-${PO_Creation_File}      C:\\Purchase_Order_Details.xlsx
+${PO_Creation_File}      C:\\RobotFramework\\sap_testing\\Tests\\Resource\\Purchase_Order_Details.xlsx
 ${PO_Creation_Sheet}     Purchase order
 
 *** Keywords ***
@@ -58,7 +58,7 @@ Executing PO Creation
         Sleep    1
         Run Keyword And Ignore Error    Select From List By Key    wnd[0]/usr/subSUB0:SAPLMEGUI:0013/subSUB0:SAPLMEGUI:0030/subSUB1:SAPLMEGUI:1105/cmbMEPO_TOPLINE-BSART    NB
         ${supplier}    Read Excel Cell Value    ${PO_Creation_File}    ${PO_Creation_Sheet}   ${initial_row}    3
-        Run Keyword And Ignore Error    Input Text    wnd[0]/usr/subSUB0:SAPLMEGUI:0013/subSUB0:SAPLMEGUI:0030/subSUB1:SAPLMEGUI:1105/ctxtMEPO_TOPLINE-SUPERFIELD    ${supplier}    
+        Run Keyword And Ignore Error    Input Text    wnd[0]/usr/subSUB0:SAPLMEGUI:0016/subSUB0:SAPLMEGUI:0030/subSUB1:SAPLMEGUI:1105/ctxtMEPO_TOPLINE-SUPERFIELD    ${supplier}    
         Run Keyword And Ignore Error    Log To Console    ${supplier}
         Run Keyword And Ignore Error    Send VKey    0
         Sleep    1
@@ -89,7 +89,10 @@ Executing PO Creation
         ${plant}    Read Excel Cell Value    ${PO_Creation_File}    ${PO_Creation_Sheet}   ${initial_row}    12
         Run Keyword And Ignore Error    Input Text    wnd[0]/usr/subSUB0:SAPLMEGUI:0013/subSUB2:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1211/tblSAPLMEGUITC_1211/ctxtMEPO1211-NAME1[15,0]    ${plant}
         Run Keyword And Ignore Error    Log To Console    ${plant}
-        Run Keyword And Ignore Error    Click Element    wnd[0]/mbar/menu[0]/menu[4]
+        #Run Keyword And Ignore Error    Click Element    wnd[0]/mbar/menu[0]/menu[4]
+        Run Keyword And Ignore Error    Click Element    wnd[0]/tbar[0]/btn[11]
+        Sleep    0.5
+        Run Keyword And Ignore Error    Click Element    wnd[1]/usr/btnSPOP-VAROPTION1
         Sleep    1
         ${is_present}=    Run Keyword And Ignore Error    Element Should Be Present    wnd[1]
         ${result}=    Run Keyword And Ignore Error    Element Should Be Present    wnd[1]
