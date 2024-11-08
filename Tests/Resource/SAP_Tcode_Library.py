@@ -2283,7 +2283,7 @@ class SAP_Tcode_Library:
         }
         try:
             start_time = time.time()
-            response = requests.post(url, auth=(user, passcode))
+            response = requests.get(url, auth=(user, passcode))
             end_time = time.time()
             response_time = round(end_time - start_time, 4)
             current_iso_time = datetime.now(timezone.utc).isoformat()
@@ -2302,7 +2302,7 @@ class SAP_Tcode_Library:
         }
         try:
             start_time = time.time()
-            response = requests.post(url, auth=(user, passcode))
+            response = requests.get(url, auth=(user, passcode))
             end_time = time.time()
             response_time = end_time - start_time
             return f"{response_time:.4f}"
@@ -2312,7 +2312,7 @@ class SAP_Tcode_Library:
     def get_response_time_HTTPBasicAuth(self, url, username, password):
         try:
             start_time = time.time()
-            response = requests.post(url, auth=HTTPBasicAuth(username, password))
+            response = requests.get(url, auth=HTTPBasicAuth(username, password))
             response_time = response.elapsed.total_seconds()
             end_time = time.time()
             response_time = round(end_time - start_time, 4)
@@ -2326,7 +2326,7 @@ class SAP_Tcode_Library:
     def get_response_check_HTTPBasicAuth(self, url, username, password):
         try:
             start_time = time.time()
-            response = requests.post(url, auth=HTTPBasicAuth(username, password))
+            response = requests.get(url, auth=HTTPBasicAuth(username, password))
             response_time = response.elapsed.total_seconds()
             end_time = time.time()
             response_time = round(end_time - start_time, 4)
