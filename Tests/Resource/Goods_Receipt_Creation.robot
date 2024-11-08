@@ -52,7 +52,7 @@ System Logon
     #Input Password   wnd[0]/usr/pwdRSYST-BCODE    %('P2P_User_Password')
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
-    Sleep   1
+    Sleep   0.5
 
 System Logout
     Run Transaction   /nex
@@ -65,10 +65,10 @@ Executing GR Creation
     Log To Console    ${rows}
     FOR    ${row}    IN RANGE    2    ${rows}
         Run Transaction    /nmigo
-        Sleep    2
+        Sleep    0.1
         Select From List By Key    wnd[0]/usr/ssubSUB_MAIN_CARRIER:SAPLMIGO:0002/subSUB_FIRSTLINE:SAPLMIGO:0011/cmbGODYNPRO-ACTION    A01
         Select From List By Key    wnd[0]/usr/ssubSUB_MAIN_CARRIER:SAPLMIGO:0002/subSUB_FIRSTLINE:SAPLMIGO:0011/cmbGODYNPRO-REFDOC    R01
-        Sleep    1
+        Sleep    0.1
         ${PO_Number}    Read Excel Cell Value    ${PO_Creation_File}    ${PO_Creation_Sheet}    ${row}    13
         Run Keyword And Ignore Error    Input Text    wnd[0]/usr/ssubSUB_MAIN_CARRIER:SAPLMIGO:0002/subSUB_FIRSTLINE:SAPLMIGO:0011/subSUB_FIRSTLINE_REFDOC:SAPLMIGO:2000/ctxtGODYNPRO-PO_NUMBER    ${PO_Number}        
         Run Keyword And Ignore Error    Log To Console    ${PO_Number} 
@@ -76,12 +76,12 @@ Executing GR Creation
         Run Keyword And Ignore Error    Input Text    wnd[0]/usr/ssubSUB_MAIN_CARRIER:SAPLMIGO:0002/subSUB_FIRSTLINE:SAPLMIGO:0011/ctxtGODEFAULT_TV-BWART    ${Movement_Type}        
         Run Keyword And Ignore Error    Log To Console    ${Movement_Type}
         Run Keyword And Ignore Error    Send VKey               0
-        Sleep    0.5
+        Sleep    0.1
         Select Checkbox    wnd[0]/usr/ssubSUB_MAIN_CARRIER:SAPLMIGO:0002/subSUB_ITEMLIST:SAPLMIGO:0200/tblSAPLMIGOTV_GOITEM/chkGOITEM-TAKE_IT[3,0]
         ${Storage_Location}    Read Excel Cell Value    ${PO_Creation_File}    ${GR_Creation_Sheet}      ${row}    8
         Run Keyword And Ignore Error    Input Text    wnd[0]/usr/ssubSUB_MAIN_CARRIER:SAPLMIGO:0002/subSUB_ITEMLIST:SAPLMIGO:0200/tblSAPLMIGOTV_GOITEM/ctxtGOITEM-LGOBE[7,0]    ${Storage_Location}        
         Run Keyword And Ignore Error    Log To Console    ${Storage_Location}
-        Sleep    0.5
+        Sleep    0.1
         Click Element    wnd[0]/tbar[0]/btn[11]
         ${gr_status}    Get Value    wnd[0]/sbar
         ${gr_number}=    Extract Numeric    ${gr_status}
