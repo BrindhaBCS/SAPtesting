@@ -20,7 +20,10 @@ import json
 from openpyxl.utils import get_column_letter
 import  requests
 import win32com.client as win32
-
+from openpyxl import Workbook
+from requests.auth import HTTPBasicAuth
+from datetime import datetime
+from datetime import timezone
 
 
 class SAP_Tcode_Library:
@@ -2218,25 +2221,7 @@ class SAP_Tcode_Library:
             return None
         else:
             return f"Free space: {available_space}"
-    def response_check(self, url, user, passcode):
-        login_data = {
-            "username": user,
-            "password": passcode,
-        }
-        try:
-            start_time = time.time()
-            response = requests.get(url, auth=(user, passcode))
-            end_time = time.time()
-            response_time = end_time - start_time
-            if response.status_code == 200:
-                timestamp = response.headers.get("Date", "Timestamp")
-                print(f"Timestamp: {timestamp}")
-                print(f"Response Time: {response_time:.4f} seconds")
-                return f"Response code: {response.status_code}",f"Time stamp: {timestamp}"
-            else:
-                print(f"Failed to connect url check your status code . Status code: {response.status_code}")
-        except requests.exceptions.RequestException as e:
-            print(f"An error occurred: {e}")
+
     def convert_xls_to_xlsx(self, xls_file, xlsx_file):
         excel = win32.Dispatch('Excel.Application')
         wb = None  
@@ -2250,19 +2235,7 @@ class SAP_Tcode_Library:
             if wb:
                 wb.Close()
             excel.Quit()
-    def response_time(self, url, user, passcode):
-        login_data = {
-            "username": user,
-            "password": passcode,
-        }
-        try:
-            start_time = time.time()
-            response = requests.get(url, auth=(user, passcode))
-            end_time = time.time()
-            response_time = end_time - start_time
-            return f"{response_time:.4f}"
-        except requests.exceptions.RequestException as e:
-            print(f"An error occurred: {e}")
+
     def send_mail(self, from_email, password, to_mail, subject, content, file_path=None):
         HOST = "smtp-mail.outlook.com"
         PORT = 587
@@ -2303,7 +2276,74 @@ class SAP_Tcode_Library:
         workbook.active.title = sheet_name
         workbook.save(file_path)
 
+    def response_check(self, url, user, passcode):
+        login_data = {
+            "username": user,
+            "password": passcode,
+        }
+        try:
+            start_time = time.time()
+            response = requests.post(url, auth=(user, passcode))
+            end_time = time.time()
+            response_time = round(end_time - start_time, 4)
+            current_iso_time = datetime.now(timezone.utc).isoformat()
+            if response.status_code == 200:
+                timestamp = response.headers.get("Date", "Timestamp")
+                return f"Time stamp, {timestamp}, Response Code, {response.status_code}, ISO Time stamp, {current_iso_time}"
+            else:
+                return f"Error: Failed to connect to URL. Check status code. Status Code: {response.status_code}"
+        except requests.exceptions.RequestException as e:
+            return f"Error: {str(e)}"
+            
+    def response_time(self, url, user, passcode):
+        login_data = {
+            "username": user,
+            "password": passcode,
+        }
+        try:
+            start_time = time.time()
+            response = requests.post(url, auth=(user, passcode))
+            end_time = time.time()
+            response_time = end_time - start_time
+            return f"{response_time:.4f}"
+        except requests.exceptions.RequestException as e:
+            print(f"An error occurred: {e}")
 
+    def get_response_time_HTTPBasicAuth(self, url, username, password):
+        try:
+            start_time = time.time()
+            response = requests.post(url, auth=HTTPBasicAuth(username, password))
+            response_time = response.elapsed.total_seconds()
+            end_time = time.time()
+            response_time = round(end_time - start_time, 4)
+            if response.status_code == 200:
+                return f"{response_time:.4f}"
+            else:
+                return f"Error: Failed to connect to URL. Status Code: {response.status_code}, Response Time: {response_time} seconds"
+        except requests.exceptions.RequestException as e:
+            return f"Error: {str(e)}"
+        
+    def get_response_check_HTTPBasicAuth(self, url, username, password):
+        try:
+            start_time = time.time()
+            response = requests.post(url, auth=HTTPBasicAuth(username, password))
+            response_time = response.elapsed.total_seconds()
+            end_time = time.time()
+            response_time = round(end_time - start_time, 4)
+            current_iso_time = datetime.now(timezone.utc).isoformat()
+            if response.status_code == 200:
+                timestamp = response.headers.get("Date", "Timestamp not available")
+                return f"Time stamp, {timestamp}, Response Code, {response.status_code}, ISO Time stamp, {current_iso_time}"
+            else:
+                return f"Error: Failed to connect to URL. Status Code: {response.status_code}, Response Time: {response_time} seconds"
+        except requests.exceptions.RequestException as e:
+            return f"Error: {str(e)}"
+        
+    def if_condition(self, response, yourdata):
+        if response >= yourdata:
+            return f"OK"
+        else:
+            return f"False"
 
 
 
