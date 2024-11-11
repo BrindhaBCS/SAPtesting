@@ -103,9 +103,11 @@ SalesOrderCreation
         Send Vkey    2
         Send Vkey    2
         Sleep	0.5
-	    Click Element	wnd[0]/usr/tabsTAXI_TABSTRIP_ITEM/tabpT\\03
+	    Run Keyword And Ignore Error    Click Element	wnd[0]/usr/tabsTAXI_TABSTRIP_ITEM/tabpT\\03
+        Run Keyword And Ignore Error    Click Element	wnd[0]/usr/tabsTAXI_TABSTRIP_ITEM/tabpT\03
         Sleep	0.5
-	    Set Focus	wnd[0]/usr/tabsTAXI_TABSTRIP_ITEM/tabpT\\03/ssubSUBSCREEN_BODY:SAPMV45A:4452/ctxtVBAP-LGORT
+	    Run Keyword And Ignore Error    Set Focus	wnd[0]/usr/tabsTAXI_TABSTRIP_ITEM/tabpT\\03/ssubSUBSCREEN_BODY:SAPMV45A:4452/ctxtVBAP-LGORT
+        Run Keyword And Ignore Error    Set Focus	wnd[0]/usr/tabsTAXI_TABSTRIP_ITEM/tabpT\03/ssubSUBSCREEN_BODY:SAPMV45A:4452/ctxtVBAP-LGORT
 	    Sleep	0.5
 	    Send Vkey    4
 	    Sleep	0.5
