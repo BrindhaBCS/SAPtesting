@@ -2277,67 +2277,39 @@ class SAP_Tcode_Library:
         workbook.save(file_path)
 
     def response_check(self, url, user, passcode):
-        login_data = {
-            "username": user,
-            "password": passcode,
-        }
         try:
             start_time = time.time()
-            response = requests.get(url, auth=(user, passcode))
+            response_chk = requests.get(url, auth=HTTPBasicAuth(user, passcode), verify=False, timeout=60)
             end_time = time.time()
             response_time = round(end_time - start_time, 4)
             current_iso_time = datetime.now(timezone.utc).isoformat()
-            if response.status_code == 200:
-                timestamp = response.headers.get("Date", "Timestamp")
-                return f"Time stamp, {timestamp}, Response Code, {response.status_code}, ISO Time stamp, {current_iso_time}"
-            else:
-                return f"Error: Failed to connect to URL. Check status code. Status Code: {response.status_code}"
-        except requests.exceptions.RequestException as e:
-            return f"Error: {str(e)}"
             
+            if response_chk.status_code == 200:
+                timestamp = response_chk.headers.get("Date", "Timestamp")
+                return f"Time stamp, {timestamp}, Response Code, {response_chk.status_code}, ISO Time stamp, {current_iso_time}, Response Time, {response_time} seconds"
+            else:
+                return f"Error: Failed to connect to URL. Check status code. Status Code: {response_chk.status_code}"
+        except requests.exceptions.SSLError as ssl_err:
+            return f"SSL Error occurred: {ssl_err}"
+        except requests.exceptions.Timeout as timeout_err:
+            return f"Timeout Error occurred: {timeout_err}"
+        except requests.exceptions.RequestException as e:
+            return f"An error occurred: {e}"
     def response_time(self, url, user, passcode):
-        login_data = {
-            "username": user,
-            "password": passcode,
-        }
         try:
+            print(f"Connecting to URL: {url}")
             start_time = time.time()
-            response = requests.get(url, auth=(user, passcode))
+            response = requests.get(url, auth=HTTPBasicAuth(user, passcode), verify=False, timeout=60)
             end_time = time.time()
             response_time = end_time - start_time
+            print(f"Response Time: {response_time:.4f} seconds") 
             return f"{response_time:.4f}"
+        except requests.exceptions.SSLError as ssl_err:
+            print(f"SSL Error occurred: {ssl_err}")
+        except requests.exceptions.Timeout as timeout_err:
+            print(f"Timeout Error occurred: {timeout_err}")
         except requests.exceptions.RequestException as e:
             print(f"An error occurred: {e}")
-
-    def get_response_time_HTTPBasicAuth(self, url, username, password):
-        try:
-            start_time = time.time()
-            response = requests.get(url, auth=HTTPBasicAuth(username, password))
-            response_time = response.elapsed.total_seconds()
-            end_time = time.time()
-            response_time = round(end_time - start_time, 4)
-            if response.status_code == 200:
-                return f"{response_time:.4f}"
-            else:
-                return f"Error: Failed to connect to URL. Status Code: {response.status_code}, Response Time: {response_time} seconds"
-        except requests.exceptions.RequestException as e:
-            return f"Error: {str(e)}"
-        
-    def get_response_check_HTTPBasicAuth(self, url, username, password):
-        try:
-            start_time = time.time()
-            response = requests.get(url, auth=HTTPBasicAuth(username, password))
-            response_time = response.elapsed.total_seconds()
-            end_time = time.time()
-            response_time = round(end_time - start_time, 4)
-            current_iso_time = datetime.now(timezone.utc).isoformat()
-            if response.status_code == 200:
-                timestamp = response.headers.get("Date", "Timestamp not available")
-                return f"Time stamp, {timestamp}, Response Code, {response.status_code}, ISO Time stamp, {current_iso_time}"
-            else:
-                return f"Error: Failed to connect to URL. Status Code: {response.status_code}, Response Time: {response_time} seconds"
-        except requests.exceptions.RequestException as e:
-            return f"Error: {str(e)}"
         
     def if_condition(self, response, yourdata):
         if response >= yourdata:

@@ -16,7 +16,7 @@ response_page
         FOR    ${day}    IN RANGE    ${DAYS_TO_RUN}
             Log To Console    Day ${day + 1} started.
             FOR    ${minute}    IN RANGE    ${MINUTES_IN_DAY}
-                ${time_o}    Get Response Time HTTPBasicAuth    url=${url}    username=${user}    password=${pass}
+                ${time_o}    Response Time    url=${url}    user=${user}    passcode=${pass}
                 # ${time_o}    Response Time    url=${url}    user=${user}    passcode=${pass}
                 ${timer}    Run Keyword And Ignore Error      Convert To Number    ${time_o}
                 ${threshold}    Run Keyword And Ignore Error    Convert To Number    0004.9999
@@ -24,7 +24,7 @@ response_page
                 IF    '${lo}' == 'OK'
                     Send Mail    from_email=${symvar('From_email')}   password=${symvar('From_user_passcode')}    to_mail=${symvar('To_email')}    subject=${symvar('Subject')}     content=Hi Team,\n\nThe response time exceeds 5 Seconds. Please take a look on it :\n\n URL: ${symvar('URL')}\n\n                                                                                                                                                                                                                                 
                 END
-                ${response}    Get Response Check HTTPBasicAuth    url=${url}    username=${user}    password=${pass}
+                ${response}    Response Check    url=${url}    user=${user}    passcode=${pass}
                 ${res}    Set Variable   Response Time, ${time_o} , ${response}
                 ${split_data}    Split String    ${res}    ,
                 Run Keyword And Ignore Error    Write Value To Excel    file_path=${symvar('File_Path')}${symvar('File_Name')}.xlsx    sheet_name=${symvar('File_Name')}    cell=A${row}    value=${split_data[0]}
