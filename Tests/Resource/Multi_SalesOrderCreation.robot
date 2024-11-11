@@ -42,23 +42,23 @@ SalesOrderCreation
         ${Order_Type}    Read Value From Excel    file_path=${filename}    sheet_name=${sheetname}    cell=C${row_index}
         Clear Field Text    wnd[0]/usr/ctxtVBAK-AUART    
         Input Text    wnd[0]/usr/ctxtVBAK-AUART    ${Order_Type}
-        Sleep    1
+        Sleep    0.5
        
         Clear Field Text    wnd[0]/usr/ctxtVBAK-VKORG
         ${Sales_Organization}    Read Value From Excel    file_path=${filename}    sheet_name=${sheetname}    cell=D${row_index}
         
         Input Text    wnd[0]/usr/ctxtVBAK-VKORG    ${Sales_Organization}
-        Sleep    1
+        Sleep    0.5
         
         ${Distribution Channel}    Read Value From Excel    file_path=${filename}    sheet_name=${sheetname}    cell=E${row_index}
         Input Text    wnd[0]/usr/ctxtVBAK-VTWEG    ${Distribution Channel}
-        Sleep    1
+        Sleep    0.5
         ${Division}    Read Value From Excel    file_path=${filename}    sheet_name=${sheetname}    cell=F${row_index}
         Input Text    wnd[0]/usr/ctxtVBAK-SPART   ${Division}
-        Sleep    1
+        Sleep    0.5
         ${Sales_Office}    Read Value From Excel    file_path=${filename}    sheet_name=${sheetname}    cell=G${row_index}
         Input Text    wnd[0]/usr/ctxtVBAK-VKBUR       ${Sales_Office}
-        Sleep    1
+        Sleep    0.5
         ${Sales_Group}    Read Value From Excel    file_path=${filename}    sheet_name=${sheetname}    cell=H${row_index}
         Input Text    wnd[0]/usr/ctxtVBAK-VKGRP       ${Sales_Group}
         Sleep    0.5
