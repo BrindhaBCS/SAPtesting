@@ -42,7 +42,7 @@ System Logon
     #Input Password   wnd[0]/usr/pwdRSYST-BCODE    %('P2P_User_Password')
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
-    Sleep   1
+    Sleep   0.5
 
 System Logout
     Run Transaction   /nex
@@ -55,13 +55,13 @@ Executing PO Creation
     Log To Console    ${rows}
     FOR    ${initial_row}    IN RANGE    2    ${rows}
         Run Transaction    /nme21n
-        Sleep    1
+        Sleep    0.5
         Run Keyword And Ignore Error    Select From List By Key    wnd[0]/usr/subSUB0:SAPLMEGUI:0013/subSUB0:SAPLMEGUI:0030/subSUB1:SAPLMEGUI:1105/cmbMEPO_TOPLINE-BSART    NB
         ${supplier}    Read Excel Cell Value    ${PO_Creation_File}    ${PO_Creation_Sheet}   ${initial_row}    3
         Run Keyword And Ignore Error    Input Text    wnd[0]/usr/subSUB0:SAPLMEGUI:0016/subSUB0:SAPLMEGUI:0030/subSUB1:SAPLMEGUI:1105/ctxtMEPO_TOPLINE-SUPERFIELD    ${supplier}    
         Run Keyword And Ignore Error    Log To Console    ${supplier}
         Run Keyword And Ignore Error    Send VKey    0
-        Sleep    1
+        Sleep    0.5
         ${purchase_org}    Read Excel Cell Value    ${PO_Creation_File}    ${PO_Creation_Sheet}   ${initial_row}    4
         Run Keyword And Ignore Error    Input Text    wnd[0]/usr/subSUB0:SAPLMEGUI:0013/subSUB1:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1102/tabsHEADER_DETAIL/tabpTABHDT8/ssubTABSTRIPCONTROL2SUB:SAPLMEGUI:1221/ctxtMEPO1222-EKORG    ${purchase_org}
         Run Keyword And Ignore Error    Log To Console    ${purchase_org}
@@ -93,7 +93,7 @@ Executing PO Creation
         Run Keyword And Ignore Error    Click Element    wnd[0]/tbar[0]/btn[11]
         Sleep    0.5
         Run Keyword And Ignore Error    Click Element    wnd[1]/usr/btnSPOP-VAROPTION1
-        Sleep    1
+        Sleep    0.1
         ${is_present}=    Run Keyword And Ignore Error    Element Should Be Present    wnd[1]
         ${result}=    Run Keyword And Ignore Error    Element Should Be Present    wnd[1]
         ${is_present}=    Get From List    ${result}    0   # Extract the first element of the tuple ('PASS' or 'FAIL')
