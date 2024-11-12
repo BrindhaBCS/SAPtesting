@@ -41,7 +41,7 @@ System Logon
     Sleep    5
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
     Sleep   1
-Material_master   
+Material_master1
     ${total_row}    Get Material Count    ${symvar('Excel_file2')}
     ${rows}=    Evaluate    ${total_row} + 1
     Log To Console    ${rows}
