@@ -25,7 +25,6 @@ System Logon
     Sleep   1
 System Logout
     Run Transaction   /nex
-    Sleep    2
 
 SalesOrderCreation
     Run Transaction    /nVA01
@@ -43,42 +42,42 @@ SalesOrderCreation
         ${Order_Type}    Read Value From Excel    file_path=${filename}    sheet_name=${sheetname}    cell=C${row_index}
         Clear Field Text    wnd[0]/usr/ctxtVBAK-AUART    
         Input Text    wnd[0]/usr/ctxtVBAK-AUART    ${Order_Type}
-        Sleep    2
+        Sleep    0.5
        
         Clear Field Text    wnd[0]/usr/ctxtVBAK-VKORG
         ${Sales_Organization}    Read Value From Excel    file_path=${filename}    sheet_name=${sheetname}    cell=D${row_index}
         
         Input Text    wnd[0]/usr/ctxtVBAK-VKORG    ${Sales_Organization}
-        Sleep    2
+        Sleep    0.5
         
         ${Distribution Channel}    Read Value From Excel    file_path=${filename}    sheet_name=${sheetname}    cell=E${row_index}
         Input Text    wnd[0]/usr/ctxtVBAK-VTWEG    ${Distribution Channel}
-        Sleep    2
+        Sleep    0.5
         ${Division}    Read Value From Excel    file_path=${filename}    sheet_name=${sheetname}    cell=F${row_index}
         Input Text    wnd[0]/usr/ctxtVBAK-SPART   ${Division}
-        Sleep    2
+        Sleep    0.5
         ${Sales_Office}    Read Value From Excel    file_path=${filename}    sheet_name=${sheetname}    cell=G${row_index}
         Input Text    wnd[0]/usr/ctxtVBAK-VKBUR       ${Sales_Office}
-        Sleep    2
+        Sleep    0.5
         ${Sales_Group}    Read Value From Excel    file_path=${filename}    sheet_name=${sheetname}    cell=H${row_index}
         Input Text    wnd[0]/usr/ctxtVBAK-VKGRP       ${Sales_Group}
-        Sleep    5
+        Sleep    0.5
         Click Element	wnd[0]/tbar[0]/btn[0]
-	    Sleep	2
+	    Sleep	0.5
         ${Sold-to-Party}    Read Value From Excel    file_path=${filename}    sheet_name=${sheetname}    cell=J${row_index}
         Run Keyword And Ignore Error    Input Text	wnd[0]/usr/subSUBSCREEN_HEADER:SAPMV45A:4021/subPART-SUB:SAPMV45A:4701/ctxtKUAGV-KUNNR	${Sold-to-Party}
-	    Sleep	5
+	    Sleep	0.5
         
         ${Ship-to-Party}    Read Value From Excel    file_path=${filename}    sheet_name=${sheetname}    cell=K${row_index}
         Run Keyword And Ignore Error    Input Text	wnd[0]/usr/subSUBSCREEN_HEADER:SAPMV45A:4021/subPART-SUB:SAPMV45A:4701/ctxtKUWEV-KUNNR	${Ship-to-Party}
-	    Sleep	5
+	    Sleep	0.5
         
         ${Customer_Reference}    Read Value From Excel    file_path=${filename}    sheet_name=${sheetname}    cell=L${row_index}
         Run Keyword And Ignore Error    Input Text    wnd[0]/usr/subSUBSCREEN_HEADER:SAPMV45A:4021/txtVBKD-BSTKD	${Customer_Reference}
 	    Sleep	0.5
         ${Cust_Ref_Date}    Read Value From Excel    file_path=${filename}    sheet_name=${sheetname}    cell=M${row_index}
         Run Keyword And Ignore Error    Input Text	wnd[0]/usr/subSUBSCREEN_HEADER:SAPMV45A:4021/ctxtVBKD-BSTDK    ${Cust_Ref_Date} 
-	    Sleep	5
+	    Sleep	0.5
         ${Current_Date}    Get Current Date    result_format=%d.%m.%Y
         Run Keyword And Ignore Error    Input Text    wnd[0]/usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\\01/ssubSUBSCREEN_BODY:SAPMV45A:4400/ssubHEADER_FRAME:SAPMV45A:4440/ctxtRV45A-KETDAT    ${Current_Date}
         Sleep	0.5
@@ -104,9 +103,11 @@ SalesOrderCreation
         Send Vkey    2
         Send Vkey    2
         Sleep	0.5
-	    Click Element	wnd[0]/usr/tabsTAXI_TABSTRIP_ITEM/tabpT\\03
+	    Run Keyword And Ignore Error    Click Element	wnd[0]/usr/tabsTAXI_TABSTRIP_ITEM/tabpT\\03
+        Run Keyword And Ignore Error    Click Element	wnd[0]/usr/tabsTAXI_TABSTRIP_ITEM/tabpT\03
         Sleep	0.5
-	    Set Focus	wnd[0]/usr/tabsTAXI_TABSTRIP_ITEM/tabpT\\03/ssubSUBSCREEN_BODY:SAPMV45A:4452/ctxtVBAP-LGORT
+	    Run Keyword And Ignore Error    Set Focus	wnd[0]/usr/tabsTAXI_TABSTRIP_ITEM/tabpT\\03/ssubSUBSCREEN_BODY:SAPMV45A:4452/ctxtVBAP-LGORT
+        Run Keyword And Ignore Error    Set Focus	wnd[0]/usr/tabsTAXI_TABSTRIP_ITEM/tabpT\03/ssubSUBSCREEN_BODY:SAPMV45A:4452/ctxtVBAP-LGORT
 	    Sleep	0.5
 	    Send Vkey    4
 	    Sleep	0.5
