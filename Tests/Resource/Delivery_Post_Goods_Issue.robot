@@ -29,20 +29,7 @@ System Logon
 System Logout
     Run Transaction   /nex
     Sleep    2
-Read Excel Sheet
-    [Arguments]    ${filepath}    ${sheetname}    ${rownum}    ${colnum}    
-    Open Excel Document    ${filepath}    1
-    Get Sheet    ${sheetname}    
-    ${data}    Read Excel Cell    ${rownum}    ${colnum}        
-    [Return]    ${data}
-    Close Current Excel Document
-Write Excel Sheet
-    [Arguments]    ${filepath}    ${sheetname}    ${rownum}    ${colnum}    ${cell_value}
-    Open Excel Document    ${filepath}    1
-    Get Sheet    ${sheetname}  
-    Write Excel Cell      ${rownum}       ${colnum}     ${cell_value}       ${sheetname}
-    Save Excel Document     ${filepath}
-    Close Current Excel Document
+
 
 Delivery_Post_Goods_Issue
     
@@ -57,7 +44,7 @@ Delivery_Post_Goods_Issue
         Run Keyword And Ignore Error    Input Text    wnd[0]/usr/ctxtLIKP-VSTEL    ${Shipping_Point} 
         Sleep	2
         # Run Keyword And Ignore Error    Click Element    wnd[0]/usr/ctxtLV50C-VBELN
-        ${SO_Number}    Read Value From Excel    file_path=${filename}    sheet_name=${sheetname}    cell=R${row_index}
+        ${SO_Number}    Read Value From Excel    file_path=${filename}    sheet_name=Sales Order Creation    cell=R${row_index}
         Run Keyword And Ignore Error    Input Text    wnd[0]/usr/ctxtLV50C-VBELN    ${SO_Number}   
         Sleep	2
         Click Element	wnd[0]/tbar[0]/btn[0]
