@@ -24,7 +24,7 @@ System Logout
 MIRO Post Parked
     Run Transaction    /nMIR5
     Sleep    0.5 seconds
-    Input Text    wnd[0]/usr/ctxtSO_BUKRS-LOW     bc01
+    Input Text    wnd[0]/usr/ctxtSO_BUKRS-LOW     ${symvar('Parked_Company_Code')}
     Sleep    0.5 seconds
     Unselect Checkbox    wnd[0]/usr/chkP_IV_OV 
     Sleep    0.5 seconds

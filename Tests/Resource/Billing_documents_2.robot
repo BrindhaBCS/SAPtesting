@@ -36,7 +36,6 @@ Billing Documents_2 Not Posted to Accounting
         Log To Console    ${i}
         ${column_item}    Evaluate    ${coulumn_value}[${i}]
         IF    '${column_item}' == '${symvar('Enter_Bill_Document')}'
-            
             Select Document On Text   wnd[0]/usr/cntlGRID1/shellcont/shell    VBELN    ${symvar('Enter_Bill_Document')}
             Click Element    wnd[0]/tbar[1]/btn[18]
             Log To Console    **gbStart**Copilot_Status**splitKeyValue**${symvar('Enter_Bill_Document')} Release successfully**gbEnd**
@@ -45,8 +44,6 @@ Billing Documents_2 Not Posted to Accounting
             Log To Console    **gbStart**Copilot_Status**splitKeyValue**${symvar('Enter_Bill_Document')} Does't Exist**gbEnd**
         END
     END    
-    
-    Run Keyword And Ignore Error    Delete Specific File    C:\\tmp\\biling_documents.xlsx
    
 
 System Logout
