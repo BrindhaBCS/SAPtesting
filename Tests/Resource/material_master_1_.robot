@@ -10,8 +10,8 @@ Library    ExcelLibrary
 *** Keywords ***
 
 Read Excel Sheet
-    [Arguments]    ${Excel_file}    ${sheetname}    ${rownum}    ${colnum}    
-    Open Excel Document    ${Excel_file}    1
+    [Arguments]    ${Excel_file2}    ${sheetname}    ${rownum}    ${colnum}    
+    Open Excel Document    ${Excel_file2}    1
     Get Sheet    ${sheetname}    
     ${data}    Read Excel Cell    ${rownum}    ${colnum}        
     [Return]    ${data}
@@ -42,16 +42,16 @@ System Logon
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
     Sleep   1
 Material_master   
-    ${total_row}    Get Material Count    ${symvar('Excel_file')}
+    ${total_row}    Get Material Count    ${symvar('Excel_file2')}
     ${rows}=    Evaluate    ${total_row} + 1
     Log To Console    ${rows}
     FOR    ${initial_row}    IN RANGE    2    ${rows}
         Run Transaction    /nmm01
         Sleep    2
-        ${industry_sector}    Read Excel Sheet    ${symvar('Excel_file')}    ${symvar('Sheet_name')}   ${initial_row}    1 
+        ${industry_sector}    Read Excel Sheet    ${symvar('Excel_file2')}    ${symvar('Sheet_name2')}   ${initial_row}    1 
         Run Keyword And Ignore Error    Log To Console    ${industry_sector}
         Run Keyword And Ignore Error    Select From List By Key    wnd[0]/usr/cmbRMMG1-MBRSH    ${industry_sector}
-        ${Material_type}    Read Excel Sheet    ${symvar('Excel_file')}    ${symvar('Sheet_name')}   ${initial_row}    2 
+        ${Material_type}    Read Excel Sheet    ${symvar('Excel_file2')}    ${symvar('Sheet_name2')}   ${initial_row}    2 
         Run Keyword And Ignore Error    Select From List By Key    wnd[0]/usr/cmbRMMG1-MTART	    ${Material_type}
         Run Keyword And Ignore Error    Click Element	wnd[0]/tbar[1]/btn[5]
         ${rowcoun} =    Run Keyword And Ignore Error    Get Row Count    wnd[1]/usr/tblSAPLMGMMTC_VIEW
@@ -75,9 +75,9 @@ Material_master
             END
         END
         Run Keyword And Ignore Error    sendVKey	0
-        ${plant}    Read Excel Sheet    ${symvar('Excel_file')}    ${symvar('Sheet_name')}    ${initial_row}    10
+        ${plant}    Read Excel Sheet    ${symvar('Excel_file2')}    ${symvar('Sheet_name2')}    ${initial_row}    10
         Run Keyword And Ignore Error    Input Text	wnd[1]/usr/ctxtRMMG1-WERKS	${plant}
-        ${storage_loc}    Read Excel Sheet    ${symvar('Excel_file')}    ${symvar('Sheet_name')}    ${initial_row}    11
+        ${storage_loc}    Read Excel Sheet    ${symvar('Excel_file2')}    ${symvar('Sheet_name2')}    ${initial_row}    11
         Run Keyword And Ignore Error    Input Text	wnd[1]/usr/ctxtRMMG1-LGORT	${storage_loc}
         Run Keyword And Ignore Error    sendVKey	0
         ${window_exis}    Run Keyword And Ignore Error    Run Keyword And Return Status    Element Should Be Present    wnd[2]
@@ -85,16 +85,16 @@ Material_master
         IF    '${window_exist}' == 'True'
             ${popup_valu}    Run Keyword And Ignore Error    Get Value   wnd[2]/usr/txtMESSTXT1  
             ${popup_value}    Set Variable    ${popup_valu[1]}
-            Write Excel    ${symvar('Excel_file')}    ${symvar('Sheet_name')}    ${initial_row}    21    ${popup_value}
+            Write Excel    ${symvar('Excel_file2')}    ${symvar('Sheet_name2')}    ${initial_row}    21    ${popup_value}
             Run Keyword And Ignore Error    Close Window    wnd[2]
             Run Keyword And Ignore Error    Close Window    wnd[1]
             Run Keyword And Ignore Error    Continue For Loop
         ELSE 
-            ${material_description}    Read Excel Sheet    ${symvar('Excel_file')}    ${symvar('Sheet_name')}    ${initial_row}    12    
+            ${material_description}    Read Excel Sheet    ${symvar('Excel_file2')}    ${symvar('Sheet_name2')}    ${initial_row}    12    
             Run Keyword And Ignore Error    Input Text	wnd[0]/usr/tabsTABSPR1/tabpSP01/ssubTABFRA1:SAPLMGMM:2004/subSUB1:SAPLMGD1:1002/txtMAKT-MAKTX	${material_description} 
-            ${Base_unit_of_Measure}    Read Excel Sheet    ${symvar('Excel_file')}    ${symvar('Sheet_name')}    ${initial_row}    13
+            ${Base_unit_of_Measure}    Read Excel Sheet    ${symvar('Excel_file2')}    ${symvar('Sheet_name2')}    ${initial_row}    13
             Run Keyword And Ignore Error    Input Text	wnd[0]/usr/tabsTABSPR1/tabpSP01/ssubTABFRA1:SAPLMGMM:2004/subSUB2:SAPLMGD1:2001/ctxtMARA-MEINS	${Base_unit_of_Measure}
-            ${Material_group}    Read Excel Sheet    ${symvar('Excel_file')}    ${symvar('Sheet_name')}    ${initial_row}    14
+            ${Material_group}    Read Excel Sheet    ${symvar('Excel_file2')}    ${symvar('Sheet_name2')}    ${initial_row}    14
             Run Keyword And Ignore Error    Input Text	wnd[0]/usr/tabsTABSPR1/tabpSP01/ssubTABFRA1:SAPLMGMM:2004/subSUB2:SAPLMGD1:2001/ctxtMARA-MATKL	${Material_group}
         END   
             FOR    ${index}    IN RANGE    0    10
@@ -103,7 +103,7 @@ Material_master
                 ${is_present}    Run Keyword And Return Status    Element Should Be Present    wnd[0]/usr/tabsTABSPR1/tabpSP09/ssubTABFRA1:SAPLMGMM:2000/subSUB2:SAPLMGD1:2301/ctxtMARC-EKGRP
                 Run Keyword And Ignore Error    Exit For Loop If    ${is_present}
             END
-            ${purchasing_group}    Read Excel Sheet    ${symvar('Excel_file')}    ${symvar('Sheet_name')}   ${initial_row}    15 
+            ${purchasing_group}    Read Excel Sheet    ${symvar('Excel_file2')}    ${symvar('Sheet_name2')}   ${initial_row}    15 
             Run Keyword And Ignore Error    Input Text   wnd[0]/usr/tabsTABSPR1/tabpSP09/ssubTABFRA1:SAPLMGMM:2000/subSUB2:SAPLMGD1:2301/ctxtMARC-EKGRP    ${purchasing_group}
             Run Keyword And Ignore Error    Sleep    1
             FOR    ${index}    IN RANGE    0    10
@@ -112,16 +112,16 @@ Material_master
                 ${is_present}    Run Keyword And Ignore Error    Run Keyword And Return Status    Element Should Be Present    wnd[0]/usr/tabsTABSPR1/tabpSP24/ssubTABFRA1:SAPLMGMM:2000/subSUB2:SAPLMGD1:2800/subSUB2:SAPLMGD1:2802/ctxtMBEW-BKLAS
                 Run Keyword And Ignore Error    Exit For Loop If    ${is_present}
             END
-            ${valuation_class}    Read Excel Sheet    ${symvar('Excel_file')}    ${symvar('Sheet_name')}   ${initial_row}    17
+            ${valuation_class}    Read Excel Sheet    ${symvar('Excel_file2')}    ${symvar('Sheet_name2')}   ${initial_row}    17
             Run Keyword And Ignore Error    Input Text    wnd[0]/usr/tabsTABSPR1/tabpSP24/ssubTABFRA1:SAPLMGMM:2000/subSUB2:SAPLMGD1:2800/subSUB2:SAPLMGD1:2802/ctxtMBEW-BKLAS    ${valuation_class}
             Sleep    1
-            ${price_control}    Read Excel Sheet    ${symvar('Excel_file')}    ${symvar('Sheet_name')}   ${initial_row}    18
+            ${price_control}    Read Excel Sheet    ${symvar('Excel_file2')}    ${symvar('Sheet_name2')}   ${initial_row}    18
             Run Keyword And Ignore Error    Input Text    wnd[0]/usr/tabsTABSPR1/tabpSP24/ssubTABFRA1:SAPLMGMM:2000/subSUB2:SAPLMGD1:2800/subSUB2:SAPLMGD1:2802/ctxtMBEW-VPRSV    ${price_control}
             Sleep    1
-            ${price_unit}    Read Excel Sheet    ${symvar('Excel_file')}    ${symvar('Sheet_name')}   ${initial_row}    19
+            ${price_unit}    Read Excel Sheet    ${symvar('Excel_file2')}    ${symvar('Sheet_name2')}   ${initial_row}    19
             Run Keyword And Ignore Error    Input Text    wnd[0]/usr/tabsTABSPR1/tabpSP24/ssubTABFRA1:SAPLMGMM:2000/subSUB2:SAPLMGD1:2800/subSUB2:SAPLMGD1:2802/txtMBEW-PEINH    ${price_unit}
             Sleep    1
-            ${moving_price}    Read Excel Sheet    ${symvar('Excel_file')}    ${symvar('Sheet_name')}   ${initial_row}    20
+            ${moving_price}    Read Excel Sheet    ${symvar('Excel_file2')}    ${symvar('Sheet_name2')}   ${initial_row}    20
             Run Keyword And Ignore Error    Input Text    wnd[0]/usr/tabsTABSPR1/tabpSP24/ssubTABFRA1:SAPLMGMM:2000/subSUB2:SAPLMGD1:2800/subSUB2:SAPLMGD1:2802/txtMBEW-VERPR    ${moving_price}
             Sleep    1
             FOR    ${index}    IN RANGE    0    10
@@ -136,7 +136,7 @@ Material_master
         Log    ${material_number}
         Set Global Variable    ${material_number}
         # Log To Console    **gbStart**Copilot_Status**splitKeyValue**${material_number}**gbEnd**
-        Write Excel    ${symvar('Excel_file')}    ${symvar('Sheet_name')}    ${initial_row}    21    ${material_number}
+        Write Excel    ${symvar('Excel_file2')}    ${symvar('Sheet_name2')}    ${initial_row}    21    ${material_number}
 
     END
 System Logout
