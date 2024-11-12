@@ -7,6 +7,8 @@ Test Tags    Material1
 
 *** Test Cases ***
 Material_master
+    [Tags]    Material_m
     Material_master
+    
      
     
