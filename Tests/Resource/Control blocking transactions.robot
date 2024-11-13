@@ -41,22 +41,10 @@ Control blocking transactions
     Take Screenshot    Control_blocking_transactions2.jpg
     Log To Console    Control blocking transactions completed
 Generate report
-   Image Resize    ${symvar('MCR_directory')}
+    Image Resize    ${OUTPUT_DIR}
     Sleep    2
-    Copy Images    ${symvar('MCR_directory')}    ${symvar('MCR_Resized_Images_directory')}
+    Copy Images    ${OUTPUT_DIR}    ${symvar('MCR_Resized_Images_directory')}
     Sleep    1
-    # Click Element    ${local file}
-    # Sleep    2
-    # Select Radio Button    ${Text with tabs Button}
-    # Click Element    ${local file continue}
-    # Sleep    1
-    # Input Text    wnd[1]/usr/ctxtDY_PATH    ${symvar('MCR_Results_Directory_Path')}
-    # Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${Req_Result_Filename}
-    # Sleep    1
-    # Click Element    ${Replace}
-    # Sleep    1
-    # Click Element    ${BACK}
-    # Sleep    1
     
 
     

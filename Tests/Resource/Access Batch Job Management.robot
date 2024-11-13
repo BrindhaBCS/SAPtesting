@@ -125,7 +125,7 @@ Access Batch Job Management
     Log to console    Access Batch Job Management completed
 
 Generate report
-   Image Resize    ${symvar('MCR_directory')}
+    Image Resize    ${OUTPUT_DIR}
     Sleep    2
-    Copy Images    ${symvar('MCR_directory')}    ${symvar('MCR_Resized_Images_directory')}
+    Copy Images    ${OUTPUT_DIR}    ${symvar('MCR_Resized_Images_directory')}
     Sleep    1
