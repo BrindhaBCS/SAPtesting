@@ -38,8 +38,8 @@ System Logon
     Open Connection    ${symvar('MCR_SAP_connection')}    
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('MCR_Client_Id')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('MCR_User_Name')}    
-    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('MCR_User_Password')}
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{MCR_User_Password}
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('MCR_User_Password')}
+    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{MCR_User_Password}
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
     Sleep   1
@@ -50,22 +50,29 @@ System Logout
 Usercontrol (non)personal user accounts
     Maximize Window
     Run Transaction     SUIM
+    # Run Transaction     SUIM
+    #Enter into the Change document for Users
     Click Node Link     ${tree_id}    ${link_id1}    ${link_id2}    ${link_id3}     ${link_id4}    ${link_id5}
     Sleep    1
-    # Click Element    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB2
-    # Sleep    1
+    #Key in the dates
+    Input Text    wnd[0]/usr/ctxtFDATE    ${start_date}
+    Input Text    wnd[0]/usr/ctxtTDATE    ${end_date}
+    #Select the checkbox User created
     Select Checkbox    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB1/ssub%_SUBSCREEN_TAB:RSUSR100N:1100/chkUSER_CRT
-    Take Screenshot    Usercontrol_(non)personal_user_accounts.jpg
+    Take Screenshot    req2_output.jpg
     Sleep    2
+    #Execute the requirement using F8
     Click Element    wnd[0]/mbar/menu[0]/menu[0]
     Sleep    1
-    Take Screenshot    Usercontrol_(non)personal_user_accounts2.jpg
+    Take Screenshot    req2_output2.jpg
+    #Send the output to the Local file
     Click Element    wnd[0]/mbar/menu[0]/menu[3]/menu[1]
     Sleep    1
+    #Select the Local file format
     Select Radio Button    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[1,0]
+    #Select to generate it
     Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    1
-    
     Input Text    wnd[1]/usr/ctxtDY_PATH    ${symvar('MCR_Results_Directory_Path')}
     Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${Req_Result2_Filename}
     # Generate the Results file.
@@ -83,10 +90,9 @@ Usercontrol (non)personal user accounts
     Sleep    1
     Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
     Sleep    1
-    Delete Specific File    file_path=C:\\tmp\\User_Accounts.xls
     Log To Console    Usercontrol (non)personal user accounts completed
 Generate report
     Image Resize    ${OUTPUT_DIR}
-    Sleep    2
+    Sleep    1
     Copy Images    ${OUTPUT_DIR}    ${symvar('MCR_Resized_Images_directory')}
     Sleep    1
