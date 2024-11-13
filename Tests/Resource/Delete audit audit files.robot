@@ -58,19 +58,19 @@ System Logout
 Delete audit files
     Run Transaction    /nSE38
     Sleep    2
-    Take Screenshot    Delete_audit_audit_files1.jpg
+    Take Screenshot    Delete_audit1.jpg
     Input Text    wnd[0]/usr/ctxtRS38M-PROGRAMM    RSPARAM
     Sleep    2
-    Take Screenshot    Delete_audit_audit_files2.jpg
+    Take Screenshot    Delete_audit2.jpg
     Click Element    ${Execute}
     Sleep    2
-    Take Screenshot    Delete_audit_audit_files3.jpg
+    Take Screenshot    Delete_audit3.jpg
     Select Checkbox    wnd[0]/usr/chkALSOUSUB
     Sleep    2
-    Take Screenshot    Delete_audit_audit_files4.jpg
+    Take Screenshot    Delete_audit4.jpg
     Click Element    ${Execute}
     Sleep    2
-    Take Screenshot    Delete_audit_audit_files5.jpg
+    Take Screenshot    Delete_audit5.jpg
     ${path}    Get Cell Value    wnd[0]/usr/cntlGRID1/shellcont/shell    3    PAR_USER_WERT
     Log To Console    ${path}
     Sleep    2
@@ -78,7 +78,7 @@ Delete audit files
     Sleep    2
     Click Node Link     ${tree_id}    ${link_id1}    ${link_id2}    ${link_id3}     ${link_id4}    ${link_id5}
     Sleep    2
-    Take Screenshot    Delete_audit_audit_files6.jpg
+    Take Screenshot    Delete_audit6.jpg
     Click Element    ${AUTHORIZATION TAB}
     Sleep    2
     Input Text    ${AUTHORIZATION OBJECT 1}    S_ADMI_FCD
@@ -97,10 +97,10 @@ Delete audit files
     Sleep    2
     Input Text	wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB4/ssub%_SUBSCREEN_TAB:RSUSR002:1004/txtVAL221	${path}
     Sleep    5
-    Take Screenshot    Delete_audit_audit_files7.jpg
+    Take Screenshot    Delete_audit7.jpg
     Click Element    ${Execute}
     Sleep    2
-    Take Screenshot    Delete_audit_audit_files8.jpg
+    Take Screenshot    Delete_audit8.jpg
     Click Element    ${local file}
     Sleep    2
     Select Radio Button    ${Text with tabs Button}
