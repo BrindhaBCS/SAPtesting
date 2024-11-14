@@ -10,7 +10,7 @@ Library    DateTime
 
 *** Variables ***    
 
-${PO_Creation_File}      C:\\Robot_SAP\\SAPtesting\\Purchase_Order_Details.xlsx
+${PO_Creation_File}      C:\\RobotFramework\\sap_testing\\Tests\\Resource\\Purchase_Order_Details.xlsx
 ${PO_Creation_Sheet}     Purchase order
 ${GR_Creation_Sheet}     Goods Receipt
 ${PO_Header}    ${SPACE*10}20
