@@ -26,7 +26,7 @@ MIRO_INVOICE
     Input Text    element_id=wnd[1]/usr/ctxtBKPF-BUKRS    text=${symvar('MIRO_Invoice_Company_Code')}
     Click Element    element_id=wnd[1]/tbar[0]/btn[0]
     Sleep    time_=1 seconds
-    Input Text    element_id=wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_TOTAL/ssubHEADER_SCREEN:SAPLFDCB:0010/ctxtINVFO-BLDAT    text=${date}
+    Input Text    element_id=wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_TOTAL/ssubHEADER_SCREEN:SAPLFDCB:0010/ctxtINVFO-BLDAT    text=${symvar('MIRO_Invoice_Date')}
     ${p}    India To European Numeric    value=${symvar('MIRO_Invoice_Total_Amount')}
     Input Text    element_id=wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_TOTAL/ssubHEADER_SCREEN:SAPLFDCB:0010/txtINVFO-WRBTR    text=${p}
     Input Text    element_id=wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_TOTAL/ssubHEADER_SCREEN:SAPLFDCB:0010/ctxtINVFO-BUPLA    text=IN01
@@ -43,7 +43,14 @@ MIRO_INVOICE
     Click Element    element_id=wnd[0]/tbar[0]/btn[11]
     Sleep    time_=0.2 seconds
     ${i}    Get Value    element_id=wnd[0]/sbar/pane[0]
-    Log To Console    **gbStart**MIRO_Invoice_Copilot_status**splitKeyValue**${i}**gbEnd**
+    IF    '${i}' == 'Net due date on ${date} is in the past'
+        Send Vkey    vkey_id=0
+        Click Element    element_id=wnd[0]/tbar[0]/btn[11]
+        Log To Console    **gbStart**MIRO_Invoice_Copilot_status**splitKeyValue**${i}**gbEnd**
+    ELSE
+        Log To Console    **gbStart**MIRO_Invoice_Copilot_status**splitKeyValue**${i}**gbEnd**  
+    END
+    
 
 
 
