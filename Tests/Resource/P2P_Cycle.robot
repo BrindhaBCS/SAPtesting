@@ -162,7 +162,7 @@ Executing P2P Cycle
         Run Keyword And Ignore Error    Input Text    wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_TOTAL/ssubHEADER_SCREEN:SAPLFDCB:0010/ctxtINVFO-BUPLA    ${Business_Place}
         Run Keyword And Ignore Error    Log To Console    ${Business_Place}
 
-        ${Balance_Amount}    Get Value    wnd[0]/usr/txtRM08M-DIFFERENZ
+        ${Balance_Amount}    Run Keyword And Ignore Error    Get Value    wnd[0]/usr/txtRM08M-DIFFERENZ
         Log To Console    ${Balance_Amount}
         ${Amount}=    Clear Negative Sign    ${Balance_Amount}
         Run Keyword And Ignore Error    Log To Console    ${Amount}
