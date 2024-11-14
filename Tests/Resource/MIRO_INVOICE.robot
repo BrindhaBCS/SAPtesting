@@ -43,7 +43,7 @@ MIRO_INVOICE
     Click Element    element_id=wnd[0]/tbar[0]/btn[11]
     Sleep    time_=0.2 seconds
     ${i}    Get Value    element_id=wnd[0]/sbar/pane[0]
-    Log To Console    **gbStart**MIRO_Invoice_Status**splitKeyValue**${i}**gbEnd**
+    Log To Console    **gbStart**MIRO_Invoice_Copilot_status**splitKeyValue**${i}**gbEnd**
 
 
 
