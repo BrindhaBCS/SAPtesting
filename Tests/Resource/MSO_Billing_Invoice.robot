@@ -19,8 +19,8 @@ System Logon
     Sleep   1
     Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('MSO_Client_Id')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('MSO_User_Name')}
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('MSO_User_Password')}
-    # Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{Customer_User_Password}
+    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('MSO_User_Password')}
+    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{MSO_User_Password}
     Send Vkey    0
     Sleep    2
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
