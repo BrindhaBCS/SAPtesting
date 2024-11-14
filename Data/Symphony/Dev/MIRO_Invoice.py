@@ -7,7 +7,6 @@
 # MIRO_Invoice_Reference_Number = "4500001012"
 # MIRO_Invoice_Total_Amount = "100,00"
 # MIRO_Invoice_Quantity = "1"
-
 SAP_SERVER = "$SAP_SERVER"
 MIRO_Invoice_Connection = "$MIRO_Invoice_Connection"
 MIRO_Invoice_Client_Id = "$MIRO_Invoice_Client_Id"
