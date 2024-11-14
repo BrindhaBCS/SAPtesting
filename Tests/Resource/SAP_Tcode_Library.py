@@ -2039,3 +2039,11 @@ class SAP_Tcode_Library:
             return match.group()
         else:
             return data
+    def india_to_european_numeric(self, value):
+        try:
+            value = float(value)
+            formatted_value = f"{value:,.2f}"
+            european_format = formatted_value.replace(",", "X").replace(".", ",").replace("X", ".")
+            return european_format
+        except ValueError:
+            return "Check your inputs"
