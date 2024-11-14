@@ -2,7 +2,6 @@
 # KG_Connection = "TS4"
 # KG_Client_Id = "001"
 # KG_User_Name = "Maestro"
-# KG_User_Password = "Test@12345"
 # Input_Document_Number = "300"
 
 SAP_SERVER = "$SAP_SERVER"
