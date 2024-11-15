@@ -51,16 +51,16 @@ MIRO_INVOICE
     ELSE
         Log To Console    **gbStart**MIRO_Invoice_Doc**splitKeyValue**${y}**gbEnd**  
     END
-    Click Element    element_id=wnd[0]/tbar[1]/btn[34]
+    Run Keyword And Ignore Error    Click Element    element_id=wnd[0]/tbar[1]/btn[34]
     Sleep    time_=0.2 seconds
-    Click Element    element_id=wnd[1]/tbar[0]/btn[0]
+    Run Keyword And Ignore Error    Click Element    element_id=wnd[1]/tbar[0]/btn[0]
     Sleep    time_=0.2 seconds
-    Click Element    element_id=wnd[0]/tbar[1]/btn[8]
+    Run Keyword And Ignore Error    Click Element    element_id=wnd[0]/tbar[1]/btn[8]
     Sleep    time_=0.2 seconds
-    Select And Double Click Row    element_path=wnd[1]/usr/cntlCONTAINER/shellcont/shell    row_index=0
+    Run Keyword And Ignore Error     Select And Double Click Row    element_path=wnd[1]/usr/cntlCONTAINER/shellcont/shell    row_index=0
     Sleep    time_=0.2 seconds
     ${z}    Get Value    element_id=wnd[0]/usr/txtBKPF-BELNR
-    Log To Console    **gbStart**MIRO_Invoice_Post_Doc**splitKeyValue**${z}**gbEnd**  
+    Log To Console    **gbStart**MIRO_Invoice_Post_Doc**splitKeyValue**${z}**gbEnd** 
     
 
 
