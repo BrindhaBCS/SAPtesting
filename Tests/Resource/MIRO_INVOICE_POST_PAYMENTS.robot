@@ -33,7 +33,8 @@ MIRO_INVOICE_POST_PAYMENTS
     Sleep    0.2 seconds
     Input Text    wnd[0]/usr/ctxtRF05A-KONTO    ${symvar('Miro_post_payments_account')}
     Sleep    0.2 seconds
-    Input Text    wnd[0]/usr/txtBSEG-WRBTR    ${symvar('Miro_post_payments_amount')}
+    ${p}    India To European Numeric    value=${symvar('MIRO_Invoice_Total_Amount')}
+    Input Text    wnd[0]/usr/txtBSEG-WRBTR    ${p}
     Sleep    0.2 seconds
     Input Text    wnd[0]/usr/ctxtBSEG-SGTXT    ${symvar('Miro_post_payments_text')}
     Sleep    0.2 seconds
