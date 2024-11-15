@@ -43,12 +43,13 @@ MIRO_INVOICE
     Click Element    element_id=wnd[0]/tbar[0]/btn[11]
     Sleep    time_=0.2 seconds
     ${i}    Get Value    element_id=wnd[0]/sbar/pane[0]
+    ${y}    Extract Numeric    data=${i}
     IF    '${i}' == 'Net due date on ${date} is in the past'
         Send Vkey    vkey_id=0
         Click Element    element_id=wnd[0]/tbar[0]/btn[11]
-        Log To Console    **gbStart**MIRO_Invoice_Copilot_status**splitKeyValue**${i}**gbEnd**
+        Log To Console    **gbStart**MIRO_Invoice_Copilot_status**splitKeyValue**${y}**gbEnd**
     ELSE
-        Log To Console    **gbStart**MIRO_Invoice_Copilot_status**splitKeyValue**${i}**gbEnd**  
+        Log To Console    **gbStart**MIRO_Invoice_Copilot_status**splitKeyValue**${y}**gbEnd**  
     END
     
 
