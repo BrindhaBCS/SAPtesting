@@ -2047,3 +2047,10 @@ class SAP_Tcode_Library:
             return european_format
         except ValueError:
             return "Check your inputs"
+    def select_and_double_click_row(self, element_path, row_index):
+        try:
+            element = self.session.findById(element_path)
+            element.selectedRows = str(row_index)
+            element.doubleClickCurrentCell()
+        except Exception as e:
+            raise RuntimeError(f"An error occurred: {e}")
