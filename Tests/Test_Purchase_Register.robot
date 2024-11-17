@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    ../Tests/Resource/Purchase Register.robot
+Resource    ../Tests/Resource/Purchase_Register.robot
 Test Tags    PR
 
 *** Test Cases ***
