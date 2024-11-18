@@ -1902,11 +1902,11 @@ class SAP_Tcode_Library:
             self.session.findById("wnd[1]/usr/btnAPP_FL_SING").press()
         except:
             return[]
-    def process_excel(self, file_path, sheet_name, column_index=None):
+    def process_excel(self, file_path, sheet_name, column_index=None, row_indices=None):
         df = pd.read_excel(file_path, sheet_name=sheet_name, header=None)
         if column_index is not None:
             try:
-                column_index = int(column_index)  # Ensure column_index is an integer
+                column_index = int(column_index)
             except ValueError:
                 print("Invalid column index provided. Please provide a valid integer.")
                 return
@@ -1915,17 +1915,24 @@ class SAP_Tcode_Library:
             else:
                 print(f"Column index {column_index} is out of bounds.")
                 return
-        df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
+        df = df.apply(lambda x: x.str.strip() if x.dtype == "object" else x) 
         df.dropna(how='all', inplace=True)
         df.dropna(axis=1, how='all', inplace=True)
         if df.iloc[0].isnull().all(): 
-            new_header = df.iloc[1]  
+            new_header = df.iloc[1]  # Use second row as header
             df = df[2:]  # Remove first two rows
         else:
             new_header = df.iloc[0]  # Use first row as header
             df = df[1:]  # Remove first row
         df.columns = new_header
         df.reset_index(drop=True, inplace=True)
+        if row_indices:
+            try:
+                df.drop(index=row_indices, inplace=True)
+            except Exception as e:
+                print(f"Error dropping rows: {e}")
+                return
+
         try:
             # Write the modified DataFrame back to the Excel file
             with pd.ExcelWriter(file_path, engine='openpyxl', mode='w') as writer:
