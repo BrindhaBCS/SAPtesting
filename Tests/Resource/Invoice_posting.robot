@@ -39,7 +39,7 @@ VF04
     Sleep    0.2 seconds
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    0.2 seconds
-    Process Excel    file_path=${symvar('FilePath')}${symvar('FileName')}.xlsx    sheet_name=Sheet1    column_index=1    row_indices=0,1,2,3
+    Process Excel    file_path=${symvar('FilePath')}${symvar('FileName')}.xlsx    sheet_name=Sheet1    column_index=["0","1"]    row_indices=["0","1","2","3"]
     ${i}    Excel To Json    excel_file=${symvar('excel_path')}    json_file=${symvar('json_path')}
     Log To Console    **gbStart**copilot_key**splitKeyValue**${i}**gbEnd**
     # Excel Arrange   ${symvar('FilePath')}    Sheet1    ${symvar('FileName')}.xlsx
