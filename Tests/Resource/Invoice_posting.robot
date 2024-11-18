@@ -44,7 +44,8 @@ VF04
     Sleep    2
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    2
-    Excel Arrange   ${symvar('FilePath')}    Sheet1    ${symvar('FileName')}.xlsx
+    Process Excel    file_path=${symvar('FilePath')}${symvar('FileName')}.xlsx    sheet_name=Sheet1    column_index=0
+    # Excel Arrange   ${symvar('FilePath')}    Sheet1    ${symvar('FileName')}.xlsx
     Sleep    1
     
 
