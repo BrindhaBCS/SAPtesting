@@ -51,4 +51,4 @@ MIRO_INVOICE_POST_PAYMENTS
     Click Element    wnd[0]/tbar[0]/btn[11]
     Sleep    1
     ${output}   Get Value    wnd[0]/sbar/pane[0]
-    Log To Console      **gbStart**Miro_post_payments_copilot_status**splitKeyValue**${output}**gbEnd**
+    Log To Console      **gbStart**Miro_post_payments_copilot_status**splitKeyValue**${output}. Payment to the Vendor is initiated successfully...**gbEnd**
