@@ -3,7 +3,7 @@ Library    Process
 Library    SAP_Tcode_Library.py
 *** Variables ***
 @{col}    0    1
-@{row}    0    1    2    3    
+@{row}    0    1    2
 *** Keywords ***
 System Logon
     Start Process     ${symvar('SAP_SERVER')}    
