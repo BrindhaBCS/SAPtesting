@@ -6,7 +6,6 @@
 # FileName = "Billing_invoice"
 # FilePath = "c:\\tmp"
 # Document_num = "80000042"
-
 SAP_SERVER = "$SAP_SERVER"
 TS4_connection = "$TS4_connection"
 TS4_Client_Id = "$TS4_Client_Id"
