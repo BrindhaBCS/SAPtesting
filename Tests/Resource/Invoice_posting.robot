@@ -2,8 +2,8 @@
 Library    Process
 Library    SAP_Tcode_Library.py
 *** Variables ***
-${col}    0    1
-${row}    0    1    2    3    
+@{col}    0    1
+@{row}    0    1    2    3    
 *** Keywords ***
 System Logon
     Start Process     ${symvar('SAP_SERVER')}    
@@ -41,8 +41,9 @@ VF04
     Input Text    wnd[1]/usr/ctxtDY_PATH    ${symvar('FilePath')}
     Sleep    0.2 seconds
     Click Element    wnd[1]/tbar[0]/btn[11]
-    Sleep    0.2 seconds
+    Sleep    3
     Process Excel    file_path=${symvar('FilePath')}${symvar('FileName')}.xlsx    sheet_name=Sheet1    column_index=${col}   row_indices=${row}
+    Sleep    2
     ${i}    Excel To Json    excel_file=${symvar('excel_path')}    json_file=${symvar('json_path')}
     Log To Console    **gbStart**copilot_key**splitKeyValue**${i}**gbEnd**
     # Excel Arrange   ${symvar('FilePath')}    Sheet1    ${symvar('FileName')}.xlsx
