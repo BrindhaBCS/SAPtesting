@@ -1904,18 +1904,23 @@ class SAP_Tcode_Library:
             return[]
     def process_excel(self, file_path, sheet_name, column_index=None, row_indices=None):
         df = pd.read_excel(file_path, sheet_name=sheet_name, header=None)
+
         if column_index is not None:
             try:
-                column_index = int(column_index)
+                column_index = [int(index) for index in column_index] if isinstance(column_index, list) else [int(column_index)]
             except ValueError:
-                print("Invalid column index provided. Please provide a valid integer.")
+                print("Invalid column index provided. Please provide valid integers.")
                 return
-            if 0 <= column_index < df.shape[1]:
-                df.drop(df.columns[column_index], axis=1, inplace=True)
-            else:
-                print(f"Column index {column_index} is out of bounds.")
-                return
-        df = df.apply(lambda x: x.str.strip() if x.dtype == "object" else x) 
+            
+            for col in column_index:
+                if 0 <= col < df.shape[1]:
+                    df.drop(df.columns[col], axis=1, inplace=True)
+                else:
+                    print(f"Column index {col} is out of bounds.")
+                    return
+
+        df = df.apply(lambda x: x.str.strip() if x.dtype == "object" else x)
+
         df.dropna(how='all', inplace=True)
         df.dropna(axis=1, how='all', inplace=True)
         if df.iloc[0].isnull().all(): 
@@ -1926,6 +1931,7 @@ class SAP_Tcode_Library:
             df = df[1:]  # Remove first row
         df.columns = new_header
         df.reset_index(drop=True, inplace=True)
+
         if row_indices:
             try:
                 df.drop(index=row_indices, inplace=True)
@@ -1934,12 +1940,27 @@ class SAP_Tcode_Library:
                 return
 
         try:
-            # Write the modified DataFrame back to the Excel file
             with pd.ExcelWriter(file_path, engine='openpyxl', mode='w') as writer:
                 df.to_excel(writer, index=False, sheet_name=sheet_name)
             print(f"Processed Excel sheet '{sheet_name}' has been updated in: {file_path}")
         except Exception as e:
             print(f"Error writing to Excel: {e}")
+    
+    def excel_to_json(self, excel_file, json_file):
+        # Read the Excel file
+        df = pd.read_excel(excel_file, engine='openpyxl')
+        # Convert Timestamp objects to strings
+        for column in df.select_dtypes(['datetime']):
+            df[column] = df[column].astype(str)
+        # Convert the DataFrame to a dictionary
+        data = df.to_dict(orient='records')
+        # Write the dictionary to a JSON file
+        with open(json_file, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
+        # Read the JSON file after writing it
+        with open(json_file, 'r', encoding='utf-8') as f:
+            json_data = json.load(f)
+        return json_data
 
 
 
