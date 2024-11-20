@@ -69,10 +69,10 @@ Result
     #Log to console    ${json}
     ${chart_json}    Generate Chart Data    file_path=C:\\tmp\\MM_MB52_Full_Desc_Details.xlsx 
     Sleep    0.5
-    Log To Console    **gbStart**copilot_cpiechart_data**splitKeyValue**${chart_json}**gbEnd**
+    Log To Console    **gbStart**copilot_cpiechart_data_grouped**splitKeyValue**${chart_json}**gbEnd**
     ${chart_json_top10}    Generate Chart Data Top Ten Materials    file_path=C:\\tmp\\MM_MB52_Full_Desc_Details.xlsx 
     Sleep    0.5
-    Log To Console    **gbStart**copilot_cpiechart_data**splitKeyValue**${chart_json_top10}**gbEnd**
+    Log To Console    **gbStart**copilot_cpiechart_data_top10**splitKeyValue**${chart_json_top10}**gbEnd**
     #Log To Console    gbStart##copilot_cpiechart_data##splitKeyValue##{json.dumps(chart_data)}##gbEnd
     Log to console    ${chart_json_top10}
     Sleep    2
