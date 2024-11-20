@@ -1634,6 +1634,59 @@ class SAP_Tcode_Library:
             print(f"An error occurred: {str(e)}")
             return None
 
+    def generate_chart_top_ten_materials(self, file_path):
+        try:
+            # Load Excel Data
+            df_excel_raw = pd.read_excel(file_path, engine='openpyxl')
+
+            # Extract headers from the first row and set them as column names
+            headers_from_excel = df_excel_raw.iloc[0].values
+            df_processed = pd.read_excel(file_path, header=1, engine='openpyxl')
+            df_processed.columns = headers_from_excel
+
+            # Clean column names by stripping leading/trailing whitespace
+            df_processed.columns = df_processed.columns.str.strip()
+
+            # Select and clean relevant columns
+            columns_to_use = ['Material Description', 'Unrestr.', 'Qual.Insp.', 'Blocked']
+            df_relevant = df_processed[columns_to_use].copy()
+
+            # Clean and convert numerical columns, replacing non-numeric values with NaN, then filling NaN with 0
+            for col in ['Unrestr.', 'Qual.Insp.', 'Blocked']:
+                df_relevant[col] = pd.to_numeric(df_relevant[col], errors='coerce').fillna(0)
+
+            # Add a column for total stock
+            df_relevant['Total Stock'] = df_relevant['Unrestr.'] + df_relevant['Qual.Insp.'] + df_relevant['Blocked']
+
+            # Drop rows where 'Material Description' is NaN or empty
+            df_relevant['Material Description'] = df_relevant['Material Description'].astype(str).str.strip()
+            labels = df_relevant[df_relevant['Material Description'] != ''].dropna(subset=['Material Description'])
+
+            # Sort by total stock in descending order and take the top 10 materials
+            top_10_materials = df_relevant.nlargest(10, 'Total Stock')
+
+            # Create chart data
+            chart_data_top_10 = {
+                "type": "bar",
+                "title": "Top Ten Materials",
+                "label": labels,
+                "dataSet": [
+                    {
+                        "label": "Top 10 Materials",
+                        "data": top_10_materials,
+                        "backgroundColor": "rgba(255, 99, 132, 1.2)",
+                        #"backgroundColor": "rgba(255, 0, 0, 1.2)",
+                    }
+                ]
+            }
+            return json.dumps(chart_data_top_10)
+        except FileNotFoundError:
+            print(f"Error: The file at {file_path} does not exist.")
+            return None 
+        except Exception as e:
+            print(f"An error occurred: {str(e)}")
+            return None
+
     def count_excel_rows(self, abs_filename, sheet_name):
         try:
             wb = openpyxl.load_workbook(abs_filename)
