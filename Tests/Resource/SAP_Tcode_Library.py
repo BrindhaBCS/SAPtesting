@@ -1708,3 +1708,42 @@ class SAP_Tcode_Library:
                 print(f"The file '{file_path}' does not exist.")
         except Exception as e:
             print(f"An error occurred: {e}")
+
+    def select_from_list_by_key(self, element_id, key):
+        """Selects the specified option from the selection list.
+        """
+        element_type = self.get_element_type(element_id)
+        if element_type == "GuiComboBox":
+            self.session.findById(element_id).key = key
+            time.sleep(self.explicit_wait)
+        else:
+            self.take_screenshot()
+            message = "Cannot use keyword 'select from list by key' for element type '%s'" % element_type
+            raise ValueError(message)
+    
+    def get_total_row(self, excel_path, sheet_name):
+        try:
+            workbook = load_workbook(excel_path)
+            sheet = workbook[sheet_name]
+            row_count = sheet.max_row
+            return row_count
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            return None
+        
+    def extract_numeric(self, data):
+        match = re.search(r'\d+', data)
+        if match:
+            return int(match.group())
+        else:
+            return data
+        
+    def clear_negative_sign(self, balance_amount):
+        try:
+            #field = self.session.findById(field_id)
+            amount = balance_amount.replace("-", "")
+            return amount
+        except Exception as e:
+            print(f"Error: {e}")
+
+    

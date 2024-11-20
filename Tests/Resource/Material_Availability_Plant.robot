@@ -61,17 +61,20 @@ Executing Material Availability
     Log To Console    mm1completed 
 Result
     Log To Console    Material Availability Unresticted Data
-    Material Availability Description    ${input_filepath}    ${symvar('Material')}    ${result_filepath}
+    #Material Availability Description    ${input_filepath}    ${symvar('Material')}    ${result_filepath}
     # Material Availability    ${filepath}    ${result_filepath} 
-    ${json}    Excel To Json    excel_file=C:\\tmp\\MM_Availability.xlsx    json_file=C:\\tmp\\Json\\MM_Availability.json
-    Sleep    0.5
-    Log To Console    **gbStart**copilot_Json**splitKeyValue**${json}**gbEnd**
-    Log to console    ${json}
+    #${json}    Excel To Json    excel_file=C:\\tmp\\MM_Availability.xlsx    json_file=C:\\tmp\\Json\\MM_Availability.json
+    #Sleep    0.5
+    #Log To Console    **gbStart**copilot_Json**splitKeyValue**${json}**gbEnd**
+    #Log to console    ${json}
     ${chart_json}    Generate Chart Data    file_path=C:\\tmp\\MM_MB52_Full_Desc_Details.xlsx 
     Sleep    0.5
     Log To Console    **gbStart**copilot_cpiechart_data**splitKeyValue**${chart_json}**gbEnd**
+    ${chart_json_top10}    Generate Chart Data Top Ten Materials    file_path=C:\\tmp\\MM_MB52_Full_Desc_Details.xlsx 
+    Sleep    0.5
+    Log To Console    **gbStart**copilot_cpiechart_data**splitKeyValue**${chart_json_top10}**gbEnd**
     #Log To Console    gbStart##copilot_cpiechart_data##splitKeyValue##{json.dumps(chart_data)}##gbEnd
-    Log to console    ${chart_json}
+    Log to console    ${chart_json_top10}
     Sleep    2
-    Delete Specific File    file_path=C:\\tmp\\Json\\MM_Availability.json
-    Delete Specific File    file_path=C:\\tmp\\MM_Availability.xlsx
+    #Delete Specific File    file_path=C:\\tmp\\Json\\MM_Availability.json
+    #Delete Specific File    file_path=C:\\tmp\\MM_Availability.xlsx
