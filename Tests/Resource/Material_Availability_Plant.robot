@@ -70,11 +70,19 @@ Result
     ${chart_json}    Generate Chart Data    file_path=C:\\tmp\\MM_MB52_Full_Desc_Details.xlsx 
     Sleep    0.5
     Log To Console    **gbStart**copilot_cpiechart_data_grouped**splitKeyValue**${chart_json}**gbEnd**
+
     ${chart_json_top10}    Generate Chart Data Top Ten Materials    file_path=C:\\tmp\\MM_MB52_Full_Desc_Details.xlsx 
     Sleep    0.5
     Log To Console    **gbStart**copilot_cpiechart_data_top10**splitKeyValue**${chart_json_top10}**gbEnd**
     #Log To Console    gbStart##copilot_cpiechart_data##splitKeyValue##{json.dumps(chart_data)}##gbEnd
     Log to console    ${chart_json_top10}
+
+    ${chart_json_stock_distribution}    Generate Stock Distribution Data    file_path=C:\\tmp\\MM_MB52_Full_Desc_Details.xlsx 
+    Sleep    0.5
+    Log To Console    **gbStart**copilot_cpiechart_data_stock_distribution**splitKeyValue**${chart_json_stock_distribution}**gbEnd**
+    #Log To Console    gbStart##copilot_cpiechart_data##splitKeyValue##{json.dumps(chart_data)}##gbEnd
+    Log to console    ${chart_json_stock_distribution}
+
     Sleep    2
     #Delete Specific File    file_path=C:\\tmp\\Json\\MM_Availability.json
     #Delete Specific File    file_path=C:\\tmp\\MM_Availability.xlsx
