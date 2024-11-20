@@ -1634,7 +1634,7 @@ class SAP_Tcode_Library:
             print(f"An error occurred: {str(e)}")
             return None
 
-    def generate_chart_top_ten_materials(self, file_path):
+    def generate_chart_data_top_ten_materials(self, file_path):
         try:
             # Load Excel Data
             df_excel_raw = pd.read_excel(file_path, engine='openpyxl')
