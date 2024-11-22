@@ -89,7 +89,7 @@ Generate report
     Sleep    2
     Copy Images    ${OUTPUT_DIR}    ${symvar('MCR_Resized_Images_directory')}
     Sleep    1
-    Generate Word    ${symvar('MCR_excel_directory')}    ${symvar('MCR_Resized_Images_directory')}    MCR_OUTPT
+    Generate Word    ${symvar('MCR_excel_directory')}    ${symvar('MCR_Resized_Images_directory')}    C:\\tmp\\MCR_OUTPT
     Sleep    2
 
 
