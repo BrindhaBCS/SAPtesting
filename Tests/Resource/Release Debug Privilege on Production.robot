@@ -102,8 +102,8 @@ Release Debug Privilege on Production
     Sleep    1
     Compare Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}    ${COMPARISON_COL_NAME}
     Sleep    1
-    Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
-    Sleep    1
+    ${i}    Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
+    Log To Console    ${i}
     Delete Specific File    file_path=C:\\tmp\\Release Debug.xls
     Log To Console     Release Debug Privilege on Production Completed
 Generate report

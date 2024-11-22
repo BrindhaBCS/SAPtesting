@@ -98,8 +98,8 @@ Assigned SAP standard profiles
     Sleep    1
     Compare Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}    ${COMPARISON_COL_NAME}
     Sleep    1
-    Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
-    Sleep    1
+    ${i}    Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
+    Log To Console    ${i}
     Delete Specific File    file_path=C:\\tmp\\SAP_Profiles.xls
     Log To Console    Assigned SAP standard profiles Completed
 Generate report

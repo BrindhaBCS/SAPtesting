@@ -105,7 +105,8 @@ Access Password Manager
     Sleep    1
     Compare Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}    ${COMPARISON_COL_NAME}
     Sleep    1
-    Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
+    ${i}    Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
+    Log To Console    ${i}
     Sleep    1
     Delete Specific File    file_path=C:\\tmp\\Access password.xls
     Log To Console    Access password completed

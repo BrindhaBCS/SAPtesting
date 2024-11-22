@@ -169,8 +169,8 @@ Table view without restrictions
     Sleep    1
     Compare Columns    ${OUTPUT_FILE1}    ${HEADER1}    ${HEADER2}    ${COMPARISON_COL_NAME}
     Sleep    1
-    Matched Columns    ${OUTPUT_FILE1}    ${HEADER1}    ${HEADER2}
-    Sleep    1
+    ${i}    Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
+    Log To Console    ${i}
     Delete Specific File    file_path=C:\\tmp\\Table_Authorization_Group_Users2.xls
     Log To Console    Table view without restrictions part2 completed
 Generate report

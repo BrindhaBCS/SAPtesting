@@ -88,8 +88,8 @@ Usercontrol (non)personal user accounts
     Sleep    1
     Compare Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}    ${COMPARISON_COL_NAME}
     Sleep    1
-    Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
-    Sleep    1
+    ${i}    Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
+    Log To Console    ${i}
     Log To Console    Usercontrol (non)personal user accounts completed
 Generate report
     Image Resize    ${OUTPUT_DIR}

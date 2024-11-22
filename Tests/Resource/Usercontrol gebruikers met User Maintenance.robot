@@ -97,8 +97,8 @@ Usercontrol gebruikers met User Maintenance
     Sleep    1
     Compare Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}    ${COMPARISON_COL_NAME}
     Sleep    1
-    Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
-    Sleep    1
+    ${i}    Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
+    Log To Console    ${i}
     Delete Specific File    file_path=C:\\tmp\\Usercontrol gebruikers met User Maintenance.xls
     Log To Console    Usercontrol gebruikers met User Maintenance Completed
     

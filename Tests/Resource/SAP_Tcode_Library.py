@@ -1689,7 +1689,15 @@ class SAP_Tcode_Library:
 
     
     def Matched_columns(self, input_file, col1_name, col2_name):
-    # Read the combined Excel file
+        # Configure logging to write to both file and console
+        logging.basicConfig(level=logging.INFO, 
+                            format='%(asctime)s - %(levelname)s - %(message)s', 
+                            handlers=[
+                                logging.FileHandler("matching.log"),
+                                logging.StreamHandler()  # This logs to the console
+                            ])
+        
+        # Read the combined Excel file
         df = pd.read_excel(input_file)
 
         # Initialize lists to hold the comparison results
@@ -1715,11 +1723,19 @@ class SAP_Tcode_Library:
         # Write the updated DataFrame back to the same Excel file
         df.to_excel(input_file, index=False)
 
-        # Check for "Not Matched" entries and log a message if any exist
-        if any(not_matched_results):
-            logging.info("Authorization does not exist")
+        # Check for "Not Matched" entries
+        unauthorized_users = [user for user in not_matched_results if user]  # Filter out empty strings
 
-        return "Column matching completed successfully."
+        # Log and display messages based on the results
+        if unauthorized_users:
+            message = "The listed users are unauthorized."
+        else:
+            message = "All users are authorized."
+
+        # Log the message to both console and log file
+        logging.info(message)
+
+        return message
 
     def delete_specific_file(self, file_path):
         try:

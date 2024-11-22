@@ -117,8 +117,8 @@ Access to transport taking into production
     Sleep    1
     Compare Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}    ${COMPARISON_COL_NAME}
     Sleep    1
-    Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
-    Sleep    1
+    ${i}    Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
+    Log To Console    ${i}
     Delete Specific File    file_path=C:\\tmp\\Users_By_Complex_Selection.xls
     Log To Console    Requirement Access to transport taking into production completed
 Generate report
