@@ -26,6 +26,15 @@ from docx.enum.section import WD_ORIENT
 from docx2pdf import convert
 from PIL import Image
 import shutil
+import os
+import pandas as pd
+from docx import Document
+from docx.enum.text import WD_ALIGN_PARAGRAPH
+from docx.shared import Inches, RGBColor, Pt
+from docx.enum.section import WD_ORIENT
+from docx2pdf import convert
+from docx.oxml import parse_xml
+from docx.oxml.ns import nsdecls
 
 
 class SAP_Tcode_Library:
@@ -1810,3 +1819,109 @@ class SAP_Tcode_Library:
     
 
 
+    def mcr_report_pdf2(self, excel_directory, images_directory, doc_name):
+    # Read data from the Excel file
+        df = pd.read_excel(excel_directory)
+
+        # Create a new Word document
+        doc = Document()
+
+        # Set the document orientation to landscape
+        section = doc.sections[-1]
+        section.orientation = WD_ORIENT.LANDSCAPE
+        section.page_width = Inches(11.69)
+        section.page_height = Inches(13.27)  # A4 landscape size
+        
+        # Adjust page margins
+        section.top_margin = Inches(1.5)  # Increase the top margin to make room for header content
+        section.left_margin = Inches(1)
+        section.right_margin = Inches(1)
+        
+        # Add a custom header
+        header = section.header
+        header_table = header.add_table(rows=1, cols=3, width = Inches(6))  # Create the table
+        header_table.style = "Table Grid"  # Apply the style here
+        header_table.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        
+        # Adjust column widths
+        header_table.columns[0].width = Inches(1.2)
+        header_table.columns[1].width = Inches(1.6)
+        header_table.columns[2].width = Inches(1.2)
+        
+        for cell in header_table.rows[0].cells:
+            cell.vertical_alignment = WD_ALIGN_PARAGRAPH.CENTER
+        # Column 1: Logo
+        cell1 = header_table.cell(0, 0)
+        paragraph = cell1.paragraphs[0]
+        paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        logo_path = "C:\\tmp\\BCS.png"
+        if os.path.exists(logo_path):
+            paragraph.add_run().add_picture(logo_path, width=Inches(0.4), height=Inches(0.4))
+        else:
+            run = paragraph.add_run("Logo Missing")
+            run.bold = True
+        
+        # Column 2: Title
+        cell2 = header_table.cell(0, 1)
+        title_paragraph = cell2.paragraphs[0]
+        title_run = title_paragraph.add_run("Monthly Compliance Report")
+        title_run.bold = True
+        title_run.font.size = Pt(11)
+        title_paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        
+        # Column 3: Version Details
+        cell3 = header_table.cell(0, 2)
+        version_paragraph = cell3.paragraphs[0]
+        version_paragraph.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+        version_paragraph.add_run("Release Version: 0.1\n").bold = True
+        version_paragraph.add_run("_" * 50 + "\n").font.size = Pt(8)
+        version_paragraph.add_run("Guideline No: 0.1").bold = True
+        
+        # Add a footer
+        footer = section.footer
+        footer_paragraph = footer.add_paragraph("MIC")
+        footer_paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        footer_paragraph.runs[0].italic = True
+        
+        # Add spacing after the header
+        spacer = doc.add_paragraph()
+        spacer_format = spacer.paragraph_format
+        spacer_format.space_after = Pt(12)
+
+        # Add a data table
+        data_table = doc.add_table(rows=df.shape[0] + 1, cols=df.shape[1])
+        data_table.style = "Table Grid"
+
+        # Adjust column widths
+        for idx, width in enumerate([Inches(1.0), Inches(1.5), Inches(1.2), Inches(2.0), Inches(3.5)]):
+            for row in data_table.rows:
+                row.cells[idx].width = width
+
+        # Style the header row
+        hdr_cells = data_table.rows[0].cells
+        header_bg_color = "0066cc"
+        for j in range(df.shape[1]):
+            hdr_cells[j].text = df.columns[j]
+            hdr_cells[j].paragraphs[0].runs[0].font.color.rgb = RGBColor(255, 255, 255)
+            hdr_cells[j]._element.get_or_add_tcPr().append(
+                parse_xml(f'<w:shd {nsdecls("w")} w:fill="{header_bg_color}"/>')
+            )
+
+        # Add data to the table
+        for i in range(df.shape[0]):
+            for j in range(df.shape[1]):
+                data_table.cell(i + 1, j).text = str(df.iloc[i, j])
+
+        # Embed images into the last column
+        for i in range(df.shape[0]):
+            cell_value = str(df.iloc[i, -1])  # Assuming images are in the last column
+            images = cell_value.split(',')
+            for img_name in images:
+                img_path = os.path.join(images_directory, img_name.strip())
+                if os.path.exists(img_path):
+                    cell = data_table.cell(i + 1, df.shape[1] - 1)
+                    cell.add_paragraph().add_run().add_picture(img_path, width=Inches(3.5), height=Inches(2.5))
+
+        # Save the Word document and convert to PDF
+        doc.save(f"{doc_name}.docx")
+        convert(f"{doc_name}.docx", f"{doc_name}.pdf")
