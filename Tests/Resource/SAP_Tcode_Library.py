@@ -1819,7 +1819,7 @@ class SAP_Tcode_Library:
     
 
 
-    def mcr_report_pdf2(self, excel_directory, images_directory, doc_name):
+    def Generate_Word(self, excel_directory, images_directory, doc_name):
     # Read data from the Excel file
         df = pd.read_excel(excel_directory)
 
