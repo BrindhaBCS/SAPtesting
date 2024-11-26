@@ -5,7 +5,7 @@ Library    String
 Library    SAP_Tcode_Library.py
 Library     DateTime
 *** Variables ***
-${rental_date}  01.10.2025
+${rental_date}  26.11.2025
 ${Text}     Rent for the month of November 2024.
 ${rental_text}  wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpKFTE/ssubSUBSCREEN_BODY:SAPLV70T:2100/cntlSPLITTER_CONTAINER/shellcont/shellcont/shell/shellcont[1]/shell
 ${rental_form}  wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpKFTE/ssubSUBSCREEN_BODY:SAPLV70T:2100/cntlSPLITTER_CONTAINER/shellcont/shellcont/shell/shellcont[0]/shell
