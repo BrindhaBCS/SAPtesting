@@ -16,8 +16,8 @@ System Logon
     Open Connection     ${symvar('Rental_Connection')}
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('Rental_Client')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('Rental_User')}
-    Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('RENTAL_PASSWORD')}
-    # Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{RENTAL_PASSWORD}
+    # Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('RENTAL_PASSWORD')}
+    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{RENTAL_PASSWORD}
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
 System Logout
