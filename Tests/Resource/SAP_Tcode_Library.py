@@ -7,6 +7,11 @@ import os
 from robot.api import logger
 import sys
 import ast
+# import openpyxl
+import pandas as pd
+from openpyxl import load_workbook
+import json
+import re
 
 
 class SAP_Tcode_Library:
@@ -1272,6 +1277,151 @@ class SAP_Tcode_Library:
         except Exception as e:
             print(f"Error: {e}")    
 
-   
+    def expand_Element(self, tree_id, node_id):
+        try:
+            element = self.session.findById(tree_id)
+            element.expandNode(f"{node_id}")
+        except Exception as e:
+            print(f"An error occurred while expanding node: {e}")
+    
+    def count_excel_rows(self, abs_filename, sheet_name):
+        try:
+            wb = openpyxl.load_workbook(abs_filename)
+            ws = wb[sheet_name]
+            count = 0
+            for row in ws:
+                if not all([cell.value == None for cell in row]):
+                    count += 1
+            print(count)
+            return(count)
+    
+        except Exception as e:
+            print(e)
+
+    def count_excel_columns(self, abs_filename, sheet_name):
+        try:
+            wb = openpyxl.load_workbook(abs_filename)
+            ws = wb[sheet_name]
+            columns = [cell.value for cell in ws[1]]  # Assuming the first row contains headers
+            column_count = len(columns)
+            print(column_count)
+            return column_count
+        except Exception as e:
+            print(f"Error: {e}")
+
+    def window_handling(self, element_id, text, button_id):
+        try:
+            window = self.session.findById(element_id).Text
+            if window == text :
+                self.session.findById(button_id).press()
+            else:
+                print(f"Text '{window_text}' did not match expected text '{expected_text}'.")
+        
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
+    def read_excel_cell_value(self, file_path, sheet_name, row, column): 
+        row = int(row)
+        column = int(column)   
+        wb = openpyxl.load_workbook(file_path, data_only=True)
+        if sheet_name not in wb.sheetnames:
+            raise ValueError(f"Sheet {sheet_name} does not exist in the workbook")
+        sheet = wb[sheet_name]
+        cell_value = sheet.cell(row=row, column=column).value
+        return cell_value
+
+    def check_text_start_with_z(self, text):
+        if text.lower().startswith('z'):
+            return  text
+
+    def check_text_start_with_y(self, text):
+        if text.lower().startswith('y'):
+            return  text
+    def select_from_list_by_key(self, element_id, key):
+        """Selects the specified option from the selection list.
+        """
+        element_type = self.get_element_type(element_id)
+        if element_type == "GuiComboBox":
+            self.session.findById(element_id).key = key
+            time.sleep(self.explicit_wait)
+        else:
+            self.take_screenshot()
+            message = "Cannot use keyword 'select from list by key' for element type '%s'" % element_type
+            raise ValueError(message)
+
+    def release_block(self, element_id):
+        self.session.findById(element_id).text = ""
+    
+    def select_layout(self, table_id):
+        table = self.session.findById(table_id)
+        row = table.RowCount
+        print(row)
+        for i in range(row):
+            layout_value = table.GetCellValue(i, "TEXT")
+            if layout_value == "Contracts - Header":
+                table.selectedRows = str(i)
+                break
+        if layout_value != "Contracts - Header":
+            print("No row with 'TEXT' value 'header' found.")
+
+    def excel_to_json(self, excel_file, json_file):
+        # Read the Excel file
+        df = pd.read_excel(excel_file, engine='openpyxl')
+        # Convert Timestamp objects to strings
+        for column in df.select_dtypes(['datetime']):
+            df[column] = df[column].astype(str)
+        # Convert the DataFrame to a dictionary
+        data = df.to_dict(orient='records')
+        # Write the dictionary to a JSON file
+        with open(json_file, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
+        # Read the JSON file after writing it
+        with open(json_file, 'r', encoding='utf-8') as f:
+            json_data = json.load(f)
+        return json_data
+
+    def process_excel(self, file_path, sheet_name, column_index=None):
+        df = pd.read_excel(file_path, sheet_name=sheet_name, header=None)
+        if column_index is not None:
+            try:
+                column_index = int(column_index)  # Ensure column_index is an integer
+            except ValueError:
+                print("Invalid column index provided. Please provide a valid integer.")
+                return
+            if 0 <= column_index < df.shape[1]:
+                df.drop(df.columns[column_index], axis=1, inplace=True)
+            else:
+                print(f"Column index {column_index} is out of bounds.")
+                return
+        df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
+        df.dropna(how='all', inplace=True)
+        df.dropna(axis=1, how='all', inplace=True)
+        if df.iloc[0].isnull().all(): 
+            new_header = df.iloc[1]  
+            df = df[2:]  # Remove first two rows
+        else:
+            new_header = df.iloc[0]  # Use first row as header
+            df = df[1:]  # Remove first row
+        df.columns = new_header
+        df.reset_index(drop=True, inplace=True)
+        try:
+            # Write the modified DataFrame back to the Excel file
+            with pd.ExcelWriter(file_path, engine='openpyxl', mode='w') as writer:
+                df.to_excel(writer, index=False, sheet_name=sheet_name)
+            print(f"Processed Excel sheet '{sheet_name}' has been updated in: {file_path}")
+        except Exception as e:
+            print(f"Error writing to Excel: {e}")
+
+    def delete_files(self, directory, file_name):
+        try:
+            patterns = [f'{file_name}.xlsx', f'{file_name}.txt']
+            
+            for pattern in patterns:
+                files = glob.glob(os.path.join(directory, pattern))
+                for file in files:
+                    os.remove(file)
+        except Exception as e:
+            print(f"An error occurred: {e}")
 
 
+    # def select_material_views(self, table_id, views):
