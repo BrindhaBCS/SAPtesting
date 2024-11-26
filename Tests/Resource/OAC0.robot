@@ -31,7 +31,7 @@ System Logout
 Transaction OACO
     Run Transaction     /nOAC0
     Sleep   1
-    Take Screenshot
+    Take Screenshot    053_OACO.jpg
     Scroll      wnd[0]/usr/tblSAPLSCMS_CREPC_SREP       35
     Sleep   1
     Take Screenshot    054_OACO.jpg
