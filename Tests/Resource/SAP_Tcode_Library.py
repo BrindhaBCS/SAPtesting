@@ -1352,16 +1352,16 @@ class SAP_Tcode_Library:
     def release_block(self, element_id):
         self.session.findById(element_id).text = ""
     
-    def select_layout(self, table_id):
+    def select_layout(self, table_id, variant):
         table = self.session.findById(table_id)
         row = table.RowCount
         print(row)
         for i in range(row):
             layout_value = table.GetCellValue(i, "TEXT")
-            if layout_value == "Contracts - Header":
+            if layout_value == variant:
                 table.selectedRows = str(i)
                 break
-        if layout_value != "Contracts - Header":
+        if layout_value != variant:
             print("No row with 'TEXT' value 'header' found.")
 
     def excel_to_json(self, excel_file, json_file):

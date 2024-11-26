@@ -36,7 +36,7 @@ Rental Document
     Click Element   wnd[0]/tbar[1]/btn[8]
     Sleep   2
     Click Element   wnd[0]/tbar[1]/btn[33]
-    Select Layout   wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_CUL_LAYOUT_CHOOSE:0500/cntlD500_CONTAINER/shellcont/shell
+    Select Layout   wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_CUL_LAYOUT_CHOOSE:0500/cntlD500_CONTAINER/shellcont/shell  Contracts - Header
     Click Element   wnd[1]/tbar[0]/btn[0]
     Click Element   wnd[0]/tbar[1]/btn[45]
     Select Radio Button     wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[2,0]

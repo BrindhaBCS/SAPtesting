@@ -4,4 +4,4 @@ Rental_Client = "001"
 Rental_User = "naren"
 RENTAL_PASSWORD = "Admin@1234"
 rental_month = "11"
-documents = ["40000030", "40000031"]
+documents = ["40000030", "40000031", "40000042"]
