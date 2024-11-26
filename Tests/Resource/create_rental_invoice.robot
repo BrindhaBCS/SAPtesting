@@ -26,7 +26,7 @@ Rental Invoice
     FOR     ${contract}     IN     @{symvar('documents')}
         Set Global Variable     ${contract}
         Run Transaction     /nVF01
-        Sleep   5
+        Sleep   1
         Input Text  wnd[0]/usr/tblSAPMV60ATCTRL_ERF_FAKT/ctxtKOMFK-VBELN[0,0]   ${contract}
         ${current_date}     Get Current Date    result_format=%d.%m.%Y
         Input Text  wnd[0]/usr/ctxtRV60A-FKDAT  ${current_date}
@@ -35,32 +35,30 @@ Rental Invoice
         IF  '${status}' == 'No billing documents were generated. Please see log.'
             Log To Console  For ${contract} ${status}
         ELSE IF     '${status}' == '${EMPTY}'
-            Sleep   10
+            Sleep   1
             Click Element   wnd[0]/usr/btnTC_HEAD
             Click Element   wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpKFTE
             Doubleclick Element     ${rental_form}  0001    Column1
             Input Text  ${rental_text}  ${Text}
-            Sleep   5
+            Sleep   1
             Click Element   wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpKFCU
-            Input Text      wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpKFCU/ssubSUBSCREEN_BODY:SAPMV60A:6101/ssubCUSTOMER_SCREEN:ZZBILLHEADER:0100/txtVBRK-ZEINVOICE  NA
-            Sleep   2
+            Input Text      wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpKFCU/ssubSUBSCREEN_BODY:SAPMV60A:6101/ssubCUSTOMER_SCREEN:ZZBILLHEADER:0100/txtVBRK-ZZEWAYBL    NA
+            Sleep   1
             Click Element   wnd[0]/tbar[0]/btn[11]
             ${output}   Get Value   wnd[0]/sbar/pane[0]
             Log To Console      ${output}
-            Sleep   5
         ELSE IF    '${status}' == 'Please check the log.'
-            Sleep   10
+            Sleep   1
             Click Element   wnd[0]/usr/btnTC_HEAD
             Click Element   wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpKFTE
             Doubleclick Element     ${rental_form}  0001    Column1
             Input Text  ${rental_text}  ${Text}
-            Sleep   5
+            Sleep   1
             Click Element   wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpKFCU
-            Input Text      wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpKFCU/ssubSUBSCREEN_BODY:SAPMV60A:6101/ssubCUSTOMER_SCREEN:ZZBILLHEADER:0100/txtVBRK-ZEINVOICE  NA
-            Sleep   2
+            Input Text      wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpKFCU/ssubSUBSCREEN_BODY:SAPMV60A:6101/ssubCUSTOMER_SCREEN:ZZBILLHEADER:0100/txtVBRK-ZZEWAYBL    NA
+            Sleep   1
             Click Element   wnd[0]/tbar[0]/btn[11]
             ${output}   Get Value   wnd[0]/sbar/pane[0]
             Log To Console      ${output}
-            Sleep   5
         END
     END
