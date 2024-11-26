@@ -13,7 +13,7 @@ import pkg_resources
 import platform
 
 
-KIBANA_URL = "https://logging-bridge.eat.jnj.com/v2/applications/robot-logger/log"
+KIBANA_URL = "https://logging-bridgesss.eat.jnj.com/v2/applications/robot-logger/log"
 DEFAULT_PROJECT = "Robot Framework"
 DEFAULT_RF_VERSION = "1.0"
 DEFAULT_JIRA_ID = "ZZZZ"

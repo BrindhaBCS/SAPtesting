@@ -371,6 +371,10 @@ class SetupOptions(object):
         else:
             self.command += self.add_option(
                 "output", rerunxml)
+            
+    # def set_screenshot_folder(self):
+    #     screenshot_dir = self.args.screenshot_dir
+    #     self.command += self.add_option("screenshotdir", screenshot_dir)
 
     def dryrun_execution(self):
         """
@@ -582,6 +586,7 @@ class SetupOptions(object):
         self.dryrun_execution()
         self._set_screenshot_variable()
         self.set_output_folder(re_run_xml, tag=counter)
+        # self.set_screenshot_folder()
         self._set_options_in_arguments_file(self.options_file_tag)
         self.set_execution_folder()
         self.set_execution_command()
