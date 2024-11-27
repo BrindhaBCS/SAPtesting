@@ -1,0 +1,12 @@
+SAP_SERVER = "$SAP_SERVER"
+PVH_connection = "$PVH_connection"
+PVH_Client_Id = "$PVH_Client_Id"
+PVH_User_Name = "$PVH_User_Name"
+PVH_Target_Dir = "PVH_Target_Dir"
+PVH_PDF_PATH = "$PVH_PDF_PATH"
+
+# SAP_SERVER = "C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPgui\\saplogon.exe"
+# PVH_connection = "IDES"
+# PVH_Client_Id = "001"
+# PVH_User_Name = "SELENIUM"
+# PVH_Target_Dir = "C:\\tmp\\PVH\\Pre\\"
