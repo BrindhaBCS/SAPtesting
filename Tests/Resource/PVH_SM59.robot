@@ -16,13 +16,10 @@ System Logon
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('PVH_User_Password')}  
     Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{PVH_User_Password}
     Send Vkey    0
-    Sleep    1
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
-    Sleep   2
 
 System Logout
     Run Transaction     /nex
-    Sleep   1
 PVH_SM59
     Run Transaction    /nSM59
     Sleep    1

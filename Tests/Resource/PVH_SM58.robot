@@ -38,14 +38,14 @@ PVH_SM58
 	Sleep	1
     Send Vkey	82
     Take Screenshot    SM58_1.jpg
-	Sleep	2
+	Sleep	1
 	Send Vkey	82
     Take Screenshot    SM58_2.jpg
-	Sleep	2
+	Sleep	1
 	Send Vkey	82
     Take Screenshot    SM58_3.jpg
-	Sleep	2
+	Sleep	1
 	Send Vkey	82
     Take Screenshot    SM58_4.jpg
-	Sleep	2
+	Sleep	1
     Copy Images    ${OUTPUT_DIR}    ${symvar('PVH_Target_Dir')}

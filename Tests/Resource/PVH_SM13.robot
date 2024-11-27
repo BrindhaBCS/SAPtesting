@@ -9,7 +9,7 @@ Library    Merger.py
 *** Keywords ***
 System Logon
     Start Process     ${symvar('SAP_SERVER')}
-    Sleep    10s
+    Sleep    2
     Connect To Session
     Open Connection    ${symvar('PVH_connection')}
     Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('PVH_Client_Id')}
@@ -17,13 +17,10 @@ System Logon
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('PVH_User_Password')}  
     Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{PVH_User_Password}
     Send Vkey    0
-    Sleep    3
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
-    Sleep   5
 
 System Logout
     Run Transaction     /nex
-    Sleep   5
 
 PVH_SM13
     Run Transaction    /nSM13

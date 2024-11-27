@@ -12,7 +12,7 @@ ${TREE_PATH}    wnd[0]/usr/cntlRSSHOWRABAX_ALV_100/shellcont/shell
 *** Keywords ***
 System Logon
     Start Process     ${symvar('SAP_SERVER')}
-    Sleep    10s
+    Sleep    2
     Connect To Session
     Open Connection    ${symvar('PVH_connection')}
     Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('PVH_Client_Id')}
@@ -20,13 +20,10 @@ System Logon
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('PVH_User_Password')}  
     Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{PVH_User_Password}
     Send Vkey    0
-    Sleep    3
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
-    Sleep   5
 
 System Logout
     Run Transaction     /nex
-    Sleep   5
 
 PVH_ST22
     Run Transaction    /nST22
@@ -43,7 +40,7 @@ PVH_ST22
     Clear Field Text    wnd[0]/usr/txtS_UNAME-LOW 
     # Input Text    wnd[0]/usr/txtS_UNAME-LOW    *
     Click Element    wnd[0]/usr/btnSTARTSEL
-    Sleep    20
+    Sleep    10
     ${row_count}    Get Row Count    wnd[0]/usr/cntlRSSHOWRABAX_ALV_100/shellcont/shell
     Log    Total Row Count: ${row_count}
     FOR    ${i}     IN RANGE    1    ${row_count + 1}    39
