@@ -26,4 +26,4 @@ PVH_ST02
     Take Screenshot    ST02.jpg
     Sleep    1
     Copy Images    ${OUTPUT_DIR}    ${symvar('PVH_Target_Dir')}
-    Images To Pdf    ${symvar('PVH_Target_Dir')}    ${symvar('PVH_PDF_PATH')}
+    Images To Pdf    ${symvar('PVH_Target_Dir')}    ${symvar('PVH_PDF_PATH')}\\${symvar('PVH_PDFFILE_NAME')}.pdf
