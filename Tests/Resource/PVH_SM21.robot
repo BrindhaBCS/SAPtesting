@@ -41,7 +41,7 @@ PVH_SM21
     ${row_count}    Get Row Count    wnd[0]/usr/cntlCONTAINER_0100/shellcont/shell/shellcont[0]/shell
     Log    Total Row Count: ${row_count}
     ${counter}=    Set Variable    1
-    FOR    ${i}    IN RANGE    1    ${row_count + 1}    39
+    FOR    ${i}    IN RANGE    0    ${row_count + 1}    39
         Log    Processing row ${i}
         ${selected_rows}    Selected_rows    ${TREE_PATH}    ${i}
         Log To Console    Selected rows: ${selected_rows}

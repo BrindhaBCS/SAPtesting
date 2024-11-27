@@ -25,6 +25,7 @@ Response_time_user
             Response_Time_First_Url    Url=${First_url}    CustomerCode=c100001    Username=${First_Username}    Password=${First_Password}
             Response_Time_Second_Url    Url=${Second_url}    Username=${Second_Username}    Password=${Second_Password}
             Response_Time_third_Url    Url=${Third_url}    Username=${Third_Username}    Password=${Third_Username}
+            Send_EMail
         END
     END
 Response_Time_First_Url
@@ -36,6 +37,7 @@ Response_Time_First_Url
     Input Text         id=user_name    ${Username}
     Input Text         id=password    ${Password}
     Click Button       xpath://button[normalize-space(text())='LOGIN']
+
     Set Screenshot Directory    ${symvar('Screenshot_Directory_path')}
     Capture Page Screenshot    filename=screenshot.png
     ${Endtime}    Get Current Date    time_zone=UTC
@@ -69,6 +71,8 @@ Response_Time_third_Url
     Capture Page Screenshot    filename=screenshot2.png
     ${Endtime}    Get Current Date    time_zone=UTC
     ${Duration}    Calculate Time Difference   start_time_str=${Starttime}    end_time_str=${Endtime}
+    Log    ${Duration} seconds.
+    Close Browser
+Send_EMail
     Send Mail    from_email=${symvar('UI_FROM_EMAIL')}    password=${symvar('UI_PASSWORD')}    to_mail=${symvar('UI_TO_EMAILS')}    subject=${symvar('UI_SUBJECT')}    content=${symvar('UI_CONTENT')}\n${symvar('UI_First_url')}\n${symvar('UI_Second_url')}\n${symvar('UI_Third_url')}    file_paths=["${symvar('Screenshot_Directory_path')}\\screenshot.png","${symvar('Screenshot_Directory_path')}\\screenshot1.png","${symvar('Screenshot_Directory_path')}\\screenshot2.png",]
     File Remove    directory=${symvar('Screenshot_Directory_path')}    extensions=.png
-    Log    ${Duration} seconds.
