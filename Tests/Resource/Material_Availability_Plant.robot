@@ -79,10 +79,10 @@ Result
     Log to console    ${chart_json_top10}
 
     #${chart_json_stock_distribution}    Generate Stock Distribution Data    file_path=C:\\tmp\\MM_MB52_Full_Desc_Details.xlsx
-    ${chart_json_stock_distribution}    Generate Stock Distribution Data    ${input_filepath} 
-    Sleep    0.5
-    Log To Console    **gbStart**copilot_cpiechart_data_stock**splitKeyValue**${chart_json_stock_distribution}**gbEnd**
-    Log to console    ${chart_json_stock_distribution}
+    # ${chart_json_stock_distribution}    Generate Stock Distribution Data    ${input_filepath} 
+    # Sleep    0.5
+    # Log To Console    **gbStart**copilot_cpiechart_data_stock**splitKeyValue**${chart_json_stock_distribution}**gbEnd**
+    # Log to console    ${chart_json_stock_distribution}
 
     Sleep    2
     #Delete Specific File    file_path=C:\\tmp\\Json\\MM_Availability.json
