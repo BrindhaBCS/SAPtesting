@@ -40,12 +40,13 @@ PVH_SM21
 	Sleep	1
     ${row_count}    Get Row Count    wnd[0]/usr/cntlCONTAINER_0100/shellcont/shell/shellcont[0]/shell
     Log    Total Row Count: ${row_count}
- 
-    FOR    ${i}     IN RANGE    1    ${row_count + 1}    39
+    ${counter}=    Set Variable    1
+    FOR    ${i}    IN RANGE    1    ${row_count + 1}    39
         Log    Processing row ${i}
         ${selected_rows}    Selected_rows    ${TREE_PATH}    ${i}
-        Log To Console    Selected rows: ${i}
-        Take Screenshot    SM21_${i}st.jpg
+        Log To Console    Selected rows: ${selected_rows}
+        Take Screenshot    SM21_${counter}st.jpg
+        ${counter}=    Evaluate    ${counter} + 1
         Sleep    1
     END
     Copy Images    ${OUTPUT_DIR}    ${symvar('PVH_Target_Dir')}
