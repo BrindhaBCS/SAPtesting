@@ -1894,7 +1894,6 @@ class SAP_Tcode_Library:
         current_date = datetime.now().date()
         date_difference = (given_date - current_date).days
         return date_difference
-<<<<<<< HEAD
     
     def write_value_to_excel(self, file_path, sheet_name, cell, value):
         workbook = load_workbook(file_path)
@@ -1912,63 +1911,6 @@ class SAP_Tcode_Library:
         workbook.active.title = sheet_name
         workbook.save(file_path)
 
-=======
-    def Fbl1n_arrange(self):
-        try:
-            self.session.findById("wnd[1]/usr/tabsTS_LINES/tabpLI01/ssubSUB810:SAPLSKBH:0810/tblSAPLSKBHTC_WRITE_LIST").getAbsoluteRow(9).selected = True
-            self.session.findById("wnd[1]/usr/tabsTS_LINES/tabpLI01/ssubSUB810:SAPLSKBH:0810/tblSAPLSKBHTC_WRITE_LIST").getAbsoluteRow(10).selected = True
-            self.session.findById("wnd[1]/usr/tabsTS_LINES/tabpLI01/ssubSUB810:SAPLSKBH:0810/tblSAPLSKBHTC_WRITE_LIST/txtGT_WRITE_LIST-SELTEXT[0,9]").setFocus()
-            self.session.findById("wnd[1]/usr/tabsTS_LINES/tabpLI01/ssubSUB810:SAPLSKBH:0810/tblSAPLSKBHTC_WRITE_LIST/txtGT_WRITE_LIST-SELTEXT[0,9]").caretPosition = 0
-            self.session.findById("wnd[1]/usr/btnAPP_FL_SING").press()
-            self.session.findById("wnd[1]/usr/tabsTS_LINES/tabpLI01/ssubSUB810:SAPLSKBH:0810/tblSAPLSKBHTC_WRITE_LIST").getAbsoluteRow(0).selected = True
-            self.session.findById("wnd[1]/usr/btnAPP_FL_SING").press()
-        except:
-            return[]
-    def process_excel(self, file_path, sheet_name, column_index=None, row_indices=None):
-        df = pd.read_excel(file_path, sheet_name=sheet_name, header=None)
-
-        if column_index is not None:
-            try:
-                column_index = [int(index) for index in column_index] if isinstance(column_index, list) else [int(column_index)]
-            except ValueError:
-                print("Invalid column index provided. Please provide valid integers.")
-                return
-            
-            for col in column_index:
-                if 0 <= col < df.shape[1]:
-                    df.drop(df.columns[col], axis=1, inplace=True)
-                else:
-                    print(f"Column index {col} is out of bounds.")
-                    return
-
-        df = df.apply(lambda x: x.str.strip() if x.dtype == "object" else x)
-
-        df.dropna(how='all', inplace=True)
-        df.dropna(axis=1, how='all', inplace=True)
-        if df.iloc[0].isnull().all(): 
-            new_header = df.iloc[1]  # Use second row as header
-            df = df[2:]  # Remove first two rows
-        else:
-            new_header = df.iloc[0]  # Use first row as header
-            df = df[1:]  # Remove first row
-        df.columns = new_header
-        df.reset_index(drop=True, inplace=True)
-
-        if row_indices:
-            try:
-                df.drop(index=row_indices, inplace=True)
-            except Exception as e:
-                print(f"Error dropping rows: {e}")
-                return
-
-        try:
-            with pd.ExcelWriter(file_path, engine='openpyxl', mode='w') as writer:
-                df.to_excel(writer, index=False, sheet_name=sheet_name)
-            print(f"Processed Excel sheet '{sheet_name}' has been updated in: {file_path}")
-        except Exception as e:
-            print(f"Error writing to Excel: {e}")
-    
->>>>>>> a74277c9f966ff81d4e9ae35b4420b5b97301580
     def excel_to_json(self, excel_file, json_file):
         # Read the Excel file
         df = pd.read_excel(excel_file, engine='openpyxl')
@@ -1984,7 +1926,6 @@ class SAP_Tcode_Library:
         with open(json_file, 'r', encoding='utf-8') as f:
             json_data = json.load(f)
         return json_data
-<<<<<<< HEAD
     
     def delete_specific_file(self, file_path):
             try:
@@ -1994,8 +1935,6 @@ class SAP_Tcode_Library:
                     print(f"The file '{file_path}' does not exist.")
             except Exception as e:
                 print(f"An error occurred: {e}")
-=======
->>>>>>> a74277c9f966ff81d4e9ae35b4420b5b97301580
 
 
 
