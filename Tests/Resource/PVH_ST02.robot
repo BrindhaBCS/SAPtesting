@@ -27,5 +27,6 @@ PVH_ST02
     Sleep    1
     Copy Images    ${OUTPUT_DIR}    ${symvar('PVH_Target_Dir')}
     Sleep    1
+Create_Images_to_pdf
     Images To Pdf    ${symvar('PVH_Target_Dir')}    ${symvar('PVH_PDF_PATH')}\\${symvar('PVH_PDFFILE_NAME')}
     Sleep	1

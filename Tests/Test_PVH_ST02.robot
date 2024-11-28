@@ -7,3 +7,4 @@ Test Tags    pvh_st02
 *** Test Cases ***
 PVH_ST02
     PVH_ST02
+    Create_Images_to_pdf
