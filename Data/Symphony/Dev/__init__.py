@@ -20,5 +20,6 @@ from .sales_order import*
 from .ABAP import *
 from .Sales import *
 from .Risk import *
+from .Idoc import *
 
 

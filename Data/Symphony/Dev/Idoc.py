@@ -1,0 +1,6 @@
+SAP_SERVER = "C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPGUI\\saplogon.exe"
+Idoc_SID = "BIS"
+Idoc_Client = "800"
+Idoc_User = "bcsadmin"
+Idoc_Pass = "admin@123"
+document_no = "0000000003548763"

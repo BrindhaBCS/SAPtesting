@@ -32,6 +32,12 @@ pending payments
     Input Text    wnd[0]/usr/ctxtKD_BUKRS-LOW    ${symvar('company_code')}
     # Sleep    2
     Click Element   wnd[0]/tbar[1]/btn[8]
+    Sleep    0.2
+    Click Element    element_id=wnd[0]/tbar[1]/btn[32]
+    Fbl1n Arrange
+    Sleep    0.2
+    Click Element    element_id=wnd[1]/tbar[0]/btn[0]
+    Sleep    0.2
     # Sleep   2
     Click Element   wnd[0]/mbar/menu[0]/menu[3]/menu[1]
     # Sleep   2

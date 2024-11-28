@@ -6,14 +6,7 @@ Library    String
 Library    ExcelLibrary
 Library    openpyxl
 *** Variables ***
-${filepath}    C:\\RobotFramework\\sap_testing\\Tests\\Resource\\Prerequisite_Status.xlsx
-${sheetname}    Sheet1
-${Basis_success}    SAP BASIS version patch level met the criteria
-${Basis_fail}    SAP BASIS version patch level too low. Need to Patch SAP BASIS Either 7.40 SP16 or higher
-${SAP_UI_success}    SAP UI version patch level met the criteria
-${SAP_UI_fail}    SAP BASIS and SAP UI version patch level too low. Need to Patch SAP_UI Either 740 SP15 or higher
-${ST_PI_Success}    ST-PI patch version met the criteria
-${ST_PI_Fail}    Latest patch of ST-PI needs to be applied
+${system}    System ${symvar('ABAP_SID')} client ${symvar('ABAP_CLIENT')}
 
 *** Keywords ***
 System Logon
@@ -29,23 +22,14 @@ System Logon
 
 System Logout
     Run Transaction   /nex
-Write Excel
-    [Arguments]    ${filepath}    ${sheetname}    ${rownum}    ${colnum}    ${cell_value}
-    Open Excel Document    ${filepath}    1
-    Get Sheet    ${sheetname}  
-    Write Excel Cell      ${rownum}       ${colnum}     ${cell_value}       ${sheetname}
-    Save Excel Document     ${filepath}
-    Close Current Excel Document
 SAP BASIS Release
     Click Element    wnd[0]/mbar/menu[4]/menu[11]
     Click Element    wnd[1]/usr/btnPRELINFO
     ${version}    Software Component Version    wnd[2]/usr/tabsVERSDETAILS/tabpCOMP_VERS/ssubDETAIL_SUBSCREEN:SAPLOCS_UI_CONTROLS:0301/cntlSCV_CU_CONTROL/shellcont/shell    SAP_BASIS
     IF    '${version}' >= '750'
-        Write Excel    ${filepath}    ${sheetname}    2    2    ${Basis_success}
-        Write Excel    ${filepath}    ${sheetname}    2    3    Passed
+        Log To Console    **gbStart**copilot_status1**splitKeyValue**${system} Pre-requites for Component version is met. SAP BASIS Version is ${version}**gbEnd**
     ELSE
-        Write Excel    ${filepath}    ${sheetname}    2    2    ${Basis_fail}
-        Write Excel    ${filepath}    ${sheetname}    2    3    Failed
+        Log To Console    **gbStart**copilot_status1**splitKeyValue**${system} SAP BASIS Version is not met the requirment. Please Update it.**gbEnd**
     END
 
 SAP UI Release
@@ -53,18 +37,14 @@ SAP UI Release
     IF    '${version}' == '740'
         ${support_package}    software support package version    wnd[2]/usr/tabsVERSDETAILS/tabpCOMP_VERS/ssubDETAIL_SUBSCREEN:SAPLOCS_UI_CONTROLS:0301/cntlSCV_CU_CONTROL/shellcont/shell    SAP_UI
         IF    '${support_package}' >= 'SAPK-74014INSAPUI'
-            Write Excel    ${filepath}    ${sheetname}    3    2    ${SAP_UI_success}
-            Write Excel    ${filepath}    ${sheetname}    3    3    Passed
+            Log To Console    **gbStart**copilot_status2**splitKeyValue**${system} Pre-requites for Component version is met. SAP UI Version is ${version} and Support Package is ${support_package}**gbEnd**
         ELSE
-            Write Excel    ${filepath}    ${sheetname}    3    2    ${SAP_UI_fail}
-            Write Excel    ${filepath}    ${sheetname}    3    3    Failed          
+            Log To Console    **gbStart**copilot_status2**splitKeyValue**${system} SAP UI Version is not met the requirment. Please Update it.**gbEnd**          
         END
     ELSE IF    '${version}' >= '740'
-        Write Excel    ${filepath}    ${sheetname}    3    2    ${SAP_UI_success}
-        Write Excel    ${filepath}    ${sheetname}    3    3    Passed
+        Log To Console    **gbStart**copilot_status2**splitKeyValue**${system} Pre-requites for Component version is met. SAP UI Version is ${version}**gbEnd**
     ELSE
-        Write Excel    ${filepath}    ${sheetname}    3    2    ${SAP_UI_fail}
-            Write Excel    ${filepath}    ${sheetname}    3    3    Failed
+        Log To Console    **gbStart**copilot_status2**splitKeyValue**${system} SAP UI Version is not met the requirment. Please Update it.**gbEnd**
     END
 
 Component ST-PI Version
@@ -74,16 +54,14 @@ Component ST-PI Version
     ${support_package}    software support package version    wnd[2]/usr/tabsVERSDETAILS/tabpCOMP_VERS/ssubDETAIL_SUBSCREEN:SAPLOCS_UI_CONTROLS:0301/cntlSCV_CU_CONTROL/shellcont/shell    ST-PI
     IF    '${version}' == '740'
         IF    '${support_package}' == '${symvar('Current_Version')}'
-            Write Excel    ${filepath}    ${sheetname}    4    2    ${ST_PI_Success}
-            Write Excel    ${filepath}    ${sheetname}    4    3    Passed
+            Log To Console    **gbStart**copilot_status3**splitKeyValue**${system} Pre-requites for ST-PI Component version is met.ST-PI version is ${version} and support package is ${support_package}**gbEnd**
         ELSE
-            Log To Console    **gbStart**ST_PI_Status**splitKeyValue**Technical Prerequisties not met . ST-PI version too low.**gbEnd**            
+            Log To Console    **gbStart**copilot_status3**splitKeyValue**Technical Prerequisties not met . ST-PI version too low.**gbEnd**            
         END
     ELSE IF    '${version}' >= '740'
-        Write Excel    ${filepath}    ${sheetname}    4    2    ${ST_PI_Success}
-        Write Excel    ${filepath}    ${sheetname}    4    3    Passed
+        Log To Console    **gbStart**copilot_status3**splitKeyValue**${system} Pre-requites for ST-PI Component version is met.ST-PI version is ${version} and support package is ${support_package}**gbEnd**
     ELSE
-        Log To Console    **gbStart**ST_PI_Status**splitKeyValue**Technical Prerequisties not met . ST-PI version too low.**gbEnd**
+        Log To Console    **gbStart**copilot_status3**splitKeyValue**Technical Prerequisties not met . ST-PI version too low.**gbEnd**
     END
     Log To Console    **gbStart**ST_PI_version**splitKeyValue**ST-PI ${version}**gbEnd**
     Log To Console    **gbStart**supportpackage**splitKeyValue**${support_package}**gbEnd**
