@@ -25,4 +25,5 @@ PVH_SM59
     Sleep    1
     Take Screenshot    SM59.jpg
     Sleep    1
-    Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('PVH_Target_Dir')}
+    Copy Images    ${OUTPUT_DIR}    ${symvar('PVH_Target_Dir')}
+    Sleep	1

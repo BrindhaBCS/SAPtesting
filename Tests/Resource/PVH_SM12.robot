@@ -31,4 +31,6 @@ PVH_SM12
     Click Element    wnd[0]/tbar[1]/btn[8]
     Sleep    1
     Take Screenshot    SM12.jpg
-    Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('PVH_Target_Dir')}
+    Sleep	1
+    Copy Images    ${OUTPUT_DIR}    ${symvar('PVH_Target_Dir')}
+    Sleep	1

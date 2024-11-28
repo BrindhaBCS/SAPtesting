@@ -27,3 +27,4 @@ PVH_SMLG
     Take Screenshot    SMLG.jpg
     Sleep    1
     Copy Images    ${OUTPUT_DIR}    ${symvar('PVH_Target_Dir')}
+    Sleep	1

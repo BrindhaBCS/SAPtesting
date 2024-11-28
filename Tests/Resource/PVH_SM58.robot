@@ -49,3 +49,4 @@ PVH_SM58
     Take Screenshot    SM58_4.jpg
 	Sleep	1
     Copy Images    ${OUTPUT_DIR}    ${symvar('PVH_Target_Dir')}
+    Sleep	1

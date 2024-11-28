@@ -28,3 +28,4 @@ PVH_SMQ2
     Take Screenshot    SMQ2.jpg
     Sleep    1
     Copy Images    ${OUTPUT_DIR}    ${symvar('PVH_Target_Dir')}
+    Sleep	1

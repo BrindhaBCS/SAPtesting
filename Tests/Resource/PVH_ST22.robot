@@ -50,5 +50,6 @@ PVH_ST22
         Take Screenshot    SM21_${i}st.jpg
         Sleep    1
     END
+    Sleep	1
     Copy Images    ${OUTPUT_DIR}    ${symvar('PVH_Target_Dir')}
-    Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('PVH_Target_Dir')}
+    Sleep	1
