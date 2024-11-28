@@ -73,10 +73,10 @@ Result
     Log To Console    **gbStart**copilot_cpiechart_data_grouped**splitKeyValue**${chart_json}**gbEnd**
 
     #${chart_json_top10}    Generate Chart Data Top Ten Materials    file_path=C:\\tmp\\MM_MB52_Full_Desc_Details.xlsx
-    #${chart_json_top10}    Generate Chart Data Top Ten Materials    ${input_filepath} 
-    #Sleep    0.5
-    #Log To Console    **gbStart**copilot_cpiechart_data_top10**splitKeyValue**${chart_json_top10}**gbEnd**
-    #Log to console    ${chart_json_top10}
+    ${chart_json_top10}    Generate Chart Data Top Ten Materials    ${input_filepath} 
+    Sleep    0.5
+    Log To Console    **gbStart**copilot_cpiechart_data_top10**splitKeyValue**${chart_json_top10}**gbEnd**
+    Log to console    ${chart_json_top10}
 
     #${chart_json_stock_distribution}    Generate Stock Distribution Data    file_path=C:\\tmp\\MM_MB52_Full_Desc_Details.xlsx
     # ${chart_json_stock_distribution}    Generate Stock Distribution Data    ${input_filepath} 
