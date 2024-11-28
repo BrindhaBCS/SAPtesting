@@ -11,7 +11,10 @@ import sys
 import ast
 import re
 import pandas as pd
-import openpyxl
+import openpyxl 
+from openpyxl import Workbook
+from openpyxl import load_workbook
+import json
 
 
 class SAP_Tcode_Library:
@@ -1886,6 +1889,47 @@ class SAP_Tcode_Library:
         current_date = datetime.now().date()
         date_difference = (given_date - current_date).days
         return date_difference
+    
+    def write_value_to_excel(self, file_path, sheet_name, cell, value):
+        workbook = load_workbook(file_path)
+        sheet = workbook[sheet_name]
+        try:
+            sheet[cell] = float(value)
+        except ValueError:
+            sheet[cell] = str(value)
+        workbook.save(file_path)
+        workbook.close()
+ 
+    def create_empty_excel(self, file_path):
+        sheet_name = os.path.splitext(os.path.basename(file_path))[0]
+        workbook = Workbook()
+        workbook.active.title = sheet_name
+        workbook.save(file_path)
+
+    def excel_to_json(self, excel_file, json_file):
+        # Read the Excel file
+        df = pd.read_excel(excel_file, engine='openpyxl')
+        # Convert Timestamp objects to strings
+        for column in df.select_dtypes(['datetime']):
+            df[column] = df[column].astype(str)
+        # Convert the DataFrame to a dictionary
+        data = df.to_dict(orient='records')
+        # Write the dictionary to a JSON file
+        with open(json_file, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
+        # Read the JSON file after writing it
+        with open(json_file, 'r', encoding='utf-8') as f:
+            json_data = json.load(f)
+        return json_data
+    
+    def delete_specific_file(self, file_path):
+            try:
+                if os.path.exists(file_path):
+                    os.remove(file_path)
+                else:
+                    print(f"The file '{file_path}' does not exist.")
+            except Exception as e:
+                print(f"An error occurred: {e}")
 
 
 
