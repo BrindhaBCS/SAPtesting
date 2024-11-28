@@ -19,7 +19,7 @@ System Logon
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
 
 System Logout
-    Run Transaction     /nex
+    Run Transaction    /nex
 PVH_ST02
     Run Transaction    /nST02
     Sleep    1
