@@ -41,14 +41,21 @@ PVH_ST22
     # Input Text    wnd[0]/usr/txtS_UNAME-LOW    *
     Click Element    wnd[0]/usr/btnSTARTSEL
     Sleep    10
-    ${row_count}    Get Row Count    wnd[0]/usr/cntlRSSHOWRABAX_ALV_100/shellcont/shell
-    Log    Total Row Count: ${row_count}
-    FOR    ${i}     IN RANGE    1    ${row_count + 1}    39
-        Log    Processing row ${i}
-        ${selected_rows}    Selected_rows    ${TREE_PATH}    ${i}
-        Log To Console    Selected rows: ${i}
-        Take Screenshot    SM21_${i}st.jpg
-        Sleep    1
+    ${super}    Get Value    element_id=wnd[0]/sbar/pane[0]
+    IF  '${super}' == 'No short dumps match the selection criteria'
+        Log    message=No short dumps match the selection criteria...
+        Log To Console    message=No short dumps match the selection criteria....
+    ELSE
+        ${row_count}    Get Row Count    wnd[0]/usr/cntlRSSHOWRABAX_ALV_100/shellcont/shell
+        Log    Total Row Count: ${row_count}
+        FOR    ${i}     IN RANGE    1    ${row_count + 1}    39
+            Log    Processing row ${i}
+            ${selected_rows}    Selected_rows    ${TREE_PATH}    ${i}
+            Log To Console    Selected rows: ${i}
+            Take Screenshot    SM21_${i}st.jpg
+            Sleep    1
+        END
+        Sleep	1
+        Copy Images    ${OUTPUT_DIR}    ${symvar('PVH_Target_Dir')}
+        Sleep	1 
     END
-    Copy Images    ${OUTPUT_DIR}    ${symvar('PVH_Target_Dir')}
-    Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('PVH_Target_Dir')}

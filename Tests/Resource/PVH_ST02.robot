@@ -19,11 +19,14 @@ System Logon
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
 
 System Logout
-    Run Transaction     /nex
+    Run Transaction    /nex
 PVH_ST02
     Run Transaction    /nST02
     Sleep    1
     Take Screenshot    ST02.jpg
     Sleep    1
     Copy Images    ${OUTPUT_DIR}    ${symvar('PVH_Target_Dir')}
-    Images To Pdf    ${symvar('PVH_Target_Dir')}    ${symvar('PVH_PDF_PATH')}
+    Sleep    1
+Create_Images_to_pdf
+    Images To Pdf    ${symvar('PVH_Target_Dir')}    ${symvar('PVH_PDF_PATH')}\\${symvar('PVH_PDFFILE_NAME')}
+    Sleep	1

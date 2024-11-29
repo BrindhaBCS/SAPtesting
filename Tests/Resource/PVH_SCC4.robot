@@ -26,3 +26,4 @@ PVH_SCC4
     Take Screenshot    SCC4.jpg
     Sleep    1
     Copy Images    ${OUTPUT_DIR}    ${symvar('PVH_Target_Dir')}
+    Sleep	1

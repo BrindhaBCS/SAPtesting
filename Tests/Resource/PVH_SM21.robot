@@ -49,6 +49,8 @@ PVH_SM21
         ${counter}=    Evaluate    ${counter} + 1
         Sleep    1
     END
+    Sleep	1
     Copy Images    ${OUTPUT_DIR}    ${symvar('PVH_Target_Dir')}
+    Sleep	1
 
 

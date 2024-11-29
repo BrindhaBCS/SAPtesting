@@ -34,4 +34,6 @@ PVH_SM51
     ${patch_number}    Get Cell Value    wnd[0]/usr/cntlGRID1/shellcont/shell    8    LINE
     ${Kernel_Patch_No}    Extract Numeric    ${patch_number}
     Log To Console    **gbStart**Kernel_Patch_No**splitKeyValue**${Kernel_Patch_No}**gbEnd**
+    Sleep	1
     Copy Images    ${OUTPUT_DIR}    ${symvar('PVH_Target_Dir')}
+    Sleep	1
