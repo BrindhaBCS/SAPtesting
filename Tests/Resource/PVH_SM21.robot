@@ -45,7 +45,7 @@ PVH_SM21
         Log    Processing row ${i}
         ${selected_rows}    Selected_rows    ${TREE_PATH}    ${i}
         Log To Console    Selected rows: ${selected_rows}
-        Take Screenshot    SM21_${counter}st.jpg
+        Take Screenshot    SM21_${counter}.jpg
         ${counter}=    Evaluate    ${counter} + 1
         Sleep    1
     END
