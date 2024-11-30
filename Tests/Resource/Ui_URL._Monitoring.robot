@@ -31,7 +31,7 @@ Response_time_user
             Run Keyword And Ignore Error    Response_Time_third_Url    Url=${Third_url}    CustomerCode=c100001    Username=${Third_Username}    Password=${Third_Password}
             ${status_codeThird_url}    Response_code    Url=${Third_url}
             ${file_paths}    Create List    ${symvar('Screenshot_Directory_path')}\\screenshot0.png    ${symvar('Screenshot_Directory_path')}\\screenshot1.png    ${symvar('Screenshot_Directory_path')}\\screenshot2.png
-            Send Mail    from_email=${symvar('UI_FROM_EMAIL')}    password=${symvar('UI_PASSWORD')}    to_mail=${symvar('UI_TO_EMAILS')}    subject=${symvar('UI_SUBJECT')}    content=${symvar('UI_CONTENT')}\n<Status Code:${status_codeFirst_url}> -- ${First_url}\n<Status Code:${status_codeSecond_url}> -- ${Second_url}\n<Status Code:${status_codeThird_url}> -- ${Third_url}    file_paths=${file_paths}
+            Send Mail    from_email=${symvar('UI_FROM_EMAIL')}    password=${symvar('UI_FROM_EMAIL_PASSWORD')}    to_mail=${symvar('UI_TO_EMAILS')}    subject=${symvar('UI_SUBJECT')}    content=${symvar('UI_CONTENT')}\n<Status Code:${status_codeFirst_url}> -- ${First_url}\n<Status Code:${status_codeSecond_url}> -- ${Second_url}\n<Status Code:${status_codeThird_url}> -- ${Third_url}    file_paths=${file_paths}
             File Remove    directory=${symvar('Screenshot_Directory_path')}    extensions=.png
         END
     END
