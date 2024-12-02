@@ -2,12 +2,10 @@
 # KG_Connection = "TS4"
 # KG_Client_Id = "001"
 # KG_User_Name = "Maestro"
-# KG_User_Password = "Test@12345"
 # Input_Document_Number = "300"
 
 SAP_SERVER = "$SAP_SERVER"
 KG_Connection = "$KG_Connection"
 KG_Client_Id = "$KG_Client_Id"
 KG_User_Name = "$KG_User_Name"
-KG_User_Password = "$KG_User_Password"
 Input_Document_Number = "$Input_Document_Number"

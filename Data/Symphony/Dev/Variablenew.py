@@ -2,7 +2,6 @@
 # Connection = "BIS"
 # Client_Id = "800"
 # User_Name = "BCSADMIN"
-# User_Password = "admin@123"
 # filename = "C:\\Users\\BCS267\\Downloads\\Customer - ECC 03 1.xlsx"
 # sheetname = "Sheet1"
 
