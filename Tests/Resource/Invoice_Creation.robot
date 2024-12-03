@@ -66,7 +66,7 @@ Executing Invoice Creation
         ${is_CC_present}=    Run Keyword And Ignore Error    Element Should Be Present    wnd[1]/usr/ctxtBKPF-BUKRS
         ${CC_result}=    Run Keyword And Ignore Error    Element Should Be Present    wnd[1]/usr/ctxtBKPF-BUKRS
         ${is_CC_present}=    Get From List    ${CC_result}    0   # Extract the first element of the tuple ('PASS' or 'FAIL')
-        Run Keyword If    '${is_CC_present}' == 'PASS'    Give Company Code    ${initial_row}    ${Company_Code}    ELSE    Switch Company Code    ${initial_row}    ${Company_Code}
+        Run Keyword If    '${is_CC_present}' == 'PASS'    Give Company Code    ${row}    ${Company_Code}    ELSE    Switch Company Code    ${row}    ${Company_Code}
         Run Keyword And Ignore Error    Send VKey               0
         #Run Keyword And Ignore Error    Input Text    wnd[1]/usr/ctxtBKPF-BUKRS    ${Company_Code}        
         #Run Keyword And Ignore Error    Log To Console    ${Company_Code}
