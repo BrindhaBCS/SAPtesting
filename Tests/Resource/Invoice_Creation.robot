@@ -66,7 +66,7 @@ Executing Invoice Creation
         Run Keyword And Ignore Error    Input Text    wnd[1]/usr/ctxtBKPF-BUKRS    ${Company_Code}        
         Run Keyword And Ignore Error    Log To Console    ${Company_Code}
         Run Keyword And Ignore Error    Send VKey               0
-        #Run Keyword And Ignore Error    Select From List By Key    wnd[0]/usr/cmbRM08M-VORGANG    1
+        #Run Keyword And Ignore Error    Select From List By key    wnd[0]/usr/cmbRM08M-VORGANG    1
         ${Invoice_Date}    Get Current Date    result_format=%d.%m.%Y
         Run Keyword And Ignore Error    Input Text    wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_TOTAL/ssubHEADER_SCREEN:SAPLFDCB:0010/ctxtINVFO-BLDAT    ${Invoice_Date}
         #Check the tax checkbox
@@ -75,13 +75,13 @@ Executing Invoice Creation
         #Select the Tax details
         Sleep    0.1
         ${Tax_Type}    Read Excel Cell Value    ${PO_Creation_File}    ${Invoice_Creation_Sheet}   ${row}    5
-        Run Keyword And Ignore Error    Select From List By Key    wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_TOTAL/ssubHEADER_SCREEN:SAPLFDCB:0010/cmbINVFO-MWSKZ    ${Tax_Type}
+        Run Keyword And Ignore Error    Select From List By key    wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_TOTAL/ssubHEADER_SCREEN:SAPLFDCB:0010/cmbINVFO-MWSKZ    ${Tax_Type}
         Run Keyword And Ignore Error    Log To Console    ${Tax_Type}
         ${PO_Number}    Read Excel Cell Value    ${PO_Creation_File}    ${PO_Creation_Sheet}   ${row}    13
         Run Keyword And Ignore Error    Input Text    wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/subITEMS:SAPLMR1M:6010/tabsITEMTAB/tabpITEMS_PO/ssubTABS:SAPLMR1M:6020/subREFERENZBELEG:SAPLMR1M:6211/ctxtRM08M-EBELN    ${PO_Number}        
         Run Keyword And Ignore Error    Log To Console    ${PO_Number}
         Run Keyword And Ignore Error    Send VKey               0
-        Sleep    0.1
+        Sleep    0.2
         Run Keyword And Ignore Error    Click Element    wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_PAY
         ${Baseline_date}    Get Current Date    result_format=%d.%m.%Y
         Run Keyword And Ignore Error    Input Text    wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_PAY/ssubHEADER_SCREEN:SAPLFDCB:0020/ctxtINVFO-ZFBDT    ${Baseline_date}
@@ -95,7 +95,7 @@ Executing Invoice Creation
         ${Amount}=    Clear Negative Sign    ${Balance_Amount}
         Run Keyword And Ignore Error    Log To Console    ${Amount}
         Run Keyword And Ignore Error    Input Text    wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_TOTAL/ssubHEADER_SCREEN:SAPLFDCB:0010/txtINVFO-WRBTR    ${Amount}
-        Sleep    0.1
+        Sleep    0.2
         Run Keyword And Ignore Error    Click Element    wnd[0]/tbar[0]/btn[11]   
         ${invoice_status}    Get Value    wnd[0]/sbar
         ${invoice_number}=    Extract Numeric    ${invoice_status}
