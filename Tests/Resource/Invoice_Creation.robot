@@ -59,14 +59,19 @@ Executing Invoice Creation
     ${rows}=    Evaluate    ${total_row} + 1
     Log To Console    ${rows}
     FOR    ${row}    IN RANGE    2    ${rows}
-        System Logon
+        #System Logon
         Run Transaction    /nmiro
         Sleep    0.1
         ${Company_Code}    Read Excel Cell Value    ${PO_Creation_File}    ${Invoice_Creation_Sheet}   ${row}    2
-        Run Keyword And Ignore Error    Input Text    wnd[1]/usr/ctxtBKPF-BUKRS    ${Company_Code}        
-        Run Keyword And Ignore Error    Log To Console    ${Company_Code}
+        ${is_CC_present}=    Run Keyword And Ignore Error    Element Should Be Present    wnd[1]/usr/ctxtBKPF-BUKRS
+        ${CC_result}=    Run Keyword And Ignore Error    Element Should Be Present    wnd[1]/usr/ctxtBKPF-BUKRS
+        ${is_CC_present}=    Get From List    ${CC_result}    0   # Extract the first element of the tuple ('PASS' or 'FAIL')
+        Run Keyword If    '${is_CC_present}' == 'PASS'    Give Company Code    ${initial_row}    ${Company_Code}    ELSE    Switch Company Code    ${initial_row}    ${Company_Code}
         Run Keyword And Ignore Error    Send VKey               0
-        #Run Keyword And Ignore Error    Select From List By key    wnd[0]/usr/cmbRM08M-VORGANG    1
+        #Run Keyword And Ignore Error    Input Text    wnd[1]/usr/ctxtBKPF-BUKRS    ${Company_Code}        
+        #Run Keyword And Ignore Error    Log To Console    ${Company_Code}
+        #Run Keyword And Ignore Error    Send VKey               0
+        Run Keyword And Ignore Error    Select From List By key    wnd[0]/usr/cmbRM08M-VORGANG    1
         ${Invoice_Date}    Get Current Date    result_format=%d.%m.%Y
         Run Keyword And Ignore Error    Input Text    wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_TOTAL/ssubHEADER_SCREEN:SAPLFDCB:0010/ctxtINVFO-BLDAT    ${Invoice_Date}
         #Check the tax checkbox
@@ -101,6 +106,16 @@ Executing Invoice Creation
         ${invoice_number}=    Extract Numeric    ${invoice_status}
         Log To Console    Invoice Number : ${invoice_number}
         Write Excel    ${PO_Creation_File}    ${Invoice_Creation_Sheet}   ${row}    12    ${invoice_number}
-        System Logout
+        #System Logout
+        Run Keyword And Ignore Error    Click Element    wnd[0]/tbar[0]/btn[3]
     END
-    
+
+Give Company Code
+    [Arguments]    ${row}    ${Company_Code}
+    Run Keyword And Ignore Error    Input Text    wnd[1]/usr/ctxtBKPF-BUKRS    ${Company_Code}
+    Sleep    0.1        
+Switch Company Code
+    [Arguments]    ${row}    ${Company_Code}
+    Run Keyword And Ignore Error    Click Element    wnd[0]/mbar/menu[1]/menu[0]
+    Run Keyword And Ignore Error    Input Text    wnd[1]/usr/ctxtBKPF-BUKRS    ${Company_Code}
+    Sleep    0.1    
