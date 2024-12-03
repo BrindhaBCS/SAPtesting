@@ -98,7 +98,9 @@ Executing Invoice Creation
 
         ${Balance_Amount}    Run Keyword And Ignore Error    Get Value    wnd[0]/usr/txtRM08M-DIFFERENZ
         Log To Console    ${Balance_Amount}
-        ${Amount}=    Clear Negative Sign    ${Balance_Amount}
+        #take the second value from the tuple
+        ${Balance_Amount_negative}    Get From List    ${Balance_Amount}    1 
+        ${Amount}=    Clear Negative Sign    ${Balance_Amount_negative}
         Run Keyword And Ignore Error    Log To Console    ${Amount}
         Run Keyword And Ignore Error    Input Text    wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_TOTAL/ssubHEADER_SCREEN:SAPLFDCB:0010/txtINVFO-WRBTR    ${Amount}
         Sleep    0.2
