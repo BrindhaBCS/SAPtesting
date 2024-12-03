@@ -111,7 +111,8 @@ SalesOrderCreation
 	    Sleep	0.5
 	    Send Vkey    4
 	    Sleep	0.5
-	    Set Focus	wnd[1]/usr/lbl[1,4]	
+        Input Text    wnd[0]/usr/tabsTAXI_TABSTRIP_ITEM/tabpT\\03/ssubSUBSCREEN_BODY:SAPMV45A:4452/ctxtVBAP-LGORT    FERT    	
+	    	
 	    Sleep	0.5
 	    Click Element	wnd[1]/tbar[0]/btn[0]
 	    Sleep	0.5
