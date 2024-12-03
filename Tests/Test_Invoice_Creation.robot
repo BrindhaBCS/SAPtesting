@@ -6,13 +6,12 @@ Force Tags    invoice
 #Suite Teardown    Common_SAP_Tcodefn.System Logout
   
 *** Test Cases ***
-#Monthly Compliance Reports
-#System Logon
-    #Invoice_Creation.System Logon
+System Logon
+    Invoice_Creation.System Logon
 Executing Invoice Creation
     Executing Invoice Creation
-#System Logout
-    #Invoice_Creation.System Logout    
+System Logout
+    Invoice_Creation.System Logout    
 
 
 
