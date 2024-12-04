@@ -13,6 +13,8 @@ import re
 import openpyxl
 import pandas as pd
 import openpyxl
+import json
+import numpy as np
 
 
 class SAP_Tcode_Library:
@@ -1567,39 +1569,39 @@ class SAP_Tcode_Library:
         try:
             # Load Excel Data
             df_excel_raw = pd.read_excel(file_path, engine='openpyxl')
-
+ 
             # Extract headers from the first row
             headers_from_excel = df_excel_raw.iloc[0].values
-
+ 
             # Load the DataFrame with proper headers
             df_processed = pd.read_excel(file_path, header=1, engine='openpyxl')
-
+ 
             # Set correct headers
             df_processed.columns = headers_from_excel
-
+ 
             # Remove any leading/trailing spaces from column headers
             df_processed.columns = df_processed.columns.str.strip()
-
+ 
             # Remove any columns with NaN headers
             df_processed = df_processed.loc[:, ~df_processed.columns.isna()]
-
+ 
             # Clean 'Material Description' and remove NaN
             labels = df_processed['Material Description'].astype(str).str.strip().replace('nan', np.nan).dropna().tolist()
-
+ 
             # Clean and convert the data columns, replace NaN with 0
-            unrestr_data = pd.to_numeric(df_processed['Unrestr.'], errors='coerce').fillna(0).tolist()
-            qual_insp_data = pd.to_numeric(df_processed['Qual.Insp.'], errors='coerce').fillna(0).tolist()
-            blocked_data = pd.to_numeric(df_processed['Blocked'], errors='coerce').fillna(0).tolist()
-
+            unrestr_data = pd.to_numeric(df_processed['Unrestr.'].astype(str).str.replace(',', ''), errors='coerce').fillna(0).tolist()
+            qual_insp_data = pd.to_numeric(df_processed['Qual.Insp.'].astype(str).str.replace(',', ''),errors='coerce').fillna(0).tolist()
+            blocked_data = pd.to_numeric(df_processed['Blocked'].astype(str).str.replace(',', ''), errors='coerce').fillna(0).tolist()
+ 
             # Find the minimum length to ensure all lists are of the same size
             min_length = min(len(labels), len(unrestr_data), len(qual_insp_data), len(blocked_data))
-
+ 
             # Trim all lists to this minimum length
             labels = labels[:min_length]
             unrestr_data = unrestr_data[:min_length]
             qual_insp_data = qual_insp_data[:min_length]
             blocked_data = blocked_data[:min_length]
-
+ 
             # Create chart data
             chart_data = {
                 "type": "bar",
@@ -1623,7 +1625,7 @@ class SAP_Tcode_Library:
                         "data": blocked_data,
                          #"backgroundColor": "rgba(75, 192, 192, 0.6)",
                          "backgroundColor": "rgba(0, 0, 255, 0.8)",
-                    },
+                    }
                     ]
             }
             return json.dumps(chart_data)
@@ -1633,47 +1635,47 @@ class SAP_Tcode_Library:
         except Exception as e:
             print(f"An error occurred: {str(e)}")
             return None
-
+ 
     def generate_chart_data_top_ten_materials(self, file_path):
         try:
             # Load Excel Data
             df_excel_raw = pd.read_excel(file_path, engine='openpyxl')
-
+ 
             # Extract headers from the first row and set them as column names
             headers_from_excel = df_excel_raw.iloc[0].values
             df_processed = pd.read_excel(file_path, header=1, engine='openpyxl')
             df_processed.columns = headers_from_excel
-
+ 
             # Clean column names by stripping leading/trailing whitespace
             df_processed.columns = df_processed.columns.str.strip()
-
+ 
             # Select and clean relevant columns
             columns_to_use = ['Material Description', 'Unrestr.', 'Qual.Insp.', 'Blocked']
             df_relevant = df_processed[columns_to_use].copy()
-
+ 
             # Clean and convert numerical columns, replacing non-numeric values with NaN, then filling NaN with 0
             for col in ['Unrestr.', 'Qual.Insp.', 'Blocked']:
-                df_relevant[col] = pd.to_numeric(df_relevant[col], errors='coerce').fillna(0)
-
+                df_relevant[col] = pd.to_numeric(df_relevant[col].astype(str).str.replace(',', ''), errors='coerce').fillna(0)
+ 
             # Add a column for total stock
             df_relevant['Total Stock'] = df_relevant['Unrestr.'] + df_relevant['Qual.Insp.'] + df_relevant['Blocked']
-
+ 
             # Drop rows where 'Material Description' is NaN or empty
             df_relevant['Material Description'] = df_relevant['Material Description'].astype(str).str.strip()
             labels = df_relevant[df_relevant['Material Description'] != ''].dropna(subset=['Material Description'])
-
+ 
             # Sort by total stock in descending order and take the top 10 materials
             top_10_materials = df_relevant.nlargest(10, 'Total Stock')
-
+ 
             # Create chart data
             chart_data_top_10 = {
                 "type": "bar",
-                "title": "Top Ten Materials",
-                "label": labels,
+                "Title": "Top Ten Materials",
+                "label": top_10_materials['Material Description'].tolist(),
                 "dataSet": [
                     {
                         "label": "Top 10 Materials",
-                        "data": top_10_materials,
+                        "data": top_10_materials['Total Stock'].tolist(),
                         "backgroundColor": "rgba(255, 99, 132, 1.2)",
                         #"backgroundColor": "rgba(255, 0, 0, 1.2)",
                     }
