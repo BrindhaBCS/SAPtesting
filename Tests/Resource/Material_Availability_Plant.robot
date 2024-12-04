@@ -61,12 +61,12 @@ Executing Material Availability
     Log To Console    mm1completed 
 Result
     Log To Console    Material Availability Unresticted Data
-    #Material Availability Description    ${input_filepath}    ${symvar('Material')}    ${result_filepath}
+    Material Availability Description    ${input_filepath}    ${symvar('Material')}    ${result_filepath}
     # Material Availability    ${filepath}    ${result_filepath} 
-    #${json}    Excel To Json    excel_file=C:\\tmp\\MM_Availability.xlsx    json_file=C:\\tmp\\Json\\MM_Availability.json
-    #Sleep    0.5
-    #Log To Console    **gbStart**copilot_Json**splitKeyValue**${json}**gbEnd**
-    #Log to console    ${json}
+    ${json}    Excel To Json    excel_file=C:\\tmp\\MM_Availability.xlsx    json_file=C:\\tmp\\Json\\MM_Availability.json
+    Sleep    0.5
+    Log To Console    **gbStart**copilot_Json**splitKeyValue**${json}**gbEnd**
+    Log to console    ${json}
     #${chart_json}    Generate Chart Data    file_path=C:\\tmp\\MM_MB52_Full_Desc_Details.xlsx
     ${chart_json}    Generate Chart Data    ${input_filepath} 
     Sleep    0.5
