@@ -72,6 +72,10 @@ Result
     Sleep    0.5
     Log To Console    **gbStart**copilot_cpiechart_data_grouped**splitKeyValue**${chart_json}**gbEnd**
 
+    
+    Log To Console    **gbStart**copilot_local**splitKeyValue**1.Items is contains passed \n   Date: 11.23.2024 \n 2.Not there yours doc \n  date :12.05.2024**gbEnd**
+
+
     #${chart_json_top10}    Generate Chart Data Top Ten Materials    file_path=C:\\tmp\\MM_MB52_Full_Desc_Details.xlsx
     ${chart_json_top10}    Generate Chart Data Top Ten Materials    ${input_filepath} 
     Sleep    0.5
