@@ -81,10 +81,11 @@ SalesOrderCreation
         ${Current_Date}    Get Current Date    result_format=%d.%m.%Y
         Run Keyword And Ignore Error    Input Text    wnd[0]/usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\\01/ssubSUBSCREEN_BODY:SAPMV45A:4400/ssubHEADER_FRAME:SAPMV45A:4440/ctxtRV45A-KETDAT    ${Current_Date}
         Sleep	0.5
-	    Set Focus	wnd[0]/usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\\01/ssubSUBSCREEN_BODY:SAPMV45A:4400/subSUBSCREEN_TC:SAPMV45A:4900/tblSAPMV45ATCTRL_U_ERF_AUFTRAG/ctxtRV45A-MABNR[1,0]
+        Set Focus	wnd[0]/usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\\01/ssubSUBSCREEN_BODY:SAPMV45A:4400/subSUBSCREEN_TC:SAPMV45A:4900/tblSAPMV45ATCTRL_U_ERF_AUFTRAG/ctxtRV45A-MABNR[1,0]
 	    Sleep	0.5
 	    Send Vkey    4
 	    Sleep	0.5
+        Input Text	wnd[1]/usr/tabsG_SELONETABSTRIP/tabpTAB008/ssubSUBSCR_PRESEL:SAPLSDH4:0220/sub:SAPLSDH4:0220/txtG_SELFLD_TAB-LOW[0,24]	TESTING - SAMPLE MATERIAL
 	    Send Vkey    4
 	    Sleep	0.5
 	    Click Element	wnd[1]/tbar[0]/btn[0]
@@ -93,6 +94,8 @@ SalesOrderCreation
 	    Sleep	0.5
         Set Focus	wnd[0]/usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\\01/ssubSUBSCREEN_BODY:SAPMV45A:4400/subSUBSCREEN_TC:SAPMV45A:4900/tblSAPMV45ATCTRL_U_ERF_AUFTRAG/txtRV45A-KWMENG[3,0]
 	    Sleep	0.5
+	    
+        
         Input Text	wnd[0]/usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\\01/ssubSUBSCREEN_BODY:SAPMV45A:4400/subSUBSCREEN_TC:SAPMV45A:4900/tblSAPMV45ATCTRL_U_ERF_AUFTRAG/txtRV45A-KWMENG[3,0]	10
 	    Sleep	0.5
 	    Set Focus    wnd[0]/usr/tabsTAXI_TABSTRIP_OVERVIEW/tabpT\\01/ssubSUBSCREEN_BODY:SAPMV45A:4400/subSUBSCREEN_TC:SAPMV45A:4900/tblSAPMV45ATCTRL_U_ERF_AUFTRAG/txtKOMV-KBETR[15,0]    
@@ -103,18 +106,9 @@ SalesOrderCreation
         Send Vkey    2
         Send Vkey    2
         Sleep	0.5
-	    Run Keyword And Ignore Error    Click Element	wnd[0]/usr/tabsTAXI_TABSTRIP_ITEM/tabpT\\03
-        Run Keyword And Ignore Error    Click Element	wnd[0]/usr/tabsTAXI_TABSTRIP_ITEM/tabpT\03
-        Sleep	0.5
-	    Run Keyword And Ignore Error    Set Focus	wnd[0]/usr/tabsTAXI_TABSTRIP_ITEM/tabpT\\03/ssubSUBSCREEN_BODY:SAPMV45A:4452/ctxtVBAP-LGORT
-        Run Keyword And Ignore Error    Set Focus	wnd[0]/usr/tabsTAXI_TABSTRIP_ITEM/tabpT\03/ssubSUBSCREEN_BODY:SAPMV45A:4452/ctxtVBAP-LGORT
+	    Click Element	wnd[0]/usr/tabsTAXI_TABSTRIP_ITEM/tabpT\\03
 	    Sleep	0.5
-	    Send Vkey    4
-	    Sleep	0.5
-        Input Text    wnd[0]/usr/tabsTAXI_TABSTRIP_ITEM/tabpT\\03/ssubSUBSCREEN_BODY:SAPMV45A:4452/ctxtVBAP-LGORT    FERT    	
-	    	
-	    Sleep	0.5
-	    Click Element	wnd[1]/tbar[0]/btn[0]
+        Input Text    wnd[0]/usr/tabsTAXI_TABSTRIP_ITEM/tabpT\\03/ssubSUBSCREEN_BODY:SAPMV45A:4452/ctxtVBAP-LGORT    FERT    
 	    Sleep	0.5
 	    Click Element	wnd[0]/tbar[0]/btn[11]
         Sleep	0.5
@@ -126,6 +120,7 @@ SalesOrderCreation
         Write Value To Excel    file_path=${filename}    sheet_name=${sheetname}    cell=R${row_index}   value=${SO_Number}
         Click Element	wnd[0]/tbar[0]/btn[3]
     END
+    
     
 
     
