@@ -9,7 +9,8 @@ Library    ExcelLibrary
  
 *** Variables ***
 
-${PO_Status}      C:\\Robot_SAP\\SAPtesting\\Tests\\Resource\\PO_Status.xlsx
+#${PO_Status}      C:\\Robot_SAP\\SAPtesting\\Tests\\Resource\\PO_Status.xlsx
+${PO_Status}    C:\\RobotFramework\\sap_testing\\Tests\\Resource\\PO_Status.xlsx
 ${PO_Status_Sheet}     PO Status
 
 ${PO_Number}    4500002772
@@ -67,7 +68,7 @@ Executing PO Status
     Log To Console   Invoice Number: ${invoice_number2}
     Write Excel    ${PO_Status}    ${PO_Status_Sheet}    8    2    ${invoice_number2}
 Result
-    ${json}    Excel To Json    excel_file=C:\\Robot_SAP\\SAPtesting\\Tests\\Resource\\PO_Status.xlsx    json_file=C:\\tmp\\Json\\PO_Status.json
+    ${json}    Excel To Json    excel_file=C:\\RobotFramework\\sap_testing\\Tests\\Resource\\PO_Status.xlsx    json_file=C:\\tmp\\Json\\PO_Status.json
     Sleep    0.5
     Log To Console    **gbStart**copilot_Json**splitKeyValue**${json}**gbEnd**
     #Delete Specific File    file_path=C:\\tmp\\Json\\PO_Status.json
