@@ -51,22 +51,43 @@ Executing PO Status
 	Input Text	    wnd[1]/usr/subSUB0:SAPLMEGUI:0003/ctxtMEPO_SELECT-EBELN    ${PO_Number}
 	Sleep	0.1
     Click Element	wnd[1]/tbar[0]/btn[0]
+    ${po_type}    get_value    wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB0:SAPLMEGUI:0030/subSUB1:SAPLMEGUI:1105/cmbMEPO_TOPLINE-BSART
+    ${po_creation_date}    get_value    wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB0:SAPLMEGUI:0030/subSUB1:SAPLMEGUI:1105/ctxtMEPO_TOPLINE-BEDAT
     Click Element   wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT16
     Sleep    0.1
-    ${gr_number}    get_cell_value    wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT16/ssubTABSTRIPCONTROL1SUB:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell    0    BELNR
+    #${gr_number}    get_cell_value    wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT16/ssubTABSTRIPCONTROL1SUB:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell    0    BELNR
+
+    Click Current Cell	wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT16/ssubTABSTRIPCONTROL1SUB:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell    BELNR
+    ${gr_number}    get_value    wnd[0]/usr/ssubSUB_MAIN_CARRIER:SAPLMIGO:0003/subSUB_FIRSTLINE:SAPLMIGO:0011/subSUB_FIRSTLINE_REFDOC:SAPLMIGO:2010/txtGODYNPRO-MAT_DOC    #wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT16/ssubTABSTRIPCONTROL1SUB:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell    0    BELNR
+    ${gr_creation_date}    get_value    wnd[0]/usr/ssubSUB_MAIN_CARRIER:SAPLMIGO:0003/subSUB_HEADER:SAPLMIGO:0101/subSUB_HEADER:SAPLMIGO:0100/tabsTS_GOHEAD/tabpOK_GOHEAD_CREATEDBY/ssubSUB_TS_GOHEAD_CREATEDBY:SAPLMIGO:0130/ctxtGOHEAD-CPUDT
+    ${gr_creation_time}    get_value    wnd[0]/usr/ssubSUB_MAIN_CARRIER:SAPLMIGO:0003/subSUB_HEADER:SAPLMIGO:0101/subSUB_HEADER:SAPLMIGO:0100/tabsTS_GOHEAD/tabpOK_GOHEAD_CREATEDBY/ssubSUB_TS_GOHEAD_CREATEDBY:SAPLMIGO:0130/ctxtGOHEAD-CPUTM
+    Click Element	wnd[0]/usr/ssubSUB_MAIN_CARRIER:SAPLMIGO:0003/subSUB_HEADER:SAPLMIGO:0101/subSUB_HEADER:SAPLMIGO:0100/tabsTS_GOHEAD/tabpOK_GOHEAD_CREATEDBY/ssubSUB_TS_GOHEAD_CREATEDBY:SAPLMIGO:0130/btnOK_FI_DOC
+    Sleep    0.1
+    ${Account_GR_Number}    get_cell_value    wnd[1]/usr/cntlCONTAINER/shellcont/shell    0    DOCNR
+    Sleep    0.1
+    Click Element	wnd[1]/tbar[0]/btn[12]
+    Sleep    0.1
+    Click Element    wnd[0]/tbar[0]/btn[3] 
     ${invoice_number1}    get_cell_value    wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT16/ssubTABSTRIPCONTROL1SUB:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell    2    BELNR
     ${invoice_number2}    get_cell_value    wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT16/ssubTABSTRIPCONTROL1SUB:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell    3    BELNR
     Log To Console   PO Number: ${PO_Number}
     Write Excel    ${PO_Status}    ${PO_Status_Sheet}    2    2    ${PO_Number}
     Sleep    0.1
-    Log To Console   GR Number: ${gr_number}
-    Write Excel    ${PO_Status}    ${PO_Status_Sheet}    4    2    ${gr_number}
+    Write Excel    ${PO_Status}    ${PO_Status_Sheet}    3    2    ${po_type}
     Sleep    0.1
+    Write Excel    ${PO_Status}    ${PO_Status_Sheet}    4    2    ${po_creation_date}
+    Log To Console   GR Number: ${gr_number}
+    Write Excel    ${PO_Status}    ${PO_Status_Sheet}    5    2    ${gr_number}
+    Sleep    0.1
+    Write Excel    ${PO_Status}    ${PO_Status_Sheet}    6    2    ${gr_creation_date}
+    Write Excel    ${PO_Status}    ${PO_Status_Sheet}    7    2    ${gr_creation_time}
+    Write Excel    ${PO_Status}    ${PO_Status_Sheet}    8    2    ${Account_GR_Number}
+
     Log To Console   Invoice Number: ${invoice_number1}
-    Write Excel    ${PO_Status}    ${PO_Status_Sheet}    6    2    ${invoice_number1}
+    Write Excel    ${PO_Status}    ${PO_Status_Sheet}    9    2    ${invoice_number1}
     Sleep    0.1
     Log To Console   Invoice Number: ${invoice_number2}
-    Write Excel    ${PO_Status}    ${PO_Status_Sheet}    8    2    ${invoice_number2}
+    Write Excel    ${PO_Status}    ${PO_Status_Sheet}    13    2    ${invoice_number2}
 Result
     ${json}    Excel To Json    excel_file=C:\\RobotFramework\\sap_testing\\Tests\\Resource\\PO_Status.xlsx    json_file=C:\\tmp\\Json\\PO_Status.json
     Sleep    0.5
