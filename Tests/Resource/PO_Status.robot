@@ -70,6 +70,21 @@ Executing PO Status
     Click Element    wnd[0]/tbar[0]/btn[3] 
     ${invoice_number1}    get_cell_value    wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT16/ssubTABSTRIPCONTROL1SUB:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell    2    BELNR
     ${invoice_number2}    get_cell_value    wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT16/ssubTABSTRIPCONTROL1SUB:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell    3    BELNR
+    Sleep    0.1
+	#Click Current Cell	wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT16/ssubTABSTRIPCONTROL1SUB:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell
+    Sleep    0.1
+    #${invoice1_creation_date}    get_value    wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_TOTAL/ssubHEADER_SCREEN:SAPLFDCB:0010/ctxtINVFO-BLDAT
+    ${invoice1_creation_date}    get_cell_value    wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT16/ssubTABSTRIPCONTROL1SUB:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell    2    BUDAT
+    ${invoice2_creation_date}    get_cell_value    wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT16/ssubTABSTRIPCONTROL1SUB:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell    3    BUDAT
+    #Click Element	wnd[0]/tbar[1]/btn[8]
+    #${invoice1_account_number}    get_value    wnd[0]/usr/txtBKPF-BELNR
+    #Click Element	wnd[0]/tbar[0]/btn[3]
+	#Click Element	wnd[0]/tbar[0]/btn[3]
+    #Sleep    0.1
+	#Click Current Cell	wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT16/ssubTABSTRIPCONTROL1SUB:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell    BELNR
+    #${invoice2_creation_date}    get_value    wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_TOTAL/ssubHEADER_SCREEN:SAPLFDCB:0010/ctxtINVFO-BLDAT
+    #Click Element	wnd[0]/tbar[1]/btn[8]
+    #${invoice2_account_number}    get_value    wnd[0]/usr/txtBKPF-BELNR
     Log To Console   PO Number: ${PO_Number}
     Write Excel    ${PO_Status}    ${PO_Status_Sheet}    2    2    ${PO_Number}
     Sleep    0.1
@@ -85,9 +100,13 @@ Executing PO Status
 
     Log To Console   Invoice Number: ${invoice_number1}
     Write Excel    ${PO_Status}    ${PO_Status_Sheet}    9    2    ${invoice_number1}
+    Write Excel    ${PO_Status}    ${PO_Status_Sheet}    10    2    ${invoice1_creation_date}
+    #Write Excel    ${PO_Status}    ${PO_Status_Sheet}    11    2    ${invoice1_account_number}
     Sleep    0.1
     Log To Console   Invoice Number: ${invoice_number2}
-    Write Excel    ${PO_Status}    ${PO_Status_Sheet}    13    2    ${invoice_number2}
+    Write Excel    ${PO_Status}    ${PO_Status_Sheet}    12    2    ${invoice_number2}
+    Write Excel    ${PO_Status}    ${PO_Status_Sheet}    13    2    ${invoice2_creation_date}
+    #Write Excel    ${PO_Status}    ${PO_Status_Sheet}    14    2    ${invoice2_account_number}
 Result
     ${json}    Excel To Json    excel_file=C:\\RobotFramework\\sap_testing\\Tests\\Resource\\PO_Status.xlsx    json_file=C:\\tmp\\Json\\PO_Status.json
     Sleep    0.5
