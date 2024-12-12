@@ -5,15 +5,15 @@ Library    SAP_Tcode_Library.py
  
  
 System Logon
-    Start Process     ${symvar('SAP_SERVER')}    
+    Start Process     ${symvar('abinbev_SAP_SERVER')}    
     Sleep    10s
     Connect To Session
-    Open Connection    ${symvar('abhinbevSID')}  
+    Open Connection    ${symvar('abhinbev_SID')}  
     Sleep    5  
-    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('clientno')}
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('diaUsername')}    
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('diaUserpassword')}
-    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{abinberpassword}
+    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('abinbev_clientno')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('abinbev_diaUsername')}    
+    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('abinbev_diaUserpassword')}
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{diaUserpassword}
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
     Sleep   1
@@ -28,15 +28,15 @@ Pre_SE16
     ${actual_rowcount}=    Evaluate    ${tablecount}-4
     ${MANDT_values}   ${ENTRY_TYPE_values}   ${SORTKEY_values}   ${PROTOCOL_values}   ${HOST_values} =    Get Table Text    wnd[0]/usr/lbl    ${tablecount}  
     Log To Console    MANDT_values=${MANDT_values}
-    Set Global Variable    MANDT_values=${MANDT_values}
+    Set Global Variable    ${MANDT_values}
     Log To Console   ENTRY_TYPE_values=${ENTRY_TYPE_values}
-    Set Global Variable    ENTRY_TYPE_values=${ENTRY_TYPE_values}
+    Set Global Variable    ${ENTRY_TYPE_values}
     Log To Console   SORTKEY_values=${SORTKEY_values}
-    Set Global Variable    SORTKEY_values=${SORTKEY_values}
+    Set Global Variable    ${SORTKEY_values}
     Log To Console   PROTOCOL_values=${PROTOCOL_values}
-    Set Global Variable    PROTOCOL_values=${PROTOCOL_values}
+    Set Global Variable    ${PROTOCOL_values}
     Log To Console    HOST_values= ${HOST_values}
-    Set Global Variable    HOST_values=${HOST_values}
+    Set Global Variable    ${HOST_values}
     Log To Console    **gbStart**MANDT_values**splitKeyValue**${MANDT_values}**gbEnd**
     Log To Console    **gbStart**ENTRY_TYPE_values**splitKeyValue**${ENTRY_TYPE_values}**gbEnd**
     Log To Console    **gbStart**SORTKEY_values**splitKeyValue**${SORTKEY_values}**gbEnd**   
