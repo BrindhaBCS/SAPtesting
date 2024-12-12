@@ -1902,6 +1902,114 @@ class SAP_Tcode_Library:
             self.session.findById("wnd[1]/usr/btnAPP_FL_SING").press()
         except:
             return[]
+    
+    def count_GUI_Table_rows(self,table_path):
+        """
+        Counts the total number of rows in an SAP GUI table dynamically.
+        Args:
+            table_path (str): The path of the table like 'wnd[0]/usr/lbl'
+        Returns:
+            int: The total number of rows in the table
+        """
+        # SapGuiAuto = win32com.client.GetObject("SAPGUI")
+        # application = SapGuiAuto.GetScriptingEngine
+        # session = application.Children(0)  # Get first active session
+        row_count = 4
+
+        try:
+            # Dynamically count rows
+            while True:
+                row_path = f"{table_path}[3,{row_count + 1}]"  # Check first column for each row
+                try:
+                    element = self.session.FindById(row_path)
+                    if element:
+                        row_count += 1
+                except Exception as e:
+                    break  # Exit the loop if the element is not found
+        except Exception as e:
+            print(f"Error: {str(e)}")
+
+        print(f"Total rows counted: {row_count}")
+        return row_count  
+    
+    def Get_table_Text(self, TXT, Row_count):
+        TXT = "wnd[0]/usr/lbl"
+        
+        # Use lists to store the values
+        MANDT_values = []
+        ENTRY_TYPE_values = []
+        PROTOCOL_values = []
+        SORTKEY_values = []
+        HOST_values = []
+        
+        try:
+            # Loop through the rows starting from 5 to Row_count
+            for i in range(5, Row_count + 1):
+                MANDT_id = f"{TXT}[3,{i}]"
+                ENTRY_TYPE = f"{TXT}[9,{i}]"
+                SORTKEY = f"{TXT}[20,{i}]"
+                PROTOCOL = f"{TXT}[29,{i}]"
+                HOST = f"{TXT}[38,{i}]"
+                
+                # Print the identifiers for debugging
+                print(f"MANDT ID: {MANDT_id}")
+                print(f"ENTRY_TYPE: {ENTRY_TYPE}")
+                print(f"SORTKEY: {SORTKEY}")
+                print(f"PROTOCOL: {PROTOCOL}")
+                print(f"HOST:{HOST}")
+                
+                # Check if element exists and extract text
+                if self.session.findById(MANDT_id) is not None:
+                    MANDT_value = self.session.findById(MANDT_id).text
+                    MANDT_values.append(MANDT_value)  # Append the value to the list
+                else:
+                    print(f"MANDT_id field not found: {MANDT_id}")
+                    MANDT_values.append(None)  # Append None if not found
+
+                if self.session.findById(ENTRY_TYPE) is not None:
+                    ENTRY_TYPE_value = self.session.findById(ENTRY_TYPE).text
+                    ENTRY_TYPE_values.append(ENTRY_TYPE_value)  # Append the value to the list
+                else:
+                    print(f"ENTRY_TYPE field not found: {ENTRY_TYPE}")
+                    ENTRY_TYPE_values.append(None)  # Append None if not found
+                
+                if self.session.findById(SORTKEY) is not None:
+                    SORTKEY_value = self.session.findById(SORTKEY).text
+                    SORTKEY_values.append(SORTKEY_value)  # Append the value to the list
+                else:
+                    print(f"SORTKEY field not found: {SORTKEY}")
+                    SORTKEY_values.append(None)  # Append None if not found
+
+                if self.session.findById(PROTOCOL) is not None:
+                    PROTOCOL_value = self.session.findById(PROTOCOL).text
+                    PROTOCOL_values.append(PROTOCOL_value)  # Append the value to the list
+                else:
+                    print(f"PROTOCOL field not found: {PROTOCOL}")
+                    PROTOCOL_values.append(None)  # Append None if not found
+                
+                if self.session.findById(HOST) is not None:
+                    HOST_value = self.session.findById(HOST).text
+                    HOST_values.append(HOST_value)  # Append the value to the list
+                else:
+                    print(f"HOST field not found: {HOST}")
+                    HOST_values.append(None)  # Append None if not found
+            
+            # Print the extracted values
+            print(f"MANDT Values: {MANDT_values}")
+            print(f"ENTRY_TYPE Values: {ENTRY_TYPE_values}")
+            print(f"SORTKEY Values: {SORTKEY_values}")
+            print(f"PROTOCOL Values: {PROTOCOL_values}")
+            print(f"HOST Values: {HOST_values}")
+            return MANDT_values, ENTRY_TYPE_values, SORTKEY_values, PROTOCOL_values, HOST_values
+        except Exception as e:
+            print(f"An error occurred: {e}")
+    def get_Status_pane(self,paneid):
+        try:
+            element = self.session.findbyId(paneid)
+            status_message = element.text
+            return status_message
+        except Exception as e:
+            print(f"An error occurred: {e}")
 
 
 

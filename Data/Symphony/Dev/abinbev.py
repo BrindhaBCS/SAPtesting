@@ -1,0 +1,5 @@
+SAP_SERVER  = "C:\\Program Files (x86)\\SAP\FrontEnd\\SAPgui\\saplogon.exe"
+abhinbevSID = "S4hana"
+clientno = "100"
+diaUsername = "devuser2"
+diaUserpassword = "Bcshana@123"
