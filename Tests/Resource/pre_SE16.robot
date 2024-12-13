@@ -13,7 +13,7 @@ System Logon
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('abinbev_clientno')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('abinbev_diaUsername')}    
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('abinbev_diaUserpassword')}
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{diaUserpassword}
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{ABLN_PASSWORD}
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
     Sleep   1
