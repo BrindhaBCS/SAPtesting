@@ -40,7 +40,7 @@ ${Replace}    wnd[1]/tbar[0]/btn[11]
 *** Keywords ***
 System Logon
     Start Process     ${symvar('SAP_SERVER')}     
-    Sleep    5
+    Sleep    1
     Connect To Session
     Open Connection    ${symvar('MCR_SAP_connection')}    
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('MCR_Client_Id')}
@@ -49,11 +49,12 @@ System Logon
     Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{MCR_User_Password}
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
-    Sleep   1
+    Sleep  1 
+    Run Keyword And Ignore Error    Click Element    wnd[1]/tbar[0]/btn[0]
 
 System Logout
     Run Transaction   /nex
-    Sleep    5
+    
     # Sleep    10
 
 production systems open via OSS
