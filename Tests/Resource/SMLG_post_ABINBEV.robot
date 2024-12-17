@@ -6,7 +6,6 @@ Library    String
 Library    ExcelLibrary
 
 
-
 *** Keywords ***
 System Logon
     Start Process     ${symvar('ABIN_SAP_SERVER')}    
@@ -44,7 +43,6 @@ Get Row Count
     Close Current Excel Document    
     [Return]    ${row_count}
         
-
 SMLG_ABLN
     Run Transaction	    SMLG
 	Sleep	2
