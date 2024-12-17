@@ -3,9 +3,6 @@
 # abinbev_clientno = "100"
 # abinbev_diaUsername = "devuser2"
 # abinbev_diaUserpassword = "Bcshana@123"
-
-
-
 abinbev_SAP_SERVER  = "$abinbev_SAP_SERVER"
 abhinbev_SID = "$abhinbev_SID"
 abinbev_clientno = "$abinbev_clientno"
