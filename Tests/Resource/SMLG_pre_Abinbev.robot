@@ -9,14 +9,14 @@ Library    ExcelLibrary
 
 *** Keywords ***
 System Logon
-    Start Process     ${symvar('ABLN_SAP_SERVER')}    
+    Start Process     ${symvar('ABIN_SAP_SERVER')}    
     Sleep    10s
     Connect To Session
-    Open Connection    ${symvar('ABLN_SAP_connection')}    
-    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('ABLN_Client_Id')}
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('ABLN_User_Name')}    
+    Open Connection    ${symvar('ABIN_SAP_connection')}    
+    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('ABIN_Client_Id')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('ABIN_User_Name')}    
     
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{ABLN_PASSWORD}   
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{ABIN_PASSWORD}   
     Send Vkey    0
     Take Screenshot    00a_loginpage.jpg
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
