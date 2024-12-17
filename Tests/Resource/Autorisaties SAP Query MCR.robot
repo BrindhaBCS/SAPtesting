@@ -46,7 +46,7 @@ System Logon
     Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{MCR_User_Password}
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
-    Sleep   1
+    Sleep   5
     
 
 System Logout
