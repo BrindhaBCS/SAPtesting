@@ -1900,9 +1900,9 @@ class SAP_Tcode_Library:
         footer_paragraph.runs[0].italic = True
         
         # Add spacing after the header
-        spacer = doc.add_paragraph()
-        spacer_format = spacer.paragraph_format
-        spacer_format.space_after = Pt(12)
+        # spacer = doc.add_paragraph()
+        # spacer_format = spacer.paragraph_format
+        # spacer_format.space_after = Pt(12)
 
         # Add a data table
         data_table = doc.add_table(rows=df.shape[0] + 1, cols=df.shape[1])
