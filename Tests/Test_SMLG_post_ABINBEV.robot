@@ -1,7 +1,7 @@
 *** Settings ***
-Resource    ../Tests/Resource/SMLG_post_Abinbev.robot
-Suite Setup    SMLG_post_Abinbev.System Logon
-Suite Teardown    SMLG_post_Abinbev.System Logout
+Resource    ../Tests/Resource/SMLG_post_ABINBEV.robot
+Suite Setup    SMLG_post_ABINBEV.System Logon
+Suite Teardown    SMLG_post_ABINBEV.System Logout
 Test Tags    SMLG_ABIN_post
 
 *** Test Cases ***
