@@ -82,7 +82,7 @@ Select Table Data
             Take Screenshot    03_Pre_RZ12.jpg
             
             ${Text}    Get Value    wnd[0]/sbar/pane[0] 
-            IF  '${Text}' == 'Group accepted. Resource allocation will be reset with a restart.'
+            IF  '${Text}' == 'Changes saved'
                 Log To Console    Everything Updted Successfully
             ELSE
                 Log To Console    Data is not saved Properly
