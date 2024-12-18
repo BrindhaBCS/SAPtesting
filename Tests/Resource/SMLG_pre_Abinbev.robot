@@ -9,14 +9,14 @@ Library    ExcelLibrary
 
 *** Keywords ***
 System Logon
-    Start Process     ${symvar('ABLN_SAP_SERVER')}    
+    Start Process     ${symvar('ABIN_SAP_SERVER')}    
     Sleep    10s
     Connect To Session
-    Open Connection    ${symvar('ABLN_SAP_connection')}    
-    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('ABLN_Client_Id')}
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('ABLN_User_Name')}    
+    Open Connection    ${symvar('ABIN_SAP_connection')}    
+    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('ABIN_Client_Id')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('ABIN_User_Name')}    
     
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{ABLN_PASSWORD}   
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{ABIN_PASSWORD}   
     Send Vkey    0
     Take Screenshot    00a_loginpage.jpg
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
@@ -32,7 +32,7 @@ SMLG_ABLN
 	Sleep	2
 	Send Vkey	0
 	Sleep	2
-    Run Keyword And Ignore Error    Delete Specific File    C:\\tmp\\smlg_report.xlsx
+    Run Keyword And Ignore Error    Delete Specific File    ${symvar('Excel_path')}
     Click Element	wnd[0]/mbar/menu[4]/menu[5]/menu[4]
 	Sleep	2
     Click Element    wnd[1]/tbar[0]/btn[0] 
@@ -54,10 +54,10 @@ SMLG_ABLN
 	
 	Click Element	wnd[1]/tbar[0]/btn[0]
 	Sleep	2
-    Open Excel Document    C:\\tmp\\smlg_report.xlsx    Sheet1
-    Process Excel    file_path=C:\\tmp\\smlg_report.xlsx    sheet_name=Sheet1    column_index=0
+    Open Excel Document    ${symvar('Excel_path')}    ${symvar('Excel_sheet')}
+    Process Excel    file_path=${symvar('Excel_path')}    sheet_name=${symvar('Excel_sheet')}    column_index=0
     
-    ${SMLG_json}    Excel To Json    excel_file=C:\\tmp\\smlg_report.xlsx   json_file=C:\\tmp\\smlg_report.json  
+    ${SMLG_json}    Excel To Json    excel_file=${symvar('Excel_path')}   json_file=C:\\tmp\\smlg_report.json  
     Log    ${SMLG_json}
     Log To Console    **gbStart**Copilot_Status_json**splitKeyValue**${SMLG_json}**gbEnd**
     Close Current Excel Document
