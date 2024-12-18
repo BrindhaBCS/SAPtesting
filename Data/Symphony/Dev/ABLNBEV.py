@@ -11,4 +11,5 @@ screenshot_directory = "C:\\tmp\\ABB_Screenshots\\pre"
 PDFFILE_NAME = "Prescreenshots.pdf"
 Excel_path = "C:\\tmp\\smlg_report.xlsx"
 Excel_sheet = "Sheet1"
+Target_Host = "$Target_Host"
 

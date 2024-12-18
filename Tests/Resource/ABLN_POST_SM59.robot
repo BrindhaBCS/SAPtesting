@@ -79,7 +79,7 @@ ABB_SM59
     Take Screenshot    012_Pre_SM59_12.jpg
     Clear Field Text    wnd[0]/usr/tabsTAB_SM59/tabpTECH/ssubSUB_SM59:SAPLCRFC:0500/txtHOSTNAME
     Sleep    1
-    Input Text    wnd[0]/usr/tabsTAB_SM59/tabpTECH/ssubSUB_SM59:SAPLCRFC:0500/txtHOSTNAME    ${symvar('Host_name')} 
+    Input Text    wnd[0]/usr/tabsTAB_SM59/tabpTECH/ssubSUB_SM59:SAPLCRFC:0500/txtHOSTNAME    ${symvar('Target_Host')} 
     Sleep    1
     Take Screenshot    013_Pre_SM59_13.jpg
     Click Element    wnd[0]/tbar[0]/btn[11]
