@@ -13,7 +13,7 @@ Library    ExcelLibrary
 ${PO_Status}    C:\\RobotFramework\\sap_testing\\Tests\\Resource\\PO_Status.xlsx
 ${PO_Status_Sheet}     PO Status
 
-${PO_Number}    4500002772
+${PO_Number}    ${symvar('PO_Number')}
 
 *** Keywords ***
 Write Excel
