@@ -74,7 +74,10 @@ ABB_SM59
     Take Screenshot    011_Pre_SM59_11.jpg
     ${Host_name}    Get Value    wnd[0]/usr/tabsTAB_SM59/tabpTECH/ssubSUB_SM59:SAPLCRFC:0500/txtHOSTNAME
     Log To Console    ${Host_name}
+    ${IP_Address}    Get Value    wnd[0]/usr/tabsTAB_SM59/tabpTECH/ssubSUB_SM59:SAPLCRFC:0500/txtL_IP 
+    Log To Console    ${IP_Address}
     Log To Console    **gbStart**Target_Host**splitKeyValue**${Host_name}**gbEnd**
+    Log To Console    **gbStart**IP_Address**splitKeyValue**${IP_Address}**gbEnd**
     Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('screenshot_directory')} 
     Sleep    2
     

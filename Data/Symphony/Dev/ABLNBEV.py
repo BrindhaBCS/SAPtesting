@@ -12,4 +12,5 @@ PDFFILE_NAME = "Prescreenshots.pdf"
 Excel_path = "C:\\tmp\\smlg_report.xlsx"
 Excel_sheet = "Sheet1"
 Target_Host = "$Target_Host"
+IP_Address = "$IP_Address"
 
