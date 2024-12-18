@@ -76,6 +76,9 @@ Select Table Data
             Input Text    wnd[1]/usr/txtARFCQUOTAS_EXT-MAX_NORMAL_QUOTA    ${Detail value}[10]
             Input Text    wnd[1]/usr/txtARFCQUOTAS_EXT-MAX_LOW_QUOTA    ${Detail value}[11]
             Click Element    wnd[1]/tbar[0]/btn[0]
+            Sleep    1
+            Click Element    wnd[0]/tbar[0]/btn[11]
+            Sleep    1
             Take Screenshot    03_Pre_RZ12.jpg
             
             ${Text}    Get Value    wnd[0]/sbar/pane[0] 
