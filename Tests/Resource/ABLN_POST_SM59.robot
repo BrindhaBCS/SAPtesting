@@ -1,6 +1,7 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
+Library    Merger.py
 
 *** Keywords ***
 System Logon
@@ -85,6 +86,9 @@ ABB_SM59
     Click Element    wnd[0]/tbar[0]/btn[11]
     Sleep    1
     Take Screenshot    014_Pre_SM59_14.jpg
+    Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('screenshot_directory')} 
+    Sleep    2
+    
     
 
     

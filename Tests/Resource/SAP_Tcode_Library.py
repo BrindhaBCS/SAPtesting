@@ -14,6 +14,7 @@ import pandas as pd
 import openpyxl
 import re
 import json
+from openpyxl import  load_workbook
 
 
 class SAP_Tcode_Library:
@@ -2074,8 +2075,159 @@ class SAP_Tcode_Library:
         except Exception as e:
             print(f"An error occurred: {e}")
 
+    def clean_excel_sheet(self, file_path, sheet_name):
+    
+        try:
+            # Load the workbook and access the sheet
+            workbook = load_workbook(file_path)
+            if sheet_name not in workbook.sheetnames:
+                raise Exception(f"Sheet '{sheet_name}' does not exist in the file.")
 
+            sheet = workbook[sheet_name]
 
+            # Trim whitespace from all cells in the sheet
+            for row in sheet.iter_rows():
+                for cell in row:
+                    if cell.value and isinstance(cell.value, str):
+                        cell.value = cell.value.strip()  # Remove leading and trailing whitespace
+
+            # Remove completely empty rows (backward iteration to avoid index shift)
+            for row_idx in range(sheet.max_row, 0, -1):
+                if all(sheet.cell(row=row_idx, column=col_idx).value in [None, ""] for col_idx in range(1, sheet.max_column + 1)):
+                    sheet.delete_rows(row_idx)
+
+            # Remove completely empty columns (backward iteration to avoid index shift)
+            for col_idx in range(sheet.max_column, 0, -1):
+                if all(sheet.cell(row=row_idx, column=col_idx).value in [None, ""] for row_idx in range(1, sheet.max_row + 1)):
+                    sheet.delete_cols(col_idx)
+
+            # Save changes back to the file
+            workbook.save(file_path)
+            print("\033[92m❗ Excel sheet cleaned successfully and saved at:", file_path)  # Green exclamation mark
+
+        except Exception as e:
+            print("\033[92m❗ Failed to clean Excel sheet:", str(e))  # Green exclamation mark
+
+    def get_total_row(self, excel_path, sheet_name):
+        try:
+            workbook = load_workbook(excel_path)
+            sheet = workbook[sheet_name]
+            row_count = sheet.max_row
+            return row_count
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            return None
+        
+    def read_value_from_excel(self, file_path, sheet_name, cell):
+        workbook = load_workbook(file_path)
+        sheet = workbook[sheet_name]
+        value = sheet[cell].value
+        if value is None:
+            value = ""  
+        workbook.close()
+        return value
+    
+    def focus_on_Particular_Text(self, input_text, base_path, explicit_wait=1):
+        
+        try:
+            # Create the SAP GUI application object
+            SapGuiAuto = win32com.client.GetObject("SAPGUI")
+            if not SapGuiAuto:
+                raise Exception("SAP GUI is not running.")
+            
+            application = SapGuiAuto.GetScriptingEngine
+            connection = application.Children(0)  # Get the first connection (adjust if multiple connections are open)
+            session = connection.Children(0)  # Get the first session (active session)
+
+            # Get all elements inside the base path
+            container = session.findById(base_path)
+            elements = container.Children
+
+            for element in elements:
+                try:
+                    # Check for multiple properties (Text, Name, Tooltip) in the element
+                    element_text = getattr(element, "Text", None)
+                    element_name = getattr(element, "Name", None)
+                    element_tooltip = getattr(element, "Tooltip", None)
+
+                    if input_text in str(element_text) or input_text in str(element_name) or input_text in str(element_tooltip):
+                        element.setFocus()  # Focus on the element
+                        time.sleep(explicit_wait)  # Wait to ensure focus is applied
+                        print(f"✅ Focus set on element with text: '{input_text}' at path: {element.Id}")
+                        return  # Exit after focusing on the first matching text
+                except AttributeError:
+                    # Skip elements that do not have a 'Text', 'Name', or 'Tooltip' property
+                    continue
+
+            print(f"❗ No element with text '{input_text}' found in '{base_path}'")
+
+        except Exception as e:
+            print(f"❗ An error occurred while focusing on text '{input_text}': {str(e)}")
+        
+    def write_value_to_excel(self, file_path, sheet_name, cell, value):
+        workbook = load_workbook(file_path)
+        sheet = workbook[sheet_name]
+        try:
+            sheet[cell] = float(value)
+        except ValueError:
+            sheet[cell] = str(value)
+        workbook.save(file_path)
+        workbook.close()
+
+    def compare_excel_and_return_column(self, file1_path, sheet1_name, file2_path, sheet2_name):
+        
+        # Load the workbooks
+        workbook1 = load_workbook(file1_path, data_only=True)
+        workbook2 = load_workbook(file2_path, data_only=True)
+
+        # Select the sheets
+        sheet1 = workbook1[sheet1_name]
+        sheet2 = workbook2[sheet2_name]
+
+        # List to store unique Column A values for differing rows
+        differing_rows_column_a = []
+
+        # Determine the largest dimensions of both sheets
+        max_row = max(sheet1.max_row, sheet2.max_row)
+        max_col = max(sheet1.max_column, sheet2.max_column)
+
+        for row in range(1, max_row + 1):
+            row_diff_found = False  # Track if a difference is found in this row
+            for col in range(1, max_col + 1):
+                cell1 = sheet1.cell(row=row, column=col).value
+                cell2 = sheet2.cell(row=row, column=col).value
+
+                if cell1 != cell2:  # If the values differ
+                    row_diff_found = True
+
+            if row_diff_found:
+                # Add the value from Column A of the differing row
+                column_a_value = sheet1.cell(row=row, column=1).value  # Column 1 corresponds to Column A
+                differing_rows_column_a.append(column_a_value)
+
+        # Close the workbooks
+        workbook1.close()
+        workbook2.close()
+
+        return differing_rows_column_a
+    
+    def search_text_in_excel(self, file_path, search_text):
+        
+        # Load the workbook
+        workbook = openpyxl.load_workbook(file_path)
+        
+        # Select the active sheet (change this if you know the sheet name)
+        sheet = workbook.active
+        
+        # Loop through rows to find the text
+        for row in sheet.iter_rows(values_only=True):  # Read only the values
+            if search_text in row:
+                workbook.close()
+                return list(row)  # Return the whole row as a list if found
+        
+        # Close workbook and return empty list if not found
+        workbook.close()
+        return []
         
 
      

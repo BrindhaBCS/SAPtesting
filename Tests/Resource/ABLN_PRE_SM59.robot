@@ -1,7 +1,7 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
-
+Library    Merger.py
 *** Keywords ***
 System Logon
     Start Process     ${symvar('ABIN_SAP_SERVER')}    
@@ -75,7 +75,8 @@ ABB_SM59
     ${Host_name}    Get Value    wnd[0]/usr/tabsTAB_SM59/tabpTECH/ssubSUB_SM59:SAPLCRFC:0500/txtHOSTNAME
     Log To Console    ${Host_name}
     Log To Console    **gbStart**Target_Host**splitKeyValue**${Host_name}**gbEnd**
-    
+    Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('screenshot_directory')} 
+    Sleep    2
     
 
     
