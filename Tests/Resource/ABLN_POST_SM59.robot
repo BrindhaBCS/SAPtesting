@@ -82,10 +82,8 @@ ABB_SM59
     Sleep    1
     Input Text    wnd[0]/usr/tabsTAB_SM59/tabpTECH/ssubSUB_SM59:SAPLCRFC:0500/txtHOSTNAME    ${symvar('Target_Host')} 
     Sleep    1
-    # Clear Field Text    wnd[0]/usr/tabsTAB_SM59/tabpTECH/ssubSUB_SM59:SAPLCRFC:0500/txtL_IP
-    # Sleep    1
-    # Input Text    wnd[0]/usr/tabsTAB_SM59/tabpTECH/ssubSUB_SM59:SAPLCRFC:0500/txtL_IP    ${symvar('IP_Address')}
-    # Sleep    1
+    Select Radio Button    wnd[0]/usr/tabsTAB_SM59/tabpTECH/ssubSUB_SM59:SAPLCRFC:0500/radRFCDISPLAZ-SAVEIP 
+    Sleep    1
     Take Screenshot    013_Pre_SM59_13.jpg
     Click Element    wnd[0]/tbar[0]/btn[11]
     Sleep    1
