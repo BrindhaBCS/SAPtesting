@@ -2229,5 +2229,46 @@ class SAP_Tcode_Library:
         workbook.close()
         return []
         
+    def excel_to_json_SE16(self, excel_file, json_file):
+        import pandas as pd
+            # Read the Excel file and skip extra rows to get the right header
+        df = pd.read_excel(excel_file, engine='openpyxl', skiprows=2)  # Skip the first 6 rows (adjust as needed)
+        
+        # Strip spaces from column names (in case there are leading/trailing spaces)
+        df.columns = df.columns.str.strip()
+
+        # Drop any columns with "Unnamed" in their name (optional, but helps clean up)
+        df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
+        
+        # Check the column names to ensure they are correct
+        print("Column names:", df.columns)
+
+        # Initialize a dictionary to hold the rows with dynamic keys
+        json_data = {}
+
+        # Check if the required columns exist
+        required_columns = ["MANDT", "ENTRY_TYPE", "SORT_KEY", "PROTOCOL", "HOST", "PORT"]
+        missing_columns = [col for col in required_columns if col not in df.columns]
+
+        if missing_columns:
+            raise ValueError(f"Missing columns: {', '.join(missing_columns)}")
+
+        # Iterate through the DataFrame and populate the json_data dictionary with dynamic keys (row(1), row(2), etc.)
+        for index, row in df.iterrows():
+            row_key = f"row({index+1})"  # Create the row key (row(1), row(2), ...)
+            json_data[row_key] = {
+                "MANDT": str(row["MANDT"]),
+                "ENTRY_TYPE": str(row["ENTRY_TYPE"]),
+                "SORT_KEY": str(row["SORT_KEY"]),
+                "PROTOCOL": row["PROTOCOL"],
+                "HOST": row["HOST"],
+                "PORT": row["PORT"]
+            }
+
+        # Write the JSON data to the specified file
+        with open(json_file, 'w', encoding='utf-8') as f:
+            json.dump(json_data, f, ensure_ascii=False, indent=4)
+
+        return json_data
 
      
