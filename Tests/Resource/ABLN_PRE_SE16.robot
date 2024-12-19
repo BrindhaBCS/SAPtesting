@@ -4,15 +4,15 @@ Library    SAP_Tcode_Library.py
 library    ExcelLibrary
 *** Keywords ***
 System Logon
-    Start Process     ${symvar('SAP_SERVER')}    
+    Start Process     ${symvar('abinbev_SAP_SERVER')}    
     Sleep    10s
     Connect To Session
-    Open Connection    ${symvar('abhinbevSID')}  
+    Open Connection    ${symvar('abhinbev_SID')}  
     Sleep    5  
-    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('clientno')}
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('diaUsername')}    
+    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('abinbev_clientno')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('abinbev_diaUsername')}    
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('diaUserpassword')}
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{abinberpassword}
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{ABLN_PASSWORD}
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
     Sleep   1
