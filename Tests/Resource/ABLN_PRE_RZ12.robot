@@ -39,7 +39,7 @@ Select Table Data
     Click Element    wnd[0]/mbar/menu[4]/menu[5]/menu[2]/menu[2]
     Sleep    1
     Select Radio Button    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[2,0]
-    Take Screenshot    01_Pre_RZ12.jpg
+    
     Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    1
     Delete Specific File    ${EXCEL_PATH}
@@ -87,7 +87,7 @@ Select Table Data
         Write Value To Excel    ${EXCEL_PATH}    ${Sheet}    L${Row_Index}    ${Max.Quota.Prior.Low}
         Click Element    wnd[1]/tbar[0]/btn[12]
         Sleep    2
-        Take Screenshot    03_Pre_RZ12.jpg
+        
         
     END
     ${Excel}    Excel To Json    ${EXCEL_PATH}    json_file=C:\\TEMP\\ABB.json

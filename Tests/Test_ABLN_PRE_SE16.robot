@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    ../Tests/Resource/ABLN_PRE_SE16.robot
-Test Tags    pre_se16_Abinbev
+Test Tags    ABLN_PRE_SE16
 Suite Setup    ABLN_PRE_SE16.System Logon
 
 
