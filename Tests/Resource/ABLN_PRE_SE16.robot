@@ -25,11 +25,6 @@ Pre_SE16
     Click Element	wnd[0]/tbar[1]/btn[8]
     ${tablecount}=    Count GUI Table Rows    wnd[0]/usr/lbl
     ${actual_rowcount}=    Evaluate    ${tablecount}-4
-    
- 
-
-
-    
 
 Download the table
     Run Keyword And Ignore Error    Delete Specific File    C:\\tmp\\pre_SE16_report.xlsx
