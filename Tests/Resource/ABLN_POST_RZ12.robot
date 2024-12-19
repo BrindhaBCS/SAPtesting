@@ -37,6 +37,21 @@ RZ12
     Take Screenshot    00_Pre_RZ12.jpg
     Run Keyword And Ignore Error    Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    1
+Delete Logon Group
+    ${Row count}    Get Total Row    ${EXCEL_PATH_PRE}    ${Sheet}
+    FOR    ${Row_Index}    IN RANGE    2    ${Row count + 1}
+    ${A}=    Read Value From Excel    ${EXCEL_PATH_PRE}    ${Sheet}    A${Row_Index}
+    Sleep    1
+    Focus On Particular Text    ${A}    wnd[0]/usr
+    Sleep    1
+    Click Element    wnd[0]/tbar[1]/btn[2]
+    Sleep    1
+    Click Element    wnd[1]/tbar[0]/btn[6]
+    Sleep    1
+    Click Element    wnd[0]/tbar[0]/btn[11]
+    Sleep    1
+    END
+    
 Select Table Data
     Click Element    wnd[0]/mbar/menu[4]/menu[5]/menu[2]/menu[2]
     Sleep    1

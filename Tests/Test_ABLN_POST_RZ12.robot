@@ -7,4 +7,5 @@ Suite Teardown   ABLN_POST_RZ12.System Logout
 *** Test Cases ***
 RZ12
     RZ12
+    Delete Logon Group
     Select Table Data
