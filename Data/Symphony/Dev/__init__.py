@@ -24,3 +24,4 @@ from .Idoc import *
 
 from .abinbev import *
 from .ABLNBEV import *
+from .MIGO import *
