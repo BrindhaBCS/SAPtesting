@@ -2270,5 +2270,17 @@ class SAP_Tcode_Library:
             json.dump(json_data, f, ensure_ascii=False, indent=4)
 
         return json_data
+    
+    def select_from_list_by_key(self, element_id, key):
+        """Selects the specified option from the selection list.
+        """
+        element_type = self.get_element_type(element_id)
+        if element_type == "GuiComboBox":
+            self.session.findById(element_id).key = key
+            time.sleep(self.explicit_wait)
+        else:
+            self.take_screenshot()
+            message = "Cannot use keyword 'select from list by key' for element type '%s'" % element_type
+            raise ValueError(message)  
 
      
