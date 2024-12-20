@@ -5,8 +5,8 @@ library    SAP_Tcode_Library.py
 *** Variables ***
 ${back}    /app/con[0]/ses[0]/wnd[0]/tbar[0]/btn[15]
 
-${purchase_order}    4500002934
-${truck_no}    TN09CH2345
+${purchase_order}     ${symvar('Purchase_order')}
+${truck_no}     ${symvar('Truck_No')}
 *** Keywords ***
 SAP_LOGIN
     Start Process     ${symvar('MIGO_SAP_SERVER')}    
