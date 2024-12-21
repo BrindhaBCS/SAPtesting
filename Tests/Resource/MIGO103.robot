@@ -24,6 +24,8 @@ SAP_LOGIN
 MMIGO103
     Run Transaction    MIGO
     Sleep    5
+    ${validate_detail_data}=    Run Keyword And Return Status    Element Should Be Present    wnd[0]/usr/ssubSUB_MAIN_CARRIER:SAPLMIGO:0002/subSUB_ITEMDETAIL:SAPLMIGO:0302/btnBUTTON_DETAIL
+    Run Keyword If    ${validate_detail_data} == True    Click Element    wnd[0]/usr/ssubSUB_MAIN_CARRIER:SAPLMIGO:0002/subSUB_ITEMDETAIL:SAPLMIGO:0302/btnBUTTON_DETAIL
     Set Focus	wnd[0]/usr/ssubSUB_MAIN_CARRIER:SAPLMIGO:0003/subSUB_FIRSTLINE:SAPLMIGO:0011/cmbGODYNPRO-ACTION
     Sleep    2
 	Select From List By key    wnd[0]/usr/ssubSUB_MAIN_CARRIER:SAPLMIGO:0003/subSUB_FIRSTLINE:SAPLMIGO:0011/cmbGODYNPRO-ACTION    A01
@@ -44,8 +46,10 @@ MMIGO103
     Sleep    2
     Select Checkbox    wnd[0]/usr/ssubSUB_MAIN_CARRIER:SAPLMIGO:0002/subSUB_ITEMLIST:SAPLMIGO:0200/tblSAPLMIGOTV_GOITEM/chkGOITEM-TAKE_IT[3,0] 
     Sleep    2
-    # Click Element    wnd[0]/tbar[1]/btn[23]
-    # Sleep    2
+    Click Element    wnd[0]/tbar[1]/btn[23]
+    Sleep    2
+    ${status}=    Get Status Pane    wnd[0]/sbar/pane[0] 
+    Set Global Variable    ${status}   
     Click Element	wnd[0]/usr/ssubSUB_MAIN_CARRIER:SAPLMIGO:0002/subSUB_ITEMDETAIL:SAPLMIGO:0302/btnBUTTON_DETAIL
     Sleep    2
     Take Screenshot    MMIGO103.jpg
