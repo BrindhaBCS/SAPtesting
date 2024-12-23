@@ -52,7 +52,7 @@ Download the table
     Process Excel   file_path=${symvar('excel_filePath')}    sheet_name=Sheet1    column_index=0
     # Clean Excel Sheet    file_path=C:\\tmp\\pre_SE16_report.xlsx    sheet_name=Sheet1
     
-    ${pre_SE16_json}    Excel To Json SE16   excel_file=${symvar('excel_filePath_SE16')}   json_file=${symvar('json_FilePath')} 
+    ${pre_SE16_json}    Excel To Json SE16   excel_file=${symvar('excel_filePath_SE16')}   json_file=${symvar('json_FilePath_SE16')} 
     Log    ${pre_SE16_json}
     Set Global Variable    ${pre_SE16_json}
     Log To Console    **gbStart**pre_SE16_json**splitKeyValue**${pre_SE16_json}**gbEnd**
