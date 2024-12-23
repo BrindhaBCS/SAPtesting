@@ -35,7 +35,7 @@ STMS_ABLN
     Take Screenshot    004_STMS_0.jpg
     Click Element	wnd[0]/mbar/menu[0]/menu[4]
 	Sleep	2
-    Take Screenshot    005_STMS_1.jpg
+    Take Screenshot    004_STMS_1.jpg
 
     ${row_count}    Get Row Count    wnd[0]/usr/cntlGRID1/shellcont/shell 
     Log To Console    ${row_count}
