@@ -45,7 +45,7 @@ ABB_RZ11
     END
     
     Log To Console    ${A}
-    Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('Screenshot_directory')}
+    Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('screenshot_directory')}
     Sleep    1
 
     Convert pdf    ${symvar('Screenshot_directory')}    ${symvar('Screenshot_directory')}\\${symvar('PDFFILE_NAME')}
