@@ -66,5 +66,5 @@ SMLG_ABLN
     Log    ${SMLG_json}
     Log To Console    **gbStart**Copilot_Status_json**splitKeyValue**${SMLG_json}**gbEnd**
     Close Current Excel Document
-    Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('Screenshot_directory')}
+    Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('screenshot_directory')}
     Sleep    1
