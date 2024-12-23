@@ -61,11 +61,8 @@ Download the table
     Sleep    2
 
 close
-    Click Element    ${back}
-    Click Element    ${back}
-    Sleep    2
-    Click Element    /app/con[0]/ses[0]/wnd[1]/usr/btnSPOP-OPTION1
-    Sleep    2
+    Run Transaction    /nex
+    Sleep  2
 
  
 
