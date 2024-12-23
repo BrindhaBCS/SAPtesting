@@ -34,7 +34,7 @@ System Logout
 RZ12
     Run Transaction    /nRZ12
     Sleep    1
-    Take Screenshot    00_Pre_RZ12.jpg
+    Take Screenshot    000_Post_RZ12.jpg
     Run Keyword And Ignore Error    Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    1
 Delete Logon Group
@@ -56,7 +56,7 @@ Select Table Data
     Click Element    wnd[0]/mbar/menu[4]/menu[5]/menu[2]/menu[2]
     Sleep    1
     Select Radio Button    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[2,0]
-    Take Screenshot    01_Pre_RZ12.jpg
+    
     Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    1
     Delete Specific File    ${EXCEL_PATH_POST}
@@ -70,6 +70,7 @@ Select Table Data
     ${A}    Compare Excel And Return Column    file1_path=${EXCEL_PATH_PRE}    sheet1_name=${Sheet}    file2_path=${EXCEL_PATH_POST}    sheet2_name=${Sheet}
     ${B}    Get Length    ${A}
     IF  '${B}' != '0'
+    ${i}    Set Variable    1
         FOR    ${index}    IN RANGE    0    ${B}
             ${Value}    Set Variable    ${A}[${index}]
             Log To Console    ${Value}
@@ -90,11 +91,13 @@ Select Table Data
             Input Text    wnd[1]/usr/txtARFCQUOTAS_EXT-MAX_OPEN_TASKS    ${Detail value}[9]
             Input Text    wnd[1]/usr/txtARFCQUOTAS_EXT-MAX_NORMAL_QUOTA    ${Detail value}[10]
             Input Text    wnd[1]/usr/txtARFCQUOTAS_EXT-MAX_LOW_QUOTA    ${Detail value}[11]
+            Take Screenshot    000_Post_RZ12_${i}.jpg
+            ${i}    Evaluate    ${i} + 1
             Click Element    wnd[1]/tbar[0]/btn[0]
             Sleep    1
             Click Element    wnd[0]/tbar[0]/btn[11]
             Sleep    1
-            Take Screenshot    03_Pre_RZ12.jpg
+            
             
             ${Text}    Get Value    wnd[0]/sbar/pane[0] 
             IF  '${Text}' == 'Changes saved'

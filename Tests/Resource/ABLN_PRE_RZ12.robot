@@ -32,7 +32,7 @@ System Logout
 RZ12
     Run Transaction    /nRZ12
     Sleep    1
-    Take Screenshot    00_Pre_RZ12.jpg
+    Take Screenshot    000_Pre_RZ12.jpg
     Run Keyword And Ignore Error    Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    1
 Select Table Data
@@ -53,7 +53,7 @@ Select Table Data
    
     Clean Excel Sheet    ${EXCEL_PATH}    ${Sheet}
     ${Row count}    Get Total Row    ${EXCEL_PATH}    ${Sheet}
-    
+    ${i}    Set Variable    1
     
     FOR    ${Row_Index}    IN RANGE    2    ${Row count +1}    
         ${A}=    Read Value From Excel    ${EXCEL_PATH}    ${Sheet}    A${Row_Index}
@@ -61,7 +61,7 @@ Select Table Data
         Sleep    1
         Focus On Particular Text    ${A}    wnd[0]/usr
         Sleep    1
-        Take Screenshot    02_Pre_RZ12.jpg
+        
         Click Element    wnd[0]/tbar[1]/btn[2]
         Sleep    1
         
@@ -85,6 +85,8 @@ Select Table Data
         Write Value To Excel    ${EXCEL_PATH}    ${Sheet}    K${Row_Index}    ${Max.Quota.prior_Normal}
         ${Max.Quota.Prior.Low}=    Get Value    wnd[1]/usr/txtARFCQUOTAS_EXT-MAX_LOW_QUOTA
         Write Value To Excel    ${EXCEL_PATH}    ${Sheet}    L${Row_Index}    ${Max.Quota.Prior.Low}
+        Take Screenshot    000_Pre_RZ12_${i}.jpg
+        ${i}    Evaluate    ${i} + 1
         Click Element    wnd[1]/tbar[0]/btn[12]
         Sleep    2
         
