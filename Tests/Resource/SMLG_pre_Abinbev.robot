@@ -4,24 +4,27 @@ Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    String
 Library    ExcelLibrary
+Library    Merger.py
 
 
 
 *** Keywords ***
 System Logon
     Start Process     ${symvar('ABIN_SAP_SERVER')}    
-    Sleep    10s
+    Sleep    1
     Connect To Session
-    Open Connection    ${symvar('ABIN_SAP_connection')}    
+    Open Connection    ${symvar('ABIN_SAP_connection')}
+    Sleep    1    
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('ABIN_Client_Id')}
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('ABIN_User_Name')}    
-    
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{ABIN_PASSWORD}   
+    Sleep    1
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('ABIN_User_Name')}
+    Sleep    1
+    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('ABLN_User_Password')}      
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{ABIN_User_Password}
     Send Vkey    0
-    Take Screenshot    00a_loginpage.jpg
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
     Sleep   1
-    Take Screenshot    00_multi_logon_handling.jpg
+    
 System Logout
     Run Transaction   /nex
     Sleep    5
@@ -32,6 +35,7 @@ SMLG_ABLN
 	Sleep	2
 	Send Vkey	0
 	Sleep	2
+    Take Screenshot    002_Pre_SMLG_0.jpg
     Run Keyword And Ignore Error    Delete Specific File    ${symvar('Excel_path')}
     Click Element	wnd[0]/mbar/menu[4]/menu[5]/menu[4]
 	Sleep	2
@@ -54,6 +58,7 @@ SMLG_ABLN
 	
 	Click Element	wnd[1]/tbar[0]/btn[0]
 	Sleep	2
+    Take Screenshot    002_Pre_SMLG_1.jpg
     Open Excel Document    ${symvar('Excel_path')}    ${symvar('Excel_sheet')}
     Process Excel    file_path=${symvar('Excel_path')}    sheet_name=${symvar('Excel_sheet')}    column_index=0
     
@@ -61,13 +66,5 @@ SMLG_ABLN
     Log    ${SMLG_json}
     Log To Console    **gbStart**Copilot_Status_json**splitKeyValue**${SMLG_json}**gbEnd**
     Close Current Excel Document
-    
-    
-
-
-
-    
-
-
-
-   
+    Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('Screenshot_directory')}
+    Sleep    1

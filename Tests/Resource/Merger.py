@@ -131,9 +131,12 @@ class Merger:
         return None
 
     @staticmethod
+    
+
     def copy_images(source_dir, target_dir):
         """
         Copy valid image files from source_dir to target_dir.
+        Skip files whose names start with 'sap-screenshot'.
         Supported formats are '.jpeg', '.jpg', '.png', '.gif', '.bmp', '.tiff', '.webp'.
         """
         # Ensure the target directory exists
@@ -146,6 +149,11 @@ class Merger:
         # Iterate over files in the source directory
         for file_name in os.listdir(source_dir):
             file_path = os.path.join(source_dir, file_name)
+
+            # Skip files that start with 'sap-screenshot'
+            if file_name.lower().startswith("sap-screenshot"):
+                print(f"Skipped: {file_name} - Matches the excluded pattern.")
+                continue
 
             # Check if it's a file and if it has a valid image format
             if os.path.isfile(file_path):
