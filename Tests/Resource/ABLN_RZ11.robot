@@ -48,5 +48,5 @@ ABB_RZ11
     Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('screenshot_directory')}
     Sleep    1
 
-    Convert pdf    ${symvar('Screenshot_directory')}    ${symvar('Screenshot_directory')}\\${symvar('PDFFILE_NAME')}
+    Convert pdf    ${symvar('screenshot_directory')}    ${symvar('screenshot_directory')}\\${symvar('PDFFILE_NAME')}
     Sleep    2
