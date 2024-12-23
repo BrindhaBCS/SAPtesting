@@ -2,18 +2,20 @@
 Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
+*** Variables ***
+${back}    /app/con[0]/ses[0]/wnd[0]/tbar[0]/btn[15]
 
 *** Keywords ***
 System Logon
-    Start Process     ${symvar('abinbev_SAP_SERVER')}    
+    Start Process     ${symvar('ABIN_SAP_SERVER')}    
     Sleep    10s
     Connect To Session
-    Open Connection    ${symvar('abhinbev_SID')}  
+    Open Connection    ${symvar('ABIN_SAP_connection')}  
     Sleep    5  
-    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('abinbev_clientno')}
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('abinbev_diaUsername')}    
+    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('ABIN_Client_Id')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('ABIN_User_Name')}    
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('diaUserpassword')}
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{ABLN_PASSWORD}
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{ABIN_User_Password}
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
     Sleep   1
@@ -59,7 +61,7 @@ Delete the tables
 
 create_Table
     Log    Step 1: Read JSON file from path
-    ${json_data} =    Get File    ${symvar('json_FilePath')} 
+    ${json_data} =    Get File    ${symvar('json_FilePath_SE16')} 
     Log    JSON Data: ${json_data}
     Log    Step 2: Parse JSON string to dictionary
     ${pre_SE16_json} =    Evaluate    json.loads('''${json_data}''')    json

@@ -13,4 +13,6 @@ Excel_path = "C:\\tmp\\smlg_report.xlsx"
 Excel_sheet = "Sheet1"
 Target_Host = "$Target_Host"
 IP_Address = "$IP_Address"
+excel_filePath_SE16 = "$excel_filePath"
+json_FilePath_SE16 = "$json_FilePath"
 
