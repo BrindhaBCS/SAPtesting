@@ -2274,7 +2274,7 @@ class SAP_Tcode_Library:
 
         return json_data
     
-    def Convert_pdf(image_folder, output_pdf):
+    def Convert_pdf(self, image_folder, output_pdf):
         try:
             if not os.path.exists(image_folder):
                 raise FileNotFoundError(f"The folder {image_folder} does not exist.")
