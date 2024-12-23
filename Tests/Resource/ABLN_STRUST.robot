@@ -79,5 +79,5 @@ SSF Service Provider1
 	Sleep	2
     Take Screenshot    006_STRUST_10.jpg
 
-    Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('Screenshot_directory')}
+    Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('screenshot_directory')}
     Sleep    1
