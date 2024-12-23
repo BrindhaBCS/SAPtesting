@@ -2,6 +2,9 @@
 Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
+Library    Merger.py
+ 
+
 *** Variables ***
 ${back}    /app/con[0]/ses[0]/wnd[0]/tbar[0]/btn[15]
 

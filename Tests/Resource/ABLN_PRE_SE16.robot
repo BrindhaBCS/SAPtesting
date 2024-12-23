@@ -3,6 +3,8 @@ Library    Process
 Library    SAP_Tcode_Library.py
 library    ExcelLibrary
 Library    Screenshot
+Library    Merger.py
+ 
 *** Variables ***
 ${back}    /app/con[0]/ses[0]/wnd[0]/tbar[0]/btn[15]
 *** Keywords ***
