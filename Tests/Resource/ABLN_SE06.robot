@@ -86,5 +86,5 @@ Non_Modifiable
         ${counter}=    Evaluate    ${counter} + 1
         Sleep    1
     END
-    Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('Screenshot_directory')}
+    Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('screenshot_directory')}
     Sleep    1

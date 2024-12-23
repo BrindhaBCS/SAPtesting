@@ -43,5 +43,5 @@ SM13_ABLN
     Sleep    2
     Take Screenshot    008_sm13_1.jpg
 
-    Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('Screenshot_directory')}
+    Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('screenshot_directory')}
     Sleep    1

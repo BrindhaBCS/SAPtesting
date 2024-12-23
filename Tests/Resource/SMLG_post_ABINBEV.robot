@@ -95,7 +95,7 @@ Create logon group
     Click Element    wnd[0]/tbar[0]/btn[11]
     Sleep    2
     Take Screenshot    002_Post_SMLG_1.jpg
-    Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('Screenshot_directory')}
+    Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('screenshot_directory')}
     Sleep    1
 
 
