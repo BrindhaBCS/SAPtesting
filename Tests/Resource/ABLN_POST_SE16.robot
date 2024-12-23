@@ -2,8 +2,6 @@
 Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
-*** Variables ***
-${File_path}    C:\\tmp\\pre_SE16_report.json
 
 *** Keywords ***
 System Logon
@@ -45,8 +43,10 @@ Post_SE16
 	Send Vkey    0 
     Sleep    3
     Click Element	wnd[0]/tbar[1]/btn[8]
+    Sleep    2    
+    Take Screenshot    003_postSE16_00.jpg
     Sleep    2
-    Take Screenshot    Post_SE16.jpg
+    Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('screenshot_directory')}
     Sleep    2
 
 Delete the tables 
@@ -59,7 +59,7 @@ Delete the tables
 
 create_Table
     Log    Step 1: Read JSON file from path
-    ${json_data} =    Get File    ${FILE_PATH}
+    ${json_data} =    Get File    ${symvar('json_FilePath')} 
     Log    JSON Data: ${json_data}
     Log    Step 2: Parse JSON string to dictionary
     ${pre_SE16_json} =    Evaluate    json.loads('''${json_data}''')    json
@@ -84,4 +84,10 @@ create_Table
     END
 
 
-    
+close
+    Click Element    ${back}
+    Click Element    ${back}
+    Sleep    2
+    Click Element    /app/con[0]/ses[0]/wnd[1]/usr/btnSPOP-OPTION1
+    Sleep    2
+  
