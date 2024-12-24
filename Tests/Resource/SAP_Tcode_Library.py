@@ -2283,18 +2283,21 @@ class SAP_Tcode_Library:
             pdf = FPDF()
             pdf.set_auto_page_break(0)  # Disable auto page break
 
-            # List and sort image files by modified time
+            # List and sort image files by numeric order properly
             image_files = sorted(
-                [(f, os.path.getmtime(os.path.join(image_folder, f))) for f in os.listdir(image_folder)
+                [f for f in os.listdir(image_folder)
                 if os.path.isfile(os.path.join(image_folder, f)) and f.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif'))],
-                key=lambda x: x[1]
+                key=lambda x: [
+                    int(num) if num.isdigit() else num
+                    for num in re.split(r'(\d+)', x)
+                ]  # Sort numerically by extracting and handling numbers properly
             )
 
             if not image_files:
                 raise ValueError("No valid image files found in the folder.")
 
             # Loop through the sorted image files
-            for image_file, _ in image_files:
+            for image_file in image_files:
                 try:
                     # Process each image
                     image_path = os.path.join(image_folder, image_file)
@@ -2310,7 +2313,7 @@ class SAP_Tcode_Library:
                     height_mm = height * 0.264583
 
                     # Adjust the scale to increase image size (reduce the margins slightly)
-                    scale = min(200 / width_mm, 287 / height_mm)  # Adjust the max width and height for larger images
+                    scale = min(200 / width_mm, 287 / height_mm)
                     new_width_mm = width_mm * scale
                     new_height_mm = height_mm * scale
 
@@ -2322,9 +2325,9 @@ class SAP_Tcode_Library:
                     pdf.add_page(orientation='P' if width_mm <= height_mm else 'L')
                     pdf.image(image_path, x=x_offset, y=y_offset, w=new_width_mm, h=new_height_mm)
 
-                    # Extract Tcode Name using regex
-                    tcode_match = re.search(r'[A-Za-z]{2,}[0-9]{2,}', image_file)
-                    tcode_name = tcode_match.group(0) if tcode_match else "Unknown_Tcode"
+                    # Extract Tcode Name using the flexible regex
+                    tcode_match = re.search(r'_(?:Post_|Pre_)?([A-Za-z0-9]+)', image_file)
+                    tcode_name = tcode_match.group(1) if tcode_match else "Unknown_Tcode"
 
                     # Add the Tcode name to the top of the page
                     pdf.set_xy(10, 10)

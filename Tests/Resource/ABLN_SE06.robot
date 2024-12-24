@@ -36,7 +36,7 @@ ABB_SE06
     Take Screenshot    007_SE06_0.jpg
     Click Element	wnd[0]/tbar[1]/btn[17]
 	Sleep	0.5s
-    Take Screenshot    SE06_Modifiable_SystemChangeOption.jpg
+    Take Screenshot    007_SE06_Modifiable_SystemChangeOption.jpg
     ${row_count}    Get Row Count    wnd[0]/usr/tblRSWBO004CTL_DLVUNITS 
     Log    Total Row Count: ${row_count}
     ${counter}=    Set Variable    1

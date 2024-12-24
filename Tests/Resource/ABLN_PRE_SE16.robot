@@ -2,7 +2,8 @@
 Library    Process
 Library    SAP_Tcode_Library.py
 library    ExcelLibrary
-Library    Screenshot
+Library    Merger.py
+ 
 *** Variables ***
 ${back}    /app/con[0]/ses[0]/wnd[0]/tbar[0]/btn[15]
 *** Keywords ***
@@ -49,10 +50,10 @@ Download the table
     Click Element	wnd[1]/tbar[0]/btn[0]
 	Sleep	5
     Close Current Excel Document
-    Process Excel   file_path=${symvar('excel_filePath')}    sheet_name=Sheet1    column_index=0
+    Process Excel   file_path=${symvar('excel_filePath_SE16')}    sheet_name=Sheet1    column_index=0
     # Clean Excel Sheet    file_path=C:\\tmp\\pre_SE16_report.xlsx    sheet_name=Sheet1
     
-    ${pre_SE16_json}    Excel To Json SE16   excel_file=${symvar('excel_filePath_SE16')}   json_file=${symvar('json_FilePath')} 
+    ${pre_SE16_json}    Excel To Json SE16   excel_file=${symvar('excel_filePath_SE16')}   json_file=${symvar('json_FilePath_SE16')} 
     Log    ${pre_SE16_json}
     Set Global Variable    ${pre_SE16_json}
     Log To Console    **gbStart**pre_SE16_json**splitKeyValue**${pre_SE16_json}**gbEnd**
@@ -60,11 +61,8 @@ Download the table
     Sleep    2
 
 close
-    Click Element    ${back}
-    Click Element    ${back}
-    Sleep    2
-    Click Element    /app/con[0]/ses[0]/wnd[1]/usr/btnSPOP-OPTION1
-    Sleep    2
+    Run Transaction    /nex
+    Sleep  2
 
  
 
