@@ -27,7 +27,7 @@ Pre_SE16
     Input Text	wnd[0]/usr/ctxtDATABROWSE-TABLENAME	HTTP_WHITELIST
 	Send Vkey    0 
     Click Element	wnd[0]/tbar[1]/btn[8]
-    Take Screenshot    003_preSE16_00.jpg
+    Take Screenshot    003_SE16_00.jpg
     ${tablecount}=    Count GUI Table Rows    wnd[0]/usr/lbl
     ${actual_rowcount}=    Evaluate    ${tablecount}-4
 

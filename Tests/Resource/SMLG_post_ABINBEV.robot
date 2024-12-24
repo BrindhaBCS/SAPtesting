@@ -49,7 +49,7 @@ SMLG_ABLN
 	Sleep	2
 	Send Vkey	0
 	Sleep	2
-    Take Screenshot    002_Post_SMLG_0.jpg
+    Take Screenshot    002_SMLG_0.jpg
 
 Delete logon group
     
@@ -94,7 +94,7 @@ Create logon group
     END
     Click Element    wnd[0]/tbar[0]/btn[11]
     Sleep    2
-    Take Screenshot    002_Post_SMLG_1.jpg
+    Take Screenshot    002_SMLG_1.jpg
     Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('screenshot_directory')}
     Sleep    1
 

@@ -49,7 +49,7 @@ Post_SE16
     Sleep    3
     Click Element	wnd[0]/tbar[1]/btn[8]
     Sleep    2    
-    Take Screenshot    003_postSE16_00.jpg
+    Take Screenshot    003_SE16_00.jpg
     Sleep    2
     Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('screenshot_directory')}
     Sleep    2

@@ -35,7 +35,7 @@ SMLG_ABLN
 	Sleep	2
 	Send Vkey	0
 	Sleep	2
-    Take Screenshot    001_Pre_SMLG_0.jpg
+    Take Screenshot    001_SMLG_0.jpg
     Run Keyword And Ignore Error    Delete Specific File    ${symvar('Excel_path')}
     Click Element	wnd[0]/mbar/menu[4]/menu[5]/menu[4]
 	Sleep	2
@@ -58,7 +58,7 @@ SMLG_ABLN
 	
 	Click Element	wnd[1]/tbar[0]/btn[0]
 	Sleep	2
-    Take Screenshot    001_Pre_SMLG_1.jpg
+    Take Screenshot    001_SMLG_1.jpg
     Open Excel Document    ${symvar('Excel_path')}    ${symvar('Excel_sheet')}
     Process Excel    file_path=${symvar('Excel_path')}    sheet_name=${symvar('Excel_sheet')}    column_index=0
     

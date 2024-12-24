@@ -34,7 +34,7 @@ System Logout
 RZ12
     Run Transaction    /nRZ12
     Sleep    1
-    Take Screenshot    000_Post_RZ12.jpg
+    Take Screenshot    000_RZ12.jpg
     Run Keyword And Ignore Error    Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    1
 Delete Logon Group
@@ -91,7 +91,7 @@ Select Table Data
             Input Text    wnd[1]/usr/txtARFCQUOTAS_EXT-MAX_OPEN_TASKS    ${Detail value}[9]
             Input Text    wnd[1]/usr/txtARFCQUOTAS_EXT-MAX_NORMAL_QUOTA    ${Detail value}[10]
             Input Text    wnd[1]/usr/txtARFCQUOTAS_EXT-MAX_LOW_QUOTA    ${Detail value}[11]
-            Take Screenshot    000_Post_RZ12_${i}.jpg
+            Take Screenshot    000_RZ12_${i}.jpg
             ${i}    Evaluate    ${i} + 1
             Click Element    wnd[1]/tbar[0]/btn[0]
             Sleep    1
