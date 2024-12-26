@@ -11,7 +11,7 @@ System Logon
     Open Connection    ${symvar('Connection_Name')}
     Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('client')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('User')}
-    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{SM02_PASSWORD}
+    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{SAP_PASSWORD}
     Send Vkey    0
     Sleep    3s
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
