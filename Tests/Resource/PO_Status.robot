@@ -48,7 +48,7 @@ Executing PO Status
     Sleep    0.1
     Run Keyword And Ignore Error    Click Element	wnd[0]/mbar/menu[0]/menu[0]
 	Sleep	0.1
-	Run Keyword And Ignore Error    Input Text	    wnd[1]/usr/subSUB0:SAPLMEGUI:0003/ctxtMEPO_SELECT-EBELN    ${PO_Number}
+	Run Keyword And Ignore Error    Input Text	    wnd[1]/usr/subSUB0:SAPLMEGUI:0003/ctxtMEPO_SELECT-EBELN    ${symvar('PO_Number')}
 	Sleep	0.1
     Run Keyword And Ignore Error    Click Element	wnd[1]/tbar[0]/btn[0]
     ${po_type}    get_value    wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB0:SAPLMEGUI:0030/subSUB1:SAPLMEGUI:1105/cmbMEPO_TOPLINE-BSART
