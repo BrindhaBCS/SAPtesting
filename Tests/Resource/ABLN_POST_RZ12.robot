@@ -91,7 +91,7 @@ Select Table Data
             Input Text    wnd[1]/usr/txtARFCQUOTAS_EXT-MAX_OPEN_TASKS    ${Detail value}[9]
             Input Text    wnd[1]/usr/txtARFCQUOTAS_EXT-MAX_NORMAL_QUOTA    ${Detail value}[10]
             Input Text    wnd[1]/usr/txtARFCQUOTAS_EXT-MAX_LOW_QUOTA    ${Detail value}[11]
-            # Take Screenshot    000_RZ12_${i}.jpg
+            Take Screenshot    000_RZ12_${i}.jpg
             ${i}    Evaluate    ${i} + 1
             Click Element    wnd[1]/tbar[0]/btn[0]
             Sleep    1
