@@ -50,11 +50,11 @@ STMS_ABLN
             Select Table Row	wnd[0]/usr/cntlGRID1/shellcont/shell	${row}
             Double Click Current Cell	wnd[0]/usr/cntlGRID1/shellcont/shell
             Click Element	wnd[0]/usr/tabsGN_DYN150_TAB_STRIP/tabpATTR
-            Take Screenshot    005_STMS_3.${ss_index}.jpg
+            Take Screenshot    005_STMS_3.1.${ss_index}.jpg
             Click Element	wnd[0]/usr/tabsGN_DYN150_TAB_STRIP/tabpDOMA
-            Take Screenshot    005_STMS_3.${ss_index}.jpg
+            Take Screenshot    005_STMS_3.2.${ss_index}.jpg
             Click Element	wnd[0]/usr/tabsGN_DYN150_TAB_STRIP/tabpTPPE
-            Take Screenshot    005_STMS_3.${ss_index}.jpg
+            Take Screenshot    005_STMS_3.3.${ss_index}.jpg
             Click Element	wnd[0]/tbar[0]/btn[3]
             Sleep	2    
         END    
