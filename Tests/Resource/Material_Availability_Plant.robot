@@ -17,8 +17,8 @@ ${MM_Filename}      MM_Materials_MB52.xlsx
 ${input_filepath}    ${symvar('MM_Cleaned_filepath')}//${MM_Filename}
 ${result_filepath}    ${symvar('MM_Cleaned_filepath')}//${symvar('MM_Cleaned_filename')}
 
-${Plant}    1040
-${Material}    laptop
+#${Plant}    1040
+#${Material}    laptop
 
 *** Keywords ***
 System Logon
