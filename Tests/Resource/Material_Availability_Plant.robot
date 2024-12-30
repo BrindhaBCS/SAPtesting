@@ -17,7 +17,7 @@ ${MM_Filename}      MM_Materials_MB52.xlsx
 ${input_filepath}    ${symvar('MM_Cleaned_filepath')}//${MM_Filename}
 ${result_filepath}    ${symvar('MM_Cleaned_filepath')}//${symvar('MM_Cleaned_filename')}
 
-#${Plant}    1040
+${Plant}    1040
 #${Material}    laptop
 
 *** Keywords ***
@@ -41,7 +41,9 @@ Executing Material Availability
     Send Vkey    0
     Sleep    1
     #Input Text    wnd[0]/usr/ctxtMATNR-LOW    ${symvar('Material')}
-    Input Text    wnd[0]/usr/ctxtWERKS-LOW    ${symvar('Plant')}
+    #Input Text    wnd[0]/usr/ctxtWERKS-LOW    ${symvar('Plant')}
+    Input Text    wnd[0]/usr/ctxtWERKS-LOW    ${Plant}
+    #wnd[0]/usr/ctxtWERKS-LOW
     #Execute the requirement using F8
     Click Element    wnd[0]/mbar/menu[0]/menu[0]
     Sleep    1
