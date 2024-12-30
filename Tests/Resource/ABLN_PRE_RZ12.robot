@@ -83,7 +83,7 @@ Select Table Data
         Write Value To Excel    ${EXCEL_PATH}    ${Sheet}    K${Row_Index}    ${Max.Quota.prior_Normal}
         ${Max.Quota.Prior.Low}=    Get Value    wnd[1]/usr/txtARFCQUOTAS_EXT-MAX_LOW_QUOTA
         Write Value To Excel    ${EXCEL_PATH}    ${Sheet}    L${Row_Index}    ${Max.Quota.Prior.Low}
-        # Take Screenshot    000_RZ12_${i}.jpg
+        Take Screenshot    000_RZ12_${i}.jpg
         ${i}    Evaluate    ${i} + 1
         Click Element    wnd[1]/tbar[0]/btn[12]
         Sleep    2
