@@ -33,6 +33,9 @@ class UserArguments:
         parser.add_argument("-o", "--output_dir", help="Output directory for tests",
                             default=os.sep.join(
                                 [self.parent_dir, "Output"]))
+        parser.add_argument("-sr", "--screenshot_dir", help="Screenshot directory for tests",
+                            default=os.sep.join(
+                                [self.parent_dir, "Screenshots"]))
         parser.add_argument("-l", "--listener", help="Listener for tests", nargs="+",
                             default=[os.sep.join(
                                 [self.parent_dir, "Execution", "ResultsListener.py"])])
