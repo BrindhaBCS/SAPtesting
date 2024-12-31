@@ -75,9 +75,9 @@ Rental Invoice
             # Log To Console  For ${contract} ${status}
             Sleep    1
             Log To Console  For ${symvar('documents')} ${status}
-            Click Element    wnd[0]/mbar/menu[1]/menu[3]
-            Click Element    wnd[0]/tbar[1]/btn[25]
-            ${error_log}    Get Value    wnd[0]/usr/sub/1[0,0]/sub/1/2[0,1]/sub/1/2/3[0,3]/lbl[19,3]
+            Click Element    wnd[0]/mbar/menu[1]/menu[2]
+            # Click Element    wnd[0]/tbar[1]/btn[25]
+            ${error_log}    Get Value    wnd[0]/usr/lbl[31,3]
             Write the status into excel    ${symvar('documents')}    ${error_log}
             Log To Console    **gbStart**invoice_log**splitKeyValue**${symvar('documents')} ${error_log}**gbEnd**
         ELSE IF     '${status}' == '${EMPTY}'
