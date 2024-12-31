@@ -97,7 +97,8 @@ Rental Invoice
             ${invoice_doc}    Get Invoice Number    status_id=wnd[0]/sbar/pane[0]
             Sleep    10
             Get Invoice created by    ${symvar('documents')}    ${invoice_doc}
-            Validate the e-invoice status    ${invoice_doc}
+            Pdf_process    ${invoice_doc}
+            # Validate the e-invoice status    ${invoice_doc}
         ELSE IF    '${status}' == 'Please check the log.'
             Sleep    1
             Click Element   wnd[0]/usr/btnTC_HEAD
@@ -115,7 +116,8 @@ Rental Invoice
             ${invoice_doc}    Get Invoice Number    wnd[0]/sbar/pane[0]
             Sleep    10
             Get Invoice created by    ${symvar('documents')}    ${invoice_doc}
-            Validate the e-invoice status    ${invoice_doc}
+            Pdf_process    ${invoice_doc}
+            # Validate the e-invoice status    ${invoice_doc}
         END
         Process Excel    ${target_file_name}    ${target_sheet_name}
         Sleep    2
