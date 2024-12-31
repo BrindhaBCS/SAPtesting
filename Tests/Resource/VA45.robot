@@ -80,7 +80,8 @@ Rental Document
         
 
         Click Element    element_id=wnd[0]/mbar/menu[0]/menu[3]/menu[1]
-        Click Element    element_id=wnd[1]/tbar[0]/btn[0]
+        Select From List By Key    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/cmbGS_EXPORT-FORMAT    xlsx-TT
+        Click Element    element_id=wnd[1]/tbar[0]/btn[20]
         Delete Specific File    file_path=C:\\TEMP\\rental.xlsx
         Input Text    element_id=wnd[1]/usr/ctxtDY_FILENAME    text=${EMPTY}
         Input Text    element_id=wnd[1]/usr/ctxtDY_FILENAME    text=rental.xlsx
