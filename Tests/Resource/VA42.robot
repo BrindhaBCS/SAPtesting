@@ -41,8 +41,10 @@ Release Block
 
     ELSE  
         ${date}    Extract Dates    json_string=${symvar('DateContent')}
-        ${Rental_Start_Date}    Set Variable    ${date}[0]
-        ${Rental_End_Date}    Set Variable    ${date}[1]
+        ${Rental_Start_Date1}    Set Variable    ${date}[0]
+        ${Rental_Start_Date}    Convert Date Format    ${Rental_Start_Date1}
+        ${Rental_End_Date1}    Set Variable    ${date}[1]
+        ${Rental_End_Date}    Convert Date Format    ${Rental_End_Date1}
         # FOR     ${contract}     IN     @{symvar('documents')}
             # Set Global Variable     ${contract}
             Run Transaction     /nVA42
@@ -56,7 +58,8 @@ Release Block
             FOR     ${i}    IN RANGE    0   ${row}
                 ${is_visible}   Run Keyword And Return Status   Get Value   wnd[0]/usr/tabsTAXI_TABSTRIP/tabpT\\05/ssubSUBSCREEN_BODY:SAPLV60F:4201/tblSAPLV60FTCTRL_FPLAN_PERIOD/ctxtRV60F-ABRBE[0,${i}]
                 Run Keyword If    "${is_visible}" == "False"    Exit For Loop
-                ${date}     Get Value   wnd[0]/usr/tabsTAXI_TABSTRIP/tabpT\\05/ssubSUBSCREEN_BODY:SAPLV60F:4201/tblSAPLV60FTCTRL_FPLAN_PERIOD/ctxtRV60F-ABRBE[0,${i}]
+                ${date1}     Get Value   wnd[0]/usr/tabsTAXI_TABSTRIP/tabpT\\05/ssubSUBSCREEN_BODY:SAPLV60F:4201/tblSAPLV60FTCTRL_FPLAN_PERIOD/ctxtRV60F-ABRBE[0,${i}]
+                ${date}    Convert Date Format    ${date1}
                 IF    '${date}' == '${Rental_Start_Date}' or '${date}' == '${Rental_End_Date}'
                     Process rental block
                     Exit For Loop

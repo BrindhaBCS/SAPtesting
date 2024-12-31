@@ -1626,3 +1626,11 @@ class SAP_Tcode_Library:
         # Return the json.dumps of the dictionary
         return json.dumps(proper_json)
     
+    def convert_date_format(self, date):
+
+        date_obj = datetime.strptime(date, "%d.%m.%Y")
+
+        converted_date = date_obj.strftime("%Y.%m.%d")
+
+        return converted_date
+ 
