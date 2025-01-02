@@ -21,6 +21,7 @@ ${list_value}    ${symvar('document_json')}
 customize excel for output
     ${column_count}    Count Excel Columns    ${file_name}    ${sheet_name}
     ${column}    Evaluate    ${column_count} + 1
+    # Log To Console    ${column}    #rental
     FOR    ${name}    IN    @{column_names}
         FOR  ${l}  IN RANGE  1    ${column}
             ${data}    Read Excel Cell Value    ${file_name}    ${sheet_name}    1    ${l}
@@ -36,14 +37,17 @@ customize excel for output
 
     FOR  ${i}  IN RANGE  1    ${column}
         ${data}    Read Excel Cell Value    ${file_name}    ${sheet_name}    1    ${i}
-        IF  '${data}' == 'Sales document'
+        # Log To Console    Document number is ${data}
+        IF  '${data}' == 'Sales Document'
             @{documents}    Evaluate    [item['document'] for item in ${list_value}]
             ${row_count}    Count Excel Rows    ${file_name}    ${sheet_name}
             ${rows}    Evaluate    ${row_count} + 1
+            # Log To Console    ${rows}
             FOR  ${document}  IN  @{documents}
                 Log To Console    document no is :${document}
                 FOR  ${j}  IN RANGE  2    ${rows}
                     ${input}    Read Excel Cell Value    ${file_name}    ${sheet_name}    ${j}    ${i}
+                    Log To Console    ${input}
                     IF    ${input} == "${document}"
                         # Log To Console    ${input} is in row of ${j}
                         ${index_number}    Get Index    ${documents}    ${document}
