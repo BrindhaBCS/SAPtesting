@@ -94,7 +94,7 @@ Rental Invoice
             Log To Console      ${output}
             Write the status into excel    ${symvar('documents')}    ${output}
             Log To Console    **gbStart**invoice_log**splitKeyValue**${symvar('documents')} ${output}**gbEnd**
-            ${invoice_doc}    Get Invoice Number    status_id=wnd[0]/sbar/pane[0]
+            ${invoice_doc}    Extract Numeric    ${output}
             Sleep    10
             Get Invoice created by    ${symvar('documents')}    ${invoice_doc}
             Pdf_process    ${invoice_doc}
@@ -113,7 +113,7 @@ Rental Invoice
             Log To Console      ${output}
             Write the status into excel    ${symvar('documents')}    ${output}
             Log To Console    **gbStart**invoice_log**splitKeyValue**${symvar('documents')} ${output}**gbEnd**
-            ${invoice_doc}    Get Invoice Number    wnd[0]/sbar/pane[0]
+            ${invoice_doc}    Extract Numeric    ${output}
             Sleep    10
             Get Invoice created by    ${symvar('documents')}    ${invoice_doc}
             Pdf_process    ${invoice_doc}
