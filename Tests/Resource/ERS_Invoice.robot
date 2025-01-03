@@ -42,7 +42,7 @@ ERS_Invoice
     Send Vkey    8
     Sleep    1
     Click Element	wnd[0]/mbar/menu[0]/menu[3]/menu[1]
-    Sleep    10
+    Sleep    1
     Run Keyword And Ignore Error    Delete Specific File     C:\\tmp\\${FILE_NAME}
 	Input Text	wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME	${FILE_NAME}
 	Select From List By key    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/cmbGS_EXPORT-FORMAT    xlsx-TT
@@ -52,7 +52,8 @@ ERS_Invoice
 	Sleep	0.5
     Open Excel Document    C:\\tmp\\${FILE_NAME}    Sheet1
     ${Invoice}    Excel To Json    C:\\tmp\\${FILE_NAME}    json_file=C:\\tmp\\Invoice.json
-
+    
     Log To Console    **gbStart**ERS_Invoice**splitKeyValue**${Invoice}**gbEnd**
 	Sleep    0.5
-    
+    Delete Specific File     C:\\tmp\\Invoice.json
+    Delete Specific File     C:\\tmp\\${FILE_NAME}

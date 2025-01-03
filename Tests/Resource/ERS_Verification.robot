@@ -31,23 +31,20 @@ ERS_Verification
     Run Transaction    /nmrrl
     Sleep    1
     Input Text	wnd[0]/usr/ctxtB_BUKRS-LOW	${symvar('ERS_Company_Code')}
-    Sleep    1
     Input Text	wnd[0]/usr/ctxtB_WERKS-LOW	${symvar('ERS_Plant')}
-    Sleep    1
     Input Text	wnd[0]/usr/ctxtB_LIFNR-LOW	${symvar('ERS_Supplier')}
-    Sleep    1
     Select Checkbox	wnd[0]/usr/chkP_ERSDC	
     Sleep    1
     
     Send Vkey    8
     Sleep    1
     Click Element	wnd[0]/tbar[0]/btn[3]
-	Sleep	2
+	Sleep    0.5
     Unselect Checkbox 	wnd[0]/usr/chkB_XTEST
-    Sleep    2
+    Sleep    0.5
 
     Click Element	wnd[0]/tbar[1]/btn[8]
-	Sleep	2
+	Sleep    0.5
     
     Click Element	wnd[0]/mbar/menu[0]/menu[3]/menu[1]
     Sleep    1
@@ -64,3 +61,5 @@ ERS_Verification
 
     Log To Console    **gbStart**ERS_Verification**splitKeyValue**${Verification}**gbEnd**
 	Sleep    0.5
+    Delete Specific File     C:\\tmp\\Verification.json
+    Delete Specific File     C:\\tmp\\${FILE_NAME}
