@@ -44,9 +44,8 @@ ERS_Invoice
 	Input Text	wnd[1]/usr/ctxtDY_PATH	C:\\tmp\\
 	Click Element	wnd[1]/tbar[0]/btn[0]
 	Sleep	0.5
-    Open Excel Document    C:\\tmp\\${FILE_NAME}    Sheet1
+    # Open Excel Document    C:\\tmp\\${FILE_NAME}    Sheet1
     ${Invoice}    Excel To Json    C:\\tmp\\${FILE_NAME}    json_file=C:\\tmp\\Invoice.json
-    
     Log To Console    **gbStart**ERS_Invoice**splitKeyValue**${Invoice}**gbEnd**
 	Sleep    0.5
     Delete Specific File     C:\\tmp\\Invoice.json
