@@ -3,7 +3,7 @@ Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    Collections
-Library    ../../Symphony/Lib/site-packages/SeleniumLibrary/__init__.py
+#Library    ../../Symphony/Lib/site-packages/SeleniumLibrary/__init__.py
 Resource    ../Web/Support_Web.robot
 Library    ExcelLibrary
  
@@ -46,36 +46,53 @@ Executing PO Status
     Run Transaction    /nme21n
     Send Vkey    0
     Sleep    0.1
-    Click Element	wnd[0]/mbar/menu[0]/menu[0]
+    Run Keyword And Ignore Error    Click Element	wnd[0]/mbar/menu[0]/menu[0]
 	Sleep	0.1
-	Input Text	    wnd[1]/usr/subSUB0:SAPLMEGUI:0003/ctxtMEPO_SELECT-EBELN    ${PO_Number}
+	Run Keyword And Ignore Error    Input Text	    wnd[1]/usr/subSUB0:SAPLMEGUI:0003/ctxtMEPO_SELECT-EBELN    ${symvar('PO_Number')}
 	Sleep	0.1
-    Click Element	wnd[1]/tbar[0]/btn[0]
+    Run Keyword And Ignore Error    Click Element	wnd[1]/tbar[0]/btn[0]
     ${po_type}    get_value    wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB0:SAPLMEGUI:0030/subSUB1:SAPLMEGUI:1105/cmbMEPO_TOPLINE-BSART
     ${po_creation_date}    get_value    wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB0:SAPLMEGUI:0030/subSUB1:SAPLMEGUI:1105/ctxtMEPO_TOPLINE-BEDAT
-    Click Element   wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT16
+    Run Keyword And Ignore Error    Click Element   wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT16
     Sleep    0.1
     #${gr_number}    get_cell_value    wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT16/ssubTABSTRIPCONTROL1SUB:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell    0    BELNR
 
-    Click Current Cell	wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT16/ssubTABSTRIPCONTROL1SUB:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell    BELNR
-    ${gr_number}    get_value    wnd[0]/usr/ssubSUB_MAIN_CARRIER:SAPLMIGO:0003/subSUB_FIRSTLINE:SAPLMIGO:0011/subSUB_FIRSTLINE_REFDOC:SAPLMIGO:2010/txtGODYNPRO-MAT_DOC    #wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT16/ssubTABSTRIPCONTROL1SUB:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell    0    BELNR
-    ${gr_creation_date}    get_value    wnd[0]/usr/ssubSUB_MAIN_CARRIER:SAPLMIGO:0003/subSUB_HEADER:SAPLMIGO:0101/subSUB_HEADER:SAPLMIGO:0100/tabsTS_GOHEAD/tabpOK_GOHEAD_CREATEDBY/ssubSUB_TS_GOHEAD_CREATEDBY:SAPLMIGO:0130/ctxtGOHEAD-CPUDT
-    ${gr_creation_time}    get_value    wnd[0]/usr/ssubSUB_MAIN_CARRIER:SAPLMIGO:0003/subSUB_HEADER:SAPLMIGO:0101/subSUB_HEADER:SAPLMIGO:0100/tabsTS_GOHEAD/tabpOK_GOHEAD_CREATEDBY/ssubSUB_TS_GOHEAD_CREATEDBY:SAPLMIGO:0130/ctxtGOHEAD-CPUTM
-    Click Element	wnd[0]/usr/ssubSUB_MAIN_CARRIER:SAPLMIGO:0003/subSUB_HEADER:SAPLMIGO:0101/subSUB_HEADER:SAPLMIGO:0100/tabsTS_GOHEAD/tabpOK_GOHEAD_CREATEDBY/ssubSUB_TS_GOHEAD_CREATEDBY:SAPLMIGO:0130/btnOK_FI_DOC
+    Run Keyword And Ignore Error    Click Current Cell	wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT16/ssubTABSTRIPCONTROL1SUB:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell    BELNR
+    ${gr_number_temp}    Run Keyword And Ignore Error    get_value    wnd[0]/usr/ssubSUB_MAIN_CARRIER:SAPLMIGO:0003/subSUB_FIRSTLINE:SAPLMIGO:0011/subSUB_FIRSTLINE_REFDOC:SAPLMIGO:2010/txtGODYNPRO-MAT_DOC    #wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT16/ssubTABSTRIPCONTROL1SUB:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell    0    BELNR
+    #${gr_number}    Get From List    ${gr_number_temp}    1
+    # Extract the status and output based on the result of the above command
+    ${status}    Get From List    ${gr_number_temp}    0
+    Log To Console    ${status}
+    ${gr_number}    Get From List    ${gr_number_temp}    1
+    Log To Console    ${gr_number}
+    # Handle case if Get From List fails (status != "PASS")
+    #Run Keyword If    '${status}' != '${gr_number}    NA 
+    Run Keyword If    '${status}' == 'FAIL'    ${gr_number}    'NA'
+
+    ${gr_creation_date_temp}    Run Keyword And Ignore Error    get_value    wnd[0]/usr/ssubSUB_MAIN_CARRIER:SAPLMIGO:0003/subSUB_HEADER:SAPLMIGO:0101/subSUB_HEADER:SAPLMIGO:0100/tabsTS_GOHEAD/tabpOK_GOHEAD_CREATEDBY/ssubSUB_TS_GOHEAD_CREATEDBY:SAPLMIGO:0130/ctxtGOHEAD-CPUDT
+    ${gr_creation_date}    Get From List    ${gr_creation_date_temp}    1
+    ${gr_creation_time_temp}    Run Keyword And Ignore Error    get_value    wnd[0]/usr/ssubSUB_MAIN_CARRIER:SAPLMIGO:0003/subSUB_HEADER:SAPLMIGO:0101/subSUB_HEADER:SAPLMIGO:0100/tabsTS_GOHEAD/tabpOK_GOHEAD_CREATEDBY/ssubSUB_TS_GOHEAD_CREATEDBY:SAPLMIGO:0130/ctxtGOHEAD-CPUTM
+    ${gr_creation_time}    Get From List    ${gr_creation_time_temp}    1
+    Run Keyword And Ignore Error    Click Element	wnd[0]/usr/ssubSUB_MAIN_CARRIER:SAPLMIGO:0003/subSUB_HEADER:SAPLMIGO:0101/subSUB_HEADER:SAPLMIGO:0100/tabsTS_GOHEAD/tabpOK_GOHEAD_CREATEDBY/ssubSUB_TS_GOHEAD_CREATEDBY:SAPLMIGO:0130/btnOK_FI_DOC
     Sleep    0.1
-    ${Account_GR_Number}    get_cell_value    wnd[1]/usr/cntlCONTAINER/shellcont/shell    0    DOCNR
+    ${Account_GR_Number_temp}    Run Keyword And Ignore Error    get_cell_value    wnd[1]/usr/cntlCONTAINER/shellcont/shell    0    DOCNR
+    ${Account_GR_Number}    Get From List    ${Account_GR_Number_temp}    1
     Sleep    0.1
-    Click Element	wnd[1]/tbar[0]/btn[12]
+    Run Keyword And Ignore Error    Click Element	wnd[1]/tbar[0]/btn[12]
     Sleep    0.1
-    Click Element    wnd[0]/tbar[0]/btn[3] 
-    ${invoice_number1}    get_cell_value    wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT16/ssubTABSTRIPCONTROL1SUB:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell    2    BELNR
-    ${invoice_number2}    get_cell_value    wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT16/ssubTABSTRIPCONTROL1SUB:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell    3    BELNR
+    Run Keyword And Ignore Error    Click Element    wnd[0]/tbar[0]/btn[3] 
+    ${invoice_number1_temp}    Run Keyword And Ignore Error    get_cell_value    wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT16/ssubTABSTRIPCONTROL1SUB:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell    2    BELNR
+    ${invoice_number1}    Get From List    ${invoice_number1_temp}    1
+    ${invoice_number2_temp}    Run Keyword And Ignore Error    get_cell_value    wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT16/ssubTABSTRIPCONTROL1SUB:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell    3    BELNR
+    ${invoice_number2}    Get From List    ${invoice_number2_temp}    1
     Sleep    0.1
 	#Click Current Cell	wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT16/ssubTABSTRIPCONTROL1SUB:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell
     Sleep    0.1
     #${invoice1_creation_date}    get_value    wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_TOTAL/ssubHEADER_SCREEN:SAPLFDCB:0010/ctxtINVFO-BLDAT
-    ${invoice1_creation_date}    get_cell_value    wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT16/ssubTABSTRIPCONTROL1SUB:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell    2    BUDAT
-    ${invoice2_creation_date}    get_cell_value    wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT16/ssubTABSTRIPCONTROL1SUB:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell    3    BUDAT
+    ${invoice1_creation_date_temp}    Run Keyword And Ignore Error    get_cell_value    wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT16/ssubTABSTRIPCONTROL1SUB:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell    2    BUDAT
+    ${invoice1_creation_date}    Get From List    ${invoice1_creation_date_temp}    1
+    ${invoice2_creation_date_temp}    Run Keyword And Ignore Error    get_cell_value    wnd[0]/usr/subSUB0:SAPLMEGUI:0019/subSUB3:SAPLMEVIEWS:1100/subSUB2:SAPLMEVIEWS:1200/subSUB1:SAPLMEGUI:1301/subSUB2:SAPLMEGUI:1303/tabsITEM_DETAIL/tabpTABIDT16/ssubTABSTRIPCONTROL1SUB:SAPLMEGUI:1316/ssubPO_HISTORY:SAPLMMHIPO:0100/cntlMEALV_GRID_CONTROL_MMHIPO/shellcont/shell    3    BUDAT
+    ${invoice2_creation_date}    Get From List    ${invoice2_creation_date_temp}    1
     #Click Element	wnd[0]/tbar[1]/btn[8]
     #${invoice1_account_number}    get_value    wnd[0]/usr/txtBKPF-BELNR
     #Click Element	wnd[0]/tbar[0]/btn[3]
@@ -106,7 +123,6 @@ Executing PO Status
     Log To Console   Invoice Number: ${invoice_number2}
     Write Excel    ${PO_Status}    ${PO_Status_Sheet}    12    2    ${invoice_number2}
     Write Excel    ${PO_Status}    ${PO_Status_Sheet}    13    2    ${invoice2_creation_date}
-    #Write Excel    ${PO_Status}    ${PO_Status_Sheet}    14    2    ${invoice2_account_number}
 Result
     ${json}    Excel To Json    excel_file=C:\\RobotFramework\\sap_testing\\Tests\\Resource\\PO_Status.xlsx    json_file=C:\\tmp\\Json\\PO_Status.json
     Sleep    0.5
