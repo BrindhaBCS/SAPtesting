@@ -65,7 +65,8 @@ Result
     Log To Console    Material Availability Unresticted Data
     Material Availability Description    ${input_filepath}    ${symvar('Material')}    ${result_filepath}
     # Material Availability    ${filepath}    ${result_filepath} 
-    ${json}    Excel To Json    excel_file=C:\\tmp\\MM_Availability.xlsx    json_file=C:\\tmp\\Json\\MM_Availability.json
+    #${json}    Excel To Json    excel_file=C:\\tmp\\MM_Availability.xlsx    json_file=C:\\tmp\\Json\\MM_Availability.json
+    ${json}    Excel To Json    excel_file=${result_filepath}    json_file=C:\\tmp\\Json\\MM_Availability.json
     Sleep    0.5
     Log To Console    **gbStart**copilot_Json**splitKeyValue**${json}**gbEnd**
     Log to console    ${json}
