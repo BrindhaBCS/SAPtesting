@@ -40,7 +40,7 @@ Executing Material Availability
     Run Transaction    /nmb52
     Send Vkey    0
     Sleep    1
-    Input Text    wnd[0]/usr/ctxtMATNR-LOW    ${symvar('Material')}
+    #Input Text    wnd[0]/usr/ctxtMATNR-LOW    ${symvar('Material')}
     Input Text    wnd[0]/usr/ctxtWERKS-LOW    ${symvar('Plant')}
     #Input Text    wnd[0]/usr/ctxtWERKS-LOW    ${Plant}
     #wnd[0]/usr/ctxtWERKS-LOW
@@ -60,7 +60,7 @@ Executing Material Availability
     Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${MM_Filename}
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    1
-    Log To Console    mm1completed 
+    Log To Console    ma completed 
 Result
     Log To Console    Material Availability Unresticted Data
     Material Availability Description    ${input_filepath}    ${symvar('Material')}    ${result_filepath}
