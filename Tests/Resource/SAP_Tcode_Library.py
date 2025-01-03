@@ -1453,7 +1453,7 @@ class SAP_Tcode_Library:
             status = self.session.findById(status_id).Text
             # print(f"Status Message: '{status}'")
         
-            pattern = r"Document (\d+) has been saved."
+            pattern = r"Document (\d+) saved (no journal entry generated)."
             match = re.search(pattern, status)
         
             if match:

@@ -3,6 +3,7 @@ import json
 import sys
 from datetime import datetime
 
+
 def check_files_in_folder(folder_path):
     try:
         if not os.path.exists(folder_path):
