@@ -1295,3 +1295,14 @@ class CustomSapGuiLibrary:
         sequence = [f'K-{i:05d}INSTPI.SAR' for i in range(start_num + 1, end_num + 1)]
         print(sequence)
         return sequence
+    def window_handling(self, window_id, text, button_id):   
+        try:   
+            content = self.session.findById(window_id).Text
+            if content == text:
+                print(content)
+                self.session.findById(button_id).press()
+                return(content)                
+            else:
+                print(content)
+        except Exception as e:
+            print(f"Error: {e}")

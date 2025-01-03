@@ -3,6 +3,7 @@ Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    String
+Library    FileOperations.py
  
 *** Keywords ***
 System Logon
@@ -26,12 +27,35 @@ System Logout
 
 Get License Data
     Run Transaction    /nslicense
-    Sleep    2
     ${hardware_key}    Get Value    wnd[0]/usr/txtCUSTKEY
-    Sleep    2
     ${installation_no}    Get Value    wnd[0]/usr/txtINSTNR
+    ${system_no}    Get Value    wnd[0]/usr/txtSYSTEMID
+    ${rows}    Get Row Count    wnd[0]/usr/tabsTABSTRIP_1000/tabpLOCAL_LIKEYS/ssubACTIVE_TAB:SAPMSLIC:3020/tblSAPMSLICLIKEYLIST_CONTROL
+    # Log To Console    row count is:${rows}
+    FOR    ${row}    IN RANGE    0    ${rows}
+        ${key}    Get Value    wnd[0]/usr/tabsTABSTRIP_1000/tabpLOCAL_LIKEYS/ssubACTIVE_TAB:SAPMSLIC:3020/tblSAPMSLICLIKEYLIST_CONTROL/txtLIKEY_TABLE-HWKEY[2,${row}]
+        Exit For Loop If    '${key}' == '___________'
+        IF    '${key}' == '${hardware_key}'
+            ${product}    Get License Product    wnd[0]/usr/tabsTABSTRIP_1000/tabpLOCAL_LIKEYS/ssubACTIVE_TAB:SAPMSLIC:3020/tblSAPMSLICLIKEYLIST_CONTROL/txtLIKEY_TABLE-SW_PRODUCT[3,${row}]
+            # Log To Console    product is: ${product}
+            IF    '${product}' == 'Maintenance'
+                ${maintenance_expiry_date}    Get Value    wnd[0]/usr/tabsTABSTRIP_1000/tabpLOCAL_LIKEYS/ssubACTIVE_TAB:SAPMSLIC:3020/tblSAPMSLICLIKEYLIST_CONTROL/txtLIKEY_TABLE-END_DATE[6,${row}]
+                ${maintenance_exp}    Calculate Date Difference    ${maintenance_expiry_date}
+                Log To Console    maintenance expiry: ${maintenance_exp}
+            ELSE IF    '${product}' == 'NetWeaver'
+                ${NW_expiry_date}    Get Value    wnd[0]/usr/tabsTABSTRIP_1000/tabpLOCAL_LIKEYS/ssubACTIVE_TAB:SAPMSLIC:3020/tblSAPMSLICLIKEYLIST_CONTROL/txtLIKEY_TABLE-END_DATE[6,${row}]
+                ${NW_exp}    Calculate Date Difference    ${NW_expiry_date}
+                Log To Console    NW expiry: ${NW_exp}
+            END
+        ELSE
+            Log    ${key} is not active            
+        END
+    END
     Log To Console    **gbStart**hardware_key**splitKeyValue**${hardware_key}**gbEnd**
     Log To Console    **gbStart**installation_no**splitKeyValue**${installation_no}**gbEnd**
+    Log To Console    **gbStart**system_no**splitKeyValue**${system_no}**gbEnd**
+    Log To Console    **gbStart**maintenance_expiry**splitKeyValue**${maintenance_exp}**gbEnd**
+    Log To Console    **gbStart**netweaver_expiry**splitKeyValue**${NW_exp}**gbEnd**
 
 License Renewal
     Run Transaction    /nslicense
@@ -43,3 +67,4 @@ License Renewal
     Click Element    wnd[1]/tbar[0]/btn[0]
     Click Element    wnd[1]/tbar[0]/btn[0]
     Log To Console      **gbStart**copilot_status**splitKeyValue**License Renewed Successfully**gbEnd**
+    Delete File    ${symvar('uploading_path')}\\${symvar('License_file')}

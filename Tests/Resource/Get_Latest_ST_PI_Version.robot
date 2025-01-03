@@ -40,7 +40,9 @@ Software Download
     Sleep    4
     Click Element    id:__field0-search
     Sleep    10
-    Click Element    id:__item29-__clone73
+    Input Text    id:__field1-I    Maintenance
+    Sleep    2
+    Click Element    xpath://div[@class='sapMSLIDescriptionText']
     Sleep    2
     Click Element    id:__xmlview3--idProductHierarchyList
     Sleep    5

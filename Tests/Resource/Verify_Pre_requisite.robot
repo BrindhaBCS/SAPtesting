@@ -18,18 +18,19 @@ ${SAP_UI_success}    SAP UI version patch level met the criteria
 ${SAP_UI_fail}    SAP BASIS and SAP UI version patch level too low. Need to Patch SAP_UI Either 740 SP15 or higher
 ${ST_PI_Success}    ST-PI patch version met the criteria
 ${ST_PI_Fail}    Latest patch of ST-PI needs to be applied
-${parameter_Pass}    Profile Parameters are set
+${parameter_Pass}    Profile Parameters are available in the system
 ${parameter_Fail}    Profile parameter are not in place. Need to add them
 ${certificate_Pass}    SSL Certificates are available in the System
 ${certificate_Fail}    SSL Certificate need to be added to the System
 ${Snote_Pass}    Snotes are available in the System
 ${Snote_Fail}    Snotes need to be added to the System
-
+${all_notes_cannot_be_implemented}
+${is_all_parameter_exists}
 *** Keywords ***
 System Logon
     Start Process    ${symvar('ABAP_SAP_SERVER')}
     Connect To Session
-    Open Connection     ${symvar('ABAP_Connection')}
+    Open Connection     ${symvar('ABAP_SID')}
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('ABAP_CLIENT')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('ABAP_USER')}
     # Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('ABAP_PASSWORD')}
@@ -101,6 +102,7 @@ Verify parameter in RZ10
     Click Element   wnd[1]/tbar[0]/btn[0]
     Select Radio Button    wnd[0]/usr/radSPFL1010-EXPERT
     Click Element    wnd[0]/usr/btnEDIT_PUSH
+    ${is_all_parameter_exists}    Set Variable    True
     ${length}    Get Length    ${parameters}
     FOR    ${i}    IN RANGE    0    ${length}
         ${result}    Check Parameter Found    wnd[0]/usr    ${parameters}[${i}]
@@ -108,19 +110,21 @@ Verify parameter in RZ10
             Get Parameter Value    wnd[0]/usr    ${parameters}[${i}]
             ${param_value}    Get Value    wnd[0]/usr/sub:SAPLSPF2:0030[0]/txtPARAMETER_INT_VALUES-PVALUE[0,0]
             IF    '${param_value}' == '${values}[${i}]'
-                Write Excel    ${filepath}    ${sheetname}    5    2    ${parameter_Pass}
-                Write Excel    ${filepath}    ${sheetname}    5    3    Passed
                 Click Element    wnd[0]/tbar[0]/btn[3]
             ELSE
-                Write Excel    ${filepath}    ${sheetname}    5    2    ${parameter_Fail}
-                Write Excel    ${filepath}    ${sheetname}    5    3    Failed
+                ${is_all_parameter_exists}    Set Variable    False
             END
         ELSE
-            Write Excel    ${filepath}    ${sheetname}    5    2    ${parameter_Fail}
-            Write Excel    ${filepath}    ${sheetname}    5    3    Failed
+            ${is_all_parameter_exists}    Set Variable    False
         END        
     END
-    
+    IF    "${is_all_parameter_exists}" == "True"
+        Write Excel    ${filepath}    ${sheetname}    5    2    ${parameter_Pass}
+        Write Excel    ${filepath}    ${sheetname}    5    3    Passed
+    ELSE
+        Write Excel    ${filepath}    ${sheetname}    5    2    ${parameter_Fail}
+        Write Excel    ${filepath}    ${sheetname}    5    3    Failed
+    END
 STRUST
     Run Transaction    /nSTRUST
     Sleep    2
@@ -189,8 +193,7 @@ SNOTE
     Set Focus    wnd[0]/usr/lbl[5,3]
     Sleep    2
     Send Vkey    2
-    Sleep    2
-    Take Screenshot    snote_1.jpg
+    ${all_notes_cannot_be_implemented}    Set Variable    True
     Sleep    1
     Click Element    wnd[0]/tbar[1]/btn[33]
     Sleep    1   
@@ -202,26 +205,54 @@ SNOTE
         ${SAP_note_error}=    Get Value    wnd[0]/sbar/pane[0]
         IF    '${SAP_note_error}' == 'Unable to find SAP Note that meets specified criteria'
             Log To Console    ${SAP_note_error} ${number}
+            Set Variable    ${all_notes_cannot_be_implemented}    False
         ELSE
             Double Click Current Cell Value    wnd[0]/usr/cntlGRID1/shellcont/shell    PRSTATUS
             Sleep    2
             ${value}=    Get Value    wnd[0]/usr/subSUB_101:SAPLSCW_NA_SCREEN:0101/txtSCWB_S_SCREEN_NOTE-PRSTATUS_TEXT
-            # Log    ${number}=${value}
             IF    '${value}' == 'Cannot be implemented'
-                # Log    ${number}=${value}
-                Write Excel    ${filepath}    ${sheetname}    7    2    ${Snote_Pass}
-                Write Excel    ${filepath}    ${sheetname}    7    3    Passed
+                Click Element    wnd[0]/tbar[0]/btn[3]
+                Sleep    1
+                Click Element    wnd[0]/tbar[0]/btn[3]
+                Sleep    1
+            ELSE IF    '${value}' == 'Completely implemented'
                 Click Element    wnd[0]/tbar[0]/btn[3]
                 Sleep    1
                 Click Element    wnd[0]/tbar[0]/btn[3]
                 Sleep    1
             ELSE IF    '${value}' == 'Can be implemented'
-                # Click Element    wnd[0]/tbar[0]/btn[3]
-                # Sleep    2
-                # Click Element    wnd[0]/tbar[1]/btn[25]
-                # Sleep    10
-                Write Excel    ${filepath}    ${sheetname}    7    2    ${Snote_Fail}
-                Write Excel    ${filepath}    ${sheetname}    7    3    Failed
+                ${all_notes_cannot_be_implemented}    Set Variable    False
+                Click Element    wnd[0]/tbar[0]/btn[3]
+                Sleep    1
+                Click Element    wnd[0]/tbar[0]/btn[3]
+                Sleep    1
+            ELSE IF    '${value}' == 'Incompletely implemented'
+                ${all_notes_cannot_be_implemented}    Set Variable    False
+                Click Element    wnd[0]/tbar[0]/btn[3]
+                Sleep    1
+                Click Element    wnd[0]/tbar[0]/btn[3]
+                Sleep    1
             END
         END
+    END
+    IF    "${all_notes_cannot_be_implemented}" == "True"
+        Write Excel    ${filepath}    ${sheetname}    7    2    ${Snote_Pass}
+        Write Excel    ${filepath}    ${sheetname}    7    3    Passed
+    ELSE
+        Write Excel    ${filepath}    ${sheetname}    7    2    ${Snote_Fail}
+        Write Excel    ${filepath}    ${sheetname}    7    3    Failed
+    END
+
+Verify User
+    Run Transaction    /nSU01
+    Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('ALM_User')}
+    Click Element    wnd[0]/tbar[1]/btn[7]
+    ${user}    To Upper    ${symvar('ALM_User')}
+    ${status}    Get Value    wnd[0]/sbar/pane[0]
+    IF    '${status}' == 'User ${user} does not exist'
+        Write Excel    ${filepath}    ${sheetname}    8    2    ${status}
+        Write Excel    ${filepath}    ${sheetname}    8    3    Failed
+    ELSE
+        Write Excel    ${filepath}    ${sheetname}    8    2    User ${user} Available in the system
+        Write Excel    ${filepath}    ${sheetname}    8    3    Passed
     END

@@ -1,6 +1,8 @@
 import pythoncom
 import win32com.client
 import time
+from datetime import datetime
+import _strptime
 from pythoncom import com_error
 import robot.libraries.Screenshot as screenshot
 import os
@@ -9,7 +11,10 @@ import sys
 import ast
 import re
 import pandas as pd
-import openpyxl
+import openpyxl 
+from openpyxl import Workbook
+from openpyxl import load_workbook
+import json
 
 
 class SAP_Tcode_Library:
@@ -1479,11 +1484,16 @@ class SAP_Tcode_Library:
                 return
     
     def manage_window(self, element_id, text, button_id):
-        window_title = self.session.findById(element_id).Text
-        window_title_split = window_title.split()
-        window = " ".join(window_title_split[:-1])
-        if window == text :
-            self.session.findById(button_id).press()
+        try:
+            window_title = self.session.findById(element_id).Text
+            window_title_split = window_title.split()
+            window = " ".join(window_title_split[:-1])
+            if window == text :
+                self.session.findById(button_id).press()
+            else:
+                print(window_title)
+        except Exception as e:
+            print(f"Error: {e}")
 
     def double_click_current_cell_value(self, element_id, cell_value):
         try:
@@ -1844,3 +1854,90 @@ class SAP_Tcode_Library:
         text = value.upper()
         print(text)
         return text
+    def Delete_all_profile(self):
+        try:
+            self.session.findById("wnd[0]/usr/tabsTABSTRIP1/tabpPROF/ssubMAINAREA:SAPLSUID_MAINTENANCE:1103/cntlG_PROFILES_CONTAINER/shellcont/shell").setCurrentCell(-1, "")
+            self.session.findById("wnd[0]/usr/tabsTABSTRIP1/tabpPROF/ssubMAINAREA:SAPLSUID_MAINTENANCE:1103/cntlG_PROFILES_CONTAINER/shellcont/shell").selectAll()
+            self.session.findById("wnd[0]/usr/tabsTABSTRIP1/tabpPROF/ssubMAINAREA:SAPLSUID_MAINTENANCE:1103/cntlG_PROFILES_CONTAINER/shellcont/shell").pressToolbarButton("DEL_LINE")
+        except:
+            return  []
+        
+    def change_of_process(self, window_id, button_id):
+        text = self.session.findById(window_id).text
+        text_split = text.split()
+        window = " ".join(text_split[:-1])
+        if window == "Change processor of SAP Note":
+            self.session.findById(button_id).press()
+
+    def create_transport(self, window_id, create_button, text, finish_btn,):
+        window = self.session.findById(window_id).Text
+        if window == "Prompt for local Workbench request":
+            transport = self.session.findById("wnd[1]/usr/ctxtKO008-TRKORR").Text
+            if transport == "":
+                self.session.findById(create_button).press()
+                self.session.findById("wnd[2]/usr/txtKO013-AS4TEXT").Text = text
+                self.session.findById(finish_btn).press()
+                self.session.findById("wnd[1]/tbar[0]/btn[0]").press()
+            else:
+                self.session.findById("wnd[1]/tbar[0]/btn[0]").press()
+
+    def get_license_product(self, element_id):
+        license = self.session.findById(element_id).Text
+        if license != "":
+            license_split = license.split('_')
+            product = license_split[0]
+            return product
+        else:
+            return None
+    def calculate_date_difference(self, given_date_str):
+        given_date = datetime.strptime(given_date_str, '%d.%m.%Y').date()
+        current_date = datetime.now().date()
+        date_difference = (given_date - current_date).days
+        return date_difference
+    
+    def write_value_to_excel(self, file_path, sheet_name, cell, value):
+        workbook = load_workbook(file_path)
+        sheet = workbook[sheet_name]
+        try:
+            sheet[cell] = float(value)
+        except ValueError:
+            sheet[cell] = str(value)
+        workbook.save(file_path)
+        workbook.close()
+ 
+    def create_empty_excel(self, file_path):
+        sheet_name = os.path.splitext(os.path.basename(file_path))[0]
+        workbook = Workbook()
+        workbook.active.title = sheet_name
+        workbook.save(file_path)
+
+    def excel_to_json(self, excel_file, json_file):
+        # Read the Excel file
+        df = pd.read_excel(excel_file, engine='openpyxl')
+        # Convert Timestamp objects to strings
+        for column in df.select_dtypes(['datetime']):
+            df[column] = df[column].astype(str)
+        # Convert the DataFrame to a dictionary
+        data = df.to_dict(orient='records')
+        # Write the dictionary to a JSON file
+        with open(json_file, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
+        # Read the JSON file after writing it
+        with open(json_file, 'r', encoding='utf-8') as f:
+            json_data = json.load(f)
+        return json_data
+    
+    def delete_specific_file(self, file_path):
+            try:
+                if os.path.exists(file_path):
+                    os.remove(file_path)
+                else:
+                    print(f"The file '{file_path}' does not exist.")
+            except Exception as e:
+                print(f"An error occurred: {e}")
+
+
+
+        
+
+     

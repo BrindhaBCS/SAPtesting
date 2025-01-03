@@ -1,0 +1,6 @@
+SAP_SERVER = "$SAP_SERVER"
+Slicense_New_user = "$Slicense_New_user"
+Slicense_New_client = "$Slicense_New_client"
+Slicense_New_connection = "$Slicense_New_connection"
+Slicense_New_Excel_Filepath = "$Slicense_New_Excel_Filepath"
+Slicense_New_Excel_FileName = "$Slicense_New_Excel_FileName"
