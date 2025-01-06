@@ -89,6 +89,12 @@ ABB_SM59
     Click Element    wnd[0]/tbar[0]/btn[11]
     Sleep    1
     
+    Click Element   wnd[1]/tbar[0]/btn[0]
+    ${status}    Get Status Pane    wnd[0]/sbar/pane[0]
+    Take Screenshot   002_SM59_12.jpg
+    Click Element   wnd[0]/tbar[0]/btn[3]
+
+    
     Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('screenshot_directory')} 
     Sleep    2
     
