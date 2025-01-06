@@ -10,4 +10,5 @@ Rental_Client = "$Rental_Client"
 Rental_User = "$Rental_User"
 rental_month = "$rental_month"
 documents = "$documents"
+document_json = [{"document":"40026199"},{"document":"40026208"}]
 search_terms = ["Customer Reference","Document Date","Sales Document","Sales Document Type","Sales Document Item","Material","Target Quantity","Sales Unit","Valid-To Date","Sold-to Party","Net Value (Item)","Document Currency","Created By","Contract Start Date","Contract End Date",]

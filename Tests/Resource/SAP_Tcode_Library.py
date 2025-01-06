@@ -1423,5 +1423,60 @@ class SAP_Tcode_Library:
         except Exception as e:
             print(f"An error occurred: {e}")
 
+    # def select_original_file(self, text):
 
-    # def select_material_views(self, table_id, views):
+
+    def get_invoice_number(self, status_id):
+        try:
+            status = self.session.findById(status_id).Text
+            # print(f"Status Message: '{status}'")
+            
+            pattern = r"Document (\d+) has been saved."
+            match = re.search(pattern, status)
+            
+            if match:
+                document_no = match.group(1)
+                # print(f"Extracted Document Number: '{document_no}'")
+                return document_no
+            else:
+                print("No match found")
+                return None
+        except Exception as e:
+            # print(f"Error: {str(e)}")
+            return f"Error: {str(e)}"
+
+    def delete_excel_column(self, abs_filename, sheet_name, column_number):
+        wb = openpyxl.load_workbook(abs_filename)
+        if sheet_name not in wb.sheetnames:
+            print(f"Sheet '{sheet_name}' does not exist in the workbook.")
+            return
+        ws = wb[sheet_name]
+        ws.delete_cols(column_number)
+        wb.save(abs_filename)
+        print(f"Column {column_number} has been deleted in sheet '{sheet_name}'.")
+        
+    def get_index(self, lists, value):
+        try:
+            index = lists.index(value)
+            return index
+        except ValueError:
+            print(f"{value} not found in the list")
+
+    def read_row_from_excel(self, abs_filename, sheet_name, row_number):
+        wb = openpyxl.load_workbook(abs_filename)
+        ws = wb[sheet_name]
+        row_data = []
+        for cell in ws[row_number]:
+            row_data.append(cell.value)
+        wb.close()
+        return row_data
+
+    def append_to_list(self, value):
+        list = []
+        list_value = list.append(value)
+        return list_value
+
+    def convert_json_format(self, variable):
+        converted_data = [{"folder": item[0], "file": item[1]} for item in variable]
+        return    converted_data
+

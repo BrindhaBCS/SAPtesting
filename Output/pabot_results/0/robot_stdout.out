@@ -1,17 +1,30 @@
 ==============================================================================
 Tests :: Testing functionality through Robot Framework                        
 ==============================================================================
-Tests.Test Create Rental Invoice                                              
+Tests.Resource                                                                
 ==============================================================================
-Create the rental Invoice                                             For 40000030 No billing documents were generated. Please see log.
-For 40000031 No billing documents were generated. Please see log.
-For 40000042 No billing documents were generated. Please see log.
-| PASS |
+Tests.Resource.Create Folder                                                  
+==============================================================================
+Read Json Variable                                                      
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Nike\SAPtesting\Tests\Resource\create_folder.robot:62
+    T:  Read Json Variable    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Nike\SAPtesting\Tests\Resource\create_folder.robot:70
+      Convert Json Format    ${json}
+      |  ${json} = [ (str)
+______________________________________________________________________________
+| FAIL |
+IndexError: string index out of range
 ------------------------------------------------------------------------------
-Tests.Test Create Rental Invoice                                      | PASS |
-1 test, 1 passed, 0 failed
+Tests.Resource.Create Folder                                          | FAIL |
+1 test, 0 passed, 1 failed
 ==============================================================================
-Tests :: Testing functionality through Robot Framework                | PASS |
-1 test, 1 passed, 0 failed
+Tests.Resource                                                        | FAIL |
+1 test, 0 passed, 1 failed
+==============================================================================
+Tests :: Testing functionality through Robot Framework                | FAIL |
+1 test, 0 passed, 1 failed
 ==============================================================================
 Output:  C:\Nike\SAPtesting\Output\pabot_results\0\Output.xml
