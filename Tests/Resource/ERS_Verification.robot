@@ -52,6 +52,6 @@ ERS_Verification
     # Open Excel Document    C:\\tmp\\${FILE_NAME}    Sheet1
     ${Verification}    Excel To Json    C:\\tmp\\${FILE_NAME}    json_file=C:\\tmp\\Verification.json
     Log To Console    **gbStart**copilot_Json_ERS_Verification**splitKeyValue**${Verification}**gbEnd**
-	Sleep    0.5
+	Sleep    1
     Delete Specific File     C:\\tmp\\Verification.json
     Delete Specific File     C:\\tmp\\${FILE_NAME}
