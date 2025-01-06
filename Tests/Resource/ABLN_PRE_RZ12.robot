@@ -38,17 +38,15 @@ RZ12
 Select Table Data
     Click Element    wnd[0]/mbar/menu[4]/menu[5]/menu[2]/menu[2]
     Sleep    1
-    Select Radio Button    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[2,0]
+    Select Radio Button    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[1,0]
     
     Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    1
     Delete Specific File    ${EXCEL_PATH}
-    Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    ABB.xlsx
-    
-    Click Element    wnd[1]/tbar[0]/btn[20]
-   
     Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\TEMP
-   
+    Input Text    wnd[1]/usr/ctxtDY_FILENAME    ABB.xlsx
+    
+    
     Click Element    wnd[1]/tbar[0]/btn[0]
    
     Clean Excel Sheet    ${EXCEL_PATH}    ${Sheet}
@@ -85,7 +83,7 @@ Select Table Data
         Write Value To Excel    ${EXCEL_PATH}    ${Sheet}    K${Row_Index}    ${Max.Quota.prior_Normal}
         ${Max.Quota.Prior.Low}=    Get Value    wnd[1]/usr/txtARFCQUOTAS_EXT-MAX_LOW_QUOTA
         Write Value To Excel    ${EXCEL_PATH}    ${Sheet}    L${Row_Index}    ${Max.Quota.Prior.Low}
-        # Take Screenshot    000_RZ12_${i}.jpg
+        Take Screenshot    000_RZ12_${i}.jpg
         ${i}    Evaluate    ${i} + 1
         Click Element    wnd[1]/tbar[0]/btn[12]
         Sleep    2
