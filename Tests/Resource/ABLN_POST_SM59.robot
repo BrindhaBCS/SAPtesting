@@ -81,7 +81,7 @@ ABB_SM59
     ${status}    Get Status Pane    wnd[0]/sbar/pane[0]
     Take Screenshot   002_SM59_12.jpg
     Click Element   wnd[0]/tbar[0]/btn[3]
-    
+
 
 	Collapse Node	wnd[0]/usr/cntlSM59CNTL_AREA/shellcont/shell/shellcont[1]/shell[1]	${SPACE*10}1
 	Sleep	2
@@ -233,13 +233,13 @@ ABB_SM59
 
     END
     
-    Click Element    wnd[0]/tbar[0]/btn[11]
-    Sleep    1
+    # Click Element    wnd[0]/tbar[0]/btn[11]
+    # Sleep    1
     
-    Click Element   wnd[1]/tbar[0]/btn[0]
-    ${status}    Get Status Pane    wnd[0]/sbar/pane[0]
-    Take Screenshot   002_SM59_12.jpg
-    Click Element   wnd[0]/tbar[0]/btn[3]
+    # Click Element   wnd[1]/tbar[0]/btn[0]
+    # ${status}    Get Status Pane    wnd[0]/sbar/pane[0]
+    # Take Screenshot   002_SM59_12.jpg
+    # Click Element   wnd[0]/tbar[0]/btn[3]
 
     
     Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('screenshot_directory')} 
