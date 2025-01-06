@@ -46,7 +46,7 @@ ERS_Invoice
 	Sleep	0.5
     # Open Excel Document    C:\\tmp\\${FILE_NAME}    Sheet1
     ${Invoice}    Excel To Json    C:\\tmp\\${FILE_NAME}    json_file=C:\\tmp\\Invoice.json
-    Log To Console    **gbStart**copilot_Json_ERS_Invoice**splitKeyValue**${Invoice}**gbEnd**
+    Log To Console    **gbStart**ERS_Invoice**splitKeyValue**${Invoice}**gbEnd**
 	Sleep    1
     Delete Specific File     C:\\tmp\\Invoice.json
     Delete Specific File     C:\\tmp\\${FILE_NAME}
