@@ -64,6 +64,8 @@ ABB_SM59
     Log To Console    **gbStart**Target_Host**splitKeyValue**${Host_name}**gbEnd**
     # Log To Console    **gbStart**IP_Address**splitKeyValue**${IP_Address}**gbEnd**
     Sleep	2
+    Click Element    wnd[0]/tbar[0]/btn[3]
+    Sleep    1
         
 	Collapse Node	wnd[0]/usr/cntlSM59CNTL_AREA/shellcont/shell/shellcont[1]/shell[1]	${SPACE*10}1
 	Sleep	2
