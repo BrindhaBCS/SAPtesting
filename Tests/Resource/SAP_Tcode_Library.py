@@ -2349,3 +2349,10 @@ class SAP_Tcode_Library:
 
         except Exception as e:
             print(f"An error occurred: {e}")
+
+    def double_click_current_cell(self, table_id):
+        try:
+            element=self.session.findById(table_id)
+            return element.doubleClickCurrentCell()
+        except Exception as e:
+            raise ValueError(f"Failed to get node text by key : {str(e)}")

@@ -35,17 +35,36 @@ STMS_ABLN
     Take Screenshot    005_STMS_0.jpg
     Click Element	wnd[0]/mbar/menu[0]/menu[4]
 	Sleep	2
-    Take Screenshot    005_STMS_1.jpg
 
+    Take Screenshot    005_STMS_1.jpg
+   
     ${row_count}    Get Row Count    wnd[0]/usr/cntlGRID1/shellcont/shell 
     Log To Console    ${row_count}
+    # Double Click STMS Rows    wnd[0]/usr/cntlGRID1/shellcont/shell
+
+    FOR    ${row}    IN RANGE    0    ${row_count}
+        ${system}=    Get Cell Value   wnd[0]/usr/cntlGRID1/shellcont/shell    ${row}    SYSTXT
+        # ${system}=    Get Cell Value   wnd[0]/usr/cntlGRID1/shellcont/shell    ${row}    SYSNAM
+        IF    "${system}" != "VIrtual system"
+            ${ss_index}=    evaluate    ${row}+3
+            Select Table Row	wnd[0]/usr/cntlGRID1/shellcont/shell	${row}
+            Double Click Current Cell	wnd[0]/usr/cntlGRID1/shellcont/shell
+            Click Element	wnd[0]/usr/tabsGN_DYN150_TAB_STRIP/tabpATTR
+            Take Screenshot    005_STMS_3.1.${ss_index}.jpg
+            Click Element	wnd[0]/usr/tabsGN_DYN150_TAB_STRIP/tabpDOMA
+            Take Screenshot    005_STMS_3.2.${ss_index}.jpg
+            Click Element	wnd[0]/usr/tabsGN_DYN150_TAB_STRIP/tabpTPPE
+            Take Screenshot    005_STMS_3.3.${ss_index}.jpg
+            Click Element	wnd[0]/tbar[0]/btn[3]
+            Sleep	2    
+        END    
+            
+    END   
 
     Click Element	wnd[0]/tbar[0]/btn[3]
 	Sleep	2
-    
-    Click Element	wnd[0]/mbar/menu[0]/menu[0]
-	Sleep	2
-    Take Screenshot    005_STMS_2.jpg
 
-    Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('screenshot_directory')}   
-    Sleep    2
+    
+    # Click Element	wnd[0]/mbar/menu[0]/menu[0]
+	# Sleep	2
+    # Take Screenshot    005_STMS_2.jpg
