@@ -15,4 +15,4 @@ Target_Host = "$Target_Host"
 IP_Address = "$IP_Address"
 excel_filePath_SE16 = "C:\\tmp\\pre_SE16_report.xlsx"
 json_FilePath_SE16 = "C:\\tmp\\pre_SE16_report.json"
-
+json_FilePath_SM61 = "C:\\tmp\\pre_SM61_report.json"
