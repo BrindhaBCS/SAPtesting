@@ -55,6 +55,8 @@ ABB_SM59
         Sleep    1
 
     END
+    Doubleclick Element	wnd[0]/usr/cntlSM59CNTL_AREA/shellcont/shell/shellcont[1]/shell[1]	${SPACE*9}15	&Hierarchy
+	Sleep	2
     ${Host_name}    Get Value    wnd[0]/usr/tabsTAB_SM59/tabpTECH/ssubSUB_SM59:SAPLCRFC:0500/txtHOSTNAME
     # Log To Console    ${Host_name}
     ${IP_Address}    Get Value    wnd[0]/usr/tabsTAB_SM59/tabpTECH/ssubSUB_SM59:SAPLCRFC:0500/txtL_IP 
