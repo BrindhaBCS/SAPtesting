@@ -60,7 +60,7 @@ ABB_SM59
     END
 
     Take Screenshot    002_SM59_10.jpg
-    Doubleclick Element	wnd[0]/usr/cntlSM59CNTL_AREA/shellcont/shell/shellcont[1]/shell[1]	${SPACE*9}59	&Hierarchy
+    Doubleclick Element	wnd[0]/usr/cntlSM59CNTL_AREA/shellcont/shell/shellcont[1]/shell[1]	${SPACE*9}15	&Hierarchy
 	Sleep	2
  
     
