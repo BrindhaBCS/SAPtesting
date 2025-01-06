@@ -7,12 +7,13 @@ import os
 from robot.api import logger
 import sys
 import ast
-# import openpyxl
+import openpyxl
 import pandas as pd
 from openpyxl import load_workbook
 import json
 import re
-
+import glob
+from datetime import datetime
 
 class SAP_Tcode_Library:
     """The SapGuiLibrary is a library that enables users to create tests for the Sap Gui application
@@ -1254,18 +1255,18 @@ class SAP_Tcode_Library:
             return f"Error: {e}"
     
     
-    def multiple_logon_handling(self, logon_window_id, logon_id, continue_id):  
+    def multiple_logon_handling(self, logon_window_id):  
         try:
             content = self.session.findById(logon_window_id).Text
             if content == "License Information for Multiple Logons":
                 print("Multiple logon exists")
-                self.session.findById(logon_id).selected = True
-                self.session.findById(continue_id).press()
-                return content
+                info = "Multiple logon found. Please terminate all the logon & proceed"
+                return info
             else:
-                print("Multiple logon does not exist.")
+                info = "Multiple logon does not exist."
+                return info
         except Exception as e:
-            return f"Error: {e}"      
+            print(f"Error: {e}")      
 
     def table_scroll(self, table_id, first_visible_row):
         try:
@@ -1353,29 +1354,30 @@ class SAP_Tcode_Library:
         self.session.findById(element_id).text = ""
     
     def select_layout(self, table_id, variant):
-        table = self.session.findById(table_id)
-        row = table.RowCount
-        print(row)
-        for i in range(row):
-            layout_value = table.GetCellValue(i, "TEXT")
-            if layout_value == variant:
-                table.selectedRows = str(i)
-                break
-        if layout_value != variant:
-            print("No row with 'TEXT' value 'header' found.")
+        try:
+            table = self.session.findById(table_id)
+            row_count = table.RowCount
+            for i in range(row_count):
+                layout_value = table.GetCellValue(i, "TEXT")
+                if layout_value == variant:
+                    table.selectedRows = str(i)
+                    # Perform a click or double-click on the current cell
+                    table.clickCurrentCell()
+                    # Alternatively, for a double-click:
+                    table.doubleClickCurrentCell()
+                    return  # Exit the method after selecting and clicking
+            print(f"No row with 'TEXT' value '{variant}' found.")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
 
     def excel_to_json(self, excel_file, json_file):
-        # Read the Excel file
         df = pd.read_excel(excel_file, engine='openpyxl')
-        # Convert Timestamp objects to strings
         for column in df.select_dtypes(['datetime']):
             df[column] = df[column].astype(str)
-        # Convert the DataFrame to a dictionary
         data = df.to_dict(orient='records')
-        # Write the dictionary to a JSON file
         with open(json_file, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
-        # Read the JSON file after writing it
         with open(json_file, 'r', encoding='utf-8') as f:
             json_data = json.load(f)
         return json_data
@@ -1423,17 +1425,37 @@ class SAP_Tcode_Library:
         except Exception as e:
             print(f"An error occurred: {e}")
 
-    # def select_original_file(self, text):
-
-
+    def get_sap_table_value(self, table_id, row_num, column_id):
+        try:
+            table = self.session.findById(table_id)
+            table.currentCellRow = row_num
+            cell_value = table.getCellValue(row_num, column_id)
+            return cell_value  
+        except Exception as e:
+                return "FAIL"
+        
+    def delete_specific_file(self, file_path):
+            try:
+                if os.path.exists(file_path):
+                    os.remove(file_path)
+                else:
+                    print(f"The file '{file_path}' does not exist.")
+            except Exception as e:
+                print(f"An error occurred: {e}")
+    def extract_numeric(self, data):
+        match = re.findall(r'\d+', data)
+        if match:
+            return ''.join(match)
+        else:
+            return "No numbers found"
     def get_invoice_number(self, status_id):
         try:
             status = self.session.findById(status_id).Text
             # print(f"Status Message: '{status}'")
-            
-            pattern = r"Document (\d+) has been saved."
+        
+            pattern = r"Document (\d+) saved (no journal entry generated)."
             match = re.search(pattern, status)
-            
+        
             if match:
                 document_no = match.group(1)
                 # print(f"Extracted Document Number: '{document_no}'")
@@ -1444,17 +1466,83 @@ class SAP_Tcode_Library:
         except Exception as e:
             # print(f"Error: {str(e)}")
             return f"Error: {str(e)}"
-
-    def delete_excel_column(self, abs_filename, sheet_name, column_number):
-        wb = openpyxl.load_workbook(abs_filename)
-        if sheet_name not in wb.sheetnames:
-            print(f"Sheet '{sheet_name}' does not exist in the workbook.")
-            return
-        ws = wb[sheet_name]
-        ws.delete_cols(column_number)
-        wb.save(abs_filename)
-        print(f"Column {column_number} has been deleted in sheet '{sheet_name}'.")
         
+    def number_to_string(self, file_path, column_letter):
+        df = pd.read_excel(file_path)
+        column_index = ord(column_letter.upper()) - ord('A')
+        column_name = df.columns[column_index]
+        if column_name in df.columns:
+            df[column_name] = df[column_name].apply(lambda value: f'"{value}"' if pd.notnull(value) else value)
+            df.to_excel(file_path, index=False)
+        else:
+            print(f"Column {column_letter} not found in the Excel file.")
+
+    def excel_to_json_new(self, excel_file, json_file):
+        df = pd.read_excel(excel_file, engine='openpyxl')
+        df = df.where(pd.notnull(df), "empty")
+        for column in df.select_dtypes(['datetime']):
+            df[column] = df[column].astype(str)
+        for column in df.columns:
+            if df[column].dtype == 'object': 
+                df[column] = df[column].str.strip('"') 
+        data = df.to_dict(orient='records')
+        with open(json_file, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
+        with open(json_file, 'r', encoding='utf-8') as f:
+            json_data = json.load(f)
+        return json_data
+    
+    def extract_dates(self, json_string):
+        date_list =[]
+        start_date = json_string["startDate"]
+        date_list.append(start_date)
+        end_date = json_string["endDate"]
+        date_list.append(end_date)
+        return date_list
+    
+    def select_layout_two(self, table_id, row_num, column_id):
+        try:
+            table = self.session.findById(table_id)
+            table.currentCellRow = row_num
+            cell_value = table.GetCellValue(row_num, column_id)
+            table.clickCurrentCell()
+            return cell_value
+        except Exception as e:
+            return "FAIL"
+        
+    def list_to_json(self, key_value, list_value):
+        document_json = json.dumps({key_value:list_value})
+        return  document_json
+    
+    def list_document_number(self, list_value):
+        document_number = [item["document"] for item in list_value]
+        return  document_number
+    
+    def count_excel_rows(self, abs_filename, sheet_name):
+        try:
+            wb = openpyxl.load_workbook(abs_filename)
+            ws = wb[sheet_name]
+            count = 0
+            for row in ws:
+                if not all([cell.value == None for cell in row]):
+                    count += 1
+            print(count)
+            return(count)
+   
+        except Exception as e:
+            print(e)
+ 
+    def count_excel_columns(self, abs_filename, sheet_name):
+        try:
+            wb = openpyxl.load_workbook(abs_filename)
+            ws = wb[sheet_name]
+            columns = [cell.value for cell in ws[1]]  # Assuming the first row contains headers
+            column_count = len(columns)
+            print(column_count)
+            return column_count
+        except Exception as e:
+            print(f"Error: {e}")
+
     def get_index(self, lists, value):
         try:
             index = lists.index(value)
@@ -1470,13 +1558,79 @@ class SAP_Tcode_Library:
             row_data.append(cell.value)
         wb.close()
         return row_data
+    
+    def write_row_to_excel(self, abs_filename, sheet_name, row_number, row_data):
+        wb = openpyxl.load_workbook(abs_filename)
+        if sheet_name not in wb.sheetnames:
+            wb.create_sheet(sheet_name)
+        ws = wb[sheet_name]
+        for col_num, value in enumerate(row_data, start=1):
+            ws.cell(row=row_number, column=col_num, value=value)
+        wb.save(abs_filename)
+        wb.close()
 
-    def append_to_list(self, value):
-        list = []
-        list_value = list.append(value)
-        return list_value
+    def delete_excel_row(self, abs_filename, sheet_name, row_number):
+        wb = openpyxl.load_workbook(abs_filename)
+        if sheet_name not in wb.sheetnames:
+            print(f"Sheet '{sheet_name}' does not exist in the workbook.")
+            return
+        ws = wb[sheet_name]
+        ws.delete_rows(row_number)
+        wb.save(abs_filename)
+        print(f"Row {row_number} has been deleted in sheet '{sheet_name}'.")
 
-    def convert_json_format(self, variable):
-        converted_data = [{"folder": item[0], "file": item[1]} for item in variable]
-        return    converted_data
+    def delete_excel_column(self, abs_filename, sheet_name, column_number):
+        wb = openpyxl.load_workbook(abs_filename)
+        if sheet_name not in wb.sheetnames:
+            print(f"Sheet '{sheet_name}' does not exist in the workbook.")
+            return
+        ws = wb[sheet_name]
+        ws.delete_cols(column_number)
+        wb.save(abs_filename)
+        print(f"Column {column_number} has been deleted in sheet '{sheet_name}'.")
 
+    def remove_quotes(self, variable):
+        value = variable.strip('"')
+        return value
+    
+    def select_form_header(self, table_id, row, column):
+        self.session.findById(table_id).selectItem (row,column)
+        self.session.findById(table_id).ensureVisibleHorizontalItem (row,column)
+        self.session.findById(table_id).doubleClickItem (row,column)
+        # self.session.findById(table_id).selectedNode = row
+        # self.session.findById(table_id).doubleClickNode (row)
+
+    def remove_space_from_column_header(self, excel_path):
+        if os.path.exists(excel_path):
+            try:
+                df = pd.read_excel(excel_path)
+                df = df.where(pd.notnull(df), "empty")
+                df.columns = df.columns.str.replace(' ','_')
+                df.columns = df.columns.str.replace('-','_')
+                df.to_excel(excel_path, index=False)
+            except Exception as e:
+                return e
+        else:
+            print("Invalid Excel Path")
+
+    def output_proper_json(self, json_data):
+        proper_json = {
+            "StatusCode": 200,
+            "ResponseBody": {
+                "content": json_data
+            },
+            "status": 200,
+            "content_type": "application/json"
+        }
+        
+        # Return the json.dumps of the dictionary
+        return json.dumps(proper_json)
+    
+    def convert_date_format(self, date):
+
+        date_obj = datetime.strptime(date, "%d.%m.%Y")
+
+        converted_date = date_obj.strftime("%Y.%m.%d")
+
+        return converted_date
+ 

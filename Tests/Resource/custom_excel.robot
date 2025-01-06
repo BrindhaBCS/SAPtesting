@@ -9,31 +9,22 @@ Library     openpyxl
 
 *** Variables ***
 
-${file_name}    C:\\EID_Parry\\Rental.xlsx
+${file_name}    C:\\TEMP\\rental.xlsx
 ${sheet_name}    Sheet1
-${target_file_name}    C:\\EID_Parry\\Rental_output.xlsx
+${target_file_name}    C:\\Output\\Rental_Invoice.xlsx
 ${target_sheet_name}    Sheet1
 ${list_value}    ${symvar('document_json')}
-@{column_names}    Sales document type    Valid-To Date    Sold-To Party
+@{column_names}    Sales Document Type    Valid-To Date    Sold-to Party
 
 *** Keywords ***
 
 customize excel for output
     ${column_count}    Count Excel Columns    ${file_name}    ${sheet_name}
-    Log To Console      ${column_count}
-
     ${column}    Evaluate    ${column_count} + 1
-    Log To Console      rental excel column: ${column}
-
+    # Log To Console    ${column}    #rental
     FOR    ${name}    IN    @{column_names}
-        Log To Console      column to be deleted is:${name}
-
         FOR  ${l}  IN RANGE  1    ${column}
-            Log To Console      pre excel column is: ${l}
-
             ${data}    Read Excel Cell Value    ${file_name}    ${sheet_name}    1    ${l}
-            Log To Console      column name in pre excel:${data}
-
             IF  '${data}' == '${name}'
                 Delete Excel Column    ${file_name}    ${sheet_name}    ${l}
                 Log To Console    column ${l} deleted
@@ -45,35 +36,26 @@ customize excel for output
     END
 
     FOR  ${i}  IN RANGE  1    ${column}
-        Log To Console      pre excel column1 : ${i}
-
         ${data}    Read Excel Cell Value    ${file_name}    ${sheet_name}    1    ${i}
-        Log To Console      pre excel column name is:${data}
-
-        IF  '${data}' == 'Sales document'
+        # Log To Console    Document number is ${data}
+        IF  '${data}' == 'Sales Document'
             @{documents}    Evaluate    [item['document'] for item in ${list_value}]
             ${row_count}    Count Excel Rows    ${file_name}    ${sheet_name}
-            Log To Console      pre excel row count for write output:${row_count}
-
             ${rows}    Evaluate    ${row_count} + 1
-            Log To Console      pre excel row range for write output: ${rows}
-
+            # Log To Console    ${rows}
             FOR  ${document}  IN  @{documents}
                 Log To Console    document no is :${document}
                 FOR  ${j}  IN RANGE  2    ${rows}
                     ${input}    Read Excel Cell Value    ${file_name}    ${sheet_name}    ${j}    ${i}
+                    Log To Console    ${input}
                     IF    ${input} == "${document}"
-                        Log To Console    ${input} is in row of ${j}
-
-                        ${input}    Get Index    ${documents}    ${document}
-                        Log To Console      Index number for selected document:${input}
-
+                        # Log To Console    ${input} is in row of ${j}
+                        ${index_number}    Get Index    ${documents}    ${document}
                         ${index}    Evaluate    ${index_number} + 2
-                        Log To Console    Index is: ${index}
+                        # Log To Console    Index is: ${index}
 
                         ${row_data}    Read Row From Excel    ${file_name}    ${sheet_name}    ${j}
-                        Log To Console    row data is:${row_data}
-
+                        # Log To Console    row data is:${row_data}
                         Write Row To Excel    ${target_file_name}    ${target_sheet_name}    ${index}    ${row_data}
 
                     END

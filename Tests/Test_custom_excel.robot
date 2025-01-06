@@ -1,8 +1,8 @@
 *** Settings ***
 Resource    ../Tests/Resource/custom_excel.robot
-Force Tags    excel
+Task Tags    excel
  
 *** Test Cases ***
 Display Excel for output
-    # delete the existing excel details
+    delete the existing excel details
     customize excel for output
