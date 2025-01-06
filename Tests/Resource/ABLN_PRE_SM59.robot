@@ -55,6 +55,12 @@ ABB_SM59
         Sleep    1
 
     END
+    ${Host_name}    Get Value    wnd[0]/usr/tabsTAB_SM59/tabpTECH/ssubSUB_SM59:SAPLCRFC:0500/txtHOSTNAME
+    # Log To Console    ${Host_name}
+    ${IP_Address}    Get Value    wnd[0]/usr/tabsTAB_SM59/tabpTECH/ssubSUB_SM59:SAPLCRFC:0500/txtL_IP 
+    # Log To Console    ${IP_Address}
+    Log To Console    **gbStart**Target_Host**splitKeyValue**${Host_name}**gbEnd**
+    Log To Console    **gbStart**IP_Address**splitKeyValue**${IP_Address}**gbEnd**
 
 	Collapse Node	wnd[0]/usr/cntlSM59CNTL_AREA/shellcont/shell/shellcont[1]/shell[1]	${SPACE*10}1
 	Sleep	2
