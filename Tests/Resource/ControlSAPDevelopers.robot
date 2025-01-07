@@ -46,7 +46,7 @@ System Logout
 Control SAP developers
     Maximize Window
     ${message}    Run Keyword And Return Status    Run Transaction     /nSE16
-    IF    '${message}' == 'True 
+    IF    '${message}' == 'True' 
     
         Sleep    2
         Take Screenshot    CSD1.jpg

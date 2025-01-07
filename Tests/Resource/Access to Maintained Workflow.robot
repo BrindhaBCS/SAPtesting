@@ -61,7 +61,7 @@ System Logout
 Access to Maintained Workflow
     Maximize Window
     ${message}    Run Keyword And Return Status    Run Transaction     SUIM
-    IF    '${message}' == 'True 
+    IF    '${message}' == 'True' 
         Sleep    2
         Click Node Link     ${tree_id}    ${link_id1}    ${link_id2}    ${link_id3}     ${link_id4}    ${link_id5}
         Sleep    2
