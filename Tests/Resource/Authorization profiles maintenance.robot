@@ -35,7 +35,7 @@ ${OUTPUT_FILE}  C:\\tmp\\Authorised Users List\\Authorization Profiles.xlsx
 ${HEADER1}      Authorization Profiles
 ${HEADER2}      All Users
 ${COMPARISON_COL_NAME}    Compared_Users
-
+${html_report_MCR}    C:\\tmp\\Html_report_mcr.txt
 
 
 
@@ -60,69 +60,79 @@ System Logout
 
 Authorization profiles maintenance
     Maximize Window
-    Run Transaction     SUIM
-    Sleep    2
-    Click Node Link     ${tree_id}    ${link_id1}    ${link_id2}    ${link_id3}     ${link_id4}    ${link_id5}
-    Sleep    2
-    Take Screenshot    profiles_maintenance1.jpg
-    Click Element    ${AUTHORIZATION TAB}
-    Sleep    2
-    Input Text    ${AUTHORIZATION OBJECT 1}    S_USER_AGR
-    Sleep    2
-    Send Vkey    0
-    Sleep    2
-    Clear Field Text    ${TCD VALUE} 
-    Sleep    2
-    Input Text    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB4/ssub%_SUBSCREEN_TAB:RSUSR002:1004/txtVAL111    ${value_01}
-    Sleep    2
-    Input Text    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB4/ssub%_SUBSCREEN_TAB:RSUSR002:1004/txtVAL112    ${value_02}
-    Sleep    2
-    Input Text    ${AUTHORIZATION OBJECT 2}    S_USER_PRO
-    Sleep    2
-    Send Vkey    0
-    Sleep    2
-    Input Text    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB4/ssub%_SUBSCREEN_TAB:RSUSR002:1004/txtVAL211    ${value_01}
-    Sleep    2
-    Input Text    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB4/ssub%_SUBSCREEN_TAB:RSUSR002:1004/txtVAL212    ${value_02}
-    Sleep    2
-    Clear Field Text    ${AUTHORIZATION OBJECT 3}
-    Sleep    2
-    Clear Field Text    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB4/ssub%_SUBSCREEN_TAB:RSUSR002:1004/txtVAL301
-    Sleep    2
-    Clear Field Text    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB4/ssub%_SUBSCREEN_TAB:RSUSR002:1004/txtVAL311
-    Sleep    2
-    Take Screenshot    profiles_maintenance2.jpg
-    Click Element    ${Execute}
-    Sleep    5
-    Take Screenshot    profiles_maintenance3.jpg
-    Click Element    ${local file}
-    Sleep    2
-    Select Radio Button    ${Text with tabs Button}
-    Click Element    ${local file continue}
-    Sleep    1
-    Input Text    wnd[1]/usr/ctxtDY_PATH     ${symvar('MCR_Results_Directory_Path')}
-    Sleep    1
-    Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${Req_Result13_Filename}
-    Sleep    1
-    Click Element    wnd[1]/tbar[0]/btn[0]
-    Sleep    1
-    Click Element    ${BACK}
-    Sleep    1
-    Delete Specific File    ${FILE1}
-    Sleep    1
-    Convert Xls To Xlsx    xls_file=C:\\tmp\\Authorization Profiles.xls    xlsx_file=C:\\tmp\\Authorization Profiles.xlsx
-    Sleep    1
-    Create Directory    C:\\tmp\\Authorised Users List
-    Sleep    1
-    # Extract Columns    file1=${FILE1}   sheet1=${SHEET1}    col1_index=${COL1_INDEX}    file2=${FILE2}    sheet2=${SHEET2}    col2_index=${COL2_INDEX}   output_file=${OUTPUT_FILE}
-    Extract Columns    ${FILE1}    ${SHEET1}    ${COL1_INDEX}    ${SKIPROWS}    ${FILE2}    ${SHEET2}    ${COL2_INDEX}    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
-    Sleep    1
-    Compare Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}    ${COMPARISON_COL_NAME}
-    Sleep    1
-    ${i}    Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
-    Log To Console    ${i}
-    Delete Specific File    file_path=C:\\tmp\\Authorization Profiles.xls
-    Log To Console    Authorization Profiles completed
+    ${message}    Run Keyword And Return Status    Run Transaction     SUIM
+    IF    '${message}' == 'True 
+    
+        Sleep    2
+        Click Node Link     ${tree_id}    ${link_id1}    ${link_id2}    ${link_id3}     ${link_id4}    ${link_id5}
+        Sleep    2
+        Take Screenshot    profiles_maintenance1.jpg
+        Click Element    ${AUTHORIZATION TAB}
+        Sleep    2
+        Input Text    ${AUTHORIZATION OBJECT 1}    S_USER_AGR
+        Sleep    2
+        Send Vkey    0
+        Sleep    2
+        Clear Field Text    ${TCD VALUE} 
+        Sleep    2
+        Input Text    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB4/ssub%_SUBSCREEN_TAB:RSUSR002:1004/txtVAL111    ${value_01}
+        Sleep    2
+        Input Text    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB4/ssub%_SUBSCREEN_TAB:RSUSR002:1004/txtVAL112    ${value_02}
+        Sleep    2
+        Input Text    ${AUTHORIZATION OBJECT 2}    S_USER_PRO
+        Sleep    2
+        Send Vkey    0
+        Sleep    2
+        Input Text    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB4/ssub%_SUBSCREEN_TAB:RSUSR002:1004/txtVAL211    ${value_01}
+        Sleep    2
+        Input Text    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB4/ssub%_SUBSCREEN_TAB:RSUSR002:1004/txtVAL212    ${value_02}
+        Sleep    2
+        Clear Field Text    ${AUTHORIZATION OBJECT 3}
+        Sleep    2
+        Clear Field Text    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB4/ssub%_SUBSCREEN_TAB:RSUSR002:1004/txtVAL301
+        Sleep    2
+        Clear Field Text    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB4/ssub%_SUBSCREEN_TAB:RSUSR002:1004/txtVAL311
+        Sleep    2
+        Take Screenshot    profiles_maintenance2.jpg
+        Click Element    ${Execute}
+        Sleep    5
+        Take Screenshot    profiles_maintenance3.jpg
+        Click Element    ${local file}
+        Sleep    2
+        Select Radio Button    ${Text with tabs Button}
+        Click Element    ${local file continue}
+        Sleep    1
+        Input Text    wnd[1]/usr/ctxtDY_PATH     ${symvar('MCR_Results_Directory_Path')}
+        Sleep    1
+        Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${Req_Result13_Filename}
+        Sleep    1
+        Click Element    wnd[1]/tbar[0]/btn[0]
+        Sleep    1
+        Click Element    ${BACK}
+        Sleep    1
+        Delete Specific File    ${FILE1}
+        Sleep    1
+        Convert Xls To Xlsx    xls_file=C:\\tmp\\Authorization Profiles.xls    xlsx_file=C:\\tmp\\Authorization Profiles.xlsx
+        Sleep    1
+        Create Directory    C:\\tmp\\Authorised Users List
+        Sleep    1
+        # Extract Columns    file1=${FILE1}   sheet1=${SHEET1}    col1_index=${COL1_INDEX}    file2=${FILE2}    sheet2=${SHEET2}    col2_index=${COL2_INDEX}   output_file=${OUTPUT_FILE}
+        Extract Columns    ${FILE1}    ${SHEET1}    ${COL1_INDEX}    ${SKIPROWS}    ${FILE2}    ${SHEET2}    ${COL2_INDEX}    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
+        Sleep    1
+        Compare Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}    ${COMPARISON_COL_NAME}
+        Sleep    1
+        ${i}    Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
+        Log To Console    ${i}
+        Delete Specific File    file_path=C:\\tmp\\Authorization Profiles.xls
+        ${AA}    Set Variable    PASS:Authorization profiles maintenance Passed.
+        Log To Console    ${AA}
+        Append To File    path=${html_report_MCR}    content=${AA}\n
+    ELSE
+        ${AA}    Set Variable    WARN:Authorization profiles maintenance Failed.
+        Log To Console    ${AA}
+        Append To File    path=${html_report_MCR}    content=${AA}\n
+        
+    END
 Generate report
     Image Resize    ${OUTPUT_DIR}
     Sleep    2

@@ -33,6 +33,7 @@ ${OUTPUT_FILE}  C:\\tmp\\Authorised Users List\\Maintenance Workflow.xlsx
 ${HEADER1}      Maintenance Workflow
 ${HEADER2}      All Users
 ${COMPARISON_COL_NAME}    Compared_Users
+${html_report_MCR}    C:\\tmp\\Html_report_mcr.txt
 
 
 
@@ -59,54 +60,63 @@ System Logout
 
 Access to Maintained Workflow
     Maximize Window
-    Run Transaction     SUIM
-    Sleep    2
-    Click Node Link     ${tree_id}    ${link_id1}    ${link_id2}    ${link_id3}     ${link_id4}    ${link_id5}
-    Sleep    2
-    Take Screenshot    Maintained_Workflow1.jpg
-    Click Element    ${AUTHORIZATION TAB}
-    Sleep    2
-    Input Text    ${AUTHORIZATION OBJECT 1}    ${Authorization Object 1 VALUE}
-    Sleep    2
-    Send Vkey    0
-    Sleep    2
-    Input Text    ${TCD VALUE}    SWDC    
-    Sleep    2
-    Clear Field Text    ${AUTHORIZATION OBJECT 2}
-    Clear Field Text    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB4/ssub%_SUBSCREEN_TAB:RSUSR002:1004/txtVAL211
-    Clear Field Text    nd[0]/usr/tabsTABSTRIP_TAB/tabpTAB4/ssub%_SUBSCREEN_TAB:RSUSR002:1004/txtVAL212
-    Sleep    2
-    Take Screenshot    Maintained_Workflow2.jpg
-    Click Element    ${Execute}
-    Sleep    5
-    Take Screenshot    Maintained_Workflow3.jpg
-    Click Element    ${local file}
-    Sleep    2
-    Select Radio Button    ${Text with tabs Button}
-    Click Element    ${local file continue}
-    Sleep    1
-    Input Text    wnd[1]/usr/ctxtDY_PATH    ${symvar('MCR_Results_Directory_Path')}
-    Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${Req_Result14_Filename}
-    Sleep    1
-    Click Element    ${Replace}
-    Sleep    1
-    Click Element    ${BACK}
-    Sleep    1
-    Delete Specific File    ${FILE1}
-    Sleep    1
-    Convert Xls To Xlsx    xls_file=C:\\tmp\\Maintenance Workflow.xls    xlsx_file=C:\\tmp\\Maintenance Workflow.xlsx
-    Sleep    1
-    Create Directory    C:\\tmp\\Authorised Users List
-    Sleep    1
-    # Extract Columns    file1=${FILE1}   sheet1=${SHEET1}    col1_index=${COL1_INDEX}    file2=${FILE2}    sheet2=${SHEET2}    col2_index=${COL2_INDEX}   output_file=${OUTPUT_FILE}
-    Extract Columns    ${FILE1}    ${SHEET1}    ${COL1_INDEX}    ${SKIPROWS}    ${FILE2}    ${SHEET2}    ${COL2_INDEX}    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
-    Sleep    1
-    Compare Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}    ${COMPARISON_COL_NAME}
-    Sleep    1
-    ${i}    Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
-    Log To Console    ${i}
-    Delete Specific File    file_path=C:\\tmp\\Maintenance Workflow.xls
-    Log To Console    Access to Maintained Workflow completed
+    ${message}    Run Keyword And Return Status    Run Transaction     SUIM
+    IF    '${message}' == 'True 
+        Sleep    2
+        Click Node Link     ${tree_id}    ${link_id1}    ${link_id2}    ${link_id3}     ${link_id4}    ${link_id5}
+        Sleep    2
+        Take Screenshot    Maintained_Workflow1.jpg
+        Click Element    ${AUTHORIZATION TAB}
+        Sleep    2
+        Input Text    ${AUTHORIZATION OBJECT 1}    ${Authorization Object 1 VALUE}
+        Sleep    2
+        Send Vkey    0
+        Sleep    2
+        Input Text    ${TCD VALUE}    SWDC    
+        Sleep    2
+        Clear Field Text    ${AUTHORIZATION OBJECT 2}
+        Clear Field Text    wnd[0]/usr/tabsTABSTRIP_TAB/tabpTAB4/ssub%_SUBSCREEN_TAB:RSUSR002:1004/txtVAL211
+        Clear Field Text    nd[0]/usr/tabsTABSTRIP_TAB/tabpTAB4/ssub%_SUBSCREEN_TAB:RSUSR002:1004/txtVAL212
+        Sleep    2
+        Take Screenshot    Maintained_Workflow2.jpg
+        Click Element    ${Execute}
+        Sleep    5
+        Take Screenshot    Maintained_Workflow3.jpg
+        Click Element    ${local file}
+        Sleep    2
+        Select Radio Button    ${Text with tabs Button}
+        Click Element    ${local file continue}
+        Sleep    1
+        Input Text    wnd[1]/usr/ctxtDY_PATH    ${symvar('MCR_Results_Directory_Path')}
+        Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${Req_Result14_Filename}
+        Sleep    1
+        Click Element    ${Replace}
+        Sleep    1
+        Click Element    ${BACK}
+        Sleep    1
+        Delete Specific File    ${FILE1}
+        Sleep    1
+        Convert Xls To Xlsx    xls_file=C:\\tmp\\Maintenance Workflow.xls    xlsx_file=C:\\tmp\\Maintenance Workflow.xlsx
+        Sleep    1
+        Create Directory    C:\\tmp\\Authorised Users List
+        Sleep    1
+        # Extract Columns    file1=${FILE1}   sheet1=${SHEET1}    col1_index=${COL1_INDEX}    file2=${FILE2}    sheet2=${SHEET2}    col2_index=${COL2_INDEX}   output_file=${OUTPUT_FILE}
+        Extract Columns    ${FILE1}    ${SHEET1}    ${COL1_INDEX}    ${SKIPROWS}    ${FILE2}    ${SHEET2}    ${COL2_INDEX}    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
+        Sleep    1
+        Compare Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}    ${COMPARISON_COL_NAME}
+        Sleep    1
+        ${i}    Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
+        Log To Console    ${i}
+        Delete Specific File    file_path=C:\\tmp\\Maintenance Workflow.xls
+        ${AA}    Set Variable    PASS:Access to Maintained Workflow Passed.
+        Log To Console    ${AA}
+        Append To File    path=${html_report_MCR}    content=${AA}\n
+    ELSE
+        ${AA}    Set Variable    WARN:Access to Maintained Workflow Failed.
+        Log To Console    ${AA}
+        Append To File    path=${html_report_MCR}    content=${AA}\n
+        
+    END
 Generate report
     Image Resize    ${OUTPUT_DIR}
     Sleep    2
