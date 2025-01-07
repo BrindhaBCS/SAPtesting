@@ -54,9 +54,7 @@ ABB_SM59
         Sleep    1
         Click Element    wnd[0]/tbar[0]/btn[3]
         Sleep    1
-
         
-
     END
 
     Take Screenshot    002_SM59_10.jpg
@@ -73,10 +71,13 @@ ABB_SM59
     Input Text    wnd[0]/usr/tabsTAB_SM59/tabpTECH/ssubSUB_SM59:SAPLCRFC:0500/txtHOSTNAME    ${symvar('Target_Host')} 
     Sleep    3
     Take Screenshot    002_SM59_11.jpg
-    Select Radio Button    wnd[0]/usr/tabsTAB_SM59/tabpTECH/ssubSUB_SM59:SAPLCRFC:0500/radRFCDISPLAZ-SAVEIP 
-    Sleep    1
+
     Click Element    wnd[0]/tbar[0]/btn[11]
-    Sleep    1
+    
+    # Select Radio Button    wnd[0]/usr/tabsTAB_SM59/tabpTECH/ssubSUB_SM59:SAPLCRFC:0500/radRFCDISPLAZ-SAVEIP 
+    # Sleep    1
+    # Click Element    wnd[0]/tbar[0]/btn[11]
+    # Sleep    1
     Click Element   wnd[1]/tbar[0]/btn[0]
     ${status}    Get Status Pane    wnd[0]/sbar/pane[0]
     Take Screenshot   002_SM59_12.jpg
