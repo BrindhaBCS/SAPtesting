@@ -2,7 +2,6 @@
 Library    SeleniumLibrary
 *** Variables ***
 ${BASE_URL}    https://predev.symphony4cloud.com/login
-
 *** Keywords ***
 Test space issue
     Open Browser    url=${BASE_URL}    browser=chrome
