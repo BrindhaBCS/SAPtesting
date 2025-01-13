@@ -27,7 +27,7 @@ System Logout
 pending payments
     Run Transaction     /nfbl1n
     # Sleep   2
-    Input Text      wnd[0]/usr/ctxtKD_LIFNR-LOW     ${symvar('customer_no')}
+    Input Text      wnd[0]/usr/ctxtKD_LIFNR-LOW     ${symvar('Supplier_no')}
     # Sleep   2
     Input Text    wnd[0]/usr/ctxtKD_BUKRS-LOW    ${symvar('company_code')}
     # Sleep    2
