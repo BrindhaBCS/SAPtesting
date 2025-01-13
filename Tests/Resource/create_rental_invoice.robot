@@ -57,8 +57,6 @@ System Logout
     Run Transaction   /nex
 
 Rental Invoice
-    # FOR     ${contract}     IN     @{symvar('documents')}
-    #     Set Global Variable     ${contract}
     ${title}    Get Value    wnd[0]/sbar/pane[0]
     IF    '${title}' == 'Name or password is incorrect (repeat logon)'
         Log To Console    **gbStart**password_status**splitKeyValue**${title}**gbEnd**
@@ -85,6 +83,7 @@ Rental Invoice
             Click Element   wnd[0]/usr/btnTC_HEAD
             Click Element   wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpKFTE
             select_form_header     ${rental_form}  0001    Column1
+
             ${Month}    Get Current Date    result_format=%B
             Input Text  ${rental_text}  Rent for the month of ${Month} 2024.
             Click Element   wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpKFCU
@@ -104,8 +103,10 @@ Rental Invoice
             Click Element   wnd[0]/usr/btnTC_HEAD
             Click Element   wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpKFTE
             select_form_header     ${rental_form}  0001    Column1
-            ${Month}    Get Current Date    result_format=%B
-            Input Text  ${rental_text}  Rent for the month of ${Month} 2024.
+
+            ${month}    Evaluate    ${month_json}[0]['Month']
+            ${year}     Evaluate    ${month_json}[0]['Year']
+            Input Text  ${rental_text}  Rent for the month of ${month} ${year}.
             Click Element   wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpKFCU
             Input Text      wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpKFCU/ssubSUBSCREEN_BODY:SAPMV60A:6101/ssubCUSTOMER_SCREEN:ZZBILLHEADER:0100/txtVBRK-ZZEWAYBL    NA
             Click Element   wnd[0]/tbar[0]/btn[11]
@@ -126,6 +127,7 @@ Rental Invoice
         ${json}    Excel To Json New    ${target_file_name}    ${json_path}        
         Log To Console    **gbStart**copilot_status_sheet**splitKeyValue**${json}**splitKeyValue**object**gbEnd**
     END
+
     ${Mon}    Get Current Date    result_format=%B
     ${yr}    Get Current Date    result_format=%Y
     ${EXISTS}   Run Keyword And Return Status   Directory Should Exist    ${ready_to_send}\\${yr}\\${Mon}
@@ -159,6 +161,7 @@ Pdf_process
     Sleep    1
     Input Text    wnd[1]/usr/ctxtDY_PATH    ${EMPTY}
     Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${EMPTY}
+    
     ${Month1}    Get Current Date    result_format=%B
     ${Month}    Get Current Date    result_format=%b
     ${year}    Get Current Date    result_format=%Y
