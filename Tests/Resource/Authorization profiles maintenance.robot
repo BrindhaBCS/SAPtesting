@@ -124,6 +124,8 @@ Authorization profiles maintenance
         ${i}    Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
         Log To Console    ${i}
         Delete Specific File    file_path=C:\\tmp\\Authorization Profiles.xls
+        Remove Rows Before Start Row    file_path=C:\\tmp\\Authorization Profiles.xlsx    sheet_name=Authorization Profiles    start_row=14
+        Sleep    1
         compare    first_excel_path=C:\\tmp\\Authorization Profiles.xlsx    second_excel_path=C:\\tmp\\SAP Security Users.xlsx    output_excel_path=C:\\TEMP\\Validate_Authorization Profiles.xlsx   first_sheet_name=Authorization Profiles    second_sheet_name=SAP SECURITY
         Sleep    1
         ${AA}    Set Variable    PASS:Authorization profiles maintenance Passed.

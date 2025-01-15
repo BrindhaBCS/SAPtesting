@@ -2191,3 +2191,21 @@ class SAP_Tcode_Library:
         wb.save(output_excel_path)
 
         print(f"Mismatched data has been written to {output_excel_path}")
+
+    def remove_rows_before_start_row(self, file_path, sheet_name, start_row):
+        """
+        Removes all rows before the specified start row in an Excel sheet.
+
+        :param file_path: Path to the Excel file.
+        :param sheet_name: Name of the sheet to modify.
+        :param start_row: The row number to start from (all rows above this will be removed).
+        """
+        workbook = load_workbook(file_path)
+        sheet = workbook[sheet_name]
+
+        for row in range(0, start_row):
+            sheet.delete_rows(0)  # Always delete the first row iteratively
+
+        workbook.save(file_path)
+        workbook.close()
+        return f"All rows before row {start_row} have been removed."

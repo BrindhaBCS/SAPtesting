@@ -105,6 +105,8 @@ Autorisaties SAP Query
         ${i}    Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
         Log To Console    ${i}
         Delete Specific File    file_path=C:\\tmp\\SAP_QUERY.xls
+        Remove Rows Before Start Row    file_path=C:\\tmp\\SAP_QUERY.xlsx    sheet_name=Authorization Profiles    start_row=11
+        Sleep    1
         compare    first_excel_path=C:\\tmp\\SAP_QUERY.xlsx    second_excel_path=C:\\tmp\\SAP Security Users.xlsx    output_excel_path=C:\\TEMP\\Validate_SAP_QUERY.xlsx   first_sheet_name=SAP_QUERY    second_sheet_name=SAP SECURITY
         Sleep    1
         ${AA}    Set Variable    PASS:Autorisaties SAP Query Passed.
