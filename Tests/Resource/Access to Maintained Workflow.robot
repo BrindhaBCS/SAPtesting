@@ -108,15 +108,21 @@ Access to Maintained Workflow
         ${i}    Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
         Log To Console    ${i}
         Delete Specific File    file_path=C:\\tmp\\Maintenance Workflow.xls
-        ${AA}    Set Variable    PASS:Access to Maintained Workflow Passed.
+        Remove Rows Before Start Row    file_path=C:\\tmp\\Maintenance Workflow.xlsx    sheet_name=Maintenance Workflow    start_row=12
+        Sleep    1
+        compare    first_excel_path=C:\\tmp\\Maintenance Workflow.xlsx    second_excel_path=C:\\tmp\\SAP Security Users.xlsx    output_excel_path=C:\\TEMP\\Validate_Maintenance Workflow.xlsx   first_sheet_name=Maintenance Workflow    second_sheet_name=SAP SECURITY
+        Sleep    1
+        ${AA}    Set Variable    PASS:Check to start Programs immediately Passed.
         Log To Console    ${AA}
         Append To File    path=${html_report_MCR}    content=${AA}\n
-    ELSE
-        ${AA}    Set Variable    WARN:Access to Maintained Workflow Failed.
-        Log To Console    ${AA}
-        Append To File    path=${html_report_MCR}    content=${AA}\n
-        
-    END
+        ELSE
+            ${AA}    Set Variable    WARN:Check to start Programs immediately Failed.
+            Log To Console    ${AA}
+            Append To File    path=${html_report_MCR}    content=${AA}\n
+            
+        END
+        Generate Report Html    input_file=${html_report_MCR}    output_file=C:\\tmp\\Html_report_mcr.html    report_name=MIC REPORT
+        Sleep    2
 Generate report
     Image Resize    ${OUTPUT_DIR}
     Sleep    2
