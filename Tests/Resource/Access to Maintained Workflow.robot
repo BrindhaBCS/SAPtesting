@@ -88,6 +88,7 @@ Access to Maintained Workflow
         Click Element    ${local file continue}
         Sleep    1
         Input Text    wnd[1]/usr/ctxtDY_PATH    ${symvar('MCR_Results_Directory_Path')}
+        Sleep    1
         Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${Req_Result14_Filename}
         Sleep    1
         Click Element    ${Replace}
