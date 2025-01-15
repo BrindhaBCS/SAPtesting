@@ -2200,11 +2200,17 @@ class SAP_Tcode_Library:
         :param sheet_name: Name of the sheet to modify.
         :param start_row: The row number to start from (all rows above this will be removed).
         """
+        from openpyxl import load_workbook
+
+        # Ensure start_row is an integer
+        start_row = int(start_row)
+
         workbook = load_workbook(file_path)
         sheet = workbook[sheet_name]
 
-        for row in range(0, start_row):
-            sheet.delete_rows(0)  # Always delete the first row iteratively
+        # Delete rows before start_row
+        for _ in range(start_row - 1):  # Start row number is 1-based
+            sheet.delete_rows(1)  # Always delete the first row
 
         workbook.save(file_path)
         workbook.close()
