@@ -113,6 +113,8 @@ Check to start Programs immediately
         ${i}    Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
         Log To Console    ${i}
         Delete Specific File    file_path=C:\\tmp\\START_PROGRAMS.xls
+        compare    first_excel_path=C:\\tmp\\START_PROGRAMS.xlsx    second_excel_path=C:\\tmp\\SAP Security Users.xlsx    output_excel_path=C:\\TEMP\\Validate_START_PROGRAMS.xlsx   first_sheet_name=START_PROGRAMS    second_sheet_name=SAP SECURITY
+        Sleep    1
         ${AA}    Set Variable    PASS:Check to start Programs immediately Passed.
         Log To Console    ${AA}
         Append To File    path=${html_report_MCR}    content=${AA}\n

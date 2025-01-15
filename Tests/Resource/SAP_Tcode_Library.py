@@ -36,6 +36,7 @@ from docx2pdf import convert
 from docx.oxml import parse_xml
 from docx.oxml.ns import nsdecls
 import datetime
+from openpyxl.styles import Font, PatternFill
 
 class SAP_Tcode_Library:
     """The SapGuiLibrary is a library that enables users to create tests for the Sap Gui application
@@ -2093,3 +2094,100 @@ class SAP_Tcode_Library:
             print(f"Report generated successfully: {output_file}")
         except Exception as e:
             print(f"Error processing the report: {e}")
+
+
+    def compare(self, first_excel_path, second_excel_path, output_excel_path, 
+                         first_sheet_name, second_sheet_name):
+        """
+        Compare two Excel sheets based on User Name, User Type, and Department, 
+        and write mismatched rows to a new Excel file, highlighting missing Department values 
+        and marking users with the user type 'S_TABU_DISP'.
+        """
+        # Load the Excel sheets
+        first_df = pd.read_excel(first_excel_path, sheet_name=first_sheet_name)
+        second_df = pd.read_excel(second_excel_path, sheet_name=second_sheet_name)
+
+        # Ensure consistent column names
+        first_df.columns = first_df.columns.str.strip().str.lower()
+        second_df.columns = second_df.columns.str.strip().str.lower()
+
+        # Rename columns to standardize
+        first_df.rename(columns={
+            'user name': 'user_name',
+            'user type': 'user_type',
+            'department': 'department'
+        }, inplace=True)
+
+        second_df.rename(columns={
+            'user name': 'user_name',
+            'user type': 'user_type',
+            'department': 'department'
+        }, inplace=True)
+
+        # Merge data on 'user_name'
+        merged_df = pd.merge(first_df, second_df, on='user_name', suffixes=('_first', '_second'))
+
+        # Update column names in the merged DataFrame
+        merged_df.rename(columns={
+            'user_type_first': f'{first_sheet_name}_user_type',
+            'user_type_second': f'{second_sheet_name}_user_type',
+            'department_first': f'{first_sheet_name}_department',
+            'department_second': f'{second_sheet_name}_department'
+        }, inplace=True)
+
+        # Find mismatched rows based on 'user_type' and 'department'
+        mismatched_rows = merged_df[
+            (merged_df[f'{first_sheet_name}_user_type'] != merged_df[f'{second_sheet_name}_user_type']) |
+            (merged_df[f'{first_sheet_name}_department'] != merged_df[f'{second_sheet_name}_department'])
+        ]
+
+        # Select the relevant columns for output
+        output_columns = [
+            'user_name', 
+            f'{first_sheet_name}_user_type', f'{second_sheet_name}_user_type', 
+            f'{first_sheet_name}_department', f'{second_sheet_name}_department'
+        ]
+
+        # Filter the mismatched rows to only include the output columns
+        mismatched_rows = mismatched_rows[output_columns]
+
+        # Add missing markers for usertype or department
+        mismatched_rows[f'{first_sheet_name}_user_type'] = mismatched_rows[f'{first_sheet_name}_user_type'].fillna('Missing: User Type')
+        mismatched_rows[f'{second_sheet_name}_user_type'] = mismatched_rows[f'{second_sheet_name}_user_type'].fillna('Missing: User Type')
+        mismatched_rows[f'{first_sheet_name}_department'] = mismatched_rows[f'{first_sheet_name}_department'].fillna('Missing: Department')
+        mismatched_rows[f'{second_sheet_name}_department'] = mismatched_rows[f'{second_sheet_name}_department'].fillna('Missing: Department')
+
+        # Check for user type 'S_TABU_DISP' in SAP Security Users sheet
+        second_df['S_TABU_DISP_User'] = second_df['user_type'].apply(
+            lambda x: 'Yes' if x == 'S_TABU_DISP' else 'No'
+        )
+
+        # Merge this information into mismatched rows for highlighting
+        mismatched_rows = pd.merge(mismatched_rows, second_df[['user_name', 'S_TABU_DISP_User']], on='user_name', how='left')
+
+        # Write mismatched rows to a new Excel file
+        mismatched_rows.to_excel(output_excel_path, index=False)
+
+        # Now apply bold formatting and highlight missing departments or S_TABU_DISP users using openpyxl
+        wb = load_workbook(output_excel_path)
+        ws = wb.active
+
+        # Highlight "Missing: Department" cells in yellow
+        missing_department_fill = PatternFill(start_color="FFFF99", end_color="FFFF99", fill_type="solid")
+        s_tab_disp_fill = PatternFill(start_color="FFCCCC", end_color="FFCCCC", fill_type="solid")
+
+        for row in ws.iter_rows(min_row=2, min_col=1, max_col=7, max_row=ws.max_row):  # Updated for 7 columns (added S_TABU_DISP_User)
+            for cell in row:
+                # Highlight missing department cells
+                if isinstance(cell.value, str) and 'Missing: Department' in cell.value:
+                    cell.fill = missing_department_fill
+                    cell.font = Font(bold=True)  # Optional: Apply bold formatting
+
+                # Highlight S_TABU_DISP user rows
+                if isinstance(cell.value, str) and 'Yes' in cell.value:
+                    cell.fill = s_tab_disp_fill
+                    cell.font = Font(bold=True)  # Optional: Apply bold formatting
+
+        wb.save(output_excel_path)
+
+        print(f"Mismatched data has been written to {output_excel_path}")
