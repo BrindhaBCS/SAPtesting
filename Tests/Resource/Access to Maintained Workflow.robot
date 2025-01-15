@@ -122,7 +122,7 @@ Access to Maintained Workflow
             Append To File    path=${html_report_MCR}    content=${AA}\n
             
         END
-        Generate Report Html    input_file=${html_report_MCR}    output_file=C:\\tmp\\Html_report_mcr.html    report_name=MIC REPORT
+        Generate Report Html    input_file=${html_report_MCR}    output_file=C:\\tmp\\MIC\\Html_report_mcr.html    report_name=MIC REPORT
         Sleep    2
 Generate report
     Image Resize    ${OUTPUT_DIR}
