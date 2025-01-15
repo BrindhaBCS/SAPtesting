@@ -113,7 +113,7 @@ Check to start Programs immediately
         ${i}    Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
         Log To Console    ${i}
         Delete Specific File    file_path=C:\\tmp\\START_PROGRAMS.xls
-        Remove Rows Before Start Row    file_path=C:\\tmp\\START_PROGRAMS.xlsx    sheet_name=START_PROGRAMS    start_row=18
+        Remove Rows Before Start Row    file_path=C:\\tmp\\START_PROGRAMS.xlsx    sheet_name=START_PROGRAMS    start_row=17
         Sleep    1
         compare    first_excel_path=C:\\tmp\\START_PROGRAMS.xlsx    second_excel_path=C:\\tmp\\SAP Security Users.xlsx    output_excel_path=C:\\TEMP\\Validate_START_PROGRAMS.xlsx   first_sheet_name=START_PROGRAMS    second_sheet_name=SAP SECURITY
         Sleep    1
