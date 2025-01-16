@@ -21,7 +21,7 @@ System Logout
 Execute Idoc
     Run Transaction    /nBD83
     Sleep    2
-    Input Text    wnd[0]/usr/txtSO_DOCNU-LOW    ${symvar('document_no')}
+    Input Text    wnd[0]/usr/txtSO_DOCNU-LOW    ${symvar('Idoc_document_no')}
     Sleep    1
     Click Element    wnd[0]/tbar[1]/btn[8]
     Sleep    3
