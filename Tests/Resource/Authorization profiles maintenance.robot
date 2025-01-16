@@ -126,7 +126,7 @@ Authorization profiles maintenance
         Delete Specific File    file_path=C:\\tmp\\Authorization Profiles.xls
         Remove Rows Before Start Row    file_path=C:\\tmp\\Authorization Profiles.xlsx    sheet_name=Authorization Profiles    start_row=15
         Sleep    1
-        compare    first_excel_path=C:\\tmp\\Authorization Profiles.xlsx    second_excel_path=C:\\tmp\\SAP Security Users.xlsx    output_excel_path=C:\\TEMP\\Validate_Authorization Profiles.xlsx   first_sheet_name=Authorization Profiles    second_sheet_name=SAP SECURITY
+        Compare And Include Query Data    security_file=C:\\tmp\\SAP Security Users.xlsx    query_file=C:\\tmp\\Authorization Profiles.xlsx    output_file=C:\\TEMP\\Validate_SAuthorization_Profiles_Data.xlsx
         Sleep    1
         ${AA}    Set Variable    PASS:Authorization profiles maintenance Passed.
         Log To Console    ${AA}

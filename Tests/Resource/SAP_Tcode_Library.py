@@ -2215,3 +2215,98 @@ class SAP_Tcode_Library:
         workbook.save(file_path)
         workbook.close()
         return f"All rows before row {start_row} have been removed."
+    
+    def compare_and_include_query_data(self, security_file, query_file, output_file):
+        """
+        Compares rows from 'security_file' with 'query_file' and includes 'User Type' and 'Department'
+        from both files in the output, along with marking missing rows or mismatched data.
+
+        Args:
+            security_file (str): Path to the SAP Security Users Excel file.
+            query_file (str): Path to the SAP_QUERY Excel file.
+            output_file (str): Path to save the comparison results.
+        """
+        # Load the data from both files
+        security_df = pd.read_excel(security_file, sheet_name=0).fillna("Missing")
+        query_df = pd.read_excel(query_file, sheet_name=0).fillna("Missing")
+
+        # Standardize column names
+        security_df.columns = security_df.columns.str.strip().str.lower()
+        query_df.columns = query_df.columns.str.strip().str.lower()
+
+        # Rename columns for consistency
+        security_df.rename(columns={'user name': 'user_name', 'user type': 'user_type', 'department': 'department'}, inplace=True)
+        query_df.rename(columns={'user name': 'user_name', 'user type': 'user_type', 'department': 'department'}, inplace=True)
+
+        # Initialize results list
+        results = []
+
+        # Compare each row in security_df with query_df
+        for _, row in security_df.iterrows():
+            user_name = row['user_name']
+            user_type_security = row['user_type']
+            department_security = row['department']
+
+            # Check if the username exists in query_df
+            matched_row = query_df[query_df['user_name'] == user_name]
+
+            if matched_row.empty:
+                # User is completely missing
+                results.append([
+                    user_name, user_type_security, department_security,
+                    "Missing", "Missing", "Missing User"
+                ])
+            else:
+                # Extract query data
+                user_type_query = matched_row.iloc[0]['user_type']
+                department_query = matched_row.iloc[0]['department']
+
+                # Check for mismatches
+                status_user_type = "Matched" if user_type_query == user_type_security else "Mismatch"
+                status_department = "Matched" if department_query == department_security else "Mismatch"
+
+                results.append([
+                    user_name, user_type_security, department_security,
+                    user_type_query, department_query,
+                    "User exists but has mismatched data" if "Mismatch" in (status_user_type, status_department) else "Fully Matched"
+                ])
+
+        # Convert results to DataFrame
+        results_df = pd.DataFrame(results, columns=[
+            'User Name', 'User Type (Security)', 'Department (Security)',
+            'User Type (Query)', 'Department (Query)', 'Notes'
+        ])
+
+        # Save results to an Excel file
+        with pd.ExcelWriter(output_file, engine='openpyxl') as writer:
+            results_df.to_excel(writer, index=False, sheet_name='Comparison Results')
+
+        # Apply formatting with openpyxl
+        wb = Workbook()
+        ws = wb.active
+        ws.title = "Comparison Results"
+
+        # Write headers with styling
+        headers = [
+            'User Name', 'User Type (Security)', 'Department (Security)',
+            'User Type (Query)', 'Department (Query)', 'Notes'
+        ]
+        for col_num, header in enumerate(headers, 1):
+            cell = ws.cell(row=1, column=col_num, value=header)
+            cell.font = Font(bold=True)
+            cell.fill = PatternFill(start_color="ADD8E6", end_color="ADD8E6", fill_type="solid")
+
+        # Write rows
+        for row_idx, row in enumerate(results, start=2):
+            for col_idx, value in enumerate(row, start=1):
+                cell = ws.cell(row=row_idx, column=col_idx, value=value)
+
+                # Highlight missing or mismatched data
+                if value == "Missing User" or "Mismatch" in str(value):
+                    cell.fill = PatternFill(start_color="FFCCCC", end_color="FFCCCC", fill_type="solid")
+                    cell.font = Font(bold=True)
+
+        # Save formatted workbook
+        wb.save(output_file)
+        print(f"Comparison completed! Results saved to: {output_file}")
+

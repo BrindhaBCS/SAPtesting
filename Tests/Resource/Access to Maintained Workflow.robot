@@ -111,7 +111,7 @@ Access to Maintained Workflow
         Delete Specific File    file_path=C:\\tmp\\Maintenance Workflow.xls
         Remove Rows Before Start Row    file_path=C:\\tmp\\Maintenance Workflow.xlsx    sheet_name=Maintenance Workflow    start_row=12
         Sleep    1
-        compare    first_excel_path=C:\\tmp\\Maintenance Workflow.xlsx    second_excel_path=C:\\tmp\\SAP Security Users.xlsx    output_excel_path=C:\\TEMP\\Validate_Maintenance Workflow.xlsx   first_sheet_name=Maintenance Workflow    second_sheet_name=SAP SECURITY
+        Compare And Include Query Data    security_file=C:\\tmp\\SAP Security Users.xlsx    query_file=C:\\tmp\\Maintenance Workflow.xlsx    output_file=C:\\TEMP\\Validate_Maintenance Workflow_Data.xlsx
         Sleep    1
         ${AA}    Set Variable    PASS:Check to start Programs immediately Passed.
         Log To Console    ${AA}
