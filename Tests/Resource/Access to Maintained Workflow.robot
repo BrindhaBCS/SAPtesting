@@ -116,12 +116,12 @@ Access to Maintained Workflow
         ${AA}    Set Variable    PASS:Check to start Programs immediately Passed.
         Log To Console    ${AA}
         Append To File    path=${html_report_MCR}    content=${AA}\n
-        ELSE
-            ${AA}    Set Variable    WARN:Check to start Programs immediately Failed.
-            Log To Console    ${AA}
-            Append To File    path=${html_report_MCR}    content=${AA}\n
+    ELSE
+        ${AA}    Set Variable    WARN:Check to start Programs immediately Failed.
+        Log To Console    ${AA}
+        Append To File    path=${html_report_MCR}    content=${AA}\n
             
-        END
+     END
         Generate Report Html    input_file=${html_report_MCR}    output_file=C:\\tmp\\MIC\\Html_report_mcr.html    report_name=MIC REPORT
         Sleep    2
 Generate report
