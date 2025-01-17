@@ -104,8 +104,8 @@ Rental Invoice
             Click Element   wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpKFTE
             select_form_header     ${rental_form}  0001    Column1
 
-            ${month}    Evaluate    ${month_json}[0]['Month']
-            ${year}     Evaluate    ${month_json}[0]['Year']
+            ${month}    Evaluate    ${symvar('month_json')}[0]['Month']
+            ${year}     Evaluate    ${symvar('month_json')}[0]['Year']
             Input Text  ${rental_text}  Rent for the month of ${month} ${year}.
             Click Element   wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpKFCU
             Input Text      wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpKFCU/ssubSUBSCREEN_BODY:SAPMV60A:6101/ssubCUSTOMER_SCREEN:ZZBILLHEADER:0100/txtVBRK-ZZEWAYBL    NA

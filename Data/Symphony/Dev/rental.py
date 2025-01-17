@@ -1,9 +1,8 @@
 SAP_SERVER = "C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPgui\\saplogon.exe"
 Rental_Connection = "TS4"
 Rental_Client = "001"
-Rental_User = "naren"
+Rental_User = "EIDTEST"
+Invoice_PDF_PATH = "C:\\Symphony\\Rental_Invoice\\Download"
 Layout = ["Contracts - Header",]
-# DateContent = {"startDate":"01.01.2025","endDate":"31.01.2025"}
-documents = "40000070"
-search_terms = ["Sold-To Party Name"]
-month_json = [{"Month": "December", "Year": "2024"}]
+month_json = [{"Month":"January","Year":"2025"}]
+documents = "40000071"
