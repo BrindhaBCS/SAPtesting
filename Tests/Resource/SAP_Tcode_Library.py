@@ -1663,3 +1663,13 @@ class SAP_Tcode_Library:
                 if first_date.day <= date.day <= last_date.day:
                     return True
         return False
+
+    def get_month(self, date):
+        # data = json.loads(date)
+        month = date[0]['Month']
+        return month
+
+    def get_year(self, date):
+        # data = json.loads(date)
+        year = date[0]['Year']
+        return year
