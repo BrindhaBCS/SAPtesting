@@ -143,7 +143,7 @@ Validate the open documents
             Run Keyword If    "${is_visible}" == "False"    Exit For Loop
             ${date1}     Get Value   wnd[0]/usr/tabsTAXI_TABSTRIP/tabpT\\05/ssubSUBSCREEN_BODY:SAPLV60F:4201/tblSAPLV60FTCTRL_FPLAN_PERIOD/ctxtRV60F-ABRBE[0,${i}]
             Set Global Variable    ${i}
-            IF  '${date1}' == ' '
+            IF  '${date1}' == '${EMPTY}'
                 Append To List    ${rows_to_delete}    ${k}
                 Exit For Loop
             ELSE
