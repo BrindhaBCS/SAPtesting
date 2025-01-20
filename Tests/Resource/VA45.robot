@@ -98,7 +98,6 @@ Rental Document
         Validate the open documents
         # Remove Space From Column Header    C:\\TEMP\\rental.xlsx
         ${json}    Excel To Json New    excel_file=C:\\TEMP\\rental.xlsx    json_file=C:\\TEMP\\rental.json
-        Log To Console    ${json}
         IF    '${json}' == '[]'
         Log To Console    **gbStart**document_availability**splitKeyValue**Currently No open Contract available**splitKeyValue**object**gbEnd**
         ELSE
@@ -144,14 +143,19 @@ Validate the open documents
             Run Keyword If    "${is_visible}" == "False"    Exit For Loop
             ${date1}     Get Value   wnd[0]/usr/tabsTAXI_TABSTRIP/tabpT\\05/ssubSUBSCREEN_BODY:SAPLV60F:4201/tblSAPLV60FTCTRL_FPLAN_PERIOD/ctxtRV60F-ABRBE[0,${i}]
             Set Global Variable    ${i}
-            ${date}    Convert Date Format1    ${date1}
-            ${result}    Compare Dates    ${date}    ${start_date}    ${end_date}
-            IF    '${result}' == 'True'
-                # Sleep    5
-                verify date    ${rows_to_delete}    ${k}
+            IF  '${date1}' == ' '
+                Append To List    ${rows_to_delete}    ${k}
                 Exit For Loop
+            ELSE
+                ${date}    Convert Date Format1    ${date1}
+                ${result}    Compare Dates    ${date}    ${start_date}    ${end_date}
+                IF    '${result}' == 'True'
+                    # Sleep    5
+                    verify date    ${rows_to_delete}    ${k}
+                    Exit For Loop
+                END
             END
-            
+                        
         END
     END
     Log To Console    rows needed to be deleted : ${rows_to_delete}
@@ -162,7 +166,6 @@ verify date
     Send Vkey    2
     ${type}    Get Value    wnd[0]/usr/ctxtFPLT-FKSAF
     Run Keyword If    '${type}' != 'A' and '${type}' != 'B'    Append To List    ${list_variable}    ${row}
-
     
 Delete the rows
     [Arguments]    ${rows}
