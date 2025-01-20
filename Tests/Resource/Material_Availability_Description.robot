@@ -17,7 +17,7 @@ ${MM_Filename}      MM_Materials_MB52.xlsx
 ${input_filepath}    ${symvar('MM_Cleaned_filepath')}//${MM_Filename}
 ${result_filepath}    ${symvar('MM_Cleaned_filepath')}//${symvar('MM_Cleaned_filename')}
 
-${Plant}    1040
+#${Plant}    1040
 #${Material}    laptop
 
 *** Keywords ***
@@ -41,8 +41,8 @@ Executing Material Availability
     Send Vkey    0
     Sleep    1
     #Input Text    wnd[0]/usr/ctxtMATNR-LOW    ${symvar('Material')}
-    #Input Text    wnd[0]/usr/ctxtWERKS-LOW    ${symvar('Plant')}
-    Input Text    wnd[0]/usr/ctxtWERKS-LOW    ${Plant}
+    Input Text    wnd[0]/usr/ctxtWERKS-LOW    ${symvar('Plant')}
+    #Input Text    wnd[0]/usr/ctxtWERKS-LOW    ${Plant}
     #wnd[0]/usr/ctxtWERKS-LOW
     #Execute the requirement using F8
     Click Element    wnd[0]/mbar/menu[0]/menu[0]
@@ -60,29 +60,30 @@ Executing Material Availability
     Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${MM_Filename}
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    1
-    Log To Console    mm1completed 
+    Log To Console    ma completed 
 Result
     Log To Console    Material Availability Unresticted Data
-    #Material Availability Description    ${input_filepath}    ${symvar('Material')}    ${result_filepath}
+    Material Availability Description    ${input_filepath}    ${symvar('Material')}    ${result_filepath}
     # Material Availability    ${filepath}    ${result_filepath} 
     #${json}    Excel To Json    excel_file=C:\\tmp\\MM_Availability.xlsx    json_file=C:\\tmp\\Json\\MM_Availability.json
-    #Sleep    0.5
-    #Log To Console    **gbStart**copilot_Json**splitKeyValue**${json}**gbEnd**
-    #Log to console    ${json}
-    #${chart_json}    Generate Chart Data    file_path=C:\\tmp\\MM_MB52_Full_Desc_Details.xlsx
-    ${chart_json}    Generate Chart Data    ${input_filepath} 
+    ${json}    Excel To Json    excel_file=${result_filepath}    json_file=C:\\tmp\\Json\\MM_Availability.json
     Sleep    0.5
-    Log To Console    **gbStart**copilot_cpiechart_data_grouped**splitKeyValue**${chart_json}**gbEnd**
+    Log To Console    **gbStart**copilot_Json**splitKeyValue**${json}**gbEnd**
+    Log to console    ${json}
+    #${chart_json}    Generate Chart Data    file_path=C:\\tmp\\MM_MB52_Full_Desc_Details.xlsx
+    #${chart_json}    Generate Chart Data    ${input_filepath} 
+    #Sleep    0.5
+    #Log To Console    **gbStart**copilot_cpiechart_data_grouped**splitKeyValue**${chart_json}**gbEnd**
 
     
     #Log To Console    **gbStart**copilot_local**splitKeyValue**1.Items is contains passed \n   Date: 11.23.2024 \n 2.Not there yours doc \n  date :12.05.2024**gbEnd**
 
 
     #${chart_json_top10}    Generate Chart Data Top Ten Materials    file_path=C:\\tmp\\MM_MB52_Full_Desc_Details.xlsx
-    ${chart_json_top10}    Generate Chart Data Top Ten Materials    ${input_filepath} 
-    Sleep    0.5
-    Log To Console    **gbStart**copilot_cpiechart_data_top10**splitKeyValue**${chart_json_top10}**gbEnd**
-    Log to console    ${chart_json_top10}
+    #${chart_json_top10}    Generate Chart Data Top Ten Materials    ${input_filepath} 
+    #Sleep    0.5
+    #Log To Console    **gbStart**copilot_cpiechart_data_top10**splitKeyValue**${chart_json_top10}**gbEnd**
+    #Log to console    ${chart_json_top10}
 
     #${chart_json_stock_distribution}    Generate Stock Distribution Data    file_path=C:\\tmp\\MM_MB52_Full_Desc_Details.xlsx
     # ${chart_json_stock_distribution}    Generate Stock Distribution Data    ${input_filepath} 
