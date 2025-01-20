@@ -98,7 +98,8 @@ Rental Document
         Validate the open documents
         # Remove Space From Column Header    C:\\TEMP\\rental.xlsx
         ${json}    Excel To Json New    excel_file=C:\\TEMP\\rental.xlsx    json_file=C:\\TEMP\\rental.json
-        IF    '${json}' == '[]'
+        ${json_len}    Get Length    ${json}
+        IF    '${json_len}' == '0'
         Log To Console    **gbStart**document_availability**splitKeyValue**Currently No open Contract available**splitKeyValue**object**gbEnd**
         ELSE
             ${proper_json}    Output Proper Json    ${json}

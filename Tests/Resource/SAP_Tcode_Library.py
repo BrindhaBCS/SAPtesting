@@ -1673,3 +1673,7 @@ class SAP_Tcode_Library:
         # data = json.loads(date)
         year = date[0]['Year']
         return year
+
+    def get_length(self, data):
+        length = len(data)
+        return length
