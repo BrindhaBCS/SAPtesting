@@ -99,9 +99,14 @@ Rental Document
         # Remove Space From Column Header    C:\\TEMP\\rental.xlsx
         ${json}    Excel To Json New    excel_file=C:\\TEMP\\rental.xlsx    json_file=C:\\TEMP\\rental.json
         Log To Console    ${json}
-        ${proper_json}    Output Proper Json    ${json}
-        log to console     **gbStart**document_selection**splitKeyValue**${proper_json}**splitKeyValue**object**gbEnd**  
-        Sleep    2
+        IF    '${json}' == '[]'
+        Log To Console    **gbStart**document_availability**splitKeyValue**Currently No open Contract available**splitKeyValue**object**gbEnd**
+        ELSE
+            ${proper_json}    Output Proper Json    ${json}
+            log to console     **gbStart**document_selection**splitKeyValue**${proper_json}**splitKeyValue**object**gbEnd**  
+            Sleep    2
+        END
+        
     END
 
 
