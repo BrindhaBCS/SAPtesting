@@ -73,6 +73,7 @@ FB03 display the invoice document
         Transaction code FB03
 
     END
+    log to console     **gbStart**copilot_status**splitKeyValue**Invoice Creation Completed Successfully**splitKeyValue**object**gbEnd**
 
 
 

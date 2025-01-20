@@ -62,6 +62,7 @@ Transaction FB70
 
     ${company_code}     Get Company Code    ${output}
     Log To Console      ${company_code}
+    log to console     **gbStart**copilot_document**splitKeyValue**${document}**splitKeyValue**object**gbEnd**  
     Write Excel     ${symvar('excel_path')}    ${symvar('sheet_name')}    ${row_count}    10      ${company_code}
     
 FB70 Invoice entry
