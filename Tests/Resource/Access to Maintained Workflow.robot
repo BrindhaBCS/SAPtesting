@@ -18,7 +18,7 @@ ${Authorization Object 1 VALUE}    S_TCODE
 ${local file}    wnd[0]/tbar[1]/btn[45]
 ${Text with tabs Button}    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[1,0]
 ${local file continue}    wnd[1]/tbar[0]/btn[0]
-${Replace}    /app/con[0]/ses[0]/wnd[1]/tbar[0]/btn[11]
+${Replace}    wnd[1]/tbar[0]/btn[11]
 ${Execute}    wnd[0]/tbar[1]/btn[8]
 ${BACK}    wnd[0]/tbar[0]/btn[3]
 ${Req_Result14_Filename}    Maintenance Workflow.xls
