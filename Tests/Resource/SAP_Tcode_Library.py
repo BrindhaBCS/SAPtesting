@@ -1736,6 +1736,7 @@ class SAP_Tcode_Library:
             print(f"[!] An error occurred: {e}")
         finally:
             smtp.quit()
+            
     def delete_specific_file(self, file_path):
         try:
             if os.path.exists(file_path):
