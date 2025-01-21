@@ -117,7 +117,7 @@ Check to start Programs immediately
         Sleep    1
         # Compare And Include Query Data    security_file=C:\\tmp\\SAP Security Users.xlsx    query_file=C:\\tmp\\START_PROGRAMS.xlsx    output_file=C:\\TEMP\\Validate_START_PROGRAMS_Data.xlsx
         # Sleep    1
-        Compare And Add Query Data    security_file==C:\\tmp\\SAP Security Users.xlsx    query_file=C:\\tmp\\START_PROGRAMS.xlsx    existing_file=C:\\TEMP\\Validate_Data.xlsx    new_sheet_name=Start_Programs
+        Compare And Add Query Data    security_file=C:\\tmp\\SAP Security Users.xlsx    query_file=C:\\tmp\\START_PROGRAMS.xlsx    existing_file=C:\\TEMP\\Validate_Data.xlsx    new_sheet_name=Start_Programs
         Sleep    1
         ${AA}    Set Variable    PASS:Check to start Programs immediately Passed.
         Log To Console    ${AA}

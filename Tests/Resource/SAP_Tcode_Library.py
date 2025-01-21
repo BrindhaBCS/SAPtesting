@@ -37,6 +37,7 @@ from docx.oxml import parse_xml
 from docx.oxml.ns import nsdecls
 import datetime
 from openpyxl.styles import Font, PatternFill
+from openpyxl.utils.dataframe import dataframe_to_rows
 
 class SAP_Tcode_Library:
     """The SapGuiLibrary is a library that enables users to create tests for the Sap Gui application
