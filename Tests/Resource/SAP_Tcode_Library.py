@@ -1674,6 +1674,6 @@ class SAP_Tcode_Library:
         year = date[0]['Year']
         return year
 
-    def get_length(self, data):
-        length = len(data)
-        return length
+    # def get_length(self, data):
+    #     length = len(data)
+    #     return length
