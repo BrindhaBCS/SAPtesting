@@ -107,7 +107,7 @@ Autorisaties SAP Query
         Delete Specific File    file_path=C:\\tmp\\SAP_QUERY.xls
         Remove Rows Before Start Row    file_path=C:\\tmp\\SAP_QUERY.xlsx    sheet_name=SAP_QUERY    start_row=12
         Sleep    1
-        Compare And Include Query Data    security_file=C:\\tmp\\SAP Security Users.xlsx    query_file=C:\\tmp\\SAP_QUERY.xlsx    output_file=C:\\TEMP\\Validate_SAP_Query_Data.xlsx
+        Compare And Include Query Data    security_file=C:\\tmp\\SAP Security Users.xlsx    query_file=C:\\tmp\\SAP_QUERY.xlsx    output_file=C:\\TEMP\\Validate_Data.xlsx
         Sleep    1
         ${AA}    Set Variable    PASS:Autorisaties SAP Query Passed.
         Log To Console    ${AA}

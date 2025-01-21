@@ -2279,7 +2279,7 @@ class SAP_Tcode_Library:
 
         # Save results to an Excel file
         with pd.ExcelWriter(output_file, engine='openpyxl') as writer:
-            results_df.to_excel(writer, index=False, sheet_name='Comparison Results')
+            results_df.to_excel(writer, index=False, sheet_name='SAP_QUERY')
 
         # Apply formatting with openpyxl
         wb = Workbook()
@@ -2310,3 +2310,93 @@ class SAP_Tcode_Library:
         wb.save(output_file)
         print(f"Comparison completed! Results saved to: {output_file}")
 
+
+    def compare_and_add_query_data(self, security_file, query_file, existing_file, new_sheet_name):
+    
+        # Load the data from both files
+        security_df = pd.read_excel(security_file, sheet_name=0).fillna("Missing")
+        query_df = pd.read_excel(query_file, sheet_name=0).fillna("Missing")
+
+        # Standardize column names
+        security_df.columns = security_df.columns.str.strip().str.lower()
+        query_df.columns = query_df.columns.str.strip().str.lower()
+
+        # Rename columns for consistency
+        security_df.rename(columns={'user name': 'user_name', 'user type': 'user_type', 'department': 'department'}, inplace=True)
+        query_df.rename(columns={'user name': 'user_name', 'user type': 'user_type', 'department': 'department'}, inplace=True)
+
+        # Initialize results list
+        results = []
+
+        # Compare each row in security_df with query_df
+        for _, row in security_df.iterrows():
+            user_name = row['user_name']
+            user_type_security = row['user_type']
+            department_security = row['department']
+
+            # Check if the username exists in query_df
+            matched_row = query_df[query_df['user_name'] == user_name]
+
+            if matched_row.empty:
+                # User is completely missing
+                results.append([
+                    user_name, user_type_security, department_security,
+                    "Missing", "Missing", "Missing User"
+                ])
+            else:
+                # Extract query data
+                user_type_query = matched_row.iloc[0]['user_type']
+                department_query = matched_row.iloc[0]['department']
+
+                # Check for mismatches
+                status_user_type = "Matched" if user_type_query == user_type_security else "Mismatch"
+                status_department = "Matched" if department_query == department_security else "Mismatch"
+
+                results.append([
+                    user_name, user_type_security, department_security,
+                    user_type_query, department_query,
+                    "User exists but has mismatched data" if "Mismatch" in (status_user_type, status_department) else "Fully Matched"
+                ])
+
+        # Convert results to DataFrame
+        results_df = pd.DataFrame(results, columns=[
+            'User Name', 'User Type (Security)', 'Department (Security)',
+            'User Type (Query)', 'Department (Query)', 'Notes'
+        ])
+
+        # Append results as a new sheet to the existing Excel file
+        try:
+            # Load the workbook if it exists
+            workbook = load_workbook(existing_file)
+        except FileNotFoundError:
+            # Create a new workbook if the file does not exist
+            workbook = Workbook()
+            if "Sheet" in workbook.sheetnames and len(workbook["Sheet"]["A"]) == 0:
+                workbook.remove(workbook["Sheet"])
+
+        # Check if the sheet already exists
+        if new_sheet_name in workbook.sheetnames:
+            raise ValueError(f"Sheet '{new_sheet_name}' already exists in the workbook.")
+
+        # Add a new sheet to the workbook
+        sheet = workbook.create_sheet(new_sheet_name)
+
+        # Write data to the new sheet
+        for row in dataframe_to_rows(results_df, index=False, header=True):
+            sheet.append(row)
+
+        # Apply formatting to the new sheet
+        for col_num, cell in enumerate(sheet[1], start=1):
+            cell.font = Font(bold=True)
+            cell.fill = PatternFill(start_color="ADD8E6", end_color="ADD8E6", fill_type="solid")
+
+        # Highlight mismatches or missing rows
+        for row in sheet.iter_rows(min_row=2, max_row=sheet.max_row, min_col=1, max_col=sheet.max_column):
+            for cell in row:
+                if "Mismatch" in str(cell.value) or "Missing" in str(cell.value):
+                    cell.fill = PatternFill(start_color="FFCCCC", end_color="FFCCCC", fill_type="solid")
+                    cell.font = Font(bold=True)
+
+        # Save the workbook
+        workbook.save(existing_file)
+        print(f"Comparison completed! Results saved to sheet '{new_sheet_name}' in '{existing_file}'.")

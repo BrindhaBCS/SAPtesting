@@ -115,7 +115,9 @@ Check to start Programs immediately
         Delete Specific File    file_path=C:\\tmp\\START_PROGRAMS.xls
         Remove Rows Before Start Row    file_path=C:\\tmp\\START_PROGRAMS.xlsx    sheet_name=START_PROGRAMS    start_row=17
         Sleep    1
-        Compare And Include Query Data    security_file=C:\\tmp\\SAP Security Users.xlsx    query_file=C:\\tmp\\START_PROGRAMS.xlsx    output_file=C:\\TEMP\\Validate_START_PROGRAMS_Data.xlsx
+        # Compare And Include Query Data    security_file=C:\\tmp\\SAP Security Users.xlsx    query_file=C:\\tmp\\START_PROGRAMS.xlsx    output_file=C:\\TEMP\\Validate_START_PROGRAMS_Data.xlsx
+        # Sleep    1
+        Compare And Add Query Data    security_file==C:\\tmp\\SAP Security Users.xlsx    query_file=C:\\tmp\\START_PROGRAMS.xlsx    existing_file=C:\\TEMP\\Validate_Data.xlsx    new_sheet_name=Start_Programs
         Sleep    1
         ${AA}    Set Variable    PASS:Check to start Programs immediately Passed.
         Log To Console    ${AA}
