@@ -53,6 +53,12 @@ Error_Capturing
     Sleep    1
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    2
+    Remove Rows Before Start Row    C:\\tmp\\FIORI\\Fiori_LaunchPad_Report.xlsx    Sheet1    5
+    Sleep    3
+    Clean Excel Sheet    C:\\tmp\\FIORI\\Fiori_LaunchPad_Report.xlsx    Sheet1
+    Sleep    2
+    Generate Html Report    C:\\tmp\\FIORI\\Fiori_LaunchPad_Report.xlsx    C:\\tmp\\FIORI\\Fiori_LaunchPad_Report.html
+    Sleep    2
 WBEP
     Run Transaction    /n/IWBEP/ERROR_LOG
     Sleep    1

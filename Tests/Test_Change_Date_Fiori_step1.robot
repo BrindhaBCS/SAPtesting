@@ -1,5 +1,6 @@
+
 *** Settings ***
-Resource    ../Tests/Resources/Change_Date_Fiori_step1.robot
+Resource    ../Tests/Resource/Change_Date_Fiori_step1.robot
 Suite Teardown  Change_Date_Fiori_step1.System Logout
 Task Tags    fiori_test_Step_1
  
