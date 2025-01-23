@@ -306,9 +306,10 @@ Create_date
     Sleep    3
     Clean Excel    file_path=C:\\tmp\\Role\\Create_Date_Overall_Report.xlsx    sheet_name=Sheet1
     Sleep    2
-    Sarole Html Report    excel_file=C:\\tmp\\Role\\Create_Date_Overall_Report.xlsx    html_file=C:\\tmp\\Role\\Create_Date_Overall_Report.html    highlight_text="No authorization in user master record"
+    Sarole Html Report    excel_file=C:\\tmp\\Role\\Create_Date_Overall_Report.xlsx    html_file=C:\\tmp\\Role\\Create_Date_Overall_Report.html    highlight_text=No authorization in user master record
 
 Deletefile
+    Delete Specific File    file_path=C:\\tmp\\Role\\Create_Role_extract.xlsx
     Delete Specific File    file_path=C:\\tmp\\Role\\Create_Role_extract.xlsx
     Delete Specific File    file_path=C:\\tmp\\Role\\Create_Role_extract.txt
     Delete Specific File    file_path=C:\\tmp\\Role\\Create_Tcode_extract.xlsx
