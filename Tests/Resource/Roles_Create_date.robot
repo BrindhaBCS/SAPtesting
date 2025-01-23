@@ -4,6 +4,7 @@ Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    String
 Library    DateTime
+Library    Report_Library.py
 *** Keywords ***
 System Logon
     Start Process     ${symvar('SAP_SERVER')}
@@ -300,11 +301,16 @@ Create_date
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    1
     Copy Images    source_dir=${OUTPUT_DIR}    target_dir=C:\\tmp\\Role\\Screendir\\Create\\
+    Sleep    1
+    Remove Rows Before Start Row    file_path=C:\\tmp\\Role\\Create_Date_Overall_Report.xlsx    sheet_name=Sheet1    start_row=5
+    Sleep    3
+    Clean Excel Sheet    file_path=C:\\tmp\\Role\\Create_Date_Overall_Report.xlsx    sheet_name=Sheet1
+    Sleep    2
+    Sarole Html Report    excel_file=C:\\tmp\\Role\\Create_Date_Overall_Report.xlsx    html_file=C:\\tmp\\Role\\Create_Date_Overall_Report.html    highlight_text="No authorization in user master record"
 
 Deletefile
     Delete Specific File    file_path=C:\\tmp\\Role\\Create_Role_extract.xlsx
-    Sleep    1
     Delete Specific File    file_path=C:\\tmp\\Role\\Create_Role_extract.txt
-    Sleep    1
     Delete Specific File    file_path=C:\\tmp\\Role\\Create_Tcode_extract.xlsx
+    Delete Specific File    file_path=C:\\tmp\\Role\\Create_Date_Overall_Report.xlsx
     Sleep    1
