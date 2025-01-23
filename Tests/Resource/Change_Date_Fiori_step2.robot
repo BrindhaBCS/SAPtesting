@@ -6,10 +6,16 @@ ${URL}    https://ts4hana2022.sap.symphony4sap.com:44301/sap/bc/ui2/flp?sap-clie
 
 *** Keywords ***
 Fiori_Login
-    # ${login}    Login To Sap Fiori_web_Page   ${URL}    ${symvar('Fiori_LaunchPad_UserName')}    ${symvar('Fiori_LaunchPad_UserPassword')}    
-    ${login}    Login To Sap Fiori_web_Page   ${URL}    ${symvar('Fiori_LaunchPad_UserName')}    %{Fiori_LaunchPad_UserPassword}      
+    Open Browser    ${FIORI_URL}    ${BROWSER}
     Sleep    1
-    Log To Console    ${login}
+    Maximize Browser Window
+    Input Text    name:sap-user    ${symvar('Fiori_LaunchPad_UserName')}
+    Sleep    1
+    # Input Password    name:sap-password    ${symvar('Fiori_LaunchPad_UserPassword')}    
+    Input Password    name:sap-password    %{Fiori_LaunchPad_UserPassword}
+    Sleep    1
+    Click Element    xpath://button[normalize-space(text())='Log On']
+    Sleep    10
     ${index_c}    Set Variable    1
     WHILE    True
         ${xpath}    Set Variable    (//div[@class='sapMGTHdrContent OneByOne'])[${index_c}]
