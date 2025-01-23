@@ -5,6 +5,7 @@ Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    String
 Library    DateTime
+Library    Report_Library.py
 *** Variables ***
 ${TREE_PATH}    wnd[0]/usr/cntlGUI_AREA/shellcont/shell/shellcont[1]/shell
 ${TREE_PATH_1}    wnd[0]/usr/cntlGUI_AREA/shellcont/shell/shellcont[0]/shell
@@ -54,11 +55,11 @@ Error_Capturing
     Sleep    1
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    1
-    Remove Rows Before Start Row    C:\\tmp\\FIORI\\Fiori_Change_Date_Overall_Report.xlsx    Sheet1    5
+    Remove Rows Before Start Row    file_path=C:\\tmp\\FIORI\\Fiori_Change_Date_Overall_Report.xlsx    sheet_name=Sheet1    start_row=5
     Sleep    3
-    Clean Excel Sheet    C:\\tmp\\FIORI\\Fiori_Change_Date_Overall_Report.xlsx    Sheet1
+    Clean Excel Sheet    file_path=C:\\tmp\\FIORI\\Fiori_Change_Date_Overall_Report.xlsx    sheet_name=Sheet1
     Sleep    2
-    Generate Html Report    C:\\tmp\\FIORI\\Fiori_Change_Date_Overall_Report.xlsx    C:\\tmp\\FIORI\\Fiori_Change_Date_Overall_Report.html
+    Generate Html Report    excel_file=C:\\tmp\\FIORI\\Fiori_Change_Date_Overall_Report.xlsx    html_file=C:\\tmp\\FIORI\\Fiori_Change_Date_Overall_Report.html    highlight_text=No authorization in user master record
     Sleep    2
     # Transaction    /n/IWBEP/ERROR_LOG
     Run Transaction    /n/IWBEP/ERROR_LOG
@@ -105,6 +106,5 @@ Error_Capturing
     Deletefile
 Deletefile
     Delete Specific File    file_path=C:\\tmp\\FIORI\\Fiori_Change_Role_extract.xlsx
-    Sleep    1
     Delete Specific File    file_path=C:\\tmp\\FIORI\\Fiori_Change_Role_extract.txt
-    Sleep    1
+    Delete Specific File    file_path=C:\\tmp\\FIORI\\Fiori_Change_Date_Overall_Report.xlsx
