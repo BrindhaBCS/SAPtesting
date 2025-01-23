@@ -67,11 +67,11 @@ Create_date
     Sleep    0.5 seconds
     clear field text    wnd[1]/usr/ctxtDY_PATH
     Sleep    0.5 seconds
-    Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp
+    Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp\\Role\\
     Sleep    0.5 seconds
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    0.5 seconds
-    Roles extract    C:\\tmp\\Create_Role_extract.xlsx    Sheet1    C:\\tmp\\Create_Role_extract.txt
+    Roles extract    C:\\tmp\\Role\\Create_Role_extract.xlsx    Sheet1    C:\\tmp\\Role\\Create_Role_extract.txt
     Sleep    0.5 seconds
     #tcode se16
     Run Transaction     /nse16
@@ -84,7 +84,7 @@ Create_date
     Sleep    0.5 seconds
     Click Element    wnd[1]/tbar[0]/btn[23]
     Sleep    0.5 seconds
-    Input Text    wnd[2]/usr/ctxtDY_PATH    C:\\tmp\\
+    Input Text    wnd[2]/usr/ctxtDY_PATH    C:\\tmp\\Role\\
     Sleep    0.5 seconds
     Input Text    wnd[2]/usr/ctxtDY_FILENAME    Create_Role_extract.txt
     Sleep    0.5 seconds
@@ -110,11 +110,11 @@ Create_date
     Sleep    0.5 seconds
     clear field text    wnd[1]/usr/ctxtDY_PATH
     Sleep    0.5 seconds
-    Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp
+    Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp\\Role\\
     Sleep    0.5 seconds
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    1
-    ${tcode_length}    Input Role Extract    C:\\tmp\\Create_Tcode_extract.xlsx    Sheet1
+    ${tcode_length}    Input Role Extract    C:\\tmp\\Role\\Create_Tcode_extract.xlsx    Sheet1
     Log    ${tcode_length}
     Log To Console    ${tcode_length}
     Sleep    1
@@ -290,15 +290,15 @@ Create_date
     Sleep    1
     Clear Field Text    wnd[1]/usr/ctxtDY_PATH
     Sleep    1
-    Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp
+    Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp\\Role\\
     Sleep    1
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    2
 
 Deletefile
-    Delete Specific File    file_path=C:\\tmp\\Create_Role_extract.xlsx
+    Delete Specific File    file_path=C:\\tmp\\Role\\Create_Role_extract.xlsx
     Sleep    1
-    Delete Specific File    file_path=C:\\tmp\\Create_Role_extract.txt
+    Delete Specific File    file_path=C:\\tmp\\Role\\Create_Role_extract.txt
     Sleep    1
-    Delete Specific File    file_path=C:\\tmp\\Create_Tcode_extract.xlsx
+    Delete Specific File    file_path=C:\\tmp\\Role\\Create_Tcode_extract.xlsx
     Sleep    1
