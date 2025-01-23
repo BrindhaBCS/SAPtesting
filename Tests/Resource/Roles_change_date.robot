@@ -156,15 +156,21 @@ Change_Date
             Sleep    1
             TEST_System_Logon
             Sleep    1
+            ${index}    Set Variable    1
             FOR    ${tcode}    IN    @{tcodes}
                 Log    TCODE: ${tcode}
                 Sleep    1
                 Run Transaction    /n${tcode}
-                Sleep    2
-                Take Screenshot    tcode_${tcode}.jpg
+                Sleep    3
+                ${CLEANED_TEXT}=  Remove String  ${role}    /
+                Log  ${CLEANED_TEXT}
+                ${CLEANED_TEXT_Two}=  Remove String  ${tcode}    /
+                Log  ${CLEANED_TEXT_Two}
+                Take Screenshot    ${index}_${CLEANED_TEXT}_${CLEANED_TEXT_Two}.jpg
                 Sleep    1
                 ${think}    Get Value    wnd[0]/sbar/pane[0]
                 Sleep    1
+                ${index}    Evaluate    ${index} + 1
                 IF    '${think}' == 'You are not authorized to use transaction ${tcode}'
                     Log    !!!!! ${tcode} You are not authorized to use transaction.
                     Log To Console    !!!!! ${tcode} You are not authorized to use transaction.
@@ -219,17 +225,21 @@ Change_Date
             Sleep    1
             TEST_System_Logon
             Sleep    1
+            ${index}    Set Variable    1
             FOR    ${tcode}    IN    @{tcodes}
                 Log    TCODE: ${tcode}
                 Sleep    1
                 Run Transaction    /n${tcode}
-                Sleep    2
-                ${CLEANED_TEXT}=  Remove String  ${tcode}
+                Sleep    3
+                ${CLEANED_TEXT}=  Remove String  ${role}    /
                 Log  ${CLEANED_TEXT}
-                Take Screenshot    tcode_${tcode}.jpg
+                ${CLEANED_TEXT_Two}=  Remove String  ${tcode}    /
+                Log  ${CLEANED_TEXT_Two}
+                Take Screenshot    ${index}_${CLEANED_TEXT}_${CLEANED_TEXT_Two}.jpg
                 Sleep    1
                 ${think}    Get Value    wnd[0]/sbar/pane[0]
                 Sleep    1
+                ${index}    Evaluate    ${index} + 1
                 IF    '${think}' == 'You are not authorized to use transaction ${tcode}'
                     Log    !!!!! ${tcode} You are not authorized to use transaction.
                     Log To Console    !!!!! ${tcode} You are not authorized to use transaction.
@@ -291,10 +301,17 @@ Change_Date
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    1
     Copy Images    source_dir=${OUTPUT_DIR}    target_dir=C:\\tmp\\Role\\Screendir\\Change\\
+    Sleep    1
+    Remove Rows Before Start Row    file_path=C:\\tmp\\Role\\Change_Date_Overall_Report.xlsx    sheet_name=Sheet1    start_row=5
+    Sleep    3
+    Clean Excel    file_path=C:\\tmp\\Role\\Change_Date_Overall_Report.xlsx    sheet_name=Sheet1
+    Sleep    2
+    Delete Specific File    file_path=C:\\tmp\\Role\\Change_Date_Overall_Report.html
+    Sarole Html Report    excel_file=C:\\tmp\\Role\\Change_Date_Overall_Report.xlsx    html_file=C:\\tmp\\Role\\Change_Date_Overall_Report.html    highlight_text=No authorization in user master record
+
 Delete_file
     Delete Specific File    file_path=C:\\tmp\\Role\\Change_Role_extract.xlsx
-    Sleep    1
     Delete Specific File    file_path=C:\\tmp\\Role\\Change_Role_extract.txt
-    Sleep    1
     Delete Specific File    file_path=C:\\tmp\\Role\\Change_Tcode_extract.xlsx
+    Delete Specific File    file_path=C:\\tmp\\Role\\Change_Date_Overall_Report.xlsx
     Sleep    1
