@@ -10,27 +10,21 @@ System Logon
     Sleep    2
     Connect To Session
     Open Connection    ${symvar('SA_Role_Connection')}
-    Sleep   1
     Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('SA_Role_Client_Id')}
-    Sleep   1
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('SA_Role_User_Name')}
-    Sleep   1
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('SA_Role_User_Password')}
     Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{SA_Role_User_Password}
     Send Vkey    0
     Sleep    1
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
-    Sleep   1
+    Sleep    1
 TEST_System_Logon
     Start Process     ${symvar('SAP_SERVER')}
     Sleep    2
     Connect To Session
     Open Connection    ${symvar('SA_Role_Connection')}
-    Sleep   1
     Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('SA_Role_Client_Id')}
-    Sleep   1
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('New_User_Name')}
-    Sleep   1
     Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('User_Reset_Current_Password ')}
     # Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{User_Reset_Current_Password}
     Send Vkey    0
@@ -162,15 +156,17 @@ Create_date
             Sleep    1
             TEST_System_Logon
             Sleep    1
+            ${index}    Set Variable    1
             FOR    ${tcode}    IN    @{tcodes}
                 Log    TCODE: ${tcode}
                 Sleep    1
                 Run Transaction    /n${tcode}
                 Sleep    2
-                Take Screenshot    tcode_${tcode}.jpg
+                Take Screenshot    Tcode_${index}.jpg
                 Sleep    1
                 ${think}    Get Value    wnd[0]/sbar/pane[0]
                 Sleep    1
+                ${index}    Evaluate    ${index} + 1
                 IF    '${think}' == 'You are not authorized to use transaction ${tcode}'
                     Log    !!!!! ${tcode} You are not authorized to use transaction.
                     Log To Console    !!!!! ${tcode} You are not authorized to use transaction.
@@ -225,6 +221,7 @@ Create_date
             Sleep    1
             TEST_System_Logon
             Sleep    1
+            ${index}    Set Variable    1
             FOR    ${tcode}    IN    @{tcodes}
                 Log    TCODE: ${tcode}
                 Sleep    1
@@ -234,6 +231,7 @@ Create_date
                 Sleep    1
                 ${think}    Get Value    wnd[0]/sbar/pane[0]
                 Sleep    1
+                ${index}    Evaluate    ${index} + 1
                 IF    '${think}' == 'You are not authorized to use transaction ${tcode}'
                     Log    !!!!! ${tcode} You are not authorized to use transaction.
                     Log To Console    !!!!! ${tcode} You are not authorized to use transaction.
