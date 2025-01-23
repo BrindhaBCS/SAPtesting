@@ -1,3 +1,4 @@
+
 *** Settings ***
 Library    SeleniumLibrary
 Library    String
@@ -24,7 +25,7 @@ Fiori_Login
         ${status}    Run Keyword And Return Status    Click Element    xpath=${xpath}
         Sleep    3
         Run Keyword If    '${status}' == 'False'    Exit For Loop
-        Take Screenshot    Catalog_${index_c}.png
+        Capture Page Screenshot    Catalog_${index_c}.png
         Sleep    2
         Run Keyword And Ignore Error    Go Back
         Sleep    2
