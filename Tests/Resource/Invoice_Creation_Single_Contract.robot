@@ -66,7 +66,8 @@ Rental Invoice
     ELSE  
         Run Transaction     /nVF01
         Sleep   1
-        ${contract}      Evaluate    eval('${contract_number}').get("contract_number")
+        ${contract}      Get Contractnumber    ${symvar('documents')}
+        Set Global Variable    ${contract} 
         Input Text  wnd[0]/usr/tblSAPMV60ATCTRL_ERF_FAKT/ctxtKOMFK-VBELN[0,0]   ${contract}
         ${current_date}     Get Current Date    result_format=%d.%m.%Y
         Input Text  wnd[0]/usr/ctxtRV60A-FKDAT  ${current_date}
