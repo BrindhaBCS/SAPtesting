@@ -10,15 +10,11 @@ System Logon
     Sleep    2
     Connect To Session
     Open Connection    ${symvar('SA_Role_Connection')}
-    Sleep   1
     Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('SA_Role_Client_Id')}
-    Sleep   1
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('SA_Role_User_Name')}
-    Sleep   1
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('SA_Role_User_Password')}
     Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{SA_Role_User_Password}
     Send Vkey    0
-    Sleep    1
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
     Sleep   1
 TEST_System_Logon
@@ -26,11 +22,8 @@ TEST_System_Logon
     Sleep    2
     Connect To Session
     Open Connection    ${symvar('SA_Role_Connection')}
-    Sleep   1
     Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('SA_Role_Client_Id')}
-    Sleep   1
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('New_User_Name')}
-    Sleep   1
     Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('User_Reset_Current_Password ')}
     # Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{User_Reset_Current_Password}
     Send Vkey    0
@@ -38,15 +31,14 @@ TEST_System_Logon
 
 System Logout
     Run Transaction     /nex
-    Sleep   2
 
 Change_Date
     Run Transaction     /nse16
-    Sleep    2
+    Sleep    1
     Input Text    wnd[0]/usr/ctxtDATABROWSE-TABLENAME    AGR_DEFINE
     Send Vkey    0
     Input Text    wnd[0]/usr/ctxtI8-LOW    ${symvar('Change_From_Date')}
-    Sleep    2
+    Sleep    0.5
     ${Get Current Date}    Get Current Date    result_format=%d.%m.%Y
     Input Text    wnd[0]/usr/ctxtI8-HIGH    ${symvar('Change_To_Date')}
    Sleep    0.5 seconds
@@ -68,11 +60,11 @@ Change_Date
     Sleep    0.5 seconds
     clear field text    wnd[1]/usr/ctxtDY_PATH
     Sleep    0.5 seconds
-    Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp
+    Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp\\Role\\
     Sleep    0.5 seconds
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    0.5 seconds
-    Roles extract    C:\\tmp\\Change_Role_extract.xlsx    Sheet1    C:\\tmp\\Change_Role_extract.txt
+    Roles extract    C:\\tmp\\Role\\Change_Role_extract.xlsx    Sheet1    C:\\tmp\\Role\\Change_Role_extract.txt
     Sleep    0.5 seconds
     #tcode se16
     Run Transaction     /nse16
@@ -85,7 +77,7 @@ Change_Date
     Sleep    0.5 seconds
     Click Element    wnd[1]/tbar[0]/btn[23]
     Sleep    0.5 seconds
-    Input Text    wnd[2]/usr/ctxtDY_PATH    C:\\tmp\\
+    Input Text    wnd[2]/usr/ctxtDY_PATH    C:\\tmp\\Role\\
     Sleep    0.5 seconds
     Input Text    wnd[2]/usr/ctxtDY_FILENAME    Change_Role_extract.txt
     Sleep    0.5 seconds
@@ -111,11 +103,11 @@ Change_Date
     Sleep    0.5 seconds
     clear field text    wnd[1]/usr/ctxtDY_PATH
     Sleep    0.5 seconds
-    Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp
+    Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp\\Role\\
     Sleep    0.5 seconds
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    1
-    ${tcode_length}    Input Role Extract    C:\\tmp\\Change_Tcode_extract.xlsx    Sheet1
+    ${tcode_length}    Input Role Extract    C:\\tmp\\Role\\Change_Tcode_extract.xlsx    Sheet1
     Log    ${tcode_length}
     Log To Console    ${tcode_length}
     Sleep    1
@@ -291,14 +283,15 @@ Change_Date
     Sleep    1
     Clear Field Text    wnd[1]/usr/ctxtDY_PATH
     Sleep    1
-    Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp
+    Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp\\Role\\
     Sleep    1
     Click Element    wnd[1]/tbar[0]/btn[11]
-    Sleep    2
+    Sleep    1
+    Copy Images    source_dir=${OUTPUT_DIR}    target_dir=C:\\tmp\\Role\\Screendir\\Change\\
 Delete_file
-    Delete Specific File    file_path=C:\\tmp\\Change_Role_extract.xlsx
+    Delete Specific File    file_path=C:\\tmp\\Role\\Change_Role_extract.xlsx
     Sleep    1
-    Delete Specific File    file_path=C:\\tmp\\Change_Role_extract.txt
+    Delete Specific File    file_path=C:\\tmp\\Role\\Change_Role_extract.txt
     Sleep    1
-    Delete Specific File    file_path=C:\\tmp\\Change_Tcode_extract.xlsx
+    Delete Specific File    file_path=C:\\tmp\\Role\\Change_Tcode_extract.xlsx
     Sleep    1

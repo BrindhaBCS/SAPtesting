@@ -31,7 +31,6 @@ TEST_System_Logon
     Sleep    1
 System Logout
     Run Transaction     /nex
-    Sleep   1
 
 Create_date
     Run Transaction     /nse16
@@ -291,8 +290,8 @@ Create_date
     Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp\\Role\\
     Sleep    1
     Click Element    wnd[1]/tbar[0]/btn[11]
-    Sleep    2
-    Copy Images    source_dir=${OUTPUT_DIR}    target_dir=C:\\tmp\\Screendir\\
+    Sleep    1
+    Copy Images    source_dir=${OUTPUT_DIR}    target_dir=C:\\tmp\\Role\\Screendir\\Create\\
 
 Deletefile
     Delete Specific File    file_path=C:\\tmp\\Role\\Create_Role_extract.xlsx
