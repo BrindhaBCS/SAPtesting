@@ -1,8 +1,10 @@
-
 *** Settings ***
-Library    SAP_Tcode_Library.py
+Library    SeleniumLibrary
+Library    String
+Library    Collections
 *** Variables ***
-${URL}    https://ts4hana2022.sap.symphony4sap.com:44301/sap/bc/ui2/flp?sap-client=001&sap-language=EN
+${FIORI_URL}    https://ts4hana2022.sap.symphony4sap.com:44301/sap/bc/ui2/flp?sap-client=001&sap-language=EN
+${BROWSER}    CHROME
 
 *** Keywords ***
 Fiori_Login
