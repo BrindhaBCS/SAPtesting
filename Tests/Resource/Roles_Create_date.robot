@@ -235,7 +235,7 @@ Create_date
                 Log  ${CLEANED_TEXT}
                 ${CLEANED_TEXT_Two}=  Remove String  ${tcode}    /
                 Log  ${CLEANED_TEXT_Two}
-                Take Screenshot    ${index}Role:${CLEANED_TEXT}_Tcode:${CLEANED_TEXT_Two}.jpg
+                Take Screenshot    ${index}_${CLEANED_TEXT}_${CLEANED_TEXT_Two}.jpg
                 Sleep    1
                 ${think}    Get Value    wnd[0]/sbar/pane[0]
                 Sleep    0.5 seconds
