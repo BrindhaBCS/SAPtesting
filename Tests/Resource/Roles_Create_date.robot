@@ -162,7 +162,7 @@ Create_date
                 Sleep    1
                 Run Transaction    /n${tcode}
                 Sleep    2
-                Take Screenshot    Tcode_${index}.jpg
+                Take Screenshot    Create_Tcode_${index}.jpg
                 Sleep    1
                 ${think}    Get Value    wnd[0]/sbar/pane[0]
                 Sleep    1
@@ -227,7 +227,7 @@ Create_date
                 Sleep    1
                 Run Transaction    /n${tcode}
                 Sleep    2
-                Take Screenshot    tcode_${tcode}.jpg
+                Take Screenshot    Create_Tcode_${tcode}.jpg
                 Sleep    1
                 ${think}    Get Value    wnd[0]/sbar/pane[0]
                 Sleep    1
@@ -292,6 +292,7 @@ Create_date
     Sleep    1
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    2
+    Copy Images    source_dir=${OUTPUT_DIR}    target_dir=C:\\tmp\\Screendir\\
 
 Deletefile
     Delete Specific File    file_path=C:\\tmp\\Role\\Create_Role_extract.xlsx
