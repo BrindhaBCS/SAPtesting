@@ -4,6 +4,7 @@ Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    String
 Library    DateTime
+Library    Report_Library.py
 
 *** Variables ***
 ${TREE_PATH}    wnd[0]/usr/cntlGUI_AREA/shellcont/shell/shellcont[1]/shell
@@ -27,7 +28,6 @@ System Logon
     Sleep   1
 System Logout
     Run Transaction    /nex
-    Sleep   1
 Error_Capturing
     Run Transaction    /nstauthtrace
     Sleep    1
@@ -53,11 +53,11 @@ Error_Capturing
     Sleep    1
     Click Element    wnd[1]/tbar[0]/btn[11]
     Sleep    2
-    Remove Rows Before Start Row    C:\\tmp\\FIORI\\Fiori_LaunchPad_Report.xlsx    Sheet1    5
+    Remove Rows Before Start Row        file_path=C:\\tmp\\FIORI\\Fiori_LaunchPad_Report.xlsx        sheet_name=Sheet1        start_row=5
     Sleep    3
-    Clean Excel Sheet    C:\\tmp\\FIORI\\Fiori_LaunchPad_Report.xlsx    Sheet1
+    Clean Excel        file_path=C:\\tmp\\FIORI\\Fiori_LaunchPad_Report.xlsx        sheet_name=Sheet1
     Sleep    2
-    Generate Html Report    C:\\tmp\\FIORI\\Fiori_LaunchPad_Report.xlsx    C:\\tmp\\FIORI\\Fiori_LaunchPad_Report.html
+    Fiori Html Report    excel_file=C:\\tmp\\FIORI\\Fiori_LaunchPad_Report.xlsx        html_file=C:\\tmp\\FIORI\\Fiori_LaunchPad_Createdate_Report.html    highlight_text=No authorization in user master record
     Sleep    2
 WBEP
     Run Transaction    /n/IWBEP/ERROR_LOG
@@ -103,6 +103,5 @@ WFND
     Sleep    1
 Deletefile
     Delete Specific File    file_path=C:\\tmp\\FIORI\\Fiori_Create_Role_extract.xlsx
-    Sleep    1
     Delete Specific File    file_path=C:\\tmp\\FIORI\\Fiori_Create_Role_extract.txt
-    Sleep    1   
+    Delete Specific File    file_path=C:\\tmp\\FIORI\\Fiori_LaunchPad_Report.xlsx

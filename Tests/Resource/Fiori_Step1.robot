@@ -23,7 +23,6 @@ System Logon
     Sleep   1
 System Logout
     Run Transaction     /nex
-    Sleep   1
 
 Fiori_Create_date
     Run Transaction     /nse16
