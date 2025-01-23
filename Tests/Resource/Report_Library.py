@@ -74,7 +74,7 @@ class Report_Library:
         workbook.close()
         return f"All rows before row {start_row} have been removed."
 
-    def clean_excel_sheet(self, file_path, sheet_name):
+    def clean_excel(self, file_path, sheet_name):
         try:
             workbook = load_workbook(file_path)
             if sheet_name not in workbook.sheetnames:

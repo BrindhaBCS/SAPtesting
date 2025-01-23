@@ -304,7 +304,7 @@ Create_date
     Sleep    1
     Remove Rows Before Start Row    file_path=C:\\tmp\\Role\\Create_Date_Overall_Report.xlsx    sheet_name=Sheet1    start_row=5
     Sleep    3
-    Clean Excel Sheet    file_path=C:\\tmp\\Role\\Create_Date_Overall_Report.xlsx    sheet_name=Sheet1
+    Clean Excel    file_path=C:\\tmp\\Role\\Create_Date_Overall_Report.xlsx    sheet_name=Sheet1
     Sleep    2
     Sarole Html Report    excel_file=C:\\tmp\\Role\\Create_Date_Overall_Report.xlsx    html_file=C:\\tmp\\Role\\Create_Date_Overall_Report.html    highlight_text="No authorization in user master record"
 
