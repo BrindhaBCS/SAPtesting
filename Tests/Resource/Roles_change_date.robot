@@ -223,6 +223,8 @@ Change_Date
                 Sleep    1
                 Run Transaction    /n${tcode}
                 Sleep    2
+                ${CLEANED_TEXT}=  Remove String  ${tcode}
+                Log  ${CLEANED_TEXT}
                 Take Screenshot    tcode_${tcode}.jpg
                 Sleep    1
                 ${think}    Get Value    wnd[0]/sbar/pane[0]

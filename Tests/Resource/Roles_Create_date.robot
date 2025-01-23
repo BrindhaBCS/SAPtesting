@@ -160,8 +160,12 @@ Create_date
                 Log    TCODE: ${tcode}
                 Sleep    1
                 Run Transaction    /n${tcode}
-                Sleep    2
-                Take Screenshot    Create_Tcode_${index}.jpg
+                Sleep    3
+                ${CLEANED_TEXT}=  Remove String  ${role}    /
+                Log  ${CLEANED_TEXT}
+                ${CLEANED_TEXT_Two}=  Remove String  ${tcode}    /
+                Log  ${CLEANED_TEXT_Two}
+                Take Screenshot    ${index}Role:${CLEANED_TEXT}_Tcode:${CLEANED_TEXT_Two}.jpg
                 Sleep    1
                 ${think}    Get Value    wnd[0]/sbar/pane[0]
                 Sleep    1
@@ -225,11 +229,15 @@ Create_date
                 Log    TCODE: ${tcode}
                 Sleep    1
                 Run Transaction    /n${tcode}
-                Sleep    2
-                Take Screenshot    Create_Tcode_${tcode}.jpg
+                Sleep    3
+                ${CLEANED_TEXT}=  Remove String  ${role}    /
+                Log  ${CLEANED_TEXT}
+                ${CLEANED_TEXT_Two}=  Remove String  ${tcode}    /
+                Log  ${CLEANED_TEXT_Two}
+                Take Screenshot    ${index}Role:${CLEANED_TEXT}_Tcode:${CLEANED_TEXT_Two}.jpg
                 Sleep    1
                 ${think}    Get Value    wnd[0]/sbar/pane[0]
-                Sleep    1
+                Sleep    0.5 seconds
                 ${index}    Evaluate    ${index} + 1
                 IF    '${think}' == 'You are not authorized to use transaction ${tcode}'
                     Log    !!!!! ${tcode} You are not authorized to use transaction.
