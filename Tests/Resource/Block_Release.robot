@@ -42,7 +42,8 @@ Release Block
         # FOR     ${contract}     IN     @{symvar('documents')}
             # Set Global Variable     ${contract}
         Run Transaction     /nVA42
-        ${contract}      Extract Numeric    ${symvar('documents')}
+        ${contract}      Get Contractnumber    ${symvar('documents')}
+        Set Global Variable    ${contract}    
         Input Text  wnd[0]/usr/ctxtVBAK-VBELN    ${contract}
         Send Vkey    0
         Click Element   wnd[0]/usr/subSUBSCREEN_HEADER:SAPMV45A:4021/btnBT_HEAD

@@ -1677,3 +1677,8 @@ class SAP_Tcode_Library:
     # def get_length(self, data):
     #     length = len(data)
     #     return length
+
+    def get_contractnumber(self, data):
+        # json_data = json.loads(data)
+        contract_number = data.get("contract_number")
+        return contract_number
