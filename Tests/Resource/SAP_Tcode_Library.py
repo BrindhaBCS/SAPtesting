@@ -16,6 +16,8 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
+import shutil
+from PIL import Image
 
 class SAP_Tcode_Library:
     """The SapGuiLibrary is a library that enables users to create tests for the Sap Gui application
