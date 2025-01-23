@@ -57,9 +57,9 @@ Error_Capturing
     Sleep    1
     Remove Rows Before Start Row    file_path=C:\\tmp\\FIORI\\Fiori_Change_Date_Overall_Report.xlsx    sheet_name=Sheet1    start_row=5
     Sleep    3
-    Clean Excel Sheet    file_path=C:\\tmp\\FIORI\\Fiori_Change_Date_Overall_Report.xlsx    sheet_name=Sheet1
+    Clean Excel    file_path=C:\\tmp\\FIORI\\Fiori_Change_Date_Overall_Report.xlsx    sheet_name=Sheet1
     Sleep    2
-    Generate Html Report    excel_file=C:\\tmp\\FIORI\\Fiori_Change_Date_Overall_Report.xlsx    html_file=C:\\tmp\\FIORI\\Fiori_Change_Date_Overall_Report.html    highlight_text=No authorization in user master record
+    Fiori Html Report    excel_file=C:\\tmp\\FIORI\\Fiori_Change_Date_Overall_Report.xlsx    html_file=C:\\tmp\\FIORI\\Fiori_Change_Date_Overall_Report.html    highlight_text=No authorization in user master record
     Sleep    2
     # Transaction    /n/IWBEP/ERROR_LOG
     Run Transaction    /n/IWBEP/ERROR_LOG
