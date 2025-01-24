@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    ../Tests/Resource/ERS_Invoice.robot
-Test Tags    ERS_Invoice
+Test Tags    ERS_Invoice_d
 Suite Setup    ERS_Invoice.System Logon
 Suite Teardown    ERS_Invoice.System Logout
   

@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    ../Tests/Resource/ERS_Verification.robot
-Test Tags    ERS_Verification
+Test Tags    ERS_Verification_d
 Suite Setup    ERS_Verification.System Logon
 Suite Teardown    ERS_Verification.System Logout
   
