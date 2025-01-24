@@ -10,7 +10,7 @@ Library    JSONLibrary
 
 *** Variables ***
 ${rental_date}  01.10.2025
-# ${contract_number}    ${symvar('documents')}
+${contract}    ${symvar('contract')}
 ${rental_text}  wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpKFTE/ssubSUBSCREEN_BODY:SAPLV70T:2100/cntlSPLITTER_CONTAINER/shellcont/shellcont/shell/shellcont[1]/shell
 ${rental_form}  wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpKFTE/ssubSUBSCREEN_BODY:SAPLV70T:2100/cntlSPLITTER_CONTAINER/shellcont/shellcont/shell/shellcont[0]/shell
 ${target_file_name}    C:\\Output\\Rental_Invoice.xlsx
@@ -65,10 +65,6 @@ Rental Invoice
 
     ELSE  
         Run Transaction     /nVF01
-        Sleep   1
-        ${contract}      Get Contractnumber    ${symvar('documents')}
-        Set Global Variable    ${contract}
-        Log To Console    ${contract}
         Sleep    2
         Input Text  wnd[0]/usr/tblSAPMV60ATCTRL_ERF_FAKT/ctxtKOMFK-VBELN[0,0]   ${contract}
         ${current_date}     Get Current Date    result_format=%d.%m.%Y
