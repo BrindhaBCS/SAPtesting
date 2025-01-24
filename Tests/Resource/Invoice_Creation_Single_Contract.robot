@@ -68,6 +68,7 @@ Rental Invoice
         Sleep   1
         ${contract}      Get Contractnumber    ${symvar('documents')}
         Set Global Variable    ${contract}
+        Log To Console    ${contract}
         Sleep    2
         Input Text  wnd[0]/usr/tblSAPMV60ATCTRL_ERF_FAKT/ctxtKOMFK-VBELN[0,0]   ${contract}
         ${current_date}     Get Current Date    result_format=%d.%m.%Y
