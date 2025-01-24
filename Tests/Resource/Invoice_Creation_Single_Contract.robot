@@ -10,7 +10,7 @@ Library    JSONLibrary
 
 *** Variables ***
 ${rental_date}  01.10.2025
-${contract_number}    ${symvar('documents')}
+# ${contract_number}    ${symvar('documents')}
 ${rental_text}  wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpKFTE/ssubSUBSCREEN_BODY:SAPLV70T:2100/cntlSPLITTER_CONTAINER/shellcont/shellcont/shell/shellcont[1]/shell
 ${rental_form}  wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpKFTE/ssubSUBSCREEN_BODY:SAPLV70T:2100/cntlSPLITTER_CONTAINER/shellcont/shellcont/shell/shellcont[0]/shell
 ${target_file_name}    C:\\Output\\Rental_Invoice.xlsx

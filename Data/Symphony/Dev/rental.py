@@ -1,8 +1,8 @@
-SAP_SERVER = "$SAP_SERVER"
-Rental_Connection = "$Rental_Connection"
-Rental_Client = "$Rental_Client"
-Rental_User = "$Rental_User1"
-Invoice_PDF_PATH = "$Invoice_PDF_PATH"
+SAP_SERVER = "C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPgui\\saplogon.exe"
+Rental_Connection = "TS4"
+Rental_Client = "001"
+Rental_User = "EIDTEST"
+Invoice_PDF_PATH = "C:\\Symphony\\Rental_Invoice\\Download"
 Layout = ["Contracts - Header",]
-month_json = $month_json
-documents = $contract_number
+month_json = [{"Month":"January","Year":"2025"}]
+documents = {"contract_number":"40000079"}
