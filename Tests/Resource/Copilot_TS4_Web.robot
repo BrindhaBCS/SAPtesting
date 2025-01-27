@@ -4,14 +4,17 @@ Library    SeleniumLibrary
 ${Copilot_URL}    https://me.sap.com/app/securitynotes
 ${BROWSER}    CHROME
 ${System}    TS4
+${ACCEPT_BUTTON}   xpath=//button[contains(text(),'I accept all cookies')]
 ** Keywords ***
 Web_Portal_TS4
     Open Browser    ${Copilot_URL}    ${BROWSER}
     Sleep    1
     Maximize Browser Window
     Input Text    name:j_username    S0023459113
-    Sleep    1
+    Sleep    5
     Click Element    xpath://div[normalize-space(text())='Continue']
+    Run Keyword And Ignore Error    ${ACCEPT_BUTTON}    timeout=20     
+    Click Element    ${ACCEPT_BUTTON}
     Wait Until Element Is Visible    name:password    30s
     Input Password    name:password    %(Cop_Web_Password)
     Wait Until Element Is Visible    xpath://button[normalize-space(text())='Sign in']    30s
