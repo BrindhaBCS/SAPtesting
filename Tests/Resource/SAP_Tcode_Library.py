@@ -16,9 +16,19 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.base import MIMEBase
 from email import encoders
-import shutil
+import openpyxl
+import json
+import pandas as pd
+from openpyxl import load_workbook
+import requests
+from openpyxl import load_workbook, Workbook
+import win32com.client as win32
+import win32com.client
+import re
+from datetime import datetime
 from PIL import Image
-
+from fpdf import FPDF
+from openpyxl import load_workbook
 class SAP_Tcode_Library:
     """The SapGuiLibrary is a library that enables users to create tests for the Sap Gui application
 
@@ -718,6 +728,87 @@ class SAP_Tcode_Library:
             message = "Cannot send Vkey to given window, is window wnd[% s] actually open?" % window
             raise ValueError(message)
         time.sleep(self.explicit_wait)
+
+    # def send_vkey(self, window_id, vkey_id):
+    #     """Sends a SAP virtual key combination to the window, not into an element.
+    #     If you want to send a value to a text field, use `input text` instead.
+
+    #     To send a vkey, you can either use te *VKey ID* or the *Key combination*.
+
+    #     Sap Virtual Keys (on Windows)
+    #     | *VKey ID* | *Key combination*     | *VKey ID* | *Key combination*     | *VKey ID* | *Key combination*     |
+    #     | *0*       | Enter                 | *26*      | Ctrl + F2             | *72*      | Ctrl + A              |
+    #     | *1*       | F1                    | *27*      | Ctrl + F3             | *73*      | Ctrl + D              |
+    #     | *2*       | F2                    | *28*      | Ctrl + F4             | *74*      | Ctrl + N              |
+    #     | *3*       | F3                    | *29*      | Ctrl + F5             | *75*      | Ctrl + O              |
+    #     | *4*       | F4                    | *30*      | Ctrl + F6             | *76*      | Shift + Del           |
+    #     | *5*       | F5                    | *31*      | Ctrl + F7             | *77*      | Ctrl + Ins            |
+    #     | *6*       | F6                    | *32*      | Ctrl + F8             | *78*      | Shift + Ins           |
+    #     | *7*       | F7                    | *33*      | Ctrl + F9             | *79*      | Alt + Backspace       |
+    #     | *8*       | F8                    | *34*      | Ctrl + F10            | *80*      | Ctrl + Page Up        |
+    #     | *9*       | F9                    | *35*      | Ctrl + F11            | *81*      | Page Up               |
+    #     | *10*      | F10                   | *36*      | Ctrl + F12            | *82*      | Page Down             |
+    #     | *11*      | F11 or Ctrl + S       | *37*      | Ctrl + Shift + F1     | *83*      | Ctrl + Page Down      |
+    #     | *12*      | F12 or ESC            | *38*      | Ctrl + Shift + F2     | *84*      | Ctrl + G              |
+    #     | *14*      | Shift + F2            | *39*      | Ctrl + Shift + F3     | *85*      | Ctrl + R              |
+    #     | *15*      | Shift + F3            | *40*      | Ctrl + Shift + F4     | *86*      | Ctrl + P              |
+    #     | *16*      | Shift + F4            | *41*      | Ctrl + Shift + F5     | *87*      | Ctrl + B              |
+    #     | *17*      | Shift + F5            | *42*      | Ctrl + Shift + F6     | *88*      | Ctrl + K              |
+    #     | *18*      | Shift + F6            | *43*      | Ctrl + Shift + F7     | *89*      | Ctrl + T              |
+    #     | *19*      | Shift + F7            | *44*      | Ctrl + Shift + F8     | *90*      | Ctrl + Y              |
+    #     | *20*      | Shift + F8            | *45*      | Ctrl + Shift + F9     | *91*      | Ctrl + X              |
+    #     | *21*      | Shift + F9            | *46*      | Ctrl + Shift + F10    | *92*      | Ctrl + C              |
+    #     | *22*      | Ctrl + Shift + 0      | *47*      | Ctrl + Shift + F11    | *93*      | Ctrl + V              |
+    #     | *23*      | Shift + F11           | *48*      | Ctrl + Shift + F12    | *94*      | Shift + F10           |
+    #     | *24*      | Shift + F12           | *70*      | Ctrl + E              | *97*      | Ctrl + #              |
+    #     | *25*      | Ctrl + F1             | *71*      | Ctrl + F              |           |                       |
+
+    #     Examples:
+    #     | *Keyword*     | *Attributes*      |           |
+    #     | send_vkey     | 8                 |           |
+    #     | send_vkey     | Ctrl + Shift + F1 |           |
+    #     | send_vkey     | Ctrl + F7         | window=1  |
+    #     """
+    #     vkey_id = str(vkey_id)
+    #     vkeys_array = ["ENTER", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12",
+    #                    None, "SHIFT+F2", "SHIFT+F3", "SHIFT+F4", "SHIFT+F5", "SHIFT+F6", "SHIFT+F7", "SHIFT+F8",
+    #                    "SHIFT+F9", "CTRL+SHIFT+0", "SHIFT+F11", "SHIFT+F12", "CTRL+F1", "CTRL+F2", "CTRL+F3", "CTRL+F4",
+    #                    "CTRL+F5", "CTRL+F6", "CTRL+F7", "CTRL+F8", "CTRL+F9", "CTRL+F10", "CTRL+F11", "CTRL+F12",
+    #                    "CTRL+SHIFT+F1", "CTRL+SHIFT+F2", "CTRL+SHIFT+F3", "CTRL+SHIFT+F4", "CTRL+SHIFT+F5",
+    #                    "CTRL+SHIFT+F6", "CTRL+SHIFT+F7", "CTRL+SHIFT+F8", "CTRL+SHIFT+F9", "CTRL+SHIFT+F10",
+    #                    "CTRL+SHIFT+F11", "CTRL+SHIFT+F12", None, None, None, None, None, None, None, None, None, None,
+    #                    None, None, None, None, None, None, None, None, None, None, None, "CTRL+E", "CTRL+F", "CTRL+A",
+    #                    "CTRL+D", "CTRL+N", "CTRL+O", "SHIFT+DEL", "CTRL+INS", "SHIFT+INS", "ALT+BACKSPACE",
+    #                    "CTRL+PAGEUP", "PAGEUP",
+    #                    "PAGEDOWN", "CTRL+PAGEDOWN", "CTRL+G", "CTRL+R", "CTRL+P", "CTRL+B", "CTRL+K", "CTRL+T",
+    #                    "CTRL+Y",
+    #                    "CTRL+X", "CTRL+C", "CTRL+V", "SHIFT+F10", None, None, "CTRL+#"]
+
+    #     # If a key combi is given, replace vkey_id by correct id based on given combination
+    #     if not vkey_id.isdigit():
+    #         search_comb = vkey_id.upper()
+    #         search_comb = search_comb.replace(" ", "")
+    #         search_comb = search_comb.replace("CONTROL", "CTRL")
+    #         search_comb = search_comb.replace("DELETE", "DEL")
+    #         search_comb = search_comb.replace("INSERT", "INS")
+    #         try:
+    #             vkey_id = vkeys_array.index(search_comb)
+    #         except ValueError:
+    #             if search_comb == "CTRL+S":
+    #                 vkey_id = 11
+    #             elif search_comb == "ESC":
+    #                 vkey_id = 12
+    #             else:
+    #                 message = "Cannot find given Vkey, provide a valid Vkey number or combination"
+    #                 raise ValueError(message)
+
+    #     try:
+    #         self.session.findById(window_id).sendVKey(vkey_id)
+    #     except com_error:
+    #         self.take_screenshot()
+    #         message = "Cannot send Vkey to given window, is window wnd[% s] actually open?" % window_id
+    #         raise ValueError(message)
+    #     time.sleep(self.explicit_wait)
 
     def set_cell_value(self, table_id, row_num, col_id, text):
         """Sets the cell value for the specified cell of a GridView 'table_id' which is contained within a shell object.
@@ -1515,6 +1606,23 @@ class SAP_Tcode_Library:
         except Exception as e:
             print(f"Error: {e}")
 
+    def Roles_extract(self, file_location, sheet_name, output_file):
+        try:
+            df = pd.read_excel(file_location, sheet_name=sheet_name, usecols=[2], header=None)
+            df.columns = ['AGR_NAME']
+            df['AGR_NAME'] = df['AGR_NAME'].str.strip()
+            filtered_data = df[~df['AGR_NAME'].str.casefold().eq('agr_name')]         
+            filtered_data_str = "\n".join(filtered_data['AGR_NAME'].dropna().astype(str).tolist())
+            
+            with open(output_file, 'w') as file:
+                file.write(filtered_data_str)
+            
+            print(f"Data has been written to {output_file}")
+        except FileNotFoundError:
+            print(f"Error: The file at location '{file_location}' was not found.")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
     def paste_from_clipboard(self, text):
         pyperclip.paste(text)
         return(text)
@@ -1607,6 +1715,17 @@ class SAP_Tcode_Library:
             print(f"An error occurred: {e}")
             return []
         
+    def delete_files(self, directory, file_name):
+        try:
+            patterns = [f'{file_name}.xlsx', f'{file_name}.txt']
+            
+            for pattern in patterns:
+                files = glob.glob(os.path.join(directory, pattern))
+                for file in files:
+                    os.remove(file)
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
     def get_file_content(Self, file_path, ):
         """
         Reads the content of a file and returns it as a string.
@@ -1640,9 +1759,11 @@ class SAP_Tcode_Library:
         
     def Modify_sap_cell(self, cell_path, row_index, agr_name_value):
         try:
+            # Obtain the SAP GUI session
             sap_gui = win32com.client.GetObject("SAPGUI")
             application = sap_gui.GetScriptingEngine
             session = application.Children(0).Children(0)
+            # Modify the specified cell
             session.findById(cell_path).modifyCell(int(row_index), "AGR_NAME", agr_name_value)
             return f"Cell at row {row_index} modified successfully with AGR_NAME: {agr_name_value}"
         except Exception as e:
@@ -1650,30 +1771,46 @@ class SAP_Tcode_Library:
 
     def Get_sap_cell_value_AGR_NAME(self, cell_path, row_index):
         try:
+            # Obtain the SAP GUI session
             sap_gui = win32com.client.GetObject("SAPGUI")
             application = sap_gui.GetScriptingEngine
             session = application.Children(0).Children(0)
+            
+            # Access the table
             table = session.findById(cell_path)
+            
+            # Retrieve the specified cell value
             cell_value = table.getCellValue(int(row_index), "AGR_NAME")
             return cell_value
         except Exception as e:
             return f"An error occurred: {e}"
 
 
-    def Roles_extract(self, file_location, sheet_name, output_file=None):
+    def Roles_extract(self, file_location, sheet_name, output_file):
         try:
+            # Read the Excel file and select the specified column
             df = pd.read_excel(file_location, sheet_name=sheet_name, usecols=[2], header=None)
             df.columns = ['AGR_NAME']
+            
+            # Strip whitespace and filter out any rows that match the column header name (case-insensitive)
             df['AGR_NAME'] = df['AGR_NAME'].str.strip()
             filtered_data = df[~df['AGR_NAME'].str.casefold().eq('agr_name')]
+            
+            # Convert the filtered data to a list of strings, removing any empty strings
             roles_list = filtered_data['AGR_NAME'].dropna().astype(str).tolist()
-            roles_list = [role for role in roles_list if role]
-            if output_file:
-                filtered_data_str = "\n".join(roles_list)
-                with open(output_file, 'w') as file:
-                    file.write(filtered_data_str)
-            print(f"AGR_NAME list: {roles_list}")
+            roles_list = [role for role in roles_list if role]  # Remove empty strings
+            
+            # Write the filtered data to the specified output file
+            filtered_data_str = "\n".join(roles_list)
+            with open(output_file, 'w') as file:
+                file.write(filtered_data_str)
+            
+            # Print the result for verification
+            print(f"Data has been written to {output_file}")
+            
+            # Return the list of roles without empty strings
             return roles_list
+        
         except FileNotFoundError:
             print(f"Error: The file at location '{file_location}' was not found.")
             return []
@@ -1681,24 +1818,31 @@ class SAP_Tcode_Library:
             print(f"An error occurred: {e}")
             return []
         
-    def Input_Role_Extract(self, file_location, sheet_name):
+
+    def Tcode_extract(self, file_location, sheet_name):
         try:
-            df = pd.read_excel(file_location, sheet_name=sheet_name, usecols=[2, 9], header=None)
-            df.columns = ['AGR_NAME', 'TCODE']
-            df['AGR_NAME'] = df['AGR_NAME'].str.strip()
-            df['TCODE'] = df['TCODE'].str.strip()
-            df = df.dropna()
-            df = df[(df['AGR_NAME'] != '') & (df['AGR_NAME'] != 'AGR_NAME') & (df['TCODE'] != '') & (df['TCODE'] != 'TCODE')]
-            df = df.drop_duplicates()
-            grouped = df.groupby('AGR_NAME')['TCODE'].apply(list).to_dict()
-            return grouped
+            # Read the Excel file and select only the T_CODE column (column 9)
+            df = pd.read_excel(file_location, sheet_name=sheet_name, usecols=[9], header=None)
+            df.columns = ['T_CODE']
+            
+            # Strip whitespace and filter out any rows with empty T_CODEs
+            df['T_CODE'] = df['T_CODE'].str.strip()
+            tcodes_list = df['T_CODE'].dropna().astype(str).tolist()
+            tcodes_list = [tcode for tcode in tcodes_list if tcode]  # Remove empty strings
+            
+            # Exclude the first TCODE entry, assuming it is the header 'TCODE'
+            if tcodes_list and tcodes_list[0].casefold() == 'tcode':
+                tcodes_list = tcodes_list[1:]
+            
+            # Return the list of T_CODES without empty strings and excluding the header
+            return tcodes_list
+            
         except FileNotFoundError:
             print(f"Error: The file at location '{file_location}' was not found.")
-            return {}
+            return []
         except Exception as e:
             print(f"An error occurred: {e}")
-            return {}
-
+            return []
         
     def Delete_allrole_save(self):
         try:
@@ -1738,7 +1882,7 @@ class SAP_Tcode_Library:
             print(f"[!] An error occurred: {e}")
         finally:
             smtp.quit()
-            
+
     def delete_specific_file(self, file_path):
         try:
             if os.path.exists(file_path):
@@ -1747,3 +1891,677 @@ class SAP_Tcode_Library:
                 print(f"The file '{file_path}' does not exist.")
         except Exception as e:
             print(f"An error occurred: {e}")
+
+    def count_excel_columns(self, abs_filename, sheet_name):
+        try:
+            wb = openpyxl.load_workbook(abs_filename)
+            ws = wb[sheet_name]
+            columns = [cell.value for cell in ws[1]]  # Assuming the first row contains headers
+            column_count = len(columns)
+            print(column_count)
+            return column_count
+        except Exception as e:
+            print(f"Error: {e}")
+
+        
+    def read_excel_cell_value(self, file_path, sheet_name, row, column): 
+        row = int(row)
+        column = int(column)   
+        wb = openpyxl.load_workbook(file_path, data_only=True)
+        if sheet_name not in wb.sheetnames:
+            raise ValueError(f"Sheet {sheet_name} does not exist in the workbook")
+        sheet = wb[sheet_name]
+        cell_value = sheet.cell(row=row, column=column).value
+        return cell_value
+    
+        
+    def Delete_all_profile(self):
+        try:
+            self.session.findById("wnd[0]/usr/tabsTABSTRIP1/tabpPROF/ssubMAINAREA:SAPLSUID_MAINTENANCE:1103/cntlG_PROFILES_CONTAINER/shellcont/shell").setCurrentCell(-1, "")
+            self.session.findById("wnd[0]/usr/tabsTABSTRIP1/tabpPROF/ssubMAINAREA:SAPLSUID_MAINTENANCE:1103/cntlG_PROFILES_CONTAINER/shellcont/shell").selectAll()
+            self.session.findById("wnd[0]/usr/tabsTABSTRIP1/tabpPROF/ssubMAINAREA:SAPLSUID_MAINTENANCE:1103/cntlG_PROFILES_CONTAINER/shellcont/shell").pressToolbarButton("DEL_LINE")
+        except:
+            return  []
+
+    def select_document_on_text(self, control_id, column_name, search_text):
+        try:
+            control = self.session.findById(control_id)
+            row_count = control.RowCount  
+            print(f"Total Rows: {row_count}")
+            
+            for row in range(row_count):
+                print(f"Checking Row: {row}")
+                cell_value = control.GetCellValue(row, column_name)  
+                print(f"Cell Value in column '{column_name}': {cell_value}")
+                
+                if search_text in cell_value:
+                    print(f"Text '{search_text}' found in row {row}")
+                    
+                    # Focus on the row before clicking (if required)
+                    control.selectedRows = row  # Select the row (if applicable)
+                    control.currentCellRow = row  # Set the current row to focus
+                    
+                    # Try different methods for clicking
+                    control.doubleClickCell(row, column_name)  # Double click the cell
+                    print(f"Double-clicked on row {row}")
+                    
+                    # Return the row where the text was found
+                    return row  
+                
+                else:
+                    print("Text not found in this row")
+                    
+            # If text is not found in any row
+            return f"Text '{search_text}' not found"
+        
+        except Exception as e:
+            return f"Error: {e}"
+        
+    def excel_column_to_json(self, file_path, sheet_name, column_index):
+        """
+        Convert a specified column from an Excel file to a JSON string, excluding the header, and return it.
+        The JSON output is a dictionary with a fixed key "SD_Documents" and the column data as the list of values.
+
+        :param file_path: Path to the Excel file
+        :param sheet_name: Name of the sheet in the Excel file
+        :param column_index: Index of the column to convert (0-based index)
+        :return: JSON data as a string
+        """
+        try:
+            column_index = int(column_index)
+            df = pd.read_excel(file_path, sheet_name=sheet_name)
+            if column_index < 0 or column_index >= len(df.columns):
+                return None  # Exit if column index is out of range
+
+            column_data = df.iloc[:, column_index].dropna().tolist() 
+            json_dict = {"SD_Documents": column_data}
+            json_data = json.dumps(json_dict, indent=4)
+            
+            return json_data  # Return the JSON data
+
+        except ValueError:
+            print("Error: Invalid column index. It should be an integer.")
+            return None
+        except Exception as e:
+            print(f"An unexpected error occurred: {e}")
+            return None
+
+        
+    def Excel_Arrange(self, file_location, sheet_name, filename):
+        try:
+            file_path = f"{file_location}\\{filename}"
+            df = pd.read_excel(file_path, sheet_name=sheet_name, header=None)
+            df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
+            df = df.iloc[4:].reset_index(drop=True)
+            df.columns = df.iloc[0]
+            df = df[1:].reset_index(drop=True)
+            df.dropna(how='all', inplace=True)
+            df.dropna(axis=1, how='all', inplace=True)
+            with pd.ExcelWriter(file_path, engine='openpyxl', mode='a', if_sheet_exists='replace') as writer:
+                df.to_excel(writer, sheet_name=sheet_name, index=False)
+        except Exception as e:
+            pass
+
+    def excel_to_json(self, excel_file, json_file):
+        df = pd.read_excel(excel_file, engine='openpyxl')
+        data = df.to_dict(orient='records')
+        with open(json_file, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
+        return data
+
+    def process_excel(self, file_path, sheet_name, column_index=None):
+    # Read the Excel file
+        df = pd.read_excel(file_path, sheet_name=sheet_name, header=None)
+        
+        # Convert column_index to integer if it's a string and check if it's a valid integer
+        if column_index is not None:
+            try:
+                column_index = int(column_index)  # Ensure column_index is an integer
+            except ValueError:
+                print("Invalid column index provided. Please provide a valid integer.")
+                return
+
+            # Check if the column index is within the valid range
+            if 0 <= column_index < df.shape[1]:
+                df.drop(df.columns[column_index], axis=1, inplace=True)
+            else:
+                print(f"Column index {column_index} is out of bounds.")
+                return
+        
+        # Remove any leading/trailing whitespace from string data
+        df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
+        
+        # Remove rows and columns that are entirely NaN
+        df.dropna(how='all', inplace=True)
+        df.dropna(axis=1, how='all', inplace=True)
+        
+        # Determine if the first row should be the header or the second row
+        if df.iloc[0].isnull().all(): 
+            new_header = df.iloc[1]  # Use second row as header if the first is null
+            df = df[2:]  # Remove first two rows
+        else:
+            new_header = df.iloc[0]  # Use first row as header
+            df = df[1:]  # Remove first row
+
+        # Assign new header
+        df.columns = new_header
+        df.reset_index(drop=True, inplace=True)
+        
+        try:
+            # Write the modified DataFrame back to the Excel file
+            with pd.ExcelWriter(file_path, engine='openpyxl', mode='w') as writer:
+                df.to_excel(writer, index=False, sheet_name=sheet_name)
+            print(f"Processed Excel sheet '{sheet_name}' has been updated in: {file_path}")
+        except Exception as e:
+            print(f"Error writing to Excel: {e}")
+
+    def get_sap_shell_item_value(self, table_shell, row_number, column):
+        try:
+            row_number = int(row_number)
+            if 0 <= row_number <= 9:
+                row_identifier = f"{' ' * 10}{row_number}"  # 10 spaces for single digit
+            elif 10 <= row_number <= 99:
+                row_identifier = f"{' ' * 9}{row_number}"   # 9 spaces for double digits
+            elif 100 <= row_number <= 999:
+                row_identifier = f"{' ' * 8}{row_number}"   # 8 spaces for triple digits
+            else:
+                raise ValueError("Row number out of range. Must be between 0 and 999.")
+            element = self.session.findById(table_shell)
+            return element.getItemText(row_identifier, column)
+        except Exception as e:
+            raise Exception(f"Failed to retrieve value from SAP shell: {str(e)}")
+        
+    def expand_sap_shell_node(self, table_shell, row_number, column):
+        try:
+            row_number = int(row_number)
+            if 0 <= row_number <= 9:
+                row_identifier = f"{' ' * 10}{row_number}"  # 10 spaces for single digit
+            elif 10 <= row_number <= 99:
+                row_identifier = f"{' ' * 9}{row_number}"   # 9 spaces for double digits
+            elif 100 <= row_number <= 999:
+                row_identifier = f"{' ' * 8}{row_number}"   # 8 spaces for triple digits
+            else:
+                raise ValueError("Row number out of range. Must be between 0 and 999.")
+            tree_id = table_shell 
+            element = self.session.findById(tree_id)
+            element.selectItem(row_identifier, column)
+            element.expandNode(row_identifier)
+        except Exception as e:
+            raise Exception(f"Failed to expand node in SAP shell: {str(e)}")
+        
+    def double_click_sap_shell_item(self, table_shell, row_number, column):
+        try:
+            row_number = int(row_number)
+            if 0 <= row_number <= 9:
+                row_identifier = f"{' ' * 10}{row_number}"  # 10 spaces for single digit
+            elif 10 <= row_number <= 99:
+                row_identifier = f"{' ' * 9}{row_number}"   # 9 spaces for double digits
+            elif 100 <= row_number <= 999:
+                row_identifier = f"{' ' * 8}{row_number}"   # 8 spaces for triple digits
+            else:
+                raise ValueError("Row number out of range. Must be between 0 and 999.")
+            element = self.session.findById(table_shell)
+            element.doubleClickItem(row_identifier, column)
+        except Exception as e:
+            raise Exception(f"Failed to double-click item in SAP shell: {str(e)}")
+        
+    def get_sap_table_value(self, table_id, row_num, column_id):
+        # Get Sap Table Value    table_id=wnd[0]/usr/cntlGRID1/shellcont/shell    row_num=${row_num}    column_id=BELNR
+        try:
+            table = self.session.findById(table_id)
+            table.currentCellRow = row_num
+            cell_value = table.getCellValue(row_num, column_id)
+            return cell_value  
+        except com_error as e:
+            raise ValueError(f"Error retrieving value from SAP table: {e}")
+        
+    def write_value_to_excel(self, file_path, sheet_name, cell, value):
+        # Open the workbook and sheet
+        workbook = load_workbook(file_path)
+        sheet = workbook[sheet_name]
+
+        # Write the value to the specified cell
+        sheet[cell] = value
+
+        # Save the workbook
+        workbook.save(file_path)
+        workbook.close()
+
+    def clear_excel_cell(Self, file_path, sheet_name, cell):
+        """
+        Clear the content of a specific cell in an Excel sheet.
+        
+        :param file_path: The path to the Excel file
+        :param sheet_name: The name of the sheet where you want to clear data
+        :param cell: The cell to clear (e.g., 'A1')
+        """
+        # Open the workbook and select the sheet
+        workbook = load_workbook(file_path)
+        sheet = workbook[sheet_name]
+
+        # Clear the content of the specified cell by setting it to an empty string
+        sheet[cell] = ""
+
+        # Save the changes and close the workbook
+        workbook.save(file_path)
+        workbook.close()
+
+    def read_value_from_excel(self, file_path, sheet_name, cell):
+        workbook = load_workbook(file_path)
+        sheet = workbook[sheet_name]
+        value = sheet[cell].value
+        if value is None:
+            value = ""  # Set value to an empty string if None
+        workbook.close()
+        return value
+    
+    def response_check(self, url, user, passcode):
+        login_data = {
+            "username": user,
+            "password": passcode,
+        }
+        try:
+            start_time = time.time()
+            response = requests.get(url, auth=(user, passcode))
+            end_time = time.time()
+            response_time = end_time - start_time
+            current_Iso_time = datetime.now (timezone.utc).isoformat()
+            if response.status_code == 200:
+                timestamp = response.headers.get("Date", "Timestamp")
+                print(f"Timestamp: {timestamp}")
+                print(f"Response Time: {response_time:.4f} seconds")
+                return f"Responsecode: {response.status_code}",f"Timestamp: {timestamp}",f"ISOtimestamp: {current_Iso_time}"
+            else:
+                print(f"Failed to connect url check your status code . Status code: {response.status_code}")
+        except requests.exceptions.RequestException as e:
+            print(f"An error occurred: {e}")
+    def create_empty_excel(self, file_path):
+        sheet_name = os.path.splitext(os.path.basename(file_path))[0]
+        workbook = Workbook()
+        workbook.active.title = sheet_name
+        workbook.save(file_path)
+        
+    def response_time(self, url, user, passcode):
+        login_data = {
+            "username": user,
+            "password": passcode,
+        }
+        try:
+            start_time = time.time()
+            response = requests.get(url, auth=(user, passcode))
+            end_time = time.time()
+            response_time = end_time - start_time
+            return f"{response_time:.4f}"
+        except requests.exceptions.RequestException as e:
+            print(f"An error occurred: {e}")
+
+    def delete_specific_file(self, file_path):
+        try:
+            if os.path.exists(file_path):
+                os.remove(file_path)
+            else:
+                print(f"The file '{file_path}' does not exist.")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
+    def send_mail(self, from_email, password, to_mail, subject, content, file_path=None):
+        HOST = "smtp-mail.outlook.com"
+        PORT = 587
+        message = MIMEMultipart()
+        message['From'] = from_email
+        message['To'] = ", ".join(to_mail)
+        message['Subject'] = subject
+        message.attach(MIMEText(content, 'plain'))
+        if file_path and os.path.isfile(file_path):
+            with open(file_path, "rb") as attachment:
+                part = MIMEBase("application", "octet-stream")
+                part.set_payload(attachment.read())
+                encoders.encode_base64(part)
+                part.add_header(
+                    "Content-Disposition",
+                    f"attachment; filename= {os.path.basename(file_path)}",
+                )
+                message.attach(part)
+        try:
+            smtp = smtplib.SMTP(HOST, PORT)
+            smtp.ehlo()
+            smtp.starttls()
+            smtp.login(from_email, password)
+            smtp.sendmail(from_email, to_mail, message.as_string())
+            print("[*] Email sent successfully!")
+        except smtplib.SMTPAuthenticationError:
+            print("[!] Authentication error: Please check your email or password.")
+        except Exception as e:
+            print(f"[!] An error occurred: {e}")
+        finally:
+            smtp.quit()
+            
+    def write_value_to_excel(self, file_path, sheet_name, cell, value):
+        workbook = load_workbook(file_path)
+        sheet = workbook[sheet_name]
+        try:
+            sheet[cell] = float(value)
+        except ValueError:
+            sheet[cell] = str(value)
+        workbook.save(file_path)
+        workbook.close()
+
+    def current_cell_row(self, table_id, row_index):
+        try:
+            element = self.session.findById(table_id)
+            return element.currentCellRow
+        except Exception as e:
+            raise ValueError(f"Failed to get current cell column: {str(e)}")
+        
+    def clear_field_text(self, field_id):
+        try:
+            field = self.session.findById(field_id)
+            field.Text = ""
+            print(f"Text cleared in field with ID: {field_id}")
+        except Exception as e:
+            print(f"Error: {e}")
+
+    def extract_numeric(self, data):
+        match = re.search(r'\d+', data)
+        if match:
+            return match.group()
+        else:
+            return data
+        
+    def get_current_time(self):
+    # Get the current time in HH:MM:SS format
+        current_time = datetime.now().strftime('%H:%M:%S')
+        return current_time
+    
+    def set_current_cell(self, table_id,key_row,key_column):
+        try:
+            element=self.session.findById(table_id)
+            element.setCurrentCell(key_row,key_column)
+        except Exception as e:
+            raise ValueError(f"Failed to get node text by key '{key_row,key_column}': {str(e)}")
+          
+    def Input_Role_Extract(self, file_location, sheet_name):
+        try:
+            df = pd.read_excel(file_location, sheet_name=sheet_name, usecols=[2, 9], header=None)
+            df.columns = ['AGR_NAME', 'TCODE']
+            df['AGR_NAME'] = df['AGR_NAME'].str.strip()
+            df['TCODE'] = df['TCODE'].str.strip()
+            df = df.dropna()
+            df = df[(df['AGR_NAME'] != '') & (df['AGR_NAME'] != 'AGR_NAME') & (df['TCODE'] != '') & (df['TCODE'] != 'TCODE')]
+            df = df.drop_duplicates()
+            grouped = df.groupby('AGR_NAME')['TCODE'].apply(list).to_dict()
+            return grouped
+        except FileNotFoundError:
+            print(f"Error: The file at location '{file_location}' was not found.")
+            return {}
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            return {}
+        
+    def suim_role_expand(self, shellpath):
+        self.session.findById(shellpath).expandNode("02  1      3")
+        self.session.findById(shellpath).topNode = "01  1      1"
+        self.session.findById(shellpath).selectItem("03  2      3", "1")
+        self.session.findById(shellpath).ensureVisibleHorizontalItem("03  2      3", "1")
+        self.session.findById(shellpath).clickLink("03  2      3", "1")
+
+    def fiori_extract_roles(self, file_path, sheet_name):
+        try:
+            df = pd.read_excel(file_path, sheet_name=sheet_name)
+            filtered_df = df[df.iloc[:, 3] == "Launchpad Catalog"]
+            roles = filtered_df.iloc[:, 1].dropna().astype(str).tolist()
+            return roles
+        except Exception as e:
+            return [f"Error: {e}"]
+        
+    def clean_excel_sheet(self, file_path, sheet_name):
+    
+        try:
+            # Load the workbook and access the sheet
+            workbook = load_workbook(file_path)
+            if sheet_name not in workbook.sheetnames:
+                raise Exception(f"Sheet '{sheet_name}' does not exist in the file.")
+
+            sheet = workbook[sheet_name]
+
+            # Trim whitespace from all cells in the sheet
+            for row in sheet.iter_rows():
+                for cell in row:
+                    if cell.value and isinstance(cell.value, str):
+                        cell.value = cell.value.strip()  # Remove leading and trailing whitespace
+
+            # Remove completely empty rows (backward iteration to avoid index shift)
+            for row_idx in range(sheet.max_row, 0, -1):
+                if all(sheet.cell(row=row_idx, column=col_idx).value in [None, ""] for col_idx in range(1, sheet.max_column + 1)):
+                    sheet.delete_rows(row_idx)
+
+            # Remove completely empty columns (backward iteration to avoid index shift)
+            for col_idx in range(sheet.max_column, 0, -1):
+                if all(sheet.cell(row=row_idx, column=col_idx).value in [None, ""] for row_idx in range(1, sheet.max_row + 1)):
+                    sheet.delete_cols(col_idx)
+
+            # Save changes back to the file
+            workbook.save(file_path)
+            print("\033[92m❗ Excel sheet cleaned successfully and saved at:", file_path)  # Green exclamation mark
+
+        except Exception as e:
+            print("\033[92m❗ Failed to clean Excel sheet:", str(e))  # Green exclamation mark
+
+    def Delete_allrole_Fiori(self):
+        try:
+            self.session.findById("wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell").setCurrentCell(-1, "")
+            self.session.findById("wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell").selectAll()
+            self.session.findById("wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell").pressToolbarButton("DEL_LINE")
+        except:
+            return  []
+        
+    def remove_rows_before_start_row(self, file_path, sheet_name, start_row):
+        # Ensure start_row is an integer
+        start_row = int(start_row)
+
+        workbook = load_workbook(file_path)
+        sheet = workbook[sheet_name]
+
+        # Delete rows before start_row
+        for _ in range(start_row - 1):  # Start row number is 1-based
+            sheet.delete_rows(1)  # Always delete the first row
+
+        workbook.save(file_path)
+        workbook.close()
+        return f"All rows before row {start_row} have been removed."
+
+    def clean_excel_sheet(self, file_path, sheet_name):
+    
+        try:
+            # Load the workbook and access the sheet
+            workbook = load_workbook(file_path)
+            if sheet_name not in workbook.sheetnames:
+                raise Exception(f"Sheet '{sheet_name}' does not exist in the file.")
+
+            sheet = workbook[sheet_name]
+
+            # Trim whitespace from all cells in the sheet
+            for row in sheet.iter_rows():
+                for cell in row:
+                    if cell.value and isinstance(cell.value, str):
+                        cell.value = cell.value.strip()  # Remove leading and trailing whitespace
+
+            # Remove completely empty rows (backward iteration to avoid index shift)
+            for row_idx in range(sheet.max_row, 0, -1):
+                if all(sheet.cell(row=row_idx, column=col_idx).value in [None, ""] for col_idx in range(1, sheet.max_column + 1)):
+                    sheet.delete_rows(row_idx)
+
+            # Remove completely empty columns (backward iteration to avoid index shift)
+            for col_idx in range(sheet.max_column, 0, -1):
+                if all(sheet.cell(row=row_idx, column=col_idx).value in [None, ""] for row_idx in range(1, sheet.max_row + 1)):
+                    sheet.delete_cols(col_idx)
+
+            # Save changes back to the file
+            workbook.save(file_path)
+            print("\033[92m❗ Excel sheet cleaned successfully and saved at:", file_path)  # Green exclamation mark
+
+        except Exception as e:
+            print("\033[92m❗ Failed to clean Excel sheet:", str(e))  # Green exclamation mark
+
+    def create_html_report(self, excel_file, html_file, highlight_text):
+        df = pd.read_excel(excel_file)
+
+        # Initialize counters
+        pass_count = 0
+        warn_count = 0
+        for index, row in df.iterrows():
+            row_text = " ".join(row.astype(str).tolist())
+            if 'Authorization check successful' in row_text:
+                pass_count += 1
+            if 'No authorization in user master record' in row_text:
+                warn_count += 1
+
+        current_time = datetime.datetime.utcnow().strftime('%d-%m-%Y Time: %H:%M:%S UTC')
+
+        #HTML
+        html_content = f"""
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Fiori LaunchPad Report</title>
+            <style>
+                body {{
+                    font-family: Arial, sans-serif;
+                    margin: 0;
+                    padding: 0;
+                    background-color: #f4f4f4;
+                }}
+                .container {{
+                    width: 90%;
+                    margin: 30px auto;
+                    padding: 20px;
+                    background-color: #ffffff;
+                    border-radius: 8px;
+                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                }}
+                h1 {{
+                    color: #1f3a64;
+                    text-align: center;
+                }}
+                .count-box {{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 20px;
+                    margin: 20px 0;
+                }}
+                .count-item {{
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    font-size: 18px;
+                }}
+                .pass-circle {{
+                    display: inline-block;
+                    width: 15px;
+                    height: 15px;
+                    background-color: green;
+                    border-radius: 50%;
+                    margin-right: 8px; /* Adds spacing between the circle and text */
+                }}
+                .warn-circle {{
+                    display: inline-block;
+                    width: 15px;
+                    height: 15px;
+                    background-color: red;
+                    border-radius: 50%;
+                    margin-right: 8px; /* Adds spacing between the circle and text */
+                }}
+
+                table {{
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-top: 20px;
+                }}
+                th, td {{
+                    padding: 12px;
+                    text-align: left;
+                    border: 1px solid #ddd;
+                }}
+                th {{
+                    background-color: #1f3a64;
+                    color: white;
+                }}
+                td {{
+                    background-color: #fafafa;
+                }}
+                table tr:nth-child(even) td {{
+                    background-color: #f2f2f2;
+                }}
+                table tr:hover td {{
+                    background-color: #e9e9e9;
+                }}
+                .row-green {{
+                    background-color: #d4edda;
+                    color: green;
+                }}
+                .row-red {{
+                    background-color: #ff0000 ;
+                    color:red ;
+                }}
+            </style>
+        </head>
+        <body>
+
+        <div class="container">
+            <h1>Fiori LaunchPad Report</h1>
+                <div class="count-box">
+                    <div class="count-item">
+                        <span class="pass-circle"></span> Authorization Count: <span>{pass_count}</span>
+                    </div>
+                    <div class="count-item">
+                        <span class="warn-circle"></span> No Authorization Count: <span>{warn_count}</span>
+                    </div>
+                    <div class="count-item">
+                        Generated At: <span>{current_time}</span>
+                    </div>
+                </div>
+            <table>
+                <thead>
+                    <tr>
+        """
+
+        # Add table headers (columns from DataFrame)
+        headers = df.columns.tolist()
+        for header in headers:
+            html_content += f"<th>{header}</th>"
+
+        html_content += """
+                    </tr>
+                </thead>
+                <tbody>
+        """
+
+        # Add table rows (data from DataFrame)
+        for index, row in df.iterrows():
+            # Check if the target text is in any cell of the row
+            if row.astype(str).str.contains(highlight_text, case=False).any():
+                html_content += '<tr class="row-red">'  
+            else:
+                html_content += '<tr class="row-green">'  
+
+            for value in row:
+                html_content += f"<td>{value}</td>"
+
+            html_content += "</tr>"
+
+        html_content += """
+                </tbody>
+            </table>
+        </div>
+
+        </body>
+        </html>
+        """
+
+        with open(html_file, "w") as file:
+            file.write(html_content)
+
+        print(f"HTML report created successfully: {html_file}")

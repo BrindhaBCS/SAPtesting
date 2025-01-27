@@ -4,3 +4,4 @@
 #          values as they are imported through each file.
 
 from .Data import *
+from .Copilot import *

@@ -10,13 +10,13 @@ import ast
 import re
 import glob
 import  json
-from docx2pdf import convert
+# from docx2pdf import convert
 from PIL import Image
-import docx
-from docx import Document
-from docx.enum.table import WD_TABLE_ALIGNMENT
-from docx.shared import Cm, Pt, Mm, Inches
-from docx.enum.section import WD_ORIENT
+# import docx
+# from docx import Document
+# from docx.enum.table import WD_TABLE_ALIGNMENT
+# from docx.shared import Cm, Pt, Mm, Inches
+# from docx.enum.section import WD_ORIENT
 from openpyxl import load_workbook
 import pandas as pd
 import  openpyxl
@@ -34,7 +34,11 @@ import shutil
 import pandas as pd
 import datetime
 import os
-
+import csv
+from openpyxl import Workbook
+import pandas as pd
+from openpyxl import load_workbook
+from openpyxl.styles import PatternFill
 
 
 class Report_Library:    
@@ -427,3 +431,116 @@ class Report_Library:
         with open(html_file, "w") as file:
             file.write(html_content)
         print(f"HTML report created successfully: {html_file}")
+
+    def convert_csv_to_xlsx(self, csv_file, xlsx_file):
+        # Read the CSV and write to XLSX
+        data = pd.read_csv(csv_file)
+        data.to_excel(xlsx_file, index=False)
+        print(f"File converted successfully! Saved as '{xlsx_file}'.")
+
+
+    def cop_webexcel_scrap(self, file_path, output_file):
+        # Create a new Workbook
+        wb = Workbook()
+        ws = wb.active
+        ws.title = "Extracted Data"
+        with open(file_path, mode='r') as file:
+            reader = csv.reader(file)
+            row_number = 1
+            for row in reader:
+                data = row[0]
+                if "Number" in data or not data.strip():
+                    continue
+                split_data = data.split(";")
+                if len(split_data) > 1:
+                    number = split_data[1]
+                    ws[f'A{row_number}'] = number
+                    row_number += 1
+                ws['A1'] = "Snote Value"
+        wb.save(output_file)
+        print(f"Extracted data has been saved to {output_file}")
+
+   
+
+    def cop_sapexcel_scrap(self, input_file, output_file):
+        df = pd.read_excel(input_file)
+        wb = load_workbook(output_file)
+        ws = wb.active 
+        ws['B1'] = "NUMM"
+        ws['C1'] = "PRSTATUS"
+        row_number = 2
+        for index, row in df.iterrows():
+            col2_data = row[0]  # Column 2 (index 1 )
+            col9_data = row[2]  # Column 9 (index 8)
+            if pd.isna(col2_data) or pd.isna(col9_data) or "NUMM" in str(col2_data) or "PRSTATUS" in str(col2_data) or str(col2_data).strip() == '' or str(col9_data).strip() == '':
+                continue
+            col2_data = str(col2_data).lstrip('0')
+            if col2_data.startswith('000'):
+                col2_data = col2_data[3:]
+            col9_data = str(col9_data).lstrip('0')
+            if col9_data.startswith('000'):
+                col9_data = col9_data[3:]
+            ws[f'B{row_number}'] = col2_data
+            ws[f'C{row_number}'] = col9_data
+            row_number += 1
+        wb.save(output_file)
+        print(f"Data from columns 2 and 9 of {input_file} (with first three zeros removed) has been saved to columns 2 and 3 of {output_file}")
+
+  
+
+    def cop_excel_compare(self, file_path, output_file):
+        df = pd.read_excel(file_path)
+        df.columns = df.columns.str.strip()
+        print("Column Names:", df.columns)
+        required_columns = ['Snote Value', 'NUMM', 'PRSTATUS']
+        if all(col in df.columns for col in required_columns):
+            matched_data = []
+            for a_value in df['Snote Value'].dropna():
+                if a_value in df['NUMM'].values:
+                    matching_row = df[df['NUMM'] == a_value]
+                    prstatus = matching_row['PRSTATUS'].iloc[0]
+                    matched_data.append([a_value, a_value, prstatus]) 
+
+            matched_df = pd.DataFrame(matched_data, columns=['WEB Data', 'SAP Snote', 'PRSTATUS'])
+            def map_status(prstatus):
+                if prstatus == '-':
+                    return "Cannot be implemented"
+                elif prstatus in ['U', 'u']:
+                    return "Incompletely implemented"
+                elif prstatus in ['E', 'e']:
+                    return "Completely implemented"
+                elif prstatus in ['N', 'n', None, '']:
+                    return "Not yet implemented"
+                else:
+                    return "Unknown Status"
+
+            matched_df['Status Message'] = matched_df['PRSTATUS'].apply(map_status)
+            matched_df.to_excel(output_file, index=False)
+
+            wb = load_workbook(output_file)
+            ws = wb.active
+
+            # color
+            blue_fill = PatternFill(start_color="ADD8E6", end_color="ADD8E6", fill_type="solid")
+            red_fill = PatternFill(start_color="FF0000", end_color="FF0000", fill_type="solid")
+            green_fill = PatternFill(start_color="00FF00", end_color="00FF00", fill_type="solid")
+
+            for row in range(2, len(matched_df) + 2):
+                prstatus_value = ws[f'C{row}'].value
+                if prstatus_value == '-':
+                    for col in range(1, len(matched_df.columns) + 1):
+                        ws.cell(row=row, column=col).fill = blue_fill
+                elif prstatus_value in ['U', 'u']:
+                    for col in range(1, len(matched_df.columns) + 1):
+                        ws.cell(row=row, column=col).fill = red_fill
+                elif prstatus_value in ['E', 'e']:
+                    for col in range(1, len(matched_df.columns) + 1):
+                        ws.cell(row=row, column=col).fill = green_fill
+                elif prstatus_value in ['N', 'n', None, '']:
+                    for col in range(1, len(matched_df.columns) + 1):
+                        ws.cell(row=row, column=col).fill = red_fill
+            wb.save(output_file)
+
+            print("Comparison complete. Results saved to output_data_matched.xlsx with status messages and formatting applied.")
+        else:
+            print("Error: The required columns 'Snote Value', 'NUMM', or 'PRSTATUS' are missing from the Excel file.")
