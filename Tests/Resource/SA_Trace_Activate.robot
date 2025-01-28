@@ -31,7 +31,7 @@ Trace_status
         Sleep    1
         Click Element    wnd[0]/tbar[1]/btn[6]
         Sleep    1
-        Log To Console    **gbStart**copilot_status**splitKeyValue**Sucessfully Authorization trace is switched on**gbEnd**
+        Log To Console    **gbStart**copilot_status**splitKeyValue**AUTHORIZATION TRACE HAS BEEN SUCCESSFULLY ENABLED...**gbEnd**
     ELSE IF    '${trace_status}' == 'Authorization trace is switched on'
         Clear Field Text    wnd[0]/usr/ctxtSC_100_TRACE_USER
         Input Text    wnd[0]/usr/ctxtSC_100_TRACE_USER    ${symvar('New_User_Name')}
