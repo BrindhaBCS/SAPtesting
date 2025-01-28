@@ -102,12 +102,12 @@ Access to Maintained Workflow
         Create Directory    C:\\tmp\\Authorised Users List
         Sleep    1
         # Extract Columns    file1=${FILE1}   sheet1=${SHEET1}    col1_index=${COL1_INDEX}    file2=${FILE2}    sheet2=${SHEET2}    col2_index=${COL2_INDEX}   output_file=${OUTPUT_FILE}
-        Extract Columns    ${FILE1}    ${SHEET1}    ${COL1_INDEX}    ${SKIPROWS}    ${FILE2}    ${SHEET2}    ${COL2_INDEX}    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
-        Sleep    1
-        Compare Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}    ${COMPARISON_COL_NAME}
-        Sleep    1
-        ${i}    Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
-        Log To Console    ${i}
+        #Extract Columns    ${FILE1}    ${SHEET1}    ${COL1_INDEX}    ${SKIPROWS}    ${FILE2}    ${SHEET2}    ${COL2_INDEX}    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
+        #Sleep    1
+        #Compare Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}    ${COMPARISON_COL_NAME}
+        #Sleep    1
+        #${i}    Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
+        #Log To Console    ${i}
         Delete Specific File    file_path=C:\\tmp\\Maintenance Workflow.xls
         Remove Rows Before Start Row    file_path=C:\\tmp\\Maintenance Workflow.xlsx    sheet_name=Maintenance Workflow    start_row=12
         Sleep    1

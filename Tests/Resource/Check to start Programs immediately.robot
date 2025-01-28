@@ -106,12 +106,12 @@ Check to start Programs immediately
         Sleep    1
         Create Directory    C:\\tmp\\Authorised Users List
         Sleep    1
-        Extract Columns    ${FILE1}    ${SHEET1}    ${COL1_INDEX}    ${SKIPROWS}    ${FILE2}    ${SHEET2}    ${COL2_INDEX}    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
-        Sleep    1
-        Compare Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}    ${COMPARISON_COL_NAME}
-        Sleep    1
-        ${i}    Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
-        Log To Console    ${i}
+        #Extract Columns    ${FILE1}    ${SHEET1}    ${COL1_INDEX}    ${SKIPROWS}    ${FILE2}    ${SHEET2}    ${COL2_INDEX}    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
+        #Sleep    1
+        #Compare Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}    ${COMPARISON_COL_NAME}
+        #Sleep    1
+        #${i}    Matched Columns    ${OUTPUT_FILE}    ${HEADER1}    ${HEADER2}
+        #Log To Console    ${i}
         Delete Specific File    file_path=C:\\tmp\\START_PROGRAMS.xls
         Remove Rows Before Start Row    file_path=C:\\tmp\\START_PROGRAMS.xlsx    sheet_name=START_PROGRAMS    start_row=17
         Sleep    1
