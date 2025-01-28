@@ -123,9 +123,9 @@ Roles_Minimal
                 Sleep    1
                 Run Transaction    /n${tcode}
                 Sleep    3
-                ${CLEANED_TEXT}=  Remove String  ${role}    /
+                ${CLEANED_TEXT}=  Remove String  ${role}    /    :
                 Log  ${CLEANED_TEXT}
-                ${CLEANED_TEXT_Two}=  Remove String  ${tcode}    /
+                ${CLEANED_TEXT_Two}=  Remove String  ${tcode}    /    :
                 Log  ${CLEANED_TEXT_Two}
                 Take Screenshot    ${index}_${CLEANED_TEXT}_${CLEANED_TEXT_Two}.png
                 Sleep    1
