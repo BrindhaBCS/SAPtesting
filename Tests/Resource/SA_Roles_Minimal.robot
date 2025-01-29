@@ -44,6 +44,7 @@ Roles_Minimal
     Click Element    wnd[0]/usr/btn%_I1_%_APP_%-VALU_PUSH
     Sleep    0.5 seconds
     Click Element    wnd[1]/tbar[0]/btn[23]
+    Delete Specific File    file_path=C:\\tmp\\Role\\Role_extract_minimal.txt
     Input Text    wnd[2]/usr/ctxtDY_PATH    C:\\tmp\\Role\\
     Input Text    wnd[2]/usr/ctxtDY_FILENAME    Role_extract_minimal.txt
     Click Element    wnd[2]/tbar[0]/btn[0]
@@ -60,6 +61,9 @@ Roles_Minimal
     Sleep    0.5 seconds
     Click Element    wnd[1]/tbar[0]/btn[0]
     clear field text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME
+    Sleep    1
+    Delete Specific File    file_path=C:\\tmp\\Role\\Tcode_extract_minimal.xlsx
+    Sleep    1
     Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Tcode_extract_minimal
     Click Element    wnd[1]/tbar[0]/btn[20]
     clear field text    wnd[1]/usr/ctxtDY_PATH
@@ -235,6 +239,8 @@ Roles_Minimal
     Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    1
     Clear Field Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME
+    Sleep    1
+    Delete Specific File    file_path=C:\\tmp\\Role\\Overall_Report_minimal.xlsx
     Sleep    1
     Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Overall_Report_minimal
     Sleep    1
