@@ -125,7 +125,7 @@ class Report_Library:
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Fiori LaunchPad Report</title>
+            <title>Symphony Report</title>
             <style>
                 body {{
                     font-family: Arial, sans-serif;
@@ -288,7 +288,7 @@ class Report_Library:
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Security Authorization Report</title>
+            <title>Symphony Report</title>
             <style>
                 body {{
                     font-family: Arial, sans-serif;
@@ -374,7 +374,7 @@ class Report_Library:
         <body>
 
         <div class="container">
-            <h1>Security Authorization Report</h1>
+            <h1>Role Unit Testing Report</h1>
                 <div class="count-box">
                     <div class="count-item">
                         <span class="pass-circle"></span> Authorization Count: <span>{pass_count}</span>

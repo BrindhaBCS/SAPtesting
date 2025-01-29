@@ -258,7 +258,7 @@ Report_generation
     Sleep    2
     Clean Excel    file_path=C:\\tmp\\Role\\Overall_Report_minimal.xlsx    sheet_name=Sheet1
     Sleep    2
-    ${col_index}    Create List    10    11    12    16    17    18    19    20    21    22    23    24    25    26    27    28    29    30    31    32    33
+    ${col_index}    Create List    10    11    12    14    15    16    17    18    19    20    21    22    23    24    25    26    27    28    29    30    31    32    33
     Excel Remove Multiple Columns    file_path=C:\\tmp\\Role\\Overall_Report_minimal.xlsx    col_indices=${col_index}
     Sleep    2
     Delete Specific File    file_path=C:\\tmp\\Role\\Overall_Report_minimal.html
