@@ -44,7 +44,6 @@ Roles_Minimal
     Click Element    wnd[0]/usr/btn%_I1_%_APP_%-VALU_PUSH
     Sleep    0.5 seconds
     Click Element    wnd[1]/tbar[0]/btn[23]
-    Delete Specific File    file_path=C:\\tmp\\Role\\Role_extract_minimal.txt
     Input Text    wnd[2]/usr/ctxtDY_PATH    C:\\tmp\\Role\\
     Input Text    wnd[2]/usr/ctxtDY_FILENAME    Role_extract_minimal.txt
     Click Element    wnd[2]/tbar[0]/btn[0]
