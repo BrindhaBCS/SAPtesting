@@ -7,4 +7,5 @@ Test Tags    SA_Roles_Minimal_sym
 *** Test Cases ***
 Roles_Minimal_test
     Roles_Minimal
+    Report_generation
     Deletefile

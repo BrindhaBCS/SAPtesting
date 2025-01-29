@@ -427,3 +427,35 @@ class Report_Library:
         with open(html_file, "w") as file:
             file.write(html_content)
         print(f"HTML report created successfully: {html_file}")
+
+
+    def excel_remove_multiple_columns(self, file_path, col_indices):
+        col_indices = sorted([int(col) for col in col_indices if int(col) > 0], reverse=True)
+
+        workbook = load_workbook(file_path)
+        sheet = workbook.active  # Uses the first sheet by default
+
+        for col in col_indices:
+            sheet.delete_cols(col)  # Deletes the specified columns
+        for col in sheet.columns:
+            max_length = 0
+            column = col[0].column_letter  # Get the column name
+            for cell in col:
+                try:
+                    if len(str(cell.value)) > max_length:
+                        max_length = len(cell.value)
+                except:
+                    pass
+            adjusted_width = (max_length + 2)  # Add some padding
+            sheet.column_dimensions[column].width = adjusted_width
+
+        for cell in sheet[1]:
+            cell.font = cell.font.copy(bold=True)
+            cell.alignment = cell.alignment.copy(horizontal='center')
+        for row in sheet.iter_rows(min_row=sheet.max_row, min_col=1, max_col=sheet.max_column):
+            if all(cell.value is None for cell in row):
+                sheet.delete_rows(row[0].row)
+        workbook.save(file_path)
+        workbook.close()
+        
+        return f"Columns {', '.join(map(str, col_indices))} have been removed and formatting applied."
