@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    ../Tests/Resource/login.robot
-Test Tags    logoutVA42
+Test Tags    loginVA42
 
 *** Test Cases ***
 System_login

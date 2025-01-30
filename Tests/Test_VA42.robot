@@ -1,6 +1,6 @@
 *** Settings ***
 Resource    ../Tests/Resource/VA42.robot 
-Task Tags    VA42_Block_details
+Task Tags    VA42
  
  
 *** Test Cases ***
