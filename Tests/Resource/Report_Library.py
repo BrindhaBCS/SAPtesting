@@ -44,18 +44,12 @@ class Report_Library:
         # Ensure the target directory exists
         if not os.path.exists(target_dir):
             os.makedirs(target_dir)
-
-        # Supported image formats by PIL (Pillow)
         image_formats = ('.jpeg', '.jpg', '.png', '.gif', '.bmp', '.tiff', '.webp')
-
-        # Iterate over files in the source directory
         for file_name in os.listdir(source_dir):
             file_path = os.path.join(source_dir, file_name)
-
-            # Check if it's a file and if it has a valid image format
             if os.path.isfile(file_path):
                 try:
-                    with Image.open(file_path) as img:  # This will fail if the file is not a valid image
+                    with Image.open(file_path) as img:  
                         if file_name.lower().endswith(image_formats):
                             target_path = os.path.join(target_dir, file_name)
                             shutil.copy(file_path, target_path)
@@ -67,8 +61,8 @@ class Report_Library:
 
         workbook = load_workbook(file_path)
         sheet = workbook[sheet_name]
-        for _ in range(start_row - 1):  # Start row number is 1-based
-            sheet.delete_rows(1)  # Always delete the first row
+        for _ in range(start_row - 1):  
+            sheet.delete_rows(1) 
 
         workbook.save(file_path)
         workbook.close()
@@ -84,24 +78,18 @@ class Report_Library:
             for row in sheet.iter_rows():
                 for cell in row:
                     if cell.value and isinstance(cell.value, str):
-                        cell.value = cell.value.strip()  # Remove leading and trailing whitespace
-
-            # Remove completely empty rows (backward iteration to avoid index shift)
+                        cell.value = cell.value.strip() 
             for row_idx in range(sheet.max_row, 0, -1):
                 if all(sheet.cell(row=row_idx, column=col_idx).value in [None, ""] for col_idx in range(1, sheet.max_column + 1)):
                     sheet.delete_rows(row_idx)
-
-            # Remove completely empty columns (backward iteration to avoid index shift)
             for col_idx in range(sheet.max_column, 0, -1):
                 if all(sheet.cell(row=row_idx, column=col_idx).value in [None, ""] for row_idx in range(1, sheet.max_row + 1)):
                     sheet.delete_cols(col_idx)
-
-            # Save changes back to the file
             workbook.save(file_path)
-            print("\033[92m❗ Excel sheet cleaned successfully and saved at:", file_path)  # Green exclamation mark
+            print("\033[92m❗ Excel sheet cleaned successfully and saved at:", file_path)
 
         except Exception as e:
-            print("\033[92m❗ Failed to clean Excel sheet:", str(e))  # Green exclamation mark
+            print("\033[92m❗ Failed to clean Excel sheet:", str(e))  
 
     def fiori_html_report(self, excel_file, html_file, highlight_text):
         df = pd.read_excel(excel_file)
@@ -227,8 +215,6 @@ class Report_Library:
                 <thead>
                     <tr>
         """
-
-        # Add table headers (columns from DataFrame)
         headers = df.columns.tolist()
         for header in headers:
             html_content += f"<th>{header}</th>"
@@ -238,10 +224,7 @@ class Report_Library:
                 </thead>
                 <tbody>
         """
-
-        # Add table rows (data from DataFrame)
         for index, row in df.iterrows():
-            # Check if the target text is in any cell of the row
             if row.astype(str).str.contains(highlight_text, case=False).any():
                 html_content += '<tr class="row-red">'  
             else:
@@ -390,8 +373,6 @@ class Report_Library:
                 <thead>
                     <tr>
         """
-
-        # Add table headers (columns from DataFrame)
         headers = df.columns.tolist()
         for header in headers:
             html_content += f"<th>{header}</th>"
@@ -401,10 +382,7 @@ class Report_Library:
                 </thead>
                 <tbody>
         """
-
-        # Add table rows (data from DataFrame)
         for index, row in df.iterrows():
-            # Check if the target text is in any cell of the row
             if row.astype(str).str.contains(highlight_text, case=False).any():
                 html_content += '<tr class="row-red">'  
             else:
@@ -431,24 +409,21 @@ class Report_Library:
 
     def excel_remove_multiple_columns(self, file_path, col_indices):
         col_indices = sorted([int(col) for col in col_indices if int(col) > 0], reverse=True)
-
         workbook = load_workbook(file_path)
-        sheet = workbook.active  # Uses the first sheet by default
-
+        sheet = workbook.active 
         for col in col_indices:
-            sheet.delete_cols(col)  # Deletes the specified columns
+            sheet.delete_cols(col)  
         for col in sheet.columns:
             max_length = 0
-            column = col[0].column_letter  # Get the column name
+            column = col[0].column_letter 
             for cell in col:
                 try:
                     if len(str(cell.value)) > max_length:
                         max_length = len(cell.value)
                 except:
                     pass
-            adjusted_width = (max_length + 2)  # Add some padding
+            adjusted_width = (max_length + 2) 
             sheet.column_dimensions[column].width = adjusted_width
-
         for cell in sheet[1]:
             cell.font = cell.font.copy(bold=True)
             cell.alignment = cell.alignment.copy(horizontal='center')
@@ -457,5 +432,11 @@ class Report_Library:
                 sheet.delete_rows(row[0].row)
         workbook.save(file_path)
         workbook.close()
-        
         return f"Columns {', '.join(map(str, col_indices))} have been removed and formatting applied."
+    
+    def object_stcode_filter(self, file_path):
+        df = pd.read_excel(file_path, dtype=str)
+        filtered_df = df[df["Object"].str.contains("S_TCODE", na=False)]
+        print(filtered_df)
+        filtered_df.to_excel(file_path, index=False, engine='openpyxl')
+        print("Filtered rows saved successfully.")
