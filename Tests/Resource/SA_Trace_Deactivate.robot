@@ -36,5 +36,5 @@ Trace_status
         Clear Field Text    wnd[0]/usr/ctxtSC_100_TRACE_USER
         Input Text    wnd[0]/usr/ctxtSC_100_TRACE_USER    ${symvar('New_User_Name')}
         Sleep    1
-        Log To Console    **gbStart**copilot_status**splitKeyValue**Already Authorization trace is deactivated..**gbEnd**
+        Log To Console    **gbStart**copilot_status**splitKeyValue**ALREADY AUTHORIZATION TRACE HAS BEEN SUCCESSFULLY DEACTIVATED...**gbEnd**
     END
