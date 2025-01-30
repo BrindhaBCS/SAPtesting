@@ -11,7 +11,9 @@ Opening Browser
     Maximize Browser Window
     SeleniumLibrary.Input Text    id:logonuidfield    ${symvar('Java_user_id')}
     Sleep    2
-    SeleniumLibrary.Input Text    id:logonpassfield    ${symvar('Java_password')}
+    # SeleniumLibrary.Input Text    id:logonpassfield    ${symvar('Java_password')}
+    # Sleep    2
+    SeleniumLibrary.Input Text    id:logonpassfield    %{java_User_Password}
     Sleep    2
     SeleniumLibrary.Click Button    xpath://input[@value='Log On']
     Wait Until Keyword Succeeds    2 minute    5s    Wait until element is visible    id:CEPJ.IDPView.TextView    
