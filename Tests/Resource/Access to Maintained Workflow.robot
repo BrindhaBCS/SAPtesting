@@ -123,7 +123,7 @@ Access to Maintained Workflow
         Log To Console    ${AA}
         Append To File    path=${html_report_MCR}    content=${AA}\n
             
-     END
+    END
         Generate Report Html    input_file=${html_report_MCR}    output_file=C:\\tmp\\MIC\\Html_report_mcr.html    report_name=MIC REPORT
         Sleep    2
 Generate report
@@ -131,5 +131,5 @@ Generate report
     Sleep    2
     Copy Images    ${OUTPUT_DIR}    ${symvar('MCR_Resized_Images_directory')}
     Sleep    1
-    Generate Word    ${symvar('MCR_excel_directory')}    ${symvar('MCR_Resized_Images_directory')}    C:\\tmp\\MCR_OUTPT_DEMO
-    Sleep    2
+    #Generate Word    ${symvar('MCR_excel_directory')}    ${symvar('MCR_Resized_Images_directory')}    C:\\tmp\\MCR_OUTPT_DEMO
+    #Sleep    2
