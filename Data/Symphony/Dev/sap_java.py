@@ -22,3 +22,11 @@ lastname =    "$lastname"
 groups_to_check = ["Administrators",  "Guests"]
 groups_name = ["SAP_SLD_ADMINISTRATOR",    "SAP_SLD_CONTENT_SYNC"]
 remove_name = ["Administrators",  "Guests"]
+
+Destination_name = "$Destination_name"
+Destination_type = "$Destination_type"
+connection_information_url = "$connection_information_url"
+system_id = "$system_id"
+Authentication = "$Authentication"
+Basic_Authentication_user_name = "$Basic_Authentication_user_name"
+Basic_Authentication_password = "$Basic_Authentication_password"
