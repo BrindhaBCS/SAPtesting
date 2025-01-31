@@ -32,22 +32,40 @@ Report_Table_TS4
     Send Vkey    0
     Click Element    wnd[0]/tbar[1]/btn[8]
     Sleep    0.5 seconds
-    Click Element    wnd[0]/tbar[1]/btn[43]
-    Sleep    1
-    Clear Field Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME
-    Sleep    0.5s
-    Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Snote_TS4_Report
-    Sleep    0.5s
-    Select From List By Label    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/cmbGS_EXPORT-FORMAT    Spreadsheet(*.xlsx)
-    Sleep    0.5s
-    Click Element    wnd[1]/tbar[0]/btn[20]
-    Sleep    1
-    Clear Field Text    wnd[1]/usr/ctxtDY_PATH
-    Sleep    1
-    Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp\\Copilot\\
-    Sleep    0.5s
-    Click Element    wnd[1]/tbar[0]/btn[0]
-    Sleep    0.5s
+    ${status}    Run Keyword And Return Status    Click Element    wnd[0]/tbar[1]/btn[43]
+    IF    '${status}' == 'True'
+        Click Element    wnd[0]/tbar[1]/btn[43]
+        Sleep    1
+        Clear Field Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME
+        Sleep    0.5s
+        Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Snote_TS4_Report
+        Sleep    0.5s
+        Select From List By Label    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/cmbGS_EXPORT-FORMAT    Spreadsheet(*.xlsx)
+        Sleep    0.5s
+        Click Element    wnd[1]/tbar[0]/btn[20]
+        Sleep    1
+        Clear Field Text    wnd[1]/usr/ctxtDY_PATH
+        Sleep    1
+        Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp\\Copilot\\
+        Sleep    0.5s
+        Click Element    wnd[1]/tbar[0]/btn[0]
+        Sleep    0.5s
+    ELSE    
+        Click Element    wnd[0]/tbar[1]/btn[45]
+        Sleep    1
+        Select Radio Button    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[2,0]
+        Sleep    1
+        Click Element    wnd[1]/tbar[0]/btn[0]
+        Sleep    1
+        Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    SUIM_FIORI_ROLE
+        Sleep    1
+        Click Element    wnd[1]/tbar[0]/btn[20]
+        Sleep    1
+        Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp\\FIORI\\
+        Sleep    1
+        Click Element    wnd[1]/tbar[0]/btn[0]
+        Sleep    1
+    END
 OUtput
     Cop Webexcel Scrap    file_path=C:\\Downloads\\data.csv    output_file=C:\\tmp\\Copilot\\TS4_OutputData.xlsx
     Sleep    2
