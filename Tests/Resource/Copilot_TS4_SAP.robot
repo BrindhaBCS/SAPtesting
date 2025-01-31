@@ -67,14 +67,14 @@ Report_Table_TS4
         Sleep    1
     END
 OUtput
-    Cop Webexcel Scrap    file_path=Downloads\\data.csv    output_file=C:\\tmp\\Copilot\\TS4_OutputData.xlsx
+    Cop Webexcel Scrap    file_path=C:\\Users\\Administrator\\Downloads\\data.csv    output_file=C:\\tmp\\Copilot\\TS4_OutputData.xlsx
     Sleep    2
     Cop Sapexcel Scrap    input_file=C:\\tmp\\Copilot\\Snote_TS4_Report.xlsx    output_file=C:\\tmp\\Copilot\\TS4_OutputData.xlsx
     Sleep    2
     Cop Excel Compare    input_file=C:\\tmp\\Copilot\\TS4_OutputData.xlsx    output_file=C:\\tmp\\Copilot\\Final_TS4Report.xlsx
     Sleep    2
 Deletefile
-    Delete Specific File    file_path=Downloads\\data.csv
+    Delete Specific File    file_path=C:\\Users\\Administrator\\Downloads\\data.csv
     Sleep    1
     Delete Specific File    file_path=C:\\tmp\\Copilot\\TS4_OutputData.xlsx
     Sleep    1 
