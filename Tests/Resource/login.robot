@@ -1,6 +1,6 @@
 *** Settings ***
 Library    Process
-Library    SAP_Tcode_Library
+Library    SAP_Tcode_Library.py
 
 *** Keywords *** 
 System Login
