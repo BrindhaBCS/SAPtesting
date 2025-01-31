@@ -120,7 +120,7 @@ if __name__ == "__main__":
 
         if to_recipients_string is None or cc_recipients_string is None:
             print("There is no data for the Business Process Number {bp_number}.")
-            print("**gbStart**copilot_status**splitKeyValue**There is no data for the Business Process Number {bp_number}.**gbEnd**")
+            print(f"##gbStart##copilot_status##splitKeyValue##There is no data for the Business Process Number {bp_number}.##splitKeyValue##object##gbEnd##")
             sys.exit()
         
         to_recipients = [i.strip() for i in to_recipients_string.split(';') if i.strip()]
@@ -165,7 +165,7 @@ if __name__ == "__main__":
                 sys.exit()
             print(result)
             print("Script Processed Successfully")
-            print("**gbStart**copilot_status**splitKeyValue**Mail sent successfully for the Business Process Number {bp_number}.**gbEnd**")
+            print(f"##gbStart##copilot_status##splitKeyValue##Mail sent successfully for the Business Process Number {bp_number}.##splitKeyValue##object##gbEnd##")
         else:
             print(f"Usage error: {sys.argv[0]} <client_id> <client_secret> <tenant_id> <bp_email_details_file> <bp_number> <subject> <body> <folder_path> <file_name>")
     except Exception as e:
