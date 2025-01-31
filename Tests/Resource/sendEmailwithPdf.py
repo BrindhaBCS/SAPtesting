@@ -145,7 +145,6 @@ if __name__ == "__main__":
         file_path = os.path.join(folder_path, file_name)
         if not os.path.isfile(file_path):
             raise FileNotFoundError(f"Attachment file '{file_path}' does not exist.")
-
         
         if len(sys.argv) == 13:
             file_path = os.path.join(folder_path, file_name)
