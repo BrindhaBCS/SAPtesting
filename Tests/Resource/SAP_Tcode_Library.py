@@ -2033,4 +2033,21 @@ class SAP_Tcode_Library:
             element.doubleClickItem(row_identifier, column)
         except Exception as e:
             raise Exception(f"Failed to double-click item in SAP shell: {str(e)}")
+    def formate_excel_to_json(self, excel_file: str, json_file: str):
+        try:
+            df = pd.read_excel(excel_file, dtype=str)
+            df = df.where(pd.notna(df), None)
+            json_data = df.to_dict(orient="records")
+            result = {
+                "status": "success",
+                "total_records": len(json_data),
+                "data": json_data
+            }
+            with open(json_file, "w", encoding="utf-8") as f:
+                json.dump(result, f, indent=4)
+            print (result)
+            print(f"JSON file saved at: {json_file}")
+            return  result
+        except Exception as e:
+            print(f"An error occurred: {e}")
 
