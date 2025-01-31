@@ -57,11 +57,11 @@ Report_Table_TS4
         Sleep    1
         Click Element    wnd[1]/tbar[0]/btn[0]
         Sleep    1
-        Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    SUIM_FIORI_ROLE
+        Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Snote_TS4_Report
         Sleep    1
         Click Element    wnd[1]/tbar[0]/btn[20]
         Sleep    1
-        Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp\\FIORI\\
+        Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp\\Copilot\\
         Sleep    1
         Click Element    wnd[1]/tbar[0]/btn[0]
         Sleep    1
