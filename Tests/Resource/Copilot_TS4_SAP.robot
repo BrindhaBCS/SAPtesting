@@ -67,7 +67,7 @@ Report_Table_TS4
         Sleep    1
     END
 OUtput
-    Cop Webexcel Scrap    file_path=C:\\Downloads\\data.csv    output_file=C:\\tmp\\Copilot\\TS4_OutputData.xlsx
+    Cop Webexcel Scrap    file_path=Downloads\\data.csv    output_file=C:\\tmp\\Copilot\\TS4_OutputData.xlsx
     Sleep    2
     Cop Sapexcel Scrap    input_file=C:\\tmp\\Copilot\\Snote_TS4_Report.xlsx    output_file=C:\\tmp\\Copilot\\TS4_OutputData.xlsx
     Sleep    2
