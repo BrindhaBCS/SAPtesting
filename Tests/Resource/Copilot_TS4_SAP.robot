@@ -51,7 +51,7 @@ Report_Table_TS4
         Click Element    wnd[1]/tbar[0]/btn[0]
         Sleep    0.5s
     ELSE    
-        Click Element    wnd[0]/tbar[1]/btn[45]
+        Click Element    wnd[0]/mbar/menu[1]/menu[5]
         Sleep    1
         Select Radio Button    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[2,0]
         Sleep    1
