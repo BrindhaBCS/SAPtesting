@@ -14,8 +14,8 @@ Web_Portal_TS4
     Input Text    name:j_username    S0023459113
     Sleep    1
     Click Element    xpath://div[normalize-space(text())='Continue']
-    Run Keyword And Ignore Error    ${ACCEPT_BUTTON}    timeout=20     
-    Click Element    ${ACCEPT_BUTTON}
+    # Run Keyword And Ignore Error    ${ACCEPT_BUTTON}    timeout=20     
+    # Click Element    ${ACCEPT_BUTTON}
     Wait Until Element Is Visible    name:password    30s
     Input Password    name:password    Whitetiger@2024
     Wait Until Element Is Visible    xpath://button[normalize-space(text())='Sign in']    30s
