@@ -1827,3 +1827,32 @@ class SAP_Tcode_Library:
         date_obj = datetime.strptime(date, "%d.%m.%Y")
         converted_date = date_obj.strftime("%Y.%m.%d")
         return converted_date
+    
+    def compare_dates(self, date, start_date, end_date):
+        date = datetime.strptime(date, "%Y.%m.%d")
+        first_date = datetime.strptime(start_date, "%Y.%m.%d")
+        last_date = datetime.strptime(end_date, "%Y.%m.%d")
+        if date.month == first_date.month:
+            if date.year == first_date.year:
+                if first_date.day <= date.day <= last_date.day:
+                    return True
+        return False
+
+    def get_month(self, date):
+        # data = json.loads(date)
+        month = date[0]['Month']
+        return month
+
+    def get_year(self, date):
+        # data = json.loads(date)
+        year = date[0]['Year']
+        return year
+
+    # def get_length(self, data):
+    #     length = len(data)
+    #     return length
+
+    def get_contractnumber(self, data):
+        # json_data = json.loads(data)
+        contract_number = data.get("contract_number")
+        return contract_number
