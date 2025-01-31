@@ -2033,21 +2033,20 @@ class SAP_Tcode_Library:
             element.doubleClickItem(row_identifier, column)
         except Exception as e:
             raise Exception(f"Failed to double-click item in SAP shell: {str(e)}")
-    def formate_excel_to_json(self, excel_file: str, json_file: str):
-        try:
-            df = pd.read_excel(excel_file, dtype=str)
-            df = df.where(pd.notna(df), None)
-            json_data = df.to_dict(orient="records")
-            result = {
-                "status": "success",
-                "total_records": len(json_data),
-                "data": json_data
-            }
-            with open(json_file, "w", encoding="utf-8") as f:
-                json.dump(result, f, indent=4)
-            print (result)
-            print(f"JSON file saved at: {json_file}")
-            return  result
-        except Exception as e:
-            print(f"An error occurred: {e}")
 
+
+    def excel_to_json(self, excel_file, json_file):
+        # Read the Excel file
+        df = pd.read_excel(excel_file, engine='openpyxl')
+        # Convert Timestamp objects to strings
+        for column in df.select_dtypes(['datetime']):
+            df[column] = df[column].astype(str)
+        # Convert the DataFrame to a dictionary
+        data = df.to_dict(orient='records')
+        # Write the dictionary to a JSON file
+        with open(json_file, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
+        # Read the JSON file after writing it
+        with open(json_file, 'r', encoding='utf-8') as f:
+            json_data = json.load(f)
+        return json_data
