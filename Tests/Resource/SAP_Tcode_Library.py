@@ -15,6 +15,7 @@ import pandas as pd
 import openpyxl
 import json
 import numpy as np
+import calendar
 
 
 class SAP_Tcode_Library:
@@ -1799,5 +1800,22 @@ class SAP_Tcode_Library:
             return amount
         except Exception as e:
             print(f"Error: {e}")
+
+    def get_first_date_of_month(self, month_json):
+        month_name = month_json[0]["Month"]
+        year = int(month_json[0]["Year"])
+        month_number = datetime.strptime(month_name, "%B").month
+        first_date = datetime(year, month_number, 1).date()
+        first_date_str = first_date.strftime("%Y.%m.%d")
+        return first_date_str
+    
+    def get_last_date_of_month(self, month_json):
+        month_name = month_json[0]["Month"]
+        year = int(month_json[0]["Year"])
+        month_number = datetime.strptime(month_name, "%B").month
+        last_day = calendar.monthrange(year, month_number)[1]
+        last_date = datetime(year, month_number, last_day).date()
+        last_date_str = last_date.strftime("%Y.%m.%d")
+        return last_date_str
 
     
