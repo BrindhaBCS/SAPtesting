@@ -9,8 +9,8 @@ System Login
     Open Connection     ${symvar('Rental_Connection')}
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('Rental_Client')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('Rental_User')}
-    # Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('RENTAL_PASSWORD')}
-    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{RENTAL_PASSWORD}
+    Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('RENTAL_PASSWORD')}
+    # Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{RENTAL_PASSWORD}
     Send Vkey    0
     ${logon_status}    Multiple logon Handling     wnd[1]
     IF    '${logon_status}' == "Multiple logon found. Please terminate all the logon & proceed"

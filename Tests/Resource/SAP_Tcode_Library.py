@@ -111,7 +111,6 @@ class SAP_Tcode_Library:
             self.take_screenshot()
             message = "No existing connection for '%s' found." % connection_name
             raise ValueError(message)
-
     def connect_to_session(self, explicit_wait=0):
         """Connects to an open session SAP.
 
