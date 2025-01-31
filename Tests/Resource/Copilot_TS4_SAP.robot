@@ -14,10 +14,10 @@ System Logon
     Sleep   1
     Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('Cop_Client_Id')}
     Sleep   1
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('Cop_TS4_User_Name')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('Cop_User_Name')}
     Sleep   1
-    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('Cop_TS4_User_Password')}
-    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{Cop_TS4_User_Password}
+    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('Cop_User_Password')}
+    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{Cop_User_Password}
     Send Vkey    0
     Sleep    1
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
@@ -49,7 +49,7 @@ Report_Table_TS4
     Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    0.5s
 OUtput
-    Cop Webexcel Scrap    file_path=C:\\Users\\BCS290\\Downloads\\data.csv    output_file=C:\\tmp\\Copilot\\TS4_OutputData.xlsx
+    Cop Webexcel Scrap    file_path=C:\\Downloads\\data.csv    output_file=C:\\tmp\\Copilot\\TS4_OutputData.xlsx
     Sleep    2
     Cop Sapexcel Scrap    input_file=C:\\tmp\\Copilot\\Snote_TS4_Report.xlsx    output_file=C:\\tmp\\Copilot\\TS4_OutputData.xlsx
     Sleep    2
