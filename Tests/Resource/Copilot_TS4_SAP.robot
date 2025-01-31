@@ -10,14 +10,14 @@ System Logon
     Start Process     ${symvar('SAP_SERVER')}
     Sleep    2
     Connect To Session
-    Open Connection    ${symvar('Cop_Connection')}
+    Open Connection    ${symvar('Cop_TS4_Connection')}
     Sleep   1
     Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('Cop_Client_Id')}
     Sleep   1
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('Cop_User_Name')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('Cop_TS4_User_Name')}
     Sleep   1
-    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('Cop_User_Password')}
-    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{Cop_User_Password}
+    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('Cop_TS4_User_Password')}
+    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{Cop_TS4_User_Password}
     Send Vkey    0
     Sleep    1
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
@@ -53,7 +53,7 @@ OUtput
     Sleep    2
     Cop Sapexcel Scrap    input_file=C:\\tmp\\Copilot\\Snote_TS4_Report.xlsx    output_file=C:\\tmp\\Copilot\\TS4_OutputData.xlsx
     Sleep    2
-    Cop Excel Compare    file_path=C:\\tmp\\Copilot\\TS4_OutputData.xlsx    output_file=C:\\tmp\\Copilot\\Final_TS4Report.xlsx
+    Cop Excel Compare    input_file=C:\\tmp\\Copilot\\TS4_OutputData.xlsx    output_file=C:\\tmp\\Copilot\\Final_TS4Report.xlsx
     Sleep    2
 Deletefile
     Delete Specific File    file_path=C:\\Users\\BCS290\\Downloads\\data.csv

@@ -341,7 +341,6 @@ class Report_Library:
                     border-radius: 50%;
                     margin-right: 8px; /* Adds spacing between the circle and text */
                 }}
-
                 table {{
                     width: 100%;
                     border-collapse: collapse;
@@ -376,7 +375,6 @@ class Report_Library:
             </style>
         </head>
         <body>
-
         <div class="container">
             <h1>Security Authorization Report</h1>
                 <div class="count-box">
@@ -394,7 +392,6 @@ class Report_Library:
                 <thead>
                     <tr>
         """
-
         # Add table headers (columns from DataFrame)
         headers = df.columns.tolist()
         for header in headers:
@@ -405,7 +402,6 @@ class Report_Library:
                 </thead>
                 <tbody>
         """
-
         # Add table rows (data from DataFrame)
         for index, row in df.iterrows():
             # Check if the target text is in any cell of the row
@@ -413,30 +409,32 @@ class Report_Library:
                 html_content += '<tr class="row-red">'  
             else:
                 html_content += '<tr class="row-green">'  
-
             for value in row:
                 html_content += f"<td>{value}</td>"
-
             html_content += "</tr>"
-
         html_content += """
                 </tbody>
             </table>
         </div>
-
         </body>
         </html>
         """
-
         with open(html_file, "w") as file:
             file.write(html_content)
         print(f"HTML report created successfully: {html_file}")
 
-    def convert_csv_to_xlsx(self, csv_file, xlsx_file):
-        # Read the CSV and write to XLSX
-        data = pd.read_csv(csv_file)
-        data.to_excel(xlsx_file, index=False)
-        print(f"File converted successfully! Saved as '{xlsx_file}'.")
+
+    def convert_csv_to_excel(self, csv_file_path, excel_file_path):
+        try:
+            # Read the CSV file with explicit delimiter as semicolon and handle the BOM
+            df = pd.read_csv(csv_file_path, delimiter=';', decimal=',', encoding='ISO-8859-1', engine='python', on_bad_lines='skip', skiprows=1)
+            # Check if data is loaded correctly
+            print(df.head())  # Preview data before saving
+            # Save as Excel file
+            df.to_excel(excel_file_path, index=False)
+            print(f"CSV file successfully converted to Excel: {excel_file_path}")
+        except Exception as e:
+            print(f"Error during conversion: {e}")
 
 
     def cop_webexcel_scrap(self, file_path, output_file):
@@ -444,30 +442,59 @@ class Report_Library:
         wb = Workbook()
         ws = wb.active
         ws.title = "Extracted Data"
-        with open(file_path, mode='r') as file:
-            reader = csv.reader(file)
+        with open(file_path, mode='r', newline='', encoding='utf-8') as file:
+            reader = csv.reader(file, delimiter=';')
             row_number = 1
             for row in reader:
-                data = row[0]
-                if "Number" in data or not data.strip():
+                if len(row) < 10:
                     continue
-                split_data = data.split(";")
-                if len(split_data) > 1:
-                    number = split_data[1]
-                    ws[f'A{row_number}'] = number
-                    row_number += 1
-                ws['A1'] = "Snote Value"
+                snote_value = row[1]
+                title = row[2]
+                cvss_score = row[3]
+                cvss_vector = row[4]
+                cvss_components = cvss_vector.split('/')
+                if len(cvss_components) >= 6:
+                    extracted_cvss = '/'.join(cvss_components[-3:])
+                else:
+                    extracted_cvss = ""
+                category = row[5]
+                priority = row[6]
+                released = row[7]
+                first_released_on = row[8]
+                link = row[9]
+                # Write data to the Excel sheet
+                ws[f'A{row_number}'] = snote_value
+                ws[f'B{row_number}'] = title
+                ws[f'C{row_number}'] = cvss_score
+                ws[f'D{row_number}'] = extracted_cvss
+                ws[f'E{row_number}'] = category
+                ws[f'F{row_number}'] = priority
+                ws[f'G{row_number}'] = released
+                ws[f'H{row_number}'] = first_released_on
+                ws[f'I{row_number}'] = link
+                row_number += 1
+                #heder
+                ws['A1'] = "Web Data"
+                ws['B1'] = "Title"
+                ws['C1'] = "CVSS Score"
+                ws['D1'] = "CVSS Vector"
+                ws['E1'] = "Category"
+                ws['F1'] = "Priority"
+                ws['G1'] = "Released On"
+                ws['H1'] = "First Released On"
+                ws['I1'] = "Link"
+
+        # Save the workbook
         wb.save(output_file)
         print(f"Extracted data has been saved to {output_file}")
 
-   
 
     def cop_sapexcel_scrap(self, input_file, output_file):
         df = pd.read_excel(input_file)
         wb = load_workbook(output_file)
         ws = wb.active 
-        ws['B1'] = "NUMM"
-        ws['C1'] = "PRSTATUS"
+        ws['J1'] = "NUMM"
+        ws['K1'] = "PRSTATUS"
         row_number = 2
         for index, row in df.iterrows():
             col2_data = row[0]  # Column 2 (index 1 )
@@ -480,67 +507,116 @@ class Report_Library:
             col9_data = str(col9_data).lstrip('0')
             if col9_data.startswith('000'):
                 col9_data = col9_data[3:]
-            ws[f'B{row_number}'] = col2_data
-            ws[f'C{row_number}'] = col9_data
+            ws[f'J{row_number}'] = col2_data
+            ws[f'K{row_number}'] = col9_data
             row_number += 1
         wb.save(output_file)
         print(f"Data from columns 2 and 9 of {input_file} (with first three zeros removed) has been saved to columns 2 and 3 of {output_file}")
 
-  
 
-    def cop_excel_compare(self, file_path, output_file):
-        df = pd.read_excel(file_path)
-        df.columns = df.columns.str.strip()
-        print("Column Names:", df.columns)
-        required_columns = ['Snote Value', 'NUMM', 'PRSTATUS']
-        if all(col in df.columns for col in required_columns):
-            matched_data = []
-            for a_value in df['Snote Value'].dropna():
-                if a_value in df['NUMM'].values:
-                    matching_row = df[df['NUMM'] == a_value]
-                    prstatus = matching_row['PRSTATUS'].iloc[0]
-                    matched_data.append([a_value, a_value, prstatus]) 
+    def cop_excel_compare(self, input_file, output_file):
+        # Read the Excel file
+        df = pd.read_excel(input_file, sheet_name='Extracted Data', dtype=str)   
+        col_a = df.iloc[:, 0]  # Column A
+        col_b = df.iloc[:, 1]  # Column B
+        col_c = df.iloc[:, 2]  # Column C
+        col_d = df.iloc[:, 3]  # Column D
+        col_e = df.iloc[:, 4]  # Column E
+        col_f = df.iloc[:, 5]  # Column F
+        col_g = pd.to_datetime(df.iloc[:, 6], errors='coerce').dt.strftime('%d-%m-%Y')  # Convert to DD-MM-YYYY format
+        col_h = df.iloc[:, 7]  # Column H
+        col_i = df.iloc[:, 8]  # Column I
+        col_j = df.iloc[:, 9]  # Column J
+        col_k = df.iloc[:, 10] # Column K
+        def map_status(prstatus):
+            if prstatus == '-':
+                return "Cannot be implemented"
+            elif prstatus in ['U', 'u']:
+                return "Incompletely implemented"
+            elif prstatus in ['E', 'e']:
+                return "Completely implemented"
+            elif prstatus in ['N', 'n', None, '']:
+                return "Not yet implemented"
+            elif prstatus == "Unknown Status": 
+                return "Not yet implemented"
+            else:
+                return "Invalid Status"
+        comparison_results = []
+        unmatched_results = []
+        for i in range(len(col_a)):
+            matched = False
+            for j in range(len(col_j)):
+                if col_a[i] == col_j[j]:  # Match found
+                    comparison_results.append({
+                        "Web Data": col_a[i],    
+                        "Title": col_b[i],    
+                        "CVSS Score": col_c[i],    
+                        "CVSS Vector": col_d[i],    
+                        "Category": col_e[i],
+                        "Priority": col_f[i],
+                        "Released On": col_g[i],  # Only Date in DD-MM-YYYY format
+                        "First Released On": col_h[i],
+                        "Link": col_i[i],
+                        "SAP NUMM": col_j[j],  
+                        "SAP PRSTATUS": col_k[j],  
+                        "Status (L)": map_status(col_k[j])
+                    })
+                    matched = True
+            if not matched:
+                unmatched_results.append({
+                    "Web Data": col_a[i],    
+                    "Title": col_b[i],    
+                    "CVSS Score": col_c[i],    
+                    "CVSS Vector": col_d[i],    
+                    "Category": col_e[i],
+                    "Priority": col_f[i],
+                    "Released On": col_g[i],  # Only Date in DD-MM-YYYY format
+                    "First Released On": col_h[i],
+                    "Link": col_i[i],
+                    "SAP NUMM": "Unmatched",  
+                    "SAP PRSTATUS": "Unmatched",  
+                    "Status (L)": "Not yet implemented"
+                })
+        #Sort
+        comparison_results = sorted(comparison_results, key=lambda x: pd.to_datetime(x["Released On"], format='%d-%m-%Y', errors='coerce') if pd.notna(x["Released On"]) else pd.Timestamp.min)
+        unmatched_results = sorted(unmatched_results, key=lambda x: pd.to_datetime(x["Released On"], format='%d-%m-%Y', errors='coerce') if pd.notna(x["Released On"]) else pd.Timestamp.min)
+        comparison_df = pd.DataFrame(comparison_results)
+        unmatched_df = pd.DataFrame(unmatched_results)
+        final_df = pd.concat([comparison_df,unmatched_df], ignore_index=True)
+        final_df["Released On"] = final_df["Released On"].astype(str).replace("NaT", "")
+        #Save to Excel
+        final_df.to_excel(output_file, index=False)
+        # Apply formatting in Excel
+        wb = load_workbook(output_file)
+        ws = wb.active
+        #Define Colors for Formatting
+        blue_fill = PatternFill(start_color="ADD8E6", end_color="ADD8E6", fill_type="solid")  # Blue
+        red_fill = PatternFill(start_color="FFA07A", end_color="FFA07A", fill_type="solid")   # Red
+        green_fill = PatternFill(start_color="00FF00", end_color="00FF00", fill_type="solid") # Green
+        for row in range(2, len(final_df) + 2):
+            prstatus_value = ws[f'K{row}'].value
+            status_value = ws[f'L{row}'].value
+            if prstatus_value == '-':
+                ws[f'K{row}'].fill = blue_fill  
+            elif prstatus_value in ['U', 'u']:
+                ws[f'K{row}'].fill = red_fill  
+            elif prstatus_value in ['E', 'e']:
+                ws[f'K{row}'].fill = green_fill  
+            elif prstatus_value in ['N', 'n', None, '']:
+                ws[f'K{row}'].fill = red_fill 
+            elif prstatus_value == 'Unmatched':
+                ws[f'K{row}'].fill = red_fill 
 
-            matched_df = pd.DataFrame(matched_data, columns=['WEB Data', 'SAP Snote', 'PRSTATUS'])
-            def map_status(prstatus):
-                if prstatus == '-':
-                    return "Cannot be implemented"
-                elif prstatus in ['U', 'u']:
-                    return "Incompletely implemented"
-                elif prstatus in ['E', 'e']:
-                    return "Completely implemented"
-                elif prstatus in ['N', 'n', None, '']:
-                    return "Not yet implemented"
-                else:
-                    return "Unknown Status"
-
-            matched_df['Status Message'] = matched_df['PRSTATUS'].apply(map_status)
-            matched_df.to_excel(output_file, index=False)
-
-            wb = load_workbook(output_file)
-            ws = wb.active
-
-            # color
-            blue_fill = PatternFill(start_color="ADD8E6", end_color="ADD8E6", fill_type="solid")
-            red_fill = PatternFill(start_color="FF0000", end_color="FF0000", fill_type="solid")
-            green_fill = PatternFill(start_color="00FF00", end_color="00FF00", fill_type="solid")
-
-            for row in range(2, len(matched_df) + 2):
-                prstatus_value = ws[f'C{row}'].value
-                if prstatus_value == '-':
-                    for col in range(1, len(matched_df.columns) + 1):
-                        ws.cell(row=row, column=col).fill = blue_fill
-                elif prstatus_value in ['U', 'u']:
-                    for col in range(1, len(matched_df.columns) + 1):
-                        ws.cell(row=row, column=col).fill = red_fill
-                elif prstatus_value in ['E', 'e']:
-                    for col in range(1, len(matched_df.columns) + 1):
-                        ws.cell(row=row, column=col).fill = green_fill
-                elif prstatus_value in ['N', 'n', None, '']:
-                    for col in range(1, len(matched_df.columns) + 1):
-                        ws.cell(row=row, column=col).fill = red_fill
-            wb.save(output_file)
-
-            print("Comparison complete. Results saved to output_data_matched.xlsx with status messages and formatting applied.")
-        else:
-            print("Error: The required columns 'Snote Value', 'NUMM', or 'PRSTATUS' are missing from the Excel file.")
+            if status_value == "Not yet implemented":
+                ws[f'L{row}'].fill = red_fill  
+            elif status_value == "Cannot be implemented":
+                ws[f'L{row}'].fill = blue_fill
+            elif status_value == "Completely implemented":
+                ws[f'L{row}'].fill = green_fill
+            elif status_value == "Incompletely implemented":
+                ws[f'L{row}'].fill = red_fill
+            elif status_value is None:
+                ws[f'L{row}'].fill = red_fill
+        #Save Excel file
+        wb.save(output_file)
+        print(f"Updated file with sorted matched & unmatched data saved to: {output_file}")
