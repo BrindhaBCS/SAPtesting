@@ -34,7 +34,7 @@ def get_email_recipients(number: int, dataframe: pd.DataFrame) -> tuple:
         row = dataframe.loc[dataframe['Business Partner Number'] == number]
         
         if row.empty:
-            raise ValueError(f"Number {number} not found in 'Business Partner Number' column.")
+            # raise ValueError(f"Number {number} not found in 'Business Partner Number' column.")
             return None, None
         
         # Extract 'TO' and 'CC' values from the matching row
@@ -43,7 +43,9 @@ def get_email_recipients(number: int, dataframe: pd.DataFrame) -> tuple:
         
         return to_recipients, cc_recipients
     except Exception as e:
-        raise ValueError(f"Error occurred: {str(e)}")
+        # raise ValueError(f"Error occurred: {str(e)}")
+        print(f"Error occurred while fetching email details: {str(e)}")
+        return None, None
 
 def send_email_with_attachment(client_id, client_secret, tenant_id, to_recipients, cc_recipients, subject, body, file_path):
     try:
@@ -121,7 +123,7 @@ if __name__ == "__main__":
         if to_recipients_string is None or cc_recipients_string is None:
             print("There is no data for the Business Process Number {bp_number}.")
             print(f"##gbStart##copilot_status##splitKeyValue##There is no data for the Business Process Number {bp_number}.##splitKeyValue##object##gbEnd##")
-            sys.exit()
+            sys.exit(0)
         
         to_recipients = [i.strip() for i in to_recipients_string.split(';') if i.strip()]
         cc_recipients = [i.strip() for i in cc_recipients_string.split(';') if i.strip()]
@@ -162,7 +164,7 @@ if __name__ == "__main__":
                 )
             else:
                 result = f"Error: File '{file_path}' does not exist."
-                sys.exit()
+                sys.exit(1)
             print(result)
             print("Script Processed Successfully")
             print(f"##gbStart##copilot_status##splitKeyValue##Mail sent successfully for the Business Process Number {bp_number}.##splitKeyValue##object##gbEnd##")
