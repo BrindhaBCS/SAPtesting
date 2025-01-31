@@ -67,9 +67,7 @@ customize excel for output
 delete the existing excel details
     ${excel_row}    Count Excel Rows    ${target_file_name}    ${target_sheet_name}
     ${excel_rows}    Evaluate    ${excel_row} + 2
-    Log To Console    excel rows: ${excel_rows}
     FOR  ${k}  IN RANGE    2    ${excel_rows}
-        Log To Console    rows to be detlete: ${k}
         Delete Excel Row        ${target_file_name}    ${target_sheet_name}    ${k}    
     END
     
