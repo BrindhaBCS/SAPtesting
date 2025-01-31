@@ -1818,4 +1818,12 @@ class SAP_Tcode_Library:
         last_date_str = last_date.strftime("%Y.%m.%d")
         return last_date_str
 
-    
+    def convert_date_format(self, date):
+        date_obj = datetime.strptime(date, "%Y.%m.%d")
+        converted_date = date_obj.strftime("%d.%m.%Y")
+        return converted_date
+
+    def convert_date_format1(self, date):
+        date_obj = datetime.strptime(date, "%d.%m.%Y")
+        converted_date = date_obj.strftime("%Y.%m.%d")
+        return converted_date
