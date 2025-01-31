@@ -5,6 +5,3 @@ Cop_User_Name = "$Cop_TS4_User_Name"
 Cop_User_Password = "$Cop_TS4_User_Password"
 Cop_Web_Password = "$Cop_Web_Password"
 
-# Cop_Connection = "$Cop_Connection1"
-# Cop_User_Name = "$Cop_BIS_User_Name"
-# Cop_User_Password = "$Cop_BIS_User_Password"
