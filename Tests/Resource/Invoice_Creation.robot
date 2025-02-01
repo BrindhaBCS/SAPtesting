@@ -16,7 +16,7 @@ ${GR_Creation_Sheet}     Goods Receipt
 ${Invoice_Creation_Sheet}     Invoice Receipt
 ${PO_Header}    ${SPACE*10}20
 ${invoice_date}    06.11.2024
-surya
+
 
 
 *** Keywords ***
