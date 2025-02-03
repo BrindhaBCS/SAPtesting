@@ -620,3 +620,24 @@ class Report_Library:
         #Save Excel file
         wb.save(output_file)
         print(f"Updated file with sorted matched & unmatched data saved to: {output_file}")
+
+    def basis_formate_json_data(self, input_string, removed_lines):
+        def remove_first_n_lines(input_string, removed_lines):
+            lines = input_string.split('\n')
+            print('\n'.join(lines[removed_lines:]).strip())
+
+        def extract_json_data(data):
+            start_index = data.find("[")
+            if start_index == -1:
+                print({"status": "error", "message": "No JSON data found"})
+            json_data = data[start_index:]
+
+            try:
+                parsed_json = json.loads(json_data)  # Convert string to Python JSON object
+                print(parsed_json)
+            except json.JSONDecodeError as e:
+                print({"status": "error", "message": f"JSON Decode Error: {str(e)}"})
+        cleaned_string = remove_first_n_lines(input_string, removed_lines)
+        json_result = extract_json_data(cleaned_string)
+        print (json_result)
+        return  json_result
