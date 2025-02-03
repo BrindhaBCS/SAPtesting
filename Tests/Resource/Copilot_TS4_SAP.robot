@@ -67,7 +67,12 @@ Report_Table_TS4
         Sleep    1
     END
 OUtput
+    
     Cop Webexcel Scrap    file_path=C:\\Users\\Administrator\\Downloads\\data.csv    output_file=C:\\tmp\\Copilot\\TS4_OutputData.xlsx
+    Sleep    2
+    Remove Rows Before Start Row    file_path=C:\\tmp\\Copilot\\Snote_TS4_Report.xlsx    sheet_name=Sheet1    start_row=5
+    Sleep    2
+    Clean Excel    file_path=C:\\tmp\\Copilot\\Snote_TS4_Report.xlsx    sheet_name=Sheet1
     Sleep    2
     Cop Sapexcel Scrap    input_file=C:\\tmp\\Copilot\\Snote_TS4_Report.xlsx    output_file=C:\\tmp\\Copilot\\TS4_OutputData.xlsx
     Sleep    2
