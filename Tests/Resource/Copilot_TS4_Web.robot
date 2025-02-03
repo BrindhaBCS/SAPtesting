@@ -12,7 +12,7 @@ Web_Portal_TS4
     Maximize Browser Window
     Wait Until Element Is Visible    name:j_username    30s
     Input Text    name:j_username    S0023459113
-    Sleep    1
+    Sleep    3
     Click Element    xpath://div[normalize-space(text())='Continue']
     Run Keyword And Ignore Error    ${ACCEPT_BUTTON}    timeout=20     
     Click Element    ${ACCEPT_BUTTON}
