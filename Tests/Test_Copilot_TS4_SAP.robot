@@ -7,7 +7,7 @@ Test Tags    snote_ts4
 *** Test Cases ***
 Report_Table_TS4
     Report_Table_TS4
-OUtput
-    OUtput
+Output
+    Output
 # Deletefile
 #     Deletefile
