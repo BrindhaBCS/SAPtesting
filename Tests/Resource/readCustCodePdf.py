@@ -56,6 +56,9 @@ if __name__ == "__main__":
             print(f"##gbStart##bp_number##splitKeyValue##{recipient_info}##splitKeyValue##object##gbEnd##")
         else:
             print(f"Recipient info could not be parsed. Please process the file {sys.argv[2]} manually.")
+
+        if name:
+            name = 
         
         print("Script Processed Successfully")
     
