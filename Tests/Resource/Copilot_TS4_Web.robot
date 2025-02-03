@@ -7,7 +7,7 @@ ${System}    TS4
 ${ACCEPT_BUTTON}   xpath=//button[contains(text(),'I accept all cookies')]
 ** Keywords ***
 Web_Portal_TS4
-    Open Browser    ${Copilot_URL}    ${BROWSER}
+    Open Browser    ${Copilot_URL}    ${BROWSER}        
     Sleep    1
     Maximize Browser Window
     Wait Until Element Is Visible    name:j_username    30s
