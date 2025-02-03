@@ -1689,7 +1689,6 @@ class SAP_Tcode_Library:
             excel.Quit()
 
 
-    
     def Matched_columns(self, input_file, col1_name, col2_name):
         # Configure logging to write to both file and console
         logging.basicConfig(level=logging.INFO, 

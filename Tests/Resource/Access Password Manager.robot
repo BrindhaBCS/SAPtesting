@@ -92,7 +92,7 @@ Access Password Manager
         Input Text    wnd[1]/usr/ctxtDY_PATH    ${symvar('MCR_Results_Directory_Path')}
         Sleep    2
         Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${Req_Result15_Filename}
-        Sleep    2
+        Sleep    3
         Click Element    ${Replace}
         Sleep    3
         Click Element    ${BACK}
