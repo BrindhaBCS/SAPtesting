@@ -559,7 +559,7 @@ class Report_Library:
                         "Link": col_i[i],
                         "SAP NUMM": col_j[j],  
                         "SAP PRSTATUS": col_k[j],  
-                        "Status (L)": map_status(col_k[j])
+                        "Status": map_status(col_k[j])
                     })
                     matched = True
             if not matched:
@@ -575,7 +575,7 @@ class Report_Library:
                     "Link": col_i[i],
                     "SAP NUMM": "Unmatched",  
                     "SAP PRSTATUS": "Unmatched",  
-                    "Status (L)": "Not yet implemented"
+                    "Status": "Not yet implemented"
                 })
         #Sort
         comparison_results = sorted(comparison_results, key=lambda x: pd.to_datetime(x["Released On"], format='%d-%m-%Y', errors='coerce') if pd.notna(x["Released On"]) else pd.Timestamp.min)
