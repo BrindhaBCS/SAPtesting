@@ -66,7 +66,7 @@ Report_Table_TS4
         Click Element    wnd[1]/tbar[0]/btn[0]
         Sleep    1
     END
-OUtput
+Output
     
     Cop Webexcel Scrap    file_path=C:\\Users\\Administrator\\Downloads\\data.csv    output_file=C:\\tmp\\Copilot\\TS4_OutputData.xlsx
     Sleep    2
