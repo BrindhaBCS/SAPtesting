@@ -76,12 +76,12 @@ Output
     Sleep    2
     Cop Sapexcel Scrap    input_file=C:\\tmp\\Copilot\\Snote_TS4_Report.xlsx    output_file=C:\\tmp\\Copilot\\TS4_OutputData.xlsx
     Sleep    2
-    Cop Excel Compare    input_file=C:\\tmp\\Copilot\\TS4_OutputData.xlsx    output_file=C:\\tmp\\Copilot\\Final_TS4Report.xlsx
+    Cop Excel Compare    input_file=C:\\tmp\\Copilot\\TS4_OutputData.xlsx    output_file=C:\\tmp\\Copilot\\Final_TS4Report-Pivot.xlsx
     Sleep    2
 Deletefile
     Delete Specific File    file_path=C:\\tmp\\Copilot\\data.csv
     Sleep    1
-    # Delete Specific File    file_path=C:\\tmp\\Copilot\\TS4_OutputData.xlsx
+    Delete Specific File    file_path=C:\\tmp\\Copilot\\TS4_OutputData.xlsx
     Sleep    1 
     Delete Specific File    file_path=C:\\tmp\\Copilot\\Snote_TS4_Report.xlsx
     Sleep    1 
