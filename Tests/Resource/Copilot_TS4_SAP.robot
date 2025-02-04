@@ -79,7 +79,7 @@ Output
     Cop Excel Compare    input_file=C:\\tmp\\Copilot\\TS4_OutputData.xlsx    output_file=C:\\tmp\\Copilot\\Final_TS4Report.xlsx
     Sleep    2
 Deletefile
-    Delete Specific File    file_path=C:\\Users\\Administrator\\Downloads\\data.csv
+    Delete Specific File    file_path=C:\\tmp\\Copilot\\data.csv
     Sleep    1
     Delete Specific File    file_path=C:\\tmp\\Copilot\\TS4_OutputData.xlsx
     Sleep    1 
