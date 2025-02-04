@@ -13,6 +13,7 @@ Web_Portal_TS4
     Call Method    ${options}    add_experimental_option    prefs    ${prefs}
     Open Browser    ${Copilot_URL}    ${BROWSER}    options=${options}
     # Open Browser    ${Copilot_URL}    ${BROWSER}
+    Sleep    1
     Maximize Browser Window
     ${globalwait}    Get Selenium Implicit Wait
     Set Selenium Implicit Wait    30s
@@ -23,6 +24,7 @@ Web_Portal_TS4
     Click Element    ${ACCEPT_BUTTON}
     Input Password    name:password    Whitetiger@2024
     Click Element    xpath://button[normalize-space(text())='Sign in']
+    Sleep    2
     Select Frame    id:shell-component---application402700331--frame
     Click Element    xpath://bdi[@id='__button10-BDI-content' and contains(text(), 'Favorite System')]
     Click Element    xpath://div[@class='sapMFFLITitle'][contains(text(),'${System}')]
