@@ -5,7 +5,7 @@ ${Copilot_URL}    https://me.sap.com/app/securitynotes
 ${BROWSER}    CHROME
 ${System}    TS4
 ${ACCEPT_BUTTON}   xpath=//button[contains(text(),'I accept all cookies')]
-${DOWNLOAD_DIR}   C:\\tmp\\Copilot\\Downloads
+${DOWNLOAD_DIR}   C:\\tmp\\Copilot\\
 ** Keywords ***
 Web_Portal_TS4
     ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
