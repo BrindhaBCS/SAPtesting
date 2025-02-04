@@ -16,10 +16,6 @@ Web_Portal_TS4
     Sleep    1
     Maximize Browser Window
 
-    ${globalwait}    Get Selenium Implicit Wait
-    Set Selenium Implicit Wait    30s
-    ${currentwait}    Get Selenium Implicit Wait
-
     Input Text    name:j_username    S0023459113
 
     # Explicit Waits before clicking
@@ -50,14 +46,17 @@ Web_Portal_TS4
 
     Wait Until Element Is Visible    id:__button20    timeout=30s
     Wait Until Element Is Enabled    id:__button20    timeout=30s
+    Sleep    2
     Click Element    id:__button20
 
     Wait Until Element Is Visible    id:__xmlview1--notesTable-sa    timeout=30s
     Wait Until Element Is Enabled    id:__xmlview1--notesTable-sa    timeout=30s
+    Sleep    2
     Click Element    id:__xmlview1--notesTable-sa
 
     Wait Until Element Is Visible    xpath://bdi[contains(text(), 'Export List as CSV File')]    timeout=30s
     Wait Until Element Is Enabled    xpath://bdi[contains(text(), 'Export List as CSV File')]    timeout=30s
+    Sleep    2
     Click Element    xpath://bdi[contains(text(), 'Export List as CSV File')]
 
     Sleep    1
