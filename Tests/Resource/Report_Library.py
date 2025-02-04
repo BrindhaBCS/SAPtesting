@@ -39,6 +39,7 @@ from openpyxl import Workbook
 import pandas as pd
 from openpyxl import load_workbook
 from openpyxl.styles import PatternFill
+from openpyxl.utils.exceptions import InvalidFileException
 
 
 class Report_Library:    
@@ -514,20 +515,21 @@ class Report_Library:
         print(f"Data from columns 2 and 9 of {input_file} (with first three zeros removed) has been saved to columns 2 and 3 of {output_file}")
 
 
-    def cop_excel_compare(self, input_file, output_file):
+    def cop_excel_compare(self, input_file, input_sheet_name, output_file):
         # Read the Excel file
-        df = pd.read_excel(input_file, sheet_name='Extracted Data', dtype=str)   
+        df = pd.read_excel(input_file, sheet_name=input_sheet_name, dtype=str)   
         col_a = df.iloc[:, 0]  # Column A
         col_b = df.iloc[:, 1]  # Column B
         col_c = df.iloc[:, 2]  # Column C
         col_d = df.iloc[:, 3]  # Column D
         col_e = df.iloc[:, 4]  # Column E
         col_f = df.iloc[:, 5]  # Column F
-        col_g = pd.to_datetime(df.iloc[:, 6], errors='coerce').dt.strftime('%d-%m-%Y')  # Convert to DD-MM-YYYY format
+        col_g = pd.to_datetime(df.iloc[:, 6], errors='coerce').dt.strftime('%d-%m-%Y')
         col_h = df.iloc[:, 7]  # Column H
         col_i = df.iloc[:, 8]  # Column I
         col_j = df.iloc[:, 9]  # Column J
         col_k = df.iloc[:, 10] # Column K
+
         def map_status(prstatus):
             if prstatus == '-':
                 return "Cannot be implemented"
@@ -541,8 +543,10 @@ class Report_Library:
                 return "Not yet implemented"
             else:
                 return "Invalid Status"
+
         comparison_results = []
         unmatched_results = []
+
         for i in range(len(col_a)):
             matched = False
             for j in range(len(col_j)):
@@ -554,7 +558,7 @@ class Report_Library:
                         "CVSS Vector": col_d[i],    
                         "Category": col_e[i],
                         "Priority": col_f[i],
-                        "Released On": col_g[i],  # Only Date in DD-MM-YYYY format
+                        "Released On": col_g[i], 
                         "First Released On": col_h[i],
                         "Link": col_i[i],
                         "SAP NUMM": col_j[j],  
@@ -570,32 +574,40 @@ class Report_Library:
                     "CVSS Vector": col_d[i],    
                     "Category": col_e[i],
                     "Priority": col_f[i],
-                    "Released On": col_g[i],  # Only Date in DD-MM-YYYY format
+                    "Released On": col_g[i],  
                     "First Released On": col_h[i],
                     "Link": col_i[i],
                     "SAP NUMM": "Unmatched",  
                     "SAP PRSTATUS": "Unmatched",  
                     "Status": "Not yet implemented"
                 })
-        #Sort
+
+        # Sort
         comparison_results = sorted(comparison_results, key=lambda x: pd.to_datetime(x["Released On"], format='%d-%m-%Y', errors='coerce') if pd.notna(x["Released On"]) else pd.Timestamp.min)
         unmatched_results = sorted(unmatched_results, key=lambda x: pd.to_datetime(x["Released On"], format='%d-%m-%Y', errors='coerce') if pd.notna(x["Released On"]) else pd.Timestamp.min)
         comparison_df = pd.DataFrame(comparison_results)
         unmatched_df = pd.DataFrame(unmatched_results)
-        final_df = pd.concat([comparison_df,unmatched_df], ignore_index=True)
+        final_df = pd.concat([comparison_df, unmatched_df], ignore_index=True)
         final_df["Released On"] = final_df["Released On"].astype(str).replace("NaT", "")
-        #Save to Excel
-        final_df.to_excel(output_file, index=False)
-        # Apply formatting in Excel
-        wb = load_workbook(output_file)
-        ws = wb.active
-        #Define Colors for Formatting
+        try:
+            wb = load_workbook(output_file)
+        except (FileNotFoundError, InvalidFileException):
+            wb = load_workbook(input_file)
+
+        if "Master Data" in wb.sheetnames:
+            del wb["Master Data"]
+        ws = wb.create_sheet(title="Master Data", index=3)
+        ws.append(list(final_df.columns))
+        for row in final_df.itertuples(index=False, name=None):
+            ws.append(row)
         blue_fill = PatternFill(start_color="ADD8E6", end_color="ADD8E6", fill_type="solid")  # Blue
         red_fill = PatternFill(start_color="FFA07A", end_color="FFA07A", fill_type="solid")   # Red
         green_fill = PatternFill(start_color="00FF00", end_color="00FF00", fill_type="solid") # Green
+
         for row in range(2, len(final_df) + 2):
             prstatus_value = ws[f'K{row}'].value
             status_value = ws[f'L{row}'].value
+
             if prstatus_value == '-':
                 ws[f'K{row}'].fill = blue_fill  
             elif prstatus_value in ['U', 'u']:
@@ -617,10 +629,10 @@ class Report_Library:
                 ws[f'L{row}'].fill = red_fill
             elif status_value is None:
                 ws[f'L{row}'].fill = red_fill
-        #Save Excel file
-        wb.save(output_file)
-        print(f"Updated file with sorted matched & unmatched data saved to: {output_file}")
 
+        # Save Excel file
+        wb.save(output_file)
+        print(f"Updated file with sorted matched {output_file}")
     def basis_formate_json_data(self, input_string, removed_lines):
         def remove_first_n_lines(input_string, removed_lines):
             lines = input_string.split('\n')
