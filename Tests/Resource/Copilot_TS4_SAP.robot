@@ -81,7 +81,7 @@ Output
 Deletefile
     Delete Specific File    file_path=C:\\tmp\\Copilot\\data.csv
     Sleep    1
-    Delete Specific File    file_path=C:\\tmp\\Copilot\\TS4_OutputData.xlsx
+    # Delete Specific File    file_path=C:\\tmp\\Copilot\\TS4_OutputData.xlsx
     Sleep    1 
     Delete Specific File    file_path=C:\\tmp\\Copilot\\Snote_TS4_Report.xlsx
     Sleep    1 
