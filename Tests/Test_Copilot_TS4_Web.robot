@@ -1,6 +1,6 @@
 *** Settings ***
-Resource    ../Tests/Resource/Copilot_TS4_Web.robot
-Test Tags    Cop_web_ts4
+Resource    ../Tests/Resource/Copilot_BIS_Web.robot
+Test Tags    Cop_web_BIS
 *** Test Cases ***
-Web_Portal_TS4
-    Web_Portal_TS4
+Web_Portal_BIS
+    Web_Portal_BIS
