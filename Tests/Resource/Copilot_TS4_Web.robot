@@ -5,9 +5,14 @@ ${Copilot_URL}    https://me.sap.com/app/securitynotes
 ${BROWSER}    CHROME
 ${System}    TS4
 ${ACCEPT_BUTTON}   xpath=//button[contains(text(),'I accept all cookies')]
+${DOWNLOAD_DIR}   C:\\tmp\\Copilot\\Downloads
 ** Keywords ***
 Web_Portal_TS4
-    Open Browser    ${Copilot_URL}    ${BROWSER}        
+    ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
+    ${prefs}    Create Dictionary    download.default_directory    ${DOWNLOAD_DIR}
+    Call Method    ${options}    add_experimental_option    prefs    ${prefs}
+    Open Browser    ${Copilot_URL}    ${BROWSER}    options=${options}
+    # Open Browser    ${Copilot_URL}    ${BROWSER}
     Sleep    1
     Maximize Browser Window
     Wait Until Element Is Visible    name:j_username    30s
