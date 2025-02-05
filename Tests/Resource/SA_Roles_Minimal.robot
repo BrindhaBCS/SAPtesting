@@ -41,6 +41,7 @@ Roles_Minimal
     Input Text    wnd[0]/usr/ctxtDATABROWSE-TABLENAME    AGR_TCODES
     Send Vkey    0
     Sleep    0.5 seconds
+    Log To Console    **gbStart**copilot_status3**splitKeyValue**Processing is underway for your current ROLE, ensuring all necessary actions are completed...**gbEnd**
     Click Element    wnd[0]/usr/btn%_I1_%_APP_%-VALU_PUSH
     Sleep    0.5 seconds
     Click Element    wnd[1]/tbar[0]/btn[23]
@@ -52,206 +53,214 @@ Roles_Minimal
     Sleep    0.5 seconds
     Click Element    wnd[0]/tbar[1]/btn[8]
     Sleep    0.5 seconds
-    #Clicking edit and giving download
-    Click Element    wnd[0]/mbar/menu[1]/menu[5]
-    Sleep    0.5 seconds
-    #selecting xlsx format
-    Select Radio Button    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[2,0]
-    Sleep    0.5 seconds
-    Click Element    wnd[1]/tbar[0]/btn[0]
-    clear field text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME
-    Sleep    1
-    Delete Specific File    file_path=C:\\tmp\\Role\\Tcode_extract_minimal.xlsx
-    Sleep    1
-    Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Tcode_extract_minimal
-    Click Element    wnd[1]/tbar[0]/btn[20]
-    clear field text    wnd[1]/usr/ctxtDY_PATH
-    Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp\\Role\\
-    Sleep    0.5 seconds
-    Click Element    wnd[1]/tbar[0]/btn[11]
-    Sleep    1
-    ${tcode_length}    Input Role Extract    C:\\tmp\\Role\\Tcode_extract_minimal.xlsx    Sheet1
-    Log    ${tcode_length}
-    Log To Console    ${tcode_length}
-    Sleep    1
-    #Tcode_SU01
-    Run Transaction    /nsu01
-    Sleep    1
-    Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('New_User_Name')}           #userfiled
-    Sleep    0.5 seconds
-    Click Element    wnd[0]/tbar[1]/btn[7]                                #displayicon
-    Sleep    0.5 seconds
-    Click Element    wnd[0]/tbar[1]/btn[19]                                #change&displayicon
-    Sleep    0.5 seconds
-    Click Element    wnd[0]/usr/tabsTABSTRIP1/tabpACTG
-    Sleep    1
-    ${tech}    Get Sap Cell Value AGR NAME    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    0
-    Sleep    1
-    IF    '${tech}' != ''
-        Delete Allrole Save
-        Sleep    1
-        Clear Field Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME
+    ${pm}    Get Value    element_id=wnd[0]/sbar/pane[0]
+    IF    '${pm}' != 'No table entries found for specified key'
+        #Clicking edit and giving download
+        Click Element    wnd[0]/mbar/menu[1]/menu[5]
         Sleep    0.5 seconds
-        Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('New_User_Name')}         #userfiled
+        #selecting xlsx format
+        Select Radio Button    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[2,0]
+        Sleep    0.5 seconds
+        Click Element    wnd[1]/tbar[0]/btn[0]
+        clear field text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME
+        Sleep    1
+        Delete Specific File    file_path=C:\\tmp\\Role\\Tcode_extract_minimal.xlsx
+        Sleep    1
+        Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Tcode_extract_minimal
+        Click Element    wnd[1]/tbar[0]/btn[20]
+        clear field text    wnd[1]/usr/ctxtDY_PATH
+        Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp\\Role\\
+        Sleep    0.5 seconds
+        Click Element    wnd[1]/tbar[0]/btn[11]
+        Sleep    1
+        ${tcode_length}    Input Role Extract    C:\\tmp\\Role\\Tcode_extract_minimal.xlsx    Sheet1
+        Log    ${tcode_length}
+        Log To Console    ${tcode_length}
+        Sleep    1
+        Log To Console    **gbStart**copilot_status3**splitKeyValue**Role will be assigned to Test users...**gbEnd**
+        #Tcode_SU01
+        Run Transaction    /nsu01
+        Sleep    1
+        Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('New_User_Name')}           #userfiled
+        Sleep    0.5 seconds
         Click Element    wnd[0]/tbar[1]/btn[7]                                #displayicon
         Sleep    0.5 seconds
         Click Element    wnd[0]/tbar[1]/btn[19]                                #change&displayicon
         Sleep    0.5 seconds
-        Click Element    wnd[0]/usr/tabsTABSTRIP1/tabpACTG                    #role bar button
+        Click Element    wnd[0]/usr/tabsTABSTRIP1/tabpACTG
         Sleep    1
-        ${roles_tcodes_items}    Evaluate    list(${tcode_length}.items())
-        FOR    ${item}    IN    @{roles_tcodes_items}
-            ${role}    ${tcodes}    Set Variable    ${item}
-            Log    Role: ${role}
-            Modify Sap Cell    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    0    ${role}
-            Sleep    1
-            Click Element    wnd[0]/tbar[0]/btn[11]
-            Sleep    1
-            System Logout
-            Sleep    1
-            TEST_System_Logon
-            Sleep    1
-            ${index}    Set Variable    1
-            FOR    ${tcode}    IN    @{tcodes}
-                Log    TCODE: ${tcode}
-                Sleep    1
-                Run Transaction    /n${tcode}
-                Sleep    2
-                ${CLEANED_TEXT}=  Remove String  ${role}    /    :
-                Log  ${CLEANED_TEXT}
-                ${CLEANED_TEXT_Two}=  Remove String  ${tcode}    /    :
-                Log  ${CLEANED_TEXT_Two}
-                Take Screenshot    ${index}_${CLEANED_TEXT}_${CLEANED_TEXT_Two}.png
-                Sleep    1
-                ${think}    Get Value    wnd[0]/sbar/pane[0]
-                Sleep    1
-                ${index}    Evaluate    ${index} + 1
-                IF    '${think}' == 'You are not authorized to use transaction ${tcode}'
-                    Log    !!!!! ${tcode} You are not authorized to use transaction.
-                    Log To Console    !!!!! ${tcode} You are not authorized to use transaction.
-                ELSE
-                    Log   ${tcode} You are transaction will be authorized.
-                    Log To Console   ${tcode} You are transaction will be authorized.
-                END
-            END
-            System Logout
-            System Logon
-            Run Transaction    /nsu01
-            Sleep    1
-            Clear Field Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME
-            Sleep    0.5 seconds
-            Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('New_User_Name')}
-            Sleep    0.5 seconds
-            Click Element    wnd[0]/tbar[1]/btn[7]
-            Sleep    0.5 seconds
-            Click Element    wnd[0]/tbar[1]/btn[19]
-            Sleep    0.5 seconds
-            Click Element    wnd[0]/usr/tabsTABSTRIP1/tabpACTG
-            Sleep    0.5 seconds
+        ${tech}    Get Sap Cell Value AGR NAME    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    0
+        Sleep    1
+        IF    '${tech}' != ''
             Delete Allrole Save
-            Sleep    0.5 seconds
+            Sleep    1
             Clear Field Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME
             Sleep    0.5 seconds
             Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('New_User_Name')}         #userfiled
-            Sleep    0.5 seconds
             Click Element    wnd[0]/tbar[1]/btn[7]                                #displayicon
             Sleep    0.5 seconds
             Click Element    wnd[0]/tbar[1]/btn[19]                                #change&displayicon
             Sleep    0.5 seconds
             Click Element    wnd[0]/usr/tabsTABSTRIP1/tabpACTG                    #role bar button
-            Sleep    1 
-        END
-    ELSE    
-        ${roles_tcodes_items}    Evaluate    list(${tcode_length}.items())
-        FOR    ${item}    IN    @{roles_tcodes_items}
-            ${role}    ${tcodes}    Set Variable    ${item}
-            Log    Role: ${role}
-            Modify Sap Cell    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    0    ${role}
             Sleep    1
-            Click Element    wnd[0]/tbar[0]/btn[11]
-            Sleep    2
-            System Logout
-            Sleep    1
-            TEST_System_Logon
-            Sleep    1
-            ${index}    Set Variable    1
-            FOR    ${tcode}    IN    @{tcodes}
-                Log    TCODE: ${tcode}
+            ${roles_tcodes_items}    Evaluate    list(${tcode_length}.items())
+            FOR    ${item}    IN    @{roles_tcodes_items}
+                ${role}    ${tcodes}    Set Variable    ${item}
+                Log    Role: ${role}
+                Modify Sap Cell    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    0    ${role}
                 Sleep    1
-                Run Transaction    /n${tcode}
-                Sleep    2
-                ${CLEANED_TEXT}=  Remove String  ${role}    /    :
-                Log  ${CLEANED_TEXT}
-                ${CLEANED_TEXT_Two}=  Remove String  ${tcode}    /    :
-                Log  ${CLEANED_TEXT_Two}
-                Take Screenshot    ${index}_${CLEANED_TEXT}_${CLEANED_TEXT_Two}.png
+                Click Element    wnd[0]/tbar[0]/btn[11]
                 Sleep    1
-                ${think}    Get Value    wnd[0]/sbar/pane[0]
+                System Logout
+                Sleep    1
+                TEST_System_Logon
+                Sleep    1
+                ${index}    Set Variable    1
+                FOR    ${tcode}    IN    @{tcodes}
+                    Log    TCODE: ${tcode}
+                    Sleep    1
+                    Run Transaction    /n${tcode}
+                    Sleep    2
+                    ${CLEANED_TEXT}=  Remove String  ${role}    /    :
+                    Log  ${CLEANED_TEXT}
+                    ${CLEANED_TEXT_Two}=  Remove String  ${tcode}    /    :
+                    Log  ${CLEANED_TEXT_Two}
+                    Take Screenshot    ${index}_${CLEANED_TEXT}_${CLEANED_TEXT_Two}.png
+                    Sleep    1
+                    ${think}    Get Value    wnd[0]/sbar/pane[0]
+                    Sleep    1
+                    ${index}    Evaluate    ${index} + 1
+                    IF    '${think}' == 'You are not authorized to use transaction ${tcode}'
+                        Log    !!!!! ${tcode} You are not authorized to use transaction.
+                        Log To Console    !!!!! ${tcode} You are not authorized to use transaction.
+                    ELSE
+                        Log   ${tcode} You are transaction will be authorized.
+                        Log To Console   ${tcode} You are transaction will be authorized.
+                    END
+                END
+                System Logout
+                System Logon
+                Run Transaction    /nsu01
+                Sleep    1
+                Clear Field Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME
                 Sleep    0.5 seconds
-                ${index}    Evaluate    ${index} + 1
-                IF    '${think}' == 'You are not authorized to use transaction ${tcode}'
-                    Log    !!!!! ${tcode} You are not authorized to use transaction.
-                    Log To Console    !!!!! ${tcode} You are not authorized to use transaction.
-                ELSE
-                    Log   ${tcode} You are transaction will be authorized.
-                    Log To Console   ${tcode} You are transaction will be authorized.
-                END
+                Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('New_User_Name')}
+                Sleep    0.5 seconds
+                Click Element    wnd[0]/tbar[1]/btn[7]
+                Sleep    0.5 seconds
+                Click Element    wnd[0]/tbar[1]/btn[19]
+                Sleep    0.5 seconds
+                Click Element    wnd[0]/usr/tabsTABSTRIP1/tabpACTG
+                Sleep    0.5 seconds
+                Delete Allrole Save
+                Sleep    0.5 seconds
+                Clear Field Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME
+                Sleep    0.5 seconds
+                Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('New_User_Name')}         #userfiled
+                Sleep    0.5 seconds
+                Click Element    wnd[0]/tbar[1]/btn[7]                                #displayicon
+                Sleep    0.5 seconds
+                Click Element    wnd[0]/tbar[1]/btn[19]                                #change&displayicon
+                Sleep    0.5 seconds
+                Click Element    wnd[0]/usr/tabsTABSTRIP1/tabpACTG                    #role bar button
+                Sleep    1 
             END
-            System Logout
-            System Logon
-            Run Transaction    /nsu01
-            Sleep    1
-            Clear Field Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME
-            Sleep    0.5 seconds
-            Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('New_User_Name')}
-            Sleep    0.5 seconds
-            Click Element    wnd[0]/tbar[1]/btn[7]
-            Sleep    0.5 seconds
-            Click Element    wnd[0]/tbar[1]/btn[19]
-            Sleep    0.5 seconds
-            Click Element    wnd[0]/usr/tabsTABSTRIP1/tabpACTG
-            Sleep    0.5 seconds
-            Delete Allrole Save
-            Sleep    0.5 seconds
-            Clear Field Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME
-            Sleep    0.5 seconds
-            Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('New_User_Name')}         #userfiled
-            Sleep    0.5 seconds
-            Click Element    wnd[0]/tbar[1]/btn[7]                                #displayicon
-            Sleep    0.5 seconds
-            Click Element    wnd[0]/tbar[1]/btn[19]                                #change&displayicon
-            Sleep    0.5 seconds
-            Click Element    wnd[0]/usr/tabsTABSTRIP1/tabpACTG                    #role bar button
-            Sleep    0.5 seconds
+        ELSE    
+            ${roles_tcodes_items}    Evaluate    list(${tcode_length}.items())
+            FOR    ${item}    IN    @{roles_tcodes_items}
+                ${role}    ${tcodes}    Set Variable    ${item}
+                Log    Role: ${role}
+                Modify Sap Cell    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    0    ${role}
+                Sleep    1
+                Click Element    wnd[0]/tbar[0]/btn[11]
+                Sleep    2
+                System Logout
+                Sleep    1
+                TEST_System_Logon
+                Sleep    1
+                ${index}    Set Variable    1
+                FOR    ${tcode}    IN    @{tcodes}
+                    Log    TCODE: ${tcode}
+                    Sleep    1
+                    Run Transaction    /n${tcode}
+                    Sleep    2
+                    ${CLEANED_TEXT}=  Remove String  ${role}    /    :
+                    Log  ${CLEANED_TEXT}
+                    ${CLEANED_TEXT_Two}=  Remove String  ${tcode}    /    :
+                    Log  ${CLEANED_TEXT_Two}
+                    Take Screenshot    ${index}_${CLEANED_TEXT}_${CLEANED_TEXT_Two}.png
+                    Sleep    1
+                    ${think}    Get Value    wnd[0]/sbar/pane[0]
+                    Sleep    0.5 seconds
+                    ${index}    Evaluate    ${index} + 1
+                    IF    '${think}' == 'You are not authorized to use transaction ${tcode}'
+                        Log    !!!!! ${tcode} You are not authorized to use transaction.
+                        Log To Console    !!!!! ${tcode} You are not authorized to use transaction.
+                    ELSE
+                        Log   ${tcode} You are transaction will be authorized.
+                        Log To Console   ${tcode} You are transaction will be authorized.
+                    END
+                END
+                System Logout
+                System Logon
+                Run Transaction    /nsu01
+                Sleep    1
+                Clear Field Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME
+                Sleep    0.5 seconds
+                Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('New_User_Name')}
+                Sleep    0.5 seconds
+                Click Element    wnd[0]/tbar[1]/btn[7]
+                Sleep    0.5 seconds
+                Click Element    wnd[0]/tbar[1]/btn[19]
+                Sleep    0.5 seconds
+                Click Element    wnd[0]/usr/tabsTABSTRIP1/tabpACTG
+                Sleep    0.5 seconds
+                Delete Allrole Save
+                Sleep    0.5 seconds
+                Clear Field Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME
+                Sleep    0.5 seconds
+                Input Text    wnd[0]/usr/ctxtSUID_ST_BNAME-BNAME    ${symvar('New_User_Name')}         #userfiled
+                Sleep    0.5 seconds
+                Click Element    wnd[0]/tbar[1]/btn[7]                                #displayicon
+                Sleep    0.5 seconds
+                Click Element    wnd[0]/tbar[1]/btn[19]                                #change&displayicon
+                Sleep    0.5 seconds
+                Click Element    wnd[0]/usr/tabsTABSTRIP1/tabpACTG                    #role bar button
+                Sleep    0.5 seconds
+            END
         END
+        System Logout
+        System Logon
+        Log To Console    **gbStart**copilot_status4**splitKeyValue**STAUTHTRACE test user's status will be checked, and the report will be downloaded...**gbEnd**
+        Run Transaction    /nstauthtrace
+        Sleep    1
+        Click Element    wnd[0]/tbar[1]/btn[8]
+        Sleep    1
+        Send Vkey    vkey_id=45
+        Sleep    1 
+        Select Radio Button    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[2,0]
+        Sleep    1
+        Click Element    wnd[1]/tbar[0]/btn[0]
+        Sleep    1
+        Clear Field Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME
+        Sleep    1
+        Delete Specific File    file_path=C:\\tmp\\Role\\Overall_Report_minimal.xlsx
+        Sleep    1
+        Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Overall_Report_minimal
+        Sleep    1
+        Click Element    wnd[1]/tbar[0]/btn[20]
+        Sleep    1
+        Clear Field Text    wnd[1]/usr/ctxtDY_PATH
+        Sleep    1
+        Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp\\Role\\
+        Sleep    1
+        Click Element    wnd[1]/tbar[0]/btn[11]
+        Sleep    1
+    ELSE
+        Log To Console    **gbStart**copilot_status1**splitKeyValue**Your current ROLE doesn't have a T-CODE...**gbEnd**
     END
-    System Logout
-    System Logon
-    Run Transaction    /nstauthtrace
-    Sleep    1
-    Click Element    wnd[0]/tbar[1]/btn[8]
-    Sleep    1
-    Send Vkey    vkey_id=45
-    Sleep    1 
-    Select Radio Button    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[2,0]
-    Sleep    1
-    Click Element    wnd[1]/tbar[0]/btn[0]
-    Sleep    1
-    Clear Field Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME
-    Sleep    1
-    Delete Specific File    file_path=C:\\tmp\\Role\\Overall_Report_minimal.xlsx
-    Sleep    1
-    Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Overall_Report_minimal
-    Sleep    1
-    Click Element    wnd[1]/tbar[0]/btn[20]
-    Sleep    1
-    Clear Field Text    wnd[1]/usr/ctxtDY_PATH
-    Sleep    1
-    Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp\\Role\\
-    Sleep    1
-    Click Element    wnd[1]/tbar[0]/btn[11]
-    Sleep    1
 Report_generation
+    Log To Console    **gbStart**copilot_status2**splitKeyValue**Execution is completed, and the report is being prepared...**gbEnd**
     Copy Images    source_dir=${OUTPUT_DIR}    target_dir=C:\\tmp\\Role\\Screendir\\Minimal\\
     Sleep    1
     Remove Rows Before Start Row    file_path=C:\\tmp\\Role\\Overall_Report_minimal.xlsx    sheet_name=Sheet1    start_row=5
