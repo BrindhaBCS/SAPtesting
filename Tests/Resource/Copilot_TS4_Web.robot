@@ -22,8 +22,8 @@ Web_Portal_TS4
     Run Keyword And Ignore Error    ${ACCEPT_BUTTON}    timeout=20     
     Click Element    ${ACCEPT_BUTTON}
     Wait Until Element Is Visible    name:password    30s
-    Input Text    locator=name:password    text=%{Cop_Web_Password}
-    # Input Password    name:password    %{Cop_Web_Password}
+    # Input Text    locator=name:password    text=%{Cop_Web_Password}
+    Input Password    name:password    %{Cop_Web_Password}
     Wait Until Element Is Visible    xpath://button[normalize-space(text())='Sign in']    30s
     Click Element    xpath://button[normalize-space(text())='Sign in']
     Sleep    25
