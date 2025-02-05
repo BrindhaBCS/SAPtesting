@@ -34,7 +34,7 @@ ${OUTPUT_FILE}  C:\\tmp\\Authorised Users List\\Access password.xlsx
 ${HEADER1}      Access password
 ${HEADER2}      All Users
 ${COMPARISON_COL_NAME}    Compared_Users
-
+${html_report_MCR}    C:\\tmp\\Html_report_mcr.txt
 
 
 *** Keywords ***
@@ -116,8 +116,8 @@ Access Password Manager
         Sleep    1
         # Compare And Include Query Data    security_file=C:\\tmp\\SAP Security Users.xlsx    query_file=C:\\tmp\\Maintenance Workflow.xlsx    output_file=C:\\TEMP\\Validate_Maintenance Workflow_Data.xlsx
         # Sleep    1
-        Compare And Add Query Data    security_file=C:\\tmp\\SAP Security Users.xlsx    query_file=C:\\tmp\\Access password.xlsx    existing_file=C:\\TEMP\\Validate_Data.xlsx    new_sheet_name=Maintenance Workflow1
-        Sleep    1
+        # Compare And Add Query Data    security_file=C:\\tmp\\SAP Security Users.xlsx    query_file=C:\\tmp\\Access password.xlsx    existing_file=C:\\TEMP\\Validate_Data.xlsx    new_sheet_name=Maintenance Workflow1
+        # Sleep    1
         ${AA}    Set Variable    PASS:Check to start Programs immediately Passed.
         Log To Console    ${AA}
         Append To File    path=${html_report_MCR}    content=${AA}\n
@@ -127,9 +127,9 @@ Access Password Manager
         Append To File    path=${html_report_MCR}    content=${AA}\n
             
     END
-        Generate Report Html    input_file=${html_report_MCR}    output_file=C:\\tmp\\MIC\\Html_report_mcr.html    report_name=MIC REPORT
-        Sleep    2
-    Log To Console    Access password completed
+    #     Generate Report Html    input_file=${html_report_MCR}    output_file=C:\\tmp\\MIC\\Html_report_mcr.html    report_name=MIC REPORT
+    #     Sleep    2
+    # Log To Console    Access password completed
 Generate report
     Image Resize    ${OUTPUT_DIR}
     Sleep    2

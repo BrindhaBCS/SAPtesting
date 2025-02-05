@@ -33,7 +33,7 @@ ${OUTPUT_FILE}  C:\\tmp\\Authorised Users List\\Usercontrol gebruikers met User 
 ${HEADER1}      Usercontrol gebruikers met User Maintenance
 ${HEADER2}      All Users
 ${COMPARISON_COL_NAME}    Compared_Users
-
+${html_report_MCR}    C:\\tmp\\Html_report_mcr.txt
 
 
 *** Keywords ***
