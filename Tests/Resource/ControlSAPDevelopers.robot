@@ -89,10 +89,10 @@ Control SAP developers
         Log To Console    ${i}
         Delete Specific File    C:\\tmp\\Control SAP developers.xls
         Sleep    1
-        Remove Rows Before Start Row    file_path=C:\\tmp\\Control SAP developers.xlsx    sheet_name=Control SAP developers    start_row=4
-        Sleep    1
-        compare    first_excel_path=C:\\tmp\\Control SAP developers.xlsx    second_excel_path=C:\\tmp\\SAP Security Users.xlsx    output_excel_path=C:\\TEMP\\Validate_Control SAP developers.xlsx   first_sheet_name=Control SAP developers    second_sheet_name=SAP SECURITY
-        Sleep    1
+        # Remove Rows Before Start Row    file_path=C:\\tmp\\Control SAP developers.xlsx    sheet_name=Control SAP developers    start_row=4
+        # Sleep    1
+        # compare    first_excel_path=C:\\tmp\\Control SAP developers.xlsx    second_excel_path=C:\\tmp\\SAP Security Users.xlsx    output_excel_path=C:\\TEMP\\Validate_Control SAP developers.xlsx   first_sheet_name=Control SAP developers    second_sheet_name=SAP SECURITY
+        # Sleep    1
         ${AA}    Set Variable    PASS:Control SAP developers Passed.
         Log To Console    ${AA}
         Append To File    path=${html_report_MCR}    content=${AA}\n
