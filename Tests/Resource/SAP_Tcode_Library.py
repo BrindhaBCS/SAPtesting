@@ -2228,7 +2228,55 @@ class SAP_Tcode_Library:
 
         # Save the cleaned file
         df_cleaned.to_excel(cleaned_file_path, index=False)
+
+    def files_clean_Bname(self, file_path, cleaned_file_path):
         
+        df = pd.read_excel(file_path, header=None)
+
+        # Find the row index where 'User Name' appears
+        header_row_idx = df[df.eq("BNAME").any(axis=1)].index[0]
+
+        # Re-load the data with the correct header row
+        df_cleaned = pd.read_excel(file_path, skiprows=header_row_idx)
+
+        # Rename 'User' column to 'User Name' (if it exists)
+        df_cleaned.rename(columns={"BNAME": "User Name"}, inplace=True)
+
+        # Save the cleaned file
+        df_cleaned.to_excel(cleaned_file_path, index=False)
+
+    def files_clean_Uname(self, file_path, cleaned_file_path):
+        
+        df_cleaned = pd.read_excel(file_path, header=None)
+
+        # Find the row index where 'User Name' appears
+        # header_row_idx = df[df.eq("UNAME").any(axis=1)].index[0]
+
+        # Re-load the data with the correct header row
+        # df_cleaned = pd.read_excel(file_path, skiprows=header_row_idx)
+
+        # Rename 'User' column to 'User Name' (if it exists)
+        df_cleaned.rename(columns={"UNAME": "User Name"}, inplace=True)
+
+        # Save the cleaned file
+        df_cleaned.to_excel(cleaned_file_path, index=False)
+
+    def files_clean_Username_cleaned(self, file_path, cleaned_file_path):
+        
+        df_cleaned = pd.read_excel(file_path, header=None)
+
+        # Find the row index where 'User Name' appears
+        # header_row_idx = df[df.eq("UNAME").any(axis=1)].index[0]
+
+        # Re-load the data with the correct header row
+        # df_cleaned = pd.read_excel(file_path, skiprows=header_row_idx)
+
+        # Rename 'User' column to 'User Name' (if it exists)
+        # df_cleaned.rename(columns={"UNAME": "User Name"}, inplace=True)
+
+        # Save the cleaned file
+        df_cleaned.to_excel(cleaned_file_path, index=False)
+
     def files_clean_user(self, file_path, cleaned_file_path):
         
         df = pd.read_excel(file_path, header=None)
@@ -2488,3 +2536,59 @@ class SAP_Tcode_Library:
         # Save the workbook
         workbook.save(existing_file)
         print(f"Comparison completed! Results saved to sheet '{new_sheet_name}' in '{existing_file}'.")
+
+    def generate_extra_users_list_all_nodes(self, file_list_path, exempted_users_file, output_file):
+       
+        import pandas as pd
+ 
+        # File paths
+        #exempted_users_file = "C:\\MCR_Report_Files\\MCR_Exempted_Users1.xlsx"
+        #file_list_path = "C:\\MCR_Report_Files\\file_list.txt"
+        #output_file = "C:\\MCR_Report_Files\\Extra_Users_List.xlsx"
+ 
+        # Read the list of files from the text file
+        with open(file_list_path, "r") as f:
+            file_paths = [line.strip() for line in f if line.strip()]
+ 
+        # Load the first sheet of the exempted users file
+        exempted_users_sheets = pd.read_excel(exempted_users_file, sheet_name=None)
+        exempted_users_list = list(exempted_users_sheets.values())
+ 
+        # Dictionary to store extra users per file
+        extra_users_dict = {}
+ 
+        # Process each file in the list and compare it with the corresponding exempted sheet
+        for idx, file_path in enumerate(file_paths):
+            try:
+                output_df = pd.read_excel(file_path)
+                exempted_users_df = exempted_users_list[idx]  # Match file with corresponding exempted sheet
+ 
+                # Ensure 'User Name' exists in both dataframes
+                if 'User Name' in exempted_users_df.columns and 'User Name' in output_df.columns:
+                    exempted_users = set(exempted_users_df['User Name'])
+                    output_users = set(output_df['User Name'])
+ 
+                    # Find extra users
+                    extra_users_df = output_df[~output_df['User Name'].isin(exempted_users)]
+ 
+                    if not extra_users_df.empty:
+                        # sheet_name = f"Comparison_{idx+1}"
+                        file_name = os.path.basename(file_path).replace("Cleaned.xlsx", "")
+                        sheet_name = f"{file_name}"[:31]
+                        extra_users_dict[sheet_name] = extra_users_df
+                else:
+                    print(f"⚠ 'User Name' column not found in {file_path}. Skipping...")
+ 
+            except Exception as e:
+                print(f"⚠ Error processing {file_path}: {e}")
+ 
+        # Save results to an Excel file with multiple sheets
+        if extra_users_dict:
+            with pd.ExcelWriter(output_file) as writer:
+                for sheet, df in extra_users_dict.items():
+                    df.to_excel(writer, sheet_name=sheet[:31], index=False)
+ 
+            print(f"✅ Comparison complete. Extra users saved in '{output_file}'.")
+        else:
+            print("⚠ No extra users found. Output file not created.")
+ 
