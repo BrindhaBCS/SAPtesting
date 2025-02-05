@@ -2216,6 +2216,94 @@ class SAP_Tcode_Library:
         workbook.close()
         return f"All rows before row {start_row} have been removed."
     
+    def files_clean_username(self, file_path, cleaned_file_path):
+        
+        df = pd.read_excel(file_path, header=None)
+
+        # Find the row index where 'User Name' appears
+        header_row_idx = df[df.eq("User Name").any(axis=1)].index[0]
+
+        # Re-load the data with the correct header row
+        df_cleaned = pd.read_excel(file_path, skiprows=header_row_idx)
+
+        # Save the cleaned file
+        df_cleaned.to_excel(cleaned_file_path, index=False)
+        
+    def files_clean_user(self, file_path, cleaned_file_path):
+        
+        df = pd.read_excel(file_path, header=None)
+
+        # Find the row index where 'User' appears
+        header_row_idx = df[df.eq("User").any(axis=1)].index[0]
+
+        # Re-load the data with the correct header row
+        df_cleaned = pd.read_excel(file_path, skiprows=header_row_idx)
+
+        # Rename 'User' column to 'User Name' (if it exists)
+        df_cleaned.rename(columns={"User": "User Name"}, inplace=True)
+
+        # Save the cleaned file
+        df_cleaned.to_excel(cleaned_file_path, index=False)
+        
+    def generate_extra_users_list(self, se16_filepath_cleaned, table_auth_filepath_cleaned, control_SAP_filepath_cleaned, auth_profiles_filepath_cleaned, exempted_users_file, output_file):
+        
+        # File paths
+        #exempted_users_file = "C:\\MCR_Report_Files\\MCR_Exempted_Users1.xlsx"
+
+        files_to_compare = [
+            se16_filepath_cleaned,
+            table_auth_filepath_cleaned,
+            control_SAP_filepath_cleaned,
+            auth_profiles_filepath_cleaned
+        ]
+
+        #output_file = "C:\\MCR_Report_Files\\Extra_Users_List_full.xlsx"
+
+        # Load exempted users file with all sheets
+        exempted_users_sheets = pd.read_excel(exempted_users_file, sheet_name=None)
+        print
+
+        # Dictionary to store extra users per file
+        extra_users_dict = {}
+
+        # Compare each file to its corresponding sheet
+        for file_path, (sheet_name, exempted_users_df) in zip(files_to_compare, exempted_users_sheets.items()):
+            try:
+                # Load the current file
+                output_df = pd.read_excel(file_path)
+
+                # Ensure 'User Name' column exists in both files
+                if ('User Name' or 'User') in exempted_users_df.columns and ('User Name' or 'User') in output_df.columns:
+                    exempted_users = set(exempted_users_df['User Name' or 'User'])
+                    output_users = set(output_df['User Name' or 'User'])
+
+                    # Find extra users
+                    extra_users_df = output_df[~output_df['User Name' or 'User'].isin(exempted_users)]
+
+                    if not extra_users_df.empty:
+                        # Extract only the file name without the path
+                        file_name = os.path.basename(file_path).replace("Cleaned.xlsx", "")
+                        sheet_name = f"Extra_Users_{file_name}"[:31]
+                        
+                        # Store results with safe sheet name
+                        extra_users_dict[sheet_name] = extra_users_df
+                    else:
+                        print(f"✅ No extra users found in: {file_path} vs {sheet_name}")
+
+            except Exception as e:
+                print(f"⚠ Error processing {file_path} vs {sheet_name}: {e}")
+
+        # Save all extra users in one Excel file with multiple sheets
+        if extra_users_dict:
+            with pd.ExcelWriter(output_file) as writer:
+                for sheet, df in extra_users_dict.items():
+                    df.to_excel(writer, sheet_name=sheet, index=False)
+
+            print(f"✅ Comparison complete. Extra users saved in '{output_file}'.")
+        else:
+            print("✅ No extra users found in any comparison.")
+
+
     def compare_and_include_query_data(self, security_file, query_file, output_file):
         """
         Compares rows from 'security_file' with 'query_file' and includes 'User Type' and 'Department'
