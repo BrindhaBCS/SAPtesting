@@ -260,6 +260,7 @@ Roles_Minimal
         Deletefile
     ELSE
         Log To Console    **gbStart**copilot_status2**splitKeyValue**Your current ROLE doesn't have a T-CODE...**gbEnd**
+        Delete Specific File    file_path=C:\\tmp\\Role\\Role_extract_minimal.txt
     END
 Report_generation
     Log To Console    **gbStart**copilot_status4**splitKeyValue**Execution is completed, and the report is being prepared...**gbEnd**
