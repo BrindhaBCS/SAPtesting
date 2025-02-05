@@ -150,6 +150,7 @@ Authorization profiles maintenance
         Append To File    path=${html_report_MCR}    content=${AA}\n
         
     END
+    Log To Console    **gbStart**MCR_Result**splitKeyValue**${html_report_MCR}**gbEnd**
 Generate report
     Image Resize    ${OUTPUT_DIR}
     Sleep    2
