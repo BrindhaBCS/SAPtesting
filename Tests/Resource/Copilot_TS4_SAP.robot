@@ -8,14 +8,12 @@ Library    Report_Library.py
 *** Keywords ***
 System Logon
     Start Process     ${symvar('SAP_SERVER')}
-    Sleep    2
+    Sleep    3
     Connect To Session
+    Sleep    3
     Open Connection    ${symvar('Cop_Connection')}
-    Sleep   1
     Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('Cop_Client_Id')}
-    Sleep   1
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('Cop_User_Name')}
-    Sleep   1
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('Cop_User_Password')}
     Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{Cop_User_Password}
     Send Vkey    0
