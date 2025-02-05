@@ -13,8 +13,8 @@ System Logon
     Open Connection    ${symvar('Cop_Connection')}
     Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('Cop_Client_Id')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('Cop_User_Name')}
-    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('Cop_User_Password')}
-    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{Cop_User_Password}
+    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('ABB_User_Password')}
+    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{ABB_User_Password}
     Send Vkey    0
     Sleep    1
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
