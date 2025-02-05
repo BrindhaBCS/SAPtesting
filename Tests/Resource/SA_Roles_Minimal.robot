@@ -41,7 +41,7 @@ Roles_Minimal
     Input Text    wnd[0]/usr/ctxtDATABROWSE-TABLENAME    AGR_TCODES
     Send Vkey    0
     Sleep    0.5 seconds
-    Log To Console    **gbStart**copilot_status3**splitKeyValue**Processing is underway for your current ROLE, ensuring all necessary actions are completed...**gbEnd**
+    Log To Console    **gbStart**copilot_status1**splitKeyValue**Processing is underway for your current ROLE, ensuring all necessary actions are completed...**gbEnd**
     Click Element    wnd[0]/usr/btn%_I1_%_APP_%-VALU_PUSH
     Sleep    0.5 seconds
     Click Element    wnd[1]/tbar[0]/btn[23]
@@ -77,7 +77,7 @@ Roles_Minimal
         Log    ${tcode_length}
         Log To Console    ${tcode_length}
         Sleep    1
-        Log To Console    **gbStart**copilot_status3**splitKeyValue**Role will be assigned to Test users...**gbEnd**
+        Log To Console    **gbStart**copilot_status2**splitKeyValue**Role will be assigned to Test users...**gbEnd**
         #Tcode_SU01
         Run Transaction    /nsu01
         Sleep    1
@@ -231,7 +231,7 @@ Roles_Minimal
         END
         System Logout
         System Logon
-        Log To Console    **gbStart**copilot_status4**splitKeyValue**STAUTHTRACE test user's status will be checked, and the report will be downloaded...**gbEnd**
+        Log To Console    **gbStart**copilot_status3**splitKeyValue**STAUTHTRACE test user's status will be checked, and the report will be downloaded...**gbEnd**
         Run Transaction    /nstauthtrace
         Sleep    1
         Click Element    wnd[0]/tbar[1]/btn[8]
@@ -259,10 +259,10 @@ Roles_Minimal
         Report_generation
         Deletefile
     ELSE
-        Log To Console    **gbStart**copilot_status1**splitKeyValue**Your current ROLE doesn't have a T-CODE...**gbEnd**
+        Log To Console    **gbStart**copilot_status2**splitKeyValue**Your current ROLE doesn't have a T-CODE...**gbEnd**
     END
 Report_generation
-    Log To Console    **gbStart**copilot_status2**splitKeyValue**Execution is completed, and the report is being prepared...**gbEnd**
+    Log To Console    **gbStart**copilot_status4**splitKeyValue**Execution is completed, and the report is being prepared...**gbEnd**
     Copy Images    source_dir=${OUTPUT_DIR}    target_dir=C:\\tmp\\Role\\Screendir\\Minimal\\
     Sleep    1
     Remove Rows Before Start Row    file_path=C:\\tmp\\Role\\Overall_Report_minimal.xlsx    sheet_name=Sheet1    start_row=5
