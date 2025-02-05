@@ -47,12 +47,17 @@ System Logout
    
 
 Control SAP standard users
+
     Run Transaction    /nRSUSR003
     Sleep    2
     Take Screenshot    Control_SAP_standard_users1.jpg
     Click Element    ${Execute}
     Sleep    5
     Take Screenshot    Control_SAP_standard_users2.jpg
+
+    Delete Specific File    ${FILE1}
+    Sleep    1
+    
     Click Element    ${local file}
     Sleep    2
     Select Radio Button    ${Text with tabs Button}
