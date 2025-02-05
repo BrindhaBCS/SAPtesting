@@ -255,7 +255,9 @@ Roles_Minimal
         Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp\\Role\\
         Sleep    1
         Click Element    wnd[1]/tbar[0]/btn[11]
-        Sleep    1
+        Sleep    2
+        Report_generation
+        Deletefile
     ELSE
         Log To Console    **gbStart**copilot_status1**splitKeyValue**Your current ROLE doesn't have a T-CODE...**gbEnd**
     END
