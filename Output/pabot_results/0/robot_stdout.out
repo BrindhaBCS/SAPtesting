@@ -1,0 +1,41 @@
+==============================================================================
+Tests :: Testing functionality through Robot Framework                        
+==============================================================================
+Tests.Test FB03                                                               
+==============================================================================
+  
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\SAP_Testing\SAPtesting\Tests\Test_FB03.robot:4
+      SAP logon    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\SAP_Testing\SAPtesting\Tests\Resource\FB03.robot:29
+      Open Connection    ${symvar('invoice_connection')}
+      |  ${symvar('invoice_connection')} = $invoice_connection (str)
+______________________________________________________________________________
+Interlinked transactions for Invoice                                  | FAIL |
+Parent suite setup failed:
+ValueError: Cannot open connection '$invoice_connection', please check connection name.
+------------------------------------------------------------------------------
+  
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\SAP_Testing\SAPtesting\Tests\Test_FB03.robot:5
+      SAP Logout    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\SAP_Testing\SAPtesting\Tests\Resource\FB03.robot:39
+      Run Transaction    /nex
+______________________________________________________________________________
+Tests.Test FB03                                                       | FAIL |
+Suite setup failed:
+ValueError: Cannot open connection '$invoice_connection', please check connection name.
+
+Also suite teardown failed:
+AttributeError: 'int' object has no attribute 'findById'
+
+1 test, 0 passed, 1 failed
+==============================================================================
+Tests :: Testing functionality through Robot Framework                | FAIL |
+1 test, 0 passed, 1 failed
+==============================================================================
+Output:  C:\SAP_Testing\SAPtesting\Output\pabot_results\0\Output.xml
