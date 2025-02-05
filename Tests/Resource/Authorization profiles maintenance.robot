@@ -47,6 +47,7 @@ ${auth_profiles_filepath}      c:\\tmp\\Authorization Profiles.xlsx
 ${auth_profiles_filepath_cleaned}      c:\\tmp\\Authorization Profiles_Cleaned.xlsx
 ${exempted_users_file}      c:\\tmp\\MCR_Exempted_Users.xlsx
 ${output_file}      c:\\tmp\\Extra_Users_List.xlsx
+${output_word_file_path}    c:\\tmp\\MCR_OUTPUT_DEMO.docx
 
 
 
@@ -161,6 +162,6 @@ Generate report
     Files Clean Username    ${auth_profiles_filepath}    ${auth_profiles_filepath_cleaned}
     Generate Extra Users List    ${se16_filepath_cleaned}    ${table_auth_filepath_cleaned}    ${control_SAP_filepath_cleaned}    ${auth_profiles_filepath_cleaned}    ${exempted_users_file}    ${output_file} 
     Sleep    2
-    Generate Word    ${symvar('MCR_excel_directory')}    ${symvar('MCR_Resized_Images_directory')}    "C:\\tmp\\MCR_OUTPT_DEMO"
+    Generate Word    ${symvar('MCR_excel_directory')}    ${symvar('MCR_Resized_Images_directory')}    ${output_word_file_path}
     Sleep    2
     
