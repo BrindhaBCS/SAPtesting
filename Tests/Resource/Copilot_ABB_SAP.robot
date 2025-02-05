@@ -13,8 +13,8 @@ System Logon
     Open Connection    ${symvar('Cop_Connection')}
     Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('Cop_Client_Id')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('Cop_User_Name')}
-    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('Cop_User_Password')}
-    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{Cop_User_Password}
+    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('ABB_User_Password')}
+    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{ABB_User_Password}
     Send Vkey    0
     Sleep    1
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
@@ -22,7 +22,7 @@ System Logon
 System Logout
     Run Transaction     /nex
     Sleep   1
-Report_Table_BIS
+Report_Table_ABB
     Run Transaction     /nse16
     Sleep    1
     Input Text    wnd[0]/usr/ctxtDATABROWSE-TABLENAME    CWBNTCUST
@@ -35,7 +35,7 @@ Report_Table_BIS
         Sleep    1
         Clear Field Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME
         Sleep    0.5s
-        Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Snote_BIS_Report
+        Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Snote_ABB_Report
         Sleep    0.5s
         Select From List By Label    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/cmbGS_EXPORT-FORMAT    Spreadsheet(*.xlsx)
         Sleep    0.5s
@@ -43,7 +43,7 @@ Report_Table_BIS
         Sleep    1
         Clear Field Text    wnd[1]/usr/ctxtDY_PATH
         Sleep    1
-        Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp\\Copilot\\BIS
+        Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp\\Copilot\\ABB
         Sleep    0.5s
         Click Element    wnd[1]/tbar[0]/btn[0]
         Sleep    0.5s
@@ -54,28 +54,28 @@ Report_Table_BIS
         Sleep    1
         Click Element    wnd[1]/tbar[0]/btn[0]
         Sleep    1
-        Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Snote_BIS_Report
+        Input Text    wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    Snote_ABB_Report
         Sleep    1
         Click Element    wnd[1]/tbar[0]/btn[20]
         Sleep    1
-        Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp\\Copilot\\BIS
+        Input Text    wnd[1]/usr/ctxtDY_PATH    C:\\tmp\\Copilot\\ABB
         Sleep    1
         Click Element    wnd[1]/tbar[0]/btn[0]
         Sleep    1
     END
-Output_BIS
+Output_ABB
     
-    Cop Webexcel Scrap    file_path=C:\\tmp\\Copilot\\BIS\\data.csv    output_file=C:\\tmp\\Copilot\\BIS\\BIS_OutputData.xlsx
+    Cop Webexcel Scrap    file_path=C:\\tmp\\Copilot\\ABB\\data.csv    output_file=C:\\tmp\\Copilot\\ABB\\ABB_OutputData.xlsx
     Sleep    2
-    Remove Rows Before Start Row    file_path=C:\\tmp\\Copilot\\BIS\\Snote_BIS_Report.xlsx    sheet_name=Sheet1    start_row=5
+    Remove Rows Before Start Row    file_path=C:\\tmp\\Copilot\\ABB\\Snote_ABB_Report.xlsx    sheet_name=Sheet1    start_row=5
     Sleep    2
-    Clean Excel    file_path=C:\\tmp\\Copilot\\BIS\\Snote_BIS_Report.xlsx    sheet_name=Sheet1
+    Clean Excel    file_path=C:\\tmp\\Copilot\\ABB\\Snote_ABB_Report.xlsx    sheet_name=Sheet1
     Sleep    2
-    Cop Sapexcel Scrap    input_file=C:\\tmp\\Copilot\\BIS\\Snote_BIS_Report.xlsx    output_file=C:\\tmp\\Copilot\\BIS\\BIS_OutputData.xlsx
+    Cop Sapexcel Scrap    input_file=C:\\tmp\\Copilot\\ABB\\Snote_ABB_Report.xlsx    output_file=C:\\tmp\\Copilot\\ABB\\ABB_OutputData.xlsx
     Sleep    3
-    Cop Excel Compare    input_file=C:\\tmp\\Copilot\\BIS\\BIS_OutputData.xlsx    input_sheet_name=Extracted Data    output_file=C:\\tmp\\Copilot\\Final_BISReport-Pivot.xlsx
+    Cop Excel Compare    input_file=C:\\tmp\\Copilot\\ABB\\ABB_OutputData.xlsx    input_sheet_name=Extracted Data    output_file=C:\\tmp\\Copilot\\Final_ABBReport-Pivot.xlsx
     Sleep    3
-Deletefile_BIS
-    Delete Specific File    file_path=C:\\tmp\\Copilot\\BIS\\data.csv
-    Delete Specific File    file_path=C:\\tmp\\Copilot\\BIS\\BIS_OutputData.xlsx
-    Delete Specific File    file_path=C:\\tmp\\Copilot\\BIS\\Snote_BIS_Report.xlsx
+Deletefile_ABB
+    Delete Specific File    file_path=C:\\tmp\\Copilot\\ABB\\data.csv
+    Delete Specific File    file_path=C:\\tmp\\Copilot\\ABB\\ABB_OutputData.xlsx
+    Delete Specific File    file_path=C:\\tmp\\Copilot\\ABB\\Snote_ABB_Report.xlsx
