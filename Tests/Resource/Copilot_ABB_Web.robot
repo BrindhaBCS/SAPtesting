@@ -3,11 +3,11 @@ Library    SeleniumLibrary
 *** Variables ***
 ${Copilot_URL}    https://me.sap.com/app/securitynotes
 ${BROWSER}    CHROME
-${System}    BIS
+${System}    ABB
 ${ACCEPT_BUTTON}   xpath=//button[contains(text(),'I accept all cookies')]
-${DOWNLOAD_DIR}   C:\\tmp\\Copilot\\BIS
+${DOWNLOAD_DIR}   C:\\tmp\\Copilot\\ABB
 ** Keywords ***
-Web_Portal_BIS
+Web_Portal_ABB
     ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
     ${prefs}    Create Dictionary    download.default_directory    ${DOWNLOAD_DIR}
     Call Method    ${options}    add_experimental_option    prefs    ${prefs}
