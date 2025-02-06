@@ -10,9 +10,9 @@ System Logon
     Start Process     ${symvar('SAP_SERVER')}
     Sleep    2
     Connect To Session
-    Open Connection    ${symvar('Cop_Connection')}
-    Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('Cop_Client_Id')}
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('Cop_User_Name')}
+    Open Connection    ${symvar('ABB_Connection')}
+    Input Text    wnd[0]/usr/txtRSYST-MANDT     ${symvar('ABB_Client_Id')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('ABB_User_Name')}
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('ABB_User_Password')}
     Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{ABB_User_Password}
     Send Vkey    0

@@ -8,7 +8,7 @@ Library    Report_Library.py
 *** Keywords ***
 System Logon
     Start Process     ${symvar('SAP_SERVER')}
-    Sleep    3
+    Sleep    5
     Connect To Session
     Sleep    3
     Open Connection    ${symvar('Cop_Connection')}
