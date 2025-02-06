@@ -54,7 +54,7 @@ Control mandant changes
     Log    ${current_date}
     Take Screenshot    Control_mandant_changes2.jpg
     Click Element    ${Execute}
-    Sleep    5
+    Sleep    8
     Take Screenshot    Control_mandant_changes3.jpg
     ${Take logs}    Get Value    wnd[0]/usr/lbl[0,25]
     Log    ${Take logs}
