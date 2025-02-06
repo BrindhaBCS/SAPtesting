@@ -41,7 +41,6 @@ Roles_Minimal
     Input Text    wnd[0]/usr/ctxtDATABROWSE-TABLENAME    AGR_TCODES
     Send Vkey    0
     Sleep    0.5 seconds
-    Log To Console    **gbStart**copilot_status_one**splitKeyValue**Processing is underway for your current ROLE, ensuring all necessary actions are completed...**gbEnd**
     Click Element    wnd[0]/usr/btn%_I1_%_APP_%-VALU_PUSH
     Sleep    0.5 seconds
     Click Element    wnd[1]/tbar[0]/btn[23]
@@ -263,7 +262,6 @@ Roles_Minimal
         Delete Specific File    file_path=C:\\tmp\\Role\\Role_extract_minimal.txt
     END
 Report_generation
-    Log To Console    **gbStart**copilot_status_four**splitKeyValue**Execution is completed, and the report is being prepared...**gbEnd**
     Copy Images    source_dir=${OUTPUT_DIR}    target_dir=C:\\tmp\\Role\\Screendir\\Minimal\\
     Sleep    1
     Remove Rows Before Start Row    file_path=C:\\tmp\\Role\\Overall_Report_minimal.xlsx    sheet_name=Sheet1    start_row=5
