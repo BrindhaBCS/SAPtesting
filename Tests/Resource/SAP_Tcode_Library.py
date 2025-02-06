@@ -1678,3 +1678,36 @@ class SAP_Tcode_Library:
         # json_data = json.loads(data)
         contract_number = data.get("contract_number")
         return contract_number
+
+    def clean_excel_sheet(self, file_path, sheet_name):
+    
+        try:
+            # Load the workbook and access the sheet
+            workbook = load_workbook(file_path)
+            if sheet_name not in workbook.sheetnames:
+                raise Exception(f"Sheet '{sheet_name}' does not exist in the file.")
+
+            sheet = workbook[sheet_name]
+
+            # Trim whitespace from all cells in the sheet
+            for row in sheet.iter_rows():
+                for cell in row:
+                    if cell.value and isinstance(cell.value, str):
+                        cell.value = cell.value.strip()  # Remove leading and trailing whitespace
+
+            # Remove completely empty rows (backward iteration to avoid index shift)
+            for row_idx in range(sheet.max_row, 0, -1):
+                if all(sheet.cell(row=row_idx, column=col_idx).value in [None, ""] for col_idx in range(1, sheet.max_column + 1)):
+                    sheet.delete_rows(row_idx)
+
+            # Remove completely empty columns (backward iteration to avoid index shift)
+            for col_idx in range(sheet.max_column, 0, -1):
+                if all(sheet.cell(row=row_idx, column=col_idx).value in [None, ""] for row_idx in range(1, sheet.max_row + 1)):
+                    sheet.delete_cols(col_idx)
+
+            # Save changes back to the file
+            workbook.save(file_path)
+            print("\033[92m❗ Excel sheet cleaned successfully and saved at:", file_path)  # Green exclamation mark
+
+        except Exception as e:
+            print("\033[92m❗ Failed to clean Excel sheet:", str(e))  # Green exclamation mark
