@@ -2399,3 +2399,72 @@ class SAP_Tcode_Library:
         """This function closes the node with the key nodeKey."""
         element = self.session.findById(tree_id)
         element.collapseNode(f"{node_id}")
+    def double_click_sap_shell_item(self, table_shell, row_number, column):
+        # Double Click Sap Shell Item    table_shell=wnd[0]/shellcont[1]/shell/shellcont[1]/shell    row_number=101    column=Task
+        try:
+            row_number = int(row_number)
+            if 0 <= row_number <= 9:
+                row_identifier = f"{' ' * 10}{row_number}"  # 10 spaces for single digit
+            elif 10 <= row_number <= 99:
+                row_identifier = f"{' ' * 9}{row_number}"   # 9 spaces for double digits
+            elif 100 <= row_number <= 999:
+                row_identifier = f"{' ' * 8}{row_number}"   # 8 spaces for triple digits
+            else:
+                raise ValueError("Row number out of range. Must be between 0 and 999.")
+            element = self.session.findById(table_shell)
+            element.doubleClickItem(row_identifier, column)
+        except Exception as e:
+            raise Exception(f"Failed to double-click item in SAP shell: {str(e)}")
+    
+    def get_sap_tree_nodes_hierarchical(self, tree_id):
+        """
+        Traverse SAP tree control hierarchically and retrieve node texts.
+        """
+        try:
+            tree = self.session.findById(tree_id)  # Locate tree control
+            if not tree:
+                print(f"Tree control not found: {tree_id}")
+                return []
+    
+            folders = []
+    
+            # Start with the root node
+            node_count = tree.GetNodeChildrenCount("")  # "" denotes root
+            for i in range(node_count):
+                try:
+                    node_key = tree.GetNodeKeyByIndex("", i)  # Root-level keys
+                    node_text = tree.GetNodeTextByKey(node_key)
+                    print(f"Root Node Text: {node_text}")
+                    folders.append(node_text)
+    
+                    # Traverse child nodes
+                    child_count = tree.GetNodeChildrenCount(node_key)
+                    for j in range(child_count):
+                        child_key = tree.GetNodeKeyByIndex(node_key, j)
+                        child_text = tree.GetNodeTextByKey(child_key)
+                        print(f"Child Node Text: {child_text}")
+                        folders.append(child_text)
+    
+                except Exception as node_error:
+                    print(f"Error retrieving root node {i}: {node_error}")
+    
+            return folders
+    
+        except Exception as e:
+            print(f"Error: {e}")
+            return []
+        
+    def get_tree_child_count(self, tree_id,key):
+        tree = self.session.findById(tree_id)
+        if not tree:
+            raise ValueError(f"Tree with ID '{tree_id}' not found.")
+       
+        try:
+            # node_keys = tree.GetParent(f"{key}")  
+            # print (f"node_keys:{node_keys}")
+            childcount = tree.GetNodeChildrenCount(f"{key}")
+            print (f"GetAllNodeKeys : {childcount}")
+            return childcount
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            raise
