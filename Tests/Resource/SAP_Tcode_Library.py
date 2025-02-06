@@ -2390,5 +2390,12 @@ class SAP_Tcode_Library:
         except Exception as e:
             print("\033[92m❗ Failed to clean Excel sheet:", str(e))  # Green exclamation mark
     def expand_node(self, tree_id, node_id):
+        """Selects a node of a TableTreeControl 'tree_id' which is contained within a shell object. Use the Scripting tracker recorder to find the 'node_id' of the node.
+        Expand can be set to True to expand the node. If the node cannot be expanded, no error is given."""
         element = self.session.findById(tree_id)
         element.expandNode(f"{node_id}")
+    
+    def collapse_node(self, tree_id, node_id):
+        """This function closes the node with the key nodeKey."""
+        element = self.session.findById(tree_id)
+        element.collapseNode(f"{node_id}")
