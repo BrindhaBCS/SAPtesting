@@ -7,7 +7,7 @@ Library    OperatingSystem
 ${local file}    wnd[0]/tbar[1]/btn[45]
 ${Text with tabs Button}    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[1,0]
 ${local file continue}    wnd[1]/tbar[0]/btn[0]
-${Replace}    /app/con[0]/ses[0]/wnd[1]/tbar[0]/btn[11]
+${Replace}    wnd[1]/tbar[0]/btn[11]
 ${Execute}    wnd[0]/tbar[1]/btn[8]
 ${BACK}    wnd[0]/tbar[0]/btn[3]
 ${Req_Result20_Filename}    Control SAP standard users.xls
@@ -65,7 +65,7 @@ Control SAP standard users
     Sleep    1
     Input Text    wnd[1]/usr/ctxtDY_PATH    ${symvar('MCR_Results_Directory_Path')}
     Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${Req_Result20_Filename}
-    Sleep    1
+    Sleep    2
     Click Element    ${Replace}
     Sleep    1
     Click Element    ${BACK}
