@@ -2389,3 +2389,6 @@ class SAP_Tcode_Library:
 
         except Exception as e:
             print("\033[92m❗ Failed to clean Excel sheet:", str(e))  # Green exclamation mark
+    def expand_node(self, tree_id, node_id):
+        element = self.session.findById(tree_id)
+        element.expandNode(f"{node_id}")
