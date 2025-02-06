@@ -31,7 +31,7 @@ Trace_status
         Sleep    1
         Click Element    wnd[0]/tbar[1]/btn[6]
         Sleep    1
-        Log To Console    **gbStart**copilot_status**splitKeyValue**AUTHORIZATION TRACE HAS BEEN SUCCESSFULLY ENABLED...**gbEnd**
+        Log To Console    **gbStart**copilot_status_trace**splitKeyValue**AUTHORIZATION TRACE HAS BEEN SUCCESSFULLY ENABLED...**gbEnd**
     ELSE IF    '${trace_status}' == 'Authorization trace is switched on'
         Click Element    wnd[0]/tbar[1]/btn[7]
         Sleep    1
@@ -40,5 +40,5 @@ Trace_status
         Sleep    1
         Click Element    wnd[0]/tbar[1]/btn[6]
         Sleep    1
-        Log To Console    **gbStart**copilot_status**splitKeyValue**ALREADY AUTHORIZATION TRACE HAS BEEN ON AND DEACTIVATED AND ENABLED NOW...** **gbEnd**
+        Log To Console    **gbStart**copilot_status_trace**splitKeyValue**ALREADY AUTHORIZATION TRACE HAS BEEN ON AND DEACTIVATED AND ENABLED NOW...** **gbEnd**
     END

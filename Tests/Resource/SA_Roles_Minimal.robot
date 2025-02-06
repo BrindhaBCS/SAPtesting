@@ -76,7 +76,7 @@ Roles_Minimal
         Log    ${tcode_length}
         Log To Console    ${tcode_length}
         Sleep    1
-        Log To Console    **gbStart**copilot_status_two**splitKeyValue**Role will be assigned to Test users...**gbEnd**
+        Log To Console    **gbStart**copilot_status_key_one**splitKeyValue**Role will be assigned to Test users...**gbEnd**
         #Tcode_SU01
         Run Transaction    /nsu01
         Sleep    1
@@ -230,7 +230,7 @@ Roles_Minimal
         END
         System Logout
         System Logon
-        Log To Console    **gbStart**copilot_status_three**splitKeyValue**STAUTHTRACE test user's status will be checked, and the report will be downloaded...**gbEnd**
+        Log To Console    **gbStart**copilot_status_key_two**splitKeyValue**STAUTHTRACE test user's status will be checked, and the report will be downloaded...**gbEnd**
         Run Transaction    /nstauthtrace
         Sleep    1
         Click Element    wnd[0]/tbar[1]/btn[8]
@@ -258,7 +258,7 @@ Roles_Minimal
         Report_generation
         Deletefile
     ELSE
-        Log To Console    **gbStart**copilot_status_two**splitKeyValue**Your current ROLE doesn't have a T-CODE...**gbEnd**
+        Log To Console    **gbStart**copilot_status_key_one**splitKeyValue**Your current ROLE doesn't have a T-CODE...**gbEnd**
         Delete Specific File    file_path=C:\\tmp\\Role\\Role_extract_minimal.txt
     END
 Report_generation

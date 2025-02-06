@@ -31,10 +31,10 @@ Trace_status
         Sleep    1
         Click Element    wnd[0]/tbar[1]/btn[7]
         Sleep    1
-        Log To Console    **gbStart**copilot_status**splitKeyValue**AUTHORIZATION TRACE HAS BEEN SUCCESSFULLY DEACTIVATED...**gbEnd**
+        Log To Console    **gbStart**copilot_status_trace_de**splitKeyValue**AUTHORIZATION TRACE HAS BEEN SUCCESSFULLY DEACTIVATED...**gbEnd**
     ELSE IF    '${trace_status}' == 'Trace is switched off'
         Clear Field Text    wnd[0]/usr/ctxtSC_100_TRACE_USER
         Input Text    wnd[0]/usr/ctxtSC_100_TRACE_USER    ${symvar('New_User_Name')}
         Sleep    1
-        Log To Console    **gbStart**copilot_status**splitKeyValue**ALREADY AUTHORIZATION TRACE HAS BEEN SUCCESSFULLY DEACTIVATED...**gbEnd**
+        Log To Console    **gbStart**copilot_status_trace_de**splitKeyValue**ALREADY AUTHORIZATION TRACE HAS BEEN SUCCESSFULLY DEACTIVATED...**gbEnd**
     END
