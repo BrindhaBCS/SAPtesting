@@ -23,7 +23,7 @@ System Logout
     Run Transaction   /nex
 MIRO Post Parked
     Run Transaction    /nMIR5
-    Sleep    0.5 seconds
+    Sleep    2
     Input Text    wnd[0]/usr/ctxtSO_BUKRS-LOW     ${symvar('Parked_Company_Code')}
     Sleep    0.5 seconds
     Unselect Checkbox    wnd[0]/usr/chkP_IV_OV 
@@ -36,11 +36,11 @@ MIRO Post Parked
     Log    ${Get_row_count}
     Sleep    0.5 seconds
     Run Transaction    /nMIRO
-    Sleep    0.5 seconds
+    Sleep    2
     Click Element    wnd[0]/tbar[1]/btn[9]
-    Sleep    0.5 seconds
+    Sleep    2
     Expand Sap Shell Node    wnd[0]/shellcont/shell    2    Column1
-    Sleep    0.5 seconds
+    Sleep    2
     ${Get Current Year}    Get Current Date    result_format=%Y
     FOR    ${index}    IN RANGE    0    ${Get_row_count} 
         ${row}    Evaluate    ${index} + 4
