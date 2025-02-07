@@ -8,14 +8,14 @@ Resource    ../Web/Support_Web.robot
  
 *** Variables ***    
 
-${Results_Directory_Path}   ${CURDIR}//Results//
+${Results_Directory_Path}   ${CURDIR}\\Results\\
 ${MM_Filename}      MM_Materials_MB52.xlsx
 
 # ${filepath}    ${CURDIR}//Results//MM_Materials_MB52.xlsx
 # ${result_filepath}    ${CURDIR}//Results//Cleaned_MM_Materials_MB52.xlsx
 
-${input_filepath}    ${symvar('MM_Cleaned_filepath')}//${MM_Filename}
-${result_filepath}    ${symvar('MM_Cleaned_filepath')}//${symvar('MM_Cleaned_filename')}
+${input_filepath}    ${symvar('MM_Cleaned_filepath')}\\${MM_Filename}
+${result_filepath}    ${symvar('MM_Cleaned_filepath')}\\${symvar('MM_Cleaned_filename')}
 
 #${Plant}    1040
 #${Material}    laptop
