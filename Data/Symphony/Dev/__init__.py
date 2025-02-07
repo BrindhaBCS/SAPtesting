@@ -8,6 +8,7 @@ from .Data import *
 # from .xpaths import *
 from .Variable import *
 from .invoice import *
+from .Rental import *
 from .Certificate import *
 from .payments import *
 from .closing_payment import *
