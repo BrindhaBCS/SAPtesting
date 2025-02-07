@@ -47,7 +47,11 @@ MIRO Post Parked
         ${Doc_Value}    Get Sap Shell Item Value    wnd[0]/shellcont/shell    ${row}    Column1
         Log    ${Doc_Value}
         IF    '${Doc_Value}' == '${Input_Doc_Value} ${Get_Current_Year}'
-            Double Click Sap Shell Item    wnd[0]/shellcont/shell    ${row}    Column1
+            ${yaml}    Run Keyword And Return Status    Double Click Sap Shell Item    wnd[0]/shellcont/shell    ${row}    Column1
+            IF    '${False}' == 'False'
+                Log To Console    **gbStart**copilot_Post_ParkedDocument_one**splitKeyValue**The Parked_document ${Input_Doc_Value} is not found...**gbEnd**
+                Exit For Loop
+            END
             Sleep    0.5 seconds
             ${Get Current Date}    Get Current Date    result_format=%d.%m.%Y
             Input Text    wnd[0]/usr/subHEADER_AND_ITEMS:SAPLMR1M:6005/tabsHEADER/tabpHEADER_TOTAL/ssubHEADER_SCREEN:SAPLFDCB:0010/ctxtINVFO-BLDAT    ${Get Current Date}
