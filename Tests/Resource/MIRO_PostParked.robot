@@ -48,7 +48,7 @@ MIRO Post Parked
         Log    ${Doc_Value}
         IF    '${Doc_Value}' == '${Input_Doc_Value} ${Get_Current_Year}'
             ${yaml}    Run Keyword And Return Status    Double Click Sap Shell Item    wnd[0]/shellcont/shell    ${row}    Column1
-            IF    '${False}' == 'False'
+            IF    '${yaml}' == 'False'
                 Log To Console    **gbStart**copilot_Post_ParkedDocument_one**splitKeyValue**The Parked_document ${Input_Doc_Value} is not found...**gbEnd**
                 Exit For Loop
             END
