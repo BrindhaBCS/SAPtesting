@@ -30,7 +30,7 @@ customize excel for output
                 Log To Console    column ${l} deleted
             # ELSE IF  '${data}' == 'Sold-To Party'
             #     Delete Excel Column    ${file_name}    ${sheet_name}    ${l}
-            #     Log To Console    column ${l} deleted
+            #     Log To Console    column ${l} delete
             END
         END
     END
