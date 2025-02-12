@@ -26,9 +26,9 @@ Rental Release Count
     END
     
 Increment Success Variable
-    ${SUCCESS}=    Set Variable    ${SUCCESS}+1
+    ${SUCCESS}=    Evaluate   ${SUCCESS} + 1
     Log To Console    **gbStart**copilot_count_status**splitKeyValue**Out of ${contracts} documents ${SUCCESS} documents block has been released**gbEnd**
 
 Store Failure Value
-    ${FAILURE}=    Set Variable    ${FAILURE}+1
+    ${FAILURE}=    Evaluate    ${FAILURE} + 1
 
