@@ -18,6 +18,7 @@ from email.mime.base import MIMEBase
 from email import encoders
 import shutil
 from PIL import Image
+from openpyxl import load_workbook
 
 class SAP_Tcode_Library:
     """The SapGuiLibrary is a library that enables users to create tests for the Sap Gui application
@@ -1658,8 +1659,6 @@ class SAP_Tcode_Library:
             return cell_value
         except Exception as e:
             return f"An error occurred: {e}"
-
-
     def Roles_extract(self, file_location, sheet_name, output_file=None):
         try:
             df = pd.read_excel(file_location, sheet_name=sheet_name, usecols=[2], header=None)
@@ -1747,3 +1746,67 @@ class SAP_Tcode_Library:
                 print(f"The file '{file_path}' does not exist.")
         except Exception as e:
             print(f"An error occurred: {e}")
+        
+    def suim_role_expand(self, shellpath):
+        self.session.findById(shellpath).expandNode("02  1      3")
+        self.session.findById(shellpath).topNode = "01  1      1"
+        self.session.findById(shellpath).selectItem("03  2      3", "1")
+        self.session.findById(shellpath).ensureVisibleHorizontalItem("03  2      3", "1")
+        self.session.findById(shellpath).clickLink("03  2      3", "1")
+    def fiori_extract_roles(self, file_path, sheet_name):
+        try:
+            df = pd.read_excel(file_path, sheet_name=sheet_name)
+            filtered_df = df[df.iloc[:, 3] == "Launchpad Catalog"]
+            roles = filtered_df.iloc[:, 1].dropna().astype(str).tolist()
+            return roles
+        except Exception as e:
+            return [f"Error: {e}"] 
+        
+    def clean_excel_sheet(self, file_path, sheet_name):
+        try:
+            # Load the workbook and access the sheet
+            workbook = load_workbook(file_path)
+            if sheet_name not in workbook.sheetnames:
+                raise Exception(f"Sheet '{sheet_name}' does not exist in the file.")
+            sheet = workbook[sheet_name]
+            # Trim whitespace from all cells in the sheet
+            for row in sheet.iter_rows():
+                for cell in row:
+                    if cell.value and isinstance(cell.value, str):
+                        cell.value = cell.value.strip()  # Remove leading and trailing whitespace
+            # Remove completely empty rows (backward iteration to avoid index shift)
+            for row_idx in range(sheet.max_row, 0, -1):
+                if all(sheet.cell(row=row_idx, column=col_idx).value in [None, ""] for col_idx in range(1, sheet.max_column + 1)):
+                    sheet.delete_rows(row_idx)
+            # Remove completely empty columns (backward iteration to avoid index shift)
+            for col_idx in range(sheet.max_column, 0, -1):
+                if all(sheet.cell(row=row_idx, column=col_idx).value in [None, ""] for row_idx in range(1, sheet.max_row + 1)):
+                    sheet.delete_cols(col_idx)
+            workbook.save(file_path)
+            print("\033[92m❗ Excel sheet cleaned successfully and saved at:", file_path)
+        except Exception as e:
+            print("\033[92m❗ Failed to clean Excel sheet:", str(e))
+    def Delete_allrole_Fiori(self):
+        try:
+            self.session.findById("wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell").setCurrentCell(-1, "")
+            self.session.findById("wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell").selectAll()
+            self.session.findById("wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell").pressToolbarButton("DEL_LINE")
+        except:
+            return  []
+    def fiori_selected_rows(self, tree_id, first_visible_row):
+        try:
+            self.session.findById(tree_id).currentCellRow = first_visible_row
+            self.session.findById(tree_id).selectedRows = first_visible_row
+        except Exception as e:
+            print(f"Error: {e}")
+
+    def fiori_data_delete(self, tree_id ):
+        try:
+            self.session.findById(tree_id).pressToolbarButton("DEL_LINE")
+        except Exception as e:
+            print(f"Error: {e}")
+    def fiori_data_refresh(self, tree_id ):
+        try:
+            self.session.findById(tree_id).pressToolbarButton("&REFRESH")
+        except Exception as e:
+            print(f"Error: {e}")
