@@ -110,7 +110,7 @@ Fiori_Create_date
     ${Forindex}    Set Variable    0
     WHILE    True
         ${tech}    Get Sap Cell Value AGR NAME    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    ${Forindex}
-        Sleep    1
+        Sleep    0.5 seconds
         IF    '${tech}' in @{skip_list}
             ${Forindex}    Evaluate    ${Forindex} + 1
         ELSE IF    '${tech}' == ''
@@ -132,6 +132,7 @@ Fiori_Create_date
     FOR    ${item}    IN RANGE    0    ${roles_tcodes_items}
         ${role}    Set Variable    ${fiori_extract}[${item}]
         Log    Role: ${role}
+        Modify Sap Cell    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    ${input}    ${role}
         Fiori Data Refresh    tree_id=wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell
         ${input}    Evaluate    ${input}+1
     END
