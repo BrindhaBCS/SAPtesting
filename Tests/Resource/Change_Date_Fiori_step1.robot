@@ -119,18 +119,35 @@ Roles_Test_code
     Sleep    0.5 seconds
     Click Element    wnd[0]/usr/tabsTABSTRIP1/tabpACTG
     Sleep    1
-    ${tech}    Get Sap Cell Value AGR NAME    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    3
-    Sleep    1
-    Delete_allrole_Fiori
-    Modify Sap Cell    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    0    ZT_TRACE_ANALYSIS
-    Modify Sap Cell    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    1    Z_FLP_USER
-    Modify Sap Cell    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    2    Z_SE16
+    @{skip_list}    Create List    ZT_TRACE_ANALYSIS    Z_FLP_USER    Z_SE16    ZT_ACC_GL_MGMT_IS
+    ${Forindex}    Set Variable    0
+    WHILE    True
+        ${tech}    Get Sap Cell Value AGR NAME    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    ${Forindex}
+        Sleep    0.5 seconds
+        IF    '${tech}' in @{skip_list}
+            ${Forindex}    Evaluate    ${Forindex} + 1
+        ELSE IF    '${tech}' == ''
+            Exit For Loop
+        ELSE
+            Fiori Selected Rows    tree_id=wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    first_visible_row=${Forindex}
+            Fiori Data Delete    tree_id=wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell
+            ${Forindex}    Set Variable    0
+        END
+    END
+    # ${tech}    Get Sap Cell Value AGR NAME    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    3
+    # Sleep    1
+    # Delete Allrole Fiori
+    # Modify Sap Cell    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    0    ZT_TRACE_ANALYSIS
+    # Modify Sap Cell    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    1    Z_FLP_USER
+    # Modify Sap Cell    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    2    Z_SE16
     ${roles_tcodes_items}    Get Length    ${fiori_extract}
-    FOR    ${item}    IN RANGE    3    ${roles_tcodes_items}
+    ${input}    Set Variable    4
+    FOR    ${item}    IN RANGE    0    ${roles_tcodes_items}
         ${role}    Set Variable    ${fiori_extract}[${item}]
         Log    Role: ${role}
-        Modify Sap Cell    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    ${item}    ${role}
-        Sleep    1      
+        Modify Sap Cell    wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell    ${input}    ${role}
+        Fiori Data Refresh    tree_id=wnd[0]/usr/tabsTABSTRIP1/tabpACTG/ssubMAINAREA:SAPLSUID_MAINTENANCE:1106/cntlG_ROLES_CONTAINER/shellcont/shell
+        ${input}    Evaluate    ${input}+1
     END
     Click Element    wnd[0]/tbar[0]/btn[11]
     Sleep    1
