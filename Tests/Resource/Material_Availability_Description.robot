@@ -31,7 +31,14 @@ System Logon
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('MM_User_Password')}
     Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{MM_User_Password}
     Send Vkey    0
-    Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
+    # Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
+     ${logon_status}    Multiple logon Handling     wnd[1]
+    IF    '${logon_status}' == "Multiple logon found. Please terminate all the logon & proceed"
+        Log To Console    **gbStart**Sales_Document_status**splitKeyValue**${logon_status}**gbEnd**
+
+    ELSE
+        Executing Material Availability
+    END 
 
 System Logout
     Run Transaction   /nex
