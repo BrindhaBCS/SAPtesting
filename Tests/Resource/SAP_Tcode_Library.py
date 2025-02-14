@@ -1800,6 +1800,8 @@ class SAP_Tcode_Library:
             return amount
         except Exception as e:
             print(f"Error: {e}")
+        
+    
 
     def get_first_date_of_month(self, month_json):
         month_name = month_json[0]["Month"]

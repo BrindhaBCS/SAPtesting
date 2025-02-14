@@ -19,7 +19,7 @@ ${result_filepath}    ${symvar('MM_Cleaned_filepath')}//${symvar('MM_Cleaned_fil
 
 ${Plant}    1040
 #${Material}    laptop
-
+${layout}    mat
 *** Keywords ***
 System Logon
     Start Process     ${symvar('MM_SAP_SERVER')}     
@@ -43,6 +43,8 @@ Executing Material Availability
     #Input Text    wnd[0]/usr/ctxtMATNR-LOW    ${symvar('Material')}
     #Input Text    wnd[0]/usr/ctxtWERKS-LOW    ${symvar('Plant')}
     Input Text    wnd[0]/usr/ctxtWERKS-LOW    ${Plant}
+    Input Text    wnd[0]/usr/ctxtP_VARI    ${layout}
+    Sleep    0.1
     #wnd[0]/usr/ctxtWERKS-LOW
     #Execute the requirement using F8
     Click Element    wnd[0]/mbar/menu[0]/menu[0]
