@@ -50,7 +50,8 @@ Executing Material Availability
     Sleep    1
     #Input Text    wnd[0]/usr/ctxtMATNR-LOW    ${symvar('Material')}
     Input Text    wnd[0]/usr/ctxtWERKS-LOW    ${symvar('Plant')}
-    Input Text    wnd[0]/usr/ctxtP_VARI    ${layout}
+    # Input Text    wnd[0]/usr/ctxtP_VARI    ${layout}
+    Input Text    wnd[0]/usr/ctxtP_VARI    ${symvar('layout')}
     Sleep    0.1
     #Input Text    wnd[0]/usr/ctxtWERKS-LOW    ${Plant}
     #wnd[0]/usr/ctxtWERKS-LOW
