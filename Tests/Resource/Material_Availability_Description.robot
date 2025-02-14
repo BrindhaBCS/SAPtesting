@@ -64,12 +64,15 @@ Executing Material Availability
     Select Radio Button    wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[2,0]
     Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    1
-    Click Element    wnd[1]/tbar[0]/btn[20]
-    Sleep    1
+    # Click Element    wnd[1]/tbar[0]/btn[20]
+    # Sleep    1
+    Input Text    wnd[1]/usr/ctxtDY_PATH   ${EMPTY}
     Input Text    wnd[1]/usr/ctxtDY_PATH   ${symvar('MM_Cleaned_filepath')}
     Sleep    1
+    Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${EMPTY}
     Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${MM_Filename}
-    Click Element    wnd[1]/tbar[0]/btn[11]
+    # Click Element    wnd[1]/tbar[0]/btn[11]
+    Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    1
     Log To Console    ma completed 
 Result
