@@ -1,43 +1,19 @@
-import pythoncom
-import win32com.client
-import time
 from pythoncom import com_error
 import robot.libraries.Screenshot as screenshot
 import os
 from robot.api import logger
-import sys
-import ast
-import re
-import glob
 import  json
-from docx2pdf import convert
 from PIL import Image
-import docx
-from docx import Document
-from docx.enum.table import WD_TABLE_ALIGNMENT
-from docx.shared import Cm, Pt, Mm, Inches
-from docx.enum.section import WD_ORIENT
-from openpyxl import load_workbook
 import pandas as pd
-import  openpyxl
 import json
 from fpdf import FPDF
 from PIL import Image
-import time
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC 
 from openpyxl import load_workbook 
 import shutil
 import pandas as pd
 import datetime
-import os
 
-
-
-class Report_Library:    
+class Replay_Library:    
     def __init__(self):
         self.name = "DefaultReport"
     def copy_images(self, source_dir, target_dir):
