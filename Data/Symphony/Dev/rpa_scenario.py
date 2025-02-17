@@ -1,4 +1,5 @@
 SAP_SERVER = "C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPgui\\saplogon.exe"
-Rpa_Connection = "TS4"
-Rpa_Client_Id = "001"
-Rpa_User_Name = "INVPROCESS"
+Rpa_Connection = "$Rpa_Connection"
+Rpa_Client_Id = "$Rpa_Client_Id"
+Rpa_User_Name = "$Rpa_User_Name"
+Rpa_vehicle_number = "$Rpa_vehicle_number"

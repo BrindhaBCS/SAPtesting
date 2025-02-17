@@ -7,7 +7,7 @@ Library    Replay_Library.py
 
 *** Keywords ***
 System Logon
-    Start Process     ${symvar('TH5_SERVER')}     
+    Start Process     ${symvar('SAP_SERVER')}     
     Sleep    2
     Connect To Session
     Open Connection    ${symvar('Rpa_Connection')}    
@@ -25,9 +25,10 @@ Vehicle_number_plate
     Sleep    1
     Send Vkey    vkey_id=4
     Click Element    element_id=wnd[1]/usr/tabsG_SELONETABSTRIP/tabpTAB004
-    Input Text    element_id=wnd[1]/usr/tabsG_SELONETABSTRIP/tabpTAB004/ssubSUBSCR_PRESEL:SAPLSDH4:0220/sub:SAPLSDH4:0220/txtG_SELFLD_TAB-LOW[0,24]    text=TN22BA1999    #text=${symvar('vehicle_number')}
+    Input Text    element_id=wnd[1]/usr/tabsG_SELONETABSTRIP/tabpTAB004/ssubSUBSCR_PRESEL:SAPLSDH4:0220/sub:SAPLSDH4:0220/txtG_SELFLD_TAB-LOW[0,24]    text=${symvar('Rpa_vehicle_number')}
     ${Get_Current_Date}    Get Current Date    result_format=%d.%m.%Y
-    Input Text    element_id=wnd[1]/usr/tabsG_SELONETABSTRIP/tabpTAB004/ssubSUBSCR_PRESEL:SAPLSDH4:0220/sub:SAPLSDH4:0220/ctxtG_SELFLD_TAB-LOW[1,24]    text=15.02.2025    #text=${Get_Current_Date}
+    # Input Text    element_id=wnd[1]/usr/tabsG_SELONETABSTRIP/tabpTAB004/ssubSUBSCR_PRESEL:SAPLSDH4:0220/sub:SAPLSDH4:0220/ctxtG_SELFLD_TAB-LOW[1,24]    text=${Get_Current_Date}
+        Input Text    element_id=wnd[1]/usr/tabsG_SELONETABSTRIP/tabpTAB004/ssubSUBSCR_PRESEL:SAPLSDH4:0220/sub:SAPLSDH4:0220/ctxtG_SELFLD_TAB-LOW[1,24]    text=15.02.2025
     Click Element    element_id=wnd[1]/tbar[0]/btn[0]
     ${status}    Get Value    element_id=wnd[0]/sbar/pane[0]
     IF    '${status}' == ''
