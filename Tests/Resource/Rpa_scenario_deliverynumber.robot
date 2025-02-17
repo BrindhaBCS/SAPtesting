@@ -44,7 +44,6 @@ Vehicle_number_plate
                     Log To Console    ${Stone}
                     ${Forindex}    Evaluate    ${Forindex} + 1
                 ELSE
-                    Log To Console    message=**gbStart**Get_Pass**splitKeyValue**Vehicle_Deny**gbEnd**
                     Exit For Loop
                 END
             END
