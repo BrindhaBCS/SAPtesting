@@ -6,6 +6,6 @@
 # from .Data import *
 # from .urls import *
 # from .xpaths import *
-from .Variable import *
+from .rpa_scenario import *
 
 
