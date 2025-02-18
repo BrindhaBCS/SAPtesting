@@ -3,7 +3,10 @@ Library    Process
 Library    SAP_Tcode_Library.py
 # Library    Merger.py
  
- 
+*** Variables ***
+${download_path}    C:\\TEMP\\
+${excel_path}    C:\\TEMP\\rental.xlsx
+${excel_sheet}    Sheet1
  
 *** Keywords ***
 System Logon
