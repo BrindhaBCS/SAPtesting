@@ -23,24 +23,32 @@ System Logon
 System Logout
     Run Transaction   /nex
     Sleep    5
-FAGLL03
-	Run Transaction    /nFAGLL03
+FAGLL03_1
+    Run Transaction    /nFAGLL03
 	Sleep	2
-	Input Text    wnd[0]/usr/ctxtSD_SAKNR-LOW    13110101
+	Input Text    wnd[0]/usr/ctxtSD_SAKNR-LOW    ${symvar('GR_IR_GL_Account')}
 	Sleep	2
-	Input Text    wnd[0]/usr/ctxtSD_BUKRS-LOW    Bc01
+	Select Radio Button    wnd[0]/usr/radX_CLSEL
 	Sleep	2
-	Input Text    wnd[0]/usr/ctxtPA_VARI    /GRIR_TEST
+    Input Text    wnd[0]/usr/ctxtSO_AUGDT-LOW    12022025
+	Sleep    2
+    Input Text    wnd[0]/usr/ctxtPA_STIDA    12.2.2025
+	Sleep	2	
+	Click Element    wnd[0]/tbar[1]/btn[8]
 	Sleep	2
-	Set Focus    wnd[0]/usr/ctxtPA_VARI
+	Click Element    wnd[0]/tbar[1]/btn[33]
 	Sleep	2
-	Click Element	wnd[0]/tbar[1]/btn[8]
-	Sleep	2
-	Click Element	wnd[0]/mbar/menu[0]/menu[3]/menu[1]
-	Sleep	2
-	Click Element	wnd[1]/tbar[0]/btn[20]
-	Sleep	2
-	Input Text    wnd[1]/usr/ctxtDY_FILENAME	GR_IR1.xlxs
+	Set Focus    wnd[1]/usr/lbl[14,10]
 	Sleep	2
 	Click Element	wnd[1]/tbar[0]/btn[0]
 	Sleep	2
+	Set Focus    wnd[0]/usr/lbl[28,10]
+	Sleep	2
+	Click Element    wnd[0]/tbar[1]/btn[38]
+	Sleep	2
+    Take Screenshot    FAGLL03.jpg
+	Click Element    wnd[1]/tbar[0]/btn[0]
+	Sleep	2     
+    
+    
+
