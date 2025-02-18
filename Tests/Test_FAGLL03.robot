@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    ../Tests/Resources/FAGLL03.robot
+Resource    ../Tests/Resource/FAGLL03.robot
 Suite Setup    FAGLL03.System Logon
 Suite Teardown    FAGLL03.System Logout
 Test Tags    FAGLL03
