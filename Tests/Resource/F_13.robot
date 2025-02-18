@@ -15,8 +15,11 @@ System Logon
     Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('GR_IR_PASSWORD')}
     # Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{GR_IR_PASSWORD}
     Send Vkey    0   
-    Multiple Logon Handling   wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2    wnd[1]/tbar[0]/btn[0] 
-    Sleep   1
+    ${logon_status}    Multiple logon Handling     wnd[1]
+    IF    '${logon_status}' == "Multiple logon found. Please terminate all the logon & proceed"
+        Log To Console    **gbStart**Sales_Document_status**splitKeyValue**${logon_status}**gbEnd**
+
+    END
 
 System Logout
     Run Transaction   /nex
