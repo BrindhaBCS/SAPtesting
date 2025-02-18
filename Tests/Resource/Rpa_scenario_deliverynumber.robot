@@ -52,13 +52,13 @@ Vehicle_number_plate
             Log To Console    message=**gbStart**Delivery_json**splitKeyValue**${jsondata}**gbEnd**
             Log To Console    message=${jsondata}
         ELSE
-            Log To Console    message=**gbStart**Get_Pass**splitKeyValue**Vehicle_Deny**gbEnd**
+            Log To Console    message=**gbStart**Get_Pass**splitKeyValue**Vehicle_Block**gbEnd**
             System Logout
         END
     ELSE IF    '${status}' =='No values for this selection'
-        Log To Console    message=**gbStart**Get_Pass**splitKeyValue**Vehicle_Deny**gbEnd**
+        Log To Console    message=**gbStart**Get_Pass**splitKeyValue**Vehicle_Block**gbEnd**
         System Logout
     ELSE
-        Log To Console    message=**gbStart**Get_Pass**splitKeyValue**Vehicle_InputIssue**gbEnd**
+        Log To Console    message=**gbStart**Get_Pass**splitKeyValue**Vehicle_InputIssue_Block**gbEnd**
         System Logout
     END
