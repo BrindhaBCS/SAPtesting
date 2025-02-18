@@ -47,7 +47,6 @@ FAGLL03
     Input Text    wnd[1]/usr/ctxtDY_FILENAME    GR_IR.xlsx
     Input Text      wnd[1]/usr/ctxtDY_PATH      ${EMPTY}
     Input Text      wnd[1]/usr/ctxtDY_PATH      ${download_path}
-    Click Element   wnd[1]/tbar[0]/btn[0]
     # Input Text    wnd[1]/usr/ctxtDY_FILENAME  GR_IR1.xlxs
     # Sleep 2
     Click Element   wnd[1]/tbar[0]/btn[0]
