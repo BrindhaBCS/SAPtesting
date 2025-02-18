@@ -1,8 +1,8 @@
 *** Settings ***
-Resource    ../Tests/Resources/F.13.robot
-Suite Setup    F.13.System Logon
-Suite Teardown    F.13.System Logout
-Test Tags    F.13
+Resource    ../Tests/Resource/F_13.robot
+Suite Setup    F_13.System Logon
+Suite Teardown    F_13.System Logout
+Test Tags    F_13
 
 
 *** Test Cases ***
