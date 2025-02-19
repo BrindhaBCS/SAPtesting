@@ -116,14 +116,13 @@ if __name__ == "__main__":
         if dataframe.empty:
             raise ValueError(f"The CSV file '{bp_email_details_file}' is empty.")
 
-        
-        bp_number = int(sys.argv[5])
+        invoice_number = int(sys.argv[5])
+        bp_number = int(sys.argv[6])
         to_recipients_string, cc_recipients_string = get_email_recipients(bp_number, dataframe)
 
         if to_recipients_string is None or cc_recipients_string is None:
             print("There is no data for the Business Process Number {bp_number}.")
-            print(f"##gbStart##mail_status##splitKeyValue##There is no data for the Business Process Number##splitKeyValue##object##gbEnd##")
-            print(f"##gbStart##copilot_status##splitKeyValue##There is no data for the Business Process Number {bp_number}.##splitKeyValue##object##gbEnd##")
+            print(f"##gbStart##copilot_status##splitKeyValue##No data found in the excel for the Business Process Number {bp_number} for the invoice {invoice_number}.##splitKeyValue##object##gbEnd##")
             sys.exit(0)
         
         to_recipients = [i.strip() for i in to_recipients_string.split(';') if i.strip()]
@@ -133,24 +132,24 @@ if __name__ == "__main__":
         print("TO Recipients:", to_recipients)
         print("CC Recipients:", cc_recipients)
         
-        subject = sys.argv[6]
-        body1 = sys.argv[7]
-        body2 = sys.argv[8]
-        body3 = sys.argv[9]
-        body4 = sys.argv[10]
+        subject = sys.argv[7]
+        body1 = sys.argv[8]
+        body2 = sys.argv[9]
+        body3 = sys.argv[10]
+        body4 = sys.argv[11]
         body = f"{body1}<br><br>{body2}<br><br>{body3}<br>{body4}"
         
         now = datetime.now()
         current_month = now.strftime("%B")
         current_year = now.year
-        folder_path = os.path.join(sys.argv[11], str(current_year), current_month)
+        folder_path = os.path.join(sys.argv[12], str(current_year), current_month)
         # folder_path = sys.argv[8]
-        file_name = sys.argv[12]
+        file_name = sys.argv[13]
         file_path = os.path.join(folder_path, file_name)
         if not os.path.isfile(file_path):
             raise FileNotFoundError(f"Attachment file '{file_path}' does not exist.")
         
-        if len(sys.argv) == 13:
+        if len(sys.argv) == 14:
             file_path = os.path.join(folder_path, file_name)
             if os.path.isfile(file_path):
                 result = send_email_with_attachment(
@@ -168,8 +167,7 @@ if __name__ == "__main__":
                 sys.exit(1)
             print(result)
             print("Script Processed Successfully")
-            print(f"##gbStart##mail_status##splitKeyValue##Script Processed Successfully##splitKeyValue##object##gbEnd##")
-            print(f"##gbStart##copilot_status##splitKeyValue##Mail sent successfully for the Business Process Number {bp_number}.##splitKeyValue##object##gbEnd##")
+            print(f"##gbStart##copilot_status##splitKeyValue##Mail sent successfully for the invoice {invoice_number} & Business Process Number {bp_number}.##splitKeyValue##object##gbEnd##")
         else:
             print(f"Usage error: {sys.argv[0]} <client_id> <client_secret> <tenant_id> <bp_email_details_file> <bp_number> <subject> <body> <folder_path> <file_name>")
     except Exception as e:
