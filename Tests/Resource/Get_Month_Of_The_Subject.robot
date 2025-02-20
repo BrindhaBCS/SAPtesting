@@ -10,4 +10,4 @@ ${data}     ${symvar('data')}
 Get Month of the subject
 
     ${subject}  Get Mail Subject    ${data}
-    Log To Console      **gbStart**subject2**splitKeyValue**${subject}**gbEnd**
+    Log To Console      **gbStart**subject2**splitKeyValue**'${subject}'**gbEnd**
