@@ -14,6 +14,7 @@ import json
 import re
 import glob
 from datetime import datetime
+from dateutil.relativedelta import relativedelta
 import calendar
 
 class SAP_Tcode_Library:
@@ -1711,3 +1712,14 @@ class SAP_Tcode_Library:
 
         except Exception as e:
             print("\033[92m❗ Failed to clean Excel sheet:", str(e))  # Green exclamation mark
+
+    def get_mail_subject(self, data):
+        str_obj = json.dumps(data)
+        json_data = json.loads(str_obj)
+
+        month = json_data[0]["Month"]
+        year = json_data[0]["Year"]
+
+        formatted_date = f"{month} {year}"
+        print(formatted_date)
+        return formatted_date
