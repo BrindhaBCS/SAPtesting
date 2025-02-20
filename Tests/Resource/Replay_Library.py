@@ -12,7 +12,7 @@ from openpyxl import load_workbook
 import shutil
 import pandas as pd
 import datetime
-
+from collections import defaultdict
 
 
 class Replay_Library:    
@@ -415,3 +415,22 @@ class Replay_Library:
         
     def generate_list_to_json(self, numbers):
         return json.dumps({f"Delivery_{i}": num for i, num in enumerate(numbers)}, indent=2)
+
+    def inbounddelivery_json(self, file_path):
+        deliveries = defaultdict(list)
+        current_delivery = None
+        with open(file_path, "r") as file:
+            for line in file:
+                line = line.strip()
+                if line.startswith("Inbounddelivery:"):
+                    current_delivery = line.split(":")[1]
+                elif line.startswith("Item:"):
+                    item = {
+                        "Item": line.split(":")[1],
+                        "Material": next(file).strip().split(":")[1],
+                        "DeliveryQuantity": next(file).strip().split(":")[1],
+                        "SU": next(file).strip().split(":")[1]
+                    }
+                    deliveries[current_delivery].append(item)
+        json_output = [{"InboundDelivery": key, "TotalItems": value} for key, value in deliveries.items()]
+        return json.dumps(json_output, indent=2)
