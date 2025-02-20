@@ -108,5 +108,6 @@ Create_Lead
         Click Element  xpath://button[normalize-space(text())='Submit']
     ELSE  
         Log  message=Cannot create lead. Invalid Mobile or Email.  formatter=repr  
-        Log To Console    **gbStart**CreateLead_status**splitKeyValue**ERROR**Cannot create lead. Invalid Mobile or Email.**gbEnd**  
+        # Log To Console    **gbStart**CreateLead_status**splitKeyValue**ERROR**Cannot create lead. Invalid Mobile or Email.**gbEnd**  
+        Log To Console    **gbStart**copilot_CreateLead_status**splitKeyValue**Cannot create lead. Invalid Mobile or Email.**gbEnd**
     END
