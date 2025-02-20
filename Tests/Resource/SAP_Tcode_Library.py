@@ -1720,6 +1720,6 @@ class SAP_Tcode_Library:
         month = json_data[0]["Month"]
         year = json_data[0]["Year"]
 
-        formatted_date = f"{month} {year}"
+        formatted_date = f"{month} {year}."
         print(formatted_date)
         return formatted_date

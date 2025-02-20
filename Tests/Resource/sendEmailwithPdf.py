@@ -138,7 +138,7 @@ if __name__ == "__main__":
         body2 = sys.argv[9]
         body3 = sys.argv[10]
         body4 = sys.argv[11]
-        body = f"{body1}<br><br>{body2}{subject}<br><br>{body3}<br>{body4}"
+        body = f"{body1}<br><br>{body2}{subject2}<br><br>{body3}<br>{body4}"
         
         now = datetime.now()
         current_month = now.strftime("%B")
