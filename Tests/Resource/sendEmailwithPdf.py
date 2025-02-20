@@ -131,13 +131,14 @@ if __name__ == "__main__":
         
         print("TO Recipients:", to_recipients)
         print("CC Recipients:", cc_recipients)
-        
-        subject = sys.argv[7]
+        subject1 = sys.argv[7]
+        subject2 = sys.argv[8]
+        subject = f"{subject1}{subject2}
         body1 = sys.argv[8]
         body2 = sys.argv[9]
         body3 = sys.argv[10]
         body4 = sys.argv[11]
-        body = f"{body1}<br><br>{body2}<br><br>{body3}<br>{body4}"
+        body = f"{body1}<br><br>{body2}{subject}<br><br>{body3}<br>{body4}"
         
         now = datetime.now()
         current_month = now.strftime("%B")
