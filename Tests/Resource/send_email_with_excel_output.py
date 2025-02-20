@@ -29,21 +29,6 @@ def get_access_token(client_id, client_secret, tenant_id):
     except Exception as e:
         raise Exception(f"Error: {str(e)}")
 
-def get_email_recipients(number: int, dataframe: pd.DataFrame) -> tuple:
-    try:
-        # Filter the row where the 'Business Partner Number' matches the input number
-        row = dataframe.loc[dataframe['Business Partner Number'] == number]
-        
-        if row.empty:
-            raise ValueError(f"Number {number} not found in 'Business Partner Number' column.")
-        
-        # Extract 'TO' and 'CC' values from the matching row
-        to_recipients = row.iloc[0]['TO']
-        cc_recipients = row.iloc[0]['CC']
-        
-        return to_recipients, cc_recipients
-    except Exception as e:
-        raise ValueError(f"Error occurred: {str(e)}")
 
 def send_email_with_attachment(client_id, client_secret, tenant_id, to_recipients, cc_recipients, subject, body, file_path):
     try:
