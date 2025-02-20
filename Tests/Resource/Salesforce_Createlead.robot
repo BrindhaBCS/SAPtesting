@@ -18,54 +18,36 @@ Create_Lead
     Sleep    2
     Input Text    xpath:(//label[normalize-space(text())='Company']/following::input)[1]    ${symvar('company')}
     Sleep    2
-    # ${mobile}=  Set Variable  ${symvar('mobile_no')}
-    # ${is_valid}=  Run Keyword And Return Status  Should Match Regexp  ${mobile}  ${MOBILE_PATTERN}
-    # IF  ${is_valid}  
-    #     Log  message=Mobile number is valid: ${mobile}  formatter=repr  
-    #     Input Text  xpath=(//label[normalize-space(text())='Mobile']/following::input)[1]  ${mobile}
-    # ELSE  
-    #     Log  message=Mobile number is invalid: ${mobile}  formatter=repr  
-    #     IF  not "${mobile}".isdigit()  
-    #         Log  message=Mobile number should contain only digits  formatter=repr  
-    #     ELSE IF  len("${mobile}") < 10  
-    #         Log  message=Mobile number is too short (less than 10 digits)  formatter=repr  
-    #     ELSE IF  len("${mobile}") > 10  
-    #         Log  message=Mobile number is too long (more than 10 digits)  formatter=repr  
-    #     ELSE  
-    #         Log  message=Mobile number is invalid for unknown reasons  formatter=repr  
-    #     END  
-    # END  
-
     ${mobile}=  Set Variable  ${symvar('mobile_no')}
     ${is_valid_mobile_no}=  Run Keyword And Return Status  Should Match Regexp  ${mobile}  ${MOBILE_PATTERN}
     IF  ${is_valid_mobile_no}  
         ${log_message}=  Set Variable  Mobile number is valid: ${mobile}
         Log  message=${log_message}  formatter=repr  
-        Log To Console  **gbStart**Idoc_status**splitKeyValue**INFO**${log_message}**gbEnd**  
+        Log To Console    **gbStart**Idoc_status**splitKeyValue**INFO**${log_message}**gbEnd**  
         Input Text  xpath=(//label[normalize-space(text())='Mobile']/following::input)[1]  ${mobile}
     ELSE  
         ${log_message}=  Set Variable  Mobile number is invalid: ${mobile}
         Log  message=${log_message}  formatter=repr  
-        Log To Console  **gbStart**Idoc_status**splitKeyValue**ERROR**${log_message}**gbEnd**         
+        Log To Console    **gbStart**Idoc_status**splitKeyValue**ERROR**${log_message}**gbEnd**         
         IF  not "${mobile}".isdigit()  
             ${log_message}=  Set Variable  Mobile number should contain only digits
             Log  message=${log_message}  formatter=repr  
-            Log To Console  **gbStart**Idoc_status**splitKeyValue**ERROR**${log_message}**gbEnd**
+            Log To Console    **gbStart**Idoc_status**splitKeyValue**ERROR**${log_message}**gbEnd**
         ELSE IF  len("${mobile}") < 10  
             ${log_message}=  Set Variable  Mobile number is too short (less than 10 digits)
             Log  message=${log_message}  formatter=repr  
-            Log To Console  **gbStart**Idoc_status**splitKeyValue**ERROR**${log_message}**gbEnd**
+            Log To Console    **gbStart**Idoc_status**splitKeyValue**ERROR**${log_message}**gbEnd**
         ELSE IF  len("${mobile}") > 10  
             ${log_message}=  Set Variable  Mobile number is too long (more than 10 digits)
             Log  message=${log_message}  formatter=repr  
-            Log To Console  **gbStart**Idoc_status**splitKeyValue**ERROR**${log_message}**gbEnd**
+            Log To Console    **gbStart**Idoc_status**splitKeyValue**ERROR**${log_message}**gbEnd**
         ELSE  
             ${log_message}=  Set Variable  Mobile number is invalid for unknown reasons
             Log  message=${log_message}  formatter=repr  
-            Log To Console  **gbStart**Idoc_status**splitKeyValue**ERROR**${log_message}**gbEnd**
+            Log To Console    **gbStart**Idoc_status**splitKeyValue**ERROR**${log_message}**gbEnd**
         END  
         Log  message=${log_message}  formatter=repr  
-        Log To Console  **gbStart**Idoc_status**splitKeyValue**ERROR**${log_message}**gbEnd**  
+        Log To Console    **gbStart**Idoc_status**splitKeyValue**ERROR**${log_message}**gbEnd**  
     END  
     Sleep    2
     ${email}=  Set Variable  ${symvar('email_id')}
@@ -74,35 +56,35 @@ Create_Lead
     IF  ${is_valid_email}  
         ${log_message}=  Set Variable  Email is valid: ${email}
         Log  message=${log_message}  formatter=repr  
-        Log To Console  **gbStart**Idoc_status**splitKeyValue**INFO**${log_message}**gbEnd**  
+        Log To Console    **gbStart**Idoc_status**splitKeyValue**INFO**${log_message}**gbEnd**  
         Input Text  xpath=(//label[normalize-space(text())='Email']/following::input)[1]  ${email}
     ELSE  
         ${log_message}=  Set Variable  Email is invalid: ${email}
         Log  message=${log_message}  formatter=repr  
-        Log To Console  **gbStart**Idoc_status**splitKeyValue**ERROR**${log_message}**gbEnd**  
+        Log To Console    **gbStart**Idoc_status**splitKeyValue**ERROR**${log_message}**gbEnd**  
         IF  "@" not in "${email}"  
             ${log_message}=  Set Variable  Email is invalid: Missing @ symbol
             Log  message=${log_message}  formatter=repr  
-            Log To Console  **gbStart**Idoc_status**splitKeyValue**ERROR**${log_message}**gbEnd**
+            Log To Console    **gbStart**Idoc_status**splitKeyValue**ERROR**${log_message}**gbEnd**
         ELSE IF  "${email}".startswith("@")  
             ${log_message}=  Set Variable  Email is invalid: Missing username
             Log  message=${log_message}  formatter=repr  
-            Log To Console  **gbStart**Idoc_status**splitKeyValue**ERROR**${log_message}**gbEnd**
+            Log To Console    **gbStart**Idoc_status**splitKeyValue**ERROR**${log_message}**gbEnd**
         ELSE IF  "${email}".endswith("@")  
             ${log_message}=  Set Variable  Email is invalid: Missing domain
             Log  message=${log_message}  formatter=repr  
-            Log To Console  **gbStart**Idoc_status**splitKeyValue**ERROR**${log_message}**gbEnd**
+            Log To Console    **gbStart**Idoc_status**splitKeyValue**ERROR**${log_message}**gbEnd**
         ELSE IF  "." not in "${email.split('@')[-1]}"  
             ${log_message}=  Set Variable  Email is invalid: Missing top-level domain
             Log  message=${log_message}  formatter=repr  
-            Log To Console  **gbStart**Idoc_status**splitKeyValue**ERROR**${log_message}**gbEnd**
+            Log To Console    **gbStart**Idoc_status**splitKeyValue**ERROR**${log_message}**gbEnd**
         ELSE  
             ${log_message}=  Set Variable  Email is invalid: Unknown format issue
             Log  message=${log_message}  formatter=repr  
-            Log To Console  **gbStart**Idoc_status**splitKeyValue**ERROR**${log_message}**gbEnd**
+            Log To Console    **gbStart**Idoc_status**splitKeyValue**ERROR**${log_message}**gbEnd**
         END  
         Log  message=${log_message}  formatter=repr  
-        Log To Console  **gbStart**Idoc_status**splitKeyValue**ERROR**${log_message}**gbEnd**  
+        Log To Console    **gbStart**Idoc_status**splitKeyValue**ERROR**${log_message}**gbEnd**  
     END  
     Sleep    2
     Click Element    xpath://button[@aria-label='State']
@@ -123,9 +105,9 @@ Create_Lead
     Sleep    2
     IF  ${is_valid_mobile_no} and ${is_valid_email}  
         Log  message=All validations passed! Clicking Submit...  formatter=repr  
-        Log To Console  **gbStart**Idoc_status**splitKeyValue**INFO**All validations passed! Clicking Submit...**gbEnd**  
+        Log To Console    **gbStart**Idoc_status**splitKeyValue**INFO**All validations passed! Clicking Submit...**gbEnd**  
         Click Element  xpath://button[normalize-space(text())='Submit']
     ELSE  
         Log  message=Cannot create lead. Invalid Mobile or Email.  formatter=repr  
-        Log To Console  **gbStart**Idoc_status**splitKeyValue**ERROR**Cannot create lead. Invalid Mobile or Email.**gbEnd**  
+        Log To Console    **gbStart**Idoc_status**splitKeyValue**ERROR**Cannot create lead. Invalid Mobile or Email.**gbEnd**  
     END
