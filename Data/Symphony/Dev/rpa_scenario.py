@@ -1,6 +1,6 @@
 SAP_SERVER = "C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPgui\\saplogon.exe"
 Rpa_Connection = "$Rpa_Connection"
 Rpa_Client_Id = "$Rpa_Client_Id"
-Rpa_User_Name = "$Rpa_User_Name"
+Rpa_UserName = "$Rpa_UserName"
 Rpa_vehicle_number = "$Rpa_vehicle_number"
 Inbound_delivery = "$Inbound_delivery_list"

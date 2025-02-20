@@ -12,7 +12,7 @@ System Logon
     Connect To Session
     Open Connection    ${symvar('Rpa_Connection')}    
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('Rpa_Client_Id')}
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('Rpa_User_Name')}    
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('Rpa_UserName')}    
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('Rpa_Password')}
     Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{Rpa_Password}
     Send Vkey    0
