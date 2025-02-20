@@ -23,7 +23,7 @@ Create_Lead
     IF  ${is_valid_mobile_no}  
         ${log_message}=  Set Variable  Mobile number is valid: ${mobile}
         Log  message=${log_message}  formatter=repr  
-        Log To Console    **gbStart**copilot_CreateLead_status**splitKeyValue**.${log_message}**gbEnd**
+        Log To Console    **gbStart**copilot_CreateLead_status**splitKeyValue**${log_message}**gbEnd**
         Input Text  xpath=(//label[normalize-space(text())='Mobile']/following::input)[1]  ${mobile}
     ELSE  
         ${log_message}=  Set Variable  Mobile number is invalid: ${mobile}
