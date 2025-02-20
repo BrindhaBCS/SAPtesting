@@ -57,5 +57,5 @@ Material_code_quantity_from_ASN
         Click Element    element_id=wnd[0]/tbar[0]/btn[3]
     END
     ${IBDjson}    Inbounddelivery Json    file_path=${file}
-    Log To Console    message=##gbStart##InbounddeliveryJson##splitKeyValue##${IBDjson}##splitKeyValue##object##gbEnd##
+    Log To Console    message=**gbStart**InbounddeliveryJson**splitKeyValue**${IBDjson}**splitKeyValue**object**gbEnd**
     Delete Specific File    file_path=${file}

@@ -50,7 +50,7 @@ Vehicle_number_plate
             END
             ${jsondata}    Generate List To Json    numbers=${stone}
             Log To Console    message=**gbStart**Inbound_delivery_list**splitKeyValue**${stone}**gbEnd**
-            Log To Console    message=**gbStart**Delivery_json**splitKeyValue**${jsondata}##splitKeyValue##object##gbEnd##
+            Log To Console    message=**gbStart**Delivery_json**splitKeyValue**${jsondata}**splitKeyValue**object**gbEnd**
             Log To Console    message=${jsondata}
         ELSE
             Log To Console    message=**gbStart**Get_Pass**splitKeyValue**Vehicle_Block**gbEnd**
