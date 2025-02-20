@@ -133,7 +133,7 @@ if __name__ == "__main__":
         print("CC Recipients:", cc_recipients)
         subject1 = sys.argv[7]
         subject2 = sys.argv[8]
-        subject = f"{subject1}{subject2}
+        subject = f"{subject1}{subject2}"
         body1 = sys.argv[8]
         body2 = sys.argv[9]
         body3 = sys.argv[10]
