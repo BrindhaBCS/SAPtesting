@@ -24,7 +24,7 @@ System Logout
     Run Transaction     /nex
 Material_code_quantity_from_ASN
     Run Transaction    /nVL33N
-    Delete Specific File    file_path=C:\\tmp\\RPA\\Inbound_delivery.txt
+    Delete Specific File    file_path=${file}
     ${in}    Get Length    item=${symvar('Inbound_delivery')}
     Create File    path=${file}
     FOR    ${i}     IN RANGE    0    ${in}
@@ -56,6 +56,6 @@ Material_code_quantity_from_ASN
         END
         Click Element    element_id=wnd[0]/tbar[0]/btn[3]
     END
-    ${IBDjson}    Inbounddelivery Json    file_path=C:\\tmp\\RPA\\Inbound_delivery.txt
+    ${IBDjson}    Inbounddelivery Json    file_path=${file}
     Log To Console    message=##gbStart##InbounddeliveryJson##splitKeyValue##${IBDjson}##splitKeyValue##object##gbEnd##
-    Delete Specific File    file_path=C:\\tmp\\RPA\\Inbound_delivery.txt
+    Delete Specific File    file_path=${file}
