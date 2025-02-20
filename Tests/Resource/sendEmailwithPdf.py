@@ -173,7 +173,6 @@ if __name__ == "__main__":
                 sys.exit(1)
             print(result)
             print("Script Processed Successfully")
-            print(f"##gbStart##mail_status#splitKeyValue##Script Processed Successfully##gbEnd##")
             print(f"##gbStart##copilot_status##splitKeyValue##Mail sent successfully for the invoice {invoice_number} & Business Process Number {bp_number}.##splitKeyValue##object##gbEnd##")
         else:
             print(f"Usage error: {sys.argv[0]} <client_id> <client_secret> <tenant_id> <bp_email_details_file> <bp_number> <subject> <body> <folder_path> <file_name>")

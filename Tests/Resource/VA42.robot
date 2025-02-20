@@ -66,7 +66,7 @@ Release Block
                 Exit For Loop
 
             ELSE
-                Write the status into excel    ${symvar('documents')}    Passed
+                Write the status into excel    ${symvar('documents')}    Failed
             END
         END
     END
