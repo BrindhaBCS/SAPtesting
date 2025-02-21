@@ -38,19 +38,19 @@ Create_Lead_login
     ${email_exists}    Check If Entry Exists    ${symvar('email_id')}   
     IF    ${mobile_exists} and ${email_exists}
         ${duplicate_entry}    Log    Both Mobile Number ${symvar('mobile_no')} and Email ID ${symvar('email_id')} already exist.
-        Log To Console    **gbStart**copilot_Error_status**splitKeyValue**${duplicate_entry}**gbEnd**
-        Fail    Duplicate entries detected!
+        Log To Console    **gbStart**copilot_Error_status_a**splitKeyValue**${duplicate_entry}**gbEnd**
+        # Fail    Duplicate entries detected!
     ELSE IF    ${mobile_exists}
         ${duplicate_entry}    Log    Mobile number ${symvar('mobile_no')} already exists.
-        Log To Console    **gbStart**copilot_Error_status**splitKeyValue**${duplicate_entry}**gbEnd**
-        Fail    Duplicate mobile number detected!
+        Log To Console    **gbStart**copilot_Error_status_b**splitKeyValue**${duplicate_entry}**gbEnd**
+        # Fail    Duplicate mobile number detected!
     ELSE IF    ${email_exists}
         ${duplicate_entry}    Log    Email ID ${symvar('email_id')} already exists.
-        Log To Console    **gbStart**copilot_Error_status**splitKeyValue**${duplicate_entry}**gbEnd**
-        Fail    Duplicate email detected!
+        Log To Console    **gbStart**copilot_Error_status_c**splitKeyValue**${duplicate_entry}**gbEnd**
+        # Fail    Duplicate email detected!
     ELSE
         ${duplicate_entry}    Log    No duplicate entry found. Proceeding with the new entry...
-        Log To Console    **gbStart**copilot_Error_status**splitKeyValue**${duplicate_entry}**gbEnd**
+        Log To Console    **gbStart**copilot_Error_status_d**splitKeyValue**${duplicate_entry}**gbEnd**
     END
 
     Click Element    xpath://div[normalize-space(text())='New']
@@ -68,31 +68,31 @@ Create_Lead_login
     IF  ${is_valid_mobile_no}  
         ${log_message}=  Set Variable  Mobile number is valid: ${mobile}
         Log  message=${log_message}  formatter=repr  
-        Log To Console    **gbStart**copilot_CreateLead_status**splitKeyValue**${log_message}**gbEnd**
+        Log To Console    **gbStart**copilot_CreateLead_status_d**splitKeyValue**${log_message}**gbEnd**
         Input Text    xpath:(//label[contains(.,'*Phone')]/following::input)    ${mobile}
     ELSE  
         ${log_message}=  Set Variable  Mobile number is invalid: ${mobile}
         Log  message=${log_message}  formatter=repr       
-        Log To Console    **gbStart**copilot_CreateLead_status**splitKeyValue**${log_message}**gbEnd**  
+        Log To Console    **gbStart**copilot_CreateLead_status_e**splitKeyValue**${log_message}**gbEnd**  
         IF  not "${mobile}".isdigit()  
             ${log_message}=  Set Variable  Mobile number should contain only digits
             Log  message=${log_message}  formatter=repr  
-            Log To Console    **gbStart**copilot_CreateLead_status**splitKeyValue**${log_message}**gbEnd** 
+            Log To Console    **gbStart**copilot_CreateLead_status_f**splitKeyValue**${log_message}**gbEnd** 
         ELSE IF  len("${mobile}") < 10  
             ${log_message}=  Set Variable  Mobile number is too short (less than 10 digits)
             Log  message=${log_message}  formatter=repr  
-            Log To Console    **gbStart**copilot_CreateLead_status**splitKeyValue**${log_message}**gbEnd** 
+            Log To Console    **gbStart**copilot_CreateLead_status_g**splitKeyValue**${log_message}**gbEnd** 
         ELSE IF  len("${mobile}") > 10  
             ${log_message}=  Set Variable  Mobile number is too long (more than 10 digits)
             Log  message=${log_message}  formatter=repr  
-            Log To Console    **gbStart**copilot_CreateLead_status**splitKeyValue**${log_message}**gbEnd** 
+            Log To Console    **gbStart**copilot_CreateLead_status_h**splitKeyValue**${log_message}**gbEnd** 
         ELSE  
             ${log_message}=  Set Variable  Mobile number is invalid for unknown reasons
             Log  message=${log_message}  formatter=repr  
-            Log To Console    **gbStart**copilot_CreateLead_status**splitKeyValue**${log_message}**gbEnd** 
+            Log To Console    **gbStart**copilot_CreateLead_status_i**splitKeyValue**${log_message}**gbEnd** 
         END  
         Log  message=${log_message}  formatter=repr  
-        Log To Console    **gbStart**copilot_CreateLead_status**splitKeyValue**${log_message}**gbEnd** 
+        Log To Console    **gbStart**copilot_CreateLead_status_j**splitKeyValue**${log_message}**gbEnd** 
     END  
     Sleep    2
     ${email}=  Set Variable  ${symvar('email_id')}
@@ -100,35 +100,35 @@ Create_Lead_login
     IF  ${is_valid_email}  
         ${log_message}=  Set Variable  Email is valid: ${email}
         Log  message=${log_message}  formatter=repr  
-        Log To Console    **gbStart**copilot_CreateLead_status**splitKeyValue**${log_message}**gbEnd** 
+        Log To Console    **gbStart**copilot_CreateLead_status_k**splitKeyValue**${log_message}**gbEnd** 
         Input Text  xpath:(//label[contains(.,'*Email')]/following::input)  ${email}
     ELSE  
         ${log_message}=  Set Variable  Email is invalid: ${email}
         Log  message=${log_message}  formatter=repr  
-        Log To Console    **gbStart**copilot_CreateLead_status**splitKeyValue**${log_message}**gbEnd** 
+        Log To Console    **gbStart**copilot_CreateLead_status_l**splitKeyValue**${log_message}**gbEnd** 
         IF  "@" not in "${email}"  
             ${log_message}=  Set Variable  Email is invalid: Missing @ symbol
             Log  message=${log_message}  formatter=repr  
-            Log To Console    **gbStart**copilot_CreateLead_status**splitKeyValue**${log_message}**gbEnd** 
+            Log To Console    **gbStart**copilot_CreateLead_status_m**splitKeyValue**${log_message}**gbEnd** 
         ELSE IF  "${email}".startswith("@")  
             ${log_message}=  Set Variable  Email is invalid: Missing username
             Log  message=${log_message}  formatter=repr  
-            Log To Console    **gbStart**copilot_CreateLead_status**splitKeyValue**${log_message}**gbEnd** 
+            Log To Console    **gbStart**copilot_CreateLead_status_n**splitKeyValue**${log_message}**gbEnd** 
         ELSE IF  "${email}".endswith("@")  
             ${log_message}=  Set Variable  Email is invalid: Missing domain
             Log  message=${log_message}  formatter=repr  
-            Log To Console    **gbStart**copilot_CreateLead_status**splitKeyValue**${log_message}**gbEnd** 
+            Log To Console    **gbStart**copilot_CreateLead_status_o**splitKeyValue**${log_message}**gbEnd** 
         ELSE IF  "." not in "${email.split('@')[-1]}"  
             ${log_message}=  Set Variable  Email is invalid: Missing top-level domain
             Log  message=${log_message}  formatter=repr  
-            Log To Console    **gbStart**copilot_CreateLead_status**splitKeyValue**${log_message}**gbEnd** 
+            Log To Console    **gbStart**copilot_CreateLead_status_p**splitKeyValue**${log_message}**gbEnd** 
         ELSE  
             ${log_message}=  Set Variable  Email is invalid: Unknown format issue
             Log  message=${log_message}  formatter=repr  
-            Log To Console    **gbStart**copilot_CreateLead_status**splitKeyValue**${log_message}**gbEnd** 
+            Log To Console    **gbStart**copilot_CreateLead_status_q**splitKeyValue**${log_message}**gbEnd** 
         END  
         Log  message=${log_message}  formatter=repr  
-        Log To Console    **gbStart**copilot_CreateLead_status**splitKeyValue**${log_message}**gbEnd** 
+        Log To Console    **gbStart**copilot_CreateLead_status_r**splitKeyValue**${log_message}**gbEnd** 
     END      
     ${product_element}    Get WebElement    xpath=//button[contains(@class, 'slds-combobox__input') and @aria-label='Product']
     Execute JavaScript    arguments[0].scrollIntoView(true);    ARGUMENTS    ${product_element}
@@ -150,11 +150,11 @@ Create_Lead_login
     Sleep    2
     IF  ${is_valid_mobile_no} and ${is_valid_email}  
         Log  message=All validations passed! Clicking Submit...  formatter=repr  
-        Log To Console    **gbStart**copilot_CreateLead_status**splitKeyValue**All validations passed! Clicking Submit...**gbEnd**
+        Log To Console    **gbStart**copilot_CreateLead_status_u**splitKeyValue**All validations passed! Clicking Submit...**gbEnd**
         Click Element    xpath://button[@name='SaveEdit']
         Sleep    2
-        Log To Console    **gbStart**copilot_CreateLead_status**splitKeyValue**Lead for ${symvar('lastname')} created successfully...**gbEnd**
+        Log To Console    **gbStart**copilot_CreateLead_status**splitKeyValue_s**Lead for ${symvar('lastname')} created successfully...**gbEnd**
     ELSE  
         Log  message=Cannot create lead. Invalid Mobile or Email.  formatter=repr  
-        Log To Console    **gbStart**copilot_CreateLead_status**splitKeyValue**Cannot create lead. Invalid Mobile or Email.**gbEnd**
+        Log To Console    **gbStart**copilot_CreateLead_status**splitKeyValue_t**Cannot create lead. Invalid Mobile or Email.**gbEnd**
     END
