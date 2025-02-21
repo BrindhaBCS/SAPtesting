@@ -21,11 +21,15 @@ Create_Lead_login
     # Input Password    id:password    ${symvar('Salesforce_Password')}
     Sleep    2
     Click Element    xpath://input[@id='Login']
-    Sleep    25
+    Sleep    5
     Click Element    xpath://one-app-nav-bar-item-root[contains(.,'LeadsLeads List')]
     Sleep    2
     Click Element    xpath://div[normalize-space(text())='New']
     Sleep    5
+    Click Element    xpath://button[@aria-label='Lead Status']
+    Sleep    2
+    Click Element    xpath://lightning-base-combobox-item//span[contains(text(), '${symvar('Lead_Status')}')]
+    Sleep    2
     Input Text    xpath://input[@placeholder='Last Name']    ${symvar('lastname')}
     Sleep    2
     Input Text    xpath://input[@name='Company']    ${symvar('company')} 
@@ -34,12 +38,6 @@ Create_Lead_login
     # Sleep    2
     # Click Element    xpath://lightning-base-combobox-item//span[contains(text(), '${symvar('Lead_Status')}')]
     # Sleep    2
-    ${LeadStatus}    Get WebElement    xpath=//button[contains(@class, 'slds-combobox__input') and @aria-label='Lead Status']
-    Execute JavaScript    arguments[0].scrollIntoView(true);    ARGUMENTS    ${LeadStatus}
-    Click Element    ${LeadStatus}
-    Sleep    2
-    Click Element    xpath://lightning-base-combobox-item//span[contains(text(), '${symvar('Lead_Status')}')]
-    Sleep    2
     ${mobile}=  Set Variable  ${symvar('mobile_no')}
     ${is_valid_mobile_no}=  Run Keyword And Return Status  Should Match Regexp  ${mobile}  ${MOBILE_PATTERN}
     IF  ${is_valid_mobile_no}  
