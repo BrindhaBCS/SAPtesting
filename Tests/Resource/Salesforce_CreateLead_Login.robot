@@ -1,6 +1,7 @@
 *** Settings ***
 Library    SeleniumLibrary
 Library    String
+Resource    GRC_Riskcheck.robot
 Library    BuiltIn
 *** Variables ***
 ${Login_URL}    https://basiscloudsolutionspvtltd--vishnudev.sandbox.my.salesforce.com/
@@ -8,7 +9,15 @@ ${BROWSER}    CHROME
 ${EMAIL_PATTERN}   ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
 ${MOBILE_PATTERN}   ^\\d{10}$    # This regex ensures exactly 10 digits
 ${CHROME_OPTIONS}    add_argument("--disable-notifications")
+${SEARCH_FIELD}    xpath://input[@aria-label='Search this list...']
 *** Keywords ***
+Check If Entry Exists
+    [Arguments]    ${value}  # This accepts the mobile number or email ID
+    Clear Element Text    ${SEARCH_FIELD}
+    Input Text    ${SEARCH_FIELD}    ${value}
+    Sleep    2s   # Wait for search results to load
+    ${result}    Run Keyword And Return Status    Page Should Contain    ${value}
+    RETURN    ${result}
 Create_Lead_login
     ${options}=    Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
     Call Method    ${options}    add_argument    --disable-notifications
@@ -17,27 +26,43 @@ Create_Lead_login
     Maximize Browser Window
     Input Text    id:username    vijayakumarp@basiscloudsolutions.com.vishnudev
     Sleep    2
-    Input Password    id:password    %{Salesforce_Password}
-    # Input Password    id:password    ${symvar('Salesforce_Password')}
+    # Input Password    id:password    %{Salesforce_Password}
+    Input Password    id:password    ${symvar('Salesforce_Password')}
     Sleep    2
     Click Element    xpath://input[@id='Login']
     Sleep    5
     Click Element    xpath://one-app-nav-bar-item-root[contains(.,'LeadsLeads List')]
     Sleep    2
+    
+    ${mobile_exists}    Check If Entry Exists    ${symvar('mobile_no')}
+    ${email_exists}    Check If Entry Exists    ${symvar('email_id')}   
+    IF    ${mobile_exists} and ${email_exists}
+        ${duplicate_entry}    Log    Both Mobile Number ${symvar('mobile_no')} and Email ID ${symvar('email_id')} already exist.
+        Log To Console    **gbStart**copilot_Error_status**splitKeyValue**${duplicate_entry}**gbEnd**
+        Fail    Duplicate entries detected!
+    ELSE IF    ${mobile_exists}
+        ${duplicate_entry}    Log    Mobile number ${symvar('mobile_no')} already exists.
+        Log To Console    **gbStart**copilot_Error_status**splitKeyValue**${duplicate_entry}**gbEnd**
+        Fail    Duplicate mobile number detected!
+    ELSE IF    ${email_exists}
+        ${duplicate_entry}    Log    Email ID ${symvar('email_id')} already exists.
+        Log To Console    **gbStart**copilot_Error_status**splitKeyValue**${duplicate_entry}**gbEnd**
+        Fail    Duplicate email detected!
+    ELSE
+        ${duplicate_entry}    Log    No duplicate entry found. Proceeding with the new entry...
+        Log To Console    **gbStart**copilot_Error_status**splitKeyValue**${duplicate_entry}**gbEnd**
+    END
+
     Click Element    xpath://div[normalize-space(text())='New']
     Sleep    5
-    # Click Element    xpath://button[@aria-label='Lead Status']
-    # Sleep    3
-    # Click Element    xpath://lightning-base-combobox-item//span[contains(text(), '${symvar('Lead_Status')}')]
-    # Sleep    5
+    Click Element    xpath://button[@aria-label='Lead Status']
+    Sleep    3
+    Click Element    xpath://lightning-base-combobox-item//span[contains(text(), '${symvar('Lead_Status')}')]
+    Sleep    5
     Input Text    xpath://input[@placeholder='Last Name']    ${symvar('lastname')}
     Sleep    2
     Input Text    xpath://input[@name='Company']    ${symvar('company')} 
     Sleep    2
-    # Click Element    xpath://button[@aria-label='Lead Status']
-    # Sleep    3
-    # Click Element    xpath://lightning-base-combobox-item//span[contains(text(), '${symvar('Lead_Status')}')]
-    # Sleep    5
     ${mobile}=  Set Variable  ${symvar('mobile_no')}
     ${is_valid_mobile_no}=  Run Keyword And Return Status  Should Match Regexp  ${mobile}  ${MOBILE_PATTERN}
     IF  ${is_valid_mobile_no}  
