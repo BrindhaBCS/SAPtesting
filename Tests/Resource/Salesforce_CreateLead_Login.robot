@@ -26,8 +26,8 @@ Create_Lead_login
     Maximize Browser Window
     Input Text    id:username    vijayakumarp@basiscloudsolutions.com.vishnudev
     Sleep    2
-    # Input Password    id:password    %{Salesforce_Password}
-    Input Password    id:password    ${symvar('Salesforce_Password')}
+    Input Password    id:password    %{Salesforce_Password}
+    # Input Password    id:password    ${symvar('Salesforce_Password')}
     Sleep    2
     Click Element    xpath://input[@id='Login']
     Sleep    5
