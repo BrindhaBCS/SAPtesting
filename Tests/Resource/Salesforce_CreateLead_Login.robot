@@ -27,17 +27,17 @@ Create_Lead_login
     Click Element    xpath://div[normalize-space(text())='New']
     Sleep    5
     Click Element    xpath://button[@aria-label='Lead Status']
-    Sleep    2
+    Sleep    3
     Click Element    xpath://lightning-base-combobox-item//span[contains(text(), '${symvar('Lead_Status')}')]
-    Sleep    2
+    Sleep    5
     Input Text    xpath://input[@placeholder='Last Name']    ${symvar('lastname')}
     Sleep    2
     Input Text    xpath://input[@name='Company']    ${symvar('company')} 
     Sleep    2
     # Click Element    xpath://button[@aria-label='Lead Status']
-    # Sleep    2
+    # Sleep    3
     # Click Element    xpath://lightning-base-combobox-item//span[contains(text(), '${symvar('Lead_Status')}')]
-    # Sleep    2
+    # Sleep    5
     ${mobile}=  Set Variable  ${symvar('mobile_no')}
     ${is_valid_mobile_no}=  Run Keyword And Return Status  Should Match Regexp  ${mobile}  ${MOBILE_PATTERN}
     IF  ${is_valid_mobile_no}  
