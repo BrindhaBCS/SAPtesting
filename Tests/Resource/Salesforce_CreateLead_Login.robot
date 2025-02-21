@@ -26,10 +26,10 @@ Create_Lead_login
     Sleep    2
     Click Element    xpath://div[normalize-space(text())='New']
     Sleep    5
-    Click Element    xpath://button[@aria-label='Lead Status']
-    Sleep    3
-    Click Element    xpath://lightning-base-combobox-item//span[contains(text(), '${symvar('Lead_Status')}')]
-    Sleep    5
+    # Click Element    xpath://button[@aria-label='Lead Status']
+    # Sleep    3
+    # Click Element    xpath://lightning-base-combobox-item//span[contains(text(), '${symvar('Lead_Status')}')]
+    # Sleep    5
     Input Text    xpath://input[@placeholder='Last Name']    ${symvar('lastname')}
     Sleep    2
     Input Text    xpath://input[@name='Company']    ${symvar('company')} 
