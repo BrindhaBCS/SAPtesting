@@ -30,7 +30,13 @@ Create_Lead_login
     Sleep    2
     Input Text    xpath://input[@name='Company']    ${symvar('company')} 
     Sleep    2
-    Click Element    xpath://button[@aria-label='Lead Status']
+    # Click Element    xpath://button[@aria-label='Lead Status']
+    # Sleep    2
+    # Click Element    xpath://lightning-base-combobox-item//span[contains(text(), '${symvar('Lead_Status')}')]
+    # Sleep    2
+    ${LeadStatus}    Get WebElement    xpath=//button[contains(@class, 'slds-combobox__input') and @aria-label='Lead Status']
+    Execute JavaScript    arguments[0].scrollIntoView(true);    ARGUMENTS    ${LeadStatus}
+    Click Element    ${LeadStatus}
     Sleep    2
     Click Element    xpath://lightning-base-combobox-item//span[contains(text(), '${symvar('Lead_Status')}')]
     Sleep    2
