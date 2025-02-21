@@ -156,5 +156,5 @@ Create_Lead_login
         Log To Console    **gbStart**copilot_CreateLead_status**splitKeyValue_s**Lead for ${symvar('lastname')} created successfully...**gbEnd**
     ELSE  
         Log  message=Cannot create lead. Invalid Mobile or Email.  formatter=repr  
-        Log To Console    **gbStart**copilot_CreateLead_status**splitKeyValue_t**Cannot create lead. Invalid Mobile or Email.**gbEnd**
+        Log To Console    **gbStart**copilot_CreateLead_status_t**splitKeyValue**Cannot create lead. Invalid Mobile or Email.**gbEnd**
     END
