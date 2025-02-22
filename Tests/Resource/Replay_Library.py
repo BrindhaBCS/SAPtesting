@@ -434,3 +434,35 @@ class Replay_Library:
                     deliveries[current_delivery].append(item)
         json_output = [{"InboundDelivery": key, "TotalItems": value} for key, value in deliveries.items()]
         return json.dumps(json_output, indent=2)
+    
+    def binallocation_json(self, file_path):
+        with open(file_path, "r") as file:
+            lines = file.readlines()
+        data = []
+        current_delivery = None
+        for line in lines:
+            line = line.strip()
+            if line.startswith("InboundDelivery:"):
+                if current_delivery:
+                    data.append(current_delivery)
+                current_delivery = {
+                    "InboundDelivery": line.split(":")[1],
+                    "VehicleNumber": "",
+                    "WarehouseTasks": []
+                }
+            elif line.startswith("VehicleNumber:"):
+                current_delivery["VehicleNumber"] = line.split(":")[1]
+            elif line.startswith("WarehousetaskNumber:"):
+                task = {
+                    "WarehouseTaskNumber": line.split(":")[1],
+                    "SourceBin": "",
+                    "DestBin": ""
+                }
+            elif line.startswith("Sourcebin:"):
+                task["SourceBin"] = line.split(":")[1]
+            elif line.startswith("Destbin:"):
+                task["DestBin"] = line.split(":")[1]
+                current_delivery["WarehouseTasks"].append(task)
+        if current_delivery:
+            data.append(current_delivery)
+        return json.dumps(data, indent=2)
