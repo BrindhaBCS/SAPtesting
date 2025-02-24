@@ -15,6 +15,7 @@ Check If Entry Exists
     [Arguments]    ${value}  # This accepts the mobile number or email ID
     Clear Element Text    ${SEARCH_FIELD}
     Input Text    ${SEARCH_FIELD}    ${value}
+    Press Keys    ${SEARCH_FIELD}    ENTER
     Sleep    2s   # Wait for search results to load
     ${result}    Run Keyword And Return Status    Page Should Contain    ${value}
     RETURN    ${result}
@@ -35,12 +36,8 @@ Create_Lead_login
     Sleep    2
     
     ${mobile_exists}    Check If Entry Exists    ${symvar('mobile_no')}
-    ${email_exists}    Check If Entry Exists    ${symvar('email_id')}   
-    IF    ${mobile_exists} and ${email_exists}
-        ${duplicate_entry}    Log    Both Mobile Number ${symvar('mobile_no')} and Email ID ${symvar('email_id')} already exist.
-        Log To Console    **gbStart**copilot_Error_status_a**splitKeyValue**${duplicate_entry}**gbEnd**
-        # Fail    Duplicate entries detected!
-    ELSE IF    ${mobile_exists}
+    ${email_exists}    Check If Entry Exists    ${symvar('email_id')}
+    IF    ${mobile_exists}
         ${duplicate_entry}    Log    Mobile number ${symvar('mobile_no')} already exists.
         Log To Console    **gbStart**copilot_Error_status_b**splitKeyValue**${duplicate_entry}**gbEnd**
         # Fail    Duplicate mobile number detected!
