@@ -2359,7 +2359,6 @@ class SAP_Tcode_Library:
 
     def create_html_report(self, excel_file, html_file, highlight_text):
         df = pd.read_excel(excel_file)
-
         # Initialize counters
         pass_count = 0
         warn_count = 0
@@ -2369,9 +2368,7 @@ class SAP_Tcode_Library:
                 pass_count += 1
             if 'No authorization in user master record' in row_text:
                 warn_count += 1
-
         current_time = datetime.datetime.utcnow().strftime('%d-%m-%Y Time: %H:%M:%S UTC')
-
         #HTML
         html_content = f"""
         <!DOCTYPE html>
@@ -2463,7 +2460,6 @@ class SAP_Tcode_Library:
             </style>
         </head>
         <body>
-
         <div class="container">
             <h1>Fiori LaunchPad Report</h1>
                 <div class="count-box">
@@ -2481,7 +2477,6 @@ class SAP_Tcode_Library:
                 <thead>
                     <tr>
         """
-
         # Add table headers (columns from DataFrame)
         headers = df.columns.tolist()
         for header in headers:
@@ -2492,7 +2487,6 @@ class SAP_Tcode_Library:
                 </thead>
                 <tbody>
         """
-
         # Add table rows (data from DataFrame)
         for index, row in df.iterrows():
             # Check if the target text is in any cell of the row
@@ -2500,22 +2494,29 @@ class SAP_Tcode_Library:
                 html_content += '<tr class="row-red">'  
             else:
                 html_content += '<tr class="row-green">'  
-
             for value in row:
                 html_content += f"<td>{value}</td>"
-
             html_content += "</tr>"
-
         html_content += """
                 </tbody>
             </table>
         </div>
-
         </body>
         </html>
         """
-
         with open(html_file, "w") as file:
             file.write(html_content)
-
         print(f"HTML report created successfully: {html_file}")
+        
+    def rpa_dropdown_bin_conformation(self,tableshell,Button,MenuItem):
+        try:
+            self.session.findById(tableshell).pressToolbarContextButton(Button)
+            self.session.findById(tableshell).selectContextMenuItem(MenuItem)
+        except:
+            return  []
+    def rpa_selected_rows(self, tree_id, first_visible_row):
+        try:
+            self.session.findById(tree_id).currentCellRow = first_visible_row
+            self.session.findById(tree_id).selectedRows = first_visible_row
+        except Exception as e:
+            print(f"Error: {e}")
