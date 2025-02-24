@@ -36,19 +36,22 @@ Create_Lead_login
     Sleep    2
     
     ${mobile_exists}    Check If Entry Exists    ${symvar('mobile_no')}
-    ${email_exists}    Check If Entry Exists    ${symvar('email_id')}
     IF    ${mobile_exists}
-        ${duplicate_entry}    Log    Mobile number ${symvar('mobile_no')} already exists.
-        Log To Console    **gbStart**copilot_Error_status_b**splitKeyValue**${duplicate_entry}**gbEnd**
+        Log    Mobile number ${symvar('mobile_no')} already exists.
+        Log To Console    **gbStart**copilot_Error_status_b**splitKeyValue**Mobile number exists**gbEnd**
         Fail    Duplicate mobile number detected!
-    ELSE IF    ${email_exists}
-        ${duplicate_entry}    Log    Email ID ${symvar('email_id')} already exists.
-        Log To Console    **gbStart**copilot_Error_status_c**splitKeyValue**${duplicate_entry}**gbEnd**
-        Fail    Duplicate email detected!
     ELSE
-        ${duplicate_entry}    Log    No duplicate entry found. Proceeding with the new entry...
-        Log To Console    **gbStart**copilot_Error_status_d1**splitKeyValue**${duplicate_entry}**gbEnd**
+        ${email_exists}    Check If Entry Exists    ${symvar('email_id')}
+        IF    ${email_exists}
+            Log    Email ID ${symvar('email_id')} already exists.
+            Log To Console    **gbStart**copilot_Error_status_c**splitKeyValue**Email ID exists**gbEnd**
+            Fail    Duplicate email detected!
+        ELSE
+            Log    No duplicate entry found. Proceeding with the new entry...
+            Log To Console    **gbStart**copilot_Error_status_d1**splitKeyValue**Proceeding with new entry**gbEnd**
+        END
     END
+
 
     Click Element    xpath://div[normalize-space(text())='New']
     Sleep    5
