@@ -1,7 +1,6 @@
 *** Settings ***
 Library    SeleniumLibrary
 Library    String
-Resource    GRC_Riskcheck.robot
 Library    BuiltIn
 *** Variables ***
 ${Login_URL}    https://basiscloudsolutionspvtltd--vishnudev.sandbox.my.salesforce.com/
