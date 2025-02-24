@@ -40,11 +40,11 @@ Create_Lead_login
     IF    ${mobile_exists}
         ${duplicate_entry}    Log    Mobile number ${symvar('mobile_no')} already exists.
         Log To Console    **gbStart**copilot_Error_status_b**splitKeyValue**${duplicate_entry}**gbEnd**
-        # Fail    Duplicate mobile number detected!
+        Fail    Duplicate mobile number detected!
     ELSE IF    ${email_exists}
         ${duplicate_entry}    Log    Email ID ${symvar('email_id')} already exists.
         Log To Console    **gbStart**copilot_Error_status_c**splitKeyValue**${duplicate_entry}**gbEnd**
-        # Fail    Duplicate email detected!
+        Fail    Duplicate email detected!
     ELSE
         ${duplicate_entry}    Log    No duplicate entry found. Proceeding with the new entry...
         Log To Console    **gbStart**copilot_Error_status_d1**splitKeyValue**${duplicate_entry}**gbEnd**
