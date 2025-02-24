@@ -153,7 +153,7 @@ Create_Lead_login
         Log To Console    **gbStart**copilot_CreateLead_status_u**splitKeyValue**All validations passed! Clicking Submit...**gbEnd**
         Click Element    xpath://button[@name='SaveEdit']
         Sleep    2
-        Log To Console    **gbStart**copilot_CreateLead_status**splitKeyValue_s**Lead for ${symvar('lastname')} created successfully...**gbEnd**
+        Log To Console    **gbStart**copilot_CreateLead_status_s**splitKeyValue**Lead for ${symvar('lastname')} created successfully...**gbEnd**
     ELSE  
         Log  message=Cannot create lead. Invalid Mobile or Email.  formatter=repr  
         Log To Console    **gbStart**copilot_CreateLead_status_t**splitKeyValue**Cannot create lead. Invalid Mobile or Email.**gbEnd**
