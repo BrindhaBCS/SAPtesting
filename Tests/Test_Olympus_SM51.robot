@@ -6,4 +6,5 @@ Test Tags    SM51
 
 *** Test Cases ***
 SP1_SMLG
+    System Logon
     SM51
