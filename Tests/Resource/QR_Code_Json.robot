@@ -5,6 +5,7 @@ Library    DateTime
 Library    Collections
 Library    Replay_Library.py
 Library    OperatingSystem
+Library    qr.py
 *** Variables ***
 ${file}    c:\\tmp\\RPA\\QRcode.txt
 
