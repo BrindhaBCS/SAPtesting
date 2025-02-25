@@ -17,8 +17,8 @@ System Logon
     Sleep    1
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('Olympus_User_Name')}
     Sleep    1
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('Olympus_User_Password')}      
-    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{ABIN_User_Password}
+    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('Olympus_User_Password')}      
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{Olympus_User_Password}
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
     Sleep   1
@@ -26,13 +26,13 @@ SMICM
  
     Run Transaction    /nSMICM
     Sleep   2
-    Take Screenshot    000_Load.jpg
+    Take Screenshot    000_SMICM.jpg
 	Sleep	2
     # Set Focus	wnd[0]/usr/lbl[0,0]
 	Sleep	2
 	Click Element	wnd[0]/mbar/menu[2]/menu[6]
     Sleep    2
-    Take Screenshot    001_Load.jpg
+    Take Screenshot    001_SMICM.jpg
 	Sleep	2
 System Logout
     Run Transaction    /nex
