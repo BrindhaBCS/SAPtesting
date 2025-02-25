@@ -82,7 +82,7 @@ Qr_code
         END
     END
     Sleep    2
-    ${json_qr}    Generate Qr Json    file_path=${file}
+    ${json_qr}    Parse Txt To Json        file_path=${file}
     Sleep    1
     Log To Console    message=**gbStart**QR_CODE_JSON**splitKeyValue**${json_qr}**splitKeyValue**object**gbEnd**
     Delete Specific File    file_path=${file}

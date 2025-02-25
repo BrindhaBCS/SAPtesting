@@ -471,4 +471,36 @@ class Replay_Library:
         if current_delivery:
             data.append(current_delivery)
         return json.dumps(data, indent=2)
-    
+    def parse_txt_to_json(self,file_path):
+        deliveries = []
+        current_delivery = None
+
+        with open(file_path, "r", encoding="utf-8") as file:
+            for line in file:
+                line = line.strip()
+                if not line:
+                    continue
+                key, value = line.split(":", 1)
+                if key == "InboundDelivery":
+                    if current_delivery:
+                        deliveries.append(current_delivery)
+                    current_delivery = {
+                        "InboundDelivery": value.strip(),
+                        "Material": None,
+                        "DeliveryQuantity": None,
+                        "Tasks": []
+                    }
+                elif key == "Material":
+                    current_delivery["Material"] = value.strip()
+                elif key == "DeliveryQuantity":
+                    current_delivery["DeliveryQuantity"] = int(value.strip())
+                elif key == "WarehousetaskNumber":
+                    task = {"WarehousetaskNumber": int(value.strip())}
+                    current_delivery["Tasks"].append(task)
+                elif key == "Sourcebin":
+                    current_delivery["Tasks"][-1]["Sourcebin"] = value.strip()
+                elif key == "Destbin":
+                    current_delivery["Tasks"][-1]["Destbin"] = value.strip()
+            if current_delivery:
+                deliveries.append(current_delivery)
+        return json.dumps(deliveries, indent=4)
