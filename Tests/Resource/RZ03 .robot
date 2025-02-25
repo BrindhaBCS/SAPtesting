@@ -22,10 +22,12 @@ System Logon
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
     Sleep   1
-ICNV  
-    Run Transaction    /nICNV
+RZ03   
+    Run Transaction    /nRZ03 
     Sleep   2
-    Take Screenshot    ICNV.jpg
+    Click Element	wnd[1]/tbar[0]/btn[0]
+    Sleep    1
+    Take Screenshot    RZ03.jpg
     Sleep    1
 System Logout
     Run Transaction    /nex
