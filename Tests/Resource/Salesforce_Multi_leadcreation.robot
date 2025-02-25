@@ -38,4 +38,7 @@ Create_Multiple_Lead
     Click Element    xpath://button[normalize-space(text())='Next']
     Sleep    5
     Click Element    xpath://button[normalize-space(text())='Start Import']
+    Sleep    10
+    Log To Console    **gbStart**copilot_Creating Bulk-Lead_status**splitKeyValue**Bulk Lead Created Successfully..**gbEnd**  
+    Click Element    xpath://button[normalize-space(text())='Done']
     Sleep    2
