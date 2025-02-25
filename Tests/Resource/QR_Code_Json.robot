@@ -30,7 +30,7 @@ Qr_code
     Create File    path=${file}
     FOR    ${i}     IN RANGE    0    ${in}
         Run Transaction    /nVL33N
-        ${value}    Set Variable    Inbounddelivery:${symvar('Inbound_delivery')[${i}]}
+        ${value}    Set Variable    InboundDelivery:${symvar('Inbound_delivery')[${i}]}
         Append To File    path=${file}    content=${value}\n
         Input Text    element_id=wnd[0]/usr/ctxtLIKP-VBELN    text=${symvar('Inbound_delivery')[${i}]}
         Send Vkey    vkey_id=0
