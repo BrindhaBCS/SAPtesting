@@ -33,7 +33,7 @@ Create_Multiple_Lead
     Sleep    2
     Click Element    xpath://button[normalize-space(text())='Next']
     Sleep    2    
-    Choose File    xpath=//input[@type='file']    C:\\Users\\BCS290\\Downloads\\Book 2.csv
+    Choose File    xpath=//input[@type='file']    ${symvar('Upload_Filepath')}
     Sleep    3
     Click Element    xpath://button[normalize-space(text())='Next']
     Sleep    5

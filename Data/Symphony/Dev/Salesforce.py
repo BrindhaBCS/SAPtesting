@@ -10,6 +10,7 @@
 # Lead_Source = "Web"
 # Lead_Status = "Open"
 # Salesforce_Password = "Vishnudev@21"
+# Upload_Filepath = "C:\\Users\\BCS290\\Downloads\\Book 2.csv"
 
 firstname = "$firstname"
 lastname = "$lastname"
@@ -23,3 +24,4 @@ Quantity = "$Quantity"
 Lead_Source = "$Lead_Source"
 Lead_Status = "$Lead_Status"
 Salesforce_Password = "$Salesforce_Password"
+Upload_Filepath = "$Upload_Filepath"
