@@ -25,7 +25,7 @@ System Logon
 ICNV  
     Run Transaction    /nICNV
     Sleep   2
-    Take Screenshot    Load.jpg
+    Take Screenshot    ICNV.jpg
     Sleep    1
 System Logout
     Run Transaction    /nex
