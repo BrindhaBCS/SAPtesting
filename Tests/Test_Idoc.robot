@@ -5,5 +5,6 @@ Suite Setup    Idoc.System Logon
 Suite Teardown    Idoc.System Logout
  
 *** Test Cases ***
-Re-execute the Idoc
-    Execute Idoc
+Check Idoc status
+    Check Idoc status
+    
