@@ -37,8 +37,8 @@ GR_Allocation
         IF    '${a}' == 'Goods Receipt'
             IF    '${b}' == '9'
                 IF    '${c}' == 'Completed'
-                    Continue For Loop
                     Log To Console    message=**gbStart**GR_postingstatus**splitKeyValue**GR Postingcompleted**splitKeyValue**object**gbEnd**
+                    Continue For Loop
                 ELSE
                     Exit For Loop
                 END
