@@ -6,7 +6,7 @@ Library    Collections
 Library    Replay_Library.py
 Library    OperatingSystem
 *** Variables ***
-${file}    c:\\tmp\\RPA\\Inbound_delivery.txt
+${file}    c:\\tmp\\RPA\\ASN_material_quantity_Inbound_delivery.txt
 *** Keywords ***
 System Logon
     Start Process     ${symvar('SAP_SERVER')}     
@@ -58,4 +58,5 @@ Material_code_quantity_from_ASN
     END
     ${IBDjson}    Inbounddelivery Json    file_path=${file}
     Log To Console    message=**gbStart**InbounddeliveryJson**splitKeyValue**${IBDjson}**splitKeyValue**object**gbEnd**
-    Delete Specific File    file_path=${file}
+    Log To Console    message=**gbStart**asn_materialstatus**splitKeyValue**Asn materialquantity completed**splitKeyValue**object**gbEnd**
+    # Delete Specific File    file_path=${file}
