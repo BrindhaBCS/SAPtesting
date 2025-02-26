@@ -25,13 +25,13 @@ Login Page
     Sleep    5
 
 validation of mobile and email
-    ${check_mobile}=    Run Keyword And Return Status    Should Match Regexp    ${mobile}    ${VALID_MOBILE_REGEX}    ✅ Valid Mobile Number: ${mobile}
+    ${check_mobile}=    Run Keyword And Return Status    Should Match Regexp    ${symvar('mobile_no')}    ${VALID_MOBILE_REGEX}    ✅ Valid Mobile Number: ${symvar('mobile_no')}
     IF    not ${check_mobile}
-        Log To Console    **gbStart**copilot_check_mobile**splitKeyValue**❌ In-Valid Mobile Number: ${mobile}**gbEnd**     
+        Log To Console    **gbStart**copilot_check_mobile**splitKeyValue** In-Valid Mobile Number: ${symvar('mobile_no')}**gbEnd**     
     END
-    ${check_email}=    Run Keyword And Return Status    Should Match Regexp    ${email}    ${VALID_EMAIL_REGEX}    ✅ Valid Email Id: ${email}
+    ${check_email}=    Run Keyword And Return Status    Should Match Regexp    ${symvar('email_id')}   ${VALID_EMAIL_REGEX}    ✅ Valid Email Id: ${symvar('email_id')}
     IF    not ${check_email}
-        Log To Console    **gbStart**copilot_check_email**splitKeyValue**❌ In-Valid email id: ${email}**gbEnd**     
+        Log To Console    **gbStart**copilot_check_email**splitKeyValue** In-Valid email id: ${symvar('email_id')}**gbEnd**     
     END
     [Return]    ${check_mobile}    ${check_email}
 Lead creation
@@ -41,24 +41,24 @@ Lead creation
     IF    ${check_mobile} and ${check_email}
         click element    xpath=//one-app-nav-bar-item-root[contains(.,'LeadsLeads List')]
         Sleep    4        
-        Input Text    xpath://input[@placeholder='Search this list...']    ${email}
+        Input Text    xpath://input[@placeholder='Search this list...']    ${symvar('email_id')}
         Press Keys    xpath://input[@placeholder='Search this list...']    ENTER
         Sleep    5
         Capture page Screenshot    
-        ${message_email_Check} =    Run Keyword And Return Status    Page Should Contain    ${email}
+        ${message_email_Check} =    Run Keyword And Return Status    Page Should Contain    ${symvar('email_id')}
         Sleep    2
         IF    ${message_email_Check}
-            Log To Console    **gbStart**copliot_email_validation**splitKeyValue** Email_id ${email} already exists!  please try with other mail**gbEnd**     
+            Log To Console    **gbStart**copliot_email_validation**splitKeyValue** Email_id ${symvar('email_id')}already exists!  please try with other mail**gbEnd**     
         END
         Clear Element Text    xpath://input[@placeholder='Search this list...']
-        Input Text    xpath://input[@placeholder='Search this list...']    ${mobile}
+        Input Text    xpath://input[@placeholder='Search this list...']    ${symvar('mobile_no')}
         Press Keys    xpath://input[@placeholder='Search this list...']    ENTER
         Sleep    5
         Capture page Screenshot     
-        ${message_mobile_Check} =    Run Keyword And Return Status    Page Should Contain    ${mobile}
+        ${message_mobile_Check} =    Run Keyword And Return Status    Page Should Contain    ${symvar('mobile_no')}
         Sleep    2
         IF    ${message_mobile_Check}
-            Log To Console    **gbStart**mobile_validation**splitKeyValue** Mobile number ${mobile} already exists!  please try with new mobile number**gbEnd**     
+            Log To Console    **gbStart**mobile_validation**splitKeyValue** Mobile number ${symvar('mobile_no')} already exists!  please try with new mobile number**gbEnd**     
         END
         IF   not ${message_email_Check} and not ${message_mobile_Check} 
             NEW LEAD
@@ -77,11 +77,11 @@ NEW LEAD
     Sleep    1
     Input Text     xpath://input[@placeholder='Last Name']    ${symvar('lastname')}   
     Sleep    1
-    Input Text    xpath:(//label[contains(.,'*Phone')]/following::input)[1]    ${mobile}
+    Input Text    xpath:(//label[contains(.,'*Phone')]/following::input)[1]    ${symvar('mobile_no')}
     Sleep    1
     Input Text    xpath:(//label[contains(.,'*Company')]/following::input)[1]    ${symvar('company')}
     Sleep    1
-    Input Text    xpath://input[@inputmode='email']    ${email}
+    Input Text    xpath://input[@inputmode='email']    ${symvar('email_id')}
     Sleep    3
     Run Keyword And Ignore Error    Scroll Element Into View    xpath://label[contains(.,'*States')]
     Click Button    xpath://button[@aria-label='View all dependencies for Product']
