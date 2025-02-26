@@ -27,11 +27,11 @@ Login Page
 validation of mobile and email
     ${check_mobile}=    Run Keyword And Return Status    Should Match Regexp    ${symvar('mobile_no')}    ${VALID_MOBILE_REGEX}    ✅ Valid Mobile Number: ${symvar('mobile_no')}
     IF    not ${check_mobile}
-        Log To Console    **gbStart**copilot_check_mobile**splitKeyValue** In-Valid Mobile Number: ${symvar('mobile_no')}**gbEnd**     
+        Log To Console    **gbStart**copilot_check_mobile**splitKeyValue**Invalid Mobile Number ${symvar('mobile_no')}**gbEnd**     
     END
     ${check_email}=    Run Keyword And Return Status    Should Match Regexp    ${symvar('email_id')}   ${VALID_EMAIL_REGEX}    ✅ Valid Email Id: ${symvar('email_id')}
     IF    not ${check_email}
-        Log To Console    **gbStart**copilot_check_email**splitKeyValue** In-Valid email id: ${symvar('email_id')}**gbEnd**     
+        Log To Console    **gbStart**copilot_check_email**splitKeyValue**Invalid email id ${symvar('email_id')}**gbEnd**     
     END
     [Return]    ${check_mobile}    ${check_email}
 Lead creation
@@ -48,7 +48,7 @@ Lead creation
         ${message_email_Check} =    Run Keyword And Return Status    Page Should Contain    ${symvar('email_id')}
         Sleep    2
         IF    ${message_email_Check}
-            Log To Console    **gbStart**copliot_email_validation**splitKeyValue** Email_id ${symvar('email_id')}already exists!  please try with other mail**gbEnd**     
+            Log To Console    **gbStart**copliot_email_validation**splitKeyValue** Emailid ${symvar('email_id')}already exists!  please try with other mail**gbEnd**     
         END
         Clear Element Text    xpath://input[@placeholder='Search this list...']
         Input Text    xpath://input[@placeholder='Search this list...']    ${symvar('mobile_no')}
@@ -58,7 +58,7 @@ Lead creation
         ${message_mobile_Check} =    Run Keyword And Return Status    Page Should Contain    ${symvar('mobile_no')}
         Sleep    2
         IF    ${message_mobile_Check}
-            Log To Console    **gbStart**mobile_validation**splitKeyValue** Mobile number ${symvar('mobile_no')} already exists!  please try with new mobile number**gbEnd**     
+            Log To Console    **gbStart**mobile_validation**splitKeyValue**` Mobile number ${symvar('mobile_no')} already exists!  please try with new mobile number`**gbEnd**     
         END
         IF   not ${message_email_Check} and not ${message_mobile_Check} 
             NEW LEAD
