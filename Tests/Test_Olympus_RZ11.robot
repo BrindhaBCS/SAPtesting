@@ -1,9 +1,9 @@
 *** Settings ***
-Resource    ../Tests/Resource/Olympus_RZ12.robot
-# Suite Setup    Olympus_SM51.System Logon
-# Suite Teardown   Olympus_SM51.System Logout
-Test Tags    RZ12
-
+Resource    ../Tests/Resource/Olympus_RZ11.robot
+Test Tags    Olympus_RZ11
+ 
 *** Test Cases ***
-SP1_SMLG
-    RZ12
+System_logon
+    System Logon
+    RZ11_Tcodes
+ 
