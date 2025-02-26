@@ -71,7 +71,7 @@ NEW LEAD
     Sleep    5
     Click Button    xpath://button[@aria-label='Salutation']
     Sleep    2
-    Click Element  xpath=//lightning-base-combobox-item[@data-value='${symvar('firstname')}']    
+    Click Element  xpath=//lightning-base-combobox-item[@data-value='${symvar('salutation')}']    
     Sleep    1
     Input Text    xpath://input[@placeholder='First Name']    ${symvar('firstname')}
     Sleep    1
