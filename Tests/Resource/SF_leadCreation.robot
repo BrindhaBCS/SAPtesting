@@ -2,8 +2,8 @@
 Library    SeleniumLibrary
 
 *** Variables ***
-${mobile}    9123456780
-${email}    abcte5@gmail.com
+${mobile}    ${symvar('mobile_no')}
+${email}    ${symvar('email_id')}
 @{search_values}   ${mobile}   ${email}
 ${merged_message}    ${EMPTY}
 ${VALID_EMAIL_REGEX}    ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
@@ -19,7 +19,7 @@ Login Page
     Maximize Browser Window
     Sleep    2
     Input Text    id:username    vijayakumarp@basiscloudsolutions.com.vishnudev
-    Input Password    id:password    Vishnudev@21
+    Input Password    id:password    %{Salesforce_Password}
     Sleep    2
     Click Element    id:Login
     Sleep    5
@@ -73,13 +73,13 @@ NEW LEAD
     Sleep    2
     Click Element  xpath=//lightning-base-combobox-item[@data-value='Mr.']    
     Sleep    1
-    Input Text    xpath://input[@placeholder='First Name']    sre
+    Input Text    xpath://input[@placeholder='First Name']    ${symvar('firstname')}
     Sleep    1
-    Input Text     xpath://input[@placeholder='Last Name']    kumar   
+    Input Text     xpath://input[@placeholder='Last Name']    ${symvar('lastname')}   
     Sleep    1
     Input Text    xpath:(//label[contains(.,'*Phone')]/following::input)[1]    ${mobile}
     Sleep    1
-    Input Text    xpath:(//label[contains(.,'*Company')]/following::input)[1]    BCS
+    Input Text    xpath:(//label[contains(.,'*Company')]/following::input)[1]    ${symvar('company')}
     Sleep    1
     Input Text    xpath://input[@inputmode='email']    ${email}
     Sleep    3
@@ -88,7 +88,7 @@ NEW LEAD
     Sleep    5
     Click Button  xpath:(//button[@aria-label='Product'])[2]
     Sleep    2
-    Click Element  xpath=//lightning-base-combobox-item[@data-value='Caustic Soda Flakes']
+    Click Element  xpath=//lightning-base-combobox-item[@data-value='${symvar('Product')}']
     Sleep    2
     Click Button    xpath://button[@value='apply']   
     Sleep    3 
@@ -96,7 +96,7 @@ NEW LEAD
     Sleep    5    
     click button    xpath://button[@data-value='--None--' and @aria-label='States']
     Sleep    2
-    Click Element    xpath://lightning-base-combobox-item[@data-value='TamilNadu']  
+    Click Element    xpath://lightning-base-combobox-item[@data-value='${symvar('state')}']  
     Sleep    4
     Click Button    xpath:(//li[@role='presentation']//button)[3]
     Sleep    2
