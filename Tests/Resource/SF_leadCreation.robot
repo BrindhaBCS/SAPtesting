@@ -27,11 +27,11 @@ Login Page
 validation of mobile and email
     ${check_mobile}=    Run Keyword And Return Status    Should Match Regexp    ${mobile}    ${VALID_MOBILE_REGEX}    ✅ Valid Mobile Number: ${mobile}
     IF    not ${check_mobile}
-        Log To Console    **gbStart**check_mobile**splitKeyValue**❌ In-Valid Mobile Number: ${mobile}**gbEnd**     
+        Log To Console    **gbStart**copilot_check_mobile**splitKeyValue**❌ In-Valid Mobile Number: ${mobile}**gbEnd**     
     END
     ${check_email}=    Run Keyword And Return Status    Should Match Regexp    ${email}    ${VALID_EMAIL_REGEX}    ✅ Valid Email Id: ${email}
     IF    not ${check_email}
-        Log To Console    **gbStart**check_email**splitKeyValue**❌ In-Valid email id: ${email}**gbEnd**     
+        Log To Console    **gbStart**copilot_check_email**splitKeyValue**❌ In-Valid email id: ${email}**gbEnd**     
     END
     [Return]    ${check_mobile}    ${check_email}
 Lead creation
@@ -48,7 +48,7 @@ Lead creation
         ${message_email_Check} =    Run Keyword And Return Status    Page Should Contain    ${email}
         Sleep    2
         IF    ${message_email_Check}
-            Log To Console    **gbStart**email_validation**splitKeyValue** Email_id ${email} already exists!  please try with new mail**gbEnd**     
+            Log To Console    **gbStart**copliot_email_validation**splitKeyValue** Email_id ${email} already exists!  please try with other mail**gbEnd**     
         END
         Clear Element Text    xpath://input[@placeholder='Search this list...']
         Input Text    xpath://input[@placeholder='Search this list...']    ${mobile}
