@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    ../Tests/Resources/Olympus_LC10.robot
+Resource    ../Tests/Resource/Olympus_LC10.robot
 Test Tags    LC10
 
 *** Test Cases ***
