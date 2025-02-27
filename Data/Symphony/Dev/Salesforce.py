@@ -11,6 +11,7 @@
 # Lead_Status = "Open"
 # Salesforce_Password = "Vishnudev@21"
 # Upload_Filepath = "C:\\Users\\BCS290\\Downloads\\Book 2.csv"
+# Call_Status_Message = "Contacted Lead, they are ready for purchase..."
 
 firstname = "$firstname"
 lastname = "$lastname"
@@ -25,3 +26,4 @@ Lead_Source = "$Lead_Source"
 Lead_Status = "$Lead_Status"
 Salesforce_Password = "$Salesforce_Password"
 Upload_Filepath = "$Upload_Filepath"
+Call_Status_Message = "$Call_Status_Message"
