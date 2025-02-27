@@ -16,7 +16,7 @@ System Logon
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('ABB_Olympus_User_Name')}
     Sleep    1
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('ABB_Olympus_User_Password')}      
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{ABB_Olympus_User_Password}
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{Olympus_User_Password}
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
     Sleep   1
