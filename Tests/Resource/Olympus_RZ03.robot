@@ -25,7 +25,7 @@ RZ03_Tcodes
 	Click Element	wnd[0]/tbar[0]/btn[0]
 	Sleep	2
     Take Screenshot    RZ03.jpg
-    Click Element	wnd[1]/tbar[0]/btn[0]
+    Send Vkey    0
 	Sleep	2
     Take Screenshot    RZ03_1.jpg
 	Click Element	wnd[0]/tbar[0]/btn[3]

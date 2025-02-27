@@ -1,5 +1,5 @@
 *** Settings ***
-Resource    ../Tests/Resources/Olympus_VSCAN.robot
+Resource    ../Tests/Resource/Olympus_VSCAN.robot
 Test Tags    VSCAN
 
 *** Test Cases ***
