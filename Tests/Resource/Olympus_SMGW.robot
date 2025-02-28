@@ -1,6 +1,7 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
+Library    OperatingSystem
 # Library    Merger.py
 *** Keywords ***
 System Logon
@@ -23,3 +24,5 @@ SMGW_Tcodes
 	Run Transaction    /nSMGW
 	Sleep	2
     Take Screenshot    SMGW_1.jpg
+    Sleep    2
+    Run Transaction    /nex

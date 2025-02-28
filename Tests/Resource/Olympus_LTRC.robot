@@ -23,3 +23,5 @@ LTRC_Tcodes
 	Run Transaction    /nLTRC
 	Sleep	2
     Take Screenshot    LTRC.jpg
+    Sleep    2
+    Run Transaction    /nex

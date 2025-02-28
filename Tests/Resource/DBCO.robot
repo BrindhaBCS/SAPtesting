@@ -7,7 +7,7 @@ ${Olympus_SAP_SERVER}    ${symvar('Olympus_SAP_SERVER')}
 ${Olympus_SAP_connection}    ${symvar('Olympus_SAP_connection')}
 
 *** Keywords ***
-System Logon
+DBCO 
     Start Process     ${symvar('Olympus_SAP_SERVER')}    
     Sleep    1
     Connect To Session
@@ -22,11 +22,10 @@ System Logon
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
     Sleep   1
-DBCO  
+
     Run Transaction    /nDBCO
     Sleep   2
     Take Screenshot    DBCO.jpg
     Sleep    1
-System Logout
     Run Transaction    /nex
-    Sleep    1
+    Sleep   2
