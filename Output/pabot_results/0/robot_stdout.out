@@ -3,22 +3,25 @@ Tests :: Testing functionality through Robot Framework
 ==============================================================================
 Tests.Resource                                                                
 ==============================================================================
-Tests.Resource.Create Folder                                                  
+Tests.Resource.Validate excel data                                            
 ==============================================================================
-Read Json Variable                                                      
+Read and write excel datas                                              
   Traceback (most recent call last):
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    File  C:\Nike\SAPtesting\Tests\Resource\create_folder.robot:62
-    T:  Read Json Variable    
+    File  C:\Nike\SAPtesting\Tests\Resource\Validate_excel_data.robot:19
+    T:  Read and write excel datas    
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    File  C:\Nike\SAPtesting\Tests\Resource\create_folder.robot:70
-      Convert Json Format    ${json}
-      |  ${json} = [ (str)
+    File  C:\Nike\SAPtesting\Tests\Resource\Validate_excel_data.robot:20
+      Read and write excel datas    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\Nike\SAPtesting\Tests\Resource\Validate_excel_data.robot:13
+      Read Column From Excel    ${RE_File}    Sheet1    3
+      |  ${RE_File} = C:\Test_Project\RE_1.xlsx (str)
 ______________________________________________________________________________
 | FAIL |
-IndexError: string index out of range
+TypeError: can only concatenate str (not "int") to str
 ------------------------------------------------------------------------------
-Tests.Resource.Create Folder                                          | FAIL |
+Tests.Resource.Validate excel data                                    | FAIL |
 1 test, 0 passed, 1 failed
 ==============================================================================
 Tests.Resource                                                        | FAIL |

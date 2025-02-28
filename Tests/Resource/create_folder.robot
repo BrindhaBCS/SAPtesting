@@ -7,6 +7,9 @@ Force Tags   folder
 
 *** Variables ***
 # ${FOLDER_PATH}    C:\\EID_Parry\\2024\\Jan
+${data}    {"contract_number":"40000077"}
+
+${documents}    {"contract_number":"40000079"}
 
 *** Test Cases ***
 # Check And Create Folder
@@ -49,9 +52,15 @@ Read Json Variable
     #     # ${file_value}     Get From List   ${value}    1
     #     # Log To Console      file value is: ${file_value}
     #     Log To Console      folder value is: ${value}
-    @{values}   Convert Json Format     ${json}
-    Log To Console      converted value is: @{values}
+    # @{values}   Convert Json Format     ${json}
+    # Log To Console      converted value is: @{values}
     # FOR     ${value}    IN      @{values}
     #     Log To Console      folder value is: ${value}
     # END
+    # ${contract_number}      Evaluate    eval('${data}').get("contract_number")
+    # Log To Console    Contract Number is ${contract_number}
+
+    ${documents_dict}=    Evaluate    eval('${documents}')
+    ${contract_number}=    ${documents_dict}[contract_number]
+    Log To Console    ${contract_number}
 

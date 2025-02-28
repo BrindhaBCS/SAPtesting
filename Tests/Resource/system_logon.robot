@@ -8,7 +8,7 @@ Library     DateTime
 *** Keywords *** 
 System Logon
     Start Process    ${symvar('SAP_SERVER')}
-    Connect To Session
+    ${session_id}   Connect To Session
     Open Connection     ${symvar('Rental_Connection')}
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('Rental_Client')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('Rental_User')}

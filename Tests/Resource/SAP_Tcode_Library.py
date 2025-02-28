@@ -14,6 +14,8 @@ import json
 import re
 import glob
 from datetime import datetime
+from dateutil.relativedelta import relativedelta
+import calendar
 
 class SAP_Tcode_Library:
     """The SapGuiLibrary is a library that enables users to create tests for the Sap Gui application
@@ -110,20 +112,60 @@ class SAP_Tcode_Library:
             message = "No existing connection for '%s' found." % connection_name
             raise ValueError(message)
 
+    # def connect_to_session(self, explicit_wait=0):
+    #     """Connects to an open session SAP.
+
+    #     See `Opening a connection / Before running tests` for details about requirements before connecting to a session.
+
+    #     Optionally `set explicit wait` can be used to set the explicit wait time.
+
+    #     *Examples*:
+    #     | *Keyword*             | *Attributes*          |
+    #     | connect to session    |                       |
+    #     | connect to session    | 3                     |
+    #     | connect to session    | explicit_wait=500ms   |
+
+    #     """
+    #     lenstr = len("SAPGUI")
+    #     rot = pythoncom.GetRunningObjectTable()
+    #     rotenum = rot.EnumRunning()
+    #     while True:
+    #         monikers = rotenum.Next()
+    #         if not monikers:
+    #             break
+    #         ctx = pythoncom.CreateBindCtx(0)
+    #         name = monikers[0].GetDisplayName(ctx, None);
+
+    #         if name[-lenstr:] == "SAPGUI":
+    #             obj = rot.GetObject(monikers[0])
+    #             sapgui = win32com.client.Dispatch(obj.QueryInterface(pythoncom.IID_IDispatch))
+    #             self.sapapp = sapgui.GetScriptingEngine
+    #             # Set explicit_wait after connection succeed
+    #             self.set_explicit_wait(explicit_wait)
+
+    #             if hasattr(self.sapapp, 'Children'):
+    #                 children = self.sapapp.Children  # Access all open sessions
+    #                 if children:
+    #                     self.session = children(0)  # Get the first available session
+    #                     break
+
+    #     if hasattr(self.sapapp, "OpenConnection") == False:
+    #         self.take_screenshot()
+    #         message = "Could not connect to Session, is Sap Logon Pad open?"
+    #         raise Warning(message)
+
+    #     time.sleep(self.explicit_wait)
+    #     try:
+    #     # Assuming self.session has been initialized correctly
+    #         session_id = self.session.Id  # Access session ID (if available)
+    #         print(f"Session ID: {session_id}")
+    #         return session_id
+    #     except AttributeError:
+    #         raise Warning("Session ID is not available or not initialized properly.")
+    #     # run explicit wait last
+    
     def connect_to_session(self, explicit_wait=0):
-        """Connects to an open session SAP.
-
-        See `Opening a connection / Before running tests` for details about requirements before connecting to a session.
-
-        Optionally `set explicit wait` can be used to set the explicit wait time.
-
-        *Examples*:
-        | *Keyword*             | *Attributes*          |
-        | connect to session    |                       |
-        | connect to session    | 3                     |
-        | connect to session    | explicit_wait=500ms   |
-
-        """
+        """Connects to an open SAP session and retrieves the session ID."""
         lenstr = len("SAPGUI")
         rot = pythoncom.GetRunningObjectTable()
         rotenum = rot.EnumRunning()
@@ -132,22 +174,60 @@ class SAP_Tcode_Library:
             if not monikers:
                 break
             ctx = pythoncom.CreateBindCtx(0)
-            name = monikers[0].GetDisplayName(ctx, None);
+            name = monikers[0].GetDisplayName(ctx, None)
 
             if name[-lenstr:] == "SAPGUI":
                 obj = rot.GetObject(monikers[0])
                 sapgui = win32com.client.Dispatch(obj.QueryInterface(pythoncom.IID_IDispatch))
-                self.sapapp = sapgui.GetScriptingEngine
-                # Set explicit_wait after connection succeed
+                self.sapapp = sapgui.GetScriptingEngine()
+                
+                # Set explicit wait after connection succeeds
                 self.set_explicit_wait(explicit_wait)
+
+                if hasattr(self.sapapp, 'Children'):
+                    children = self.sapapp.Children  # Access all open sessions
+                    if children:
+                        self.session = children(0)  # Get the first available session
+                        break
 
         if hasattr(self.sapapp, "OpenConnection") == False:
             self.take_screenshot()
             message = "Could not connect to Session, is Sap Logon Pad open?"
             raise Warning(message)
-        # run explicit wait last
+
+        # Debugging: Print out session details
+        print(f"Session Info: {dir(self.session)}")  # List attributes of session object
+        if hasattr(self.session, 'Info'):
+            print(f"Session Info: {self.session.Info}")  # Print actual session info for inspection
+
+        # Get Session ID (if available)
+        session_id = self.get_session_id()
+
+        # Wait for the specified time
         time.sleep(self.explicit_wait)
 
+        return session_id
+
+    def get_session_id(self):
+        """Retrieve the Session ID of the current SAP session."""
+        if hasattr(self.session, 'Info'):
+            try:
+                session_info = self.session.Info
+                print(session_info)  # Print session information to inspect available properties
+                # Try looking for an 'ID' or equivalent property here
+                if hasattr(session_info, 'SessionID'):  # Check for other identifiers
+                    return session_info.SessionID
+                elif hasattr(session_info, 'ID'):  # Check for alternative identifiers
+                    return session_info.ID
+                else:
+                    raise Warning("Session ID not available in session Info.")
+            except Exception as e:
+                print(f"Error while retrieving session ID: {e}")
+        else:
+            raise Warning("Unable to retrieve session Info.")
+
+
+    
     def disable_screenshots_on_error(self):
         """Disables automatic screenshots on error.
         """
@@ -1628,9 +1708,66 @@ class SAP_Tcode_Library:
     
     def convert_date_format(self, date):
 
-        date_obj = datetime.strptime(date, "%d.%m.%Y")
+        date_obj = datetime.strptime(date, "%Y.%m.%d")
 
-        converted_date = date_obj.strftime("%Y.%m.%d")
+        converted_date = date_obj.strftime("%d.%m.%Y")
 
         return converted_date
- 
+    
+    def get_no_of_days_in_month(self, year, month):
+        days_in_month = calendar.monthrange(year, month)[1]
+        return days_in_month
+
+    def get_first_and_last_date_of_month(self, month_json):
+        month_name = month_json[0]["Month"]
+        year = int(month_json[0]["Year"])
+        month_number = datetime.strptime(month_name, "%B").month
+        first_date = datetime(year, month_number, 1).date()
+        last_day = calendar.monthrange(year, month_number)[1]
+        last_date = datetime(year, month_number, last_day).date()
+        first_date_str = first_date.strftime("%Y.%m.%d")
+        last_date_str = last_date.strftime("%Y.%m.%d")
+
+        return first_date_str, last_date_str
+    
+    def get_mail_subject(self, data):
+        str_obj = json.dumps(data)
+        json_data = json.loads(str_obj)
+
+        month = json_data[0]["Month"]
+        year = json_data[0]["Year"]
+
+        formatted_date = f"{month} {year}"
+        print(formatted_date)
+        return formatted_date
+
+    def subject_month(self):
+        current_date = datetime.now()
+        month_date = current_date + relativedelta(months=1)
+        month_name= month_date.strftime("%B")
+        year = month_date.strftime("%Y")
+        date = f"{month_name} {year}"
+        return date
+
+    def read_column_from_excel(self, abs_filename, sheet_name, col_number):
+        col_number = int(col_number)
+        wb = openpyxl.load_workbook(abs_filename)
+        ws = wb[sheet_name]
+        column_data = []
+        for cell in ws.iter_cols(min_col=col_number, max_col=col_number):
+            for value in cell:
+                column_data.append(value.value)
+        wb.close()
+        return column_data
+    
+    def write_column_to_excel(self, abs_filename, sheet_name, col_number, column_data):
+        col_number = int(col_number)
+        wb = openpyxl.load_workbook(abs_filename)
+        if sheet_name not in wb.sheetnames:
+            wb.create_sheet(sheet_name)
+        ws = wb[sheet_name]
+        for row_num, value in enumerate(column_data, start=1):
+            ws.cell(row=row_num, column=col_number, value=value)
+        wb.save(abs_filename)
+        wb.close()
+        

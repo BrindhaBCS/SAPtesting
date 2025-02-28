@@ -12,7 +12,7 @@ Library    excel_to_json.py
 ${download_path}    C:\\TEMP\\
 ${excel_path}    C:\\TEMP\\rental.xlsx
 ${excel_sheet}    Sheet1 
-
+${selected_month}   December
 *** Keywords *** 
 System Logon
     Start Process    ${symvar('SAP_SERVER')}
@@ -45,8 +45,9 @@ Rental Document
         Run Transaction     /nVA45
         Sleep   1
         Input Text      wnd[0]/usr/ctxtSAUART-LOW   ZMV
-        Input Text      wnd[0]/usr/ctxtSVALID-LOW   ${lod}[0]
-        Input Text      wnd[0]/usr/ctxtSVALID-HIGH  ${lod}[1]
+        ${start_date}, ${end_date}  Get First And Last Date Of Month    ${symvar('month_json')}
+        Input Text      wnd[0]/usr/ctxtSVALID-LOW   ${start_date}
+        Input Text      wnd[0]/usr/ctxtSVALID-HIGH  ${end_date}
         Select Radio Button     wnd[0]/usr/radPVBOFF
         Click Element   wnd[0]/tbar[1]/btn[8]
 

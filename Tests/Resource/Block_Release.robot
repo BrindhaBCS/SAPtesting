@@ -51,8 +51,12 @@ Release Block
         FOR     ${i}    IN RANGE    0   ${row}
             ${is_visible}   Run Keyword And Return Status   Get Value   wnd[0]/usr/tabsTAXI_TABSTRIP/tabpT\\05/ssubSUBSCREEN_BODY:SAPLV60F:4201/tblSAPLV60FTCTRL_FPLAN_PERIOD/ctxtRV60F-ABRBE[0,${i}]
             Run Keyword If    "${is_visible}" == "False"    Exit For Loop
-            ${date}     Get Value   wnd[0]/usr/tabsTAXI_TABSTRIP/tabpT\\05/ssubSUBSCREEN_BODY:SAPLV60F:4201/tblSAPLV60FTCTRL_FPLAN_PERIOD/ctxtRV60F-ABRBE[0,${i}]
-            IF    '${date}' == '${selected_date}'
+            ${date1}     Get Value   wnd[0]/usr/tabsTAXI_TABSTRIP/tabpT\\05/ssubSUBSCREEN_BODY:SAPLV60F:4201/tblSAPLV60FTCTRL_FPLAN_PERIOD/ctxtRV60F-ABRBE[0,${i}]
+            ${date}    Convert Date Format    ${date1}
+            IF    '${date}' == '${symvar('Rental_Start_Date')}' or '${date}' == '${symvar('Rental_End_Date')}'
+                Process rental block
+                Exit For Loop
+            ELSE IF    '${date}' >= '${symvar('Rental_Start_Date')}' and '${date}' <= '${symvar('Rental_End_Date')}'
                 Process rental block
                 Exit For Loop
             END
