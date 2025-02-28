@@ -5,7 +5,6 @@ Library    DateTime
 Library    Collections
 Library    Replay_Library.py
 Library    OperatingSystem
-Library    qr.py
 *** Variables ***
 ${file}    c:\\tmp\\RPA\\QRcode.txt
 
@@ -85,4 +84,4 @@ Qr_code
     ${json_qr}    Parse Txt To Json        file_path=${file}
     Sleep    1
     Log To Console    message=**gbStart**QR_CODE_JSON**splitKeyValue**${json_qr}**splitKeyValue**object**gbEnd**
-    Delete Specific File    file_path=${file}
+    # Delete Specific File    file_path=${file}

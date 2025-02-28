@@ -48,6 +48,7 @@ BIN_Conformation
             Sleep    2
             ${status}    Get Value    element_id=wnd[0]/sbar/pane[0]
             Sleep    5
+            Log To Console    message=**gbStart**GRpostingstatus**splitKeyValue**${status}**splitKeyValue**object**gbEnd**
             Click Element    element_id=wnd[0]/tbar[0]/btn[3]
         END
     END
