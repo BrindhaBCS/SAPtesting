@@ -6,10 +6,7 @@ Library    SAP_Tcode_Library.py
 Library     DateTime
 
 *** Variables ***
-# ${rental_date}  26.11.2024
-# ${Text}     Rent for the month of November 2024.
-# ${rental_text}  wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpKFTE/ssubSUBSCREEN_BODY:SAPLV70T:2100/cntlSPLITTER_CONTAINER/shellcont/shellcont/shell/shellcont[1]/shell
-# ${rental_form}  wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpKFTE/ssubSUBSCREEN_BODY:SAPLV70T:2100/cntlSPLITTER_CONTAINER/shellcont/shellcont/shell/shellcont[0]/shell
+${contract_number}    ${symvar('documents')}
 
 *** Keywords *** 
 
@@ -40,8 +37,15 @@ Release Block
         Log To Console    **gbStart**password_status**splitKeyValue**${title}**gbEnd**
 
     ELSE  
+        ${start_date}  Get First Date Of Month    ${symvar('month_json')}
+        ${end_date}  Get Last Date Of Month    ${symvar('month_json')}
+        # FOR     ${contract}     IN     @{symvar('documents')}
+            # Set Global Variable     ${contract}
         Run Transaction     /nVA42
-        Input Text  wnd[0]/usr/ctxtVBAK-VBELN    text=${symvar('documents')}
+        ${contract}      Get Contractnumber    ${symvar('documents')}
+        Set Global Variable    ${contract}
+        Log To Console    **gbStart**contract**splitKeyValue**${contract}**gbEnd**    
+        Input Text  wnd[0]/usr/ctxtVBAK-VBELN    ${contract}
         Send Vkey    0
         Click Element   wnd[0]/usr/subSUBSCREEN_HEADER:SAPMV45A:4021/btnBT_HEAD
         Click Element   wnd[0]/usr/tabsTAXI_TABSTRIP_HEAD/tabpT\\05
@@ -52,11 +56,9 @@ Release Block
             ${is_visible}   Run Keyword And Return Status   Get Value   wnd[0]/usr/tabsTAXI_TABSTRIP/tabpT\\05/ssubSUBSCREEN_BODY:SAPLV60F:4201/tblSAPLV60FTCTRL_FPLAN_PERIOD/ctxtRV60F-ABRBE[0,${i}]
             Run Keyword If    "${is_visible}" == "False"    Exit For Loop
             ${date1}     Get Value   wnd[0]/usr/tabsTAXI_TABSTRIP/tabpT\\05/ssubSUBSCREEN_BODY:SAPLV60F:4201/tblSAPLV60FTCTRL_FPLAN_PERIOD/ctxtRV60F-ABRBE[0,${i}]
-            ${date}    Convert Date Format    ${date1}
-            IF    '${date}' == '${symvar('Rental_Start_Date')}' or '${date}' == '${symvar('Rental_End_Date')}'
-                Process rental block
-                Exit For Loop
-            ELSE IF    '${date}' >= '${symvar('Rental_Start_Date')}' and '${date}' <= '${symvar('Rental_End_Date')}'
+            ${date}    Convert Date Format1    ${date1}
+            ${result}    Compare Dates    ${date}    ${start_date}    ${end_date}
+            IF    '${result}' == 'True'
                 Process rental block
                 Exit For Loop
             END
@@ -71,12 +73,12 @@ Process rental block
         Click Element   wnd[0]/tbar[0]/btn[3]
         Click Element   wnd[0]/tbar[0]/btn[3]
         Click Element   wnd[0]/tbar[0]/btn[11]
-        Log To Console    **gbStart**block_status**splitKeyValue**${symvar('documents')} Block released successfully..**gbEnd**
+        Log To Console    **gbStart**block_status**splitKeyValue**${contract} Block released successfully..**gbEnd**
     ELSE IF    '${block}' == ''
         Click Element   wnd[0]/tbar[0]/btn[3]
         Click Element   wnd[0]/tbar[0]/btn[3]
         Click Element   wnd[0]/tbar[0]/btn[11]
-        Log To Console    **gbStart**block_status**splitKeyValue**${symvar('documents')} Block already in released state...**gbEnd**
+        Log To Console    **gbStart**block_status**splitKeyValue**${contract} Block already in released state...**gbEnd**
     END
     Run Keyword And Ignore Error    Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    time_=0.3 seconds

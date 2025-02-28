@@ -10,7 +10,7 @@ Library    JSONLibrary
 
 *** Variables ***
 ${rental_date}  01.10.2025
-# ${Text}     Rent for the month of November 2024.
+${contract}    ${symvar('contract')}
 ${rental_text}  wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpKFTE/ssubSUBSCREEN_BODY:SAPLV70T:2100/cntlSPLITTER_CONTAINER/shellcont/shellcont/shell/shellcont[1]/shell
 ${rental_form}  wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpKFTE/ssubSUBSCREEN_BODY:SAPLV70T:2100/cntlSPLITTER_CONTAINER/shellcont/shellcont/shell/shellcont[0]/shell
 ${target_file_name}    C:\\Output\\Rental_Invoice.xlsx
@@ -65,8 +65,8 @@ Rental Invoice
 
     ELSE  
         Run Transaction     /nVF01
-        Sleep   1
-        Input Text  wnd[0]/usr/tblSAPMV60ATCTRL_ERF_FAKT/ctxtKOMFK-VBELN[0,0]   ${symvar('documents')}
+        Sleep    2
+        Input Text  wnd[0]/usr/tblSAPMV60ATCTRL_ERF_FAKT/ctxtKOMFK-VBELN[0,0]   ${contract}
         ${current_date}     Get Current Date    result_format=%d.%m.%Y
         Input Text  wnd[0]/usr/ctxtRV60A-FKDAT  ${current_date}
         Send Vkey   0
@@ -74,12 +74,12 @@ Rental Invoice
         IF  '${status}' == 'No billing documents were generated. Please see log.'
             # Log To Console  For ${contract} ${status}
             Sleep    1
-            Log To Console  For ${symvar('documents')} ${status}
+            Log To Console  For ${contract} ${status}
             Click Element    wnd[0]/mbar/menu[1]/menu[2]
             # Click Element    wnd[0]/tbar[1]/btn[25]
             ${error_log}    Get Value    wnd[0]/usr/lbl[31,3]
-            Write the status into excel    ${symvar('documents')}    ${error_log}
-            Log To Console    **gbStart**invoice_log**splitKeyValue**${symvar('documents')} ${error_log}**gbEnd**
+            Write the status into excel    ${contract}    ${error_log}
+            Log To Console    **gbStart**invoice_log**splitKeyValue**${contract} ${error_log}**gbEnd**
         ELSE IF     '${status}' == '${EMPTY}'
             Sleep    1
             Click Element   wnd[0]/usr/btnTC_HEAD
@@ -94,11 +94,11 @@ Rental Invoice
             Click Element   wnd[0]/tbar[0]/btn[11]
             ${output}   Get Value   wnd[0]/sbar/pane[0]
             Log To Console      ${output}
-            Write the status into excel    ${symvar('documents')}    ${output}
-            Log To Console    **gbStart**invoice_log**splitKeyValue**${symvar('documents')} ${output}**gbEnd**
+            Write the status into excel    ${contract}    ${output}
+            Log To Console    **gbStart**invoice_log**splitKeyValue**${contract} ${output}**gbEnd**
             ${invoice_doc}    Extract Numeric    ${output}
             Sleep    10
-            Get Invoice created by    ${symvar('documents')}    ${invoice_doc}
+            Get Invoice created by    ${contract}    ${invoice_doc}
             Pdf_process    ${invoice_doc}
             # Validate the e-invoice status    ${invoice_doc}
         ELSE IF    '${status}' == 'Please check the log.'
@@ -115,11 +115,11 @@ Rental Invoice
             Click Element   wnd[0]/tbar[0]/btn[11]
             ${output}   Get Value   wnd[0]/sbar/pane[0]
             Log To Console      ${output}
-            Write the status into excel    ${symvar('documents')}    ${output}
-            Log To Console    **gbStart**invoice_log**splitKeyValue**${symvar('documents')} ${output}**gbEnd**
+            Write the status into excel    ${contract}    ${output}
+            Log To Console    **gbStart**invoice_log**splitKeyValue**${contract} ${output}**gbEnd**
             ${invoice_doc}    Extract Numeric    ${output}
             Sleep    10
-            Get Invoice created by    ${symvar('documents')}    ${invoice_doc}
+            Get Invoice created by    ${contract}    ${invoice_doc}
             Pdf_process    ${invoice_doc}
             # Validate the e-invoice status    ${invoice_doc}
         END
@@ -244,8 +244,8 @@ Validate the e-invoice status
                     Pdf_process    ${invoice_doc}
                     Exit For Loop
                 ELSE
-                    Write the status into excel    ${symvar('documents')}    Invoice is created ${invoice_doc} with E-Invoice error 
-                    Log To Console    **gbStart**invoice_log**splitKeyValue**${symvar('documents')} Invoice is created ${invoice_doc} with E-Invoice error**gbEnd** 
+                    Write the status into excel    ${contract}    Invoice is created ${invoice_doc} with E-Invoice error 
+                    Log To Console    **gbStart**invoice_log**splitKeyValue**${contract} Invoice is created ${invoice_doc} with E-Invoice error**gbEnd** 
                 END
             END
             Exit For Loop
@@ -262,8 +262,8 @@ Validate the e-invoice status
                     Pdf_process    ${invoice_doc}
                     Exit For Loop
                 ELSE
-                    Write the status into excel    ${symvar('documents')}    Invoice is created ${invoice_doc} with E-Invoice error 
-                    Log To Console    **gbStart**invoice_log**splitKeyValue**${symvar('documents')} Invoice is created ${invoice_doc} with E-Invoice error**gbEnd** 
+                    Write the status into excel    ${contract}    Invoice is created ${invoice_doc} with E-Invoice error 
+                    Log To Console    **gbStart**invoice_log**splitKeyValue**${contract} Invoice is created ${invoice_doc} with E-Invoice error**gbEnd** 
                 END
             END
             Exit For Loop

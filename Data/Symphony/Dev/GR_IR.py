@@ -1,0 +1,8 @@
+GR_IR_SERVER = "C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPgui\\saplogon.exe"
+GR_IR_Connection = "TS4"
+GR_IR_Client = "001"
+GR_IR_User = "rasiga"
+GR_IR_PASSWORD ="Rasiga@123"
+GR_IR_Company_Code ="BC01"
+GR_IR_GL_Account ="13110101"
+GR_IR_CurrentDate ="12.2.2025"

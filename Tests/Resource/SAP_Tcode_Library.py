@@ -1707,29 +1707,90 @@ class SAP_Tcode_Library:
         return json.dumps(proper_json)
     
     def convert_date_format(self, date):
-
         date_obj = datetime.strptime(date, "%Y.%m.%d")
-
         converted_date = date_obj.strftime("%d.%m.%Y")
-
         return converted_date
-    
-    def get_no_of_days_in_month(self, year, month):
-        days_in_month = calendar.monthrange(year, month)[1]
-        return days_in_month
 
-    def get_first_and_last_date_of_month(self, month_json):
+    def convert_date_format1(self, date):
+        date_obj = datetime.strptime(date, "%d.%m.%Y")
+        converted_date = date_obj.strftime("%Y.%m.%d")
+        return converted_date
+
+    def get_first_date_of_month(self, month_json):
         month_name = month_json[0]["Month"]
         year = int(month_json[0]["Year"])
         month_number = datetime.strptime(month_name, "%B").month
         first_date = datetime(year, month_number, 1).date()
+        first_date_str = first_date.strftime("%Y.%m.%d")
+        return first_date_str
+    
+    def get_last_date_of_month(self, month_json):
+        month_name = month_json[0]["Month"]
+        year = int(month_json[0]["Year"])
+        month_number = datetime.strptime(month_name, "%B").month
         last_day = calendar.monthrange(year, month_number)[1]
         last_date = datetime(year, month_number, last_day).date()
-        first_date_str = first_date.strftime("%Y.%m.%d")
         last_date_str = last_date.strftime("%Y.%m.%d")
+        return last_date_str
 
-        return first_date_str, last_date_str
+    def compare_dates(self, date, start_date, end_date):
+        date = datetime.strptime(date, "%Y.%m.%d")
+        first_date = datetime.strptime(start_date, "%Y.%m.%d")
+        last_date = datetime.strptime(end_date, "%Y.%m.%d")
+        if date.month == first_date.month:
+            if date.year == first_date.year:
+                if first_date.day <= date.day <= last_date.day:
+                    return True
+        return False
+
+    def get_month(self, date):
+        # data = json.loads(date)
+        month = date[0]['Month']
+        return month
+
+    def get_year(self, date):
+        # data = json.loads(date)
+        year = date[0]['Year']
+        return year
+        
+    def get_contractnumber(self, data):
+        # json_data = json.loads(data)
+        contract_number = data.get("contract_number")
+        return contract_number
+
+    def clean_excel_sheet(self, file_path, sheet_name):
     
+        try:
+            # Load the workbook and access the sheet
+            workbook = load_workbook(file_path)
+            if sheet_name not in workbook.sheetnames:
+                raise Exception(f"Sheet '{sheet_name}' does not exist in the file.")
+
+            sheet = workbook[sheet_name]
+
+            # Trim whitespace from all cells in the sheet
+            for row in sheet.iter_rows():
+                for cell in row:
+                    if cell.value and isinstance(cell.value, str):
+                        cell.value = cell.value.strip()  # Remove leading and trailing whitespace
+
+            # Remove completely empty rows (backward iteration to avoid index shift)
+            for row_idx in range(sheet.max_row, 0, -1):
+                if all(sheet.cell(row=row_idx, column=col_idx).value in [None, ""] for col_idx in range(1, sheet.max_column + 1)):
+                    sheet.delete_rows(row_idx)
+
+            # Remove completely empty columns (backward iteration to avoid index shift)
+            for col_idx in range(sheet.max_column, 0, -1):
+                if all(sheet.cell(row=row_idx, column=col_idx).value in [None, ""] for row_idx in range(1, sheet.max_row + 1)):
+                    sheet.delete_cols(col_idx)
+
+            # Save changes back to the file
+            workbook.save(file_path)
+            print("\033[92m❗ Excel sheet cleaned successfully and saved at:", file_path)  # Green exclamation mark
+
+        except Exception as e:
+            print("\033[92m❗ Failed to clean Excel sheet:", str(e))  # Green exclamation mark
+
     def get_mail_subject(self, data):
         str_obj = json.dumps(data)
         json_data = json.loads(str_obj)
@@ -1737,37 +1798,6 @@ class SAP_Tcode_Library:
         month = json_data[0]["Month"]
         year = json_data[0]["Year"]
 
-        formatted_date = f"{month} {year}"
+        formatted_date = f"{month} {year}."
         print(formatted_date)
         return formatted_date
-
-    def subject_month(self):
-        current_date = datetime.now()
-        month_date = current_date + relativedelta(months=1)
-        month_name= month_date.strftime("%B")
-        year = month_date.strftime("%Y")
-        date = f"{month_name} {year}"
-        return date
-
-    def read_column_from_excel(self, abs_filename, sheet_name, col_number):
-        col_number = int(col_number)
-        wb = openpyxl.load_workbook(abs_filename)
-        ws = wb[sheet_name]
-        column_data = []
-        for cell in ws.iter_cols(min_col=col_number, max_col=col_number):
-            for value in cell:
-                column_data.append(value.value)
-        wb.close()
-        return column_data
-    
-    def write_column_to_excel(self, abs_filename, sheet_name, col_number, column_data):
-        col_number = int(col_number)
-        wb = openpyxl.load_workbook(abs_filename)
-        if sheet_name not in wb.sheetnames:
-            wb.create_sheet(sheet_name)
-        ws = wb[sheet_name]
-        for row_num, value in enumerate(column_data, start=1):
-            ws.cell(row=row_num, column=col_number, value=value)
-        wb.save(abs_filename)
-        wb.close()
-        

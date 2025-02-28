@@ -30,7 +30,7 @@ customize excel for output
                 Log To Console    column ${l} deleted
             # ELSE IF  '${data}' == 'Sold-To Party'
             #     Delete Excel Column    ${file_name}    ${sheet_name}    ${l}
-            #     Log To Console    column ${l} deleted
+            #     Log To Console    column ${l} delete
             END
         END
     END
@@ -66,7 +66,7 @@ customize excel for output
     
 delete the existing excel details
     ${excel_row}    Count Excel Rows    ${target_file_name}    ${target_sheet_name}
-    ${excel_rows}    Evaluate    ${excel_row} + 1
+    ${excel_rows}    Evaluate    ${excel_row} + 2
     FOR  ${k}  IN RANGE    2    ${excel_rows}
         Delete Excel Row        ${target_file_name}    ${target_sheet_name}    ${k}    
     END
