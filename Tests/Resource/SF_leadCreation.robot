@@ -2,8 +2,8 @@
 Library    SeleniumLibrary
 
 *** Variables ***
-# ${mobile}    ${symvar('mobile_no')}
-# ${email}    ${symvar('email_id')}
+${mobile}    9123456780
+${email}    abcte5@gmail.com
 @{search_values}   ${mobile}   ${email}
 ${merged_message}    ${EMPTY}
 ${VALID_EMAIL_REGEX}    ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
@@ -19,31 +19,25 @@ Login Page
     Maximize Browser Window
     Sleep    2
     Input Text    id:username    vijayakumarp@basiscloudsolutions.com.vishnudev
-    Input Password    id:password    %{Salesforce_Password}
+    Input Password    id:password    Vishnudev@21
     Sleep    2
     Click Element    id:Login
     Sleep    5
 
 validation of mobile and email
-    ${mobile}    Set Variable    ${symvar('mobile_no')}
-    ${email}     Set Variable   ${symvar('email_id')}
     ${check_mobile}=    Run Keyword And Return Status    Should Match Regexp    ${mobile}    ${VALID_MOBILE_REGEX}    ✅ Valid Mobile Number: ${mobile}
     IF    not ${check_mobile}
-        ${message_mobile}=    Set Variable    Invalid Mobile Number ${mobile}
-        Log To Console    **gbStart**copilot_check_mobile**splitKeyValue**${message_mobile}**gbEnd**     
+        Log To Console    **gbStart**check_mobile**splitKeyValue**❌ In-Valid Mobile Number: ${mobile}**gbEnd**     
     END
-    ${check_email}=    Run Keyword And Return Status    Should Match Regexp    ${email}   ${VALID_EMAIL_REGEX}    ✅ Valid Email Id: ${email}
+    ${check_email}=    Run Keyword And Return Status    Should Match Regexp    ${email}    ${VALID_EMAIL_REGEX}    ✅ Valid Email Id: ${email}
     IF    not ${check_email}
-        ${message_mail}=    Set Variable    Invalid email id ${email}
-        Log To Console    **gbStart**copilot_check_email**splitKeyValue**${message_mail}**gbEnd**     
+        Log To Console    **gbStart**check_email**splitKeyValue**❌ In-Valid email id: ${email}**gbEnd**     
     END
     [Return]    ${check_mobile}    ${check_email}
 Lead creation
     ${check_mobile}    ${check_email}=    Validation of Mobile and Email
     ${message_email_Check}=     Set Variable    ${EMPTY}
     ${message_mobile_Check}=    Set Variable    ${EMPTY}
-    ${mobile}    Set Variable    ${symvar('mobile_no')}
-    ${email}     Set Variable   ${symvar('email_id')}
     IF    ${check_mobile} and ${check_email}
         click element    xpath=//one-app-nav-bar-item-root[contains(.,'LeadsLeads List')]
         Sleep    4        
@@ -54,8 +48,7 @@ Lead creation
         ${message_email_Check} =    Run Keyword And Return Status    Page Should Contain    ${email}
         Sleep    2
         IF    ${message_email_Check}
-            ${email_valid} =    Set Variable    Emailid ${email}already exists!  please try with other mail
-            Log To Console    **gbStart**copliot_email_validation**splitKeyValue**${email_valid}**gbEnd**     
+            Log To Console    **gbStart**email_validation**splitKeyValue** Email_id ${email} already exists!  please try with new mail**gbEnd**     
         END
         Clear Element Text    xpath://input[@placeholder='Search this list...']
         Input Text    xpath://input[@placeholder='Search this list...']    ${mobile}
@@ -65,8 +58,7 @@ Lead creation
         ${message_mobile_Check} =    Run Keyword And Return Status    Page Should Contain    ${mobile}
         Sleep    2
         IF    ${message_mobile_Check}
-            ${mobile_valid} =    Set Variable    Mobile number ${mobile} already exists!  please try with new mobile number
-            Log To Console    **gbStart**mobile_validation**splitKeyValue** ${mobile_valid}**gbEnd**     
+            Log To Console    **gbStart**mobile_validation**splitKeyValue** Mobile number ${mobile} already exists!  please try with new mobile number**gbEnd**     
         END
         IF   not ${message_email_Check} and not ${message_mobile_Check} 
             NEW LEAD
@@ -75,21 +67,19 @@ Lead creation
     
         
 NEW LEAD
-    ${mobile}    Set Variable    ${symvar('mobile_no')}
-    ${email}     Set Variable   ${symvar('email_id')}
     click element    xpath://a[@title='New']
     Sleep    5
     Click Button    xpath://button[@aria-label='Salutation']
     Sleep    2
-    Click Element  xpath=//lightning-base-combobox-item[@data-value='${symvar('salutation')}']    
+    Click Element  xpath=//lightning-base-combobox-item[@data-value='Mr.']    
     Sleep    1
-    Input Text    xpath://input[@placeholder='First Name']    ${symvar('firstname')}
+    Input Text    xpath://input[@placeholder='First Name']    sre
     Sleep    1
-    Input Text     xpath://input[@placeholder='Last Name']    ${symvar('lastname')}   
+    Input Text     xpath://input[@placeholder='Last Name']    kumar   
     Sleep    1
     Input Text    xpath:(//label[contains(.,'*Phone')]/following::input)[1]    ${mobile}
     Sleep    1
-    Input Text    xpath:(//label[contains(.,'*Company')]/following::input)[1]    ${symvar('company')}
+    Input Text    xpath:(//label[contains(.,'*Company')]/following::input)[1]    BCS
     Sleep    1
     Input Text    xpath://input[@inputmode='email']    ${email}
     Sleep    3
@@ -98,7 +88,7 @@ NEW LEAD
     Sleep    5
     Click Button  xpath:(//button[@aria-label='Product'])[2]
     Sleep    2
-    Click Element  xpath=//lightning-base-combobox-item[@data-value='${symvar('Product')}']
+    Click Element  xpath=//lightning-base-combobox-item[@data-value='Caustic Soda Flakes']
     Sleep    2
     Click Button    xpath://button[@value='apply']   
     Sleep    3 
@@ -106,7 +96,7 @@ NEW LEAD
     Sleep    5    
     click button    xpath://button[@data-value='--None--' and @aria-label='States']
     Sleep    2
-    Click Element    xpath://lightning-base-combobox-item[@data-value='${symvar('state')}']  
+    Click Element    xpath://lightning-base-combobox-item[@data-value='TamilNadu']  
     Sleep    4
     Click Button    xpath:(//li[@role='presentation']//button)[3]
     Sleep    2
