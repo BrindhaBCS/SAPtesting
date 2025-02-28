@@ -1,15 +1,17 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
-# Library    Merger.py
+
+*** Variables ***
+${Olympus_SAP_SERVER}    ${symvar('Olympus_SAP_SERVER')}
+${Olympus_SAP_connection}    ${symvar('Olympus_SAP_connection')}
+
 *** Keywords ***
-AL11
-    # Connect To Session
-    # Connect To Existing Connection   ${symvar('Olympus_SAP_connection')}
-    # Sleep    1  
+Executing Olympus AL11
     Start Process     ${symvar('Olympus_SAP_SERVER')}    
     Sleep    1
     Connect To Session
+    Sleep    0.1
     Open Connection    ${symvar('Olympus_SAP_connection')}
     Sleep    1    
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('Olympus_Client_Id')}
@@ -21,18 +23,10 @@ AL11
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
     Sleep   1
-    Run Transaction    /nAL11
-    Sleep    1
-    # Table Scroll   wnd[0]/usr/cntlEXT_COM/shellcont/shell    23 
-    # Sleep    2
-  ${counter}=    Set Variable    1
-    FOR    ${index}    IN RANGE    5    30
-        ${scroll}    Scroll   wnd[0]/usr/cntlGRID1/shellcont/shell      ${index}
-        Log To Console    Selected rows: $${scroll}
-        Take Screenshot    ST06_${counter}.jpg
-        ${counter}=    Evaluate    ${counter} + 1
-        Sleep    1
-    END
-    Click Element	wnd[0]/tbar[0]/btn[3]
+    Run Transaction    /nal11
+    Send Vkey    0
+    Sleep    0.1
+    Take Screenshot    olympus_al11_output.jpg
+    Sleep    0.2
     Run Transaction    /nex
-   
+    Sleep    1
