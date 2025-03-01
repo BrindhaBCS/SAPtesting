@@ -2724,4 +2724,6 @@ class SAP_Tcode_Library:
     def load_json_from_file(self, file_path):
         with open(file_path, 'r') as file:
             data = json.load(file)  # Reads and parses the JSON file as a dictionary
-        return data         
+        return data  
+    def select_item_from_table(self, table_id, item_id, column_num):
+        self.session.findById(table_id).selectItem(item_id, column_num)       
