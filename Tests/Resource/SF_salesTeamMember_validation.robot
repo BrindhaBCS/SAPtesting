@@ -71,7 +71,7 @@ NEW LEAD
     Click Button    xpath://button[@aria-label='Salutation']
     Sleep    2
     Click Element  xpath=//lightning-base-combobox-item[@data-value='${symvar('Salutation')}']    
-    Sleep    1
+    Sleep    5
     Input Text    xpath://input[@placeholder='First Name']    ${symvar('firstname')}
     Sleep    1
     Input Text     xpath://input[@placeholder='Last Name']    ${symvar('lastname')}   
@@ -86,6 +86,7 @@ NEW LEAD
     Run Keyword And Ignore Error    Scroll Element Into View    xpath://label[normalize-space(text())='Title']
     Sleep    5  
     @{products}=    %{products}
+    Log To Console     @{products}
     Sleep    3
     FOR    ${PRODUCT}    IN    @{PRODUCTS}
         Sleep    5
