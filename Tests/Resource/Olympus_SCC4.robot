@@ -2,7 +2,8 @@
 Library    Process
 Library    SAP_Tcode_Library.py
 Library    String
-# Library    Merger.py
+Library    Merger.py
+
 *** Keywords ***
 SCC4
     Start Process     ${symvar('Olympus_SAP_SERVER')}    
@@ -41,3 +42,4 @@ SCC4
     Sleep    6
     Click Element    wnd[0]/tbar[0]/btn[3]
     Run Transaction    /nex
+    Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}

@@ -1,7 +1,8 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
-# Library    Merger.py
+Library    Merger.py
+
 *** Keywords ***
 Slicense
     Start Process     ${symvar('Olympus_SAP_SERVER')}    
@@ -23,3 +24,5 @@ Slicense
     Take Screenshot    slicense.jpg
     Click Element	wnd[0]/tbar[0]/btn[3]
     Run Transaction    /nex
+    Sleep    1
+    Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}

@@ -1,7 +1,7 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
-# Library    Merger.py
+Library    Merger.py
 *** Variables ***
 ${TREE_PATH}    wnd[0]/usr/cntlSM59CNTL_AREA/shellcont/shell/shellcont[1]/shell[1]
 ${TREE_PATH_1}    wnd[0]/usr/cntlSM59CNTL_AREA/shellcont/shell/shellcont[1]/shell[1]    ${SPACE*10}4
@@ -66,4 +66,6 @@ SM59
     # Take Screenshot    SM59.jpg04
     # # Collapse Node    wnd[0]/usr/cntlSM59CNTL_AREA/shellcont/shell/shellcont[1]/shell[1]	${SPACE*10}4
 	# # Sleep	1
-    # Run Transaction    /nex 
+    # Run Transaction   /nex
+    # Sleep    5
+    # Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}

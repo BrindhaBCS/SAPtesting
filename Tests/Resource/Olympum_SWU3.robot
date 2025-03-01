@@ -1,9 +1,10 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
-# Library    Merger.py
+Library    Merger.py
 *** Variables ***
 ${TREE_PATH}    wnd[0]/usr/shellcont/shell/shellcont[0]/shellcont/shell/shellcont[1]/shell
+
 *** Keywords ***
 SWU3
     Start Process     ${symvar('Olympus_SAP_SERVER')}    

@@ -1,6 +1,7 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py 
+Library    Merger.py
 
 *** Keywords ***
 System Logon
@@ -30,3 +31,5 @@ System Logon
 	Click Element	wnd[0]/tbar[0]/btn[3]
 	Sleep	2
     Run Transaction    /nex
+    Sleep    2
+    Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}

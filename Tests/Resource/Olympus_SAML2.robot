@@ -1,7 +1,8 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
-# Library    Merger.py
+Library    Merger.py
+
 *** Keywords ***
 SAML2
     Start Process     ${symvar('ABB_Olympus_SAP_SERVER')}    
@@ -21,3 +22,4 @@ SAML2
     Run Transaction    SAML2
     Take Screenshot    Saml2.jpg
     Run Transaction    /nex
+    Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}

@@ -2,7 +2,7 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
-# Library    Merger.py
+Library    Merger.py
 *** Variables ***
 ${TREE_PATH}    wnd[0]/usr  
 
@@ -99,3 +99,6 @@ SE16
 	Sleep	2
 	Click Element	wnd[0]/tbar[0]/btn[3]
 	Sleep	2
+    Run Transaction    /nex
+	Sleep    2
+	Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}

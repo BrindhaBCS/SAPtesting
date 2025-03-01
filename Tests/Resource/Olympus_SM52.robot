@@ -1,7 +1,8 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
-# Library    Merger.py
+Library    Merger.py
+
 *** Keywords ***
 System Logon
     Start Process     ${symvar('Olympus_SAP_SERVER')}    
@@ -25,3 +26,5 @@ SM52_Tcodes
     Take Screenshot    001_sm52.jpg
     Sleep    1
     Run Transaction    /nex
+    Sleep    5
+    Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}

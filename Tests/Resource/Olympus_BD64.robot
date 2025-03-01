@@ -1,6 +1,8 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py 
+Library    Merger.py
+
 
 *** Keywords ***
 System Logon
@@ -35,3 +37,4 @@ BD64_Tcodes
      END
     Run Transaction    /nex
     Sleep    2
+    Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}
