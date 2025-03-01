@@ -184,13 +184,15 @@ Perform Contacted Actions
     Log To Console    **gbStart**copilot_CallLog_status**splitKeyValue**${symvar('Call_Status_Message')} added successfully to ${symvar('lastname')}**gbEnd**
     Sleep    2
 Handle Open Lead
-    Click Element    ${EDIT_BUTTON_XPATH}
-    Sleep    2
-    Click Element    ${STATUS_DROPDOWN_XPATH}
-    Sleep    2
-    Click Element    ${CONTACTED_OPTION_XPATH}
-    Sleep    2
-    Perform Contacted Actions
+    # Click Element    ${EDIT_BUTTON_XPATH}
+    # Sleep    2
+    # Click Element    ${STATUS_DROPDOWN_XPATH}
+    # Sleep    2
+    # Click Element    ${CONTACTED_OPTION_XPATH}
+    # Sleep    2
+    # Perform Contacted Actions
+    Log    Performing actions for Open Lead
+    # Add steps for Qualified Lead here
 Handle Qualified Lead
     Log    Performing actions for Qualified Lead
     # Add steps for Qualified Lead here
