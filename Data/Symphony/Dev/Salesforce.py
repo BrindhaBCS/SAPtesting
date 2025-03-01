@@ -12,6 +12,7 @@ City = "$City"
 postalCode = "$postalCode"
 province = "$province"
 country = "$country"
+products="$products"
 
 
 
