@@ -1,4 +1,4 @@
-Salutation = "$Salutation"
+salutation = "$salutation"
 firstname = "$firstname"
 lastname = "$lastname"
 company = "$company"
