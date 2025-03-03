@@ -117,6 +117,7 @@ System Logout
     Run Transaction    /nex
     Sleep    1
     Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}
+    Images To Pdf    image_folder=${symvar('target_directory')}    output_pdf=Olympus_Tcode.pdf
 
 Scroll SAP Table
     [Arguments]    ${table_id}    ${row_positions}    ${file_name_ss}
