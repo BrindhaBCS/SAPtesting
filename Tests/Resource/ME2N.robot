@@ -2,12 +2,7 @@
 Library    Process
 Library    SAP_Tcode_Library.py
 # Library    Merger.py
- 
-*** Variables ***
-${download_path}    C:\\TEMP\\
-${excel_path}    C:\\TEMP\\rental.xlsx
-${excel_sheet}    Sheet1
- 
+
 *** Keywords ***
 System Logon
     Start Process    ${symvar('GR_IR_SERVER')}
@@ -19,51 +14,59 @@ System Logon
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('GR_IR_User')}
     Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('GR_IR_PASSWORD')}
     # Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{GR_IR_PASSWORD}
-    Send Vkey    0  
+    Send Vkey    0   
     ${logon_status}    Multiple logon Handling     wnd[1]   wnd[1]/usr/radMULTI_LOGON_OPT2
     IF    '${logon_status}' == "Multiple logon found. Please terminate all the logon & proceed"
-        Log To Console    **gbStart**Sales_Document_status**splitKeyValue**${logon_status}**gbEnd**
+        Log To Console    **gbStart**logon_status**splitKeyValue**${logon_status}**gbEnd**
 
     END
+
 System Logout
     Run Transaction   /nex
     Sleep    5
-FAGLL03
-    Run Transaction    /nFAGLL03
+
+ME2N
+    Run Transaction     /nME2N
+    Sleep   2
+    Input Text   wnd[0]/usr/ctxtLISTU   ${symvar('scope_of_list')}
+    Sleep   2
+    Click Element   wnd[0]/usr/btn%_EN_EBELN_%_APP_%-VALU_PUSH
     Sleep   2
 
-    ### GL account Number logic (copy to clipboard)
-    Click Element   wnd[0]/usr/btn%_SD_SAKNR_%_APP_%-VALU_PUSH
-    Input Text  wnd[1]/usr/tabsTAB_STRIP/tabpSIVA/ssubSCREEN_HEADER:SAPLALDB:3010/tblSAPLALDBSINGLE/ctxtRSCSEL_255-SLOW_I[1,0]      ${symvar('GR_IR_GL_Account')}
+    ### Copy To Clipboard
+    Click Element   wnd[1]/tbar[0]/btn[24]
+    Sleep   2
     ###
 
     Click Element   wnd[1]/tbar[0]/btn[8]
-    Sleep   2
-    Select Radio Button     wnd[0]/usr/radX_OPSEL
     Sleep   2
     Click Element   wnd[0]/tbar[1]/btn[8]
 
     ### Layout changes
     Click Element   wnd[0]/tbar[1]/btn[32]
-    Click Element   wnd[1]/usr/btnAPP_FL_ALL
-    FOR     ${layout}   IN      @{symvar(GR_layout)}
-
-        Click Element   wnd[1]/usr/btnB_SEARCH
-        Input Text      wnd[2]/usr/txtGD_SEARCHSTR      ${layout}
-        Click Element   wnd[2]/tbar[0]/btn[0]
-        Click Element   wnd[1]/usr/btnAPP_WL_SING    
+    ${row}      Get Row Count   wnd[1]/usr/tabsG_TS_ALV/tabpALV_M_R1/ssubSUB_CONFIGURATION:SAPLSALV_CUL_COLUMN_SELECTION:0620/cntlCONTAINER2_LAYO/shellcont/shell
+    Log To Console      ${row}
+    ${count}    Get Length    ${symvar('GR1_Layout')}
+    FOR    ${i}    IN RANGE    0    ${count}
+        ${value}    Set Variable    ${symvar('GR1_Layout')}[${i}]
+        FOR    ${lp}    IN RANGE    0    ${row}
+            ${layout}    Get Sap Table Value    table_id=wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_CUL_LAYOUT_CHOOSE:0500/cntlD500_CONTAINER/shellcont/shell    row_num=${lp}    column_id=TEXT
+            IF    '${value}' != '${layout}'
+                Click Element   wnd[1]/usr/tabsG_TS_ALV/tabpALV_M_R1/ssubSUB_CONFIGURATION:SAPLSALV_CUL_COLUMN_SELECTION:0620/btnAPP_FL_SING
+            END
+        END  
     END
     Click Element   wnd[1]/tbar[0]/btn[0]
+    Sleep   5
 
     ### File download
-    Sleep   2
-    Delete Specific File    ${symvar('download_path')}\\${symvar('fagll03_file')}
     Click Element   wnd[0]/mbar/menu[0]/menu[3]/menu[1]
     Sleep   2
+    Click Element   wnd[1]/tbar[0]/btn[0]
+    Sleep   2
     Input Text      wnd[1]/usr/ctxtDY_FILENAME      ${EMPTY}
-    Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${symvar('fagll03_file')}
+    Input Text      wnd[1]/usr/ctxtDY_FILENAME      ${symvar('me2n_file')}
     Input Text    wnd[1]/usr/ctxtDY_PATH    ${EMPTY}
     Input Text      wnd[1]/usr/ctxtDY_PATH      ${symvar('download_path')}
     Click Element   wnd[1]/tbar[0]/btn[0]
     Sleep   2
-

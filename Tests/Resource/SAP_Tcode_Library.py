@@ -112,20 +112,47 @@ class SAP_Tcode_Library:
             message = "No existing connection for '%s' found." % connection_name
             raise ValueError(message)
 
+    def connect_to_session(self, explicit_wait=0):
+        """Connects to an open session SAP.
+
+        See `Opening a connection / Before running tests` for details about requirements before connecting to a session.
+
+        Optionally `set explicit wait` can be used to set the explicit wait time.
+
+        *Examples*:
+        | *Keyword*             | *Attributes*          |
+        | connect to session    |                       |
+        | connect to session    | 3                     |
+        | connect to session    | explicit_wait=500ms   |
+
+        """
+        lenstr = len("SAPGUI")
+        rot = pythoncom.GetRunningObjectTable()
+        rotenum = rot.EnumRunning()
+        while True:
+            monikers = rotenum.Next()
+            if not monikers:
+                break
+            ctx = pythoncom.CreateBindCtx(0)
+            name = monikers[0].GetDisplayName(ctx, None);
+
+            if name[-lenstr:] == "SAPGUI":
+                obj = rot.GetObject(monikers[0])
+                sapgui = win32com.client.Dispatch(obj.QueryInterface(pythoncom.IID_IDispatch))
+                self.sapapp = sapgui.GetScriptingEngine
+                # Set explicit_wait after connection succeed
+                self.set_explicit_wait(explicit_wait)
+
+        if hasattr(self.sapapp, "OpenConnection") == False:
+            self.take_screenshot()
+            message = "Could not connect to Session, is Sap Logon Pad open?"
+            raise Warning(message)
+        # run explicit wait last
+        time.sleep(self.explicit_wait)
+
+    
     # def connect_to_session(self, explicit_wait=0):
-    #     """Connects to an open session SAP.
-
-    #     See `Opening a connection / Before running tests` for details about requirements before connecting to a session.
-
-    #     Optionally `set explicit wait` can be used to set the explicit wait time.
-
-    #     *Examples*:
-    #     | *Keyword*             | *Attributes*          |
-    #     | connect to session    |                       |
-    #     | connect to session    | 3                     |
-    #     | connect to session    | explicit_wait=500ms   |
-
-    #     """
+    #     """Connects to an open SAP session and retrieves the session ID."""
     #     lenstr = len("SAPGUI")
     #     rot = pythoncom.GetRunningObjectTable()
     #     rotenum = rot.EnumRunning()
@@ -134,13 +161,14 @@ class SAP_Tcode_Library:
     #         if not monikers:
     #             break
     #         ctx = pythoncom.CreateBindCtx(0)
-    #         name = monikers[0].GetDisplayName(ctx, None);
+    #         name = monikers[0].GetDisplayName(ctx, None)
 
     #         if name[-lenstr:] == "SAPGUI":
     #             obj = rot.GetObject(monikers[0])
     #             sapgui = win32com.client.Dispatch(obj.QueryInterface(pythoncom.IID_IDispatch))
-    #             self.sapapp = sapgui.GetScriptingEngine
-    #             # Set explicit_wait after connection succeed
+    #             self.sapapp = sapgui.GetScriptingEngine()
+                
+    #             # Set explicit wait after connection succeeds
     #             self.set_explicit_wait(explicit_wait)
 
     #             if hasattr(self.sapapp, 'Children'):
@@ -154,59 +182,18 @@ class SAP_Tcode_Library:
     #         message = "Could not connect to Session, is Sap Logon Pad open?"
     #         raise Warning(message)
 
+    #     # Debugging: Print out session details
+    #     print(f"Session Info: {dir(self.session)}")  # List attributes of session object
+    #     if hasattr(self.session, 'Info'):
+    #         print(f"Session Info: {self.session.Info}")  # Print actual session info for inspection
+
+    #     # Get Session ID (if available)
+    #     session_id = self.get_session_id()
+
+    #     # Wait for the specified time
     #     time.sleep(self.explicit_wait)
-    #     try:
-    #     # Assuming self.session has been initialized correctly
-    #         session_id = self.session.Id  # Access session ID (if available)
-    #         print(f"Session ID: {session_id}")
-    #         return session_id
-    #     except AttributeError:
-    #         raise Warning("Session ID is not available or not initialized properly.")
-    #     # run explicit wait last
-    
-    def connect_to_session(self, explicit_wait=0):
-        """Connects to an open SAP session and retrieves the session ID."""
-        lenstr = len("SAPGUI")
-        rot = pythoncom.GetRunningObjectTable()
-        rotenum = rot.EnumRunning()
-        while True:
-            monikers = rotenum.Next()
-            if not monikers:
-                break
-            ctx = pythoncom.CreateBindCtx(0)
-            name = monikers[0].GetDisplayName(ctx, None)
 
-            if name[-lenstr:] == "SAPGUI":
-                obj = rot.GetObject(monikers[0])
-                sapgui = win32com.client.Dispatch(obj.QueryInterface(pythoncom.IID_IDispatch))
-                self.sapapp = sapgui.GetScriptingEngine()
-                
-                # Set explicit wait after connection succeeds
-                self.set_explicit_wait(explicit_wait)
-
-                if hasattr(self.sapapp, 'Children'):
-                    children = self.sapapp.Children  # Access all open sessions
-                    if children:
-                        self.session = children(0)  # Get the first available session
-                        break
-
-        if hasattr(self.sapapp, "OpenConnection") == False:
-            self.take_screenshot()
-            message = "Could not connect to Session, is Sap Logon Pad open?"
-            raise Warning(message)
-
-        # Debugging: Print out session details
-        print(f"Session Info: {dir(self.session)}")  # List attributes of session object
-        if hasattr(self.session, 'Info'):
-            print(f"Session Info: {self.session.Info}")  # Print actual session info for inspection
-
-        # Get Session ID (if available)
-        session_id = self.get_session_id()
-
-        # Wait for the specified time
-        time.sleep(self.explicit_wait)
-
-        return session_id
+    #     return session_id
 
     def get_session_id(self):
         """Retrieve the Session ID of the current SAP session."""
@@ -1335,11 +1322,27 @@ class SAP_Tcode_Library:
             return f"Error: {e}"
     
     
-    def multiple_logon_handling(self, logon_window_id):  
+    # def multiple_logon_handling(self, logon_window_id):  
+    #     try:
+    #         content = self.session.findById(logon_window_id).Text
+    #         if content == "License Information for Multiple Logons":
+    #             print("Multiple logon exists")
+    #             info = "Multiple logon found. Please terminate all the logon & proceed"
+    #             return info
+    #         else:
+    #             info = "Multiple logon does not exist."
+    #             return info
+    #     except Exception as e:
+    #         print(f"Error: {e}")
+
+    def multiple_logon_handling(self, logon_window_id, option):  
         try:
             content = self.session.findById(logon_window_id).Text
             if content == "License Information for Multiple Logons":
-                print("Multiple logon exists")
+                # print("Multiple logon exists")
+                self.session.findById(option).selected = True
+                button = "wnd[1]/tbar[0]/btn[0]"
+                self.session.findById(button).press()
                 info = "Multiple logon found. Please terminate all the logon & proceed"
                 return info
             else:

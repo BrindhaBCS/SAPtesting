@@ -1,7 +1,6 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
-# Library    Merger.py
 
 *** Keywords ***
 System Logon
@@ -15,7 +14,7 @@ System Logon
     Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('GR_IR_PASSWORD')}
     # Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{GR_IR_PASSWORD}
     Send Vkey    0   
-    ${logon_status}    Multiple logon Handling     wnd[1]
+    ${logon_status}    Multiple logon Handling     wnd[1]   wnd[1]/usr/radMULTI_LOGON_OPT2
     IF    '${logon_status}' == "Multiple logon found. Please terminate all the logon & proceed"
         Log To Console    **gbStart**Sales_Document_status**splitKeyValue**${logon_status}**gbEnd**
 
@@ -32,15 +31,15 @@ F.13_tcode
 	Sleep	2
     Select Checkbox    wnd[0]/usr/chkX_SAKNR	
 	Sleep	2
-	Input Text    wnd[0]/usr/ctxtKONTS-LOW    ${symvar('GR_IR_GL_Account')}
-	Sleep	2
-    # ${counter}=    Set Variable    1
-    # FOR    ${index}    IN RANGE    30    1    -2  
-    # ${scroll}    Scroll    wnd[0]/usr    ${index}
-    # Log To Console    Scrolled to position: ${scroll}
-    # Sleep    1
-    # END
-    Set Focus   wnd[0]/usr/chkX_TESTL
+	
+    ### Copy To Clipboard
+    Click Element   wnd[0]/usr/btn%_KONTS_%_APP_%-VALU_PUSH
+
+    Input Text      wnd[1]/usr/tabsTAB_STRIP/tabpSIVA/ssubSCREEN_HEADER:SAPLALDB:3010/tblSAPLALDBSINGLE/ctxtRSCSEL_255-SLOW_I[1,0]  ${symvar('GR_IR_GL_Account')}
+	
+    Click Element   wnd[1]/tbar[0]/btn[8]
+    # ##
+    Sleep	2
 	Unselect Checkbox    wnd[0]/usr/chkX_TESTL 	
 	Sleep	5
 	Click Element	wnd[0]/mbar/menu[0]/menu[2]
@@ -51,6 +50,8 @@ F.13_tcode
 	Sleep	2
 	Click Element	wnd[1]/usr/btnSOFORT_PUSH
 	Sleep	2
+    Click Element   wnd[1]/tbar[0]/btn[0]
+    Sleep   2
 	Click Element	wnd[1]/tbar[0]/btn[11]
 	Sleep	2
     ${GR_IR_Message}    Get Value    wnd[0]/sbar/pane[0]
