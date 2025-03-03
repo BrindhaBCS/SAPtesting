@@ -1,6 +1,7 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
+Library    multiple_selection.py
 
 *** Keywords ***
 System Logon
@@ -31,13 +32,18 @@ F.13_tcode
 	Sleep	2
     Select Checkbox    wnd[0]/usr/chkX_SAKNR	
 	Sleep	2
-	
+	### Delete Specific files
+    Delete Specific File    ${symvar('download_path')}\\GL_Account.txt
+
     ### Copy To Clipboard
     Click Element   wnd[0]/usr/btn%_KONTS_%_APP_%-VALU_PUSH
-
-    Input Text      wnd[1]/usr/tabsTAB_STRIP/tabpSIVA/ssubSCREEN_HEADER:SAPLALDB:3010/tblSAPLALDBSINGLE/ctxtRSCSEL_255-SLOW_I[1,0]  ${symvar('GR_IR_GL_Account')}
-	
-    Click Element   wnd[1]/tbar[0]/btn[8]
+    Get Column Excel To Text Create    C:\\tmp\\GRIR_Requirement.xlsx   C:\\tmp\\GL_Account.txt     G/L     GL Account
+    Click Element   wnd[1]/tbar[0]/btn[23]
+    Input Text    wnd[2]/usr/ctxtDY_PATH    C:\\tmp\\
+    Input Text    wnd[2]/usr/ctxtDY_FILENAME    GL_Account.txt
+    Click Element    wnd[2]/tbar[0]/btn[0]
+    Click Element    wnd[1]/tbar[0]/btn[8]
+    Sleep   2
     # ##
     Sleep	2
 	Unselect Checkbox    wnd[0]/usr/chkX_TESTL 	

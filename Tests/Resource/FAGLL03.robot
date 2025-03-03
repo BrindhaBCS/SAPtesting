@@ -1,7 +1,7 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
-# Library    Merger.py
+Library    multiple_selection.py
  
 *** Variables ***
 ${download_path}    C:\\TEMP\\
@@ -31,14 +31,22 @@ System Logout
 FAGLL03
     Run Transaction    /nFAGLL03
     Sleep   2
+    ### Delete Specific files
+    Delete Specific File    ${symvar('download_path')}\\GL_Account.txt
 
     ### GL account Number logic (copy to clipboard)
-    Click Element   wnd[0]/usr/btn%_SD_SAKNR_%_APP_%-VALU_PUSH
-    Input Text  wnd[1]/usr/tabsTAB_STRIP/tabpSIVA/ssubSCREEN_HEADER:SAPLALDB:3010/tblSAPLALDBSINGLE/ctxtRSCSEL_255-SLOW_I[1,0]      ${symvar('GR_IR_GL_Account')}
+    Click Element       wnd[0]/usr/btn%_SD_SAKNR_%_APP_%-VALU_PUSH
+    Get Column Excel To Text Create    C:\\tmp\\GRIR_Requirement.xlsx   C:\\tmp\\GL_Account.txt     G/L     GL Account
+    Click Element   wnd[1]/tbar[0]/btn[23]
+    Input Text    wnd[2]/usr/ctxtDY_PATH    C:\\tmp\\
+    Input Text    wnd[2]/usr/ctxtDY_FILENAME    GL_Account.txt
+    Click Element    wnd[2]/tbar[0]/btn[0]
+    Click Element    wnd[1]/tbar[0]/btn[8]
+    Sleep   2
     ###
 
-    Click Element   wnd[1]/tbar[0]/btn[8]
-    Sleep   2
+    # Click Element   wnd[1]/tbar[0]/btn[8]
+    # Sleep   2
     Select Radio Button     wnd[0]/usr/radX_OPSEL
     Sleep   2
     Click Element   wnd[0]/tbar[1]/btn[8]
@@ -46,8 +54,7 @@ FAGLL03
     ### Layout changes
     Click Element   wnd[0]/tbar[1]/btn[32]
     Click Element   wnd[1]/usr/btnAPP_FL_ALL
-    FOR     ${layout}   IN      @{symvar(GR_layout)}
-
+    FOR     ${layout}   IN      @{symvar('GR_layout')}
         Click Element   wnd[1]/usr/btnB_SEARCH
         Input Text      wnd[2]/usr/txtGD_SEARCHSTR      ${layout}
         Click Element   wnd[2]/tbar[0]/btn[0]
@@ -59,6 +66,8 @@ FAGLL03
     Sleep   2
     Delete Specific File    ${symvar('download_path')}\\${symvar('fagll03_file')}
     Click Element   wnd[0]/mbar/menu[0]/menu[3]/menu[1]
+    Sleep   2
+    Click Element   wnd[1]/tbar[0]/btn[0]
     Sleep   2
     Input Text      wnd[1]/usr/ctxtDY_FILENAME      ${EMPTY}
     Input Text    wnd[1]/usr/ctxtDY_FILENAME    ${symvar('fagll03_file')}

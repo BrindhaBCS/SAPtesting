@@ -1,4 +1,5 @@
 import win32com.client
+import pandas as pd
 import sys
 import ast
 import  time
@@ -58,6 +59,23 @@ def select_form_header(session, table_id, row, column):
     session.findById(table_id).doubleClickNode (row)
     session.findById(table_id).selectedNode = "0003"
     session.findById(table_id).doubleClickNode ("0003")
+
+def get_column_excel_to_text_create(session, excel_path, txt_path, column_name, sheet_name):
+        try:
+            df = pd.read_excel(excel_path, dtype=str, sheet_name=sheet_name)
+            if column_name not in df.columns:
+                print(f"Column '{column_name}' not found in sheet '{sheet_name}'.")
+                return
+            # values = df[column_name].dropna().astype(int).tolist()
+            values = df[column_name].dropna().astype(str).tolist()
+            unique_values = sorted(set(values))
+            with open(txt_path, "w") as file:
+                for item in unique_values:
+                    file.write(f"{item}\n")
+            print("Saved successfully!")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
    
 
 
@@ -69,10 +87,10 @@ def main():
     connection = application.Children(0)
     session = connection.Children(0)
 
-    table_id = "wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpKFTE/ssubSUBSCREEN_BODY:SAPLV70T:2100/cntlSPLITTER_CONTAINER/shellcont/shellcont/shell/shellcont[0]/shell"
-    row = "0001"
-    column = "Column1"
-    name = "Form Header"
+    # table_id = "wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpKFTE/ssubSUBSCREEN_BODY:SAPLV70T:2100/cntlSPLITTER_CONTAINER/shellcont/shellcont/shell/shellcont[0]/shell"
+    # row = "0001"
+    # column = "Column1"
+    # name = "Form Header"
     # table_id = "wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_CUL_LAYOUT_CHOOSE:0500/cntlD500_CONTAINER/shellcont/shell"
     # table_id1 = "wnd[1]/usr/tabsG_TS_ALV/tabpALV_M_R1/ssubSUB_CONFIGURATION:SAPLSALV_CUL_COLUMN_SELECTION:0620/cntlCONTAINER1_LAYO/shellcont/shell"
     # button_id = "wnd[1]/usr/tabsG_TS_ALV/tabpALV_M_R1/ssubSUB_CONFIGURATION:SAPLSALV_CUL_COLUMN_SELECTION:0620/btnAPP_WL_SING"
@@ -80,7 +98,12 @@ def main():
     # select_layout(session, table_id)
     # time.sleep(10)
     # get_sap_table_value(session, table_id1, button_id, search_term)
-    select_form_header(session, table_id, row, column)
+    # select_form_header(session, table_id, row, column)
+    excel_path = "C:\\tmp\\GRIR_Requirement.xlsx"
+    txt_path = "C:\\tmp\\Purchase_DocumentOnly.txt"
+    column_name = "Purchasing Document"
+    sheet_name = "RE"
+    get_column_excel_to_text_create(excel_path, txt_path, column_name, sheet_name)
      
 if __name__ == "__main__":
     main()

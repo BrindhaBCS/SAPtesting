@@ -9,6 +9,7 @@ import sys
 import ast
 import openpyxl
 import pandas as pd
+import pyperclip
 from openpyxl import load_workbook
 import json
 import re
@@ -1804,3 +1805,13 @@ class SAP_Tcode_Library:
         formatted_date = f"{month} {year}."
         print(formatted_date)
         return formatted_date
+
+    # def get_column_excel_to_txt_create(self, excel_path, txt_path, column_name):
+    #     df = pd.read_excel(excel_path, dtype=str)
+    #     values = df[column_name].dropna().astype(float).astype(int).tolist()
+    #     unique_values = sorted(set(values))
+    #     with open(txt_path, "w") as file:
+    #         file.writelines(f"{item}\n" for item in unique_values)
+    #     print("Saved successfully!")
+
+    

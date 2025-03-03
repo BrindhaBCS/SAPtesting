@@ -1,7 +1,7 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
-# Library    Merger.py
+Library    multiple_selection.py
 
 *** Keywords ***
 System Logon
@@ -32,27 +32,40 @@ ME2N
     Sleep   2
     Click Element   wnd[0]/usr/btn%_EN_EBELN_%_APP_%-VALU_PUSH
     Sleep   2
+    ### Delete Specific files
+    Delete Specific File    ${symvar('download_path')}\\${symvar('me2n_file')}
+    Delete Specific File    ${symvar('download_path')}\\Purchase_DocumentOnly.txt
 
     ### Copy To Clipboard
-    Click Element   wnd[1]/tbar[0]/btn[24]
+    Get Column Excel To Text Create    C:\\tmp\\GR.XLSX   C:\\tmp\\Purchase_DocumentOnly.txt     Purchasing Document     Sheet1
+    Click Element   wnd[1]/tbar[0]/btn[23]
+    Input Text    wnd[2]/usr/ctxtDY_PATH    C:\\tmp\\
+    Input Text    wnd[2]/usr/ctxtDY_FILENAME    Purchase_DocumentOnly.txt
+    Click Element    wnd[2]/tbar[0]/btn[0]
+    Click Element    wnd[1]/tbar[0]/btn[8]
     Sleep   2
-    ###
 
-    Click Element   wnd[1]/tbar[0]/btn[8]
-    Sleep   2
+    ### execute to get table
     Click Element   wnd[0]/tbar[1]/btn[8]
 
     ### Layout changes
     Click Element   wnd[0]/tbar[1]/btn[32]
     ${row}      Get Row Count   wnd[1]/usr/tabsG_TS_ALV/tabpALV_M_R1/ssubSUB_CONFIGURATION:SAPLSALV_CUL_COLUMN_SELECTION:0620/cntlCONTAINER2_LAYO/shellcont/shell
-    Log To Console      ${row}
     ${count}    Get Length    ${symvar('GR1_Layout')}
+    FOR    ${lp}    IN RANGE    0    ${row}
+        Click Element   wnd[1]/usr/tabsG_TS_ALV/tabpALV_M_R1/ssubSUB_CONFIGURATION:SAPLSALV_CUL_COLUMN_SELECTION:0620/btnAPP_FL_SING
+        ${row}      Evaluate    ${row} - 1
+    END
     FOR    ${i}    IN RANGE    0    ${count}
         ${value}    Set Variable    ${symvar('GR1_Layout')}[${i}]
-        FOR    ${lp}    IN RANGE    0    ${row}
-            ${layout}    Get Sap Table Value    table_id=wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_CUL_LAYOUT_CHOOSE:0500/cntlD500_CONTAINER/shellcont/shell    row_num=${lp}    column_id=TEXT
-            IF    '${value}' != '${layout}'
-                Click Element   wnd[1]/usr/tabsG_TS_ALV/tabpALV_M_R1/ssubSUB_CONFIGURATION:SAPLSALV_CUL_COLUMN_SELECTION:0620/btnAPP_FL_SING
+        Log To Console      ${value}
+        ${row1}      Get Row Count   wnd[1]/usr/tabsG_TS_ALV/tabpALV_M_R1/ssubSUB_CONFIGURATION:SAPLSALV_CUL_COLUMN_SELECTION:0620/cntlCONTAINER1_LAYO/shellcont/shell
+        Log To Console      ${row1}
+        FOR    ${loop}    IN RANGE    0    ${row1}
+            ${layout}    Get Sap Table Value    table_id=wnd[1]/usr/tabsG_TS_ALV/tabpALV_M_R1/ssubSUB_CONFIGURATION:SAPLSALV_CUL_COLUMN_SELECTION:0620/cntlCONTAINER1_LAYO/shellcont/shell    row_num=${loop}    column_id=SELTEXT
+            Log To Console      ${layout}
+            IF    '${value}' == '${layout}'
+                Click Element   wnd[1]/usr/tabsG_TS_ALV/tabpALV_M_R1/ssubSUB_CONFIGURATION:SAPLSALV_CUL_COLUMN_SELECTION:0620/btnAPP_WL_SING
             END
         END  
     END
@@ -64,9 +77,14 @@ ME2N
     Sleep   2
     Click Element   wnd[1]/tbar[0]/btn[0]
     Sleep   2
+
     Input Text      wnd[1]/usr/ctxtDY_FILENAME      ${EMPTY}
+    Sleep   5
     Input Text      wnd[1]/usr/ctxtDY_FILENAME      ${symvar('me2n_file')}
+    Sleep   5
     Input Text    wnd[1]/usr/ctxtDY_PATH    ${EMPTY}
+    Sleep   5
     Input Text      wnd[1]/usr/ctxtDY_PATH      ${symvar('download_path')}
+    Sleep   5
     Click Element   wnd[1]/tbar[0]/btn[0]
     Sleep   2
