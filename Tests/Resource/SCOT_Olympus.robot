@@ -14,7 +14,7 @@ System Logon
     Connect To Session
     Open Connection    ${symvar('ABB_Olympus_SAP_connection')}
     Sleep    1    
-    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('ABB_Olympus_Client_Id')}
+    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('Olympus_Client_Id')}
     Sleep    1
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('ABB_Olympus_User_Name')}
     Sleep    1
