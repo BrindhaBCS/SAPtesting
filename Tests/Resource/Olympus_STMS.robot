@@ -76,7 +76,7 @@ Connection_test
     FOR    ${index}    IN RANGE    10
         ${scroll}    Scroll    wnd[0]/usr   ${index}
         Log To Console    Selected rows: $${scroll}
-        Take Screenshot    SM59_${counter}.jpg
+        Take Screenshot    STMS_${counter}.jpg
         ${counter}=    Evaluate    ${counter} + 1
         Sleep    1
     END
