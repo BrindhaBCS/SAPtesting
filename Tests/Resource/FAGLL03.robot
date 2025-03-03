@@ -31,6 +31,7 @@ System Logout
 FAGLL03
     Run Transaction    /nFAGLL03
     Sleep   2
+    Input Text      wnd[0]/usr/ctxtSD_BUKRS-LOW     ${symvar('GR_IR_Company_Code')}
     ### Delete Specific files
     Delete Specific File    ${symvar('download_path')}\\GL_Account.txt
 
