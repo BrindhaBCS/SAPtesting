@@ -29,7 +29,7 @@ SM51
     Click Element	wnd[0]/tbar[0]/btn[3]
 	Sleep	2
     Click Element	wnd[0]/tbar[0]/btn[3]
-	Sleep	2   
+	Sleep	2
+    Merger.Copy Images    source_dir=${OUTPUT_DIR}    target_dir=${symvar('target_directory')}
     Run Transaction    /nex
     Sleep    5
-    Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}
