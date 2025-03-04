@@ -25,33 +25,33 @@ System Logon
 SPAD 
     Run Transaction    /nSPAD
     Sleep   2
-    Take Screenshot    000_SPAD.jpg
+    Take Screenshot    036_SPAD_01.jpg
     Sleep    1
     
 
 SPAD_Outputdevices
     Click Element	wnd[0]/usr/tabsSELECTIONS/tabpSEL1/ssubPAGE:SAPMSPAD:1041/btn%#AUTOTEXT001
 	Sleep	2
-    Take Screenshot    001_SPAD.jpg
+    Take Screenshot    036_SPAD_02.jpg
     Sleep    1
     Click Element	wnd[0]/tbar[0]/btn[3]
 
 SPAD_Spoolservers
     Click Element	wnd[0]/usr/tabsSELECTIONS/tabpSEL1/ssubPAGE:SAPMSPAD:1041/btn%#AUTOTEXT002
 	Sleep	2
-    Take Screenshot    002_SPAD.jpg
+    Take Screenshot    036_SPAD_03.jpg
     Sleep    1
     Click Element	wnd[0]/tbar[0]/btn[3]
 SPAD_Accessmethods
     Click Element	wnd[0]/usr/tabsSELECTIONS/tabpSEL1/ssubPAGE:SAPMSPAD:1041/btn%#AUTOTEXT003
 	Sleep	2
-    Take Screenshot    003_SPAD.jpg
+    Take Screenshot    036_SPAD_04.jpg
     Sleep    1
     Click Element	wnd[0]/tbar[0]/btn[3]
 SPAD_Destinationhost
     Click Element	wnd[0]/usr/tabsSELECTIONS/tabpSEL1/ssubPAGE:SAPMSPAD:1041/btn%#AUTOTEXT004
 	Sleep	2
-    Take Screenshot    004_SPAD.jpg
+    Take Screenshot    036_SPAD_05.jpg
     Sleep    1
 	Click Element	wnd[0]/tbar[0]/btn[3]
 	Sleep	2

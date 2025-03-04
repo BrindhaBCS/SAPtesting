@@ -27,7 +27,7 @@ SOIN
     Run Transaction    /nSOIN 
     Sleep   2
    
-    Take Screenshot    SOIN.jpg
+    Take Screenshot    037_SOIN_01.jpg
     Sleep    1   
 System Logout
     Run Transaction    /nex

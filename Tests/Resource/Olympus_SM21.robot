@@ -26,7 +26,7 @@ SM21_Tcodes
     FOR    ${index}    IN RANGE    2
         ${scroll}    Scroll    wnd[0]/usr      ${index}
         Log To Console    Selected rows: $${scroll}
-        Take Screenshot    SM21_${counter}.jpg
+        Take Screenshot    048_SM21_01_${counter}.jpg
         ${counter}=    Evaluate    ${counter} + 1
         Sleep    1
    END

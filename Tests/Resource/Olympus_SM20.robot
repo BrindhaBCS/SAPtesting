@@ -20,15 +20,15 @@ SM20
     Sleep   1 
     Run Transaction    /nSM20
     Sleep    1
-    Take Screenshot    SM20.jpg01
+    Take Screenshot    025_SM20_01.jpg
     Click Element	wnd[0]/usr/tabsTABSTRIP/tabpMISC
 	Sleep	2
-    Take Screenshot    SM20.jpg02
+    Take Screenshot    025_SM20_02.jpg
 	Click Element	wnd[0]/usr/tabsTABSTRIP/tabpLAYO
 	Sleep	2
-    Take Screenshot    SM20.jpg03
+    Take Screenshot    025_SM20_03.jpg
 	Click Element	wnd[0]/usr/tabsTABSTRIP/tabpSTAT
 	Sleep	2
-    Take Screenshot    SM20.jpg04
+    Take Screenshot    025_SM20_04.jpg
     Click Element    wnd[0]/tbar[0]/btn[3]
     Run Transaction    /nex

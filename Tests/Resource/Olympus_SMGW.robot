@@ -23,6 +23,6 @@ System Logon
 SMGW_Tcodes
 	Run Transaction    /nSMGW
 	Sleep	2
-    Take Screenshot    SMGW_1.jpg
+    Take Screenshot    030_SMGW_01.jpg
     Sleep    2
     Run Transaction    /nex

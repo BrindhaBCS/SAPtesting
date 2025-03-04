@@ -20,15 +20,15 @@ SDCCN
     Sleep   1  
     Run Transaction    /nSDCCN
     Sleep    1
-    Take Screenshot    Sdccn01.jpg
+    Take Screenshot    023_Sdccn_01.jpg
     Click Element	wnd[0]/usr/tabsGC_TASK_TABSTRIP/tabpOUTBOX
 	Sleep	2
-    Take Screenshot    Sdccn02.jpg
+    Take Screenshot    023_Sdccn_02.jpg
 	Click Element	wnd[0]/usr/tabsGC_TASK_TABSTRIP/tabpDEL_ITEMS
 	Sleep	2
-    Take Screenshot    Sdccn03.jpg
+    Take Screenshot    023_Sdccn_03.jpg
 	Click Element	wnd[0]/usr/tabsGC_TASK_TABSTRIP/tabpSHOWLOG
 	Sleep	2
-    Take Screenshot    Sdccn04.jpg
+    Take Screenshot    023_Sdccn_04.jpg
     Click Element    wnd[0]/tbar[0]/btn[3]
     Run Transaction    /nex

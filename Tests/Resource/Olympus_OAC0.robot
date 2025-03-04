@@ -33,7 +33,7 @@ OAC0_Tcodes
         Log    Processing row ${i}
         ${selected_rows}    Selected_rows    ${TREE_PATH}    ${i}
         Log To Console    Selected rows: ${selected_rows}
-        Take Screenshot    OAC0_${counter}.jpg
+        Take Screenshot    020_OAC0_01_${counter}.jpg
         ${counter}=    Evaluate    ${counter} + 1
         Sleep    1   
     END

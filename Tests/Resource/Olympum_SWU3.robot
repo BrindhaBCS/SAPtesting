@@ -23,15 +23,15 @@ SWU3
     Run Transaction    /nswu3
     Send Vkey    0
     Sleep    0.1
-    Take Screenshot    olympus_swu3.jpg
+    Take Screenshot    031_swu3_01.jpg
     #Get the left panel value
     ${panel}    Get Value    wnd[0]/usr/shellcont/shell/shellcont[0]/shellcont/shell/shellcont[1]/shell
-    Take Screenshot    olympus_swu3_1.jpg
+    Take Screenshot    031_swu3_02.jpg
  
     Log To Console    ${panel}
     #To Press down, use 82.
     Send Vkey    82
-    Take Screenshot    olympus_swu3_2.jpg
+    Take Screenshot    031_swu3_03.jpg
     Sleep    0.2
     # Run Transaction    /nSWU3
     # Sleep    1

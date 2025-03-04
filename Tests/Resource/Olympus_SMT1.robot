@@ -20,10 +20,10 @@ SMT1
     Sleep   1 
     Run Transaction    /nSMT1
     Sleep    1
-    Take Screenshot    STM1.JPG01
+    Take Screenshot    027_STM1_01.JPG
     Click Element	wnd[0]/usr/tabsTRUST_STRIP/tabpTRUST_STRIP_FC2
 	Sleep	2
-    Take Screenshot    STM1.JPG02
+    Take Screenshot    027_STM1_02.JPG
     Click Element	wnd[0]/tbar[0]/btn[3]
 	Sleep	2
     Run Transaction    /nex

@@ -20,5 +20,5 @@ SE06
     Sleep   1 
     Run Transaction    /n SE06
     Sleep    2
-    Take Screenshot    SE06.jpg
+    Take Screenshot    016_SE06_01.jpg
     Run Transaction    /nex

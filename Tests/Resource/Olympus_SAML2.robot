@@ -19,5 +19,5 @@ SAML2
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
     Sleep   1
     Run Transaction    SAML2
-    Take Screenshot    Saml2.jpg
+    Take Screenshot    040_Saml2_01.jpg
     Run Transaction    /nex

@@ -20,7 +20,7 @@ RZ12
     Sleep   1
     Run Transaction    /nRZ12
     Sleep    1
-    Take Screenshot    RZ12.jpg
+    Take Screenshot    004_RZ12_01.jpg
     Click Element	wnd[0]/tbar[0]/btn[3]
 	Sleep	2
     Run Transaction    /nex  

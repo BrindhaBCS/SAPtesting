@@ -21,7 +21,7 @@ SCC4
     Sleep   1 
     Run Transaction    /nSCC4
     Sleep    1
-    Take Screenshot    SCC4.jpg
+    Take Screenshot    015_SCC4_01.jpg
 	Sleep	2
        ${count_row}    Get Value    wnd[0]/usr/txtVIM_POSITION_INFO
     Log    ${count_row}
@@ -30,7 +30,7 @@ SCC4
     ${number_value}    Get Substring    ${count_row}    ${start_index}    ${end_index}
     Log    ${number_value}
     FOR    ${index}    IN RANGE    ${number_value}
-        ${current_screenshot}    Set Variable    SCC4${index + 1}.jpg
+        ${current_screenshot}    Set Variable    015_SCC4_02_${index + 1}.jpg
         Set Focus    wnd[0]/usr/tblSAPL0SZZTCTRL_T000/txtT000-MANDT[0,${index}]
         Sleep    1
         ${double_click_status}    Send Vkey    vkey_id=2    window=0

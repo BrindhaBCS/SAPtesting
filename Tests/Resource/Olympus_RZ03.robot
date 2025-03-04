@@ -24,10 +24,10 @@ RZ03_Tcodes
 	Sleep	2
 	Click Element	wnd[0]/tbar[0]/btn[0]
 	Sleep	2
-    Take Screenshot    RZ03.jpg
+    Take Screenshot    021_RZ03_01.jpg
     Send Vkey    0
 	Sleep	2
-    Take Screenshot    RZ03_1.jpg
+    Take Screenshot    021_RZ03_02.jpg
 	Click Element	wnd[0]/tbar[0]/btn[3]
 	Sleep	2
     Run Transaction    /nex

@@ -22,11 +22,11 @@ System Logon
 SIGS_Tcodes
     Run Transaction    /nSIGS
 	Sleep	2
-    Take Screenshot    SIGS1.jpg
+    Take Screenshot    055_SIGS1_01.jpg
 	Click Element	wnd[0]/tbar[0]/btn[0]
 	Sleep	2
 	Click Element	wnd[0]/tbar[1]/btn[8]
     Sleep	2
-    Take Screenshot    SIGS2.jpg
+    Take Screenshot    055_SIGS2_02.jpg
     Run Transaction    /nex
     Sleep    2

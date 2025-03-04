@@ -25,7 +25,7 @@ St02
     FOR    ${index}    IN RANGE    10
         ${scroll}    Scroll    wnd[0]/usr      ${index}
         Log To Console    Selected rows: $${scroll}
-        Take Screenshot    ST02_${counter}.jpg
+        Take Screenshot    013_ST02_01_${counter}.jpg
         ${counter}=    Evaluate    ${counter} + 1
         Sleep    1
     END

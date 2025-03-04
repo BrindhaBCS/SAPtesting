@@ -24,14 +24,14 @@ SMQ1_Tcodes
     Sleep    2
     Input Text	wnd[0]/usr/txtCLIENT	*
 	Sleep	2
-    Take Screenshot    SMQ1.jpg
+    Take Screenshot    043_SMQ1_01.jpg
     Sleep    2
 	Click Element	wnd[0]/tbar[1]/btn[8]
     ${counter}=    Set Variable    1
     FOR    ${index}    IN RANGE    2
         ${scroll}    Scroll    wnd[0]/usr      ${index}
         Log To Console    Selected rows: $${scroll}
-        Take Screenshot    SMQ1_${counter}.jpg
+        Take Screenshot    043_SMQ1_02_${counter}.jpg
         ${counter}=    Evaluate    ${counter} + 1
         Sleep    1
      END

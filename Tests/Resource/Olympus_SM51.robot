@@ -21,10 +21,10 @@ System Logon
 SM51
     Run Transaction    /nSM51
     Sleep    1
-    Take Screenshot    001_SM51.jpg
+    Take Screenshot    000_SM51_01.jpg
     Click Element	wnd[0]/tbar[1]/btn[34]
 	Sleep	2
-    Take Screenshot    SNS_Status_SM51.jpg
+    Take Screenshot    000_SM51_02.jpg
     Click Element	wnd[0]/tbar[0]/btn[3]
 	Sleep	2
     Click Element	wnd[0]/tbar[0]/btn[3]

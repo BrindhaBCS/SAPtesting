@@ -22,6 +22,6 @@ DBCO_Tcodes
 	Run Transaction    /nDBCO
 	Send Vkey    0
     Sleep    3
-    Take Screenshot    001_DBCO.jpg
+    Take Screenshot    060_DBCO_01.jpg
     Sleep    2   
     # Run Transaction    /nex

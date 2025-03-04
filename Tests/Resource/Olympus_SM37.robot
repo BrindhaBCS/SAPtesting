@@ -31,7 +31,7 @@ SM37
     FOR    ${index}    IN RANGE    10
         ${scroll}    Scroll    wnd[0]/usr      ${index}
         Log To Console    Selected rows: $${scroll}
-        Take Screenshot    SM37_${counter}.jpg
+        Take Screenshot    010_SM37_01_${counter}.jpg
         ${counter}=    Evaluate    ${counter} + 1
         Sleep    1
     END

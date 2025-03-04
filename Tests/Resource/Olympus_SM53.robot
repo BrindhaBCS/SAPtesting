@@ -22,5 +22,5 @@ System Logon
 SM53_Tcodes
     Run Transaction     /nsm53
     Sleep    4  
-    Take Screenshot    001_sm53.jpg 
+    Take Screenshot    058_sm53_01.jpg 
     Run Transaction    /nex

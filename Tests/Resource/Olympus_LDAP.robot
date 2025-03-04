@@ -23,17 +23,17 @@ System Logon
 LDAP_Tcodes
     Run Transaction     /nLDAP
     Sleep    2
-    Take Screenshot    LDAP.jpg
+    Take Screenshot    061_LDAP_01.jpg
     Sleep    2
     Click Element	wnd[0]/tbar[1]/btn[18]
 	Sleep	2
-    Take Screenshot    LDAP1.jpg
+    Take Screenshot    061_LDAP_02.jpg
     Sleep    2
     ${counter}=    Set Variable    1
     FOR    ${index}    IN RANGE    2
         ${scroll}    Scroll    wnd[0]/usr      ${index}
         Log To Console    Selected rows: $${scroll}
-        Take Screenshot    LDAP_${counter}.jpg
+        Take Screenshot    061_LDAP_03_${counter}.jpg
         ${counter}=    Evaluate    ${counter} + 1
         Sleep    1
      END

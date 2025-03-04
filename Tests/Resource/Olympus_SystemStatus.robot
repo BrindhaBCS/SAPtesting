@@ -20,18 +20,18 @@ SystemStatus
     Sleep   1 
     Click Element	wnd[0]/mbar/menu[4]/menu[11]
 	Sleep	2
-    Take Screenshot    SystemStatus.jpg
+    Take Screenshot    002_SystemStatus_01.jpg
     Click Element	wnd[1]/tbar[0]/btn[17]
 	Sleep	2
-    Take Screenshot    Kernal.jpg
+    Take Screenshot    002_Kernal_02.jpg
     Close Window	wnd[2]
 	Sleep	2
     Click Element	wnd[1]/usr/btnPRELINFO
 	Sleep	2
-    Take Screenshot    SAP_systemdata.jpg
+    Take Screenshot    002_SAP_systemdata_03.jpg
     Click Element	wnd[2]/usr/tabsVERSDETAILS/tabpPROD_VERS
 	Sleep	2
-    Take Screenshot    installationdetails.jpg
+    Take Screenshot    002_installationdetails_04.jpg
     Close Window	wnd[2]
 	Sleep	2
 	Close Window	wnd[1]

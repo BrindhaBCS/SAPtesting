@@ -36,12 +36,12 @@ SCOT
 	Sleep	2
     Double Click On Tree Item	wnd[0]/shellcont/shell/shellcont[1]/shell	${SPACE*9}12
 	Sleep	2
-    Take Screenshot    SCOT.jpg
+    Take Screenshot    035_SCOT_01.jpg
     Double Click On Tree Item	wnd[0]/shellcont/shell/shellcont[1]/shell	${SPACE*9}22
 	Sleep	2
     Doubleclick Element	wnd[0]/usr/subCONTENT:SAPLSBCS_ADM:0104/subSUB_CONTENT:SAPLSBCS_NODES:0100/cntlSMTP_NODES_COLUMN_TREE_CONT/shellcont/shell	SMTP1	Node
 	Sleep	2
-    Take Screenshot    SCOT_01.jpg
+    Take Screenshot    035_SCOT_02.jpg
     Sleep	2
 	Click Element	wnd[1]/tbar[0]/btn[12]
 	Sleep	2

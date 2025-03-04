@@ -24,10 +24,10 @@ RZ70_Tcodes
 	Sleep	2
 	Click Element	wnd[0]/tbar[0]/btn[0]
 	Sleep	2
-    Take Screenshot    RZ70.jpg
+    Take Screenshot    019_RZ70_01.jpg
 	Click Element	wnd[0]/tbar[0]/btn[3]
 	Sleep	2
-    Take Screenshot    RZ70_1.jpg
+    Take Screenshot    019_RZ70_02.jpg
 	Click Element	wnd[1]/usr/btnBUTTON_1
 	Sleep	2
     Run Transaction    /nex
