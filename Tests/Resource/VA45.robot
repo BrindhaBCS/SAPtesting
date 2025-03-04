@@ -12,7 +12,7 @@ Library    excel_to_json.py
 ${download_path}    C:\\TEMP\\
 ${excel_path}    C:\\TEMP\\rental.xlsx
 ${excel_sheet}    Sheet1 
-
+${selected_month}   December
 *** Keywords *** 
 System Logon
     Start Process    ${symvar('SAP_SERVER')}

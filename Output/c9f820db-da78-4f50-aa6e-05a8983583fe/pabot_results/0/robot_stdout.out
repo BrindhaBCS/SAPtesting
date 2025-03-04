@@ -1,0 +1,50 @@
+==============================================================================
+Tests :: Testing functionality through Robot Framework                        
+==============================================================================
+Tests.Test Create Rental Invoice                                              
+==============================================================================
+Create the rental Invoice                                             Document 90000628 has been saved.
+40000085
+40000086
+**gbStart**invoice_log**splitKeyValue**40000085 Document 90000628 has been saved.**gbEnd**
+40000085
+40000086
+  
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\SAP_Testing\SAPtesting\Tests\Test_Create_Rental_Invoice.robot:8
+    T:  Create the rental Invoice    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\SAP_Testing\SAPtesting\Tests\Test_Create_Rental_Invoice.robot:9
+      Create Rental Invoice and download pdf    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\SAP_Testing\SAPtesting\Tests\Resource\create_rental_invoice.robot:54
+          
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\SAP_Testing\SAPtesting\Tests\Resource\create_rental_invoice.robot:55
+      Rental Invoice    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\SAP_Testing\SAPtesting\Tests\Resource\create_rental_invoice.robot:66
+          
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\SAP_Testing\SAPtesting\Tests\Resource\create_rental_invoice.robot:104
+      '${status}' == 'Please check the log.'    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\SAP_Testing\SAPtesting\Tests\Resource\create_rental_invoice.robot:123
+      Pdf_process    ${invoice_doc}
+      |  ${invoice_doc} = 90000628 (str)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  C:\SAP_Testing\SAPtesting\Tests\Resource\create_rental_invoice.robot:162
+      Input Text    wnd[0]/usr/txtSPOOLNO    ${spool_id}
+      |  ${spool_id} = No numbers found (str)
+______________________________________________________________________________
+| FAIL |
+AttributeError: Property '<unknown>.text' can not be set.
+------------------------------------------------------------------------------
+Tests.Test Create Rental Invoice                                      | FAIL |
+1 test, 0 passed, 1 failed
+==============================================================================
+Tests :: Testing functionality through Robot Framework                | FAIL |
+1 test, 0 passed, 1 failed
+==============================================================================
+Output:  C:\SAP_Testing\SAPtesting\Output\c9f820db-da78-4f50-aa6e-05a8983583fe\pabot_results\0\Output.xml
