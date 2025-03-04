@@ -13,17 +13,14 @@ System Logon
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('Client_Id')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('User_Name')}    
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('User_Password')}            
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{HEINEKEN_PASSWORD}   
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{DL1_PASSWORD}  
     Send Vkey    0
-    Take Screenshot    00a_loginpage.jpg
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
     Sleep   1
-    Take Screenshot    00_multi_logon_handling.jpg
 System Logout
     Run Transaction   /nex
     Sleep    5
-    Take Screenshot    logoutpage.jpg
-    Sleep    10
+    
 
 SCC4
     Run Transaction    scc4
@@ -36,7 +33,7 @@ SCC4
     ${number_value}    Get Substring    ${count_row}    ${start_index}    ${end_index}
     Log    ${number_value}
     FOR    ${index}    IN RANGE    ${number_value}
-        ${current_screenshot}    Set Variable    SCC4${index + 1}.jpg
+        ${current_screenshot}    Set Variable    000_SCC4_01_${index + 1}.jpg
         Set Focus    wnd[0]/usr/tblSAPL0SZZTCTRL_T000/txtT000-MANDT[0,${index}]
         Sleep    1
         ${double_click_status}    Send Vkey    vkey_id=2    window=0

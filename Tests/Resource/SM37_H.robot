@@ -17,17 +17,14 @@ System Logon
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('Client_Id')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('User_Name')}    
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('User_Password')}            
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{HEINEKEN_PASSWORD}  
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{DL1_PASSWORD}  
     Send Vkey    0
-    Take Screenshot    00a_loginpage.jpg
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
     Sleep   1
-    Take Screenshot    00_multi_logon_handling.jpg
 System Logout
     Run Transaction   /nex
     Sleep    5
-    Take Screenshot    logoutpage.jpg
-    Sleep    10
+    
 Check If Can Scroll Further
     # Implement logic to determine if scrolling is still possible.
     ${can_scroll}=    Evaluate    False  # Replace this with actual check logic
@@ -72,7 +69,7 @@ SM37
     ${previous_position}=    Get Scroll Position    wnd[0]/usr  
 
     WHILE    True
-        ${current_screenshot}=    Set Variable    SM37_${scroll_count}.jpg
+        ${current_screenshot}=    Set Variable    005_SM37_01_${scroll_count}.jpg
         Run Keyword And Ignore Error    Scroll    wnd[0]/usr    ${scroll_count}
         
         ${current_position}=    Get Scroll Position    wnd[0]/usr
