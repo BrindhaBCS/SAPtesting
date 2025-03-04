@@ -19,7 +19,7 @@ ${result_filepath}    ${symvar('MM_Cleaned_filepath')}\\${symvar('MM_Cleaned_fil
 
 #${Plant}    1040
 #${Material}    laptop
-${layout}    /mat
+${layout}    mat
 
 *** Keywords ***
 System Logon
