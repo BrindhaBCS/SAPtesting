@@ -31,7 +31,7 @@ BD64_Tcodes
     FOR    ${index}    IN RANGE    2
         ${scroll}    Scroll    wnd[0]/usr      ${index}
         Log To Console    Selected rows: $${scroll}
-        Take Screenshot    054_BD64_01_${counter}.jpg
+        Take Screenshot    054_BD64_02_${counter}.jpg
         ${counter}=    Evaluate    ${counter} + 1
         Sleep    1
      END
