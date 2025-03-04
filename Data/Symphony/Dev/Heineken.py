@@ -1,0 +1,5 @@
+SAP_SERVER = "C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPGUI\\saplogon.exe"
+Client_Id = "001"
+User_Name = "asokan01"
+User_Password = "Replay@123"
+SAP_connection = "DH5"

@@ -3294,4 +3294,39 @@ class SAP_Tcode_Library:
             self.session.findById(tree_id).selectedRows = first_visible_row
         except Exception as e:
             print(f"Error: {e}")
+
+    def read_excel_values(self, file_path, sheet_name=None):
+        """
+        Reads all values from an Excel file.
+
+        :param file_path: Path to the Excel file.
+        :param sheet_name: Specific sheet name to read (default: None, reads all sheets).
+        :return: List of lists if a single sheet, otherwise a dictionary of lists of lists.
+        :raises FileNotFoundError: If the file does not exist.
+        :raises ValueError: If the sheet name does not exist in the file.
+        """
+        if not os.path.isfile(file_path):
+            raise FileNotFoundError(f"File not found: {file_path}")
+
+        try:
+            if sheet_name:
+                df = pd.read_excel(file_path, sheet_name=sheet_name, engine="openpyxl")
+                return df.values.tolist()  # Returns data as a list of lists
+            else:
+                sheets = pd.read_excel(file_path, sheet_name=None, engine="openpyxl")
+                return {sheet: data.values.tolist() for sheet, data in sheets.items()}
+        except ValueError as e:
+            raise ValueError(f"Error reading Excel file: {e}")
+        
+    def clean_list_excel(self, data):
+        cleaned_data = []
+        for row in data:
+            if isinstance(row, list):  # Ensure it's a list
+                cleaned_row = [
+                    str(item).strip()  # Convert to string before strip
+                    for item in row if pd.notna(item) and str(item).strip()
+                ]
+                if cleaned_row:  # Avoid adding empty lists
+                    cleaned_data.append(cleaned_row)
+        return cleaned_data
     
