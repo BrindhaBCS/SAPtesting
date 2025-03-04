@@ -3294,3 +3294,4 @@ class SAP_Tcode_Library:
             self.session.findById(tree_id).selectedRows = first_visible_row
         except Exception as e:
             print(f"Error: {e}")
+    
