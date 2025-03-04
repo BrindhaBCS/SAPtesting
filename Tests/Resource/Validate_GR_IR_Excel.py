@@ -154,3 +154,5 @@ count_by_plant = pd.concat([count_by_plant, grand_total], ignore_index=True)
 # Save the result to a new Excel file
 output_file = "C:\\tmp\\Partial_Invoice_Output.xlsx"
 count_by_plant.to_excel(output_file, index=False)
+
+print("Script executed successfully")
