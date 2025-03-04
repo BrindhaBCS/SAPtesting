@@ -3,6 +3,7 @@ Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    String
+Library    Merger.py
 
 *** Keywords ***
 System Logon
@@ -82,4 +83,5 @@ SSF Logon Ticket
     Sleep    2
     Take Screenshot    042_SSFASSO2_12.jpg
     Run Transaction    /nex
-  
+    Sleep    5
+    Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}

@@ -1,7 +1,8 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
-# Library    Merger.py
+Library    Merger.py
+
 *** Keywords ***
 System Logon
     Start Process     ${symvar('Olympus_SAP_SERVER')}    
@@ -31,3 +32,4 @@ RZ70_Tcodes
 	Click Element	wnd[1]/usr/btnBUTTON_1
 	Sleep	2
     Run Transaction    /nex
+    Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}

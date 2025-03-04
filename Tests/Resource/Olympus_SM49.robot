@@ -1,9 +1,10 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
-# Library    Merger.py
+Library    Merger.py
 *** Variables ***
 ${TREE_PATH}    wnd[0]/usr/cntlEXT_COM/shellcont/shell
+
 *** Keywords ***
 SM49
     # Connect To Session
@@ -38,4 +39,5 @@ SM49
     END
     Click Element	wnd[0]/tbar[0]/btn[3]
     Run Transaction    /nex
-
+    Sleep    5
+    Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}

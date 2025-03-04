@@ -1,7 +1,8 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
-# Library    Merger.py
+Library    Merger.py
+
 *** Keywords ***
 SM20
     Start Process     ${symvar('Olympus_SAP_SERVER')}    
@@ -32,3 +33,5 @@ SM20
     Take Screenshot    025_SM20_04.jpg
     Click Element    wnd[0]/tbar[0]/btn[3]
     Run Transaction    /nex
+    Sleep    5
+    Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}

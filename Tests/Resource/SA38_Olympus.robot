@@ -1,10 +1,9 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
-
+Library    Merger.py
 *** Variables ***
 ${Olympus_filename}    ${symvar('Olympus_filename')}
-   
 
 ${ABB_Olympus_SAP_SERVER}    ${symvar('ABB_Olympus_SAP_SERVER')}
 ${ABB_Olympus_SAP_connection}    ${symvar('ABB_Olympus_SAP_connection')}
@@ -62,4 +61,5 @@ SA38
 
 System Logout
     Run Transaction    /nex
-    Sleep    1
+    Sleep    5
+    Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}

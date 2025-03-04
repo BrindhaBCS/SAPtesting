@@ -1,8 +1,9 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
-
+Library    Merger.py
 *** Variables ***
+
 ${Olympus_SAP_SERVER}    ${symvar('Olympus_SAP_SERVER')}
 ${Olympus_SAP_connection}    ${symvar('Olympus_SAP_connection')}
 
@@ -115,6 +116,8 @@ Executing Olympus File Syntax
 System Logout
     Run Transaction    /nex
     Sleep    1
+    Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}
+    Images To Pdf    image_folder=${symvar('target_directory')}    output_pdf=${symvar('target_directory')}//Olympus_Tcode.pdf
 
 Scroll SAP Table
     [Arguments]    ${table_id}    ${row_positions}    ${file_name_ss}

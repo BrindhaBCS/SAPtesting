@@ -1,6 +1,8 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
+Library    Merger.py
+
 *** Keywords ***
 STMS
     Start Process     ${symvar('Olympus_SAP_SERVER')}    
@@ -74,10 +76,16 @@ Connection_test
     FOR    ${index}    IN RANGE    10
         ${scroll}    Scroll    wnd[0]/usr   ${index}
         Log To Console    Selected rows: $${scroll}
+<<<<<<< HEAD
         Take Screenshot    017_SM59_010_${counter}.jpg
+=======
+        Take Screenshot    STMS_${counter}.jpg
+>>>>>>> cf80e6c934758f15a223fadadbb4238028521de6
         ${counter}=    Evaluate    ${counter} + 1
         Sleep    1
     END
     Click Element	wnd[0]/tbar[0]/btn[3]
 	Sleep	2
     Run Transaction    /nex
+    Sleep    5
+    Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}

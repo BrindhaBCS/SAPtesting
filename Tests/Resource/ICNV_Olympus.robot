@@ -1,8 +1,9 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
-
+Library    Merger.py
 *** Variables ***
+
 ${Olympus_SAP_SERVER}    ${symvar('Olympus_SAP_SERVER')}
 ${Olympus_SAP_connection}    ${symvar('Olympus_SAP_connection')}
 
@@ -30,3 +31,4 @@ ICNV
 System Logout
     Run Transaction    /nex
     Sleep    1
+    Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}

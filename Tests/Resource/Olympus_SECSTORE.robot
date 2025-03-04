@@ -1,7 +1,8 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
-# Library    Merger.py
+Library    Merger.py
+
 *** Keywords ***
 SECSTORE
     Start Process     ${symvar('Olympus_SAP_SERVER')}    
@@ -29,3 +30,5 @@ SECSTORE
     Take Screenshot    022_SECSTORE_03.jpg
     Click Element    wnd[0]/tbar[0]/btn[3]
     Run Transaction    /nex
+    Sleep    2
+    Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}

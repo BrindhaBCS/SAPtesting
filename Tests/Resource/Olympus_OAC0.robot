@@ -1,7 +1,7 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
-# Library    Merger.py
+Library    Merger.py
 
 *** Variables ***
 ${TREE_PATH}    wnd[0]/usr/tblSAPLSCMS_CREPC_SREP 
@@ -38,4 +38,4 @@ OAC0_Tcodes
         Sleep    1   
     END
      Run Transaction    /nex
-
+    Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}

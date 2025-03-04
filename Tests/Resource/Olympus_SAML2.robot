@@ -1,7 +1,8 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
-# Library    Merger.py
+Library    Merger.py
+
 *** Keywords ***
 SAML2
     Start Process     ${symvar('ABB_Olympus_SAP_SERVER')}    
@@ -19,5 +20,11 @@ SAML2
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
     Sleep   1
     Run Transaction    SAML2
+<<<<<<< HEAD
     Take Screenshot    040_Saml2_01.jpg
     Run Transaction    /nex
+=======
+    Take Screenshot    Saml2.jpg
+    Run Transaction    /nex
+    Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}
+>>>>>>> cf80e6c934758f15a223fadadbb4238028521de6

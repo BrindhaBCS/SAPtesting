@@ -1,7 +1,8 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
-# Library    Merger.py
+Library    Merger.py
+
 *** Keywords ***
 System Logon
     Start Process     ${symvar('Olympus_SAP_SERVER')}    
@@ -25,3 +26,4 @@ RSADMIN
     Take Screenshot    063_RSADMIN_01.jpg
     Sleep    4   
     Run Transaction    /nex
+    Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}

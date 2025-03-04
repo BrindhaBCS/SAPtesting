@@ -1,7 +1,7 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
-# Library    Merger.py
+Library    Merger.py
 *** Variables ***
 ${TREE_PATH}    wnd[0]/usr/cntlEXT_COM/shellcont/shell  
 
@@ -37,3 +37,5 @@ SM69_Tcodes
         Sleep    1   
     END
     Run Transaction    /nex
+    Sleep    5
+    Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}

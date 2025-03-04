@@ -1,6 +1,7 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py 
+Library    Merger.py
 
 *** Keywords ***
 System Logon
@@ -29,5 +30,7 @@ SMQR_Tcodes
         Take Screenshot    046_SMQR_01_${counter}.jpg
         ${counter}=    Evaluate    ${counter} + 1
         Sleep    1
-     END
-     Run Transaction    /nex
+    END
+    Run Transaction    /nex
+    Sleep    5
+    Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}

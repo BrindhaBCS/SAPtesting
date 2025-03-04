@@ -8,6 +8,7 @@ ABB_Olympus_SAP_SERVER = "$ABB_Olympus_SAP_SERVER"
 ABB_Olympus_SAP_connection = "$ABB_Olympus_SAP_connection"
 ABB_Olympus_Client_Id = "$ABB_Olympus_Client_Id"
 ABB_Olympus_User_Name = "$ABB_Olympus_User_Name"
+target_directory = "$target_directory"
 
 
 # Olympus_SAP_SERVER = "C:\\Program Files (x86)\\SAP\\FrontEnd\\SAPgui\\saplogon.exe"

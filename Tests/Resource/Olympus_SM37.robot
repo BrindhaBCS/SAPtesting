@@ -1,9 +1,10 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
-# Library    Merger.py
+Library    Merger.py
 *** Variables ***
 ${TREE_PATH}    wnd[0]/usr
+
 *** Keywords ***
 SM37
     Start Process     ${symvar('Olympus_SAP_SERVER')}    
@@ -40,3 +41,5 @@ SM37
     Click Element	wnd[0]/tbar[0]/btn[3]
 	Sleep	2
     Run Transaction    /nex
+    Sleep    5
+    Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}
