@@ -181,7 +181,7 @@ Perform Contacted Actions
     Input Text    ${TEXTAREA_XPATH}    ${symvar('Call_Status_Message')}
     Sleep    2
     Click Element    xpath://button[normalize-space(text())='Save']
-    Log To Console    **gbStart**copilot_CallLog_status_R**splitKeyValue**${symvar('Call_Status_Message')} added successfully to ${symvar('lastname')}**gbEnd**
+    Log To Console    **gbStart**copilot_status_R_CallLog**splitKeyValue**${symvar('Call_Status_Message')} added successfully to ${symvar('lastname')}**gbEnd**
     Sleep    2
 Handle Open Lead
     # Click Element    ${EDIT_BUTTON_XPATH}
