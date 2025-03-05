@@ -25,17 +25,14 @@ System Logon
  
 OAC0_Tcodes
 	Run Transaction    /nOAC0
-	Sleep	2
-    ${row_count}    Get Row Count    ${TREE_PATH}
-    Log    Total Row Count: ${row_count}
-    ${counter}=    Set Variable    2
-    FOR    ${i}    IN RANGE    0    ${row_count + 1}    18
-        Log    Processing row ${i}
-        ${selected_rows}    Selected_rows    ${TREE_PATH}    ${i}
-        Log To Console    Selected rows: ${selected_rows}
-        Take Screenshot    020_OAC0_01_${counter}.jpg
+    Sleep   2
+    ${counter}=    Set Variable    1
+    FOR    ${index}    IN RANGE    50
+        ${scroll}    Scroll    wnd[0]/usr/tblSAPLSCMS_CREPC_SREP      ${index}
+        Log To Console    Selected rows: $${scroll}
+        Take Screenshot    020_OACO_01_${counter}.jpg
         ${counter}=    Evaluate    ${counter} + 1
-        Sleep    1   
-    END
+        Sleep    1
+   END
      Run Transaction    /nex
     Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}
