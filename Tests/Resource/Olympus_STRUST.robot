@@ -26,62 +26,71 @@ System Logon
 Transaction STRUST
     Run Transaction     /nstrust
     Send Vkey    0
-    Take Screenshot    029_PSE.jpg
+    Take Screenshot    042_PSE_01.jpg
     Sleep    2
     
     Scroll Pagedown    wnd[0]/usr/btnCERTDETAIL      
     Sleep   2
-    Take Screenshot    030_PSE.jpg
+    Take Screenshot    042_PSE_02.jpg
     Sleep    2
 
-SSL server standard        
+System pse
+    Expand Node	wnd[0]/shellcont/shell	PROG<SYST>
+	Sleep	2
+	Select Top Node	wnd[0]/shellcont/shell	PROG<SYST>
+	Sleep	2
+    Take Screenshot    042_PSE_03.jpg
+    Sleep    2
+	Double Click On Tree Item	wnd[0]/shellcont/shell	PROG<SYST>1
+	Sleep	2
+    Take Screenshot    042_PSE_04.jpg
+    Sleep    2
+
+SSL server standard 
+    Expand Node	wnd[0]/shellcont/shell	SSLSDFAULT
+	Sleep	2       
     Double Click On Tree Item    wnd[0]/shellcont/shell    SSLSDFAULT    
     Sleep    2
-    Take Screenshot    031_SSLSDFAULT.jpg
+    Take Screenshot    042_SSLSDFAULT_05.jpg
     Sleep    2
-
     Scroll Pagedown    wnd[0]/usr/btnCERTDETAIL      
     Sleep   2
-    Take Screenshot    032_SSLSDFAULT.jpg
+    Take Screenshot    042_SSLSDFAULT_06.jpg
     Sleep    2
 
 SSL client SSL Client (Anonymous)
+    Expand Node    wnd[0]/shellcont/shell    SSLCANONYM
+    Sleep    2
     Double Click On Tree Item    wnd[0]/shellcont/shell    SSLCANONYM    
     Sleep    2
-    Take Screenshot    033_SSLCANONYM.jpg
+    Take Screenshot    042_SSLCANONYM_07.jpg
     Sleep    2
     Scroll Pagedown    wnd[0]/usr/btnCERTDETAIL
     Sleep    2
-    Take Screenshot    034_SSLCANONYM.jpg
+    Take Screenshot    042_SSLCANONYM_08.jpg
     Sleep    2
 
 SSL client SSL Client (Standard)
+    Expand Node    wnd[0]/shellcont/shell    SSLCDFAULT
+    Sleep    2
     Double Click On Tree Item    wnd[0]/shellcont/shell    SSLCDFAULT    
     Sleep    2
-    Take Screenshot    035_SSLCDFAULT.jpg
+    Take Screenshot    042_SSLCDFAULT_09.jpg
     Sleep    2
     Scroll Pagedown    wnd[0]/usr/btnCERTDETAIL
     Sleep    2
-    Take Screenshot    036_SSLCDFAULT.jpg
+    Take Screenshot    042_SSLCDFAULT_10.jpg
     Sleep    2
 
-WS Security Other System Encryption
-    Double Click On Tree Item    wnd[0]/shellcont/shell    WSSEWSSCRT    
-    Sleep    2
-    Take Screenshot    037_WSSEWSSCRT.jpg
-    Sleep    2
-    Scroll Pagedown    wnd[0]/usr/btnCERTDETAIL
-    Sleep    2
-    Take Screenshot    038_WSSEWSSCRT.jpg
-    Sleep    2
+
 SSF Logon Ticket
     Double Click On Tree Item    wnd[0]/shellcont/shell    SSFASSO2    
     Sleep    2
-    Take Screenshot    039_SSFASSO2.jpg
+    Take Screenshot    042_SSFASSO2_11.jpg
     Sleep    2
     Scroll Pagedown    wnd[0]/usr/btnCERTDETAIL
     Sleep    2
-    Take Screenshot    040_SSFASSO2.jpg
+    Take Screenshot    042_SSFASSO2_11.jpg
     Run Transaction    /nex
     Sleep    5
     Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}

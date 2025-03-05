@@ -28,11 +28,11 @@ SM37
 	Input Text	wnd[0]/usr/ctxtBTCH2170-TO_DATE	${EMPTY}
     Click Element	wnd[0]/tbar[1]/btn[8]
 	Sleep	2
-  ${counter}=    Set Variable    1
-    FOR    ${index}    IN RANGE    10
-        ${scroll}    Scroll    wnd[0]/usr      ${index}
+    ${counter}=    Set Variable    1
+    FOR    ${index}    IN RANGE    1    81    10
+        ${scroll}    Scroll    wnd[0]/usr    ${index}
         Log To Console    Selected rows: $${scroll}
-        Take Screenshot    SM37_${counter}.jpg
+        Take Screenshot    010_SM37_01_${counter}.jpg
         ${counter}=    Evaluate    ${counter} + 1
         Sleep    1
     END

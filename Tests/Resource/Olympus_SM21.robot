@@ -23,14 +23,16 @@ System Logon
 SM21_Tcodes
     Run Transaction    /nSM21
     Sleep    2
-     ${counter}=    Set Variable    1
-    FOR    ${index}    IN RANGE    2
-        ${scroll}    Scroll    wnd[0]/usr      ${index}
-        Log To Console    Selected rows: $${scroll}
-        Take Screenshot    SM21_${counter}.jpg
-        ${counter}=    Evaluate    ${counter} + 1
-        Sleep    1
-   END
-   Run Transaction    /nex    
+    Input Text	wnd[0]/usr/ctxtDATE_FR	${EMPTY}
+	Sleep	2
+    Input Text	wnd[0]/usr/txtMANDTOPT-LOW	*
+	Sleep	2
+    Click Element	wnd[0]/tbar[1]/btn[8]
+	Sleep	2
+    Take Screenshot    048_SM21_01.jpg
+    First Visible Row	wnd[0]/usr/cntlCONTAINER_0100/shellcont/shell/shellcont[0]/shell	247
+	Sleep	2
+    Take Screenshot    048_SM21_02.jpg 
+    run Transaction    /nex    
    Sleep    5
    Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}
