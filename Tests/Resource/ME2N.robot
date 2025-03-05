@@ -88,3 +88,18 @@ ME2N
     Sleep   5
     Click Element   wnd[1]/tbar[0]/btn[0]
     Sleep   2
+
+    # ## File download as text with tab
+    # Click Element   wnd[0]/mbar/menu[0]/menu[3]/menu[2]
+    # Select Radio Button     wnd[1]/usr/subSUBSCREEN_STEPLOOP:SAPLSPO5:0150/sub:SAPLSPO5:0150/radSPOPLI-SELFLAG[1,0]
+    # Click Element   wnd[1]/tbar[0]/btn[0]
+    # Input Text      wnd[1]/usr/ctxtDY_FILENAME      ${EMPTY}
+    # Sleep   5
+    # Input Text      wnd[1]/usr/ctxtDY_FILENAME      ${symvar('me2n_file')}
+    # Sleep   5
+    # Input Text    wnd[1]/usr/ctxtDY_PATH    ${EMPTY}
+    # Sleep   5
+    # Input Text      wnd[1]/usr/ctxtDY_PATH      ${symvar('download_path')}
+    # Sleep   5
+    # Click Element   wnd[1]/tbar[0]/btn[0]
+    # Sleep   2

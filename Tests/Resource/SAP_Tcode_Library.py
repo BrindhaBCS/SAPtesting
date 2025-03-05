@@ -1814,4 +1814,25 @@ class SAP_Tcode_Library:
     #         file.writelines(f"{item}\n" for item in unique_values)
     #     print("Saved successfully!")
 
+    def get_job_status(self, lable_id, area_id):
+        user_area = self.session.findById(lable_id)
+        item_count = user_area.Children.Count
+        found_elements = []
+        for i in range(13, item_count):
+            full_area_id = f"{area_id},{i}]"
+            # print(f"Trying to access: {full_area_id}")
+            try:
+                element = self.session.findById(full_area_id)
+                if element.Text.strip() != "Finished":
+                    found_elements.append(element.Text)
+                    print(f"Job is not in Finished status")
+                else:
+                    print("Job is Finished")
+            
+            except Exception as e:
+                print("Exiting the loop due to missing element.")
+                break
+        return found_elements
+
+
     

@@ -76,7 +76,51 @@ def get_column_excel_to_text_create(session, excel_path, txt_path, column_name, 
         except Exception as e:
             print(f"An error occurred: {e}")
 
-   
+# def get_lable_value(session, lable_id, area_id):
+#         user_area = session.findById(lable_id)
+#         item_count = user_area.Children.Count
+#         print(item_count)
+#         found_elements = []
+#         for i in range(13, item_count):
+#             full_area_id = f"{area_id},{i}]"
+#             print(full_area_id)
+#             element = session.findById(full_area_id)
+#             text = element.Text
+#             print(text)
+#             if element.Text.strip() != "Finished":
+#                 found_elements.append(element.Text)
+#                 text = element.Text
+#                 print(f"Job is not in Finished status")
+#                 # return("search text is not found")
+#         else:
+#             print("search text is not found")
+#             # return("search text is not found")
+#         print(found_elements)
+#         return found_elements
+ 
+def get_lable_value(session, lable_id, area_id):
+    user_area = session.findById(lable_id)
+    item_count = user_area.Children.Count
+    found_elements = []
+    for i in range(13, item_count):
+        full_area_id = f"{area_id},{i}]"
+        # print(f"Trying to access: {full_area_id}")
+        try:
+            element = session.findById(full_area_id)
+            if element.Text.strip() != "Finished":
+                found_elements.append(element.Text)
+                print(f"Job is not in Finished status")
+            else:
+                print("Job is Finished")
+        
+        except Exception as e:
+            print("Exiting the loop due to missing element.")
+            break
+    # if not found_elements:
+    #     print("All the jobs in finished status")
+    # else:
+    #     print(f"Found elements: {found_elements}")
+    return found_elements
 
 
 def main():
@@ -99,11 +143,14 @@ def main():
     # time.sleep(10)
     # get_sap_table_value(session, table_id1, button_id, search_term)
     # select_form_header(session, table_id, row, column)
-    excel_path = "C:\\tmp\\GRIR_Requirement.xlsx"
-    txt_path = "C:\\tmp\\Purchase_DocumentOnly.txt"
-    column_name = "Purchasing Document"
-    sheet_name = "RE"
-    get_column_excel_to_text_create(excel_path, txt_path, column_name, sheet_name)
+    # excel_path = "C:\\tmp\\GRIR_Requirement.xlsx"
+    # txt_path = "C:\\tmp\\Purchase_DocumentOnly.txt"
+    # column_name = "Purchasing Document"
+    # sheet_name = "RE"
+    # get_column_excel_to_text_create(excel_path, txt_path, column_name, sheet_name)
+    lable_id = "wnd[0]/usr"
+    area_id = "wnd[0]/usr/lbl[64"
+    get_lable_value(session, lable_id, area_id)
      
 if __name__ == "__main__":
     main()
