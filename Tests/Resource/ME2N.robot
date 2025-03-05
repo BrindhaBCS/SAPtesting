@@ -12,8 +12,8 @@ System Logon
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('GR_IR_Client')}
     Sleep    1
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('GR_IR_User')}
-    Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('GR_IR_PASSWORD')}
-    # Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{GR_IR_PASSWORD}
+    # Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('GR_IR_PASSWORD')}
+    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{GR_IR_PASSWORD}
     Send Vkey    0   
     ${logon_status}    Multiple logon Handling     wnd[1]   wnd[1]/usr/radMULTI_LOGON_OPT2
     IF    '${logon_status}' == "Multiple logon found. Please terminate all the logon & proceed"
