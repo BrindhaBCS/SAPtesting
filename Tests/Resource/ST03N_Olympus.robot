@@ -26,7 +26,14 @@ System Logon
 ST03N    
     Run Transaction    /nST03N  
     Sleep   2
-   
+    Run Transaction    /nST03N  
+    Sleep   2
+	Expand Node	wnd[0]/shellcont/shell/shellcont[1]/shell	B.999
+	Sleep	2
+	Select Top Node	wnd[0]/shellcont/shell/shellcont[1]/shell	B
+	Sleep	2
+	Double Click On Tree Item	wnd[0]/shellcont/shell/shellcont[1]/shell	B.999
+	Sleep	2
     Take Screenshot    032_ST03N_01.jpg
     Sleep    1   
 System Logout
