@@ -12,8 +12,8 @@ System Logon
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('GR_IR_Client')}
     Sleep    1
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('GR_IR_User')}
-    # Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('GR_IR_PASSWORD')}
-    Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{GR_IR_PASSWORD}
+    Input Password    wnd[0]/usr/pwdRSYST-BCODE    ${symvar('GR_IR_PASSWORD')}
+    # Input Password    wnd[0]/usr/pwdRSYST-BCODE    %{GR_IR_PASSWORD}
     Send Vkey    0   
     ${logon_status}    Multiple logon Handling     wnd[1]   wnd[1]/usr/radMULTI_LOGON_OPT2
     IF    '${logon_status}' == "Multiple logon found. Please terminate all the logon & proceed"
@@ -56,7 +56,9 @@ ME2N
     FOR    ${lp}    IN RANGE    0    ${rows}
         Click Element   wnd[1]/usr/tabsG_TS_ALV/tabpALV_M_R1/ssubSUB_CONFIGURATION:SAPLSALV_CUL_COLUMN_SELECTION:0620/btnAPP_FL_SING
         ${row}      Get Row Count   wnd[1]/usr/tabsG_TS_ALV/tabpALV_M_R1/ssubSUB_CONFIGURATION:SAPLSALV_CUL_COLUMN_SELECTION:0620/cntlCONTAINER2_LAYO/shellcont/shell
-        Exit For Loop If    '${row}' == '0'
+        IF    '${row}' == '0'
+            Exit For Loop
+        END
         ${rows}      Evaluate    ${row} + 1
     END
     FOR    ${i}    IN RANGE    0    ${count}
@@ -66,7 +68,7 @@ ME2N
         Log To Console      ${row1}
         FOR    ${loop}    IN RANGE    0    ${row1}
             ${layout}    Get Sap Table Value    table_id=wnd[1]/usr/tabsG_TS_ALV/tabpALV_M_R1/ssubSUB_CONFIGURATION:SAPLSALV_CUL_COLUMN_SELECTION:0620/cntlCONTAINER1_LAYO/shellcont/shell    row_num=${loop}    column_id=SELTEXT
-            Log To Console      ${layout}
+            # Log To Console      ${layout}
             IF    '${value}' == '${layout}'
                 Click Element   wnd[1]/usr/tabsG_TS_ALV/tabpALV_M_R1/ssubSUB_CONFIGURATION:SAPLSALV_CUL_COLUMN_SELECTION:0620/btnAPP_WL_SING
             END
