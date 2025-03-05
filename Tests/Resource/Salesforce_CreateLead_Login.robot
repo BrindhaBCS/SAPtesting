@@ -162,7 +162,7 @@ Create_Lead_login
         Log To Console    **gbStart**copilot_CreateLead_status_O**splitKeyValue**All validations passed! Clicking Submit...**gbEnd**
         Click Element    xpath://button[@name='SaveEdit']
         Sleep    2
-        Log To Console    **gbStart**copilot_status_P_CreateLead**splitKeyValue**Lead for ${symvar('lastname')} created successfully...**gbEnd**
+        Log To Console    **gbStart**copilot_status_P**splitKeyValue**Lead for ${symvar('lastname')} created successfully...**gbEnd**
         Sleep    10
         ${lead_status}    Get Text    ${LEAD_STATUS_XPATH}
         Log    Lead Status: ${lead_status}
