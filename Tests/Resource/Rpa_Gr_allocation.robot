@@ -29,28 +29,24 @@ GR_Allocation
         Click Element    element_id=wnd[0]/usr/subSUB_COMPLETE_OIP:/SCWM/SAPLUI_DLV_PRD:2000/subSUB_SEARCH_VALUE:/SCWM/SAPLUI_DLV_PRD:2013/btnCMD_GO
         Click Toolbar Button    table_id=wnd[0]/usr/subSUB_COMPLETE_OIP:/SCWM/SAPLUI_DLV_PRD:2000/subSUB_OIP_DATA_AREA:/SCWM/SAPLUI_DLV_PRD:2210/cntlCONTAINER_TB_OIP_1/shellcont/shell    button_id=OIP_POST_GM
         Sleep    3
-        ${status}    Get Value    element_id=wnd[0]/sbar/pane[0]
-        ${inbound}    Set Variable    ${symvar('Inbound_delivery')[${i}]}
-        IF    '${status}' == 'Inbound Delivery ${inbound} changed'
-            Sleep    1
-            Run Keyword And Ignore Error    Click Element    element_id=wnd[1]/tbar[0]/btn[0]
-            Click Element    element_id=wnd[0]/usr/subSUB_COMPLETE_ODP1:/SCWM/SAPLUI_DLV_PRD:3000/tabsTABSTRIP_ODP1/tabpOK_ODP1_TAB9
-            ${a}    Get Sap Table Value    table_id=wnd[0]/usr/subSUB_COMPLETE_ODP1:/SCWM/SAPLUI_DLV_PRD:3000/tabsTABSTRIP_ODP1/tabpOK_ODP1_TAB9/ssubSUB_ODP1_TAB9:/SCWM/SAPLUI_DLV_CORE:3290/ssubSUB_ODP1_9_CONTENT:/SCWM/SAPLUI_DLV_CORE:3291/cntlCONTAINER_ALV_ODP1_9/shellcont/shell    row_num=7    column_id=STATUS_TYPE_TEXT
-            ${b}    Get Sap Table Value    table_id=wnd[0]/usr/subSUB_COMPLETE_ODP1:/SCWM/SAPLUI_DLV_PRD:3000/tabsTABSTRIP_ODP1/tabpOK_ODP1_TAB9/ssubSUB_ODP1_TAB9:/SCWM/SAPLUI_DLV_CORE:3290/ssubSUB_ODP1_9_CONTENT:/SCWM/SAPLUI_DLV_CORE:3291/cntlCONTAINER_ALV_ODP1_9/shellcont/shell    row_num=7    column_id=STATUS_VALUE
-            ${c}    Get Sap Table Value    table_id=wnd[0]/usr/subSUB_COMPLETE_ODP1:/SCWM/SAPLUI_DLV_PRD:3000/tabsTABSTRIP_ODP1/tabpOK_ODP1_TAB9/ssubSUB_ODP1_TAB9:/SCWM/SAPLUI_DLV_CORE:3290/ssubSUB_ODP1_9_CONTENT:/SCWM/SAPLUI_DLV_CORE:3291/cntlCONTAINER_ALV_ODP1_9/shellcont/shell    row_num=7    column_id=STATUS_VALUE_TEXT
-            IF    '${a}' == 'Goods Receipt'
-                IF    '${b}' == '9'
-                    IF    '${c}' == 'Completed'
-                        Log To Console    message=**gbStart**GR_postingstatus**splitKeyValue**GR Postingcompleted**splitKeyValue**object**gbEnd**
-                        Continue For Loop
-                    ELSE
-                        Exit For Loop
-                    END
+        Run Keyword And Ignore Error    Click Element    element_id=wnd[1]/tbar[0]/btn[0]
+        Click Element    element_id=wnd[0]/usr/subSUB_COMPLETE_ODP1:/SCWM/SAPLUI_DLV_PRD:3000/tabsTABSTRIP_ODP1/tabpOK_ODP1_TAB9
+        ${a}    Get Sap Table Value    table_id=wnd[0]/usr/subSUB_COMPLETE_ODP1:/SCWM/SAPLUI_DLV_PRD:3000/tabsTABSTRIP_ODP1/tabpOK_ODP1_TAB9/ssubSUB_ODP1_TAB9:/SCWM/SAPLUI_DLV_CORE:3290/ssubSUB_ODP1_9_CONTENT:/SCWM/SAPLUI_DLV_CORE:3291/cntlCONTAINER_ALV_ODP1_9/shellcont/shell    row_num=7    column_id=STATUS_TYPE_TEXT
+        ${b}    Get Sap Table Value    table_id=wnd[0]/usr/subSUB_COMPLETE_ODP1:/SCWM/SAPLUI_DLV_PRD:3000/tabsTABSTRIP_ODP1/tabpOK_ODP1_TAB9/ssubSUB_ODP1_TAB9:/SCWM/SAPLUI_DLV_CORE:3290/ssubSUB_ODP1_9_CONTENT:/SCWM/SAPLUI_DLV_CORE:3291/cntlCONTAINER_ALV_ODP1_9/shellcont/shell    row_num=7    column_id=STATUS_VALUE
+        ${c}    Get Sap Table Value    table_id=wnd[0]/usr/subSUB_COMPLETE_ODP1:/SCWM/SAPLUI_DLV_PRD:3000/tabsTABSTRIP_ODP1/tabpOK_ODP1_TAB9/ssubSUB_ODP1_TAB9:/SCWM/SAPLUI_DLV_CORE:3290/ssubSUB_ODP1_9_CONTENT:/SCWM/SAPLUI_DLV_CORE:3291/cntlCONTAINER_ALV_ODP1_9/shellcont/shell    row_num=7    column_id=STATUS_VALUE_TEXT
+        IF    '${a}' == 'Goods Receipt'
+            IF    '${b}' == '9'
+                IF    '${c}' == 'Completed'
+                    Log To Console    message=**gbStart**GR_postingstatus**splitKeyValue**GR Postingcompleted**splitKeyValue**object**gbEnd**
+                    Continue For Loop
                 ELSE
                     Exit For Loop
                 END
             ELSE
                 Exit For Loop
             END
+        ELSE
+            Exit For Loop
         END
+
     END
