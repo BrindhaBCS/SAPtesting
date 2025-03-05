@@ -2,8 +2,8 @@ import pandas as pd
 from datetime import datetime
  
 # Load the Excel file
-file1_path = "C:\\tmp\\GR.XLSX"  
-file2_path = "C:\\tmp\\ME2N.XLSX"  
+file1_path = "C:\\tmp\\tmp\\GR.XLSX"  
+file2_path = "C:\\tmp\\tmp\\ME2N.XLSX"  
  
 # Read Excel files
 df_gr = pd.read_excel(file1_path)
@@ -44,20 +44,20 @@ print("Merged GR file and ME2N file ON Purchasing Document Number\n")
 #df_sorted = df_merged.sort_values(by="Plnt")
  
 # Save cleaned, merged, and sorted file
-output_file = "C:\\tmp\\Merged_GR_IR.xlsx"
+output_file = "C:\\tmp\\tmp\\Merged_GR_IR.xlsx"
 #df_sorted.to_excel(output_file, index=False)
 df_merged.to_excel(output_file, index=False)
  
 # Generation of Open Invoice documents Report
  
-file_clean_path = "C:\\tmp\\Merged_GR_IR.xlsx"  
+file_clean_path = "C:\\tmp\\tmp\\Merged_GR_IR.xlsx"  
  
 # Read the cleaned Excel file
 df_open_gr = pd.read_excel(file_clean_path)
  
 # Generation of No Invoice Report comparing to PO Type Threshold days
 print("Generation of Open Invoice Report started\n")
-po_type_path = "C:\\tmp\\PO_Type.xlsx"
+po_type_path = "C:\\tmp\\tmp\\PO_Type.xlsx"
 df_po_type = pd.read_excel(po_type_path)
  
 # Strip column names to avoid mismatches due to spaces
@@ -88,7 +88,7 @@ print("Calculated the days difference for invoice processing(Current date - Post
 df_merged = df_open_invoice.merge(df_po_type, on="PO Type", how="left")
  
 # Save the file with the added Days Difference column for reference
-df_merged.to_excel("C:\\tmp\\No_Invoice_Input_With_Days_Difference.xlsx", index=False)
+df_merged.to_excel("C:\\tmp\\tmp\\No_Invoice_Input_With_Days_Difference.xlsx", index=False)
  
 # Filter records where Days Difference > Analysis
 df_filtered = df_merged[df_merged["Days Difference"] > df_merged["Analysis"]]
@@ -118,13 +118,13 @@ print("Calculated the grand total of local currency amount\n")
 df_report = pd.concat([df_report, grand_total], ignore_index=True)
  
 # Save the final No Invoice Report
-output_file = "C:\\tmp\\Open_Invoice_Report.xlsx"
+output_file = "C:\\tmp\\tmp\\Open_Invoice_Report.xlsx"
 df_report.to_excel(output_file, index=False)
 print("Generation of Open Invoice Report completed\n")
  
 # Generation of Partial Invoice documents Report
  
-file_clean_path = "C:\\tmp\\Merged_GR_IR.xlsx"  
+file_clean_path = "C:\\tmp\\tmp\\Merged_GR_IR.xlsx"  
  
 # Read the cleaned Excel file
 df_gr = pd.read_excel(file_clean_path)
@@ -132,7 +132,7 @@ df_gr = pd.read_excel(file_clean_path)
 print("Generation of Partial Invoice Report started\n")
  
 # Generation of No Invoice Report comparing to PO Type Threshold days
-po_type_path = "C:\\tmp\\PO_Type.xlsx"
+po_type_path = "C:\\tmp\\tmp\\PO_Type.xlsx"
 df_po_type = pd.read_excel(po_type_path)
  
 # Strip column names to avoid mismatches due to spaces
@@ -161,11 +161,11 @@ df_result = df_result.drop_duplicates(subset=["Purchasing Document", "Document t
 df_result = df_result.sort_values(by=["Purchasing Document", "Document type"], ascending=[True, False])
  
 # Save the filtered data to a new file
-output_file = "C:\\tmp\\Partial_Invoice_Documents.xlsx"
+output_file = "C:\\tmp\\tmp\\Partial_Invoice_Documents.xlsx"
 df_result.to_excel(output_file, index=False)
  
 # Load the Excel file
-partial_invoice_file_path = "C:\\tmp\\Partial_Invoice_Documents.xlsx"
+partial_invoice_file_path = "C:\\tmp\\tmp\\Partial_Invoice_Documents.xlsx"
 df_partial = pd.read_excel(partial_invoice_file_path)
  
 # Count total Purch.Doc. occurrences per Plnt
@@ -179,7 +179,7 @@ grand_total = pd.DataFrame([["Grand Total", count_by_plant["Total_Count_Purchase
 count_by_plant = pd.concat([count_by_plant, grand_total], ignore_index=True)
  
 # Save the result to a new Excel file
-output_file = "C:\\tmp\\Partial_Invoice_Output.xlsx"
+output_file = "C:\\tmp\\tmp\\Partial_Invoice_Output.xlsx"
 count_by_plant.to_excel(output_file, index=False)
 print("Generation of Partial Invoice Report completed\n")
 print("Script executed successfully")
