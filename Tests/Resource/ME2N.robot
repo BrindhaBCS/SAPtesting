@@ -51,10 +51,13 @@ ME2N
     ### Layout changes
     Click Element   wnd[0]/tbar[1]/btn[32]
     ${row}      Get Row Count   wnd[1]/usr/tabsG_TS_ALV/tabpALV_M_R1/ssubSUB_CONFIGURATION:SAPLSALV_CUL_COLUMN_SELECTION:0620/cntlCONTAINER2_LAYO/shellcont/shell
+    ${rows}     Evaluate    ${row} + 1
     ${count}    Get Length    ${symvar('GR1_Layout')}
-    FOR    ${lp}    IN RANGE    0    ${row}
+    FOR    ${lp}    IN RANGE    0    ${rows}
         Click Element   wnd[1]/usr/tabsG_TS_ALV/tabpALV_M_R1/ssubSUB_CONFIGURATION:SAPLSALV_CUL_COLUMN_SELECTION:0620/btnAPP_FL_SING
-        ${row}      Evaluate    ${row} - 1
+        ${row}      Get Row Count   wnd[1]/usr/tabsG_TS_ALV/tabpALV_M_R1/ssubSUB_CONFIGURATION:SAPLSALV_CUL_COLUMN_SELECTION:0620/cntlCONTAINER2_LAYO/shellcont/shell
+        Exit For Loop If    '${row}' == '0'
+        ${rows}      Evaluate    ${row} + 1
     END
     FOR    ${i}    IN RANGE    0    ${count}
         ${value}    Set Variable    ${symvar('GR1_Layout')}[${i}]
