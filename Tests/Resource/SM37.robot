@@ -36,8 +36,8 @@ Verfy the background jobs
     ${status}   Get Job Status      wnd[0]/usr      wnd[0]/usr/lbl[64
     Log To Console      ${status}
     IF  '${status}' == '[]'
-        Log To Console      All The Jobs are in Finished Status
+        Log To Console      **gbStart**status**splitKeyValue**All The Jobs are in Finished Status**gbEnd**
     ELSE
-        Log To Console      Their is a job with the status ${status}
+        Log To Console      **gbStart**status**splitKeyValue**Their is a job with the status ${status}**gbEnd**
 
     END
