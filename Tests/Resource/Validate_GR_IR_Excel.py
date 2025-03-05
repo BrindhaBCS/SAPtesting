@@ -18,8 +18,10 @@ df_gr.columns = df_gr.columns.str.strip()
 df_me2n.dropna(how="all", inplace=True)
  
 df_me2n.columns = ["Purchasing Document", "Plant", "Purchasing Doc. Type", "Name 1"]
+df_me2n.columns = ["Purchasing Document", "Plant", "Purchasing Doc. Type", "Name 1"]
  
 # Drop any unintended unnamed columns
+#df_me2n = df_me2n.loc[:, ~df_me2n.columns.str.contains("^Unnamed")]
 #df_me2n = df_me2n.loc[:, ~df_me2n.columns.str.contains("^Unnamed")]
  
 # Trim whitespaces from column names and values
@@ -27,11 +29,13 @@ df_me2n.columns = df_me2n.columns.str.strip()
 df_me2n = df_me2n.map(lambda x: x.strip() if isinstance(x, str) else x)
  
 df_me2n = df_me2n.drop_duplicates(subset=["Purchasing Document"], keep="first")
+df_me2n = df_me2n.drop_duplicates(subset=["Purchasing Document"], keep="first")
  
 df_gr.columns = df_gr.columns.str.strip()
 df_gr = df_gr.map(lambda x: x.strip() if isinstance(x, str) else x)
  
 # Merge based on "Purchasing Doc." number
+df_merged = df_gr.merge(df_me2n, left_on="Purchasing Document", right_on="Purchasing Document", how="left")
 df_merged = df_gr.merge(df_me2n, left_on="Purchasing Document", right_on="Purchasing Document", how="left")
  
 # Drop duplicate column if needed
@@ -42,9 +46,12 @@ print("Merged GR file and ME2N file ON Purchasing Document Number\n")
  
 # Sort by Plant (Plnt)
 #df_sorted = df_merged.sort_values(by="Plnt")
+#df_sorted = df_merged.sort_values(by="Plnt")
  
 # Save cleaned, merged, and sorted file
 output_file = "C:\\tmp\\Merged_GR_IR.xlsx"
+#df_sorted.to_excel(output_file, index=False)
+df_merged.to_excel(output_file, index=False)
 #df_sorted.to_excel(output_file, index=False)
 df_merged.to_excel(output_file, index=False)
  
@@ -80,6 +87,7 @@ df_open_invoice.loc[:, "Posting Date"] = pd.to_datetime(df_open_invoice["Posting
  
 # Calculate the Days Difference column
 df_open_invoice = df_open_invoice.copy()  # Make a copy to avoid SettingWithCopyWarning
+df_open_invoice = df_open_invoice.copy()  # Make a copy to avoid SettingWithCopyWarning
 df_open_invoice.loc[:, "Days Difference"] = (pd.Timestamp.today() - df_open_invoice["Posting Date"]).dt.days
 #df_open_invoice.loc[:, "Days Difference"] = (pd.Timestamp.today() - df_open_invoice["Posting Date"]).dt.days
 print("Calculated the days difference for invoice processing(Current date - Posting Date)\n")
@@ -96,6 +104,7 @@ print("Filter only the records which has the days difference greater than the th
  
 # Group by 'Plnt' and 'PO Type', count Purch.Doc., and sum Local Crcy Amt
 df_report = df_filtered.groupby(["Plant", "PO Type", "Plant Name"]).agg(
+df_report = df_filtered.groupby(["Plant", "PO Type", "Plant Name"]).agg(
     Count_of_Purch_Doc=("Purchasing Document", "count"),
     Sum_of_Local_Crcy_Amt=("Amount in Local Currency", "sum")
 ).reset_index()
@@ -106,9 +115,13 @@ df_report["Sum_of_Local_Crcy_Amt_Lakhs"] = round(df_report["Sum_of_Local_Crcy_Am
 # Calculate Grand Total
 grand_total = pd.DataFrame([{
     "Plant": "Grand Total",
+    "Plant": "Grand Total",
     "PO Type": "",
     "Plant Name": "",
+    "Plant Name": "",
     "Count_of_Purch_Doc": df_report["Count_of_Purch_Doc"].sum(),
+    "Sum_of_Local_Crcy_Amt": df_report["Sum_of_Local_Crcy_Amt"].sum(),
+    "Sum_of_Local_Crcy_Amt_Lakhs": round(df_report["Sum_of_Local_Crcy_Amt"].sum() / 100000, 2)
     "Sum_of_Local_Crcy_Amt": df_report["Sum_of_Local_Crcy_Amt"].sum(),
     "Sum_of_Local_Crcy_Amt_Lakhs": round(df_report["Sum_of_Local_Crcy_Amt"].sum() / 100000, 2)
 }])
@@ -118,6 +131,7 @@ print("Calculated the grand total of local currency amount\n")
 df_report = pd.concat([df_report, grand_total], ignore_index=True)
  
 # Save the final No Invoice Report
+output_file = "C:\\tmp\\Open_Invoice_Report.xlsx"
 output_file = "C:\\tmp\\Open_Invoice_Report.xlsx"
 df_report.to_excel(output_file, index=False)
 print("Generation of Open Invoice Report completed\n")
@@ -170,11 +184,14 @@ df_partial = pd.read_excel(partial_invoice_file_path)
  
 # Count total Purch.Doc. occurrences per Plnt
 count_by_plant = df_partial.groupby("Plant")["Purchasing Document"].nunique().reset_index()
+count_by_plant = df_partial.groupby("Plant")["Purchasing Document"].nunique().reset_index()
  
 # Rename the column names
 count_by_plant.columns = ["Plant", "Total_Count_Purchase_Doc."]
+count_by_plant.columns = ["Plant", "Total_Count_Purchase_Doc."]
  
 # Add a Grand Total row
+grand_total = pd.DataFrame([["Grand Total", count_by_plant["Total_Count_Purchase_Doc."].sum()]], columns=["Plant", "Total_Count_Purchase_Doc."])
 grand_total = pd.DataFrame([["Grand Total", count_by_plant["Total_Count_Purchase_Doc."].sum()]], columns=["Plant", "Total_Count_Purchase_Doc."])
 count_by_plant = pd.concat([count_by_plant, grand_total], ignore_index=True)
  
