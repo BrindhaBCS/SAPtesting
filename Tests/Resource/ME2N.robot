@@ -62,17 +62,17 @@ ME2N
         Log     ${lp}
         Click Element   wnd[1]/usr/tabsG_TS_ALV/tabpALV_M_R1/ssubSUB_CONFIGURATION:SAPLSALV_CUL_COLUMN_SELECTION:0620/btnAPP_FL_SING
         ${row}      Get Row Count   wnd[1]/usr/tabsG_TS_ALV/tabpALV_M_R1/ssubSUB_CONFIGURATION:SAPLSALV_CUL_COLUMN_SELECTION:0620/cntlCONTAINER2_LAYO/shellcont/shell
-        Send Vkey Window1   72
-        Click Element   wnd[1]/usr/tabsG_TS_ALV/tabpALV_M_R1/ssubSUB_CONFIGURATION:SAPLSALV_CUL_COLUMN_SELECTION:0620/btnAPP_FL_SING
-        Sleep   10
+        # Send Vkey Window1   72
+        # Click Element   wnd[1]/usr/tabsG_TS_ALV/tabpALV_M_R1/ssubSUB_CONFIGURATION:SAPLSALV_CUL_COLUMN_SELECTION:0620/btnAPP_FL_SING
+        # Sleep   10
         IF    '${row}' == '0'
             Exit For Loop
         END
         ${rows}      Set Variable    ${row} + 1
     END
     Sleep   5
-    # Gr Ir Window Handling    ${table_id}    ${button_id}
-    # Sleep   5
+    Gr Ir Window Handling    ${table_id}    ${button_id}
+    Sleep   10
 
     FOR    ${i}    IN RANGE    0    ${count}
         ${value}    Set Variable    ${symvar('GR1_Layout')}[${i}]
