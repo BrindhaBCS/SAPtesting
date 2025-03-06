@@ -1845,7 +1845,7 @@ class SAP_Tcode_Library:
                 self.session.findById(table_id).selectedRows = "0"
                 self.session.findById(button_id).press()
             else:
-                print(f"Text '{window_text}' did not match expected text '{expected_text}'.")
+                print(f"Text '{window}' did not match expected text '{text}'.")
         
         except Exception as e:
             print(f"An error occurred: {e}")
