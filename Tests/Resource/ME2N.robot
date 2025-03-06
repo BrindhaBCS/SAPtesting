@@ -6,6 +6,8 @@ Library    multiple_selection.py
 *** Variable ***
 ${table_id}     wnd[1]/usr/tabsG_TS_ALV/tabpALV_M_R1/ssubSUB_CONFIGURATION:SAPLSALV_CUL_COLUMN_SELECTION:0620/cntlCONTAINER2_LAYO/shellcont/shell
 ${button_id}    wnd[1]/usr/tabsG_TS_ALV/tabpALV_M_R1/ssubSUB_CONFIGURATION:SAPLSALV_CUL_COLUMN_SELECTION:0620/btnAPP_FL_SING
+${file_name}    C:\\tmp\\tmp\\excel\\ME2N.XLSX
+${sheet_name}   Sheet1
 
 *** Keywords ***
 System Logon
@@ -106,3 +108,6 @@ ME2N
     Sleep   5
     Click Element   wnd[1]/tbar[0]/btn[0]
     Sleep   2
+
+Delete extra Columns
+    Delete columns Not In List      ${symvar('download_path')}\\ME2n.xlsx   Sheet1  ${symvar('GR1_Layout')}

@@ -122,35 +122,59 @@ def get_lable_value(session, lable_id, area_id):
     #     print(f"Found elements: {found_elements}")
     return found_elements
 
+def delete_columns_not_in_list(file_path, sheet_name, allowed_columns):
+    # Read the Excel file into a DataFrame
+    # if not file_path.lower().endswith('.xlsx'):
+    #     raise ValueError("The file must have an '.xlsx' extension"))
+    df = pd.read_excel(file_path, sheet_name= sheet_name)
+    df = df.loc[:, df.columns.isin(allowed_columns)]
+    df = df[allowed_columns]
+    with pd.ExcelWriter(file_path, engine='openpyxl', mode='w') as writer:
+        df.to_excel(writer, sheet_name=sheet_name, index=False)
+    return df
 
-def main():
-    sapGuiAuto = win32com.client.GetObject("SAPGUI")
-    if not sapGuiAuto:
-        raise RuntimeError("Cannot find SAP GUI. Please ensure it is running.")
-    application = sapGuiAuto.GetScriptingEngine
-    connection = application.Children(0)
-    session = connection.Children(0)
+# Define the list of allowed columns
+allowed_columns = ["Purchasing Document", "Plant", "Purchasing Doc. Type", "Name 1"]
 
-    # table_id = "wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpKFTE/ssubSUBSCREEN_BODY:SAPLV70T:2100/cntlSPLITTER_CONTAINER/shellcont/shellcont/shell/shellcont[0]/shell"
-    # row = "0001"
-    # column = "Column1"
-    # name = "Form Header"
-    # table_id = "wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_CUL_LAYOUT_CHOOSE:0500/cntlD500_CONTAINER/shellcont/shell"
-    # table_id1 = "wnd[1]/usr/tabsG_TS_ALV/tabpALV_M_R1/ssubSUB_CONFIGURATION:SAPLSALV_CUL_COLUMN_SELECTION:0620/cntlCONTAINER1_LAYO/shellcont/shell"
-    # button_id = "wnd[1]/usr/tabsG_TS_ALV/tabpALV_M_R1/ssubSUB_CONFIGURATION:SAPLSALV_CUL_COLUMN_SELECTION:0620/btnAPP_WL_SING"
-    # search_term = "Sold-To Party Name"
-    # select_layout(session, table_id)
-    # time.sleep(10)
-    # get_sap_table_value(session, table_id1, button_id, search_term)
-    # select_form_header(session, table_id, row, column)
-    # excel_path = "C:\\tmp\\GRIR_Requirement.xlsx"
-    # txt_path = "C:\\tmp\\Purchase_DocumentOnly.txt"
-    # column_name = "Purchasing Document"
-    # sheet_name = "RE"
-    # get_column_excel_to_text_create(excel_path, txt_path, column_name, sheet_name)
-    lable_id = "wnd[0]/usr"
-    area_id = "wnd[0]/usr/lbl[64"
-    get_lable_value(session, lable_id, area_id)
+# Define the file path (replace 'your_file.xlsx' with the actual file path)
+file_path = 'C:\\tmp\\tmp\\excel\\ME2N.xlsx'
+sheet_name = 'Sheet1'
+# Call the function to delete columns not in the allowed list
+df_cleaned = delete_columns_not_in_list(file_path, sheet_name, allowed_columns)
+
+# Print the resulting DataFrame
+print(df_cleaned)
+
+
+
+# def main():
+#     sapGuiAuto = win32com.client.GetObject("SAPGUI")
+#     if not sapGuiAuto:
+#         raise RuntimeError("Cannot find SAP GUI. Please ensure it is running.")
+#     application = sapGuiAuto.GetScriptingEngine
+#     connection = application.Children(0)
+#     session = connection.Children(0)
+
+#     # table_id = "wnd[0]/usr/tabsTABSTRIP_OVERVIEW/tabpKFTE/ssubSUBSCREEN_BODY:SAPLV70T:2100/cntlSPLITTER_CONTAINER/shellcont/shellcont/shell/shellcont[0]/shell"
+#     # row = "0001"
+#     # column = "Column1"
+#     # name = "Form Header"
+#     # table_id = "wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_CUL_LAYOUT_CHOOSE:0500/cntlD500_CONTAINER/shellcont/shell"
+#     # table_id1 = "wnd[1]/usr/tabsG_TS_ALV/tabpALV_M_R1/ssubSUB_CONFIGURATION:SAPLSALV_CUL_COLUMN_SELECTION:0620/cntlCONTAINER1_LAYO/shellcont/shell"
+#     # button_id = "wnd[1]/usr/tabsG_TS_ALV/tabpALV_M_R1/ssubSUB_CONFIGURATION:SAPLSALV_CUL_COLUMN_SELECTION:0620/btnAPP_WL_SING"
+#     # search_term = "Sold-To Party Name"
+#     # select_layout(session, table_id)
+#     # time.sleep(10)
+#     # get_sap_table_value(session, table_id1, button_id, search_term)
+#     # select_form_header(session, table_id, row, column)
+#     # excel_path = "C:\\tmp\\GRIR_Requirement.xlsx"
+#     # txt_path = "C:\\tmp\\Purchase_DocumentOnly.txt"
+#     # column_name = "Purchasing Document"
+#     # sheet_name = "RE"
+#     # get_column_excel_to_text_create(excel_path, txt_path, column_name, sheet_name)
+#     # lable_id = "wnd[0]/usr"
+#     # area_id = "wnd[0]/usr/lbl[64"
+#     # get_lable_value(session, lable_id, area_id)
      
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()

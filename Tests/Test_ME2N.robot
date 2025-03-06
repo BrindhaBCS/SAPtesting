@@ -8,3 +8,4 @@ Test Tags    ME2N
 *** Test Cases ***
 Execution
     ME2N
+    Delete extra Columns

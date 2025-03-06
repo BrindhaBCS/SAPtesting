@@ -15,6 +15,14 @@ def get_column_excel_to_text_create(excel_path, txt_path, column_name, sheet_nam
         print("Saved successfully!")
     except Exception as e:
         print(f"An error occurred: {e}")
+
+def delete_columns_not_in_list(file_path, sheet_name, allowed_columns):
+    df = pd.read_excel(file_path, sheet_name= sheet_name)
+    df = df.loc[:, df.columns.isin(allowed_columns)]
+    df = df[allowed_columns]
+    with pd.ExcelWriter(file_path, engine='openpyxl', mode='w') as writer:
+        df.to_excel(writer, sheet_name=sheet_name, index=False)
+    return df
      
-if __name__ == "__main__":
-    get_column_excel_to_text_create(excel_path, txt_path, column_name, sheet_name)
+# if __name__ == "__main__":
+#     get_column_excel_to_text_create(excel_path, txt_path, column_name, sheet_name)

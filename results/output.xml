@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.9.13 on win32)" generated="20250306 14:08:13.999" rpa="false" schemaversion="3">
+<suite id="s1" name="SAPtesting" source="C:\Nike\SAPtesting">
+<suite id="s1-s1" name="Tests" source="C:\Nike\SAPtesting\Tests">
+<kw name="Setup highest level suite" type="SETUP">
+<kw name="Set Variable" library="BuiltIn">
+<var>${d.test_server}</var>
+<arg>${test_server}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20250306 14:08:14.100" level="FAIL">Variable '${test_server}' not found.</msg>
+<status status="FAIL" starttime="20250306 14:08:14.091" endtime="20250306 14:08:14.102"/>
+</kw>
+<kw name="Reset screenshot count variable" library="Support">
+<status status="NOT RUN" starttime="20250306 14:08:14.102" endtime="20250306 14:08:14.102"/>
+</kw>
+<kw name="Set Global Variable" library="BuiltIn">
+<arg>${screenshot_taking}</arg>
+<arg>${True}</arg>
+<doc>Makes a variable available globally in all tests and suites.</doc>
+<status status="NOT RUN" starttime="20250306 14:08:14.102" endtime="20250306 14:08:14.102"/>
+</kw>
+<kw name="Setup linux execution" library="Support">
+<status status="NOT RUN" starttime="20250306 14:08:14.102" endtime="20250306 14:08:14.102"/>
+</kw>
+<kw name="Set Suite Metadata" library="BuiltIn">
+<arg>environment</arg>
+<arg>${test_server}</arg>
+<doc>Sets metadata for the current test suite.</doc>
+<status status="NOT RUN" starttime="20250306 14:08:14.102" endtime="20250306 14:08:14.102"/>
+</kw>
+<status status="FAIL" starttime="20250306 14:08:14.091" endtime="20250306 14:08:14.102"/>
+</kw>
+<suite id="s1-s1-s1" name="Test ME2N" source="C:\Nike\SAPtesting\Tests\Test_ME2N.robot">
+<test id="s1-s1-s1-t1" name="Execution" line="9">
+<tag>ME2N</tag>
+<tag>Regression</tag>
+<status status="FAIL" starttime="20250306 14:08:14.106" endtime="20250306 14:08:14.108">Parent suite setup failed:
+Variable '${test_server}' not found.</status>
+</test>
+<status status="FAIL" starttime="20250306 14:08:14.102" endtime="20250306 14:08:14.110">Parent suite setup failed:
+Variable '${test_server}' not found.</status>
+</suite>
+<doc>Testing functionality through Robot Framework</doc>
+<status status="FAIL" starttime="20250306 14:08:14.028" endtime="20250306 14:08:14.110">Suite setup failed:
+Variable '${test_server}' not found.</status>
+</suite>
+<status status="FAIL" starttime="20250306 14:08:14.007" endtime="20250306 14:08:14.110"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="1" skip="0">ME2N</stat>
+<stat pass="0" fail="1" skip="0">Regression</stat>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="SAPtesting">SAPtesting</stat>
+<stat pass="0" fail="1" skip="0" id="s1-s1" name="Tests">SAPtesting.Tests</stat>
+<stat pass="0" fail="1" skip="0" id="s1-s1-s1" name="Test ME2N">SAPtesting.Tests.Test ME2N</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20250306 14:08:14.031" level="ERROR">Error in file 'C:\Nike\SAPtesting\Tests\Support.robot' on line 3: Importing library 'SeleniumLibrary' failed: ModuleNotFoundError: No module named 'SeleniumLibrary'
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  C:\Nike\SAPtesting\lib
+  C:\Nike\SAPtesting\resources
+  c:\Users\BCS_TEST\.vscode\extensions\d-biehl.robotcode-1.0.0\bundled\libs
+  c:\Users\BCS_TEST\.vscode\extensions\d-biehl.robotcode-1.0.0\bundled\tool\robotcode
+  C:\Users\BCS_TEST\AppData\Local\Programs\Python\Python39\python39.zip
+  C:\Users\BCS_TEST\AppData\Local\Programs\Python\Python39\DLLs
+  C:\Users\BCS_TEST\AppData\Local\Programs\Python\Python39\lib
+  C:\Users\BCS_TEST\AppData\Local\Programs\Python\Python39
+  C:\Users\BCS_TEST\AppData\Local\Programs\Python\Python39\lib\site-packages</msg>
+<msg timestamp="20250306 14:08:14.043" level="ERROR">Error in file 'C:\Nike\SAPtesting\Tests\Support.robot' on line 5: Importing library 'C:\Nike\SAPtesting\Library\BrowserSupport.py' failed: ModuleNotFoundError: No module named 'SeleniumLibrary'
+Traceback (most recent call last):
+  File "C:\Nike\SAPtesting\Library\BrowserSupport.py", line 8, in &lt;module&gt;
+    from SeleniumLibrary import SeleniumLibrary
+PYTHONPATH:
+  C:\Nike\SAPtesting\Library
+  C:\Nike\SAPtesting\lib
+  C:\Nike\SAPtesting\resources
+  c:\Users\BCS_TEST\.vscode\extensions\d-biehl.robotcode-1.0.0\bundled\libs
+  c:\Users\BCS_TEST\.vscode\extensions\d-biehl.robotcode-1.0.0\bundled\tool\robotcode
+  C:\Users\BCS_TEST\AppData\Local\Programs\Python\Python39\python39.zip
+  C:\Users\BCS_TEST\AppData\Local\Programs\Python\Python39\DLLs
+  C:\Users\BCS_TEST\AppData\Local\Programs\Python\Python39\lib
+  C:\Users\BCS_TEST\AppData\Local\Programs\Python\Python39
+  C:\Users\BCS_TEST\AppData\Local\Programs\Python\Python39\lib\site-packages</msg>
+<msg timestamp="20250306 14:08:14.051" level="ERROR">Error in file 'C:\Nike\SAPtesting\Tests\Support.robot' on line 6: Importing library 'RequestsLibrary' failed: ModuleNotFoundError: No module named 'RequestsLibrary'
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  C:\Nike\SAPtesting\lib
+  C:\Nike\SAPtesting\resources
+  c:\Users\BCS_TEST\.vscode\extensions\d-biehl.robotcode-1.0.0\bundled\libs
+  c:\Users\BCS_TEST\.vscode\extensions\d-biehl.robotcode-1.0.0\bundled\tool\robotcode
+  C:\Users\BCS_TEST\AppData\Local\Programs\Python\Python39\python39.zip
+  C:\Users\BCS_TEST\AppData\Local\Programs\Python\Python39\DLLs
+  C:\Users\BCS_TEST\AppData\Local\Programs\Python\Python39\lib
+  C:\Users\BCS_TEST\AppData\Local\Programs\Python\Python39
+  C:\Users\BCS_TEST\AppData\Local\Programs\Python\Python39\lib\site-packages</msg>
+<msg timestamp="20250306 14:08:14.058" level="ERROR">Error in file 'C:\Nike\SAPtesting\Tests\Support.robot' on line 8: Importing library 'SapGuiLibrary' failed: ModuleNotFoundError: No module named 'SapGuiLibrary'
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  C:\Nike\SAPtesting\lib
+  C:\Nike\SAPtesting\resources
+  c:\Users\BCS_TEST\.vscode\extensions\d-biehl.robotcode-1.0.0\bundled\libs
+  c:\Users\BCS_TEST\.vscode\extensions\d-biehl.robotcode-1.0.0\bundled\tool\robotcode
+  C:\Users\BCS_TEST\AppData\Local\Programs\Python\Python39\python39.zip
+  C:\Users\BCS_TEST\AppData\Local\Programs\Python\Python39\DLLs
+  C:\Users\BCS_TEST\AppData\Local\Programs\Python\Python39\lib
+  C:\Users\BCS_TEST\AppData\Local\Programs\Python\Python39
+  C:\Users\BCS_TEST\AppData\Local\Programs\Python\Python39\lib\site-packages</msg>
+</errors>
+</robot>
