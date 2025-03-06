@@ -62,6 +62,7 @@ ME2N
         END
         ${rows}      Set Variable    ${row} + 1
     END
+    ${window}   Get value   
     Sleep   50
     FOR    ${i}    IN RANGE    0    ${count}
         ${value}    Set Variable    ${symvar('GR1_Layout')}[${i}]
