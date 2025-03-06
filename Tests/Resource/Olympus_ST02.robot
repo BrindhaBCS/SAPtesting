@@ -2,10 +2,9 @@
 Library    Process
 Library    SAP_Tcode_Library.py
 Library    Merger.py
-Resource    Sldcheck_Olympus.robot
 
 *** Keywords ***
-STMS
+STO2
     Start Process     ${symvar('Olympus_SAP_SERVER')}    
     Sleep    1
     Connect To Session
