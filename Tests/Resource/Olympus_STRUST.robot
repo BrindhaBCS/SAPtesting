@@ -2,7 +2,7 @@
 Library    Process
 Library    SAP_Tcode_Library.py
 Library    Merger.py
-Resource    Sldcheck_Olympus.robot
+
 
 *** Keywords ***
 System Logon
