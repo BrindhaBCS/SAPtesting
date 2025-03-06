@@ -1834,5 +1834,20 @@ class SAP_Tcode_Library:
                 break
         return found_elements
 
+    def gr_ir_window_handling(self, table_id, button_id):
+        try:
+            element_id = "wnd[2]"
+            text = "Information"
+            button = "wnd[2]/tbar[0]/btn[0]"
+            window = self.session.findById(element_id).Text
+            if window == text :
+                self.session.findById(button).press()
+                self.session.findById(table_id).selectedRows = "0"
+                self.session.findById(button_id).press()
+            else:
+                print(f"Text '{window_text}' did not match expected text '{expected_text}'.")
+        
+        except Exception as e:
+            print(f"An error occurred: {e}")
 
     

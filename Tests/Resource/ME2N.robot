@@ -3,6 +3,10 @@ Library    Process
 Library    SAP_Tcode_Library.py
 Library    multiple_selection.py
 
+*** Variable ***
+${table_id} = wnd[1]/usr/tabsG_TS_ALV/tabpALV_M_R1/ssubSUB_CONFIGURATION:SAPLSALV_CUL_COLUMN_SELECTION:0620/cntlCONTAINER2_LAYO/shellcont/shell
+${button_id} = wnd[1]/usr/tabsG_TS_ALV/tabpALV_M_R1/ssubSUB_CONFIGURATION:SAPLSALV_CUL_COLUMN_SELECTION:0620/btnAPP_FL_SING
+
 *** Keywords ***
 System Logon
     Start Process    ${symvar('GR_IR_SERVER')}
@@ -62,8 +66,9 @@ ME2N
         END
         ${rows}      Set Variable    ${row} + 1
     END
-    ${window}   Get value   
-    Sleep   50
+    Sleep   5
+    Gr Ir Window Handling    ${table_id}    ${button_id}
+    Sleep   5
     FOR    ${i}    IN RANGE    0    ${count}
         ${value}    Set Variable    ${symvar('GR1_Layout')}[${i}]
         Log To Console      ${value}
