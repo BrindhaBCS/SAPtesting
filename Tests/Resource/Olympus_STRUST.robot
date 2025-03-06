@@ -1,9 +1,8 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
-Library    OperatingSystem
-Library    String
 Library    Merger.py
+Resource    Sldcheck_Olympus.robot
 
 *** Keywords ***
 System Logon
@@ -25,13 +24,6 @@ System Logon
 
 Transaction STRUST
     Run Transaction     /nstrust
-    Send Vkey    0
-    Take Screenshot    042_PSE_01.jpg
-    Sleep    2
-    
-    Scroll Pagedown    wnd[0]/usr/btnCERTDETAIL      
-    Sleep   2
-    Take Screenshot    042_PSE_02.jpg
     Sleep    2
 
 System pse
@@ -39,11 +31,11 @@ System pse
 	Sleep	2
 	Select Top Node	wnd[0]/shellcont/shell	PROG<SYST>
 	Sleep	2
-    Take Screenshot    042_PSE_03.jpg
+    Take Screenshot    042_PSE_01.jpg
     Sleep    2
 	Double Click On Tree Item	wnd[0]/shellcont/shell	PROG<SYST>1
 	Sleep	2
-    Take Screenshot    042_PSE_04.jpg
+    Take Screenshot    042_PSE_02.jpg
     Sleep    2
 
 SSL server standard 
@@ -51,11 +43,11 @@ SSL server standard
 	Sleep	2       
     Double Click On Tree Item    wnd[0]/shellcont/shell    SSLSDFAULT    
     Sleep    2
-    Take Screenshot    042_SSLSDFAULT_05.jpg
+    Take Screenshot    042_SSLSDFAULT_03.jpg
     Sleep    2
     Scroll Pagedown    wnd[0]/usr/btnCERTDETAIL      
     Sleep   2
-    Take Screenshot    042_SSLSDFAULT_06.jpg
+    Take Screenshot    042_SSLSDFAULT_04.jpg
     Sleep    2
 
 SSL client SSL Client (Anonymous)
@@ -63,11 +55,11 @@ SSL client SSL Client (Anonymous)
     Sleep    2
     Double Click On Tree Item    wnd[0]/shellcont/shell    SSLCANONYM    
     Sleep    2
-    Take Screenshot    042_SSLCANONYM_07.jpg
+    Take Screenshot    042_SSLCANONYM_05.jpg
     Sleep    2
     Scroll Pagedown    wnd[0]/usr/btnCERTDETAIL
     Sleep    2
-    Take Screenshot    042_SSLCANONYM_08.jpg
+    Take Screenshot    042_SSLCANONYM_06.jpg
     Sleep    2
 
 SSL client SSL Client (Standard)
@@ -75,11 +67,11 @@ SSL client SSL Client (Standard)
     Sleep    2
     Double Click On Tree Item    wnd[0]/shellcont/shell    SSLCDFAULT    
     Sleep    2
-    Take Screenshot    042_SSLCDFAULT_09.jpg
+    Take Screenshot    042_SSLCDFAULT_07.jpg
     Sleep    2
     Scroll Pagedown    wnd[0]/usr/btnCERTDETAIL
     Sleep    2
-    Take Screenshot    042_SSLCDFAULT_10.jpg
+    Take Screenshot    042_SSLCDFAULT_08.jpg
     Sleep    2
 
 

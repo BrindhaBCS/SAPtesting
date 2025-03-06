@@ -27,7 +27,7 @@ OAC0_Tcodes
 	Run Transaction    /nOAC0
 	Sleep	2
     ${counter}=    Set Variable    1
-    FOR    ${index}    IN RANGE    50
+    FOR    ${index}    IN RANGE    1    102    20
         ${scroll}    Scroll    wnd[0]/usr/tblSAPLSCMS_CREPC_SREP      ${index}
         Log To Console    Selected rows: $${scroll}
         Take Screenshot    020_OAC0_01_${counter}.jpg

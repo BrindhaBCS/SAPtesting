@@ -31,7 +31,7 @@ LDAP_Tcodes
     Take Screenshot    061_LDAP_02.jpg
     Sleep    2
     ${counter}=    Set Variable    1
-    FOR    ${index}    IN RANGE    2
+    FOR    ${index}    IN RANGE    1
         ${scroll}    Scroll    wnd[0]/usr      ${index}
         Log To Console    Selected rows: $${scroll}
         Take Screenshot    061_LDAP_03_${counter}.jpg

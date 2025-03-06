@@ -29,7 +29,7 @@ SMQ2_Tcodes
 	Click Element	wnd[0]/tbar[1]/btn[8]
 	Sleep	2
     ${counter}=    Set Variable    1
-    FOR    ${index}    IN RANGE    2
+    FOR    ${index}    IN RANGE    1
         ${scroll}    Scroll    wnd[0]/usr      ${index}
         Log To Console    Selected rows: $${scroll}
         Take Screenshot    044_SMQ2_02_${counter}.jpg
