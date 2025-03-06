@@ -4,7 +4,7 @@ Library    SAP_Tcode_Library.py
 Library    Merger.py
 
 *** Keywords ***
-STO2
+ST02
     Start Process     ${symvar('Olympus_SAP_SERVER')}    
     Sleep    1
     Connect To Session
