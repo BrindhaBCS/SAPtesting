@@ -35,7 +35,7 @@ SM59
    
     # Expand Node    wnd[0]/usr/cntlSM59CNTL_AREA/shellcont/shell/shellcont[1]/shell[1]	${SPACE*10}1
 	# Sleep	1
-    # Take Screenshot    SM59.jpg01
+    # Take Screenshot    034_SM59_01.jpg
     # Collapse Node	wnd[0]/usr/cntlSM59CNTL_AREA/shellcont/shell/shellcont[1]/shell[1]	${SPACE*10}1
 	# Sleep	2
     # Expand Node    wnd[0]/usr/cntlSM59CNTL_AREA/shellcont/shell/shellcont[1]/shell[1]	${SPACE*10}2

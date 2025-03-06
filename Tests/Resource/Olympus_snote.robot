@@ -23,7 +23,7 @@ System Logon
 Snote
     Run Transaction     /nSNOTE
     Send Vkey    0
-    Take Screenshot    Snote.jpg
+    Take Screenshot    056_Snote_01.jpg
     Sleep    4   
     Run Transaction    /nex
     Sleep    5

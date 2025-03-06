@@ -21,7 +21,7 @@ SICK
     Sleep   1 
     Run Transaction    /nSICK
     Sleep    1
-    Take Screenshot    SICK.jpg
+    Take Screenshot    012_SICK_01.jpg
     Click Element	wnd[0]/tbar[0]/btn[3]
 	Sleep	2  
     Run Transaction    /nex

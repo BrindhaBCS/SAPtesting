@@ -33,7 +33,7 @@ SE16
 	Sleep	2
 	Click Element	wnd[0]/mbar/menu[0]/menu[0]
 	Sleep	2
-    Take Screenshot    SE16.jpg
+    Take Screenshot    039_SE16_01.jpg
     Sleep    2
       
 System Logout

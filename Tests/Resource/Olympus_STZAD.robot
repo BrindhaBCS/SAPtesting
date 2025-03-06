@@ -21,7 +21,7 @@ STZAD
     Sleep   1 
     Run Transaction    /nSTZAD
     Sleep    1
-    Take Screenshot    001_STZAD.jpg
+    Take Screenshot    001_STZAD_01.jpg
     Click Element	wnd[0]/tbar[0]/btn[3]
 	Sleep	2
     Run Transaction    /nex

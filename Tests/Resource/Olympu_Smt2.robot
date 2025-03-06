@@ -25,10 +25,10 @@ smt2_Tcodes
 	Sleep	2
 	Click Element	wnd[0]/tbar[0]/btn[0]
 	Sleep	2
-    Take Screenshot    Smt2.jpg
+    Take Screenshot    028_Smt2_01.jpg
 	Click Element	wnd[0]/usr/tabsTRUST_STRIP/tabpTRUST_STRIP_FC2
 	Sleep	2
-    Take Screenshot    smt2_2.jpg
+    Take Screenshot    028_smt2_02.jpg
 	Click Element	wnd[0]/tbar[0]/btn[3]
 	Sleep	2
     Run Transaction    /nex

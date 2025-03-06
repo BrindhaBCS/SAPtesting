@@ -26,12 +26,12 @@ BD64_Tcodes
 	Sleep	2
 	Click Element	wnd[0]/tbar[0]/btn[0]
 	Sleep	2
-    Take Screenshot    BD64.jpg
+    Take Screenshot    054_BD64-01.jpg
     ${counter}=    Set Variable    1
     FOR    ${index}    IN RANGE    2
         ${scroll}    Scroll    wnd[0]/usr      ${index}
         Log To Console    Selected rows: $${scroll}
-        Take Screenshot    BD64_${counter}.jpg
+        Take Screenshot    054_BD64_02_${counter}.jpg
         ${counter}=    Evaluate    ${counter} + 1
         Sleep    1
      END

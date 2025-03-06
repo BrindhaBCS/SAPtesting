@@ -26,13 +26,13 @@ SMICM
  
     Run Transaction    /nSMICM
     Sleep   2
-    Take Screenshot    000_SMICM.jpg
+    Take Screenshot    033_SMICM_01.jpg
 	Sleep	2
     # Set Focus	wnd[0]/usr/lbl[0,0]
 	Sleep	2
 	Click Element	wnd[0]/mbar/menu[2]/menu[6]
     Sleep    2
-    Take Screenshot    001_SMICM.jpg
+    Take Screenshot    033_SMICM_02.jpg
 	Sleep	2
 System Logout
     Run Transaction    /nex

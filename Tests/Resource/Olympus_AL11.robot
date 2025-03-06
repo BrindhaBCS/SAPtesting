@@ -26,7 +26,7 @@ Executing Olympus AL11
     Run Transaction    /nal11
     Send Vkey    0
     Sleep    0.1
-    Take Screenshot    olympus_al11_output.jpg
+    Take Screenshot    007_olympus_al11_output_01.jpg
     Sleep    0.2
     Run Transaction    /nex
     Sleep    1

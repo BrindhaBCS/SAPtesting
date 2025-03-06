@@ -21,7 +21,7 @@ Slicense
     Sleep   1  
     Run Transaction    /nSlicense
     Sleep    1
-    Take Screenshot    slicense.jpg
+    Take Screenshot    011_slicense_01.jpg
     Click Element	wnd[0]/tbar[0]/btn[3]
     Run Transaction    /nex
     Sleep    1

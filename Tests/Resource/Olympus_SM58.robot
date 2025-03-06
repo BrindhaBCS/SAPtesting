@@ -31,10 +31,10 @@ SM58_Tcodes
 	Sleep	2
     Input Text	wnd[0]/usr/txtBENUTZER-LOW	*
 	Sleep	2
-    Take Screenshot    SM58.jpg
+    Take Screenshot    041_SM58_01.jpg
 	Click Element	wnd[0]/tbar[1]/btn[8]
 	Sleep	2
-    Take Screenshot    SM58_1.jpg
+    Take Screenshot    041_SM58_02.jpg
 	Click Element	wnd[0]/tbar[0]/btn[3]
 	Sleep	2
     Run Transaction     /nex

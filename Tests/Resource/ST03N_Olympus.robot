@@ -27,7 +27,7 @@ ST03N
     Run Transaction    /nST03N  
     Sleep   2
    
-    Take Screenshot    ST03N.jpg
+    Take Screenshot    032_ST03N_01.jpg
     Sleep    1   
 System Logout
     Run Transaction    /nex

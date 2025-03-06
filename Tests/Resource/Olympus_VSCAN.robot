@@ -24,7 +24,7 @@ VSCAN_Tcodes
     Run Transaction     /nVSCAN
     Send Vkey    0
     Sleep    4
-    Take Screenshot    001_VSCAN.jpg   
+    Take Screenshot    059_VSCAN_01.jpg   
     Run Transaction    /nex
     Sleep    5
     Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}

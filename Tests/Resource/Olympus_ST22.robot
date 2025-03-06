@@ -26,7 +26,7 @@ ST22_Tcodes
 	Sleep	2
 	Click Element	wnd[0]/tbar[0]/btn[0]
 	Sleep	2
-    Take Screenshot    ST22.jpg
+    Take Screenshot    047_ST22_01.jpg
 	Click Element	wnd[0]/tbar[0]/btn[3]
 	Sleep	2
     Run Transaction    /nex

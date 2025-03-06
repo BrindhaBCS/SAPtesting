@@ -90,7 +90,7 @@ SSF Logon Ticket
     Sleep    2
     Scroll Pagedown    wnd[0]/usr/btnCERTDETAIL
     Sleep    2
-    Take Screenshot    042_SSFASSO2_11.jpg
+    Take Screenshot    042_SSFASSO2_12.jpg
     Run Transaction    /nex
     Sleep    5
     Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}

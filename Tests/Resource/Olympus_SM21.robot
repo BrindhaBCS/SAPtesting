@@ -23,7 +23,7 @@ System Logon
 SM21_Tcodes
     Run Transaction    /nSM21
     Sleep    2
-    Input Text	wnd[0]/usr/ctxtDATE_FR	${EMPTY}
+  Input Text	wnd[0]/usr/ctxtDATE_FR	${EMPTY}
 	Sleep	2
     Input Text	wnd[0]/usr/txtMANDTOPT-LOW	*
 	Sleep	2
@@ -33,6 +33,5 @@ SM21_Tcodes
     First Visible Row	wnd[0]/usr/cntlCONTAINER_0100/shellcont/shell/shellcont[0]/shell	247
 	Sleep	2
     Take Screenshot    048_SM21_02.jpg 
-    run Transaction    /nex    
-   Sleep    5
+    run Transaction    /nex
    Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}

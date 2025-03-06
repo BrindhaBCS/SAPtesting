@@ -23,7 +23,7 @@ System Logon
 SM52_Tcodes
     Run Transaction     /nsm52
     Send Vkey    0
-    Take Screenshot    001_sm52.jpg
+    Take Screenshot    057_sm52_01.jpg
     Sleep    1
     Run Transaction    /nex
     Sleep    5

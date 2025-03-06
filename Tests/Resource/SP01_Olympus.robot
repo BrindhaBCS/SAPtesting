@@ -38,7 +38,7 @@ SP01
 	Sleep	2
     Click Element	wnd[0]/mbar/menu[0]/menu[0]
 	Sleep	2
-    Take Screenshot    SP01.jpg
+    Take Screenshot    038_SP01_01.jpg
     Sleep    2
     Click Element	wnd[0]/tbar[0]/btn[3]
 	Sleep	2
@@ -54,7 +54,7 @@ SP01
 	Sleep	2
 	Click Element    wnd[0]/mbar/menu[0]/menu[0]
     Sleep    2
-    Take Screenshot    001_SP01.jpg
+    Take Screenshot    038_SP01_02.jpg
     # ${row_count}    Get Row Count    ${TREE_PATH}
     # Log    Total Row Count: ${row_count}
     # ${counter}=    Set Variable    1

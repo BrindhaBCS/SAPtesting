@@ -27,14 +27,14 @@ RZ11_Tcodes
 	Sleep	2
 	Input Text	wnd[0]/usr/ctxtTPFYSTRUCT-NAME	DIR_TRANS
 	Sleep	2
-    Take Screenshot    RZ11.jpg
+    Take Screenshot    018_RZ11_01.jpg
 	Click Element	wnd[0]/usr/btnPANZEIGEN_1000
 	Sleep	2
     ${counter}=    Set Variable    1
     FOR    ${index}    IN RANGE    2
         ${scroll}    Scroll    wnd[0]/usr      ${index}
         Log To Console    Selected rows: $${scroll}
-        Take Screenshot    RZ11_${counter}.jpg
+        Take Screenshot    018_RZ11_02_${counter}.jpg
         ${counter}=    Evaluate    ${counter} + 1
         Sleep    1
      END

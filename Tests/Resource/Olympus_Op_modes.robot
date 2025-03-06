@@ -21,14 +21,14 @@ os_modes
     Sleep   1 
     Run Transaction    /nRZ04
     Sleep    1
-    Take Screenshot    RZ04.jpg
+    Take Screenshot    014_RZ04_01.jpg
     Set Focus	wnd[0]/usr/lbl[2,5]
 	Sleep	2
 	set Caret Position	wnd[0]/usr/lbl[2,5]	8
 	Sleep	2
 	Send Vkey	2
 	Sleep	2
-    Take Screenshot    RZ04.jpg01
+    Take Screenshot    014_RZ04_02.jpg
 	Click Element	wnd[0]/tbar[0]/btn[3]
 	Sleep	2
 	Set Focus	wnd[0]/usr/lbl[2,6]
@@ -37,7 +37,7 @@ os_modes
 	Sleep	2
 	Send Vkey    2  
 	Sleep	2
-    Take Screenshot    RZ04.jpg02
+    Take Screenshot    014_RZ04_03.jpg
 	Click Element	wnd[0]/tbar[0]/btn[3]
 	Sleep	2
     Run Transaction    /nex

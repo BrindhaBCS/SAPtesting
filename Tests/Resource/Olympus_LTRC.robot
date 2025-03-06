@@ -23,7 +23,7 @@ System Logon
 LTRC_Tcodes
 	Run Transaction    /nLTRC
 	Sleep	2
-    Take Screenshot    LTRC.jpg
+    Take Screenshot    029_LTRC_01.jpg
     Sleep    2
     Run Transaction    /nex
     Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}

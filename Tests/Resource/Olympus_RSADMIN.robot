@@ -23,7 +23,7 @@ System Logon
 RSADMIN
     Run Transaction     /nRSADMIN
     Send Vkey    0
-    Take Screenshot    001_RSADMIN.jpg
+    Take Screenshot    063_RSADMIN_01.jpg
     Sleep    4   
     Run Transaction    /nex
     Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}

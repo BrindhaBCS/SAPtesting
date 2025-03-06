@@ -26,7 +26,7 @@ System Logon
     Take Screenshot    2
 	Sleep	2
 	Select Table Column	wnd[0]/usr/cntlCONTAINER/shellcont/shell	ALIAS
-    Take Screenshot    SLDAPICUST.jpg
+    Take Screenshot    050_SLDAPICUST_01.jpg
 	Sleep	2
 	Click Element	wnd[0]/tbar[0]/btn[3]
 	Sleep	2

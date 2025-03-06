@@ -21,10 +21,10 @@ SMLG
     Sleep   1  
     Run Transaction    /nSMLG
     Sleep    1
-    Take Screenshot    SMLG.jpg
+    Take Screenshot    003_SMLG_01.jpg
     Click Element	wnd[0]/tbar[1]/btn[5]
 	Sleep	2
-    Take Screenshot    Load.jpg
+    Take Screenshot    003_SMLG_02.jpg
     Click Element	wnd[0]/tbar[0]/btn[3]
 	Sleep	2
     Click Element	wnd[0]/tbar[0]/btn[3]

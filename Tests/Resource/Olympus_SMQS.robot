@@ -27,7 +27,7 @@ SMQS_Tcodes
     FOR    ${index}    IN RANGE    2
         ${scroll}    Scroll    wnd[0]/usr      ${index}
         Log To Console    Selected rows: $${scroll}
-        Take Screenshot    SMQS_${counter}.jpg
+        Take Screenshot    045_SMQS_01_${counter}.jpg
         ${counter}=    Evaluate    ${counter} + 1
         Sleep    1
      END

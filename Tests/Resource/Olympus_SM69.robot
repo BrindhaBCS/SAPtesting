@@ -32,7 +32,7 @@ SM69_Tcodes
         Log    Processing row ${i}
         ${selected_rows}    Selected_rows    ${TREE_PATH}    ${i}
         Log To Console    Selected rows: ${selected_rows}
-        Take Screenshot    SM69_${counter}.jpg
+        Take Screenshot    006_SM69_01_${counter}.jpg
         ${counter}=    Evaluate    ${counter} + 1
         Sleep    1   
     END

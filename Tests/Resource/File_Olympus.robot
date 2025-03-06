@@ -66,7 +66,7 @@ Executing Olympus File Defn Variables
     Doubleclick Element	wnd[0]/shellcont/shell	04	Column1
     Sleep    1
 
-    Take Screenshot    Variables_Defn.jpg
+    Take Screenshot    008_Variables_Defn_01.jpg
     Sleep    1
 
 Executing Olympus File Name 
@@ -110,7 +110,7 @@ Executing Olympus File Syntax
     Select Item From Table  wnd[0]/shellcont/shell	05	Column1
     Doubleclick Element	wnd[0]/shellcont/shell	05	Column1
     Sleep    1
-    Take Screenshot    Syntax.jpg
+    Take Screenshot    008_Syntax_02.jpg
     Sleep    1
 
 System Logout
@@ -123,9 +123,9 @@ Scroll SAP Table
     [Arguments]    ${table_id}    ${row_positions}    ${file_name_ss}
 
     FOR    ${row}    IN    @{row_positions}
-    Take Screenshot    ${file_name_ss}_1.jpg
+    Take Screenshot    008_${file_name_ss}_01.jpg
         Scroll	${table_id}    ${row} 
-        Take Screenshot    ${file_name_ss}_${row}.jpg
+        Take Screenshot    008_${file_name_ss}_${row}_02.jpg
         Log To Console    Scrolled to row: ${row}
         Sleep    2s
     END
