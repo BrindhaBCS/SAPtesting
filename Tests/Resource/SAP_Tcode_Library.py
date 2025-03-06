@@ -1850,4 +1850,85 @@ class SAP_Tcode_Library:
         except Exception as e:
             print(f"An error occurred: {e}")
 
+    def send_vkey_window1(self, vkey_id, window=1):
+        """Sends a SAP virtual key combination to the window, not into an element.
+        If you want to send a value to a text field, use `input text` instead.
+
+        To send a vkey, you can either use te *VKey ID* or the *Key combination*.
+
+        Sap Virtual Keys (on Windows)
+        | *VKey ID* | *Key combination*     | *VKey ID* | *Key combination*     | *VKey ID* | *Key combination*     |
+        | *0*       | Enter                 | *26*      | Ctrl + F2             | *72*      | Ctrl + A              |
+        | *1*       | F1                    | *27*      | Ctrl + F3             | *73*      | Ctrl + D              |
+        | *2*       | F2                    | *28*      | Ctrl + F4             | *74*      | Ctrl + N              |
+        | *3*       | F3                    | *29*      | Ctrl + F5             | *75*      | Ctrl + O              |
+        | *4*       | F4                    | *30*      | Ctrl + F6             | *76*      | Shift + Del           |
+        | *5*       | F5                    | *31*      | Ctrl + F7             | *77*      | Ctrl + Ins            |
+        | *6*       | F6                    | *32*      | Ctrl + F8             | *78*      | Shift + Ins           |
+        | *7*       | F7                    | *33*      | Ctrl + F9             | *79*      | Alt + Backspace       |
+        | *8*       | F8                    | *34*      | Ctrl + F10            | *80*      | Ctrl + Page Up        |
+        | *9*       | F9                    | *35*      | Ctrl + F11            | *81*      | Page Up               |
+        | *10*      | F10                   | *36*      | Ctrl + F12            | *82*      | Page Down             |
+        | *11*      | F11 or Ctrl + S       | *37*      | Ctrl + Shift + F1     | *83*      | Ctrl + Page Down      |
+        | *12*      | F12 or ESC            | *38*      | Ctrl + Shift + F2     | *84*      | Ctrl + G              |
+        | *14*      | Shift + F2            | *39*      | Ctrl + Shift + F3     | *85*      | Ctrl + R              |
+        | *15*      | Shift + F3            | *40*      | Ctrl + Shift + F4     | *86*      | Ctrl + P              |
+        | *16*      | Shift + F4            | *41*      | Ctrl + Shift + F5     | *87*      | Ctrl + B              |
+        | *17*      | Shift + F5            | *42*      | Ctrl + Shift + F6     | *88*      | Ctrl + K              |
+        | *18*      | Shift + F6            | *43*      | Ctrl + Shift + F7     | *89*      | Ctrl + T              |
+        | *19*      | Shift + F7            | *44*      | Ctrl + Shift + F8     | *90*      | Ctrl + Y              |
+        | *20*      | Shift + F8            | *45*      | Ctrl + Shift + F9     | *91*      | Ctrl + X              |
+        | *21*      | Shift + F9            | *46*      | Ctrl + Shift + F10    | *92*      | Ctrl + C              |
+        | *22*      | Ctrl + Shift + 0      | *47*      | Ctrl + Shift + F11    | *93*      | Ctrl + V              |
+        | *23*      | Shift + F11           | *48*      | Ctrl + Shift + F12    | *94*      | Shift + F10           |
+        | *24*      | Shift + F12           | *70*      | Ctrl + E              | *97*      | Ctrl + #              |
+        | *25*      | Ctrl + F1             | *71*      | Ctrl + F              |           |                       |
+
+        Examples:
+        | *Keyword*     | *Attributes*      |           |
+        | send_vkey     | 8                 |           |
+        | send_vkey     | Ctrl + Shift + F1 |           |
+        | send_vkey     | Ctrl + F7         | window=1  |
+        """
+        vkey_id = str(vkey_id)
+        vkeys_array = ["ENTER", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12",
+                       None, "SHIFT+F2", "SHIFT+F3", "SHIFT+F4", "SHIFT+F5", "SHIFT+F6", "SHIFT+F7", "SHIFT+F8",
+                       "SHIFT+F9", "CTRL+SHIFT+0", "SHIFT+F11", "SHIFT+F12", "CTRL+F1", "CTRL+F2", "CTRL+F3", "CTRL+F4",
+                       "CTRL+F5", "CTRL+F6", "CTRL+F7", "CTRL+F8", "CTRL+F9", "CTRL+F10", "CTRL+F11", "CTRL+F12",
+                       "CTRL+SHIFT+F1", "CTRL+SHIFT+F2", "CTRL+SHIFT+F3", "CTRL+SHIFT+F4", "CTRL+SHIFT+F5",
+                       "CTRL+SHIFT+F6", "CTRL+SHIFT+F7", "CTRL+SHIFT+F8", "CTRL+SHIFT+F9", "CTRL+SHIFT+F10",
+                       "CTRL+SHIFT+F11", "CTRL+SHIFT+F12", None, None, None, None, None, None, None, None, None, None,
+                       None, None, None, None, None, None, None, None, None, None, None, "CTRL+E", "CTRL+F", "CTRL+A",
+                       "CTRL+D", "CTRL+N", "CTRL+O", "SHIFT+DEL", "CTRL+INS", "SHIFT+INS", "ALT+BACKSPACE",
+                       "CTRL+PAGEUP", "PAGEUP",
+                       "PAGEDOWN", "CTRL+PAGEDOWN", "CTRL+G", "CTRL+R", "CTRL+P", "CTRL+B", "CTRL+K", "CTRL+T",
+                       "CTRL+Y",
+                       "CTRL+X", "CTRL+C", "CTRL+V", "SHIFT+F10", None, None, "CTRL+#"]
+
+        # If a key combi is given, replace vkey_id by correct id based on given combination
+        if not vkey_id.isdigit():
+            search_comb = vkey_id.upper()
+            search_comb = search_comb.replace(" ", "")
+            search_comb = search_comb.replace("CONTROL", "CTRL")
+            search_comb = search_comb.replace("DELETE", "DEL")
+            search_comb = search_comb.replace("INSERT", "INS")
+            try:
+                vkey_id = vkeys_array.index(search_comb)
+            except ValueError:
+                if search_comb == "CTRL+S":
+                    vkey_id = 11
+                elif search_comb == "ESC":
+                    vkey_id = 12
+                else:
+                    message = "Cannot find given Vkey, provide a valid Vkey number or combination"
+                    raise ValueError(message)
+
+        try:
+            self.session.findById("wnd[% s]" % window).sendVKey(vkey_id)
+        except com_error:
+            self.take_screenshot()
+            message = "Cannot send Vkey to given window, is window wnd[% s] actually open?" % window
+            raise ValueError(message)
+        time.sleep(self.explicit_wait)
+
     
