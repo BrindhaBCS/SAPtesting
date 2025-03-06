@@ -20,40 +20,8 @@ STMS
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
     Sleep   1 
-    Run Transaction    /nSTMS
+    Run Transaction    /nST02
     Sleep    1
-    Take Screenshot    017_STMS_01.jpg
-    Click Element	wnd[0]/tbar[1]/btn[19]
-	Sleep	2
-    Take Screenshot    017_STMS_02.jpg
-    Click Element	wnd[0]/tbar[0]/btn[3]
-	Sleep	2
-    Click Element	wnd[0]/tbar[1]/btn[18]
-	Sleep	2
-    Take Screenshot    017_STMS_03.jpg
-    Double Click Current Cell	wnd[0]/usr/cntlGRID1/shellcont/shell
-	Sleep	2
-    Take Screenshot    017_STMS_04.jpg
-    Click Element	wnd[0]/usr/tabsGN_DYN150_TAB_STRIP/tabpDOMA
-	Sleep	2
-    Take Screenshot    017_STMS_05.jpg
-    Click Element	wnd[0]/usr/tabsGN_DYN150_TAB_STRIP/tabpTPPE
-	Sleep	2
-    Take Screenshot    017_STMS_06.jpg
-    Click Element	wnd[0]/tbar[0]/btn[3]
-	Sleep	2
-    Connection_test
-Connection_test    
-	Click Element	wnd[0]/mbar/menu[0]/menu[3]/menu[0]
-	Sleep	2
-    Take Screenshot    017_STMS_08.jpg
-    Click Element	wnd[0]/mbar/menu[0]/menu[3]/menu[1]
-	Sleep	2
-    Set Focus	wnd[0]/usr/lbl[8,3]
-	Sleep	2
-	Set Caret Position	wnd[0]/usr/lbl[8,3]	0
-	Sleep	2
-	Click Element	wnd[0]/tbar[1]/btn[47]
     Take Screenshot    013_ST02_01.jpg
 	Send Vkey    82
     Sleep    2
