@@ -4,6 +4,7 @@ Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    String
 Library    ExcelLibrary
+Library    Merger.py
 
 *** Keywords ***
 System Logon
@@ -77,6 +78,8 @@ SE16
     ${json}    Excel To Json    excel_file=C:\\SAP_Hein\\Heineken\\DH5_001_EDPP1.xlsx   json_file=C:\\SAP_Hein\\Heineken\\DH5_001_EDPP1.json   
     Log    ${json}
     Close Current Excel Document
+    Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('screenshot_directory')}
+    Sleep    1
 
 	
 

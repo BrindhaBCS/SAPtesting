@@ -3,6 +3,7 @@ Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    String
+Library    Merger.py
 
 *** Keywords ***
 System Logon
@@ -77,6 +78,11 @@ SSL client SSL Client (Standard)
     Select Node    wnd[0]/shellcont/shell	SSLCDFAULT1
     Take Screenshot    007_SSLCDFAULT1_01.jpg
     Sleep    2
+
+    Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('screenshot_directory')}
+    Sleep    1
+
+    Convert pdf    ${symvar('screenshot_directory')}    ${symvar('screenshot_directory')}\\${symvar('PDFFILE_NAME')}
 
 
     

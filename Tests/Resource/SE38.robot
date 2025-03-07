@@ -3,6 +3,7 @@ Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    String
+Library    Merger.py
 
 *** Variables ***
 ${programe_name}    RSEMASSA
@@ -37,5 +38,7 @@ SE38
 	Click Element	wnd[0]/tbar[1]/btn[8]
 	Sleep	2
     Take Screenshot    002_SE38_01.jpg
+    Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('screenshot_directory')}
+    Sleep    1
 
     

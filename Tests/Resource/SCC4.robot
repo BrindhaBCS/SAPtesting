@@ -3,6 +3,7 @@ Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    String
+Library    Merger.py
 
 *** Keywords ***
 System Logon
@@ -42,4 +43,6 @@ SCC4
         Click Element    wnd[0]/tbar[0]/btn[3]
     END
     Sleep    6
+    Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('screenshot_directory')}
+    Sleep    1
     
