@@ -1,8 +1,9 @@
 *** Settings ***
 Resource    ../Tests/Resource/Heineken_Csadmin.robot
 Test Tags    Heineken_Csadmin
+Suite Setup   Heineken_Csadmin.System Logon
+Suite Teardown   Heineken_Csadmin.System Logout
 
 *** Test Cases ***
-System_logon
-    System Logon
+Csadmin_Tcode
     Csadmin_Tcode

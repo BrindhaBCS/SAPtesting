@@ -3402,3 +3402,33 @@ class SAP_Tcode_Library:
         except Exception as e:
             print(f"An error occurred: {e}")
     
+    def collapse_node(self, tree_id, node_id):
+        """This function closes the node with the key nodeKey."""
+        element = self.session.findById(tree_id)
+        element.collapseNode(f"{node_id}") 
+    
+    def select_context_menu_item_customised(self, element_id, item_id):
+        """Selects an item from the context menu by clicking a button or right-clicking in the node context menu.
+        """
+        self.element_should_be_present(element_id)
+        self.session.findById(element_id).selectContextMenuItem(item_id)
+        time.sleep(self.explicit_wait)
+    
+    def ensure_visible_horizontal_Item(self,node_id,subnode1,subnode2):
+        try:
+            self.session.findById(node_id).ensureVisibleHorizontalItem(f"{subnode1}",subnode2)
+        except Exception as e:
+            print(f"Error: {e}")
+
+    def item_Context_menu(self, element_id, option_1, option_2):
+        element = self.session.FindById(element_id)        
+        element.itemContextMenu(f"{option_1}",option_2)
+    
+    def get_Status_pane(self,paneid):
+        try:
+            element = self.session.findbyId(paneid)
+            status_message = element.text
+            return status_message
+        except Exception as e:
+            print(f"An error occurred: {e}")
+    

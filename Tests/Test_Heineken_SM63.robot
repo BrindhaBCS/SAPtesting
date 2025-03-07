@@ -1,8 +1,9 @@
 *** Settings ***
 Resource    ../Tests/Resource/Heineken_Sm63.robot
 Test Tags    Heineken_SM63
+Suite Setup   Heineken_Sm63.System Logon
+Suite Teardown   Heineken_Sm63.System Logout
 
 *** Test Cases ***
-System_logon
-    System Logon
+SM63_Tcode
     SM63_Tcode

@@ -1,31 +1,28 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
-# Library    Merger.py
+Library    Merger.py
 *** Variables ***
 
 ${TREE_PATH}    wnd[0]/usr/tblSAPL0SFNTCTRL_V_FILENACI
 *** Keywords ***
 System Logon
     Start Process     ${symvar('Heineken_SAP_SERVER')}    
-    Sleep    1
+    Sleep    10s
     Connect To Session
-    Open Connection    ${symvar('Heineken_SAP_connection')}
-    Sleep    1    
+    Open Connection    ${symvar('Heineken_SAP_connection')}    
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('Heineken_Client_Id')}
-    Sleep    1
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('Heineken_User_Name')}
-    Sleep    1
-   # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('Heineken_User_Password')}      
-    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{Heineken_User_Password}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('Heineken_User_Name')}    
+    # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('User_Password')}            
+    Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{DL1_PASSWORD}  
     Send Vkey    0
-    Multiple Logon Handling   wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0] 
+    Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
     Sleep   1
 
 RSA1
     Run Transaction    /NRSA1
     Sleep   2
-    Take Screenshot    RSA1.jpg01
+    Take Screenshot    015_RSA1_01.jpg
     Click Element    wnd[1]/tbar[0]/btn[0]
     Sleep    5
     TRY
@@ -45,7 +42,7 @@ RSA1
 	Sleep	2
 	Select Context Menu Item Customised	wnd[0]/shellcont[1]/shell/shellcont[0]/shell/shellcont[1]/shell/shellcont[1]/shell	CHECK_LSYS
     Sleep    2
-    Take Screenshot    RSA1.jpg01
+    Take Screenshot    015_RSA1_02.jpg
 	Close Window	wnd[0]/shellcont[2]
 	Sleep	2
 
@@ -59,7 +56,7 @@ RSA1
 	Sleep	2
 	Select Context Menu Item Customised	wnd[0]/shellcont[1]/shell/shellcont[0]/shell/shellcont[1]/shell/shellcont[1]/shell	CHECK_LSYS
 	Sleep	10
-    Take Screenshot    RSA1.jpg02
+    Take Screenshot    015_RSA1_03.jpg
 	Close Window	wnd[0]/shellcont[2]
 	Sleep	2
   
@@ -77,7 +74,7 @@ RSA1
 	Sleep	2
 	Select Context Menu Item Customised	wnd[0]/shellcont[1]/shell/shellcont[0]/shell/shellcont[1]/shell/shellcont[1]/shell	CHECK_LSYS
 	Sleep	20
-    Take Screenshot    RSA1.jpg03
+    Take Screenshot    015_RSA1_04.jpg
 	Close Window	wnd[0]/shellcont[2]
 	Sleep	2
     # Collapse Node	wnd[0]/shellcont[1]/shell/shellcont[0]/shell/shellcont[1]/shell/shellcont[1]/shell	${SPACE*10}9
@@ -95,13 +92,14 @@ RSA1
 	Sleep	2
 	Select Context Menu Item Customised	wnd[0]/shellcont[1]/shell/shellcont[0]/shell/shellcont[1]/shell/shellcont[1]/shell	CHECK_LSYS
 	Sleep	2
-    Take Screenshot    RSA1.JPG05
+    Take Screenshot    015_RSA1_05.jpg
     ${status}    Get Status Pane    wnd[0]/sbar/pane[0]
 
-    Take Screenshot   RSA1.${status}
+    Take Screenshot   015_RSA1_06.jpg
+	Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('screenshot_directory')}
 
 
 
 System logout
     Run Transaction    /nex
-    # Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}
+    
