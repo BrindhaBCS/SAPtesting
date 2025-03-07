@@ -9,12 +9,12 @@ Library    Merger.py
 
 *** Keywords ***
 System Logon
-    Start Process     ${symvar('SAP_SERVER')}    
+    Start Process     ${symvar('Heineken_SAP_SERVER')}    
     Sleep    10s
     Connect To Session
-    Open Connection    ${symvar('SAP_connection')}    
-    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('Client_Id')}
-    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('User_Name')}    
+    Open Connection    ${symvar('Heineken_SAP_connection')}    
+    Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('Heineken_Client_Id')}
+    Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('Heineken_User_Name')}    
     # Input Password   wnd[0]/usr/pwdRSYST-BCODE    ${symvar('User_Password')}            
     Input Password   wnd[0]/usr/pwdRSYST-BCODE    %{DL1_PASSWORD}  
     Send Vkey    0
