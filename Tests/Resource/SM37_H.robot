@@ -5,6 +5,7 @@ Library    OperatingSystem
 Library    String
 Library    ExcelLibrary
 Library    DateTime
+Library    Merger.py
 
 
 
@@ -116,3 +117,5 @@ SM37
     ${json}    Excel To Json    excel_file=C:\\SAP_Hein\\Heineken\\SM37.xlsx   json_file=C:\\SAP_Hein\\Heineken\\SM37.json   
     Log    ${json}
     Close Current Excel Document
+    Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('screenshot_directory')}
+    Sleep    1

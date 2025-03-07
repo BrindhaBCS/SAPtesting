@@ -3330,3 +3330,75 @@ class SAP_Tcode_Library:
                     cleaned_data.append(cleaned_row)
         return cleaned_data
     
+    def Convert_pdf(self, image_folder, output_pdf):
+        try:
+            if not os.path.exists(image_folder):
+                raise FileNotFoundError(f"The folder {image_folder} does not exist.")
+ 
+            # Create a PDF instance
+            pdf = FPDF()
+            pdf.set_auto_page_break(0)  # Disable auto page break
+ 
+            # List and sort image files by modified time
+            image_files = sorted(
+                [(f, os.path.getmtime(os.path.join(image_folder, f))) for f in os.listdir(image_folder)
+                if os.path.isfile(os.path.join(image_folder, f)) and f.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif'))],
+                key=lambda x: x[1]
+            )
+ 
+            if not image_files:
+                raise ValueError("No valid image files found in the folder.")
+ 
+            # Loop through the sorted image files
+            for image_file, _ in image_files:
+                try:
+                    # Process each image
+                    image_path = os.path.join(image_folder, image_file)
+                    image = Image.open(image_path)
+ 
+                    # Convert image to RGB if necessary
+                    if image.mode in ('RGBA', 'LA'):
+                        image = image.convert('RGB')
+ 
+                    # Get image size and scale to fit A4 dimensions
+                    width, height = image.size
+                    width_mm = width * 0.364583
+                    height_mm = height * 0.364583
+                    scale = min(265 / width_mm, 330 / height_mm)
+                    new_width_mm = width_mm * scale
+                    new_height_mm = height_mm * scale
+                    x_offset = (265 - new_width_mm) / 4
+                    y_offset = (330 - new_height_mm - 20) / 4
+ 
+                    # Add page with image
+                    pdf.add_page(orientation='P' if width_mm <= height_mm else 'L')
+                    pdf.image(image_path, x=x_offset, y=y_offset, w=new_width_mm, h=new_height_mm)
+ 
+                    # Extract Tcode Name (before the first underscore or number suffix)
+                    tcode_name = image_file.split('.')[0].split('_')[0]
+ 
+                    # Add the Tcode name to the top of the image
+                    pdf.set_xy(10, 10)
+                    pdf.set_font("Arial", size=12)
+                    pdf.cell(0, 10, f"Tcode: {tcode_name}", align='C')
+ 
+                    # Add file name & timestamp below the image
+                    # timestamp = datetime.fromtimestamp(os.path.getmtime(image_path)).strftime("%Y-%m-%d %H:%M:%S")
+                    # pdf.set_xy(10, y_offset + new_height_mm + 5)
+                    # pdf.set_font("Arial", size=10)
+                    # pdf.cell(0, 10, f"File name: {image_file}   Timestamp: {timestamp}", align='C')
+                    pdf.set_xy(10, y_offset + new_height_mm + 5)
+                    pdf.set_font("Arial", size=10)
+                    pdf.cell(0, 10, f"File name: {image_file}", align='C')
+ 
+                except Exception as e:
+                    print(f"Error processing image {image_file}: {e}")
+                    continue
+ 
+            # Save the final PDF
+            pdf.output(output_pdf)
+            print(f"PDF created successfully: {output_pdf}")
+ 
+        except Exception as e:
+            print(f"An error occurred: {e}")
+    

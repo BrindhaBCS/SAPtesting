@@ -3,6 +3,7 @@ Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    String
+Library    Merger.py
 
 
 
@@ -28,4 +29,6 @@ SLDAPICUST
     Run Transaction    /nSLDAPICUST
     Sleep    2
     Take Screenshot    003_sldapicust_01.jpg
+    Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('screenshot_directory')}
+    Sleep    1
     

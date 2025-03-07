@@ -5,6 +5,7 @@ Library    OperatingSystem
 Library    String
 Library    ExcelLibrary
 Library    DateTime
+Library    Merger.py
 
 *** Keywords ***
 System Logon
@@ -102,4 +103,6 @@ STMS_import
     ${json}    Excel To Json    excel_file=C:\\SAP_Hein\\Heineken\\DH5_001_import_history.xlsx   json_file=C:\\SAP_Hein\\Heineken\\DH5_001_import_history.json   
     Log    ${json}
     Close Current Excel Document
+    Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('screenshot_directory')}
+    Sleep    1
 

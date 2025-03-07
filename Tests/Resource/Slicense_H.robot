@@ -3,6 +3,7 @@ Library    Process
 Library    SAP_Tcode_Library.py
 Library    OperatingSystem
 Library    String
+Library    Merger.py
 
 
 
@@ -29,4 +30,6 @@ SLICENSE
     Sleep    1
     Take Screenshot    004_slicence_01.jpg
     Sleep    2
+    Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('screenshot_directory')}
+    Sleep    1
     
