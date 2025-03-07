@@ -9,12 +9,12 @@ ${EMAIL_PATTERN}   ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$
 ${MOBILE_PATTERN}   ^\\d{10}$    # This regex ensures exactly 10 digits
 ${CHROME_OPTIONS}    add_argument("--disable-notifications")
 ${SEARCH_FIELD}    xpath://input[@aria-label='Search this list...']
-${LEAD_STATUS_XPATH}    xpath=//lightning-formatted-text[@data-output-element-id='output-field']
-${LOG_A_CALL_XPATH}    xpath=//lightning-icon[contains(@class, 'slds-icon-standard-log-a-call')]
-${TEXTAREA_XPATH}    xpath=//textarea[contains(@class, 'textarea textarea')]
-${SAVE_BUTTON_XPATH}    xpath=//button[span[contains(text(), 'Save')]]
-${EDIT_BUTTON_XPATH}    xpath=//button[contains(@class, 'test-id__inline-edit-trigger')]
-${STATUS_DROPDOWN_XPATH}    xpath=//button[@aria-label='Lead Status']
+${LEAD_STATUS_XPATH}    xpath:(//span[@class='test-id__field-value slds-form-element__static slds-grow word-break-ie11'])[6]
+${LOG_A_CALL_XPATH}    xpath://lightning-icon[contains(@class, 'slds-icon-standard-log-a-call')]
+${TEXTAREA_XPATH}    xpath://textarea[contains(@class, 'textarea textarea')]
+${SAVE_BUTTON_XPATH}    xpath://button[span[contains(text(), 'Save')]]
+${EDIT_BUTTON_XPATH}    xpath://button[contains(@class, 'test-id__inline-edit-trigger')]
+${STATUS_DROPDOWN_XPATH}    xpath://button[@aria-label='Lead Status']
 ${CONTACTED_OPTION_XPATH}    xpath://lightning-base-combobox-item//span[contains(text(), 'Contacted')]
 *** Keywords ***
 Check If Entry Exists
@@ -184,19 +184,17 @@ Perform Contacted Actions
     Log To Console    **gbStart**copilot_status_v**splitKeyValue**${symvar('Call_Status_Message')} added successfully to ${symvar('lastname')}**gbEnd**
     Sleep    2
 Handle Open Lead
-    # Click Element    ${EDIT_BUTTON_XPATH}
-    # Sleep    2
-    # Click Element    ${STATUS_DROPDOWN_XPATH}
-    # Sleep    2
-    # Click Element    ${CONTACTED_OPTION_XPATH}
-    # Sleep    2
-    # Perform Contacted Actions
-    Log    Performing actions for Open Lead
-    # Add steps for Qualified Lead here
+    Log To Console    **gbStart**copilot_status_w**splitKeyValue**Lead for ${symvar('lastname')} with open status is created successfully..**gbEnd**
 Handle Qualified Lead
-    Log    Performing actions for Qualified Lead
-    # Add steps for Qualified Lead here
-
+    Click Element    xpath://one-app-nav-bar-item-root[contains(.,'Opportunities')]
+    Sleep    2
+    Click Element    xpath://button[@title='Select a List View: Opportunities']//lightning-primitive-icon[@exportparts='icon']//*[name()='svg']
+    Sleep    2
+    Click Element    xpath://span[normalize-space(text())='All Opportunities']
+    Sleep    2
+    Input Text    ${SEARCH_FIELD}    ${symvar('lastname')}
+    Press Key    ${SEARCH_FIELD}    ENTER
+    Sleep    2
+    Log To Console    **gbStart**copilot_status_x**splitKeyValue**Lead for ${symvar('lastname')} with Qualified status and opportunities are created successfully..**gbEnd**
 Handle Unqualified Lead
-    Log    Performing actions for Unqualified Lead
-    # Add steps for Unqualified Lead here
+    # Log To Console    **gbStart**copilot_status_y**splitKeyValue**Lead for ${symvar('lastname')} with open status is created successfully..**gbEnd**
