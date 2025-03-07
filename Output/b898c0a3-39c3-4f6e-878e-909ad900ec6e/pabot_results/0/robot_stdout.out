@@ -1,0 +1,41 @@
+==============================================================================
+Tests :: Testing functionality through Robot Framework                        
+==============================================================================
+Tests.Test scc4                                                               
+==============================================================================
+  
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  F:\Robotframework\sap_testing\Tests\Test_scc4.robot:4
+      System Logon    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  F:\Robotframework\sap_testing\Tests\Resource\SCC4.robot:10
+      Start Process    ${symvar('Heineken_SAP_SERVER')}
+      |  ${symvar('Heineken_SAP_SERVER')} =  (str)
+______________________________________________________________________________
+SCC4                                                                  | FAIL |
+Parent suite setup failed:
+OSError: [WinError 87] The parameter is incorrect
+------------------------------------------------------------------------------
+  
+  Traceback (most recent call last):
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  F:\Robotframework\sap_testing\Tests\Test_scc4.robot:5
+      System Logout    
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    File  F:\Robotframework\sap_testing\Tests\Resource\SCC4.robot:22
+      Run Transaction    /nex
+______________________________________________________________________________
+Tests.Test scc4                                                       | FAIL |
+Suite setup failed:
+OSError: [WinError 87] The parameter is incorrect
+
+Also suite teardown failed:
+No keyword with name 'Run Transaction' found. Did you try using keyword 'OperatingSystem.Run' and forgot to use enough whitespace between keyword and arguments?
+
+1 test, 0 passed, 1 failed
+==============================================================================
+Tests :: Testing functionality through Robot Framework                | FAIL |
+1 test, 0 passed, 1 failed
+==============================================================================
+Output:  F:\Robotframework\sap_testing\Output\b898c0a3-39c3-4f6e-878e-909ad900ec6e\pabot_results\0\Output.xml
