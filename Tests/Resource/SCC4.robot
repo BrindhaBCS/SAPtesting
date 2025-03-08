@@ -8,8 +8,9 @@ Library    Merger.py
 *** Keywords ***
 System Logon
     Start Process     ${symvar('Heineken_SAP_SERVER')}    
-    Sleep    10s
+    Sleep    20s
     Connect To Session
+    Sleep    10
     Open Connection    ${symvar('Heineken_SAP_connection')}    
     Input Text    wnd[0]/usr/txtRSYST-MANDT    ${symvar('Heineken_Client_Id')}
     Input Text    wnd[0]/usr/txtRSYST-BNAME    ${symvar('Heineken_User_Name')}    
