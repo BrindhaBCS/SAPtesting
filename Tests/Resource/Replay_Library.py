@@ -851,7 +851,7 @@ class Replay_Library:
             if isinstance(data, list):
                 for item in data:
                     if item.get("Means of Trans. ID") == transport_id:
-                        return {
+                        return item.get("Delivery"), {
                             "Message": "Match found",
                             "Delivery": item.get("Delivery"),
                             "Deliv. date(From/to)": item.get("Deliv. date(From/to)")
@@ -859,7 +859,7 @@ class Replay_Library:
         #catch not found vehioc;le
             elif isinstance(data, dict):
                 if data.get("Means of Trans. ID") == transport_id:
-                    return {
+                    return item.get("Delivery"), {
                         "Message": "Match found",
                         "Delivery": data.get("Delivery"),
                         "Deliv. date(From/to)": data.get("Deliv. date(From/to)")

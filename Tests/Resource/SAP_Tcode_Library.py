@@ -2155,26 +2155,26 @@ class SAP_Tcode_Library:
         workbook.close()
         return value
     
-    def response_check(self, url, user, passcode):
-        login_data = {
-            "username": user,
-            "password": passcode,
-        }
-        try:
-            start_time = time.time()
-            response = requests.get(url, auth=(user, passcode))
-            end_time = time.time()
-            response_time = end_time - start_time
-            current_Iso_time = datetime.now (timezone.utc).isoformat()
-            if response.status_code == 200:
-                timestamp = response.headers.get("Date", "Timestamp")
-                print(f"Timestamp: {timestamp}")
-                print(f"Response Time: {response_time:.4f} seconds")
-                return f"Responsecode: {response.status_code}",f"Timestamp: {timestamp}",f"ISOtimestamp: {current_Iso_time}"
-            else:
-                print(f"Failed to connect url check your status code . Status code: {response.status_code}")
-        except requests.exceptions.RequestException as e:
-            print(f"An error occurred: {e}")
+    # def response_check(self, url, user, passcode):
+    #     login_data = {
+    #         "username": user,
+    #         "password": passcode,
+    #     }
+    #     try:
+    #         start_time = time.time()
+    #         response = requests.get(url, auth=(user, passcode))
+    #         end_time = time.time()
+    #         response_time = end_time - start_time
+    #         current_Iso_time = datetime.now (timezone.utc).isoformat()
+    #         if response.status_code == 200:
+    #             timestamp = response.headers.get("Date", "Timestamp")
+    #             print(f"Timestamp: {timestamp}")
+    #             print(f"Response Time: {response_time:.4f} seconds")
+    #             return f"Responsecode: {response.status_code}",f"Timestamp: {timestamp}",f"ISOtimestamp: {current_Iso_time}"
+    #         else:
+    #             print(f"Failed to connect url check your status code . Status code: {response.status_code}")
+    #     except requests.exceptions.RequestException as e:
+    #         print(f"An error occurred: {e}")
     def create_empty_excel(self, file_path):
         sheet_name = os.path.splitext(os.path.basename(file_path))[0]
         workbook = Workbook()
@@ -2520,3 +2520,52 @@ class SAP_Tcode_Library:
             self.session.findById(tree_id).selectedRows = first_visible_row
         except Exception as e:
             print(f"Error: {e}")
+    def search_and_select_text(self, text, parent_path ):
+        try:
+            container = self.session.findById(parent_path)
+            for child in container.children:
+                if hasattr(child, "text") and child.text == text:
+                    child.setFocus()
+                    return True
+            return False
+        except Exception as e:
+            return f"Error: {e}"
+    def select_inboud_delivery(self):
+        try:    
+            self.session.findById("wnd[0]/shellcont/shell/shellcont[0]/shell").sapEvent("Frame0", "sapbu_cl= &sapse_cl=A1F1S1NAME:CFG_SELECT_OBJECT&sapin_cl= &A1F1S1=A&A1F1I2=&A1F1I4=&A1F1I7=", "sapevent:A1F1")
+        except Exception as e:
+            return f"Error: {e}"
+    def expand_gui_shell(self, table_shell, row_number,):
+            # expand_gui_shell    table_shell=wnd[0]/shellcont[1]/shell/shellcont[1]/shell    row_number=100
+        try:
+            row_number = int(row_number)
+            if 0 <= row_number <= 9:
+                row_identifier = f"{' ' * 10}{row_number}"  # 10 spaces for single digit
+            elif 10 <= row_number <= 99:
+                row_identifier = f"{' ' * 9}{row_number}"   # 9 spaces for double digits
+            elif 100 <= row_number <= 999:
+                row_identifier = f"{' ' * 8}{row_number}"   # 8 spaces for triple digits
+            else:
+                raise ValueError("Row number out of range. Must be between 0 and 999.")
+            tree_id = table_shell 
+            element = self.session.findById(tree_id)
+            element.selectNode(row_identifier)
+            element.expandNode(row_identifier)
+        except Exception as e:
+            raise Exception(f"Failed to expand node in SAP shell: {str(e)}")
+    def double_click_gui_shell(self, table_shell, row_number):
+        # Double Click Sap Shell Item    table_shell=wnd[0]/shellcont[1]/shell/shellcont[1]/shell    row_number=101
+        try:
+            row_number = int(row_number)
+            if 0 <= row_number <= 9:
+                row_identifier = f"{' ' * 10}{row_number}"  # 10 spaces for single digit
+            elif 10 <= row_number <= 99:
+                row_identifier = f"{' ' * 9}{row_number}"   # 9 spaces for double digits
+            elif 100 <= row_number <= 999:
+                row_identifier = f"{' ' * 8}{row_number}"   # 8 spaces for triple digits
+            else:
+                raise ValueError("Row number out of range. Must be between 0 and 999.")
+            element = self.session.findById(table_shell)
+            element.doubleClickNode(row_identifier)
+        except Exception as e:
+            raise Exception(f"Failed to double-click item in SAP shell: {str(e)}")

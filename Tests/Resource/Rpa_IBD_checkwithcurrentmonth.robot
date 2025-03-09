@@ -44,9 +44,9 @@ IBD_checkwithcurrentmonth
     Click Element    element_id=wnd[0]/mbar/menu[0]/menu[5]/menu[1]
     Input Text    element_id=wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/txtGS_EXPORT-FILE_NAME    text=Fulllist
     Select From List By Label    element_id=wnd[1]/usr/subSUB_CONFIGURATION:SAPLSALV_GUI_CUL_EXPORT_AS:0512/cmbGS_EXPORT-FORMAT    value=Spreadsheet(*.xlsx)
-    Click Element    element_id=wnd[1]/tbar[0]/btn[20] 
-    Input Text    element_id=wnd[1]/usr/ctxtDY_PATH    text=C:\\tmp\\RPA\\
+    Click Element    element_id=wnd[1]/tbar[0]/btn[20]
     Delete Specific File    file_path=C:\\tmp\\RPA\\Fulllist.xlsx
+    Input Text    element_id=wnd[1]/usr/ctxtDY_PATH    text=C:\\tmp\\RPA\\
     Click Element    element_id=wnd[1]/tbar[0]/btn[0]
     Sleep    5
     Delete Specific File    file_path=C:\\tmp\\RPA\\Fulllist.json
@@ -55,5 +55,6 @@ IBD_checkwithcurrentmonth
     Log To Console    message=**gbStart**copilot_status_currenrtmonth_list**splitKeyValue**${currenrtmonthjson}**splitKeyValue**object**gbEnd**
     Sleep    3
     ${result_transport}    Search Transport Id    json_file=C:\\tmp\\RPA\\Fulllist.json    transport_id=${symvar('Rpa_vehicle_number')}
-    Log To Console    message=**gbStart**copilot_status_transport_result**splitKeyValue**${result_transport}**splitKeyValue**object**gbEnd**
+    Log To Console    message=**gbStart**current_month_IBD**splitKeyValue**${result_transport}[0]**splitKeyValue**object**gbEnd**
+    Log To Console    message=**gbStart**copilot_status_transport_result**splitKeyValue**${symvar('Rpa_vehicle_number')} & ${result_transport}[1]**splitKeyValue**object**gbEnd**
     Sleep    3
