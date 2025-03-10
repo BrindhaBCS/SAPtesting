@@ -12,6 +12,7 @@
 # Salesforce_Password = "Vishnudev@21"
 # Upload_Filepath = "C:\\Users\\BCS290\\Downloads\\Book 2.csv"
 # Call_Status_Message = "Contacted Lead, they are ready for purchase..."
+# add_comment = "add as per your need"
 
 firstname = "$firstname"
 lastname = "$lastname"
@@ -27,3 +28,4 @@ Lead_Status = "$Lead_Status"
 Salesforce_Password = "$Salesforce_Password"
 Upload_Filepath = "$Upload_Filepath"
 Call_Status_Message = "$Call_Status_Message"
+add_comment = "$add_comment"
