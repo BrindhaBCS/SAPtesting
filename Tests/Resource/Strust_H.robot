@@ -82,7 +82,7 @@ SSL client SSL Client (Standard)
     Merger.Copy Images    ${OUTPUT_DIR}    ${symvar('screenshot_directory')}
     Sleep    1
 
-    Convert pdf    ${symvar('screenshot_directory')}    ${symvar('screenshot_directory')}\\${symvar('PDFFILE_NAME')}
+    # Convert pdf    ${symvar('screenshot_directory')}    ${symvar('screenshot_directory')}\\${symvar('PDFFILE_NAME')}
 
 
     
