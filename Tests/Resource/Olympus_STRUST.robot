@@ -1,9 +1,8 @@
 *** Settings ***
 Library    Process
 Library    SAP_Tcode_Library.py
-Library    OperatingSystem
-Library    String
 Library    Merger.py
+
 
 *** Keywords ***
 System Logon
@@ -25,27 +24,35 @@ System Logon
 
 Transaction STRUST
     Run Transaction     /nstrust
-    Send Vkey    0
+    Sleep    2
+
+System pse
+    Expand Node	wnd[0]/shellcont/shell	PROG<SYST>
+	Sleep	2
+	Select Top Node	wnd[0]/shellcont/shell	PROG<SYST>
+	Sleep	2
     Take Screenshot    042_PSE_01.jpg
     Sleep    2
-    
-    Scroll Pagedown    wnd[0]/usr/btnCERTDETAIL      
-    Sleep   2
+	Double Click On Tree Item	wnd[0]/shellcont/shell	PROG<SYST>1
+	Sleep	2
     Take Screenshot    042_PSE_02.jpg
     Sleep    2
 
-SSL server standard        
+SSL server standard 
+    Expand Node	wnd[0]/shellcont/shell	SSLSDFAULT
+	Sleep	2       
     Double Click On Tree Item    wnd[0]/shellcont/shell    SSLSDFAULT    
     Sleep    2
     Take Screenshot    042_SSLSDFAULT_03.jpg
     Sleep    2
-
     Scroll Pagedown    wnd[0]/usr/btnCERTDETAIL      
     Sleep   2
     Take Screenshot    042_SSLSDFAULT_04.jpg
     Sleep    2
 
 SSL client SSL Client (Anonymous)
+    Expand Node    wnd[0]/shellcont/shell    SSLCANONYM
+    Sleep    2
     Double Click On Tree Item    wnd[0]/shellcont/shell    SSLCANONYM    
     Sleep    2
     Take Screenshot    042_SSLCANONYM_05.jpg
@@ -56,6 +63,8 @@ SSL client SSL Client (Anonymous)
     Sleep    2
 
 SSL client SSL Client (Standard)
+    Expand Node    wnd[0]/shellcont/shell    SSLCDFAULT
+    Sleep    2
     Double Click On Tree Item    wnd[0]/shellcont/shell    SSLCDFAULT    
     Sleep    2
     Take Screenshot    042_SSLCDFAULT_07.jpg
@@ -65,15 +74,7 @@ SSL client SSL Client (Standard)
     Take Screenshot    042_SSLCDFAULT_08.jpg
     Sleep    2
 
-WS Security Other System Encryption
-    Double Click On Tree Item    wnd[0]/shellcont/shell    WSSEWSSCRT    
-    Sleep    2
-    Take Screenshot    042_WSSEWSSCRT_09.jpg
-    Sleep    2
-    Scroll Pagedown    wnd[0]/usr/btnCERTDETAIL
-    Sleep    2
-    Take Screenshot    042_WSSEWSSCRT_10.jpg
-    Sleep    2
+
 SSF Logon Ticket
     Double Click On Tree Item    wnd[0]/shellcont/shell    SSFASSO2    
     Sleep    2

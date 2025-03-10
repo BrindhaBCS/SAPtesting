@@ -27,11 +27,6 @@ RZ03_Tcodes
 	Click Element	wnd[0]/tbar[0]/btn[0]
 	Sleep	2
     Take Screenshot    021_RZ03_01.jpg
-    Send Vkey    0
-	Sleep	2
-    Take Screenshot    021_RZ03_02.jpg
-	Click Element	wnd[0]/tbar[0]/btn[3]
-	Sleep	2
     Run Transaction    /nex
     Sleep    2
     Copy Images    ${OUTPUT_DIR}    ${symvar('target_directory')}

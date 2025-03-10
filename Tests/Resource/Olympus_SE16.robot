@@ -38,7 +38,7 @@ SE16
 	Sleep	2
     Take Screenshot    RSADMIN.jpg
     ${counter}=    Set Variable    1
-    FOR    ${index}    IN RANGE    13
+    FOR    ${index}    IN RANGE    1    16    5   
         ${scroll}    Scroll    wnd[0]/usr      ${index}
         Log To Console    Selected rows: $${scroll}
         Take Screenshot    RSADMIN_${counter}.jpg

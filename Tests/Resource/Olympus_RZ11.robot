@@ -30,14 +30,7 @@ RZ11_Tcodes
     Take Screenshot    018_RZ11_01.jpg
 	Click Element	wnd[0]/usr/btnPANZEIGEN_1000
 	Sleep	2
-    ${counter}=    Set Variable    1
-    FOR    ${index}    IN RANGE    2
-        ${scroll}    Scroll    wnd[0]/usr      ${index}
-        Log To Console    Selected rows: $${scroll}
-        Take Screenshot    018_RZ11_02_${counter}.jpg
-        ${counter}=    Evaluate    ${counter} + 1
-        Sleep    1
-     END
+    Take Screenshot    018_RZ11_02_.jpg
 	Click Element	wnd[0]/tbar[0]/btn[3]
 	Sleep	2
     Run Transaction    /nex
