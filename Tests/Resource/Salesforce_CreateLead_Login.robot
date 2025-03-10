@@ -33,8 +33,8 @@ Create_Lead_login
     Maximize Browser Window
     Input Text    id:username    vijayakumarp@basiscloudsolutions.com.vishnudev
     Sleep    2
-    # Input Password    id:password    %{Salesforce_Password}
-    Input Password    id:password    ${symvar('Salesforce_Password')}
+    Input Password    id:password    %{Salesforce_Password}
+    # Input Password    id:password    ${symvar('Salesforce_Password')}
     Sleep    2
     Click Element    xpath://input[@id='Login']
     Sleep    5
@@ -64,7 +64,7 @@ Create_Lead_login
     Sleep    5
     Click Element    xpath://button[@aria-label='Lead Status']
     Sleep    3
-    Click Element    xpath://lightning-base-combobox-item//span[contains(text(), '${symvar('Lead_Status')}')]
+    Click Element    xpath://lightning-base-combobox-item//span[contains(text(), '${symvar("Lead_Status")}')]
     Sleep    5
     Input Text    xpath://input[@placeholder='Last Name']    ${symvar('lastname')}
     Sleep    2
@@ -157,6 +157,11 @@ Create_Lead_login
     Sleep    2
     Click Element    xpath://lightning-base-combobox-item//span[contains(text(), '${symvar('state')}')]
     Sleep    2
+    ${lead_status}    Set Variable    ${symvar("Lead_Status")}
+    IF    '${lead_status}' != 'Open'    
+        Input Text    xpath://textarea[contains(@class, 'slds-textarea')]    ${symvar("add_comment")}
+    END
+    Sleep    2
     IF  ${is_valid_mobile_no} and ${is_valid_email}  
         Log  message=All validations passed! Clicking Submit...  formatter=repr  
         Log To Console    **gbStart**copilot_status_s**splitKeyValue**All validations passed! Clicking Submit...**gbEnd**
@@ -192,9 +197,12 @@ Handle Qualified Lead
     Sleep    2
     Click Element    xpath://span[normalize-space(text())='All Opportunities']
     Sleep    2
-    Input Text    ${SEARCH_FIELD}    ${symvar('lastname')}
-    Press Key    ${SEARCH_FIELD}    ENTER
-    Sleep    2
+    # Input Text    ${SEARCH_FIELD}    ${symvar('lastname')}
+    # Press Key    ${SEARCH_FIELD}    ENTER
+    ${opportunity_name}    Set Variable    ${symvar('lastname')}
+    Click Element    xpath=//a[contains(@class, 'slds-truncate') and contains(text(), '${opportunity_name}')]
+
+
     Log To Console    **gbStart**copilot_status_x**splitKeyValue**Lead for ${symvar('lastname')} with Qualified status and opportunities are created successfully..**gbEnd**
 Handle Unqualified Lead
     # Log To Console    **gbStart**copilot_status_y**splitKeyValue**Lead for ${symvar('lastname')} with open status is created successfully..**gbEnd**
