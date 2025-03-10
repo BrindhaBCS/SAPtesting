@@ -68,4 +68,4 @@ BIN_Allocation
     END
     ${Binallocation_result}   Binallocation Json    file_path=${filepath}
     Log To Console    message=**gbStart**Binallocation_result_json**splitKeyValue**${Binallocation_result}**splitKeyValue**object**gbEnd**
-    # Delete Specific File    file_path=${filepath}
+    Delete Specific File    file_path=${filepath}

@@ -59,4 +59,4 @@ Material_code_quantity_from_ASN
     ${IBDjson}    Inbounddelivery Json    file_path=${file}
     Log To Console    message=**gbStart**InbounddeliveryJson**splitKeyValue**${IBDjson}**splitKeyValue**object**gbEnd**
     Log To Console    message=**gbStart**asn_materialstatus**splitKeyValue**Asn materialquantity completed**splitKeyValue**object**gbEnd**
-    # Delete Specific File    file_path=${file}
+    Delete Specific File    file_path=${file}
