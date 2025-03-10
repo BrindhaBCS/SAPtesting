@@ -160,6 +160,8 @@ Create_Lead_login
     ${lead_status}    Set Variable    ${symvar("Lead_Status")}
     IF    '${lead_status}' != 'Open'    
         Input Text    xpath://textarea[contains(@class, 'slds-textarea')]    ${symvar("add_comment")}
+        Sleep    2
+        Log To Console    **gbStart**copilot_status_01**splitKeyValue**The comment: ${symvar("add_comment")} for ${symvar("Lead_Status")} has been added scuccessfully.. **gbEnd**
     END
     Sleep    2
     IF  ${is_valid_mobile_no} and ${is_valid_email}  
