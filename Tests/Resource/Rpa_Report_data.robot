@@ -58,10 +58,10 @@ Report_data_sym
 
         Click Toolbar Button    table_id=wnd[0]/usr/shell/shellcont[1]/shell/shellcont[0]/shell    button_id=N000000110      #warehouseorderbutton
         Sleep    1
-        #Warehouse Order or Material placed in Storage Location
+        #Warehouse Order or Material placed in Warehouse location
         ${warehouseorderconfiremed}    Get Sap Table Value    table_id=wnd[0]/usr/shell/shellcont[1]/shell/shellcont[1]/shell    row_num=${i}    column_id=CONFIRMED_DATE
         ${warehouseorderconfiremedtime}    Get Sap Table Value    table_id=wnd[0]/usr/shell/shellcont[1]/shell/shellcont[1]/shell    row_num=${i}    column_id=CONFIRMED_TIME
-        ${warehouseorderstatus}    Set Variable    Material placed in Storage Location Confirmed :Date:${warehouseorderconfiremed} Time:${warehouseorderconfiremedtime}
+        ${warehouseorderstatus}    Set Variable    Material placed in Warehouse location Confirmed :Date:${warehouseorderconfiremed} Time:${warehouseorderconfiremedtime}
         Append To File    path=${filepath}    content=${warehouseorderstatus}\n
         #Inbounddeliverybutton
         Click Toolbar Button    table_id=wnd[0]/usr/shell/shellcont[1]/shell/shellcont[0]/shell    button_id=N000000086
