@@ -177,6 +177,7 @@ Create_Lead_login
         ...    ELSE IF    '${lead_status}' == 'Open'    Handle Open Lead
         ...    ELSE IF    '${lead_status}' == 'Qualified'    Handle Qualified Lead
         ...    ELSE IF    '${lead_status}' == 'Unqualified'    Handle Unqualified Lead
+        ...    ELSE IF    '${lead_status}' == 'Contacted Customer Not Attended'    Handle Unattended Lead
         ...    ELSE    Log    Unknown Lead Status: ${lead_status}
     ELSE  
         Log  message=Cannot create lead. Invalid Mobile or Email.  formatter=repr  
@@ -199,12 +200,10 @@ Handle Qualified Lead
     Sleep    2
     Click Element    xpath://span[normalize-space(text())='All Opportunities']
     Sleep    2
-    # Input Text    ${SEARCH_FIELD}    ${symvar('lastname')}
-    # Press Key    ${SEARCH_FIELD}    ENTER
     ${opportunity_name}    Set Variable    ${symvar('lastname')}
     Click Element    xpath=//a[contains(@class, 'slds-truncate') and contains(text(), '${opportunity_name}')]
-
-
     Log To Console    **gbStart**copilot_status_x**splitKeyValue**Lead for ${symvar('lastname')} with Qualified status and opportunities are created successfully..**gbEnd**
 Handle Unqualified Lead
     # Log To Console    **gbStart**copilot_status_y**splitKeyValue**Lead for ${symvar('lastname')} with open status is created successfully..**gbEnd**
+Handle Unattended Lead
+    # Log To Console    **gbStart**copilot_status_y**splitKeyValue**Contacted ${symvar('lastname')} but no response..**gbEnd**
