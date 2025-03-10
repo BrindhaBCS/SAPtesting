@@ -709,11 +709,11 @@ class Replay_Library:
         data = {
             "vehicle_entry": re.search(r"Vehicle Entry :Date:(\d{2}\.\d{2}\.\d{4}) Time:(\d{2}:\d{2}:\d{2})", content),
             "goods_receipt": re.search(r"Goods Receipt Created :Date:(\d{2}\.\d{2}\.\d{4}) Time:(\d{2}:\d{2}:\d{2})", content),
-            "storage_location": re.search(r"Material placed in Storage Location Confirmed :Date:(\d{2}\.\d{2}.\d{4}) Time:(\d{2}:\d{2}:\d{2})", content),
+            "Warehouse location": re.search(r"Material placed in Warehouse location Confirmed :Date:(\d{2}\.\d{2}.\d{4}) Time:(\d{2}:\d{2}:\d{2})", content),
             "vendor_number": re.search(r"Vendor Number :(\d+)", content),
             "vendor_name": re.search(r"Vendor Name :([\w\s]+)", content),
             "inbound_delivery": re.search(r"Inbound Delivery Number :(\d+)", content),
-            "vehicle_number": re.search(r"Vehicle Number :([\w\s]+)", content),
+            "vehicle_number": re.search(r"Vehicle Number :([\w]+)", content),
             "delivery_date": re.search(r"Delivery Date :(\d{2}\.\d{2}\.\d{4})", content),
             "purchase_order": re.search(r"Purchase Order :(\d+)", content),
             "material_number": re.findall(r"Material Number :(\d+)", content),
@@ -728,17 +728,17 @@ class Replay_Library:
             timestamps["vehicle_entry"] = parse_datetime(*data["vehicle_entry"])
         if data["goods_receipt"]:
             timestamps["goods_receipt"] = parse_datetime(*data["goods_receipt"])
-        if data["storage_location"]:
-            timestamps["storage_location"] = parse_datetime(*data["storage_location"])
+        if data["Warehouse location"]:
+            timestamps["Warehouse location"] = parse_datetime(*data["Warehouse location"])
 
         # Compute time differences
         time_differences = {}
         if "vehicle_entry" in timestamps and "goods_receipt" in timestamps:
             time_differences["entry_to_receipt"] = timestamps["goods_receipt"] - timestamps["vehicle_entry"]
-        if "goods_receipt" in timestamps and "storage_location" in timestamps:
-            time_differences["receipt_to_storage"] = timestamps["storage_location"] - timestamps["goods_receipt"]
-        if "vehicle_entry" in timestamps and "storage_location" in timestamps:
-            time_differences["total"] = timestamps["storage_location"] - timestamps["vehicle_entry"]
+        if "goods_receipt" in timestamps and "Warehouse location" in timestamps:
+            time_differences["receipt_to_storage"] = timestamps["Warehouse location"] - timestamps["goods_receipt"]
+        if "vehicle_entry" in timestamps and "Warehouse location" in timestamps:
+            time_differences["total"] = timestamps["Warehouse location"] - timestamps["vehicle_entry"]
         data["time_differences"] = time_differences
 
         line_items = "".join(
@@ -753,8 +753,8 @@ class Replay_Library:
             f"<li class='timeline-item completed'>Goods Receipt Created - <b>Date:</b> {data['goods_receipt'][0]} <b>Time:</b> {data['goods_receipt'][1]}</li>"
             if data.get('goods_receipt') else "<li class='timeline-item pending'>Goods Receipt Created - <b>Date:</b> - <b>Time:</b> 00:00:00</li>",
 
-            f"<li class='timeline-item completed'>Material placed in Storage Location - <b>Date:</b> {data['storage_location'][0]} <b>Time:</b> {data['storage_location'][1]}</li>"
-            if data.get('storage_location') else "<li class='timeline-item pending'>Material placed in Storage Location - <b>Date:</b> - <b>Time:</b> 00:00:00</li>"
+            f"<li class='timeline-item completed'>Material placed in Warehouse location - <b>Date:</b> {data['Warehouse location'][0]} <b>Time:</b> {data['Warehouse location'][1]}</li>"
+            if data.get('Warehouse location') else "<li class='timeline-item pending'>Material placed in Warehouse location - <b>Date:</b> - <b>Time:</b> 00:00:00</li>"
         ]
 
         total_time = time_differences.get("total", "N/A")
@@ -782,7 +782,7 @@ class Replay_Library:
                 .timeline-item {{ padding: 15px; background: #f6f6f6; margin-bottom: 10px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); }}
                 .completed {{ color: green; font-weight: bold; }}
                 .pending {{ color: gray; font-weight: bold; }}
-                .timeline::before {{
+                    .timeline::before {{
                         content: "";
                         position: absolute;
                         left: 12px;
@@ -793,22 +793,48 @@ class Replay_Library:
                     .timeline-item {{
                         position: relative;
                         padding: 15px 0;
-                        padding-left: 40px;
+                        padding-left: 20px;
                     }}
-                    .timeline-item::before {{
-                        content: "✔️";
-                        position: absolute;
-                        left: 0;
-                        top: 50%;
-                        transform: translateY(-50%);
-                        font-size: 20px;
-                        color: green;
+                    .timeline {{
+                        counter-reset: timeline-counter;
                     }}
 
-                    .pending::before {{
-                        content: "🔴";
-                        color: red;
+                    .timeline-item {{
+                        counter-increment: timeline-counter;
+                        position: relative;
+                        padding: 15px 0;
+                        padding-left: 20px;
                     }}
+
+                    .timeline-item::before {{
+                        content: counter(timeline-counter);
+                        position: absolute;
+                        left: -30px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        font-size: 16px;
+                        color: white;
+                        background-color:#0073e6;
+                        border-radius: 50%;
+                        width: 24px;
+                        height: 30px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-weight: bold;
+                        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+                    }}
+                    .timeline-item:nth-child(-n+3)::after {{
+                        content: "▼"; /* This symbol looks similar to ⬇️ */
+                        position: absolute;
+                        left: -26px;
+                        bottom: 4px;
+                        width: 0;
+                        height: 0;
+                        color: green; /* This works for text symbols */
+                        font-size: 16px;
+                    }}
+
             </style>
         </head>
         <body>
@@ -818,7 +844,7 @@ class Replay_Library:
             </div>
             <div class="table-container">
                 <table>
-                    <tr><th colspan="6">Header</th></tr>
+                    <tr><th colspan="6">Vendor Information</th></tr>
                     <tr><th>Vendor Number</th><th>Vendor Name</th><th>Purchase Order</th><th>Inbound Delivery</th><th>Vehicle Number</th><th>Delivery Date</th></tr>
                     <tr>
                         <td>{data['vendor_number'][0] if data['vendor_number'] else ''}</td>
@@ -829,7 +855,7 @@ class Replay_Library:
                         <td>{data['delivery_date'][0] if data['delivery_date'] else ''}</td>
                     </tr>
                     <tr><th>S.No</th><th>Material Number</th><th>Quantity</th><th>Unit</th><th>Material Description</th><th>Delivery Status</th></tr>
-                        {line_items}
+                    {line_items}
                 </table>
             </div>
             <div class="timeline-container">
@@ -840,6 +866,7 @@ class Replay_Library:
         </body>
         </html>
         """
+
         with open(output_file, "w", encoding="utf-8") as file:
             file.write(html_content)
 
