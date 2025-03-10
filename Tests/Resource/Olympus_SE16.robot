@@ -26,22 +26,22 @@ System Logon
 SE16
     Run Transaction     /nSE16
     Sleep    2
-    Take Screenshot    SE16.jpg
+    Take Screenshot    062_SE16_01.jpg
     Input Text	wnd[0]/usr/ctxtDATABROWSE-TABLENAME    RSADMIN 
 	Sleep	2
-    Take Screenshot    RSADMIN.jpg
+    Take Screenshot    062_RSADMIN_02.jpg
     Sleep    2
 	Click Element	wnd[0]/tbar[1]/btn[7]
-    Take Screenshot    RSADMIN.jpg
+    Take Screenshot    062_RSADMIN_03.jpg
 	Sleep	2
 	Click Element	wnd[0]/tbar[1]/btn[8]
 	Sleep	2
-    Take Screenshot    RSADMIN.jpg
+    Take Screenshot    062_RSADMIN_04.jpg
     ${counter}=    Set Variable    1
     FOR    ${index}    IN RANGE    1    16    5   
         ${scroll}    Scroll    wnd[0]/usr      ${index}
         Log To Console    Selected rows: $${scroll}
-        Take Screenshot    RSADMIN_${counter}.jpg
+        Take Screenshot    062_RSADMIN_05_${counter}.jpg
         ${counter}=    Evaluate    ${counter} + 1
         Sleep    1
      END
@@ -51,7 +51,7 @@ SE16
 	Sleep	2
 	Input Text	wnd[0]/usr/ctxtDATABROWSE-TABLENAME    RSADMINA
 	Sleep	2
-    Take Screenshot    RSADMINA1.jpg
+    Take Screenshot    062_RSADMINA1_06.jpg
     Sleep    2    
 	Click Element	wnd[0]/tbar[1]/btn[7]
 	Sleep	2
@@ -59,12 +59,12 @@ SE16
     FOR    ${index}    IN RANGE    2
         ${scroll}    Scroll    wnd[0]/usr      ${index}
         Log To Console    Selected rows: $${scroll}
-        Take Screenshot    RSADMINA_${counter}.jpg
+        Take Screenshot    062_RSADMINA_07_${counter}.jpg
         ${counter}=    Evaluate    ${counter} + 1
         Sleep    1
      END
 	Click Element	wnd[0]/tbar[1]/btn[8]
-	Take Screenshot    RSADMINA3.jpg
+	Take Screenshot    062_RSADMINA3_08.jpg
 	Sleep	2
 	Click Element	wnd[0]/tbar[0]/btn[3]
 	Sleep	2
@@ -74,7 +74,7 @@ SE16
     Sleep    2
 	Click Element	wnd[0]/tbar[1]/btn[7]
 	Click Element	wnd[0]/tbar[1]/btn[8]
-	Take Screenshot    RSPRECADMIN.jpg
+	Take Screenshot    062_RSPRECADMIN_09.jpg
 	Sleep	2
 	Click Element	wnd[0]/tbar[0]/btn[3]
 	Sleep	2
@@ -84,16 +84,16 @@ SE16
 	Sleep	2
 	Click Element	wnd[0]/tbar[1]/btn[8]
 	Sleep	2
-	Take Screenshot    RSPRECALCADMIN1.jpg
+	Take Screenshot    062_RSPRECALCADMIN1_10.jpg
 	Click Element	wnd[0]/tbar[0]/btn[3]
 	Sleep	2
 	Input Text	wnd[0]/usr/ctxtDATABROWSE-TABLENAME    IWFND
-    Take Screenshot    IWFND.jpg
+    Take Screenshot    062_IWFND_11.jpg
 	Sleep	2
 	Click Element	wnd[0]/tbar[0]/btn[0]
 	Sleep	2
 	Input Text	wnd[0]/usr/ctxtDATABROWSE-TABLENAME    C_DFSYAL
-    Take Screenshot    C_DFSYAL.jpg
+    Take Screenshot    062_C_DFSYAL_12.jpg
 	Sleep	2
 	Click Element	wnd[0]/tbar[0]/btn[0]
 	Sleep	2
