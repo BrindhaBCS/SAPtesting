@@ -2,7 +2,8 @@
 Library    Process
 Library    SAP_Tcode_Library.py
 Library    Merger.py
-
+# Resource    Sldcheck_Olympus.robot
+ 
 *** Keywords ***
 STMS
     Start Process     ${symvar('Olympus_SAP_SERVER')}    
@@ -54,14 +55,18 @@ Connection_test
 	Sleep	2
 	Click Element	wnd[0]/tbar[1]/btn[47]
 	Sleep	2
-        ${counter}=    Set Variable    1
-    FOR    ${index}    IN RANGE    20
-        ${scroll}    Scroll    wnd[0]/usr   ${index}
-        Log To Console    Selected rows: $${scroll}
-        Take Screenshot    017_STMS_09_${counter}.jpg
-        ${counter}=    Evaluate    ${counter} + 1
-        Sleep    1
-    END
+    Take Screenshot    017_STMS_09.jpg
+    Send Vkey    82
+    Sleep    2
+    Take Screenshot    017_STMS_10.jpg
+    #     ${counter}=    Set Variable    1
+    # FOR    ${index}    IN RANGE    20
+    #     ${scroll}    Scroll    wnd[0]/usr   ${index}
+    #     Log To Console    Selected rows: $${scroll}
+    #     Take Screenshot    017_STMS_11_${counter}.jpg
+    #     ${counter}=    Evaluate    ${counter} + 1
+    #     Sleep    1
+    # END
     Click Element	wnd[0]/tbar[0]/btn[3]
 	Sleep	2
     Click Element	wnd[0]/mbar/menu[0]/menu[3]/menu[2]
@@ -73,14 +78,10 @@ Connection_test
 	Click Element	wnd[0]/tbar[1]/btn[47]
 	Sleep	2
     ${counter}=    Set Variable    1
-    FOR    ${index}    IN RANGE    10
+    FOR    ${index}    IN RANGE    1
         ${scroll}    Scroll    wnd[0]/usr   ${index}
         Log To Console    Selected rows: $${scroll}
-<<<<<<< HEAD
-        Take Screenshot    017_SM59_010_${counter}.jpg
-=======
-        Take Screenshot    STMS_${counter}.jpg
->>>>>>> cf80e6c934758f15a223fadadbb4238028521de6
+        Take Screenshot    017_STMS_11_${counter}.jpg
         ${counter}=    Evaluate    ${counter} + 1
         Sleep    1
     END

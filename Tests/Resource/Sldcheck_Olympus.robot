@@ -25,7 +25,7 @@ System Logon
 Sldcheck   
     Run Transaction    /nSldcheck 
     Sleep    1
-    Take Screenshot    Sldcheck_Olympus.jpg
+    Take Screenshot    064_Sldcheck_Olympus_01.jpg
     	    
 System Logout
     Run Transaction    /nex

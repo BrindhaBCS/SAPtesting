@@ -26,8 +26,6 @@ System Logon
 ST03N    
     Run Transaction    /nST03N  
     Sleep   2
-    Run Transaction    /nST03N  
-    Sleep   2
 	Expand Node	wnd[0]/shellcont/shell/shellcont[1]/shell	B.999
 	Sleep	2
 	Select Top Node	wnd[0]/shellcont/shell/shellcont[1]/shell	B
