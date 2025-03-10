@@ -201,7 +201,9 @@ Handle Qualified Lead
     Click Element    xpath://span[normalize-space(text())='All Opportunities']
     Sleep    2
     ${opportunity_name}    Set Variable    ${symvar('lastname')}
+    Sleep    10
     Click Element    xpath=//a[contains(@class, 'slds-truncate') and contains(text(), '${opportunity_name}')]
+    Sleep    5
     Log To Console    **gbStart**copilot_status_x**splitKeyValue**Lead for ${symvar('lastname')} with Qualified status and opportunities are created successfully..**gbEnd**
 Handle Unqualified Lead
     # Log To Console    **gbStart**copilot_status_y**splitKeyValue**Lead for ${symvar('lastname')} with open status is created successfully..**gbEnd**
