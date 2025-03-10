@@ -5,4 +5,4 @@ Test Tags    SE16_1
 *** Test Cases ***
 System_logon
     System Logon
-    SE16
+    SE16_1

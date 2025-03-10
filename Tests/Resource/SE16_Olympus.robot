@@ -24,7 +24,7 @@ System Logon
     Send Vkey    0
     Multiple logon Handling     wnd[1]  wnd[1]/usr/radMULTI_LOGON_OPT2  wnd[1]/tbar[0]/btn[0]
     Sleep   1
-SE16  
+SE16_1  
     Run Transaction    /nSE16
     Sleep    1
     Input Text	wnd[0]/usr/ctxtDATABROWSE-TABLENAME	HTTPURLLOC
