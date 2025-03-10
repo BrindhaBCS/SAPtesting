@@ -57,7 +57,7 @@ Create_Lead_login
         Fail    Duplicate email detected!
     ELSE
         ${duplicate_entry}    Log    No duplicate entry found. Proceeding with the new entry...
-        Log To Console    **gbStart**copilot_status_d**splitKeyValue**${duplicate_entry}**gbEnd**
+        Log To Console    **gbStart**copilot_status_d**splitKeyValue**No duplicate entry found. Proceeding with the new entry...**gbEnd**
     END
 
     Click Element    xpath://div[normalize-space(text())='New']
